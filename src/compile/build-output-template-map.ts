@@ -1,0 +1,36 @@
+import type { OutputTemplateMap } from '../domain/output.js';
+
+export function buildOutputTemplateMap(): OutputTemplateMap[] {
+  return [
+    {
+      id: 'customer_pdf_output_template',
+      label: 'Customer PDF output template',
+      status: 'active',
+      confidence: 'manual_seed',
+      output_mode: 'customer_pdf',
+      required_sections: ['title', 'route_overview', 'daily_itinerary', 'pickup_dropoff', 'inclusions', 'exclusions', 'important_notes', 'map_summary'],
+      data_dependencies: ['package_route_map', 'route_leg_index', 'destination_activity_profiles', 'operational_events', 'meal_logic', 'cost_components'],
+      source_trace: [{ source: 'manual_seed', ref: 'contracts/output-contract.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'website_page_output_template',
+      label: 'Website page output template',
+      status: 'active',
+      confidence: 'manual_seed',
+      output_mode: 'website_page',
+      required_sections: ['hero', 'route_map', 'itinerary_days', 'destination_highlights', 'inclusion_exclusion', 'faq', 'schema_data'],
+      data_dependencies: ['visual_map_layer', 'package_route_map', 'destination_activity_profiles', 'recommendation_rules'],
+      source_trace: [{ source: 'manual_seed', ref: 'contracts/output-contract.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'whatsapp_summary_output_template',
+      label: 'WhatsApp summary output template',
+      status: 'active',
+      confidence: 'manual_seed',
+      output_mode: 'whatsapp_summary',
+      required_sections: ['feasibility_answer', 'recommended_route', 'key_warnings', 'price_or_cost_note', 'next_required_info'],
+      data_dependencies: ['recommendation_rules', 'route_leg_index', 'cost_components'],
+      source_trace: [{ source: 'manual_seed', ref: 'contracts/output-contract.yaml', confidence: 'manual_seed' }]
+    }
+  ];
+}

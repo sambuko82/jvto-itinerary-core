@@ -1,0 +1,40 @@
+[
+  {
+    "package_id": "bromo-madakaripura-ijen-ketapang-3d2n",
+    "label": "3D2N Bromo, Madakaripura, Ijen, Ketapang",
+    "origin": "Surabaya",
+    "duration": "3D2N",
+    "route_sequence": [
+      "Surabaya",
+      "Bromo Area",
+      "Madakaripura",
+      "Bondowoso / Ijen Area",
+      "Ijen Crater",
+      "Ketapang Harbor"
+    ],
+    "route_legs": [
+      "surabaya_airport_to_bromo_area",
+      "bromo_area_to_madakaripura",
+      "bromo_area_to_bondowoso_ijen_area",
+      "bondowoso_ijen_area_to_ijen_crater",
+      "ijen_area_to_ketapang_harbor"
+    ],
+    "standard_dropoff_options": [
+      "Ketapang Harbor",
+      "Bali with additional transfer",
+      "Surabaya with route adjustment"
+    ],
+    "possible_customizations": [
+      "Bali hotel dropoff",
+      "skip Madakaripura",
+      "add Tumpak Sewu with extra day"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ]
+  }
+]

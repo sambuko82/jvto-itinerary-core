@@ -1,0 +1,29 @@
+import type { VisualMapLayer } from '../domain/output.js';
+
+export function buildVisualMapLayer(): VisualMapLayer[] {
+  return [
+    {
+      id: 'map_surabaya_bromo_ijen_ketapang',
+      label: 'Surabaya to Bromo, Ijen, Ketapang map layer',
+      status: 'active',
+      confidence: 'manual_seed',
+      points: [
+        { type: 'pickup', label: 'Surabaya Airport', location_ref: 'surabaya_airport' },
+        { type: 'destination', label: 'Mount Bromo', location_ref: 'bromo' },
+        { type: 'destination', label: 'Madakaripura Waterfall', location_ref: 'madakaripura' },
+        { type: 'hotel_area', label: 'Bondowoso / Ijen Area', location_ref: 'bondowoso_ijen_area' },
+        { type: 'destination', label: 'Ijen Crater', location_ref: 'ijen' },
+        { type: 'dropoff', label: 'Ketapang Harbor', location_ref: 'ketapang_harbor' }
+      ],
+      route_legs: [
+        'surabaya_airport_to_bromo_area',
+        'bromo_area_to_madakaripura',
+        'bromo_area_to_bondowoso_ijen_area',
+        'bondowoso_ijen_area_to_ijen_crater',
+        'ijen_area_to_ketapang_harbor'
+      ],
+      display_notes: ['Use Mapbox/Leaflet polyline when coordinates are verified.', 'Distance labels can be added after route-leg distance enrichment.'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/visual-map-layer.yaml', confidence: 'manual_seed' }]
+    }
+  ];
+}

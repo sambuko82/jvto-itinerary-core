@@ -1,0 +1,19 @@
+{
+  "scenario_id": "custom_bali_ijen_bromo_surabaya_3d2n",
+  "channel": "CUSTOM",
+  "pickup": {
+    "type": "hotel",
+    "location": "Bali Hotel",
+    "detail": "Ubud or South Bali - needs confirmation",
+    "time": "TBD"
+  },
+  "dropoff": {
+    "type": "airport",
+    "location": "Surabaya Airport",
+    "time": "TBD"
+  },
+  "pax": 2,
+  "duration_days": 3,
+  "requested_destinations": ["Ijen", "Bromo"],
+  "constraints": ["reverse route", "airport deadline must be checked"]
+}

@@ -1,0 +1,17 @@
+{
+  "scenario_id": "custom_surabaya_tumpak_sewu_bromo_ijen_4d3n",
+  "channel": "CUSTOM",
+  "pickup": {
+    "type": "airport",
+    "location": "Surabaya Airport",
+    "time": "09:00"
+  },
+  "dropoff": {
+    "type": "harbor",
+    "location": "Ketapang Harbor"
+  },
+  "pax": 4,
+  "duration_days": 4,
+  "requested_destinations": ["Tumpak Sewu", "Bromo", "Madakaripura", "Ijen"],
+  "constraints": ["fatigue check required", "waterfall weather check required"]
+}

@@ -1,0 +1,19 @@
+version: 1
+first_priority_extractors:
+  - package_templates
+  - package_itineraries
+  - route_details
+  - destination_profiles
+  - pickup_dropoff_patterns
+  - activity_costs
+  - hotel_room_meal_rates
+  - vehicle_crew_rates
+
+manual_seed_needed:
+  - distance_km
+  - busy_duration_minutes
+  - road_profile
+  - ferry_buffer
+  - flight_buffer
+  - fatigue_thresholds
+  - recommendation_copy

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "customer_pdf_output_template",
+    "label": "Customer PDF output template",
+    "status": "active",
+    "confidence": "manual_seed",
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ],
+    "output_mode": "customer_pdf",
+    "required_sections": [
+      "title",
+      "route_overview",
+      "daily_itinerary",
+      "pickup_dropoff",
+      "inclusions",
+      "exclusions",
+      "important_notes",
+      "map_summary"
+    ],
+    "data_dependencies": [
+      "package_route_map",
+      "route_leg_index",
+      "destination_activity_profiles",
+      "operational_events",
+      "meal_logic",
+      "cost_components"
+    ]
+  }
+]

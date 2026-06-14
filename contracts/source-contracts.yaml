@@ -1,0 +1,57 @@
+version: 1
+sources:
+  llm_wiki:
+    repo: sambuko82/llm-wiki
+    role: knowledge_source
+    allowed_inputs:
+      - output/products/package-readiness/
+      - output/website/trust-bundle/
+      - wiki/products/
+      - wiki/destinations/
+      - wiki/finance/
+    excluded_inputs:
+      - .git/
+      - node_modules/
+      - raw/private/
+      - secrets/
+    expected_outputs:
+      - package_templates
+      - public_itineraries
+      - public_pricing
+      - policy_notes
+
+  jvto_web:
+    repo: jvto-devteam/jvto-web
+    role: publishing_runtime_source
+    allowed_inputs:
+      - prisma/schema.prisma
+      - src/data/
+      - src/lib/publicContent/
+      - src/app/
+      - src/components/
+    expected_outputs:
+      - route_models
+      - destination_models
+      - page_payload_patterns
+      - map_pdf_patterns
+
+  new_backoffice:
+    repo: jvto-devteam/new-backoffice
+    role: operational_source
+    allowed_inputs:
+      - exports/schema-summary
+      - exports/booking-logistics-redacted
+      - exports/booking-finance-summary
+      - exports/package-price-summary
+      - exports/hotel-room-rate-summary
+      - exports/vehicle-summary
+      - exports/crew-rate-summary
+      - exports/activity-cost-summary
+    pii_policy: aggregate_or_redacted_only
+    expected_outputs:
+      - pickup_dropoff_patterns
+      - actual_cost_patterns
+      - vehicle_costs
+      - crew_costs
+      - accommodation_costs
+      - activity_costs

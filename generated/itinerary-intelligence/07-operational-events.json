@@ -1,0 +1,66 @@
+[
+  {
+    "id": "bondowoso_dinner_medical_check",
+    "label": "Bondowoso dinner and medical check before Ijen",
+    "status": "active",
+    "confidence": "manual_seed",
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ],
+    "event_type": "pre_ijen_preparation",
+    "applies_when": [
+      "destination includes Ijen",
+      "overnight area is Bondowoso or Ijen area"
+    ],
+    "typical_sequence": [
+      "hotel_checkin",
+      "dinner",
+      "medical_check",
+      "ijen_briefing",
+      "short_rest"
+    ],
+    "minimum_recommended_arrival_time": "18:00",
+    "latest_tolerable_arrival_time": "21:00",
+    "risk_if_late": [
+      "reduced rest",
+      "late medical screening",
+      "higher fatigue"
+    ],
+    "customer_visible": true,
+    "cost_components": [
+      "dinner_bondowoso",
+      "medical_check"
+    ]
+  },
+  {
+    "id": "bromo_jeep_handoff",
+    "label": "Bromo jeep handoff",
+    "status": "active",
+    "confidence": "manual_seed",
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ],
+    "event_type": "destination_transport_handoff",
+    "applies_when": [
+      "destination includes Bromo sunrise"
+    ],
+    "typical_sequence": [
+      "hotel_or_meeting_point_pickup",
+      "jeep_transfer",
+      "sunrise_viewpoint",
+      "crater_area"
+    ],
+    "customer_visible": true,
+    "cost_components": [
+      "bromo_jeep"
+    ]
+  }
+]

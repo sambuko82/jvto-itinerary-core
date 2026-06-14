@@ -1,0 +1,128 @@
+[
+  {
+    "id": "surabaya_airport_to_bromo_area",
+    "label": "Surabaya Airport to Bromo Area",
+    "status": "active",
+    "confidence": "manual_seed",
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ],
+    "from_location": "Surabaya Airport",
+    "to_location": "Bromo Area",
+    "distance_km": null,
+    "duration_text": "±3–4 hours",
+    "duration_normal_minutes": 210,
+    "duration_busy_minutes": 270,
+    "road_profiles": [
+      "airport_exit",
+      "toll_road",
+      "intercity_road",
+      "mountain_access"
+    ],
+    "risk_factors": [
+      "Surabaya traffic",
+      "weekend Bromo traffic",
+      "night mountain road"
+    ],
+    "meal_stop_possible": true,
+    "night_drive_possible": true,
+    "recommended_departure_window": "07:00–16:00",
+    "used_by_packages": [
+      "bromo-1d1n",
+      "bromo-2d1n",
+      "bromo-madakaripura-ijen-3d2n"
+    ],
+    "cost_impacts": [
+      "vehicle_day_usage",
+      "driver_cost",
+      "parking_toll_fuel_allowance"
+    ]
+  },
+  {
+    "id": "bromo_area_to_bondowoso_ijen_area",
+    "label": "Bromo Area to Bondowoso / Ijen Area",
+    "status": "active",
+    "confidence": "manual_seed",
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ],
+    "from_location": "Bromo Area",
+    "to_location": "Bondowoso / Ijen Area",
+    "distance_km": null,
+    "duration_text": "±5–6 hours",
+    "duration_normal_minutes": 330,
+    "duration_busy_minutes": 420,
+    "road_profiles": [
+      "intercity_road",
+      "mountain_access",
+      "long_transfer"
+    ],
+    "risk_factors": [
+      "long drive fatigue",
+      "late hotel arrival",
+      "meal timing risk"
+    ],
+    "meal_stop_possible": true,
+    "night_drive_possible": true,
+    "recommended_departure_window": "10:00–14:00",
+    "used_by_packages": [
+      "bromo-madakaripura-ijen-3d2n",
+      "bromo-ijen-3d2n"
+    ],
+    "cost_impacts": [
+      "vehicle_day_usage",
+      "driver_cost",
+      "dinner_bondowoso",
+      "ijen_preparation"
+    ]
+  },
+  {
+    "id": "ijen_area_to_ketapang_harbor",
+    "label": "Ijen Area to Ketapang Harbor",
+    "status": "active",
+    "confidence": "manual_seed",
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ],
+    "from_location": "Ijen Area",
+    "to_location": "Ketapang Harbor",
+    "distance_km": null,
+    "duration_text": "±1–2 hours after Ijen",
+    "duration_normal_minutes": 90,
+    "duration_busy_minutes": 150,
+    "road_profiles": [
+      "mountain_descent",
+      "city_access",
+      "harbor_access"
+    ],
+    "risk_factors": [
+      "post-trek fatigue",
+      "harbor queue",
+      "late Bali connection"
+    ],
+    "meal_stop_possible": true,
+    "night_drive_possible": true,
+    "recommended_departure_window": "08:00–11:00",
+    "used_by_packages": [
+      "ijen-to-bali",
+      "bromo-ijen-ketapang-3d2n"
+    ],
+    "cost_impacts": [
+      "vehicle_day_usage",
+      "ketapang_dropoff",
+      "optional_bali_transfer"
+    ]
+  }
+]

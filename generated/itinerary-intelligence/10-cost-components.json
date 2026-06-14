@@ -1,0 +1,78 @@
+[
+  {
+    "id": "vehicle_private_car_day",
+    "label": "Private vehicle day cost",
+    "status": "active",
+    "confidence": "manual_seed",
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ],
+    "category": "transport_day_cost",
+    "unit": "per_day",
+    "applies_when": [
+      "private tour",
+      "vehicle assigned"
+    ],
+    "customer_visible": false,
+    "formula": "vehicle_day_rate * tour_days",
+    "default_rate_idr": null,
+    "channel_behavior": [
+      "JVTO",
+      "KLOOK",
+      "TWT",
+      "CUSTOM"
+    ]
+  },
+  {
+    "id": "bromo_jeep",
+    "label": "Bromo jeep",
+    "status": "active",
+    "confidence": "manual_seed",
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ],
+    "category": "jeep",
+    "unit": "per_vehicle",
+    "applies_when": [
+      "destination includes Bromo sunrise"
+    ],
+    "customer_visible": "included_in_package",
+    "formula": "jeep_unit_price * jeep_count",
+    "default_rate_idr": null,
+    "channel_behavior": [
+      "usually_included"
+    ]
+  },
+  {
+    "id": "ijen_medical_check",
+    "label": "Ijen medical check",
+    "status": "active",
+    "confidence": "manual_seed",
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ],
+    "category": "health_check",
+    "unit": "per_person",
+    "applies_when": [
+      "destination includes Ijen"
+    ],
+    "customer_visible": true,
+    "formula": "medical_check_rate * pax",
+    "default_rate_idr": null,
+    "channel_behavior": [
+      "required_for_ijen"
+    ]
+  }
+]

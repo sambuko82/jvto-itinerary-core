@@ -1,0 +1,90 @@
+import type { CostComponent } from '../domain/cost.js';
+
+export function buildCostComponents(): CostComponent[] {
+  return [
+    {
+      id: 'vehicle_private_car_day',
+      label: 'Private vehicle day cost',
+      status: 'active',
+      confidence: 'manual_seed',
+      category: 'transport_day_cost',
+      unit: 'per_day',
+      applies_when: ['private tour', 'vehicle assigned'],
+      customer_visible: false,
+      formula: 'vehicle_day_rate * tour_days',
+      default_rate_idr: null,
+      channel_behavior: ['JVTO', 'KLOOK', 'TWT', 'CUSTOM'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'bromo_jeep',
+      label: 'Bromo jeep',
+      status: 'active',
+      confidence: 'manual_seed',
+      category: 'jeep',
+      unit: 'per_vehicle',
+      applies_when: ['destination includes Bromo sunrise'],
+      customer_visible: 'included_in_package',
+      formula: 'jeep_unit_price * jeep_count',
+      default_rate_idr: null,
+      channel_behavior: ['usually_included'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'ijen_medical_check',
+      label: 'Ijen medical check',
+      status: 'active',
+      confidence: 'manual_seed',
+      category: 'health_check',
+      unit: 'per_person',
+      applies_when: ['destination includes Ijen'],
+      customer_visible: true,
+      formula: 'medical_check_rate * pax',
+      default_rate_idr: null,
+      channel_behavior: ['required_for_ijen'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'ijen_local_guide',
+      label: 'Ijen local guide',
+      status: 'active',
+      confidence: 'manual_seed',
+      category: 'local_guide_cost',
+      unit: 'per_group',
+      applies_when: ['destination includes Ijen'],
+      customer_visible: 'included_in_package',
+      formula: 'ijen_local_guide_rate * guide_count',
+      default_rate_idr: null,
+      channel_behavior: ['included_in_private_package'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'madakaripura_local_guide',
+      label: 'Madakaripura local guide',
+      status: 'active',
+      confidence: 'manual_seed',
+      category: 'local_guide_cost',
+      unit: 'per_group',
+      applies_when: ['destination includes Madakaripura'],
+      customer_visible: 'included_in_package',
+      formula: 'madakaripura_local_guide_rate * group_count',
+      default_rate_idr: null,
+      channel_behavior: ['managed_by_local_organization'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'bali_dropoff_after_ketapang',
+      label: 'Bali dropoff after Ketapang',
+      status: 'active',
+      confidence: 'manual_seed',
+      category: 'transport_extra_dropoff',
+      unit: 'formula',
+      applies_when: ['standard package ends at Ketapang', 'customer requests Bali hotel dropoff'],
+      customer_visible: true,
+      formula: 'bali_transfer_rate + ferry_or_handoff_cost',
+      default_rate_idr: null,
+      channel_behavior: ['usually_additional_cost'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
+    }
+  ];
+}

@@ -1,0 +1,101 @@
+[
+  {
+    "id": "ketapang_harbor_dropoff",
+    "label": "Ketapang Harbor dropoff",
+    "status": "active",
+    "confidence": "manual_seed",
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ],
+    "type": "harbor",
+    "location_group": "Banyuwangi",
+    "default_buffer_minutes": 45,
+    "connects_to": [
+      "Gilimanuk Harbor",
+      "Pemuteran",
+      "Lovina",
+      "Ubud",
+      "Canggu",
+      "Seminyak",
+      "Denpasar Airport"
+    ],
+    "required_customer_fields": [
+      "next_destination",
+      "ferry_or_bali_transfer_preference"
+    ],
+    "cost_impacts": [
+      "ferry_ticket",
+      "bali_transfer",
+      "vehicle_crossing_or_handoff"
+    ],
+    "risk_factors": [
+      "ferry_queue",
+      "late_bali_arrival",
+      "bali_traffic"
+    ]
+  },
+  {
+    "id": "surabaya_airport_dropoff",
+    "label": "Surabaya Airport dropoff",
+    "status": "active",
+    "confidence": "manual_seed",
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ],
+    "type": "airport",
+    "location_group": "Surabaya",
+    "default_buffer_minutes": 180,
+    "required_customer_fields": [
+      "flight_number",
+      "departure_time"
+    ],
+    "cost_impacts": [
+      "route_cutoff",
+      "vehicle_day_usage",
+      "parking_toll_fuel_allowance"
+    ],
+    "risk_factors": [
+      "city_traffic",
+      "late_activity_finish",
+      "airport_buffer_risk"
+    ]
+  },
+  {
+    "id": "bali_hotel_dropoff",
+    "label": "Bali hotel dropoff",
+    "status": "active",
+    "confidence": "manual_seed",
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ],
+    "type": "bali_area",
+    "location_group": "Bali",
+    "default_buffer_minutes": 60,
+    "required_customer_fields": [
+      "hotel_name",
+      "hotel_area"
+    ],
+    "cost_impacts": [
+      "bali_transfer",
+      "ferry_ticket",
+      "driver_vehicle_extra_time"
+    ],
+    "risk_factors": [
+      "ferry_queue",
+      "bali_traffic",
+      "late_hotel_arrival"
+    ]
+  }
+]

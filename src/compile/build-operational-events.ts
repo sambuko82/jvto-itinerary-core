@@ -1,0 +1,57 @@
+import type { OperationalEvent } from '../domain/operations.js';
+
+export function buildOperationalEvents(): OperationalEvent[] {
+  return [
+    {
+      id: 'bondowoso_dinner_medical_check',
+      label: 'Bondowoso dinner and medical check before Ijen',
+      status: 'active',
+      confidence: 'manual_seed',
+      event_type: 'pre_ijen_preparation',
+      applies_when: ['destination includes Ijen', 'overnight area is Bondowoso or Ijen area'],
+      typical_sequence: ['hotel_checkin', 'dinner', 'medical_check', 'ijen_briefing', 'short_rest'],
+      minimum_recommended_arrival_time: '18:00',
+      latest_tolerable_arrival_time: '21:00',
+      risk_if_late: ['reduced rest', 'late medical screening', 'higher fatigue'],
+      customer_visible: true,
+      cost_components: ['dinner_bondowoso', 'medical_check'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/operational-events.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'bromo_jeep_handoff',
+      label: 'Bromo jeep handoff',
+      status: 'active',
+      confidence: 'manual_seed',
+      event_type: 'destination_transport_handoff',
+      applies_when: ['destination includes Bromo sunrise'],
+      typical_sequence: ['hotel_or_meeting_point_pickup', 'jeep_transfer', 'sunrise_viewpoint', 'crater_area'],
+      customer_visible: true,
+      cost_components: ['bromo_jeep'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/operational-events.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'waterfall_local_guide_handoff',
+      label: 'Waterfall local guide handoff',
+      status: 'active',
+      confidence: 'manual_seed',
+      event_type: 'local_guide_handoff',
+      applies_when: ['destination includes Tumpak Sewu or Madakaripura'],
+      typical_sequence: ['parking_area', 'local_guide_meeting', 'waterfall_access', 'return_to_vehicle'],
+      customer_visible: true,
+      cost_components: ['waterfall_local_guide'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/operational-events.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'ketapang_ferry_connection',
+      label: 'Ketapang ferry connection',
+      status: 'active',
+      confidence: 'manual_seed',
+      event_type: 'dropoff_connection',
+      applies_when: ['dropoff is Ketapang Harbor', 'customer continues to Bali'],
+      typical_sequence: ['ketapang_dropoff', 'ferry_ticket_or_handoff', 'gilimanuk_arrival', 'bali_transfer_optional'],
+      customer_visible: true,
+      cost_components: ['ferry_ticket', 'bali_transfer_optional'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/operational-events.yaml', confidence: 'manual_seed' }]
+    }
+  ];
+}

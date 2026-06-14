@@ -1,0 +1,59 @@
+version: 1
+entities:
+  itinerary_scenario:
+    required:
+      - scenario_id
+      - pickup
+      - dropoff
+      - pax
+      - requested_destinations
+      - duration_days
+    optional:
+      - arrival_time
+      - departure_deadline
+      - channel
+      - hotel_preference
+      - route_preference
+      - language_request
+      - luggage_context
+
+  route_leg:
+    required:
+      - route_leg_id
+      - from_location
+      - to_location
+      - duration_text
+      - road_profiles
+    optional:
+      - distance_km
+      - duration_normal_minutes
+      - duration_busy_minutes
+      - meal_stop_possible
+      - night_drive_possible
+      - recommended_departure_window
+      - cost_impacts
+
+  destination_activity_profile:
+    required:
+      - destination_id
+      - activity_window
+      - dependencies
+      - fatigue_score
+      - cost_components
+    optional:
+      - best_previous_overnight
+      - bad_previous_overnight
+      - weather_dependencies
+      - closure_rules
+
+  operational_event:
+    required:
+      - event_id
+      - event_type
+      - applies_when
+      - customer_visible
+    optional:
+      - minimum_recommended_time
+      - latest_tolerable_time
+      - cost_components
+      - risk_if_late

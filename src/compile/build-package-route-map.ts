@@ -1,0 +1,48 @@
+export interface PackageRouteMapItem {
+  package_id: string;
+  label: string;
+  origin: string;
+  duration: string;
+  route_sequence: string[];
+  route_legs: string[];
+  standard_dropoff_options: string[];
+  possible_customizations: string[];
+  source_trace: Array<{ source: string; ref: string; confidence: string }>;
+}
+
+export function buildPackageRouteMap(): PackageRouteMapItem[] {
+  return [
+    {
+      package_id: 'bromo-madakaripura-ijen-ketapang-3d2n',
+      label: '3D2N Bromo, Madakaripura, Ijen, Ketapang',
+      origin: 'Surabaya',
+      duration: '3D2N',
+      route_sequence: ['Surabaya', 'Bromo Area', 'Madakaripura', 'Bondowoso / Ijen Area', 'Ijen Crater', 'Ketapang Harbor'],
+      route_legs: [
+        'surabaya_airport_to_bromo_area',
+        'bromo_area_to_madakaripura',
+        'bromo_area_to_bondowoso_ijen_area',
+        'bondowoso_ijen_area_to_ijen_crater',
+        'ijen_area_to_ketapang_harbor'
+      ],
+      standard_dropoff_options: ['Ketapang Harbor', 'Bali with additional transfer', 'Surabaya with route adjustment'],
+      possible_customizations: ['Bali hotel dropoff', 'skip Madakaripura', 'add Tumpak Sewu with extra day', 'reverse route only if pickup/dropoff makes sense'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/package-route-map.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      package_id: 'surabaya-bromo-ijen-surabaya-3d2n',
+      label: '3D2N Bromo and Ijen return Surabaya',
+      origin: 'Surabaya',
+      duration: '3D2N',
+      route_sequence: ['Surabaya', 'Bromo Area', 'Bondowoso / Ijen Area', 'Ijen Crater', 'Surabaya'],
+      route_legs: [
+        'surabaya_airport_to_bromo_area',
+        'bromo_area_to_bondowoso_ijen_area',
+        'bondowoso_ijen_area_to_ijen_crater'
+      ],
+      standard_dropoff_options: ['Surabaya Hotel', 'Surabaya Airport'],
+      possible_customizations: ['drop Ketapang instead of Surabaya', 'add Madakaripura', 'add one night for better rest'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/package-route-map.yaml', confidence: 'manual_seed' }]
+    }
+  ];
+}

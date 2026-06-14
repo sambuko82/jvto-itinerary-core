@@ -1,0 +1,74 @@
+[
+  {
+    "id": "destination_bromo_activity_profile",
+    "label": "Mount Bromo activity profile",
+    "status": "active",
+    "confidence": "manual_seed",
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ],
+    "destination_id": "bromo",
+    "activity_window": {
+      "jeep_pickup": "02:30–03:30",
+      "sunrise": "04:30–06:00",
+      "crater_visit": "06:00–08:00",
+      "finish": "08:00–09:30"
+    },
+    "dependencies": [
+      "jeep",
+      "weather",
+      "national_park_access"
+    ],
+    "fatigue_score": 3,
+    "best_previous_overnight": "Bromo Area",
+    "cost_components": [
+      "bromo_ticket",
+      "bromo_jeep"
+    ]
+  },
+  {
+    "id": "destination_ijen_activity_profile",
+    "label": "Ijen activity profile",
+    "status": "active",
+    "confidence": "manual_seed",
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ],
+    "destination_id": "ijen",
+    "activity_window": {
+      "hotel_departure": "00:00",
+      "trek_start": "02:00",
+      "sunrise_crater": "05:00–06:00",
+      "finish": "07:00–08:00"
+    },
+    "required_prior_events": [
+      "dinner",
+      "medical_check",
+      "guide_briefing",
+      "equipment_distribution"
+    ],
+    "dependencies": [
+      "health_screening",
+      "local_guide",
+      "gas_mask",
+      "weather",
+      "monthly_closure"
+    ],
+    "fatigue_score": 5,
+    "best_previous_overnight": "Bondowoso / Ijen Area",
+    "cost_components": [
+      "ijen_ticket",
+      "ijen_local_guide",
+      "gas_mask",
+      "medical_check"
+    ]
+  }
+]

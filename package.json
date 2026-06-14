@@ -1,0 +1,24 @@
+{
+  "name": "jvto-itinerary-core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Reusable itinerary intelligence core for JVTO route, cost, pickup/dropoff, map, PDF, and page payload generation.",
+  "type": "module",
+  "scripts": {
+    "compile": "tsx src/cli.ts compile",
+    "validate": "tsx src/cli.ts validate",
+    "inspect": "tsx src/cli.ts inspect",
+    "scenario": "tsx src/cli.ts scenario samples/customer-scenario-surabaya-bromo-ijen-ketapang.json",
+    "build:all": "npm run compile && npm run validate",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "tsx": "^4.19.2",
+    "yaml": "^2.6.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

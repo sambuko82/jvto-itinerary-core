@@ -1,0 +1,32 @@
+[
+  {
+    "id": "avoid_backtracking_ijen_bromo_ketapang",
+    "label": "Avoid inefficient backtracking if final dropoff is Ketapang or Bali",
+    "status": "active",
+    "confidence": "manual_seed",
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "initial scaffold generated from uploaded blueprint",
+        "confidence": "manual_seed"
+      }
+    ],
+    "condition": {
+      "final_dropoff": [
+        "Ketapang Harbor",
+        "Bali"
+      ],
+      "route_contains_order": [
+        "Ijen",
+        "Bromo",
+        "Ketapang"
+      ]
+    },
+    "severity": "high",
+    "recommendation": "Use west-to-east route when ending in Ketapang/Bali: Surabaya → Bromo → Ijen → Ketapang.",
+    "alternatives": [
+      "Bromo → Madakaripura → Ijen → Ketapang",
+      "Add one night if adding Tumpak Sewu"
+    ]
+  }
+]

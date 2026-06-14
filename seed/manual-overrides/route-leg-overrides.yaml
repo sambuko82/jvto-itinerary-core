@@ -1,0 +1,3 @@
+manual_data_status: initial_seed
+review_required: true
+fields: [distance_km, duration_normal_minutes, duration_busy_minutes, road_profiles]

@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-06-14T11:00:56.502532+00:00",
+  "version": 1,
+  "status": "initial_scaffold_with_manual_seed_data",
+  "file_count": 15,
+  "files": [
+    "01-pickup-contexts.json",
+    "02-dropoff-contexts.json",
+    "03-time-window-rules.json",
+    "04-route-leg-index.json",
+    "05-road-situation-profiles.json",
+    "06-destination-activity-profiles.json",
+    "07-operational-events.json",
+    "08-meal-logic.json",
+    "09-accommodation-logic.json",
+    "10-cost-components.json",
+    "11-package-route-map.json",
+    "12-recommendation-rules.json",
+    "13-visual-map-layer.json",
+    "14-output-template-map.json",
+    "15-scenario-preview-sample.json"
+  ],
+  "next_steps": [
+    "Connect llm-wiki extractor",
+    "Connect jvto-web route/destination extractor",
+    "Connect new-backoffice redacted logistics and cost extractor",
+    "Replace manual_seed fields with verified source_trace where possible"
+  ]
+}

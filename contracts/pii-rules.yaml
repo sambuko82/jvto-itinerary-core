@@ -1,0 +1,26 @@
+version: 1
+rules:
+  do_not_ingest_raw:
+    - customer_name
+    - passport_number
+    - phone_number
+    - email
+    - exact_private_address
+    - full_payment_receipt
+    - full_booking_notes_with_personal_data
+
+  allowed_if_redacted_or_aggregated:
+    - pickup_location_detail
+    - dropoff_location_detail
+    - flight_number
+    - hotel_name
+    - travel_date_pattern
+    - pax_count
+    - route_pattern
+    - channel
+    - total_cost_summary
+
+  generated_layer_policy:
+    default: no_pii
+    allowed_customer_visible: true
+    source_trace_required: true

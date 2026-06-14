@@ -1,0 +1,79 @@
+import type { DestinationActivityProfile } from '../domain/operations.js';
+
+export function buildDestinationActivityProfiles(): DestinationActivityProfile[] {
+  return [
+    {
+      id: 'destination_bromo_activity_profile',
+      label: 'Mount Bromo activity profile',
+      status: 'active',
+      confidence: 'manual_seed',
+      destination_id: 'bromo',
+      activity_window: {
+        jeep_pickup: '02:30–03:30',
+        sunrise: '04:30–06:00',
+        crater_visit: '06:00–08:00',
+        finish: '08:00–09:30'
+      },
+      dependencies: ['jeep', 'weather', 'national_park_access'],
+      fatigue_score: 3,
+      best_previous_overnight: 'Bromo Area',
+      bad_previous_overnight: ['Surabaya unless midnight tour', 'late airport arrival without rest'],
+      cost_components: ['bromo_ticket', 'bromo_jeep'],
+      warning_rules: ['late_surabaya_arrival_before_bromo'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/destination-activity-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'destination_ijen_activity_profile',
+      label: 'Ijen activity profile',
+      status: 'active',
+      confidence: 'manual_seed',
+      destination_id: 'ijen',
+      activity_window: {
+        hotel_departure: '00:00',
+        trek_start: '02:00',
+        sunrise_crater: '05:00–06:00',
+        finish: '07:00–08:00'
+      },
+      required_prior_events: ['dinner', 'medical_check', 'guide_briefing', 'equipment_distribution'],
+      dependencies: ['health_screening', 'local_guide', 'gas_mask', 'weather', 'monthly_closure'],
+      fatigue_score: 5,
+      best_previous_overnight: 'Bondowoso / Ijen Area',
+      bad_previous_overnight: ['late arrival after long transfer', 'no rest before midnight departure'],
+      cost_components: ['ijen_ticket', 'ijen_local_guide', 'gas_mask', 'medical_check'],
+      warning_rules: ['late_arrival_before_ijen'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/destination-activity-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'destination_tumpak_sewu_activity_profile',
+      label: 'Tumpak Sewu activity profile',
+      status: 'active',
+      confidence: 'manual_seed',
+      destination_id: 'tumpak_sewu',
+      activity_window: {
+        recommended_start: '07:00–08:00',
+        finish: '11:00–13:00'
+      },
+      dependencies: ['local_guide', 'weather', 'waterfall_access_condition'],
+      fatigue_score: 5,
+      cost_components: ['tumpak_sewu_ticket', 'tumpak_sewu_local_guide', 'lunch_after_tumpak_sewu'],
+      warning_rules: ['waterfall_access_road', 'airport_dropoff_cutoff_after_waterfall'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/destination-activity-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'destination_madakaripura_activity_profile',
+      label: 'Madakaripura activity profile',
+      status: 'active',
+      confidence: 'manual_seed',
+      destination_id: 'madakaripura',
+      activity_window: {
+        recommended_start: '08:00–12:00',
+        finish: '11:00–15:00'
+      },
+      dependencies: ['local_guide', 'weather', 'waterfall_access_condition'],
+      fatigue_score: 3,
+      cost_components: ['madakaripura_ticket', 'madakaripura_local_guide'],
+      warning_rules: ['waterfall_access_road', 'airport_dropoff_cutoff_after_waterfall'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/destination-activity-profiles.yaml', confidence: 'manual_seed' }]
+    }
+  ];
+}

@@ -1,0 +1,22 @@
+{
+  "scenario_id": "custom_surabaya_bromo_madakaripura_ijen_ketapang_3d2n",
+  "channel": "CUSTOM",
+  "pickup": {
+    "type": "airport",
+    "location": "Surabaya Airport",
+    "time": "17:30",
+    "flight_number": "TBD"
+  },
+  "dropoff": {
+    "type": "harbor",
+    "location": "Ketapang Harbor"
+  },
+  "pax": 2,
+  "duration_days": 3,
+  "requested_destinations": ["Bromo", "Madakaripura", "Ijen"],
+  "arrival_time": "17:30",
+  "constraints": [
+    "private tour",
+    "continue to Bali after Ketapang"
+  ]
+}

@@ -1,0 +1,37 @@
+version: 1
+cost_categories:
+  - transport_day_cost
+  - transport_extra_dropoff
+  - parking_toll_fuel_allowance
+  - driver_cost
+  - escort_cost
+  - local_guide_cost
+  - destination_ticket
+  - jeep
+  - hotel_room
+  - hotel_meal
+  - restaurant_meal
+  - health_check
+  - equipment
+  - ferry
+  - add_on
+  - police_escort
+  - crew_cash
+  - actual_expense_calibration
+
+component_fields:
+  required:
+    - cost_component_id
+    - category
+    - unit
+    - applies_when
+    - customer_visible
+    - source_trace
+  optional:
+    - formula
+    - default_rate_idr
+    - channel_behavior
+    - pax_dependency
+    - vehicle_dependency
+    - vendor_dependency
+    - confidence

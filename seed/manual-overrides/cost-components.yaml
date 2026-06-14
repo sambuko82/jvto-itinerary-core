@@ -1,0 +1,3 @@
+manual_data_status: initial_seed
+review_required: true
+notes: Default rates intentionally left null until extracted from backoffice verified exports.
