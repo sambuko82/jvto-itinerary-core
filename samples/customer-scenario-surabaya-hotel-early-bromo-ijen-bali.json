@@ -1,0 +1,22 @@
+{
+  "scenario_id": "custom_surabaya_hotel_early_bromo_ijen_bali_3d2n",
+  "channel": "CUSTOM",
+  "pickup": {
+    "type": "hotel",
+    "location": "Surabaya Hotel",
+    "time": "06:00",
+    "hotel_name": "Hotel Majapahit Surabaya",
+    "pickup_time": "06:00"
+  },
+  "dropoff": {
+    "type": "bali_area",
+    "location": "Bali Hotel",
+    "hotel_name": "Ubud Resort",
+    "hotel_area": "Ubud"
+  },
+  "pax": 2,
+  "duration_days": 3,
+  "requested_destinations": ["Bromo", "Ijen"],
+  "arrival_time": "06:00",
+  "constraints": ["private tour", "early start"]
+}

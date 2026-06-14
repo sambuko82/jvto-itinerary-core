@@ -1,6 +1,7 @@
 import { access } from 'node:fs/promises';
 import { GENERATED_DIR, EXPORT_DIR } from '../config/paths.js';
 import { readJson } from '../utils/fs.js';
+import { resolveCostId } from '../config/cost-aliases.js';
 import {
   validateArray,
   validateObject,
@@ -154,6 +155,37 @@ function assertContainsDestinationIds(data: unknown, expectedIds: readonly strin
   }
 }
 
+// Cross-reference: every cost tag used by route legs (04), destination profiles
+// (06), and operational events (07) must resolve to a canonical id in
+// 10-cost-components.json (directly or via the alias map). Unresolved tags = drift.
+function assertCostJoinability(
+  costComponents: unknown,
+  routeLegs: unknown,
+  destinationProfiles: unknown,
+  operationalEvents: unknown
+): void {
+  if (!Array.isArray(costComponents)) throw new Error('cost components must be an array');
+  const canonical = new Set(costComponents.map((c) => (c && typeof c === 'object' && 'id' in c ? String(c.id) : '')));
+  const unresolved = new Set<string>();
+  const scan = (rows: unknown, field: string) => {
+    if (!Array.isArray(rows)) return;
+    for (const row of rows) {
+      const tags = row && typeof row === 'object' && field in row ? (row as Record<string, unknown>)[field] : undefined;
+      if (!Array.isArray(tags)) continue;
+      for (const tag of tags) {
+        if (typeof tag !== 'string') continue;
+        if (resolveCostId(tag, canonical) === null) unresolved.add(tag);
+      }
+    }
+  };
+  scan(routeLegs, 'cost_impacts');
+  scan(destinationProfiles, 'cost_components');
+  scan(operationalEvents, 'cost_components');
+  if (unresolved.size > 0) {
+    throw new Error(`cost tags not joinable to 10-cost-components.json (add to registry or COST_ALIASES): ${[...unresolved].sort().join(', ')}`);
+  }
+}
+
 export async function validateGeneratedData() {
   for (const file of generatedFiles) {
     await assertExists(`${GENERATED_DIR}/${file}`);
@@ -183,6 +215,9 @@ export async function validateGeneratedData() {
   assertContainsIds('route leg index', routeLegIndex, requiredRouteLegIds);
   assertContainsIds('road situation profiles', roadSituationProfiles, requiredRoadProfileIds);
   assertContainsDestinationIds(destinationActivityProfiles, requiredDestinationIds);
+
+  const operationalEvents = await readJson(`${GENERATED_DIR}/07-operational-events.json`);
+  assertCostJoinability(costComponents, routeLegIndex, destinationActivityProfiles, operationalEvents);
 
   for (const file of generatedFiles.filter((file) => file !== '15-scenario-preview-sample.json')) {
     validateObject(file, nonEmptyArraySchema, await readJson(`${GENERATED_DIR}/${file}`));

@@ -225,6 +225,30 @@
     ]
   },
   {
+    "id": "tumpak_sewu_local_guide",
+    "label": "Tumpak Sewu local guide",
+    "status": "active",
+    "confidence": "manual_seed",
+    "category": "local_guide_cost",
+    "unit": "per_group",
+    "applies_when": [
+      "destination includes Tumpak Sewu"
+    ],
+    "customer_visible": "included_in_package",
+    "formula": "tumpak_sewu_local_guide_rate * group_count",
+    "default_rate_idr": null,
+    "channel_behavior": [
+      "managed_by_local_organization"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/cost-components.yaml",
+        "confidence": "manual_seed"
+      }
+    ]
+  },
+  {
     "id": "bali_dropoff_after_ketapang",
     "label": "Bali dropoff after Ketapang",
     "status": "active",
@@ -262,6 +286,30 @@
     ],
     "customer_visible": false,
     "formula": "driver_day_rate * assigned_days",
+    "default_rate_idr": null,
+    "channel_behavior": [
+      "internal_cost_component"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/cost-components.yaml",
+        "confidence": "manual_seed"
+      }
+    ]
+  },
+  {
+    "id": "parking_toll_fuel_allowance",
+    "label": "Parking, toll, and fuel allowance",
+    "status": "active",
+    "confidence": "manual_seed",
+    "category": "parking_toll_fuel_allowance",
+    "unit": "per_day",
+    "applies_when": [
+      "overland route uses toll roads or paid parking"
+    ],
+    "customer_visible": false,
+    "formula": "allowance_estimate_by_route",
     "default_rate_idr": null,
     "channel_behavior": [
       "internal_cost_component"

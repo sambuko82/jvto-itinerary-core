@@ -10,6 +10,7 @@
     "inspect": "tsx src/cli.ts inspect",
     "scenario": "tsx src/cli.ts scenario samples/customer-scenario-surabaya-bromo-ijen-ketapang.json",
     "build:all": "npm run compile && npm run validate",
+    "test": "tsx --test src/scenario/evaluateScenario.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

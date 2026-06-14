@@ -1,6 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import { compileGeneratedData } from './compile/index.js';
 import { validateGeneratedData } from './validate/validate-generated-data.js';
+import { evaluateScenarioFromFile } from './scenario/evaluateScenario.js';
+import type { ItineraryScenario } from './domain/itinerary.js';
 
 async function main() {
   const command = process.argv[2];
@@ -28,7 +30,9 @@ async function main() {
     const path = process.argv[3];
     if (!path) throw new Error('Provide scenario path.');
     const raw = await readFile(path, 'utf8');
-    console.log(raw);
+    const scenario = JSON.parse(raw) as ItineraryScenario;
+    const evaluation = await evaluateScenarioFromFile(scenario);
+    console.log(JSON.stringify(evaluation, null, 2));
     return;
   }
 
