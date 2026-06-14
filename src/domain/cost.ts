@@ -28,4 +28,8 @@ export interface CostComponent extends BaseEntity {
   formula?: string;
   default_rate_idr?: number | null;
   channel_behavior?: string[];
+  /** Researched rate breakdown (nationality/day-type/vehicle-class). See seed/research/*.json */
+  rate_table_idr?: Record<string, unknown>;
+  rate_note?: string;
+  research_note?: string;
 }

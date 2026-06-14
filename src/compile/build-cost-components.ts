@@ -1,5 +1,7 @@
 import type { CostComponent } from '../domain/cost.js';
 
+const RESEARCH_REF = 'seed/research/east-java-field-data-2026.json';
+
 export function buildCostComponents(): CostComponent[] {
   return [
     {
@@ -20,29 +22,95 @@ export function buildCostComponents(): CostComponent[] {
       id: 'bromo_jeep',
       label: 'Bromo jeep',
       status: 'active',
-      confidence: 'manual_seed',
+      confidence: 'inferred',
       category: 'jeep',
       unit: 'per_vehicle',
       applies_when: ['destination includes Bromo sunrise'],
       customer_visible: 'included_in_package',
       formula: 'jeep_unit_price * jeep_count',
       default_rate_idr: null,
+      rate_table_idr: {
+        note: 'paguyuban (driver-cooperative) rate, fluctuative by gate/season, excludes entrance tickets',
+        cemoro_lawang_2_location: '450000-550000',
+        cemoro_lawang_4_location: '600000-750000',
+        from_pasuruan_wonokitri: 750000,
+        from_probolinggo_city: 1100000
+      },
       channel_behavior: ['usually_included'],
-      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'rate_table_idr', confidence: 'inferred' }
+      ]
+    },
+    {
+      id: 'bromo_entrance_fee',
+      label: 'Bromo Tengger Semeru entrance fee',
+      status: 'active',
+      confidence: 'inferred',
+      category: 'destination_ticket',
+      unit: 'per_person',
+      applies_when: ['destination includes Bromo'],
+      customer_visible: 'included_in_package',
+      formula: 'bromo_entry_rate(nationality, day_type) * pax',
+      default_rate_idr: 255000,
+      rate_table_idr: {
+        regulation: 'PP 36/2024, effective Oct 2024',
+        foreign_flat: 255000,
+        domestic_weekday: 54000,
+        domestic_weekend_holiday: 79000,
+        note: 'Foreign is FLAT (no weekday/weekend split). Excludes jeep. Booking mandatory online.',
+        stale_do_not_use: { foreign: '220000/320000', domestic: '29000/34000' }
+      },
+      channel_behavior: ['rate_varies_by_nationality_and_day_type'],
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'default_rate_idr,rate_table_idr', confidence: 'inferred' }
+      ]
+    },
+    {
+      id: 'ijen_entrance_fee',
+      label: 'Ijen (Kawah Ijen) entrance fee',
+      status: 'active',
+      confidence: 'inferred',
+      category: 'destination_ticket',
+      unit: 'per_person',
+      applies_when: ['destination includes Ijen'],
+      customer_visible: 'included_in_package',
+      formula: 'ijen_entry_rate(nationality, day_type) * pax',
+      default_rate_idr: 100000,
+      rate_table_idr: {
+        authority: 'BBKSDA Jatim, effective 2024-10-01',
+        foreign_weekday: 100000,
+        foreign_weekend: 150000,
+        domestic_weekday: 20000,
+        domestic_weekend: 35000,
+        student_weekday: 15000,
+        student_weekend: 20000,
+        note: 'Online booking via tiket.bbksdajatim.org; QRIS-only cashless since 2025-01-31; daily cap ~2000'
+      },
+      channel_behavior: ['rate_varies_by_nationality_and_day_type'],
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'default_rate_idr,rate_table_idr', confidence: 'inferred' }
+      ]
     },
     {
       id: 'ijen_medical_check',
-      label: 'Ijen medical check',
+      label: 'Ijen medical check (surat keterangan sehat)',
       status: 'active',
-      confidence: 'manual_seed',
+      confidence: 'inferred',
       category: 'health_check',
       unit: 'per_person',
       applies_when: ['destination includes Ijen'],
       customer_visible: true,
       formula: 'medical_check_rate * pax',
-      default_rate_idr: null,
+      default_rate_idr: 20000,
+      rate_note: 'MANDATORY since 2024-01-06 (no asthma/heart history). From Feb 2025 issued on-site at Paltuding health post IDR 20,000/pax; checked at barcode->ticket exchange. Valid ~1 week.',
       channel_behavior: ['required_for_ijen'],
-      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'default_rate_idr,rate_note', confidence: 'inferred' }
+      ]
     },
     {
       id: 'ijen_local_guide',
@@ -174,29 +242,45 @@ export function buildCostComponents(): CostComponent[] {
       id: 'gas_mask',
       label: 'Ijen gas mask or equipment',
       status: 'active',
-      confidence: 'manual_seed',
+      confidence: 'inferred',
       category: 'equipment',
       unit: 'per_person',
       applies_when: ['destination includes Ijen'],
       customer_visible: 'included_in_package',
       formula: 'equipment_rate * pax',
-      default_rate_idr: null,
+      default_rate_idr: 45000,
+      rate_note: 'Gas-mask rental ~IDR 45,000 at Paltuding, separate from entrance fee. Mask use mandatory in medium/extreme crater zones (color-zone SOP, CCTV-enforced); rental-vs-own mandate unresolved.',
       channel_behavior: ['required_for_ijen'],
-      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'default_rate_idr', confidence: 'inferred' }
+      ]
     },
     {
       id: 'ferry_ticket',
-      label: 'Ferry ticket',
+      label: 'Ferry ticket (Ketapang–Gilimanuk)',
       status: 'active',
-      confidence: 'manual_seed',
+      confidence: 'inferred',
       category: 'ferry',
       unit: 'per_person',
       applies_when: ['Ketapang to Gilimanuk crossing', 'Bali transfer requested'],
       customer_visible: true,
-      formula: 'ferry_rate * pax or vehicle_crossing_rate if vehicle crosses',
-      default_rate_idr: null,
+      formula: 'ferry_pax_rate * pax + vehicle_class_rate if vehicle crosses',
+      default_rate_idr: 11100,
+      rate_table_idr: {
+        regulation: 'KM 131/2024, effective 2024-11-01',
+        passenger_adult: 11100,
+        pedestrian_adult_no_vehicle: 10600,
+        infant: 1600,
+        car_class_IV_passenger: 225000,
+        car_class_IVA_under_5m: 213400,
+        note: 'Base regular fares; holiday/mudik periods higher. Book via Ferizy app. Crossing duration/frequency pending round 2.'
+      },
       channel_behavior: ['requires_transfer_model_decision'],
-      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'default_rate_idr,rate_table_idr', confidence: 'inferred' }
+      ]
     },
     {
       id: 'addon_activity',

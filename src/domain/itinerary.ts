@@ -56,6 +56,9 @@ export interface RouteLeg extends BaseEntity {
   from_location: string;
   to_location: string;
   distance_km?: number | null;
+  /** Researched plausible distance range when a single value is route-dependent. */
+  distance_km_range?: string;
+  research_note?: string;
   duration_text: string;
   duration_normal_minutes?: number | null;
   duration_busy_minutes?: number | null;
