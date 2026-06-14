@@ -4,13 +4,6 @@
     "label": "Ketapang Harbor dropoff",
     "status": "active",
     "confidence": "manual_seed",
-    "source_trace": [
-      {
-        "source": "manual_seed",
-        "ref": "initial scaffold generated from uploaded blueprint",
-        "confidence": "manual_seed"
-      }
-    ],
     "type": "harbor",
     "location_group": "Banyuwangi",
     "default_buffer_minutes": 45,
@@ -36,6 +29,13 @@
       "ferry_queue",
       "late_bali_arrival",
       "bali_traffic"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/pickup-dropoff.yaml",
+        "confidence": "manual_seed"
+      }
     ]
   },
   {
@@ -43,13 +43,6 @@
     "label": "Surabaya Airport dropoff",
     "status": "active",
     "confidence": "manual_seed",
-    "source_trace": [
-      {
-        "source": "manual_seed",
-        "ref": "initial scaffold generated from uploaded blueprint",
-        "confidence": "manual_seed"
-      }
-    ],
     "type": "airport",
     "location_group": "Surabaya",
     "default_buffer_minutes": 180,
@@ -66,6 +59,13 @@
       "city_traffic",
       "late_activity_finish",
       "airport_buffer_risk"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/pickup-dropoff.yaml",
+        "confidence": "manual_seed"
+      }
     ]
   },
   {
@@ -73,13 +73,6 @@
     "label": "Bali hotel dropoff",
     "status": "active",
     "confidence": "manual_seed",
-    "source_trace": [
-      {
-        "source": "manual_seed",
-        "ref": "initial scaffold generated from uploaded blueprint",
-        "confidence": "manual_seed"
-      }
-    ],
     "type": "bali_area",
     "location_group": "Bali",
     "default_buffer_minutes": 60,
@@ -96,6 +89,13 @@
       "ferry_queue",
       "bali_traffic",
       "late_hotel_arrival"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/pickup-dropoff.yaml",
+        "confidence": "manual_seed"
+      }
     ]
   }
 ]

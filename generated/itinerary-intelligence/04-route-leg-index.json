@@ -4,13 +4,6 @@
     "label": "Surabaya Airport to Bromo Area",
     "status": "active",
     "confidence": "manual_seed",
-    "source_trace": [
-      {
-        "source": "manual_seed",
-        "ref": "initial scaffold generated from uploaded blueprint",
-        "confidence": "manual_seed"
-      }
-    ],
     "from_location": "Surabaya Airport",
     "to_location": "Bromo Area",
     "distance_km": null,
@@ -40,6 +33,54 @@
       "vehicle_day_usage",
       "driver_cost",
       "parking_toll_fuel_allowance"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/route-leg-overrides.yaml",
+        "confidence": "manual_seed"
+      }
+    ]
+  },
+  {
+    "id": "bromo_area_to_madakaripura",
+    "label": "Bromo Area to Madakaripura",
+    "status": "active",
+    "confidence": "manual_seed",
+    "from_location": "Bromo Area",
+    "to_location": "Madakaripura Waterfall",
+    "distance_km": null,
+    "duration_text": "±1–1.5 hours",
+    "duration_normal_minutes": 75,
+    "duration_busy_minutes": 120,
+    "road_profiles": [
+      "mountain_access",
+      "waterfall_access_road",
+      "village_road"
+    ],
+    "risk_factors": [
+      "rain",
+      "local access control",
+      "waterfall crowd"
+    ],
+    "meal_stop_possible": true,
+    "night_drive_possible": false,
+    "recommended_departure_window": "08:00–12:00",
+    "used_by_packages": [
+      "bromo-madakaripura-ijen-3d2n",
+      "bromo-madakaripura-2d1n"
+    ],
+    "cost_impacts": [
+      "madakaripura_ticket",
+      "madakaripura_local_guide",
+      "vehicle_day_usage"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/route-leg-overrides.yaml",
+        "confidence": "manual_seed"
+      }
     ]
   },
   {
@@ -47,13 +88,6 @@
     "label": "Bromo Area to Bondowoso / Ijen Area",
     "status": "active",
     "confidence": "manual_seed",
-    "source_trace": [
-      {
-        "source": "manual_seed",
-        "ref": "initial scaffold generated from uploaded blueprint",
-        "confidence": "manual_seed"
-      }
-    ],
     "from_location": "Bromo Area",
     "to_location": "Bondowoso / Ijen Area",
     "distance_km": null,
@@ -82,6 +116,57 @@
       "driver_cost",
       "dinner_bondowoso",
       "ijen_preparation"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/route-leg-overrides.yaml",
+        "confidence": "manual_seed"
+      }
+    ]
+  },
+  {
+    "id": "bondowoso_ijen_area_to_ijen_crater",
+    "label": "Bondowoso / Ijen Area to Ijen Crater",
+    "status": "active",
+    "confidence": "manual_seed",
+    "from_location": "Bondowoso / Ijen Area",
+    "to_location": "Ijen Crater",
+    "distance_km": null,
+    "duration_text": "±1.5–2 hours before trekking",
+    "duration_normal_minutes": 105,
+    "duration_busy_minutes": 140,
+    "road_profiles": [
+      "night_drive",
+      "mountain_road",
+      "national_park_access"
+    ],
+    "risk_factors": [
+      "midnight departure",
+      "fatigue",
+      "weather",
+      "health screening dependency"
+    ],
+    "meal_stop_possible": false,
+    "night_drive_possible": true,
+    "recommended_departure_window": "00:00–01:00",
+    "used_by_packages": [
+      "ijen-2d1n",
+      "bromo-ijen-3d2n",
+      "bromo-madakaripura-ijen-3d2n"
+    ],
+    "cost_impacts": [
+      "ijen_ticket",
+      "ijen_local_guide",
+      "gas_mask",
+      "medical_check"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/route-leg-overrides.yaml",
+        "confidence": "manual_seed"
+      }
     ]
   },
   {
@@ -89,13 +174,6 @@
     "label": "Ijen Area to Ketapang Harbor",
     "status": "active",
     "confidence": "manual_seed",
-    "source_trace": [
-      {
-        "source": "manual_seed",
-        "ref": "initial scaffold generated from uploaded blueprint",
-        "confidence": "manual_seed"
-      }
-    ],
     "from_location": "Ijen Area",
     "to_location": "Ketapang Harbor",
     "distance_km": null,
@@ -123,6 +201,13 @@
       "vehicle_day_usage",
       "ketapang_dropoff",
       "optional_bali_transfer"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/route-leg-overrides.yaml",
+        "confidence": "manual_seed"
+      }
     ]
   }
 ]

@@ -4,13 +4,6 @@
     "label": "Surabaya to Bromo, Ijen, Ketapang map layer",
     "status": "active",
     "confidence": "manual_seed",
-    "source_trace": [
-      {
-        "source": "manual_seed",
-        "ref": "initial scaffold generated from uploaded blueprint",
-        "confidence": "manual_seed"
-      }
-    ],
     "points": [
       {
         "type": "pickup",
@@ -51,7 +44,15 @@
       "ijen_area_to_ketapang_harbor"
     ],
     "display_notes": [
-      "Use Mapbox/Leaflet polyline when coordinates are verified."
+      "Use Mapbox/Leaflet polyline when coordinates are verified.",
+      "Distance labels can be added after route-leg distance enrichment."
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/visual-map-layer.yaml",
+        "confidence": "manual_seed"
+      }
     ]
   }
 ]

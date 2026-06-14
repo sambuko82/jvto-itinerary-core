@@ -4,13 +4,6 @@
     "label": "Dinner before Ijen preparation",
     "status": "active",
     "confidence": "manual_seed",
-    "source_trace": [
-      {
-        "source": "manual_seed",
-        "ref": "initial scaffold generated from uploaded blueprint",
-        "confidence": "manual_seed"
-      }
-    ],
     "meal": "dinner",
     "included": "depends_on_package",
     "applies_when": [
@@ -20,6 +13,36 @@
     "customer_note": "Dinner is normally arranged before medical check and Ijen briefing when included in the package.",
     "cost_components": [
       "dinner_bondowoso"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/meal-logic.yaml",
+        "confidence": "manual_seed"
+      }
+    ]
+  },
+  {
+    "id": "takeaway_breakfast_after_ijen_or_bromo",
+    "label": "Takeaway breakfast for early activity",
+    "status": "active",
+    "confidence": "manual_seed",
+    "meal": "breakfast",
+    "included": "depends_on_package",
+    "applies_when": [
+      "early_morning_activity",
+      "hotel_breakfast_not_available_before_departure"
+    ],
+    "customer_note": "Breakfast may be served as takeaway due to very early departure.",
+    "cost_components": [
+      "hotel_breakfast_or_takeaway"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/meal-logic.yaml",
+        "confidence": "manual_seed"
+      }
     ]
   },
   {
@@ -27,13 +50,6 @@
     "label": "Lunch stop at own expense during long transfer",
     "status": "active",
     "confidence": "manual_seed",
-    "source_trace": [
-      {
-        "source": "manual_seed",
-        "ref": "initial scaffold generated from uploaded blueprint",
-        "confidence": "manual_seed"
-      }
-    ],
     "meal": "lunch",
     "included": false,
     "applies_when": [
@@ -41,6 +57,13 @@
       "lunch_not_included"
     ],
     "customer_note": "Lunch stop can be arranged on the way, at customer's own expense unless stated as included.",
-    "cost_components": []
+    "cost_components": [],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/meal-logic.yaml",
+        "confidence": "manual_seed"
+      }
+    ]
   }
 ]

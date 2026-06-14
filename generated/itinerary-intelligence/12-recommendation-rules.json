@@ -4,13 +4,6 @@
     "label": "Avoid inefficient backtracking if final dropoff is Ketapang or Bali",
     "status": "active",
     "confidence": "manual_seed",
-    "source_trace": [
-      {
-        "source": "manual_seed",
-        "ref": "initial scaffold generated from uploaded blueprint",
-        "confidence": "manual_seed"
-      }
-    ],
     "condition": {
       "final_dropoff": [
         "Ketapang Harbor",
@@ -27,6 +20,69 @@
     "alternatives": [
       "Bromo → Madakaripura → Ijen → Ketapang",
       "Add one night if adding Tumpak Sewu"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/recommendation-rules.yaml",
+        "confidence": "manual_seed"
+      }
+    ]
+  },
+  {
+    "id": "late_airport_arrival_requires_rest_warning",
+    "label": "Late airport arrival requires rest warning",
+    "status": "active",
+    "confidence": "manual_seed",
+    "condition": {
+      "pickup_type": "airport",
+      "arrival_after": "17:00",
+      "next_day_activity": [
+        "Bromo Sunrise",
+        "Ijen"
+      ]
+    },
+    "severity": "medium",
+    "recommendation": "Route may be possible but guest rest time is reduced. Recommend earlier arrival or add one night when possible.",
+    "alternatives": [
+      "start tour next morning",
+      "add overnight near pickup city",
+      "reduce destination count"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/recommendation-rules.yaml",
+        "confidence": "manual_seed"
+      }
+    ]
+  },
+  {
+    "id": "waterfall_before_airport_deadline_risk",
+    "label": "Waterfall before airport deadline risk",
+    "status": "active",
+    "confidence": "manual_seed",
+    "condition": {
+      "last_activity": [
+        "Tumpak Sewu",
+        "Madakaripura"
+      ],
+      "dropoff_type": "airport",
+      "flight_buffer_less_than_minutes": 180
+    },
+    "severity": "high",
+    "recommendation": "Do not put waterfall activity before a tight airport dropoff. Skip waterfall or add one night.",
+    "alternatives": [
+      "move waterfall to previous day",
+      "drop at hotel instead of airport",
+      "choose later flight"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/recommendation-rules.yaml",
+        "confidence": "manual_seed"
+      }
     ]
   }
 ]

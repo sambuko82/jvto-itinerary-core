@@ -4,13 +4,6 @@
     "label": "Surabaya Airport pickup",
     "status": "active",
     "confidence": "manual_seed",
-    "source_trace": [
-      {
-        "source": "manual_seed",
-        "ref": "initial scaffold generated from uploaded blueprint",
-        "confidence": "manual_seed"
-      }
-    ],
     "type": "airport",
     "location_group": "Surabaya",
     "default_ready_buffer_minutes": 45,
@@ -29,6 +22,13 @@
       "first_day_route_feasibility",
       "meal_stop_need",
       "hotel_checkin_time"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/pickup-dropoff.yaml",
+        "confidence": "manual_seed"
+      }
     ]
   },
   {
@@ -36,13 +36,6 @@
     "label": "Surabaya hotel pickup",
     "status": "active",
     "confidence": "manual_seed",
-    "source_trace": [
-      {
-        "source": "manual_seed",
-        "ref": "initial scaffold generated from uploaded blueprint",
-        "confidence": "manual_seed"
-      }
-    ],
     "type": "hotel",
     "location_group": "Surabaya",
     "default_ready_buffer_minutes": 15,
@@ -58,6 +51,13 @@
     "affects": [
       "actual_departure_time",
       "first_day_route_feasibility"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/pickup-dropoff.yaml",
+        "confidence": "manual_seed"
+      }
     ]
   },
   {
@@ -65,13 +65,6 @@
     "label": "Surabaya train station pickup",
     "status": "active",
     "confidence": "manual_seed",
-    "source_trace": [
-      {
-        "source": "manual_seed",
-        "ref": "initial scaffold generated from uploaded blueprint",
-        "confidence": "manual_seed"
-      }
-    ],
     "type": "train_station",
     "location_group": "Surabaya",
     "default_ready_buffer_minutes": 20,
@@ -88,6 +81,13 @@
     "affects": [
       "actual_departure_time",
       "first_day_route_feasibility"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/pickup-dropoff.yaml",
+        "confidence": "manual_seed"
+      }
     ]
   }
 ]
