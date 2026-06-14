@@ -4,6 +4,13 @@ import { readJson } from '../utils/fs.js';
 import { evaluateScenario } from './index.js';
 import type { RawScenarioInput } from './types.js';
 
+async function knownCostComponentIds(): Promise<Set<string>> {
+  const rows = await readJson<Array<{ id: string }>>(
+    'generated/itinerary-intelligence/10-cost-components.json'
+  );
+  return new Set(rows.map((r) => r.id));
+}
+
 const RAW_PII_KEYS = new Set([
   'name',
   'full_name',
@@ -53,10 +60,14 @@ test('late Surabaya-airport → Ketapang scenario is possible_with_warning', asy
   // Ijen operational events present.
   assert.ok(result.operational_events.some((e) => /ijen|medical|bondowoso/i.test(e)), 'expected Ijen operational events');
 
-  // Cost components are IDs only (strings), and no final pricing leaked in.
+  // Cost components are defined IDs only (joinable to 10-cost-components.json), no final pricing.
   assert.ok(result.cost_components.length > 0);
   assert.ok(result.cost_components.every((c) => typeof c === 'string'));
-  assert.ok(result.cost_components.includes('ijen_local_guide') || result.cost_components.includes('ijen_ticket'));
+  assert.ok(result.cost_components.includes('ijen_local_guide'));
+  const known = await knownCostComponentIds();
+  for (const id of result.cost_components) {
+    assert.ok(known.has(id), `cost component "${id}" must be defined in 10-cost-components.json`);
+  }
 
   assertNoRawPii(result);
 });
@@ -70,6 +81,18 @@ test('Surabaya-hotel night start → Bali scenario is recommended', async () => 
   assert.equal(result.status, 'recommended');
   assert.equal(result.warnings.length, 0, 'expected no risk warnings for a deliberate night start');
   assert.ok(result.better_route_notes.some((n) => /west|backtrack|ketapang|bali/i.test(n)), 'expected west-to-east guidance');
+  // Only Bromo + Ijen were requested — the route must not inject the unrequested Madakaripura stop.
+  assert.ok(!result.recommended_route.some((a) => /madakaripura/i.test(a)), 'must not include unrequested Madakaripura');
+  assert.ok(!result.cost_components.some((c) => /madakaripura/i.test(c)), 'must not cost unrequested Madakaripura');
+  assertNoRawPii(result);
+});
+
+test('Bali-hotel pickup (unsupported location) needs_manual_review', async () => {
+  const raw = await readJson<RawScenarioInput>('samples/customer-scenario-bali-ijen-bromo-surabaya.json');
+  const result = await evaluateScenario(raw);
+  assert.equal(result.status, 'needs_manual_review');
+  // Route must not start in Surabaya just because the pickup type word "hotel" matched a Surabaya context.
+  assert.ok(!/surabaya/i.test(result.recommended_route[0]), 'pickup must not resolve to a phantom Surabaya start');
   assertNoRawPii(result);
 });
 

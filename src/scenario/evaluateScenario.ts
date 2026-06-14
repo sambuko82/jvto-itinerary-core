@@ -38,7 +38,13 @@ export async function evaluateScenario(
   const manualReview = scenario.pickup.needs_manual_geocoding || scenario.dropoff.needs_manual_geocoding;
   const status = deriveStatus({ feasible: selection.feasible, manualReview, warningCount: warnings.length });
 
-  const nextRequiredInfo = unique([...scenario.missing_required_fields, ...MVP_DATA_GAPS]);
+  const nextRequiredInfo = unique([
+    ...scenario.missing_required_fields,
+    ...(cost.unknown_cost_refs.length > 0
+      ? [`cost-component references not yet defined in 10-cost-components.json: ${cost.unknown_cost_refs.join(', ')}`]
+      : []),
+    ...MVP_DATA_GAPS
+  ]);
 
   const sourceTrace: SourceTrace[] = dedupeSourceTrace([
     ...scenario.source_trace,

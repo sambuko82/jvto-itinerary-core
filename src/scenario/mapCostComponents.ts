@@ -5,7 +5,10 @@ import type { RouteSelection } from './selectRoute.js';
 import { unique } from './util.js';
 
 export interface CostComponentResult {
+  /** Component IDs that are defined in 10-cost-components.json (the joinable contract). */
   cost_components: string[];
+  /** Referenced-but-undefined component IDs, surfaced as a data gap (not a final price). */
+  unknown_cost_refs: string[];
   source_trace: SourceTrace[];
 }
 
@@ -52,5 +55,13 @@ export function mapCostComponents(
     }
   }
 
-  return { cost_components: unique(components), source_trace: traces };
+  // Only emit IDs that are defined in 10-cost-components.json so downstream pricing can join on them;
+  // referenced-but-undefined IDs are reported separately as a data gap.
+  const known = new Set(datasets.costComponents.map((c) => c.id));
+  const all = unique(components);
+  return {
+    cost_components: all.filter((id) => known.has(id)),
+    unknown_cost_refs: all.filter((id) => !known.has(id)),
+    source_trace: traces
+  };
 }

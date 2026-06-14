@@ -65,26 +65,36 @@ function requiredDays(destinations: string[]): number {
   return Math.max(1, nights + 1);
 }
 
-/** Pick the package that covers the most requested destinations (origin tie-break: Surabaya). */
-function matchPackage(scenario: NormalizedScenario, packages: PackageRouteMapData[]): PackageRouteMapData | null {
-  let best: PackageRouteMapData | null = null;
-  let bestScore = -1;
+/** True when the pickup is east of Ijen (Bali / Banyuwangi / Ketapang side). */
+function isEastPickup(scenario: NormalizedScenario): boolean {
+  const loc = scenario.pickup.location.toLowerCase();
+  if (/ketapang|gilimanuk|bali|banyuwangi|pemuteran|lovina|ubud|canggu|seminyak|denpasar/.test(loc)) return true;
+  return scenario.pickup.type === 'bali_area' || scenario.pickup.type === 'harbor';
+}
+
+/** Classify a package origin as east (Bali/Banyuwangi/Ketapang) or west (Surabaya/Malang). */
+function packageOriginIsEast(pkg: PackageRouteMapData): boolean {
+  return /bali|banyuwangi|ketapang/i.test(pkg.origin);
+}
+
+/**
+ * Find a package that covers ALL requested destinations and whose origin side matches the pickup.
+ * Used only for `matched_package_id` + source_trace — the route itself is synthesized requested-only.
+ */
+function matchPackage(
+  scenario: NormalizedScenario,
+  packages: PackageRouteMapData[],
+  pickupEast: boolean
+): PackageRouteMapData | null {
   for (const pkg of packages) {
+    if (packageOriginIsEast(pkg) !== pickupEast) continue;
     const seq = pkg.route_sequence.join(' ').toLowerCase();
-    const covered = scenario.destinations.filter((dest) => {
-      const areas = DESTINATION_AREAS[dest] ?? [dest];
-      return areas.some((area) => seq.includes(area.toLowerCase().split(' ')[0]));
-    }).length;
-    const endsRight = isEastBound(scenario)
-      ? /ketapang|bali/.test(seq)
-      : /surabaya/.test(pkg.route_sequence[pkg.route_sequence.length - 1].toLowerCase());
-    const score = covered * 10 + (endsRight ? 1 : 0);
-    if (score > bestScore) {
-      best = pkg;
-      bestScore = score;
-    }
+    const coversAll = scenario.destinations
+      .filter((dest) => DESTINATION_AREAS[dest])
+      .every((dest) => (DESTINATION_AREAS[dest] ?? [dest]).some((area) => seq.includes(area.toLowerCase().split(' ')[0])));
+    if (coversAll) return pkg;
   }
-  return best && bestScore >= 10 ? best : null;
+  return null;
 }
 
 function legsForAreas(areas: string[], datasets: ScenarioDatasets): string[] {
@@ -108,30 +118,26 @@ function legsForAreas(areas: string[], datasets: ScenarioDatasets): string[] {
  */
 export function selectRoute(scenario: NormalizedScenario, datasets: ScenarioDatasets): RouteSelection {
   const eastBound = isEastBound(scenario);
+  const pickupEast = isEastPickup(scenario);
+  // Reverse (east-to-west) when the trip starts east of Ijen and ends west (e.g. Bali -> Surabaya).
+  const reverse = pickupEast && !eastBound;
   const traces: SourceTrace[] = [];
 
+  // Order destinations by direction, then expand to area names. Only requested destinations are
+  // included — never copy unrequested package stops.
   const orderedDestinations = [...scenario.destinations]
     .filter((dest) => DESTINATION_AREAS[dest])
     .sort((a, b) => (DESTINATION_ORDER[a] ?? 99) - (DESTINATION_ORDER[b] ?? 99));
+  if (reverse) orderedDestinations.reverse();
 
   const destinationAreas = orderedDestinations.flatMap((dest) => DESTINATION_AREAS[dest] ?? []);
-  const synthesized = unique([startArea(scenario), ...destinationAreas, endArea(scenario, eastBound)]);
+  const recommendedRoute = unique([startArea(scenario), ...destinationAreas, endArea(scenario, eastBound)]);
+  const routeLegIds = legsForAreas(recommendedRoute, datasets);
 
-  let recommendedRoute = synthesized;
-  let routeLegIds = legsForAreas(synthesized, datasets);
-  let matchedPackageId: string | null = null;
-
-  const pkg = matchPackage(scenario, datasets.packageRouteMap);
-  if (pkg) {
-    matchedPackageId = pkg.package_id;
-    traces.push(...pkg.source_trace);
-    // Use the package's verified route definition, but retarget the final area to the actual dropoff.
-    const sequence = [...pkg.route_sequence];
-    sequence[0] = startArea(scenario);
-    sequence[sequence.length - 1] = endArea(scenario, eastBound);
-    recommendedRoute = unique(sequence);
-    routeLegIds = pkg.route_legs.length > 0 ? pkg.route_legs : routeLegIds;
-  }
+  // The package match only contributes metadata + provenance; it never rewrites the route.
+  const pkg = matchPackage(scenario, datasets.packageRouteMap, pickupEast);
+  const matchedPackageId = pkg?.package_id ?? null;
+  if (pkg) traces.push(...pkg.source_trace);
 
   const need = requiredDays(scenario.destinations);
   const infeasibleReasons: string[] = [];

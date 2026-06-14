@@ -52,31 +52,63 @@ interface ContextLike {
   connects_to?: string[];
 }
 
-/** Score a context against the requested location/type; higher is a better match. */
-function scoreContext(context: ContextLike, type: LocationType, location: string): number {
-  const tokens = locationTokens(location);
-  const loc = location.toLowerCase();
-  const id = context.id.toLowerCase();
-  let score = 0;
-  if (tokens.some((token) => id.includes(token))) score += 3;
-  if (context.location_group && loc.includes(context.location_group.toLowerCase())) score += 2;
-  if (context.connects_to?.some((c) => tokens.some((token) => c.toLowerCase().includes(token)))) score += 2;
-  if (context.type === type) score += 1;
-  return score;
+/**
+ * Generic type words that appear in many context ids (e.g. "hotel", "airport") and must NOT, on
+ * their own, resolve a context — otherwise "Bali Hotel" would match `surabaya_hotel_pickup`.
+ */
+const GENERIC_LOCATION_WORDS = new Set([
+  'airport',
+  'hotel',
+  'harbor',
+  'harbour',
+  'port',
+  'ferry',
+  'station',
+  'train',
+  'city',
+  'point',
+  'custom',
+  'address',
+  'area',
+  'dropoff',
+  'pickup',
+  'terminal'
+]);
+
+/** Place-specific tokens only — generic type words are stripped before id/connects matching. */
+function placeTokens(location: string): string[] {
+  return locationTokens(location).filter((token) => !GENERIC_LOCATION_WORDS.has(token));
 }
 
+/** Score a context: `place` reflects a real location match; `type` is a weak tie-breaker only. */
+function scoreContext(context: ContextLike, type: LocationType, location: string): { place: number; type: number } {
+  const tokens = placeTokens(location);
+  const loc = location.toLowerCase();
+  const id = context.id.toLowerCase();
+  let place = 0;
+  if (tokens.some((token) => id.includes(token))) place += 3;
+  if (context.location_group && loc.includes(context.location_group.toLowerCase())) place += 2;
+  if (context.connects_to?.some((c) => tokens.some((token) => c.toLowerCase().includes(token)))) place += 2;
+  return { place, type: context.type === type ? 1 : 0 };
+}
+
+/**
+ * Resolve a travel context only when there is a real place signal. A type-only match (e.g. the bare
+ * word "hotel") is insufficient and returns null, so the caller flags the endpoint for manual review.
+ */
 function resolveContext<T extends ContextLike>(contexts: T[], type: LocationType, location: string): T | null {
   let best: T | null = null;
   let bestScore = 0;
   for (const context of contexts) {
-    const score = scoreContext(context, type, location);
+    const { place, type: typeScore } = scoreContext(context, type, location);
+    if (place <= 0) continue;
+    const score = place * 10 + typeScore;
     if (score > bestScore) {
       best = context;
       bestScore = score;
     }
   }
-  if (best) return best;
-  return contexts.find((context) => context.type === type) ?? null;
+  return best;
 }
 
 function readEndpoint(
