@@ -1,6 +1,10 @@
 import { readFile } from 'node:fs/promises';
 import { compileGeneratedData } from './compile/index.js';
 import { validateGeneratedData } from './validate/validate-generated-data.js';
+import { evaluateScenario } from './scenario/index.js';
+import type { RawScenarioInput } from './scenario/types.js';
+
+const DEFAULT_SCENARIO = 'samples/customer-scenario-surabaya-airport-late-bromo-ijen-ketapang.json';
 
 async function main() {
   const command = process.argv[2];
@@ -25,10 +29,10 @@ async function main() {
   }
 
   if (command === 'scenario') {
-    const path = process.argv[3];
-    if (!path) throw new Error('Provide scenario path.');
-    const raw = await readFile(path, 'utf8');
-    console.log(raw);
+    const path = process.argv[3] ?? DEFAULT_SCENARIO;
+    const raw = JSON.parse(await readFile(path, 'utf8')) as RawScenarioInput;
+    const evaluation = await evaluateScenario(raw);
+    console.log(JSON.stringify(evaluation, null, 2));
     return;
   }
 

@@ -1,0 +1,10 @@
+{
+  "pickup_type": "airport",
+  "pickup_location": "Surabaya Airport",
+  "arrival_time": "2024-06-15T18:00:00Z",
+  "dropoff_type": "airport",
+  "dropoff_location": "Surabaya Airport",
+  "destinations": ["bromo", "ijen"],
+  "duration_days": 1,
+  "pax": 2
+}

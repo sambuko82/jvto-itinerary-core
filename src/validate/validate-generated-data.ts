@@ -1,6 +1,8 @@
 import { access } from 'node:fs/promises';
 import { GENERATED_DIR, EXPORT_DIR } from '../config/paths.js';
 import { readJson } from '../utils/fs.js';
+import { evaluateScenario } from '../scenario/index.js';
+import type { RawScenarioInput } from '../scenario/types.js';
 import {
   validateArray,
   validateObject,
@@ -202,10 +204,28 @@ export async function validateGeneratedData() {
     assertNoRawPiiKeys(await readJson(file), file);
   }
 
+  // Minimal scenario-evaluator smoke check: the canonical late-Ketapang sample must evaluate
+  // to possible_with_warning, surface operational events + cost components, and emit no raw PII.
+  const sampleScenario = await readJson<RawScenarioInput>(
+    'samples/customer-scenario-surabaya-airport-late-bromo-ijen-ketapang.json'
+  );
+  const evaluation = await evaluateScenario(sampleScenario);
+  if (evaluation.status !== 'possible_with_warning') {
+    throw new Error(`scenario smoke check expected status possible_with_warning, got ${evaluation.status}`);
+  }
+  if (evaluation.operational_events.length === 0) {
+    throw new Error('scenario smoke check expected non-empty operational_events');
+  }
+  if (evaluation.cost_components.length === 0) {
+    throw new Error('scenario smoke check expected non-empty cost_components');
+  }
+  assertNoRawPiiKeys(evaluation, 'scenario_evaluation');
+
   return {
     ok: true,
     generated_files: generatedFiles.length,
     export_payloads: exportPayloadFiles.length,
-    pii_policy: 'no_raw_customer_pii'
+    pii_policy: 'no_raw_customer_pii',
+    scenario_smoke: 'ok'
   };
 }
