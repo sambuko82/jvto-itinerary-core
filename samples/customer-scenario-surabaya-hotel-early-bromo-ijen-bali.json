@@ -1,0 +1,10 @@
+{
+  "pickup_type": "hotel",
+  "pickup_location": "Surabaya City Center",
+  "arrival_time": "2024-06-15T23:00:00Z",
+  "dropoff_type": "hotel",
+  "dropoff_location": "Bali Seminyak",
+  "destinations": ["bromo", "ijen"],
+  "duration_days": 3,
+  "pax": 4
+}

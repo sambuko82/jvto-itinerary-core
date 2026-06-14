@@ -1,0 +1,10 @@
+{
+  "pickup_type": "airport",
+  "pickup_location": "Surabaya Airport",
+  "arrival_time": "2024-06-15T17:30:00Z",
+  "dropoff_type": "harbor",
+  "dropoff_location": "Ketapang Harbor",
+  "destinations": ["bromo", "madakaripura", "ijen"],
+  "duration_days": 3,
+  "pax": 2
+}

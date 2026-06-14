@@ -8,7 +8,8 @@
     "compile": "tsx src/cli.ts compile",
     "validate": "tsx src/cli.ts validate",
     "inspect": "tsx src/cli.ts inspect",
-    "scenario": "tsx src/cli.ts scenario samples/customer-scenario-surabaya-bromo-ijen-ketapang.json",
+    "scenario": "tsx src/cli.ts scenario",
+    "test": "tsx --test src/scenario/*.test.ts",
     "build:all": "npm run compile && npm run validate",
     "typecheck": "tsc --noEmit"
   },
