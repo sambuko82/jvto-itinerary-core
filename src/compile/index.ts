@@ -40,7 +40,7 @@ export async function compileGeneratedData() {
   }
 
   await writeJson(`${GENERATED_DIR}/manifest.json`, {
-    generated_at: new Date().toISOString(),
+    generated_at: 'manual_seed_deterministic',
     version: 1,
     status: 'initial_scaffold_with_manual_seed_data',
     file_count: files.length,
