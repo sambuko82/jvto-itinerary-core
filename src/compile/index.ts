@@ -15,6 +15,7 @@ import { buildRecommendationRules } from './build-recommendation-rules.js';
 import { buildVisualMapLayer } from './build-visual-map-layer.js';
 import { buildOutputTemplateMap } from './build-output-template-map.js';
 import { buildScenarioPreview } from './build-scenario-preview.js';
+import { buildExportPayloads } from './build-export-payloads.js';
 
 export async function compileGeneratedData() {
   const files = [
@@ -39,19 +40,39 @@ export async function compileGeneratedData() {
     await writeJson(`${GENERATED_DIR}/${file}`, data);
   }
 
+  const exportPayloads = buildExportPayloads();
+  for (const payload of exportPayloads) {
+    await writeJson(payload.path, payload.data);
+  }
+
   await writeJson(`${GENERATED_DIR}/manifest.json`, {
     generated_at: 'manual_seed_deterministic',
-    version: 1,
-    status: 'initial_scaffold_with_manual_seed_data',
-    file_count: files.length,
-    files: files.map(([file]) => file),
-    next_steps: [
+    schema_version: 1,
+    source_mode: 'manual_seed_mvp',
+    output_count: files.length + exportPayloads.length,
+    outputs: [
+      ...files.map(([file]) => `${GENERATED_DIR}/${file}`),
+      ...exportPayloads.map((payload) => payload.path)
+    ],
+    warnings: [
+      'MVP output is generated from controlled manual seed data.',
+      'External source extraction hooks exist but are not connected in this MVP.',
+      'Cost payloads explain components only and do not produce final quote totals.'
+    ],
+    missing_data: [
+      'distance_km requires Mapbox/manual verification',
+      'actual vehicle/crew/hotel rates require backoffice export ingestion',
+      'real route polyline is not yet generated',
+      'exact pickup/dropoff deadlines require customer travel details collected outside this PII-free sample'
+    ],
+    next_actions: [
       'Connect llm-wiki extractor',
       'Connect jvto-web route/destination extractor',
       'Connect new-backoffice redacted logistics and cost extractor',
       'Replace manual_seed fields with verified source_trace where possible'
-    ]
+    ],
+    status: 'mvp_seed_outputs_ready'
   });
 
-  return files.map(([file]) => `${GENERATED_DIR}/${file}`);
+  return [...files.map(([file]) => `${GENERATED_DIR}/${file}`), ...exportPayloads.map((payload) => payload.path)];
 }

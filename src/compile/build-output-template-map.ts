@@ -31,6 +31,36 @@ export function buildOutputTemplateMap(): OutputTemplateMap[] {
       required_sections: ['feasibility_answer', 'recommended_route', 'key_warnings', 'price_or_cost_note', 'next_required_info'],
       data_dependencies: ['recommendation_rules', 'route_leg_index', 'cost_components'],
       source_trace: [{ source: 'manual_seed', ref: 'contracts/output-contract.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'quotation_output_template',
+      label: 'Quotation output template',
+      status: 'active',
+      confidence: 'manual_seed',
+      output_mode: 'quotation',
+      required_sections: ['scenario_summary', 'route_basis', 'included_components', 'excluded_or_optional_components', 'missing_rate_verification'],
+      data_dependencies: ['cost_components', 'package_route_map', 'pickup_contexts', 'dropoff_contexts'],
+      source_trace: [{ source: 'manual_seed', ref: 'contracts/output-contract.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'internal_ops_sheet_output_template',
+      label: 'Internal ops sheet output template',
+      status: 'active',
+      confidence: 'manual_seed',
+      output_mode: 'internal_ops_sheet',
+      required_sections: ['pickup_plan', 'dropoff_plan', 'route_legs', 'crew_handoffs', 'operational_events', 'verification_queue'],
+      data_dependencies: ['route_leg_index', 'operational_events', 'meal_logic', 'accommodation_logic', 'cost_components'],
+      source_trace: [{ source: 'manual_seed', ref: 'contracts/output-contract.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'map_payload_output_template',
+      label: 'Map payload output template',
+      status: 'active',
+      confidence: 'manual_seed',
+      output_mode: 'map_payload',
+      required_sections: ['markers', 'route_leg_references', 'polyline_placeholders', 'risk_markers', 'duration_distance_labels'],
+      data_dependencies: ['visual_map_layer', 'route_leg_index'],
+      source_trace: [{ source: 'manual_seed', ref: 'contracts/output-contract.yaml', confidence: 'manual_seed' }]
     }
   ];
 }

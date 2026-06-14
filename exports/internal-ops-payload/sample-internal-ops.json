@@ -1,0 +1,83 @@
+{
+  "scenario_id": "custom_surabaya_bromo_madakaripura_ijen_ketapang_3d2n",
+  "source_mode": "manual_seed_mvp",
+  "status": "possible_with_warning",
+  "generated_at": "manual_seed_deterministic",
+  "pii_policy": "no_raw_customer_pii",
+  "missing_data": [
+    "distance_km requires Mapbox/manual verification",
+    "real route polyline is not yet generated",
+    "actual vehicle/crew/hotel/activity rates require redacted backoffice export ingestion",
+    "no raw customer PII is included in this sample payload"
+  ],
+  "payload_type": "internal_ops",
+  "ops_model": {
+    "route_leg_ids": [
+      "surabaya_airport_to_bromo_area",
+      "bromo_area_to_madakaripura",
+      "bromo_area_to_bondowoso_ijen_area",
+      "bondowoso_ijen_area_to_ijen_crater",
+      "ijen_area_to_ketapang_harbor"
+    ],
+    "operational_events": [
+      "bromo_jeep_handoff",
+      "waterfall_local_guide_handoff",
+      "bondowoso_dinner_medical_check",
+      "ketapang_ferry_connection"
+    ],
+    "meal_events": [
+      "takeaway_breakfast_after_ijen_or_bromo",
+      "lunch_stop_own_expense_long_transfer",
+      "dinner_before_ijen"
+    ],
+    "accommodation_logic": [
+      "bromo_area_sunrise_staging",
+      "bondowoso_ijen_staging"
+    ],
+    "cost_components": [
+      {
+        "id": "vehicle_private_car_day",
+        "rate_idr": null,
+        "status": "needs_verification",
+        "customer_visible": false
+      },
+      {
+        "id": "bromo_jeep",
+        "rate_idr": null,
+        "status": "needs_verification",
+        "customer_visible": "included_in_package"
+      },
+      {
+        "id": "madakaripura_local_guide",
+        "rate_idr": null,
+        "status": "needs_verification",
+        "customer_visible": "included_in_package"
+      },
+      {
+        "id": "ijen_medical_check",
+        "rate_idr": null,
+        "status": "needs_verification",
+        "customer_visible": true
+      },
+      {
+        "id": "ijen_local_guide",
+        "rate_idr": null,
+        "status": "needs_verification",
+        "customer_visible": "included_in_package"
+      },
+      {
+        "id": "bali_dropoff_after_ketapang",
+        "rate_idr": null,
+        "status": "needs_verification",
+        "customer_visible": true
+      }
+    ],
+    "verification_queue": [
+      "confirm flight arrival and actual ready time",
+      "confirm Bromo area hotel/staging plan",
+      "verify Ijen medical check timing",
+      "confirm Ketapang ferry/Bali transfer handoff",
+      "replace null rates with redacted backoffice-derived rates"
+    ]
+  }
+}

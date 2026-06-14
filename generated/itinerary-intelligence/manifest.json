@@ -1,29 +1,46 @@
 {
   "generated_at": "manual_seed_deterministic",
-  "version": 1,
-  "status": "initial_scaffold_with_manual_seed_data",
-  "file_count": 15,
-  "files": [
-    "01-pickup-contexts.json",
-    "02-dropoff-contexts.json",
-    "03-time-window-rules.json",
-    "04-route-leg-index.json",
-    "05-road-situation-profiles.json",
-    "06-destination-activity-profiles.json",
-    "07-operational-events.json",
-    "08-meal-logic.json",
-    "09-accommodation-logic.json",
-    "10-cost-components.json",
-    "11-package-route-map.json",
-    "12-recommendation-rules.json",
-    "13-visual-map-layer.json",
-    "14-output-template-map.json",
-    "15-scenario-preview-sample.json"
+  "schema_version": 1,
+  "source_mode": "manual_seed_mvp",
+  "output_count": 20,
+  "outputs": [
+    "generated/itinerary-intelligence/01-pickup-contexts.json",
+    "generated/itinerary-intelligence/02-dropoff-contexts.json",
+    "generated/itinerary-intelligence/03-time-window-rules.json",
+    "generated/itinerary-intelligence/04-route-leg-index.json",
+    "generated/itinerary-intelligence/05-road-situation-profiles.json",
+    "generated/itinerary-intelligence/06-destination-activity-profiles.json",
+    "generated/itinerary-intelligence/07-operational-events.json",
+    "generated/itinerary-intelligence/08-meal-logic.json",
+    "generated/itinerary-intelligence/09-accommodation-logic.json",
+    "generated/itinerary-intelligence/10-cost-components.json",
+    "generated/itinerary-intelligence/11-package-route-map.json",
+    "generated/itinerary-intelligence/12-recommendation-rules.json",
+    "generated/itinerary-intelligence/13-visual-map-layer.json",
+    "generated/itinerary-intelligence/14-output-template-map.json",
+    "generated/itinerary-intelligence/15-scenario-preview-sample.json",
+    "exports/page-payload/sample-itinerary-page.json",
+    "exports/pdf-payload/sample-itinerary-pdf.json",
+    "exports/whatsapp-payload/sample-whatsapp-summary.json",
+    "exports/internal-ops-payload/sample-internal-ops.json",
+    "exports/ai-context-pack/sample-ai-context.json"
   ],
-  "next_steps": [
+  "warnings": [
+    "MVP output is generated from controlled manual seed data.",
+    "External source extraction hooks exist but are not connected in this MVP.",
+    "Cost payloads explain components only and do not produce final quote totals."
+  ],
+  "missing_data": [
+    "distance_km requires Mapbox/manual verification",
+    "actual vehicle/crew/hotel rates require backoffice export ingestion",
+    "real route polyline is not yet generated",
+    "exact pickup/dropoff deadlines require customer travel details collected outside this PII-free sample"
+  ],
+  "next_actions": [
     "Connect llm-wiki extractor",
     "Connect jvto-web route/destination extractor",
     "Connect new-backoffice redacted logistics and cost extractor",
     "Replace manual_seed fields with verified source_trace where possible"
-  ]
+  ],
+  "status": "mvp_seed_outputs_ready"
 }

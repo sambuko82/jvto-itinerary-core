@@ -15,14 +15,156 @@ export function buildScenarioPreview() {
   return {
     scenario,
     status: 'possible_with_warning',
-    recommended_route: ['Surabaya Airport', 'Bromo Area', 'Madakaripura', 'Bondowoso / Ijen Area', 'Ijen Crater', 'Ketapang Harbor'],
+    normalized_pickup: {
+      context_id: 'surabaya_airport_pickup',
+      type: 'airport',
+      location_group: 'Surabaya',
+      ready_time_basis: 'arrival_time + default_ready_buffer_minutes',
+      default_ready_buffer_minutes: 45,
+      missing_required_fields: ['flight_number', 'origin_city'],
+      implications: [
+        '17:30 arrival pushes actual departure into evening traffic and night mountain access.',
+        'Meal stop and Bromo-area check-in should be planned as flexible operational events.',
+        'Flight delay can reduce rest before Bromo sunrise.'
+      ]
+    },
+    normalized_dropoff: {
+      context_id: 'ketapang_harbor_dropoff',
+      type: 'harbor',
+      location_group: 'Banyuwangi',
+      default_buffer_minutes: 45,
+      connects_to: ['Gilimanuk Harbor', 'Bali hotel transfer if requested'],
+      missing_required_fields: ['next_destination', 'ferry_or_bali_transfer_preference'],
+      implications: [
+        'Ketapang dropoff needs ferry queue buffer if the guest continues to Bali.',
+        'Bali hotel transfer is a separate cost/vehicle handoff decision until verified.',
+        'Late Ijen finish can affect onward Bali arrival time.'
+      ]
+    },
+    recommended_route_sequence: ['Surabaya Airport', 'Bromo Area', 'Madakaripura Waterfall', 'Bondowoso / Ijen Area', 'Ijen Crater', 'Ketapang Harbor'],
+    route_leg_ids: [
+      'surabaya_airport_to_bromo_area',
+      'bromo_area_to_madakaripura',
+      'bromo_area_to_bondowoso_ijen_area',
+      'bondowoso_ijen_area_to_ijen_crater',
+      'ijen_area_to_ketapang_harbor'
+    ],
+    route_legs: [
+      {
+        id: 'surabaya_airport_to_bromo_area',
+        distance_km: null,
+        distance_status: 'needs_verification',
+        duration_text: '+/-3-4 hours',
+        polyline: null,
+        polyline_status: 'needs_verification'
+      },
+      {
+        id: 'bromo_area_to_madakaripura',
+        distance_km: null,
+        distance_status: 'needs_verification',
+        duration_text: '+/-1-1.5 hours',
+        polyline: null,
+        polyline_status: 'needs_verification'
+      },
+      {
+        id: 'bromo_area_to_bondowoso_ijen_area',
+        distance_km: null,
+        distance_status: 'needs_verification',
+        duration_text: '+/-5-6 hours',
+        polyline: null,
+        polyline_status: 'needs_verification'
+      },
+      {
+        id: 'bondowoso_ijen_area_to_ijen_crater',
+        distance_km: null,
+        distance_status: 'needs_verification',
+        duration_text: '+/-1.5-2 hours before trekking',
+        polyline: null,
+        polyline_status: 'needs_verification'
+      },
+      {
+        id: 'ijen_area_to_ketapang_harbor',
+        distance_km: null,
+        distance_status: 'needs_verification',
+        duration_text: '+/-1-2 hours after Ijen',
+        polyline: null,
+        polyline_status: 'needs_verification'
+      }
+    ],
+    operational_events: [
+      'bromo_jeep_handoff',
+      'waterfall_local_guide_handoff',
+      'bondowoso_dinner_medical_check',
+      'ketapang_ferry_connection'
+    ],
+    meal_events: [
+      'takeaway_breakfast_after_ijen_or_bromo',
+      'lunch_stop_own_expense_long_transfer',
+      'dinner_before_ijen'
+    ],
+    accommodation_logic: ['bromo_area_sunrise_staging', 'bondowoso_ijen_staging'],
+    cost_components: [
+      {
+        id: 'vehicle_private_car_day',
+        rate_idr: null,
+        status: 'needs_verification',
+        customer_visible: false
+      },
+      {
+        id: 'bromo_jeep',
+        rate_idr: null,
+        status: 'needs_verification',
+        customer_visible: 'included_in_package'
+      },
+      {
+        id: 'madakaripura_local_guide',
+        rate_idr: null,
+        status: 'needs_verification',
+        customer_visible: 'included_in_package'
+      },
+      {
+        id: 'ijen_medical_check',
+        rate_idr: null,
+        status: 'needs_verification',
+        customer_visible: true
+      },
+      {
+        id: 'ijen_local_guide',
+        rate_idr: null,
+        status: 'needs_verification',
+        customer_visible: 'included_in_package'
+      },
+      {
+        id: 'bali_dropoff_after_ketapang',
+        rate_idr: null,
+        status: 'needs_verification',
+        customer_visible: true
+      }
+    ],
     warnings: [
       'Arrival at 17:30 may cause late check-in in Bromo area.',
       'Ijen requires midnight departure and health check before trekking.',
-      'This route is feasible but tiring; earlier arrival or one extra night gives better rest.'
+      'This route is feasible but tiring; earlier arrival or one extra night gives better rest.',
+      'Distance, route polyline, and final operational rates are not verified in this MVP.'
     ],
-    operational_events: ['bromo_jeep_handoff', 'waterfall_local_guide_handoff', 'bondowoso_dinner_medical_check', 'ketapang_ferry_connection'],
-    cost_components: ['vehicle_private_car_day', 'bromo_jeep', 'madakaripura_local_guide', 'ijen_medical_check', 'ijen_local_guide', 'bali_dropoff_after_ketapang_if_requested'],
+    better_route_notes: [
+      'Keep the route west-to-east because final dropoff is Ketapang Harbor.',
+      'Do not reverse to Ijen before Bromo for this dropoff because it creates backtracking.',
+      'If the guest wants Tumpak Sewu too, add one extra day/night before Bromo instead of forcing it into 3D2N.'
+    ],
+    missing_data: [
+      'distance_km requires Mapbox/manual verification',
+      'real route polyline is not yet generated',
+      'actual vehicle/crew/hotel/activity rates require redacted backoffice export ingestion',
+      'flight number, origin city, and next destination are required for operational confirmation but are not stored here'
+    ],
+    source_mode: 'manual_seed_mvp',
+    source_trace: [
+      { source: 'manual_seed', ref: 'seed/manual-overrides/pickup-dropoff.yaml', confidence: 'manual_seed' },
+      { source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' },
+      { source: 'manual_seed', ref: 'seed/manual-overrides/recommendation-rules.yaml', confidence: 'manual_seed' }
+    ],
+    output_targets: ['website_page', 'customer_pdf', 'whatsapp_summary', 'internal_ops_sheet', 'ai_context_pack', 'map_payload'],
     output_ready_for: ['customer_pdf', 'website_page', 'quotation', 'whatsapp_summary', 'internal_ops_sheet', 'map_payload']
   };
 }

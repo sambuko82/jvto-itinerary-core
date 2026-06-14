@@ -41,6 +41,58 @@ export function buildDropoffContexts(): DropoffContext[] {
       cost_impacts: ['bali_transfer', 'ferry_ticket', 'driver_vehicle_extra_time'],
       risk_factors: ['ferry_queue', 'bali_traffic', 'late_hotel_arrival'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/pickup-dropoff.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'surabaya_hotel_dropoff',
+      label: 'Surabaya hotel dropoff',
+      status: 'active',
+      confidence: 'manual_seed',
+      type: 'hotel',
+      location_group: 'Surabaya',
+      default_buffer_minutes: 30,
+      required_customer_fields: ['hotel_area'],
+      cost_impacts: ['vehicle_day_usage', 'parking_toll_fuel_allowance'],
+      risk_factors: ['city_traffic', 'late_arrival', 'hotel_access'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/pickup-dropoff.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'surabaya_train_station_dropoff',
+      label: 'Surabaya train station dropoff',
+      status: 'active',
+      confidence: 'manual_seed',
+      type: 'train_station',
+      location_group: 'Surabaya',
+      default_buffer_minutes: 90,
+      required_customer_fields: ['train_departure_time', 'station_name'],
+      cost_impacts: ['route_cutoff', 'vehicle_day_usage'],
+      risk_factors: ['city_traffic', 'station_crowd', 'missed_train_risk'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/pickup-dropoff.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'malang_dropoff',
+      label: 'Malang dropoff',
+      status: 'active',
+      confidence: 'manual_seed',
+      type: 'city_point',
+      location_group: 'Malang',
+      default_buffer_minutes: 45,
+      required_customer_fields: ['dropoff_area'],
+      cost_impacts: ['route_direction_change', 'vehicle_day_usage'],
+      risk_factors: ['mountain_descent', 'city_traffic', 'late_arrival'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/pickup-dropoff.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'custom_address_dropoff',
+      label: 'Custom address dropoff',
+      status: 'active',
+      confidence: 'manual_seed',
+      type: 'custom_address',
+      location_group: 'Custom',
+      default_buffer_minutes: 45,
+      required_customer_fields: ['address_area', 'deadline_if_any', 'vehicle_access_note'],
+      cost_impacts: ['route_deviation_review', 'vehicle_day_usage', 'extra_dropoff_transfer_if_outside_standard_area'],
+      risk_factors: ['address_unclear', 'vehicle_access_restriction', 'deadline_risk'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/pickup-dropoff.yaml', confidence: 'manual_seed' }]
     }
   ];
 }

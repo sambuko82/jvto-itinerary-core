@@ -1,0 +1,147 @@
+{
+  "scenario_id": "custom_surabaya_bromo_madakaripura_ijen_ketapang_3d2n",
+  "source_mode": "manual_seed_mvp",
+  "status": "possible_with_warning",
+  "generated_at": "manual_seed_deterministic",
+  "pii_policy": "no_raw_customer_pii",
+  "missing_data": [
+    "distance_km requires Mapbox/manual verification",
+    "real route polyline is not yet generated",
+    "actual vehicle/crew/hotel/activity rates require redacted backoffice export ingestion",
+    "no raw customer PII is included in this sample payload"
+  ],
+  "payload_type": "website_page",
+  "page_model": {
+    "title": "Private Surabaya to Bromo, Madakaripura, Ijen and Ketapang 3D2N",
+    "route_summary": [
+      "Surabaya Airport",
+      "Bromo Area",
+      "Madakaripura Waterfall",
+      "Bondowoso / Ijen Area",
+      "Ijen Crater",
+      "Ketapang Harbor"
+    ],
+    "hero_context": "Manual-seed MVP payload for a custom private itinerary page.",
+    "sections": [
+      "route_overview",
+      "daily_itinerary",
+      "pickup_dropoff",
+      "map",
+      "warnings",
+      "next_required_info"
+    ],
+    "map_layer_id": "map_surabaya_bromo_ijen_ketapang",
+    "route_leg_ids": [
+      "surabaya_airport_to_bromo_area",
+      "bromo_area_to_madakaripura",
+      "bromo_area_to_bondowoso_ijen_area",
+      "bondowoso_ijen_area_to_ijen_crater",
+      "ijen_area_to_ketapang_harbor"
+    ],
+    "warnings": [
+      "Arrival at 17:30 may cause late check-in in Bromo area.",
+      "Ijen requires midnight departure and health check before trekking.",
+      "This route is feasible but tiring; earlier arrival or one extra night gives better rest.",
+      "Distance, route polyline, and final operational rates are not verified in this MVP."
+    ],
+    "better_route_notes": [
+      "Keep the route west-to-east because final dropoff is Ketapang Harbor.",
+      "Do not reverse to Ijen before Bromo for this dropoff because it creates backtracking.",
+      "If the guest wants Tumpak Sewu too, add one extra day/night before Bromo instead of forcing it into 3D2N."
+    ]
+  },
+  "map_payload": {
+    "points": [
+      {
+        "type": "pickup",
+        "label": "Surabaya Airport",
+        "location_ref": "surabaya_airport",
+        "lat": null,
+        "lng": null,
+        "coordinate_status": "needs_verification"
+      },
+      {
+        "type": "destination",
+        "label": "Mount Bromo",
+        "location_ref": "bromo",
+        "lat": null,
+        "lng": null,
+        "coordinate_status": "needs_verification"
+      },
+      {
+        "type": "destination",
+        "label": "Madakaripura Waterfall",
+        "location_ref": "madakaripura",
+        "lat": null,
+        "lng": null,
+        "coordinate_status": "needs_verification"
+      },
+      {
+        "type": "hotel_area",
+        "label": "Bondowoso / Ijen Area",
+        "location_ref": "bondowoso_ijen_area",
+        "lat": null,
+        "lng": null,
+        "coordinate_status": "needs_verification"
+      },
+      {
+        "type": "destination",
+        "label": "Ijen Crater",
+        "location_ref": "ijen",
+        "lat": null,
+        "lng": null,
+        "coordinate_status": "needs_verification"
+      },
+      {
+        "type": "dropoff",
+        "label": "Ketapang Harbor",
+        "location_ref": "ketapang_harbor",
+        "lat": null,
+        "lng": null,
+        "coordinate_status": "needs_verification"
+      }
+    ],
+    "route_legs": [
+      {
+        "id": "surabaya_airport_to_bromo_area",
+        "distance_km": null,
+        "distance_status": "needs_verification",
+        "duration_text": "+/-3-4 hours",
+        "polyline": null,
+        "polyline_status": "needs_verification"
+      },
+      {
+        "id": "bromo_area_to_madakaripura",
+        "distance_km": null,
+        "distance_status": "needs_verification",
+        "duration_text": "+/-1-1.5 hours",
+        "polyline": null,
+        "polyline_status": "needs_verification"
+      },
+      {
+        "id": "bromo_area_to_bondowoso_ijen_area",
+        "distance_km": null,
+        "distance_status": "needs_verification",
+        "duration_text": "+/-5-6 hours",
+        "polyline": null,
+        "polyline_status": "needs_verification"
+      },
+      {
+        "id": "bondowoso_ijen_area_to_ijen_crater",
+        "distance_km": null,
+        "distance_status": "needs_verification",
+        "duration_text": "+/-1.5-2 hours before trekking",
+        "polyline": null,
+        "polyline_status": "needs_verification"
+      },
+      {
+        "id": "ijen_area_to_ketapang_harbor",
+        "distance_km": null,
+        "distance_status": "needs_verification",
+        "duration_text": "+/-1-2 hours after Ijen",
+        "polyline": null,
+        "polyline_status": "needs_verification"
+      }
+    ]
+  }
+}

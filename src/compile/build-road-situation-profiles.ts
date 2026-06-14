@@ -38,6 +38,114 @@ export function buildRoadSituationProfiles(): RoadSituationProfile[] {
         { condition: 'late_ijen_finish', recommendation: 'Add buffer for ferry queue and Bali-side traffic.' }
       ],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/road-situation-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'city_exit',
+      label: 'City exit',
+      status: 'active',
+      confidence: 'manual_seed',
+      applies_to: ['Surabaya', 'Malang', 'Bali hotel area'],
+      risks: ['rush hour', 'hotel pickup delay', 'airport or station congestion'],
+      recommendation_logic: [
+        { condition: 'deadline_same_day', recommendation: 'Add city buffer before calculating activity feasibility.' }
+      ],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/road-situation-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'toll_road',
+      label: 'Toll road',
+      status: 'active',
+      confidence: 'manual_seed',
+      applies_to: ['Surabaya to Bromo', 'Surabaya to Bondowoso', 'Malang to Surabaya'],
+      risks: ['holiday congestion', 'toll gate queue', 'rest area delay'],
+      recommendation_logic: [
+        { condition: 'holiday_or_weekend', recommendation: 'Use busy-duration estimate and keep meal stops flexible.' }
+      ],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/road-situation-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'intercity_road',
+      label: 'Intercity road',
+      status: 'active',
+      confidence: 'manual_seed',
+      applies_to: ['East Java transfers'],
+      risks: ['mixed traffic', 'road works', 'long drive fatigue'],
+      recommendation_logic: [
+        { condition: 'transfer_more_than_4_hours', recommendation: 'Plan meal/rest/toilet/fuel stops as operational events.' }
+      ],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/road-situation-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'mountain_access',
+      label: 'Mountain access',
+      status: 'active',
+      confidence: 'manual_seed',
+      applies_to: ['Bromo', 'Ijen', 'Tumpak Sewu approach'],
+      risks: ['curvy road', 'weather', 'night visibility'],
+      recommendation_logic: [
+        { condition: 'late_arrival', recommendation: 'Flag rest and safety risk before sunrise or midnight trekking.' }
+      ],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/road-situation-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'village_road',
+      label: 'Village road',
+      status: 'active',
+      confidence: 'manual_seed',
+      applies_to: ['Madakaripura', 'Tumpak Sewu', 'local access roads'],
+      risks: ['narrow road', 'local traffic', 'parking limitations'],
+      recommendation_logic: [
+        { condition: 'rain_or_weekend', recommendation: 'Keep activity timing conservative and avoid tight deadlines.' }
+      ],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/road-situation-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'national_park_access',
+      label: 'National park access',
+      status: 'active',
+      confidence: 'manual_seed',
+      applies_to: ['Bromo', 'Ijen'],
+      risks: ['ticketing queue', 'closure or access policy', 'guide/equipment dependency'],
+      recommendation_logic: [
+        { condition: 'activity_requires_permit_or_screening', recommendation: 'Confirm ticketing, guide, and health/equipment requirements before final itinerary.' }
+      ],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/road-situation-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'night_drive',
+      label: 'Night drive',
+      status: 'active',
+      confidence: 'manual_seed',
+      applies_to: ['Bromo sunrise', 'Ijen midnight departure', 'late airport arrivals'],
+      risks: ['driver fatigue', 'guest fatigue', 'reduced visibility'],
+      recommendation_logic: [
+        { condition: 'same_day_long_haul_arrival', recommendation: 'Recommend extra rest or one additional night when fatigue stack is high.' }
+      ],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/road-situation-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'weekend_congestion',
+      label: 'Weekend congestion',
+      status: 'active',
+      confidence: 'manual_seed',
+      applies_to: ['Bromo', 'Surabaya', 'Malang', 'Bali'],
+      risks: ['longer access time', 'parking delay', 'activity crowd'],
+      recommendation_logic: [
+        { condition: 'weekend_or_public_holiday', recommendation: 'Use busy-duration estimates and avoid tight onward deadlines.' }
+      ],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/road-situation-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'rain_sensitive_road',
+      label: 'Rain sensitive road',
+      status: 'active',
+      confidence: 'manual_seed',
+      applies_to: ['waterfall access', 'mountain access', 'village roads'],
+      risks: ['slippery access', 'waterfall closure risk', 'slower drive'],
+      recommendation_logic: [
+        { condition: 'heavy_rain', recommendation: 'Reconfirm access locally and prepare fallback activity or timing.' }
+      ],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/road-situation-profiles.yaml', confidence: 'manual_seed' }]
     }
   ];
 }

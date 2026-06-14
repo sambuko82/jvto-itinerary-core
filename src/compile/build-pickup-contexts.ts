@@ -40,6 +40,58 @@ export function buildPickupContexts(): PickupContext[] {
       risk_factors: ['train_delay', 'station_crowd', 'luggage_loading'],
       affects: ['actual_departure_time', 'first_day_route_feasibility'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/pickup-dropoff.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'ketapang_harbor_pickup',
+      label: 'Ketapang Harbor pickup',
+      status: 'active',
+      confidence: 'manual_seed',
+      type: 'harbor',
+      location_group: 'Banyuwangi',
+      default_ready_buffer_minutes: 30,
+      required_customer_fields: ['arrival_time', 'ferry_or_boat_context'],
+      risk_factors: ['ferry_delay', 'harbor_queue', 'luggage_loading'],
+      affects: ['actual_departure_time', 'banyuwangi_ijen_route_feasibility', 'meal_stop_need'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/pickup-dropoff.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'surabaya_city_point_pickup',
+      label: 'Surabaya city point pickup',
+      status: 'active',
+      confidence: 'manual_seed',
+      type: 'city_point',
+      location_group: 'Surabaya',
+      default_ready_buffer_minutes: 20,
+      required_customer_fields: ['meeting_point', 'pickup_time'],
+      risk_factors: ['city_traffic', 'unclear_meeting_point', 'parking_access'],
+      affects: ['actual_departure_time', 'first_day_route_feasibility'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/pickup-dropoff.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'custom_address_pickup',
+      label: 'Custom address pickup',
+      status: 'active',
+      confidence: 'manual_seed',
+      type: 'custom_address',
+      location_group: 'Custom',
+      default_ready_buffer_minutes: 30,
+      required_customer_fields: ['address_area', 'pickup_time', 'vehicle_access_note'],
+      risk_factors: ['address_unclear', 'vehicle_access_restriction', 'local_traffic'],
+      affects: ['route_start_point', 'actual_departure_time', 'cost_component_review'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/pickup-dropoff.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'previous_tour_dropoff_pickup',
+      label: 'Previous tour dropoff as next pickup',
+      status: 'active',
+      confidence: 'manual_seed',
+      type: 'destination_area',
+      location_group: 'Previous route endpoint',
+      default_ready_buffer_minutes: 45,
+      required_customer_fields: ['previous_dropoff_area', 'handoff_time'],
+      risk_factors: ['previous_tour_delay', 'crew_handoff_gap', 'unclear_luggage_plan'],
+      affects: ['route_continuity', 'crew_handoff', 'vehicle_day_usage'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/pickup-dropoff.yaml', confidence: 'manual_seed' }]
     }
   ];
 }

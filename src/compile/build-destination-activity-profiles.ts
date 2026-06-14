@@ -74,6 +74,78 @@ export function buildDestinationActivityProfiles(): DestinationActivityProfile[]
       cost_components: ['madakaripura_ticket', 'madakaripura_local_guide'],
       warning_rules: ['waterfall_access_road', 'airport_dropoff_cutoff_after_waterfall'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/destination-activity-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'destination_papuma_activity_profile',
+      label: 'Papuma activity profile',
+      status: 'active',
+      confidence: 'manual_seed',
+      destination_id: 'papuma',
+      activity_window: {
+        recommended_start: '08:00-14:00',
+        finish: '10:00-16:00'
+      },
+      dependencies: ['weather', 'coastal_access_condition'],
+      fatigue_score: 2,
+      best_previous_overnight: 'Jember / Bondowoso corridor',
+      bad_previous_overnight: ['tight airport deadline', 'late long-haul transfer'],
+      cost_components: ['papuma_ticket', 'vehicle_day_usage'],
+      warning_rules: ['rain_sensitive_road'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/destination-activity-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'destination_malang_batu_activity_profile',
+      label: 'Malang / Batu activity profile',
+      status: 'active',
+      confidence: 'manual_seed',
+      destination_id: 'malang_batu',
+      activity_window: {
+        city_activity: '09:00-17:00',
+        evening_activity: '18:00-21:00'
+      },
+      dependencies: ['city_traffic', 'attraction_opening_hours'],
+      fatigue_score: 2,
+      best_previous_overnight: 'Malang / Batu',
+      bad_previous_overnight: ['post-Ijen same day without rest'],
+      cost_components: ['vehicle_day_usage', 'destination_ticket_if_selected'],
+      warning_rules: ['weekend_congestion'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/destination-activity-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'destination_surabaya_city_activity_profile',
+      label: 'Surabaya city activity profile',
+      status: 'active',
+      confidence: 'manual_seed',
+      destination_id: 'surabaya_city',
+      activity_window: {
+        city_activity: '09:00-17:00',
+        airport_buffer_sensitive: 'depends_on_departure_time'
+      },
+      dependencies: ['city_traffic', 'airport_or_train_deadline'],
+      fatigue_score: 1,
+      best_previous_overnight: 'Surabaya',
+      bad_previous_overnight: ['tight airport deadline after long transfer'],
+      cost_components: ['vehicle_day_usage', 'parking_toll_fuel_allowance'],
+      warning_rules: ['airport_dropoff_cutoff_after_waterfall'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/destination-activity-profiles.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'destination_bali_ketapang_activity_profile',
+      label: 'Bali / Ketapang connection profile',
+      status: 'active',
+      confidence: 'manual_seed',
+      destination_id: 'bali_ketapang',
+      activity_window: {
+        ferry_connection: '24_hours_with_queue_variability',
+        bali_transfer: 'depends_on_hotel_area'
+      },
+      dependencies: ['ferry_crossing', 'bali_traffic', 'handoff_or_vehicle_crossing'],
+      fatigue_score: 2,
+      best_previous_overnight: 'Banyuwangi / Ijen Area',
+      bad_previous_overnight: ['late Ijen finish with far Bali hotel deadline'],
+      cost_components: ['ferry_ticket', 'bali_transfer', 'vehicle_crossing_or_handoff'],
+      warning_rules: ['harbor_dropoff_requires_ferry_buffer'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/destination-activity-profiles.yaml', confidence: 'manual_seed' }]
     }
   ];
 }

@@ -7,7 +7,7 @@ async function main() {
 
   if (command === 'compile') {
     const files = await compileGeneratedData();
-    console.log(`Compiled ${files.length} generated files.`);
+    console.log(`Compiled ${files.length} output files.`);
     for (const file of files) console.log(`- ${file}`);
     return;
   }
