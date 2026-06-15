@@ -7,11 +7,11 @@
     "export-endpoint-inventory.json"
   ],
   "summary": {
-    "total_records": 219,
+    "total_records": 254,
     "critical": 0,
     "high": 0,
     "medium": 0,
-    "low": 8
+    "low": 21
   },
   "status": "pass",
   "critical_errors": [],
@@ -63,6 +63,84 @@
       "check": "ambiguous_location_token",
       "record_id": "tumpak",
       "message": "node \"tumpak\" derived from non-standalone slug token; needs source confirmation"
+    },
+    {
+      "severity": "low",
+      "check": "leg_touches_ambiguous_node",
+      "record_id": "bromo__to__madakaripura",
+      "message": "route leg \"bromo__to__madakaripura\" touches an ambiguous node"
+    },
+    {
+      "severity": "low",
+      "check": "leg_touches_ambiguous_node",
+      "record_id": "bromo__to__malang",
+      "message": "route leg \"bromo__to__malang\" touches an ambiguous node"
+    },
+    {
+      "severity": "low",
+      "check": "leg_touches_ambiguous_node",
+      "record_id": "ijen__to__papuma",
+      "message": "route leg \"ijen__to__papuma\" touches an ambiguous node"
+    },
+    {
+      "severity": "low",
+      "check": "leg_touches_ambiguous_node",
+      "record_id": "madakaripura__to__ijen",
+      "message": "route leg \"madakaripura__to__ijen\" touches an ambiguous node"
+    },
+    {
+      "severity": "low",
+      "check": "leg_touches_ambiguous_node",
+      "record_id": "madakaripura__to__malang",
+      "message": "route leg \"madakaripura__to__malang\" touches an ambiguous node"
+    },
+    {
+      "severity": "low",
+      "check": "leg_touches_ambiguous_node",
+      "record_id": "papuma__to__tumpak",
+      "message": "route leg \"papuma__to__tumpak\" touches an ambiguous node"
+    },
+    {
+      "severity": "low",
+      "check": "leg_touches_ambiguous_node",
+      "record_id": "prigen__to__bromo",
+      "message": "route leg \"prigen__to__bromo\" touches an ambiguous node"
+    },
+    {
+      "severity": "low",
+      "check": "leg_touches_ambiguous_node",
+      "record_id": "safari__to__prigen",
+      "message": "route leg \"safari__to__prigen\" touches an ambiguous node"
+    },
+    {
+      "severity": "low",
+      "check": "leg_touches_ambiguous_node",
+      "record_id": "sewu__to__bromo",
+      "message": "route leg \"sewu__to__bromo\" touches an ambiguous node"
+    },
+    {
+      "severity": "low",
+      "check": "leg_touches_ambiguous_node",
+      "record_id": "surabaya__to__taman",
+      "message": "route leg \"surabaya__to__taman\" touches an ambiguous node"
+    },
+    {
+      "severity": "low",
+      "check": "leg_touches_ambiguous_node",
+      "record_id": "surabaya__to__tumpak",
+      "message": "route leg \"surabaya__to__tumpak\" touches an ambiguous node"
+    },
+    {
+      "severity": "low",
+      "check": "leg_touches_ambiguous_node",
+      "record_id": "taman__to__safari",
+      "message": "route leg \"taman__to__safari\" touches an ambiguous node"
+    },
+    {
+      "severity": "low",
+      "check": "leg_touches_ambiguous_node",
+      "record_id": "tumpak__to__sewu",
+      "message": "route leg \"tumpak__to__sewu\" touches an ambiguous node"
     }
   ]
 }

@@ -13,6 +13,8 @@ import { buildExtractionManifest } from './compile/build-extraction-manifest.js'
 import { buildPackageCatalogIndex } from './compile/build-package-catalog-index.js';
 import { buildLocationAliasRegistry } from './compile/build-location-alias-registry.js';
 import { buildRouteNodeIndex } from './compile/build-route-node-index.js';
+import { buildRouteLegIndexDerived } from './compile/build-route-leg-index-derived.js';
+import { buildPackageRouteMapDerived } from './compile/build-package-route-map-derived.js';
 
 async function main() {
   const command = process.argv[2];
@@ -69,6 +71,20 @@ async function main() {
     console.log(`status: ${report.status}`);
     if (report.status !== 'pass') {
       console.error('Phase 3 validation FAILED: critical errors present.');
+      process.exit(1);
+    }
+    return;
+  }
+
+  if (command === 'routes') {
+    // Phase 4 Route Intelligence: legs + package route map derived from Phase 3 outputs.
+    await writeJson(`${GENERATED_DIR}/route-leg-index.json`, await buildRouteLegIndexDerived());
+    await writeJson(`${GENERATED_DIR}/package-route-map.json`, await buildPackageRouteMapDerived());
+    const report = await validateItineraryIntelligence();
+    console.log(JSON.stringify(report.summary, null, 2));
+    console.log(`status: ${report.status}`);
+    if (report.status !== 'pass') {
+      console.error('Phase 4 validation FAILED: critical errors present.');
       process.exit(1);
     }
     return;

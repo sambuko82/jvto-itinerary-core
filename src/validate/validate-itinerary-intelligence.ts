@@ -202,6 +202,59 @@ export async function validateItineraryIntelligence(dir: string = GENERATED_DIR)
     }
   }
 
+  // ── Phase 4: route legs + package route map (validate if present) ──
+  const legs = await tryRead('route-leg-index.json');
+  const routes = await tryRead('package-route-map.json');
+
+  for (const [file, recs] of [
+    ['route-leg-index.json', legs],
+    ['package-route-map.json', routes]
+  ] as const) {
+    if (!recs) continue;
+    total += recs.length;
+    for (const rec of recs) {
+      checkContract(rec, file, findings);
+      scanPii(rec, String(rec.id ?? file), '$', findings);
+    }
+  }
+
+  if (legs) {
+    const knownNodes = new Set((nodes ?? []).map((n) => String(n.node_id)));
+    const seenLeg = new Set<string>();
+    for (const leg of legs) {
+      const id = String(leg.route_leg_id);
+      if (seenLeg.has(id)) findings.push({ severity: 'critical', check: 'duplicate_route_leg', record_id: id, message: `duplicate route_leg_id "${id}"` });
+      seenLeg.add(id);
+      for (const node of [String(leg.from_node), String(leg.to_node)]) {
+        if (nodes && !knownNodes.has(node)) {
+          findings.push({ severity: 'critical', check: 'route_leg_unknown_node', record_id: id, message: `route leg references unknown node "${node}"` });
+        }
+      }
+      if (Array.isArray(leg.used_by_packages) && (leg.used_by_packages as unknown[]).length === 0) {
+        findings.push({ severity: 'low', check: 'orphan_leg', record_id: id, message: `route leg "${id}" used by no package` });
+      }
+      if (leg.touches_ambiguous_node === true) {
+        findings.push({ severity: 'low', check: 'leg_touches_ambiguous_node', record_id: id, message: `route leg "${id}" touches an ambiguous node` });
+      }
+    }
+  }
+
+  if (routes) {
+    const legSet = new Set((legs ?? []).map((l) => String(l.route_leg_id)));
+    for (const r of routes) {
+      const seq = Array.isArray(r.route_sequence) ? (r.route_sequence as unknown[]) : [];
+      if (seq.length === 0) findings.push({ severity: 'high', check: 'empty_route_sequence', record_id: String(r.package_id), message: `package "${r.package_id}" has empty route_sequence` });
+      for (const lid of (r.route_leg_ids as string[] | undefined) ?? []) {
+        if (legs && !legSet.has(lid)) {
+          findings.push({ severity: 'high', check: 'orphan_leg', record_id: String(r.package_id), message: `package references leg "${lid}" missing from route-leg-index` });
+        }
+      }
+    }
+    if (catalog && routes.length !== catalog.length) {
+      findings.push({ severity: 'high', check: 'route_map_coverage', record_id: null, message: `package-route-map has ${routes.length} but catalog has ${catalog.length}` });
+    }
+  }
+
   const summary = {
     total_records: total,
     critical: findings.filter((f) => f.severity === 'critical').length,
