@@ -7,10 +7,12 @@
   "scripts": {
     "compile": "tsx src/cli.ts compile",
     "validate": "tsx src/cli.ts validate",
+    "inventory": "tsx src/cli.ts inventory",
+    "refresh:snapshots": "tsx src/extract/refresh-source-snapshots.ts",
     "inspect": "tsx src/cli.ts inspect",
     "scenario": "tsx src/cli.ts scenario",
     "build:all": "npm run compile && npm run validate",
-    "test": "tsx --test src/scenario/evaluateScenario.test.ts src/extract/extract-backoffice.test.ts src/compile/backoffice-enrich.test.ts src/config/destination-crosswalk.test.ts",
+    "test": "tsx --test src/scenario/evaluateScenario.test.ts src/extract/extract-backoffice.test.ts src/compile/backoffice-enrich.test.ts src/config/destination-crosswalk.test.ts src/validate/inventory.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

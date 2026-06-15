@@ -1,0 +1,1951 @@
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../src/generated/prisma"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model activities {
+  id                            BigInt                          @id @default(autoincrement())
+  code                          String?
+  activity_category_id          BigInt?
+  activity_name                 String
+  destination_id                BigInt?
+  created_at                    DateTime?                       @db.Timestamp(6)
+  updated_at                    DateTime?                       @db.Timestamp(6)
+  deleted_at                    DateTime?                       @db.Timestamp(6)
+  estimated_time                String?                         @db.VarChar(100)
+  slug                          String?                         @db.VarChar(100)
+  activity_categories           activity_categories?            @relation(fields: [activity_category_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_activities_activity_category_id")
+  destinations                  destinations?                   @relation(fields: [destination_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_activities_destination_id")
+  package_itinerary_day_details package_itinerary_day_details[]
+}
+
+model activity_categories {
+  id         BigInt       @id @default(autoincrement())
+  name       String?
+  icon       String?
+  created_at DateTime?    @db.Timestamp(6)
+  updated_at DateTime?    @db.Timestamp(6)
+  deleted_at DateTime?    @db.Timestamp(6)
+  activities activities[]
+}
+
+model activity_ends {
+  id                     BigInt                   @id @default(autoincrement())
+  name                   String
+  description            String
+  destination_id         BigInt?
+  dinner                 Boolean?                 @default(false)
+  created_at             DateTime?                @db.Timestamp(6)
+  updated_at             DateTime?                @db.Timestamp(6)
+  deleted_at             DateTime?                @db.Timestamp(6)
+  destinations           destinations?            @relation(fields: [destination_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_activity_ends_destination_id")
+  booking_itineraries    booking_itineraries[]
+  package_itinerary_days package_itinerary_days[]
+}
+
+model activity_starts {
+  id                                                           BigInt                   @id @default(autoincrement())
+  name                                                         String
+  description                                                  String
+  destination_id                                               BigInt?
+  breakfast                                                    Boolean?                 @default(false)
+  lunch                                                        Boolean?                 @default(false)
+  created_at                                                   DateTime?                @db.Timestamp(6)
+  updated_at                                                   DateTime?                @db.Timestamp(6)
+  deleted_at                                                   DateTime?                @db.Timestamp(6)
+  id_name_description_destination_id_b_l_created_at_updated_at String?                  @map("id;name;description;destination_id;b;l;created_at;updated_at") @db.VarChar(256)
+  b                                                            Boolean?
+  l                                                            Boolean?
+  destinations                                                 destinations?            @relation(fields: [destination_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_activity_starts_destination_id")
+  booking_itineraries                                          booking_itineraries[]
+  package_itinerary_days                                       package_itinerary_days[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model addons {
+  id             BigInt           @id @default(autoincrement())
+  name           String
+  is_transport   Boolean?         @default(false)
+  transport_type String?
+  image          String?
+  price          Int?
+  is_per_person  Boolean?         @default(false)
+  created_at     DateTime?        @db.Timestamp(6)
+  updated_at     DateTime?        @db.Timestamp(6)
+  deleted_at     DateTime?        @db.Timestamp(6)
+  booking_addons booking_addons[]
+  package_addons package_addons[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model announcements {
+  id         BigInt    @id @default(autoincrement())
+  title      String?
+  subtitle   String?
+  cover      String?
+  content    String?
+  created_at DateTime  @default(now()) @db.Timestamp(6)
+  updated_at DateTime? @db.Timestamp(6)
+  deleted_at DateTime? @db.Timestamp(6)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_addons {
+  id            BigInt    @id @default(autoincrement())
+  addon_id      BigInt?
+  booking_id    BigInt?
+  price         Int?
+  price_expense Int?
+  quantity      Int?      @default(0)
+  total         Int?
+  created_at    DateTime? @db.Timestamp(6)
+  updated_at    DateTime? @db.Timestamp(6)
+  deleted_at    DateTime? @db.Timestamp(6)
+  addons        addons?   @relation(fields: [addon_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_addons_addon_id")
+  bookings      bookings? @relation(fields: [booking_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_addons_booking_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_crew_member_activities {
+  id           BigInt     @id @default(autoincrement())
+  booking_id   BigInt
+  crew_role_id BigInt
+  quantity     Int?
+  price        Int?
+  subtotal     BigInt?
+  is_paid      Boolean?
+  is_debt      Boolean?
+  created_at   DateTime?  @default(now()) @db.Timestamp(6)
+  updated_at   DateTime?  @db.Timestamp(6)
+  deleted_at   DateTime?  @db.Timestamp(6)
+  bookings     bookings   @relation(fields: [booking_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  crew_roles   crew_roles @relation(fields: [crew_role_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_crew_members {
+  id             BigInt       @id @default(autoincrement())
+  booking_id     BigInt
+  crew_member_id BigInt
+  type           String?
+  duration_day   Int?
+  start_date     DateTime?    @db.Date
+  trip_type      String?
+  end_date       DateTime?    @db.Date
+  created_at     DateTime?    @default(now()) @db.Timestamp(6)
+  updated_at     DateTime?    @db.Timestamp(6)
+  deleted_at     DateTime?    @db.Timestamp(6)
+  bookings       bookings     @relation(fields: [booking_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  crew_members   crew_members @relation(fields: [crew_member_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_destination_activities {
+  id                      BigInt                  @id @default(autoincrement())
+  booking_id              BigInt?
+  destination_id          BigInt?
+  destination_activity_id BigInt?
+  quantity                Int?
+  price                   Int?
+  subtotal                Int?
+  is_paid                 Boolean?
+  is_debt                 Boolean?
+  created_at              DateTime?               @db.Timestamp(6)
+  updated_at              DateTime?               @db.Timestamp(6)
+  deleted_at              DateTime?               @db.Timestamp(6)
+  bookings                bookings?               @relation(fields: [booking_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_destination_activities_booking_id")
+  destination_activities  destination_activities? @relation(fields: [destination_activity_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_destination_activities_destination_activity_id")
+  destinations            destinations?           @relation(fields: [destination_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_destination_activities_destination_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_destination_schedules {
+  id                  BigInt    @id @default(autoincrement())
+  booking_id          BigInt?
+  at_ijen_date        DateTime? @db.Date
+  at_bromo_date       DateTime? @db.Date
+  bromo_hotel_id      BigInt?
+  at_tumpak_sewu_date DateTime? @db.Date
+  created_at          DateTime? @db.Timestamp(6)
+  updated_at          DateTime? @db.Timestamp(6)
+  deleted_at          DateTime? @db.Timestamp(6)
+  bookings            bookings? @relation(fields: [booking_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booking_destination_schedules_booking_id")
+  hotels              hotels?   @relation(fields: [bromo_hotel_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booking_destination_schedules_bromo_hotel_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_finances {
+  id                 BigInt    @id @default(autoincrement())
+  booking_id         BigInt?
+  total_expense      Int?
+  total_expense_crew Int?
+  total_expense_paid Int?
+  total_expense_debt Int?
+  profit             Int?
+  created_at         DateTime? @db.Timestamp(6)
+  updated_at         DateTime? @db.Timestamp(6)
+  deleted_at         DateTime? @db.Timestamp(6)
+  bookings           bookings? @relation(fields: [booking_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booking_finance_booking_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_hotel_meals {
+  id             BigInt          @id @default(autoincrement())
+  booking_id     BigInt?
+  book_hotel_id  BigInt?
+  hotel_id       BigInt?
+  meals          String?
+  quantity       Int?            @default(0)
+  price          Int?
+  subtotal       Int?
+  created_at     DateTime?       @db.Timestamp(6)
+  updated_at     DateTime?       @db.Timestamp(6)
+  deleted_at     DateTime?       @db.Timestamp(6)
+  booking_hotels booking_hotels? @relation(fields: [book_hotel_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_hotel_meals_book_hotel_id")
+  bookings       bookings?       @relation(fields: [booking_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_hotel_meals_booking_id")
+  hotels         hotels?         @relation(fields: [hotel_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_hotel_meals_hotel_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_hotel_rooms {
+  id                   BigInt               @id @default(autoincrement())
+  booking_id           BigInt?
+  booking_itinerary_id BigInt?
+  book_hotel_id        BigInt?
+  room_type_id         BigInt?
+  quantity             Int?                 @default(0)
+  price                Int?
+  subtotal             Int?
+  created_at           DateTime?            @db.Timestamp(6)
+  updated_at           DateTime?            @db.Timestamp(6)
+  deleted_at           DateTime?            @db.Timestamp(6)
+  booking_hotels       booking_hotels?      @relation(fields: [book_hotel_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_hotel_rooms_book_hotel_id")
+  bookings             bookings?            @relation(fields: [booking_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_hotel_rooms_booking_id")
+  booking_itineraries  booking_itineraries? @relation(fields: [booking_itinerary_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_hotel_rooms_booking_itinerary_id")
+  room_types           room_types?          @relation(fields: [room_type_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_hotel_rooms_room_type_id")
+
+  @@index([book_hotel_id], map: "idx_booking_hotel_rooms_book_hotel_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_hotels {
+  id                   BigInt                @id @default(autoincrement())
+  booking_id           BigInt?
+  booking_itinerary_id BigInt?
+  hotel_id             BigInt?
+  breakfast            Boolean?              @default(false)
+  lunch                Boolean?              @default(false)
+  dinner               Boolean?              @default(false)
+  reservation_status   Boolean?
+  reject_message       String?
+  total_room_cost      Int?
+  total_meal_cost      Int?
+  total                Int?
+  is_paid              Boolean?
+  is_debt              Boolean?
+  created_at           DateTime?             @db.Timestamp(6)
+  updated_at           DateTime?             @db.Timestamp(6)
+  deleted_at           DateTime?             @db.Timestamp(6)
+  booking_hotel_meals  booking_hotel_meals[]
+  booking_hotel_rooms  booking_hotel_rooms[]
+  bookings             bookings?             @relation(fields: [booking_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_hotels_booking_id")
+  booking_itineraries  booking_itineraries?  @relation(fields: [booking_itinerary_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_hotels_booking_itinerary_id")
+  hotels               hotels?               @relation(fields: [hotel_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_hotels_hotel_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_itineraries {
+  id                  BigInt                @id @default(autoincrement())
+  booking_id          BigInt?
+  day                 Int?
+  date                DateTime?             @db.Date
+  activity_start_id   BigInt?
+  activity_end_id     BigInt?
+  itinerary           String?
+  activity            String?
+  breakfast           Boolean?
+  lunch               Boolean?
+  dinner              Boolean?
+  created_at          DateTime?             @db.Timestamp(6)
+  updated_at          DateTime?             @db.Timestamp(6)
+  deleted_at          DateTime?             @db.Timestamp(6)
+  booking_hotel_rooms booking_hotel_rooms[]
+  booking_hotels      booking_hotels[]
+  activity_ends       activity_ends?        @relation(fields: [activity_end_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_itineraries_activity_end_id")
+  activity_starts     activity_starts?      @relation(fields: [activity_start_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_itineraries_activity_start_id")
+  bookings            bookings?             @relation(fields: [booking_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_itineraries_booking_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_logistics {
+  id                      BigInt    @id @default(autoincrement())
+  booking_id              BigInt?
+  pickup_location         String?
+  pickup_location_detail  String?
+  pickup_time             DateTime? @db.Time(6)
+  pickup_ticket_number    String?
+  dropoff_location        String?
+  dropoff_location_detail String?
+  dropoff_time            DateTime? @db.Time(6)
+  dropoff_ticket_number   String?
+  created_at              DateTime? @db.Timestamp(6)
+  updated_at              DateTime? @db.Timestamp(6)
+  deleted_at              DateTime? @db.Timestamp(6)
+  bookings                bookings? @relation(fields: [booking_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booking_logistics_booking_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_other_activities {
+  id                BigInt            @id @default(autoincrement())
+  booking_id        BigInt?
+  other_activity_id BigInt?
+  quantity          Int?
+  price             Int?
+  subtotal          Int?
+  is_paid           Boolean?
+  is_debt           Boolean?
+  created_at        DateTime?         @db.Timestamp(6)
+  updated_at        DateTime?         @db.Timestamp(6)
+  deleted_at        DateTime?         @db.Timestamp(6)
+  bookings          bookings?         @relation(fields: [booking_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_other_activities_booking_id")
+  other_activities  other_activities? @relation(fields: [other_activity_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_other_activities_other_activity_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_payment_histories {
+  id                BigInt    @id @default(autoincrement())
+  booking_id        BigInt?
+  amount            Int?
+  payment_method_id BigInt?
+  description       String?
+  reference         String?
+  attachment        String?
+  payment_date      DateTime? @db.Date
+  created_at        DateTime? @db.Timestamp(6)
+  updated_at        DateTime? @db.Timestamp(6)
+  deleted_at        DateTime? @db.Timestamp(6)
+  bookings          bookings? @relation(fields: [booking_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booking_payment_histories_booking_id")
+
+  @@index([booking_id], map: "idx_booking_payment_histories_booking_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_payment_terms {
+  id                                                                                   BigInt           @id @default(autoincrement())
+  booking_id                                                                           BigInt?
+  deposit_payment_method_id                                                            BigInt?
+  deposit_payment_link                                                                 String?
+  deposit_due_date                                                                     DateTime?        @db.Date
+  deposit_amount                                                                       Int?
+  outstanding_payment_method_id                                                        BigInt?
+  outstanding_payment_link                                                             String?
+  full_payment_due_date                                                                DateTime?        @db.Date
+  total_before_discount                                                                Int?
+  total_discount                                                                       Int?
+  discount_id                                                                          BigInt?
+  discount_type                                                                        String?
+  total_add_on                                                                         Int?
+  grandtotal                                                                           Int?
+  total_payment                                                                        Int?
+  balance                                                                              Int?
+  created_at                                                                           DateTime?        @db.Timestamp(6)
+  updated_at                                                                           DateTime?        @db.Timestamp(6)
+  deleted_at                                                                           DateTime?        @db.Timestamp(6)
+  bookings                                                                             bookings?        @relation(fields: [booking_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booking_payment_terms_booking_id")
+  payment_methods_booking_payment_terms_deposit_payment_method_idTopayment_methods     payment_methods? @relation("booking_payment_terms_deposit_payment_method_idTopayment_methods", fields: [deposit_payment_method_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booking_payment_terms_deposit_payment_method_id")
+  discounts                                                                            discounts?       @relation(fields: [discount_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booking_payment_terms_discount_id")
+  payment_methods_booking_payment_terms_outstanding_payment_method_idTopayment_methods payment_methods? @relation("booking_payment_terms_outstanding_payment_method_idTopayment_methods", fields: [outstanding_payment_method_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booking_payment_terms_outstanding_payment_method_id")
+
+  @@index([booking_id], map: "idx_booking_payment_terms_booking_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_police_escort {
+  id                  BigInt    @id @default(autoincrement())
+  booking_id          BigInt?
+  police_escort_date  DateTime? @db.Date
+  police_escort_route String?
+  created_at          DateTime? @db.Timestamp(6)
+  updated_at          DateTime? @db.Timestamp(6)
+  deleted_at          DateTime? @db.Timestamp(6)
+  bookings            bookings? @relation(fields: [booking_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booking_police_escort_booking_id")
+}
+
+model booking_review_crews {
+  id                BigInt          @id @default(autoincrement())
+  booking_review_id BigInt
+  crew_member_id    BigInt
+  created_at        DateTime?       @default(now()) @db.Timestamp(6)
+  updated_at        DateTime?       @db.Timestamp(6)
+  deleted_at        DateTime?       @db.Timestamp(6)
+  crew_members      crew_members    @relation(fields: [crew_member_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_review_crews_crew")
+  booking_reviews   booking_reviews @relation(fields: [booking_review_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_review_crews_review")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model booking_reviews {
+  id                   BigInt                 @id @default(autoincrement())
+  booking_id           BigInt
+  reviews              String?
+  star                 Int?
+  created_at           DateTime?              @default(now()) @db.Timestamp(6)
+  updated_at           DateTime?              @db.Timestamp(6)
+  deleted_at           DateTime?              @db.Timestamp(6)
+  booking_review_crews booking_review_crews[]
+  bookings             bookings               @relation(fields: [booking_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_reviews_booking")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_tshirts {
+  id         BigInt    @id @default(autoincrement())
+  booking_id BigInt?
+  xss        Int?
+  xxs        Int?
+  xs         Int?      @default(0)
+  s          Int?      @default(0)
+  m          Int?      @default(0)
+  l          Int?      @default(0)
+  xl         Int?      @default(0)
+  xxl        Int?
+  xxxl       Int?
+  xxxxl      Int?
+  created_at DateTime? @db.Timestamp(6)
+  updated_at DateTime? @db.Timestamp(6)
+  deleted_at DateTime? @db.Timestamp(6)
+  bookings   bookings? @relation(fields: [booking_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booking_tshirts_booking_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_vehicle_units {
+  id              BigInt         @id @default(autoincrement())
+  booking_id      BigInt?
+  vehicle_unit_id BigInt?
+  quantity        Int?
+  duration_day    Int?
+  start_date      DateTime?      @db.Date
+  end_date        DateTime?      @db.Date
+  driver          String?
+  price           Int?
+  subtotal        Int?
+  note            String?
+  is_debt         Boolean?
+  is_paid         Boolean?
+  created_at      DateTime?      @db.Timestamp(6)
+  updated_at      DateTime?      @db.Timestamp(6)
+  deleted_at      DateTime?      @db.Timestamp(6)
+  bookings        bookings?      @relation(fields: [booking_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_vehicle_units_booking_id")
+  vehicle_units   vehicle_units? @relation(fields: [vehicle_unit_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_booking_vehicle_units_vehicle_unit_id")
+
+  @@index([booking_id], map: "idx_booking_vehicle_units_booking_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booking_whatsapp_logs {
+  id                           BigInt    @id @default(autoincrement())
+  booking_id                   BigInt?
+  wa_schedule_trip_information DateTime? @db.Timestamp(6)
+  wa_status_trip_information   String?
+  wa_schedule_trip_media       DateTime? @db.Timestamp(6)
+  wa_status_trip_media         String?
+  wa_schedule_reminder_crew    DateTime? @db.Timestamp(6)
+  wa_status_reminder_crew      String?
+  created_at                   DateTime? @db.Timestamp(6)
+  updated_at                   DateTime? @db.Timestamp(6)
+  deleted_at                   DateTime? @db.Timestamp(6)
+  bookings                     bookings? @relation(fields: [booking_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booking_whatsapp_logs_booking_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model bookings {
+  id                             BigInt                           @id @default(autoincrement())
+  booking_code                   String?
+  booking_code_origin            String?
+  invoice_file_origin            String?
+  customer_id                    BigInt?
+  package_id                     BigInt?
+  duration_id                    BigInt?
+  order_channel_id               BigInt?
+  booking_date                   DateTime                         @db.Date
+  start_date                     DateTime                         @db.Date
+  end_date                       DateTime                         @db.Date
+  total_participants             Int
+  booking_status                 String                           @default("PENDING")
+  trip_status                    String                           @default("PRE_TRIP")
+  payment_status                 String                           @default("UNPAID")
+  is_shuttle_service             Boolean?                         @default(false)
+  slug                           String?                          @unique
+  trip_media_url                 String?
+  special_requirement            String?
+  internal_note                  String?
+  is_invoice_twt                 Boolean?                         @default(false)
+  date_paid_invoiced_twt         DateTime?                        @db.Date
+  is_police_escort               Boolean?                         @default(false)
+  is_send_whatsapp               Boolean?                         @default(false)
+  created_at                     DateTime?                        @db.Timestamp(6)
+  updated_at                     DateTime?                        @db.Timestamp(6)
+  deleted_at                     DateTime?                        @db.Timestamp(6)
+  booking_addons                 booking_addons[]
+  booking_crew_member_activities booking_crew_member_activities[]
+  booking_crew_members           booking_crew_members[]
+  booking_destination_activities booking_destination_activities[]
+  booking_destination_schedules  booking_destination_schedules[]
+  booking_finances               booking_finances[]
+  booking_hotel_meals            booking_hotel_meals[]
+  booking_hotel_rooms            booking_hotel_rooms[]
+  booking_hotels                 booking_hotels[]
+  booking_itineraries            booking_itineraries[]
+  booking_logistics              booking_logistics[]
+  booking_other_activities       booking_other_activities[]
+  booking_payment_histories      booking_payment_histories[]
+  booking_payment_terms          booking_payment_terms[]
+  booking_police_escort          booking_police_escort[]
+  booking_reviews                booking_reviews[]
+  booking_tshirts                booking_tshirts[]
+  booking_vehicle_units          booking_vehicle_units[]
+  booking_whatsapp_logs          booking_whatsapp_logs[]
+  customer                       User?                            @relation(fields: [customer_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_bookings_customer_id")
+  durations                      durations?                       @relation(fields: [duration_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_bookings_duration_id")
+  order_channels                 order_channels?                  @relation(fields: [order_channel_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_bookings_order_channel_id")
+  packages                       packages?                        @relation(fields: [package_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_bookings_package_id")
+  crew_member_reviews            crew_member_reviews[]
+  feedback                       feedback[]
+  reviews                        reviews[]
+
+  @@index([customer_id], map: "idx_bookings_customer_id")
+  @@index([order_channel_id], map: "idx_bookings_order_channel_id")
+  @@index([package_id], map: "idx_bookings_package_id")
+}
+
+model blog_categories {
+  id         BigInt   @id @default(autoincrement())
+  name       String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  blogs blogs[]
+}
+
+model blogs {
+  id          BigInt   @id @default(autoincrement())
+  category_id BigInt
+  title       String
+  slug        String   @unique
+  content     String
+  cover_image String?
+  status      String   @default("draft")
+  tags        String[] @db.Text
+  created_at  DateTime @default(now())
+  update_at   DateTime @default(now())
+
+  category blog_categories @relation(fields: [category_id], references: [id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model channel_unavailable_ranges {
+  id               BigInt          @id @default(autoincrement())
+  order_channel_id BigInt?
+  start_date       DateTime?       @db.Date
+  end_date         DateTime?       @db.Date
+  reason           String?
+  created_at       DateTime?       @db.Timestamp(6)
+  updated_at       DateTime?       @db.Timestamp(6)
+  deleted_at       DateTime?       @db.Timestamp(6)
+  order_channels   order_channels? @relation(fields: [order_channel_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_channel_unavailable_ranges_order_channel_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model combined_package_details {
+  id                  BigInt             @id @default(autoincrement())
+  combined_package_id BigInt?
+  package_id          BigInt?
+  created_at          DateTime?          @db.Timestamp(6)
+  updated_at          DateTime?          @db.Timestamp(6)
+  deleted_at          DateTime?          @db.Timestamp(6)
+  combined_packages   combined_packages? @relation(fields: [combined_package_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_combined_package_details_combined_package_id")
+  packages            packages?          @relation(fields: [package_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_combined_package_details_package_id")
+
+  @@unique([combined_package_id, package_id], map: "uq_combined_package")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model combined_packages {
+  id                       BigInt                     @id @default(autoincrement())
+  name                     String?
+  long_name                String?
+  slug                     String?                    @unique
+  highlights               String?
+  created_at               DateTime?                  @db.Timestamp(6)
+  updated_at               DateTime?                  @db.Timestamp(6)
+  deleted_at               DateTime?                  @db.Timestamp(6)
+  combined_package_details combined_package_details[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model countries {
+  id         BigInt    @id @default(autoincrement())
+  short_name String    @unique(map: "uq_countries_short_name")
+  long_name  String
+  dial_code  String
+  created_at DateTime? @db.Timestamp(6)
+  updated_at DateTime? @db.Timestamp(6)
+  deleted_at DateTime? @db.Timestamp(6)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model crew_member_reviews {
+  id             BigInt       @id @default(autoincrement())
+  crew_member_id BigInt
+  booking_id     BigInt
+  review         String?
+  star           Int?
+  created_at     DateTime?    @default(now()) @db.Timestamp(6)
+  updated_at     DateTime?    @db.Timestamp(6)
+  deleted_at     DateTime?    @db.Timestamp(6)
+  bookings       bookings     @relation(fields: [booking_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  crew_members   crew_members @relation(fields: [crew_member_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model crew_member_roles {
+  id             BigInt        @id @default(autoincrement())
+  crew_member_id BigInt?
+  crew_role_id   BigInt?
+  created_at     DateTime?     @default(now()) @db.Timestamp(6)
+  updated_at     DateTime?     @db.Timestamp(6)
+  deleted_at     DateTime?     @db.Timestamp(6)
+  crew_members   crew_members? @relation(fields: [crew_member_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_crew_member_roles_crew_member_id")
+  crew_roles     crew_roles?   @relation(fields: [crew_role_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_crew_member_roles_crew_role_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model crew_members {
+  id                    BigInt                  @id @default(autoincrement())
+  code                  String?
+  name                  String
+  phone                 String?
+  full_name             String?                 @db.VarChar(255)
+  year_of_joining       Int?                    @db.SmallInt
+  facebook_url          String?                 @db.VarChar(255)
+  instagram_url         String?                 @db.VarChar(255)
+  about_me              String?                 @db.Text
+  type                  String?
+  tags                  String?
+  photo_url             String?
+  created_at            DateTime                @default(now()) @db.Timestamp(6)
+  updated_at            DateTime?               @db.Timestamp(6)
+  deleted_at            DateTime?               @db.Timestamp(6)
+  password              String?
+  email                 String?
+  booking_crew_members  booking_crew_members[]
+  booking_review_crews  booking_review_crews[]
+  crew_member_reviews   crew_member_reviews[]
+  crew_member_roles     crew_member_roles[]
+  crew_unavailabilities crew_unavailabilities[]
+  crew_reviews          crew_reviews[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model crew_roles {
+  id                             BigInt                           @id @default(autoincrement())
+  code                           String?
+  name                           String
+  rate_per_day                   Int?
+  rate_twt_per_day               Int?
+  order_channel_id               BigInt?
+  created_at                     DateTime?                        @db.Timestamp(6)
+  updated_at                     DateTime?                        @db.Timestamp(6)
+  deleted_at                     DateTime?                        @db.Timestamp(6)
+  booking_crew_member_activities booking_crew_member_activities[]
+  crew_member_roles              crew_member_roles[]
+  order_channels                 order_channels?                  @relation(fields: [order_channel_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_crew_roles_order_channel_id")
+  transport_crew_rules           transport_crew_rules[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model crew_unavailabilities {
+  id             BigInt        @id @default(autoincrement())
+  crew_member_id BigInt?
+  start_date     DateTime      @db.Date
+  end_date       DateTime      @db.Date
+  reason         String?
+  status         String?       @default("APPROVED")
+  created_at     DateTime      @default(now()) @db.Timestamp(6)
+  updated_at     DateTime?     @db.Timestamp(6)
+  deleted_at     DateTime?     @db.Timestamp(6)
+  crew_members   crew_members? @relation(fields: [crew_member_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_crew_unavailabilities_crew_member_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model currency_exchange_rates {
+  id              BigInt    @id @default(autoincrement())
+  base_currency   String?
+  target_currency String?
+  exchange_rate   Decimal?  @db.Decimal(18, 8)
+  effective_date  DateTime? @db.Date
+  created_at      DateTime? @db.Timestamp(6)
+  last_updated    DateTime? @db.Date
+  source          String?
+
+  @@unique([base_currency, target_currency, effective_date], map: "uq_currency_rate")
+}
+
+model reviews {
+  id            BigInt   @id @default(autoincrement())
+  customer_name String   @db.VarChar(255)
+  profile_photo String?  @db.VarChar(255)
+  platform      String   @db.VarChar(255)
+  date          DateTime @db.Date
+  star          Int?     @db.SmallInt
+  review        String   @db.Text
+  photos        String?  @db.Text
+  url           String?  @db.Text
+  url_reference String?  @db.Text
+  booking_id    BigInt?
+  package_id    BigInt?
+
+  created_at DateTime? @db.Timestamp(6)
+  updated_at DateTime? @db.Timestamp(6)
+
+  crew_reviews crew_reviews[]
+  package      packages?      @relation(fields: [package_id], references: [id])
+  booking      bookings?      @relation(fields: [booking_id], references: [id])
+
+  @@index([package_id])
+  @@index([booking_id])
+}
+
+model crew_reviews {
+  id        BigInt @id @default(autoincrement())
+  review_id BigInt
+  crew_id   BigInt
+
+  review reviews      @relation(fields: [review_id], references: [id])
+  crew   crew_members @relation(fields: [crew_id], references: [id])
+
+  @@index([review_id])
+  @@index([crew_id])
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model User {
+  id    BigInt  @id @default(autoincrement())
+  name  String?
+  email String? @unique // Wajib tambah unique
+  phone String?
+
+  // Field tambahan NextAuth
+  emailVerified DateTime? @map("email_verified")
+  image         String?
+
+  // Field lama
+  country_id       BigInt?
+  order_channel_id BigInt?
+  created_at       DateTime? @default(now()) @db.Timestamp(6)
+  updated_at       DateTime? @updatedAt @db.Timestamp(6)
+  deleted_at       DateTime? @db.Timestamp(6)
+
+  // Relasi
+  accounts Account[]
+  sessions Session[]
+  bookings bookings[] // Relasi ke booking
+
+  // PENTING: Map ke tabel lama agar data tidak hilang
+  @@map("customers")
+}
+
+// 2. Gunakan model standar Account (sesuaikan relasi ke BigInt)
+model Account {
+  id                String  @id @default(cuid())
+  userId            BigInt  @map("user_id") // Sesuaikan tipe data ID User (BigInt)
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+// 3. Model Session
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       BigInt   @map("user_id") // Sesuaikan tipe data ID User (BigInt)
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model destination_activities {
+  id                             BigInt                           @id @default(autoincrement())
+  code                           String?
+  destination_id                 BigInt?
+  vendor_id                      BigInt?
+  name                           String?
+  unit                           String?
+  formula                        String?
+  price                          Int?
+  is_twt                         Boolean?
+  is_default_jvto                Boolean?
+  is_default_klook               Boolean?
+  is_default_twt                 Boolean?
+  created_at                     DateTime?                        @db.Timestamp(6)
+  updated_at                     DateTime?                        @db.Timestamp(6)
+  deleted_at                     DateTime?                        @db.Timestamp(6)
+  booking_destination_activities booking_destination_activities[]
+  destinations                   destinations?                    @relation(fields: [destination_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_destination_activities_destination_id")
+  vendors                        vendors?                         @relation(fields: [vendor_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_destination_activities_vendor_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+
+model destinations {
+  id   BigInt  @id @default(autoincrement())
+  code String? @db.Text
+  name String  @db.Text
+
+  category String? @db.VarChar(100)
+  region   String? @db.VarChar(100)
+  province String? @db.VarChar(100)
+  country  String? @db.VarChar(100)
+
+  latitude      Decimal? @db.Decimal(10, 6)
+  longitude     Decimal? @db.Decimal(10, 6)
+  altitude      Int?
+  area_hectares Decimal? @db.Decimal(10, 2)
+
+  terrain            String? @db.Text
+  best_time_to_visit String? @db.VarChar(100)
+  difficulty_level   String? @db.VarChar(50)
+  duration           String? @db.VarChar(100)
+  physical_demand    Int?
+  cultural_depth     Int?
+  photo_potential    Int?
+  weather_by_season  String? @db.Text
+  rainfall_intensity String? @db.VarChar(100)
+  temperature_range  String? @db.VarChar(100)
+  trail_details      String? @db.Text
+
+  required_gear    Json?
+  summary          String? @db.Text
+  description      String? @db.Text
+  highlight        String? @db.Text
+  main_attractions Json?
+  key_highlights   Json?
+
+  permit_required Boolean? @default(false)
+  permit_details  String?  @db.Text
+  guide_required  Boolean? @default(false)
+
+  facilities            Json?
+  safety_notes          Json?
+  risk_factors          Json?
+  environmental_factors Json?
+  emergency_contacts    Json?
+
+  physical_requirements String? @db.Text
+  cultural_context      String? @db.Text
+
+  local_tribes      String[] @db.VarChar(200)
+  rituals_festivals Json?
+  tips_for_visitors String?  @db.Text
+
+  thumbnail_url   String?  @db.VarChar(500)
+  featured_image  String?  @db.VarChar(500)
+  published       Boolean? @default(false)
+  featured        Boolean? @default(false)
+  seo_title       String?  @db.VarChar(200)
+  seo_description String?  @db.Text
+  schema_json     Json?
+
+  tags       String[] @db.VarChar(100)
+  types      Json?
+  slug       String?  @unique @db.VarChar(255)
+  short_slug String?  @db.VarChar(100)
+
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  deleted_at DateTime? @db.Timestamptz(6)
+
+  // relations yang sudah ada, jangan diubah
+  activities                                           activities[]
+  activity_ends                                        activity_ends[]
+  activity_starts                                      activity_starts[]
+  booking_destination_activities                       booking_destination_activities[]
+  destination_activities                               destination_activities[]
+  hotels                                               hotels[]
+  package_destinations                                 package_destinations[]
+  packages_packages_end_destination_idTodestinations   packages[]                       @relation("packages_end_destination_idTodestinations")
+  packages_packages_start_destination_idTodestinations packages[]                       @relation("packages_start_destination_idTodestinations")
+  destination_assets                                   destination_assets[]
+  destination_faqs                                     destination_faqs[]
+  route_destinations                                   route_destinations[]
+  destination_gears                                    destination_gears[]
+}
+
+model destination_gears {
+  id             BigInt    @id @default(autoincrement())
+  destination_id BigInt
+  gear           String    @db.Text
+  type           String    @db.VarChar(50)
+  created_at     DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime? @default(now()) @db.Timestamptz(6)
+
+  destination destinations @relation(fields: [destination_id], references: [id], onDelete: Cascade)
+
+  @@index([destination_id])
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model discounts {
+  id                    BigInt                  @id @default(autoincrement())
+  name                  String?
+  amount                Float?
+  type                  String?
+  email                 String?
+  customer_id           BigInt?
+  booking_id            BigInt?
+  valid_until           DateTime?               @db.Date
+  verification_code     String?
+  is_verified           Boolean?
+  is_used               Boolean?
+  created_at            DateTime?               @db.Timestamp(6)
+  updated_at            DateTime?               @db.Timestamp(6)
+  deleted_at            DateTime?               @db.Timestamp(6)
+  booking_payment_terms booking_payment_terms[]
+}
+
+model document_categories {
+  id         BigInt      @id(map: "category_documents_pkey") @default(autoincrement())
+  name       String      @db.VarChar(255)
+  created_at DateTime    @default(now()) @db.Timestamptz(6)
+  updated_at DateTime    @default(now()) @db.Timestamptz(6)
+  deleted_at DateTime?   @db.Timestamptz(6)
+  documents  documents[]
+}
+
+model documents {
+  id                  BigInt               @id @default(autoincrement())
+  name                String               @db.VarChar(255)
+  category_id         BigInt?
+  source_type         source_enum
+  source_location     String
+  file_type           String?              @db.VarChar(100)
+  tags                String[]
+  created_at          DateTime             @default(now()) @db.Timestamptz(6)
+  updated_at          DateTime             @default(now()) @db.Timestamptz(6)
+  deleted_at          DateTime?            @db.Timestamptz(6)
+  document_categories document_categories? @relation(fields: [category_id], references: [id], onUpdate: NoAction, map: "fk_category")
+}
+
+model durations {
+  id         BigInt     @id @default(autoincrement())
+  name       String?
+  day        Int?
+  night      Int?
+  created_at DateTime?  @db.Timestamp(6)
+  updated_at DateTime?  @db.Timestamp(6)
+  deleted_at DateTime?  @db.Timestamp(6)
+  bookings   bookings[]
+  packages   packages[]
+}
+
+model category_faqs {
+  id         BigInt   @id @default(autoincrement())
+  name       String   @db.Text
+  slug       String   @db.Text
+  sort_order Int      @default(0)
+  is_active  Boolean  @default(true)
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+
+  faqs faqs[]
+
+  @@unique([slug])
+  @@map("category_faqs")
+}
+
+model content_pages {
+  id             BigInt   @id @default(autoincrement())
+  route          String
+  lang           String   @default("en")
+  schema_version Int      @default(1)
+  seo            Json     @default("{}")
+  content        Json
+  is_active      Boolean  @default(true)
+  created_at     DateTime @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime @default(now()) @db.Timestamptz(6)
+
+  @@unique([route, lang])
+  @@index([route])
+  @@index([is_active])
+}
+
+model faqs {
+  id               BigInt             @id @default(autoincrement())
+  question         String
+  answer           String
+  tags             String[]
+  is_published     Boolean            @default(true)
+  sort_order       Int                @default(0)
+  created_at       DateTime?          @default(now()) @db.Timestamp(6)
+  updated_at       DateTime?          @default(now()) @db.Timestamp(6)
+  category_id      BigInt?            @db.BigInt
+  category         category_faqs?     @relation(fields: [category_id], references: [id])
+  destination_faqs destination_faqs[]
+  package_faqs     package_faqs[]
+
+  @@map("faqs")
+}
+
+enum policy_document_type {
+  booking_payment_cancellation
+  inclusions_exclusions
+  privacy
+  guest_responsibilities
+}
+
+model policy_documents {
+  id String @id @default(uuid()) @db.Uuid
+
+  title String @db.Text
+  slug  String @unique @db.Text
+
+  policy_type policy_document_type
+
+  version        String?   @db.Text
+  effective_date DateTime? @db.Date
+
+  content String @db.Text
+
+  is_binding Boolean @default(true)
+
+  seo_meta_title       String? @db.Text
+  seo_meta_description String? @db.Text
+  seo_og_image_url     String? @db.Text
+
+  include_in_sitemap Boolean @default(true)
+
+  created_at    DateTime? @default(now()) @db.Timestamptz(6)
+  date_modified DateTime? @default(now()) @db.Timestamptz(6)
+
+  @@index([policy_type])
+  @@index([effective_date])
+}
+
+model site_identity {
+  id String @id @default(uuid()) @db.Uuid
+
+  // Basic Identity
+  brand_name           String @db.Text
+  legal_entity_name    String @db.Text
+  official_website_url String @db.Text
+
+  // Contact Arrays (stored as JSONB)
+  official_emails           Json @default("[]") // string[]
+  official_whatsapp_numbers Json @default("[]") // string[]
+
+  // Registration IDs (array of objects)
+  registration_ids Json @default("[]") // {label, value, document?}[]
+
+  // Payment Accounts (array of objects)
+  official_payment_accounts Json @default("[]") // {label, accountDetails}[]
+
+  // Listings & Associations
+  maps_listings           Json @default("[]") // string[]
+  association_memberships Json @default("[]") // {name, asset_url?}[]
+
+  // Office & Branding
+  office_address              Json?   @default("{}")
+  google_business_profile_url String? @db.Text
+
+  // NEW: Brand positioning
+  brand_positioning Json? @default("{}") // {founding_mission, slogans[], value_propositions{}, differentiators[]}
+
+  // Founder
+  founder Json? @default("{}")
+
+  org_schema_json_ld Json?
+
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+
+  @@map("site_identity")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model feedback {
+  id              BigInt    @id @default(autoincrement())
+  booking_id      BigInt?
+  rating_smallint Int?      @db.SmallInt
+  nps_smallint    Int?      @db.SmallInt
+  comments        String?
+  created_at      DateTime? @default(now()) @db.Timestamp(6)
+  bookings        bookings? @relation(fields: [booking_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_feedback_booking_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model hotels {
+  id                            BigInt                          @id @default(autoincrement())
+  code                          String?
+  name                          String
+  destination_id                BigInt?
+  description                   String?
+  facilities                    String?
+  area                          String?                         @db.VarChar(200)
+  address                       String?
+  phone                         String?
+  banner                        String?
+  slug                          String?                         @unique
+  group_wa_id                   String?
+  map_url                       String?
+  website_url                   String?
+  lunch_rate                    Int?
+  dinner_rate                   Int?
+  is_publish                    Boolean?                        @default(true)
+  created_at                    DateTime?                       @db.Timestamp(6)
+  updated_at                    DateTime?                       @db.Timestamp(6)
+  deleted_at                    DateTime?                       @db.Timestamp(6)
+  booking_destination_schedules booking_destination_schedules[]
+  booking_hotel_meals           booking_hotel_meals[]
+  booking_hotels                booking_hotels[]
+  destinations                  destinations?                   @relation(fields: [destination_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_hotels_destination_id")
+  package_hotel_options         package_hotel_options[]
+  package_itinerary_days        package_itinerary_days[]
+  room_configurations           room_configurations[]
+  room_types                    room_types[]
+
+  @@index([destination_id], map: "idx_hotels_destination_id")
+}
+
+model inclusion_rules {
+  id             Int      @id @default(autoincrement())
+  inclusion_name String   @db.VarChar(255)
+  min_pax        Int
+  max_pax        Int?
+  created_at     DateTime @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime @default(now()) @db.Timestamptz(6)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model item_excludes {
+  id               BigInt             @id @default(autoincrement())
+  item             String
+  created_at       DateTime?          @db.Timestamp(6)
+  updated_at       DateTime?          @db.Timestamp(6)
+  deleted_at       DateTime?          @db.Timestamp(6)
+  package_excludes package_excludes[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model item_includes {
+  id               BigInt             @id @default(autoincrement())
+  item             String
+  created_at       DateTime?          @db.Timestamp(6)
+  updated_at       DateTime?          @db.Timestamp(6)
+  deleted_at       DateTime?          @db.Timestamp(6)
+  package_includes package_includes[]
+}
+
+model knowledge_bases {
+  id        String                 @id(map: "jvto_knowledge_gemini_pkey") @db.VarChar(255)
+  category  String?                @db.VarChar(255)
+  title     String?
+  content   String?
+  embedding Unsupported("vector")?
+  tags      String[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model order_channels {
+  id                         BigInt                       @id @default(autoincrement())
+  short_name                 String?                      @unique
+  name                       String?
+  icon                       String?
+  username                   String?
+  password                   String?
+  created_at                 DateTime?                    @db.Timestamp(6)
+  updated_at                 DateTime?                    @db.Timestamp(6)
+  deleted_at                 DateTime?                    @db.Timestamp(6)
+  bookings                   bookings[]
+  channel_unavailable_ranges channel_unavailable_ranges[]
+  crew_roles                 crew_roles[]
+  packages                   packages[]
+  transport_crew_rules       transport_crew_rules[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model other_activities {
+  id                       BigInt                     @id @default(autoincrement())
+  code                     String?
+  vendor_id                BigInt?
+  name                     String?
+  unit                     String?
+  formula                  String?
+  price                    Int?
+  is_twt                   Boolean?
+  is_default_jvto          Boolean?
+  is_default_klook         Boolean?
+  is_default_twt           Boolean?
+  is_default               Boolean?
+  created_at               DateTime?                  @db.Timestamp(6)
+  updated_at               DateTime?                  @db.Timestamp(6)
+  deleted_at               DateTime?                  @db.Timestamp(6)
+  booking_other_activities booking_other_activities[]
+  vendors                  vendors?                   @relation(fields: [vendor_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_other_activities_vendor_id")
+}
+
+model organization_profile {
+  id                  BigInt    @id @default(autoincrement())
+  legal_name          String?
+  brand_name          String?
+  alternate_name      String?
+  founding_date       DateTime? @db.Date
+  description         String?
+  price_range         String?
+  contact_email       String?
+  contact_phone       String?
+  available_languages String[]  @default([])
+  address_json        Json?
+  same_as_urls        String[]  @default([])
+  website_url         String?
+  logo_url            String?
+  hero_image_url      String?
+  schema_json         Json?
+  updated_at          DateTime  @default(now()) @db.Timestamptz(6)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model package_addons {
+  id         BigInt    @id @default(autoincrement())
+  package_id BigInt?
+  addon_id   BigInt?
+  created_at DateTime? @db.Timestamp(6)
+  updated_at DateTime? @db.Timestamp(6)
+  deleted_at DateTime? @db.Timestamp(6)
+  addons     addons?   @relation(fields: [addon_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_package_addons_addon_id")
+  packages   packages? @relation(fields: [package_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_package_addons_package_id")
+
+  @@unique([package_id, addon_id], map: "uq_package_addons")
+  @@index([addon_id], map: "idx_package_addons_addon_id")
+  @@index([package_id], map: "idx_package_addons_package_id")
+}
+
+model package_assets {
+  id         BigInt   @id @default(autoincrement())
+  package_id BigInt
+  asset_id   BigInt
+  is_primary Boolean  @default(false)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  // RELATIONS
+  package packages @relation(fields: [package_id], references: [id])
+  asset   assets   @relation(fields: [asset_id], references: [id])
+
+  @@unique([package_id, asset_id], name: "uq_package_assets_package_asset")
+  @@index([package_id], name: "idx_package_assets_package_id")
+  @@index([asset_id], name: "idx_package_assets_asset_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model package_categories {
+  id         BigInt     @id @default(autoincrement())
+  name       String?    @unique
+  created_at DateTime   @default(now()) @db.Timestamp(6)
+  updated_at DateTime?  @db.Timestamp(6)
+  deleted_at DateTime?  @db.Timestamp(6)
+  packages   packages[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model package_destinations {
+  id             BigInt        @id @default(autoincrement())
+  package_id     BigInt?
+  destination_id BigInt?
+  sort_order     Int?          @default(0)
+  created_at     DateTime?     @db.Timestamp(6)
+  updated_at     DateTime?     @db.Timestamp(6)
+  deleted_at     DateTime?     @db.Timestamp(6)
+  destinations   destinations? @relation(fields: [destination_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_package_destinations_destination_id")
+  packages       packages?     @relation(fields: [package_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_package_destinations_package_id")
+
+  @@index([destination_id], map: "idx_package_destinations_dst_id")
+  @@index([package_id], map: "idx_package_destinations_pkg_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model package_excludes {
+  id              BigInt         @id @default(autoincrement())
+  package_id      BigInt?
+  item_exclude_id BigInt?
+  created_at      DateTime?      @db.Timestamp(6)
+  updated_at      DateTime?      @db.Timestamp(6)
+  deleted_at      DateTime?      @db.Timestamp(6)
+  item_excludes   item_excludes? @relation(fields: [item_exclude_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_package_excludes_item_exclude_id")
+  packages        packages?      @relation(fields: [package_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_package_excludes_package_id")
+
+  @@unique([package_id, item_exclude_id], map: "uq_package_excludes")
+}
+
+model package_faqs {
+  id         BigInt   @id @default(autoincrement())
+  package_id BigInt
+  faq_id     BigInt
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  updated_at DateTime @default(now()) @db.Timestamp(6)
+
+  package packages @relation(fields: [package_id], references: [id], onDelete: Cascade, map: "fk_package_faqs_package_id")
+  faq     faqs     @relation(fields: [faq_id], references: [id], onDelete: Cascade, map: "fk_package_faqs_faq_id")
+
+  @@unique([package_id, faq_id], map: "uq_package_faqs_package_faq")
+  @@index([package_id], map: "idx_package_faqs_package_id")
+  @@index([faq_id], map: "idx_package_faqs_faq_id")
+  @@map("package_faqs")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model package_hotel_options {
+  id         BigInt    @id @default(autoincrement())
+  package_id BigInt?
+  day_no     Int
+  hotel_id   BigInt?
+  created_at DateTime? @db.Timestamp(6)
+  updated_at DateTime? @db.Timestamp(6)
+  deleted_at DateTime? @db.Timestamp(6)
+  hotels     hotels?   @relation(fields: [hotel_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_package_hotel_options_hotel_id")
+  packages   packages? @relation(fields: [package_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_package_hotel_options_package_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model package_images {
+  id           BigInt    @id @default(autoincrement())
+  package_id   BigInt?
+  url          String
+  og_image_url String?
+  sort_order   Int?
+  alt_text     String?
+  caption      String?
+  tags         String?
+  created_at   DateTime? @db.Timestamp(6)
+  updated_at   DateTime? @db.Timestamp(6)
+  deleted_at   DateTime? @db.Timestamp(6)
+  packages     packages? @relation(fields: [package_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_package_images_package_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model package_includes {
+  id              BigInt         @id @default(autoincrement())
+  package_id      BigInt?
+  item_include_id BigInt?
+  created_at      DateTime?      @db.Timestamp(6)
+  updated_at      DateTime?      @db.Timestamp(6)
+  deleted_at      DateTime?      @db.Timestamp(6)
+  item_includes   item_includes? @relation(fields: [item_include_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_package_includes_item_include_id")
+  packages        packages?      @relation(fields: [package_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_package_includes_package_id")
+
+  @@unique([package_id, item_include_id], map: "uq_package_includes")
+}
+
+model locations {
+  id                                          Int                             @id @default(autoincrement())
+  name                                        String                          @db.VarChar
+  package_itinerary_day_details_from_location package_itinerary_day_details[] @relation("package_itinerary_day_details_from_location")
+  package_itinerary_day_details_to_location   package_itinerary_day_details[] @relation("package_itinerary_day_details_to_location")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model package_itinerary_day_details {
+  id                     BigInt                  @id @default(autoincrement())
+  itinerary_day_id       BigInt?
+  sort_order             Int?
+  time                   String?
+  activity_id            BigInt?
+  notes                  String?
+  from_location          Int?
+  to_location            Int?
+  created_at             DateTime?               @db.Timestamp(6)
+  updated_at             DateTime?               @db.Timestamp(6)
+  deleted_at             DateTime?               @db.Timestamp(6)
+  activities             activities?             @relation(fields: [activity_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_package_itinerary_day_details_activity_id")
+  package_itinerary_days package_itinerary_days? @relation(fields: [itinerary_day_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_package_itinerary_day_details_itinerary_day_id")
+  locations_from         locations?              @relation("package_itinerary_day_details_from_location", fields: [from_location], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_package_itinerary_day_details_from_location")
+  locations_to           locations?              @relation("package_itinerary_day_details_to_location", fields: [to_location], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_package_itinerary_day_details_to_location")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model package_itinerary_days {
+  id                BigInt    @id @default(autoincrement())
+  package_id        BigInt?
+  day_no            Int
+  activity_start_id BigInt?
+  activity_end_id   BigInt?
+  title             String
+  activity          String?
+  hotel_id          BigInt?
+  meal_breakfast    Boolean   @default(false)
+  meal_lunch        Boolean   @default(false)
+  meal_dinner       Boolean   @default(false)
+  route_id          BigInt? // FK ke routes.id
+  created_at        DateTime? @db.Timestamp(6)
+  updated_at        DateTime? @db.Timestamp(6)
+  deleted_at        DateTime? @db.Timestamp(6)
+
+  package_itinerary_day_details package_itinerary_day_details[]
+  activity_ends                 activity_ends?                  @relation(fields: [activity_end_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_package_itinerary_days_activity_end_id")
+  activity_starts               activity_starts?                @relation(fields: [activity_start_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_package_itinerary_days_activity_start_id")
+  hotels                        hotels?                         @relation(fields: [hotel_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_package_itinerary_days_hotel_id")
+  packages                      packages?                       @relation(fields: [package_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_package_itinerary_days_package_id")
+  routes                        routes?                         @relation(fields: [route_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_package_itinerary_days_route_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model package_prices {
+  id                 BigInt       @id @default(autoincrement())
+  package_id         BigInt?
+  price_tier_id      BigInt?
+  price              Int
+  klook_retail_price Int?
+  klook_net_price    Int?
+  created_at         DateTime?    @db.Timestamp(6)
+  updated_at         DateTime?    @db.Timestamp(6)
+  deleted_at         DateTime?    @db.Timestamp(6)
+  packages           packages?    @relation(fields: [package_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_package_prices_package_id")
+  price_tiers        price_tiers? @relation(fields: [price_tier_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_package_prices_price_tier_id")
+
+  @@index([package_id], map: "idx_package_prices_package_id")
+  @@index([price_tier_id], map: "idx_package_prices_tier_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model packages {
+  id                             BigInt                     @id @default(autoincrement())
+  uuid                           String?
+  code                           String?                    @unique
+  slug                           String?                    @unique
+  name                           String
+  description                    String?
+  short_label                    String?
+  duration_id                    BigInt?
+  order_channel_id               BigInt?
+  package_category_id            BigInt?
+  start_destination_id           BigInt?
+  end_destination_id             BigInt?
+  key_highlights                 String?
+  ideal_arrival                  String?
+  physicality                    String?
+  suitable_for                   String?
+  is_publish                     Boolean?
+  total_breakfast                Int?
+  total_lunch                    Int?
+  total_dinner                   Int?
+  google_merchant_product_id     String?
+  meta_catalogue_id              String?
+  perfect_for                    String[] // maps to text[]
+  highlights_bullets             String[] // maps to text[]
+  safety_positioning             String? // single text
+  unique_selling_points          String[] // maps to text[]
+  created_at                     DateTime                   @default(now()) @db.Timestamp(6)
+  updated_at                     DateTime?                  @db.Timestamp(6)
+  deleted_at                     DateTime?                  @db.Timestamp(6)
+  aggregate_rating_value         Decimal?                   @default(0) @db.Decimal(3, 2)
+  aggregate_rating_count         Int?                       @default(0)
+  traveler_requirements          String[]                   @db.Text
+  tags                           String[]                   @db.Text
+  operational_complexity_note    String?                    @db.Text
+  first_day_last_pickup_guidance String?                    @db.Text
+  last_day_safe_flight_note      String?                    @db.Text
+  health_requirements            String[]                   @db.Text
+  environmental_risks            String[]                   @db.Text
+  safety_mitigation              String[]                   @db.Text
+  handover_notes                 String[]                   @db.Text
+  emergency_protocols            String[]                   @db.Text
+  seo_title                      String?                    @db.Text
+  seo_meta                       String?                    @db.Text
+  bookings                       bookings[]
+  combined_package_details       combined_package_details[]
+  package_addons                 package_addons[]
+  package_destinations           package_destinations[]
+  package_excludes               package_excludes[]
+  package_hotel_options          package_hotel_options[]
+  package_images                 package_images[]
+  package_includes               package_includes[]
+  package_itinerary_days         package_itinerary_days[]
+  package_prices                 package_prices[]
+  durations                      durations?                 @relation(fields: [duration_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_packages_duration_id")
+  end_destination                destinations?              @relation("packages_end_destination_idTodestinations", fields: [end_destination_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_packages_end_destination_id")
+  order_channels                 order_channels?            @relation(fields: [order_channel_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_packages_order_channel_id")
+  package_categories             package_categories?        @relation(fields: [package_category_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_packages_package_category_id")
+  start_destination              destinations?              @relation("packages_start_destination_idTodestinations", fields: [start_destination_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_packages_start_destination_id")
+  package_assets                 package_assets[]
+  package_faqs                   package_faqs[]
+  reviews                        reviews[]
+
+  @@index([name(ops: raw("gin_trgm_ops"))], map: "trgm_packages_name", type: Gin)
+  @@index([slug(ops: raw("gin_trgm_ops"))], map: "trgm_packages_slug", type: Gin)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model page_contents {
+  id         BigInt    @id(map: "legal_pages_pkey") @default(autoincrement())
+  name       String    @unique(map: "legal_pages_document_type_key") @db.VarChar(100)
+  content    String?
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at DateTime  @default(now()) @db.Timestamptz(6)
+  deleted_at DateTime? @db.Timestamptz(6)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model payment_methods {
+  id                                                                                         BigInt                  @id @default(autoincrement())
+  name                                                                                       String?
+  account_number                                                                             String?
+  icon                                                                                       String?
+  created_at                                                                                 DateTime?               @db.Timestamp(6)
+  updated_at                                                                                 DateTime?               @db.Timestamp(6)
+  deleted_at                                                                                 DateTime?               @db.Timestamp(6)
+  booking_payment_terms_booking_payment_terms_deposit_payment_method_idTopayment_methods     booking_payment_terms[] @relation("booking_payment_terms_deposit_payment_method_idTopayment_methods")
+  booking_payment_terms_booking_payment_terms_outstanding_payment_method_idTopayment_methods booking_payment_terms[] @relation("booking_payment_terms_outstanding_payment_method_idTopayment_methods")
+}
+
+model policies {
+  id                               BigInt    @id @default(autoincrement())
+  cancellation_refund_window_hours Int       @default(48)
+  reschedule_free_window_hours     Int       @default(48)
+  reschedule_free_max              Int       @default(1)
+  reschedule_free_valid_days       Int       @default(90)
+  no_show_reschedule_fee_percent   Int       @default(50)
+  notes                            String?
+  effective_at                     DateTime  @default(now()) @db.Timestamp(6)
+  is_active                        Boolean   @default(true)
+  created_at                       DateTime? @db.Timestamp(6)
+  updated_at                       DateTime? @db.Timestamp(6)
+  deleted_at                       DateTime? @db.Timestamp(6)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model price_tiers {
+  id             BigInt           @id @default(autoincrement())
+  uuid           String?
+  name           String?
+  min_pax        Int?
+  max_pax        Int?
+  created_at     DateTime?        @db.Timestamp(6)
+  updated_at     DateTime?        @db.Timestamp(6)
+  deleted_at     DateTime?        @db.Timestamp(6)
+  package_prices package_prices[]
+}
+
+model routes {
+  id                   BigInt   @id @default(autoincrement())
+  code                 String   @db.VarChar(50)
+  route                String
+  itinerary_title      String
+  start_area           String   @db.VarChar(100)
+  end_area             String   @db.VarChar(100)
+  estimated_duration   String?
+  main_activities      String?
+  accommodation_status String?
+  customer_tips        String?
+  overview             String?
+  breakfast            Boolean? @default(false)
+  lunch                Boolean? @default(false)
+  dinner               Boolean? @default(false)
+  meals_notes          String?  @db.Text
+
+  // relations
+  route_details          route_details[]
+  package_itinerary_days package_itinerary_days[]
+  route_destinations     route_destinations[]
+}
+
+model route_details {
+  id               BigInt  @id @default(autoincrement())
+  route_id         BigInt
+  seq              Int
+  time_or_label    String?
+  timezone         String? @db.VarChar(10)
+  name             String?
+  activity         String
+  type             String? @db.VarChar(100)
+  location         String? @db.Text
+  from_location    String? @db.Text
+  to_location      String? @db.Text
+  duration_minutes Int?
+
+  // relation
+  routes routes @relation(fields: [route_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_route_details_route_id")
+}
+
+model route_destinations {
+  id             BigInt    @id @default(autoincrement())
+  route_id       BigInt
+  destination_id BigInt
+  sequence       Int
+  created_at     DateTime? @db.Timestamp(6)
+  updated_at     DateTime? @db.Timestamp(6)
+
+  route       routes       @relation(fields: [route_id], references: [id], onDelete: Cascade)
+  destination destinations @relation(fields: [destination_id], references: [id], onDelete: Cascade)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model room_configurations {
+  id           BigInt      @id @default(autoincrement())
+  hotel_id     BigInt?
+  room_type_id BigInt?
+  pax          Int
+  quantity     Int
+  created_at   DateTime?   @db.Timestamp(6)
+  updated_at   DateTime?   @db.Timestamp(6)
+  deleted_at   DateTime?   @db.Timestamp(6)
+  hotels       hotels?     @relation(fields: [hotel_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_room_configurations_hotel_id")
+  room_types   room_types? @relation(fields: [room_type_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_room_configurations_room_type_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model room_types {
+  id                  BigInt                @id @default(autoincrement())
+  code                String?
+  hotel_id            BigInt
+  room_name           String
+  bed_type            String?
+  rate_idr            Int?
+  rate_twt_idr        Int?
+  created_at          DateTime?             @db.Timestamp(6)
+  updated_at          DateTime?             @db.Timestamp(6)
+  deleted_at          DateTime?             @db.Timestamp(6)
+  booking_hotel_rooms booking_hotel_rooms[]
+  room_configurations room_configurations[]
+  hotels              hotels                @relation(fields: [hotel_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_room_types_hotel_id")
+
+  @@index([hotel_id], map: "idx_room_types_hotel_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model transport_crew_rules {
+  id               BigInt          @id(map: "transport_crew_rulesroom_configurations_pkey") @default(autoincrement())
+  pax              Int
+  vehicle_type_id  BigInt?
+  crew_role_id     BigInt?
+  order_channel_id BigInt?
+  created_at       DateTime?       @db.Timestamp(6)
+  updated_at       DateTime?       @db.Timestamp(6)
+  deleted_at       DateTime?       @db.Timestamp(6)
+  crew_roles       crew_roles?     @relation(fields: [crew_role_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_transport_crew_rulesroom_configurations_crew_role_id")
+  order_channels   order_channels? @relation(fields: [order_channel_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_transport_crew_rulesroom_configurations_order_channel_id")
+  vehicle_types    vehicle_types?  @relation(fields: [vehicle_type_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_transport_crew_rulesroom_configurations_vehicle_type_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model vehicle_types {
+  id                   BigInt                 @id @default(autoincrement())
+  code                 String?
+  name                 String
+  capacity_min_pax     Int?
+  capacity_max_pax     Int?
+  price_per_day        Int?
+  price_twt_per_day    Int?
+  created_at           DateTime?              @db.Timestamp(6)
+  updated_at           DateTime?              @db.Timestamp(6)
+  deleted_at           DateTime?              @db.Timestamp(6)
+  transport_crew_rules transport_crew_rules[]
+  vehicle_units        vehicle_units[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model vehicle_units {
+  id                    BigInt                  @id @default(autoincrement())
+  vehicle_type_id       BigInt?
+  plate_no              String?                 @unique
+  nickname              String?
+  is_active             Boolean                 @default(true)
+  vendor_id             BigInt?
+  created_at            DateTime?               @db.Timestamp(6)
+  updated_at            DateTime?               @db.Timestamp(6)
+  deleted_at            DateTime?               @db.Timestamp(6)
+  booking_vehicle_units booking_vehicle_units[]
+  vehicle_types         vehicle_types?          @relation(fields: [vehicle_type_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_vehicle_units_vehicle_type_id")
+  vendors               vendors?                @relation(fields: [vendor_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_vehicle_units_vendor_id")
+
+  @@index([vehicle_type_id], map: "idx_vehicle_units_vehicle_type")
+  @@index([vendor_id], map: "idx_vehicle_units_vendor_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model vendor_categories {
+  id         BigInt    @id @default(autoincrement())
+  name       String?
+  created_at DateTime? @db.Timestamp(6)
+  updated_at DateTime? @db.Timestamp(6)
+  deleted_at DateTime? @db.Timestamp(6)
+  vendors    vendors[]
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model vendors {
+  id                     BigInt                   @id @default(autoincrement())
+  vendor_category_id     BigInt?
+  name                   String?
+  created_at             DateTime?                @db.Timestamp(6)
+  updated_at             DateTime?                @db.Timestamp(6)
+  deleted_at             DateTime?                @db.Timestamp(6)
+  destination_activities destination_activities[]
+  other_activities       other_activities[]
+  vehicle_units          vehicle_units[]
+  vendor_categories      vendor_categories?       @relation(fields: [vendor_category_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_vendors_vendor_category_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model web_metadata {
+  id          BigInt    @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  url         String    @unique
+  title       String?
+  description String?
+  og_image    String?
+  schema      Json?
+  created_at  DateTime  @default(now()) @db.Timestamptz(6)
+  updated_at  DateTime  @default(now()) @db.Timestamptz(6)
+  deleted_at  DateTime? @db.Timestamptz(6)
+}
+
+enum source_enum {
+  UPLOAD
+  LINK
+}
+
+enum asset_type {
+  image
+  video
+  document
+}
+
+model folders {
+  id         BigInt   @id @default(autoincrement())
+  parent_id  BigInt? // FK ke folders.id
+  name       String
+  created_at DateTime @default(now())
+
+  // RELATIONS
+  parent   folders?  @relation("FolderToFolder", fields: [parent_id], references: [id])
+  children folders[] @relation("FolderToFolder")
+
+  assets assets[]
+
+  @@index([parent_id], name: "idx_folders_parent_id")
+}
+
+model tags_assets {
+  id   BigInt @id @default(autoincrement())
+  name String @unique
+
+  // relasi many-to-many ke assets lewat asset_tags
+  assets asset_tags[]
+}
+
+model assets {
+  id             BigInt     @id @default(autoincrement())
+  folder_id      BigInt
+  name           String
+  caption        String?
+  description    String?
+  type           asset_type
+  url            String
+  file_ext       String?
+  size_bytes     BigInt?
+  size_megabytes Decimal?   @db.Decimal(12, 4)
+  sha256         String?
+  last_verified  DateTime?
+  is_active      Boolean    @default(true)
+  created_at     DateTime   @default(now())
+
+  // RELATIONS
+  folder folders      @relation(fields: [folder_id], references: [id])
+  tags   asset_tags[]
+
+  // NEW RELATION
+  destination_assets destination_assets[]
+
+  package_assets package_assets[]
+
+  @@index([folder_id], name: "idx_assets_folder_id")
+  @@index([is_active], name: "idx_assets_is_active")
+  @@index([type], name: "idx_assets_type")
+  @@index([created_at], name: "idx_assets_created_at")
+  @@index([sha256], name: "idx_assets_sha256")
+}
+
+model asset_tags {
+  asset_id BigInt
+  tag_id   BigInt
+
+  // RELATIONS
+  asset assets      @relation(fields: [asset_id], references: [id])
+  tag   tags_assets @relation(fields: [tag_id], references: [id])
+
+  @@id([asset_id, tag_id])
+  @@index([tag_id], name: "idx_asset_tags_tag_id")
+  @@index([asset_id], name: "idx_asset_tags_asset_id")
+}
+
+enum destination_asset_type {
+  primary
+  secondary
+}
+
+model destination_assets {
+  id             BigInt                 @id @default(autoincrement())
+  destination_id BigInt
+  asset_id       BigInt
+  type           destination_asset_type
+  created_at     DateTime               @default(now())
+  updated_at     DateTime               @default(now())
+
+  // RELATIONS
+  destination destinations @relation(fields: [destination_id], references: [id])
+  asset       assets       @relation(fields: [asset_id], references: [id])
+
+  @@index([destination_id], name: "idx_destination_assets_destination_id")
+  @@index([asset_id], name: "idx_destination_assets_asset_id")
+  @@map("destination_assets")
+}
+
+model destination_faqs {
+  id             BigInt @id @default(autoincrement())
+  destination_id BigInt
+  faq_id         BigInt
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // RELATIONS
+  destination destinations @relation(fields: [destination_id], references: [id])
+  faq         faqs         @relation(fields: [faq_id], references: [id])
+
+  @@unique([destination_id, faq_id], map: "ux_destination_faqs_destination_faq")
+  @@index([destination_id], map: "idx_destination_faqs_destination_id")
+  @@index([faq_id], map: "idx_destination_faqs_faq_id")
+  @@map("destination_faqs")
+}
+
+model eav_entity {
+  entity_id   String @id @db.Uuid
+  entity_type String @db.Text
+  entity_key  String @unique @db.Text
+
+  // Relations
+  values             eav_value[]
+  outgoing_relations eav_relation[] @relation("eav_relation_from_entity")
+  incoming_relations eav_relation[] @relation("eav_relation_to_entity")
+
+  @@index([entity_type])
+}
+
+model eav_attribute {
+  attribute_id  String @id @db.Uuid
+  attribute_key String @unique @db.Text
+  value_type    String @db.Text
+
+  // Relations
+  values eav_value[]
+}
+
+model eav_value {
+  value_id     String @id @db.Uuid
+  entity_id    String @db.Uuid
+  attribute_id String @db.Uuid
+
+  // Typed value columns (sesuai yang dipakai di query render)
+  value_string  String?   @db.Text
+  value_text    String?   @db.Text
+  value_url     String?   @db.Text
+  value_json    Json?     @db.JsonB
+  value_boolean Boolean?
+  value_date    DateTime? @db.Date
+
+  lang       String  @db.Text
+  source_ref String? @db.Text
+
+  // Relations
+  entity    eav_entity    @relation(fields: [entity_id], references: [entity_id], onDelete: Cascade)
+  attribute eav_attribute @relation(fields: [attribute_id], references: [attribute_id], onDelete: Cascade)
+
+  @@unique([entity_id, attribute_id, lang])
+  @@index([entity_id])
+  @@index([attribute_id])
+  @@index([lang])
+}
+
+model eav_relation {
+  relation_id    String @id @db.Uuid
+  from_entity_id String @db.Uuid
+  rel_type       String @db.Text
+  to_entity_id   String @db.Uuid
+  ord            Int?
+
+  from_entity eav_entity @relation("eav_relation_from_entity", fields: [from_entity_id], references: [entity_id], onDelete: Cascade)
+  to_entity   eav_entity @relation("eav_relation_to_entity", fields: [to_entity_id], references: [entity_id], onDelete: Cascade)
+
+  @@unique([from_entity_id, rel_type, to_entity_id])
+  @@index([from_entity_id, rel_type])
+  @@index([to_entity_id, rel_type])
+}
+
+// ── narrative_claims (added 2026-04-29 as part of AEO/GEO port from rewrite repo) ───────
+// 9 canonical narrative claims (C1–C9) wired to specific primary_page values. Used as the
+// single source of truth for FAQPage JSON-LD across the entity graph (cluster_role_contracts.md).
+// Field types match actual DB introspection: jsonb for mechanism / evidence_hooks / nlp_variants;
+// text[] for evidence_slugs. Caller queries via src/lib/queries/narrativeClaims.ts.
+model narrative_claims {
+  id             String   @id @db.Text
+  pillar         String?  @db.Text
+  core_claim     String?  @db.Text
+  mechanism      Json?
+  evidence_hooks Json?
+  nlp_variants   Json?
+  evidence_slugs String[] @db.Text
+  primary_page   String?  @db.Text
+  created_at     DateTime @default(now()) @db.Timestamptz(6)
+  updated_at     DateTime @default(now()) @db.Timestamptz(6)
+
+  @@index([primary_page])
+}

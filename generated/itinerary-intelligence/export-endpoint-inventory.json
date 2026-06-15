@@ -1,0 +1,1829 @@
+[
+  {
+    "id": "endpoint__export_data_hotels_hotels",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/hotels/hotels"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataHotel.php",
+        "field": "ExportDataHotel::hotels"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/hotels/hotels",
+    "group": "hotels",
+    "controller": "ExportDataHotel",
+    "handler": "hotels",
+    "returns": "published hotels: name, destination, address, map url, meal rates",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_hotels_room_types",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/hotels/room-types"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataHotel.php",
+        "field": "ExportDataHotel::roomTypes"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/hotels/room-types",
+    "group": "hotels",
+    "controller": "ExportDataHotel",
+    "handler": "roomTypes",
+    "returns": "room types per hotel: bed type, rates",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_hotels_room_configurations",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/hotels/room-configurations"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataHotel.php",
+        "field": "ExportDataHotel::roomConfigurations"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/hotels/room-configurations",
+    "group": "hotels",
+    "controller": "ExportDataHotel",
+    "handler": "roomConfigurations",
+    "returns": "room pax/quantity configs per hotel",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_vehicles_vehicle_types",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/vehicles/vehicle-types"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataVehicles.php",
+        "field": "ExportDataVehicles::vehicleTypes"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/vehicles/vehicle-types",
+    "group": "vehicles",
+    "controller": "ExportDataVehicles",
+    "handler": "vehicleTypes",
+    "returns": "vehicle types: capacity + daily rates",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_vehicles_vehicle_units",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/vehicles/vehicle-units"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataVehicles.php",
+        "field": "ExportDataVehicles::vehicleUnits"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/vehicles/vehicle-units",
+    "group": "vehicles",
+    "controller": "ExportDataVehicles",
+    "handler": "vehicleUnits",
+    "returns": "vehicle units: plate, nickname, vendor, active",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_crews_crew_roles",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/crews/crew-roles"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataCrew.php",
+        "field": "ExportDataCrew::crewRoles"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/crews/crew-roles",
+    "group": "crews",
+    "controller": "ExportDataCrew",
+    "handler": "crewRoles",
+    "returns": "crew roles: daily rates, order channel",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_crews_crew_member",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/crews/crew-member"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataCrew.php",
+        "field": "ExportDataCrew::crewMember"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/crews/crew-member",
+    "group": "crews",
+    "controller": "ExportDataCrew",
+    "handler": "crewMember",
+    "returns": "crew members: name, email, phone, photo (staff PII)",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_crews_crew_member_roles",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/crews/crew-member-roles"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataCrew.php",
+        "field": "ExportDataCrew::crewMemberRoles"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/crews/crew-member-roles",
+    "group": "crews",
+    "controller": "ExportDataCrew",
+    "handler": "crewMemberRoles",
+    "returns": "crew member -> role pivot",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_crews_transport_crew_rules",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/crews/transport-crew-rules"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataCrew.php",
+        "field": "ExportDataCrew::transportCrewRules"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/crews/transport-crew-rules",
+    "group": "crews",
+    "controller": "ExportDataCrew",
+    "handler": "transportCrewRules",
+    "returns": "crew rules per pax + vehicle type",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_destinations_destinations",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/destinations/destinations"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataDestinations.php",
+        "field": "ExportDataDestinations::destinations"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/destinations/destinations",
+    "group": "destinations",
+    "controller": "ExportDataDestinations",
+    "handler": "destinations",
+    "returns": "published destinations: weather, difficulty, attractions, gear",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_countries_countries",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/countries/countries"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataCountries.php",
+        "field": "ExportDataCountries::countries"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/countries/countries",
+    "group": "countries",
+    "controller": "ExportDataCountries",
+    "handler": "countries",
+    "returns": "countries: names + dial codes",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_customers_customers",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/customers/customers"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataCustomer.php",
+        "field": "ExportDataCustomer::customers"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/customers/customers",
+    "group": "customers",
+    "controller": "ExportDataCustomer",
+    "handler": "customers",
+    "returns": "customers from bookings: name, email, phone, country (PII)",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_packages_package_categories",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/packages/package-categories"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPackage.php",
+        "field": "ExportDataPackage::packageCategories"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/packages/package-categories",
+    "group": "packages",
+    "controller": "ExportDataPackage",
+    "handler": "packageCategories",
+    "returns": "package categories",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_packages_packages",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/packages/packages"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPackage.php",
+        "field": "ExportDataPackage::packages"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/packages/packages",
+    "group": "packages",
+    "controller": "ExportDataPackage",
+    "handler": "packages",
+    "returns": "curated packages: code, slug, duration, category, meals, pricing ids",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_packages_package_images",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/packages/package-images"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPackage.php",
+        "field": "ExportDataPackage::packageImages"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/packages/package-images",
+    "group": "packages",
+    "controller": "ExportDataPackage",
+    "handler": "packageImages",
+    "returns": "package banner images",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_packages_package_includes",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/packages/package-includes"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPackage.php",
+        "field": "ExportDataPackage::packageIncludes"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/packages/package-includes",
+    "group": "packages",
+    "controller": "ExportDataPackage",
+    "handler": "packageIncludes",
+    "returns": "package includes mapping",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_packages_package_excludes",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/packages/package-excludes"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPackage.php",
+        "field": "ExportDataPackage::packageExcludes"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/packages/package-excludes",
+    "group": "packages",
+    "controller": "ExportDataPackage",
+    "handler": "packageExcludes",
+    "returns": "package excludes mapping",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_packages_package_addons",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/packages/package-addons"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPackage.php",
+        "field": "ExportDataPackage::packageAddons"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/packages/package-addons",
+    "group": "packages",
+    "controller": "ExportDataPackage",
+    "handler": "packageAddons",
+    "returns": "package add-on assignments",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_packages_package_prices",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/packages/package-prices"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPackage.php",
+        "field": "ExportDataPackage::packagePrices"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/packages/package-prices",
+    "group": "packages",
+    "controller": "ExportDataPackage",
+    "handler": "packagePrices",
+    "returns": "package price tier variants",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_packages_package_itinerary_days",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/packages/package-itinerary-days"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPackage.php",
+        "field": "ExportDataPackage::packageItineraryDays"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/packages/package-itinerary-days",
+    "group": "packages",
+    "controller": "ExportDataPackage",
+    "handler": "packageItineraryDays",
+    "returns": "itinerary days: activity start/end, hotel, meals",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_packages_package_itinerary_day_details",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/packages/package-itinerary-day-details"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPackage.php",
+        "field": "ExportDataPackage::packageItineraryDayDetails"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/packages/package-itinerary-day-details",
+    "group": "packages",
+    "controller": "ExportDataPackage",
+    "handler": "packageItineraryDayDetails",
+    "returns": "day activity details: time, activity, notes",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_packages_package_destinations",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/packages/package-destinations"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPackage.php",
+        "field": "ExportDataPackage::packageDestinations"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/packages/package-destinations",
+    "group": "packages",
+    "controller": "ExportDataPackage",
+    "handler": "packageDestinations",
+    "returns": "package -> destination mapping",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_packages_package_hotel_options",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/packages/package-hotel-options"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPackage.php",
+        "field": "ExportDataPackage::packageHotelOptions"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/packages/package-hotel-options",
+    "group": "packages",
+    "controller": "ExportDataPackage",
+    "handler": "packageHotelOptions",
+    "returns": "hotel options per package day",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_packages_combined_packages",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/packages/combined-packages"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPackage.php",
+        "field": "ExportDataPackage::combinedPackages"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/packages/combined-packages",
+    "group": "packages",
+    "controller": "ExportDataPackage",
+    "handler": "combinedPackages",
+    "returns": "combined packages",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_packages_combined_package_details",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/packages/combined-package-details"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPackage.php",
+        "field": "ExportDataPackage::combinedPackageDetails"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/packages/combined-package-details",
+    "group": "packages",
+    "controller": "ExportDataPackage",
+    "handler": "combinedPackageDetails",
+    "returns": "combined package mapping",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_include_exclude_item_includes",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/include-exclude/item-includes"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportIncludeExclude.php",
+        "field": "ExportIncludeExclude::include"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/include-exclude/item-includes",
+    "group": "include-exclude",
+    "controller": "ExportIncludeExclude",
+    "handler": "include",
+    "returns": "item includes (service items)",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_include_exclude_item_excludes",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/include-exclude/item-excludes"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportIncludeExclude.php",
+        "field": "ExportIncludeExclude::exclude"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/include-exclude/item-excludes",
+    "group": "include-exclude",
+    "controller": "ExportIncludeExclude",
+    "handler": "exclude",
+    "returns": "item excludes (service items)",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_addons_addons",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/addons/addons"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataAddons.php",
+        "field": "ExportDataAddons::addons"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/addons/addons",
+    "group": "addons",
+    "controller": "ExportDataAddons",
+    "handler": "addons",
+    "returns": "add-ons: price, transport flag, image",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_price_tiers_price_tiers",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/price-tiers/price-tiers"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPriceTiers.php",
+        "field": "ExportDataPriceTiers::priceTiers"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/price-tiers/price-tiers",
+    "group": "price-tiers",
+    "controller": "ExportDataPriceTiers",
+    "handler": "priceTiers",
+    "returns": "price tier categories: min/max pax",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_activities_other_activities",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/activities/other-activities"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataActivities.php",
+        "field": "ExportDataActivities::otherActivities"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/activities/other-activities",
+    "group": "activities",
+    "controller": "ExportDataActivities",
+    "handler": "otherActivities",
+    "returns": "non-destination activities: vendor, unit, price, defaults",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_activities_destination_activities",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/activities/destination-activities"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataActivities.php",
+        "field": "ExportDataActivities::destinationActivities"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/activities/destination-activities",
+    "group": "activities",
+    "controller": "ExportDataActivities",
+    "handler": "destinationActivities",
+    "returns": "destination activities: code, vendor, price, defaults",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_activities_activities",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/activities/activities"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataActivities.php",
+        "field": "ExportDataActivities::activities"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/activities/activities",
+    "group": "activities",
+    "controller": "ExportDataActivities",
+    "handler": "activities",
+    "returns": "activities: code, category, destination",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_activities_activity_categories",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/activities/activity-categories"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataActivities.php",
+        "field": "ExportDataActivities::activity_categories"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/activities/activity-categories",
+    "group": "activities",
+    "controller": "ExportDataActivities",
+    "handler": "activity_categories",
+    "returns": "activity categories",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_activities_activity_ends",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/activities/activity-ends"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataActivities.php",
+        "field": "ExportDataActivities::activityEnds"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/activities/activity-ends",
+    "group": "activities",
+    "controller": "ExportDataActivities",
+    "handler": "activityEnds",
+    "returns": "trip end activities per destination (dinner flag)",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_activities_activity_starts",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/activities/activity-starts"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataActivities.php",
+        "field": "ExportDataActivities::activityStarts"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/activities/activity-starts",
+    "group": "activities",
+    "controller": "ExportDataActivities",
+    "handler": "activityStarts",
+    "returns": "trip start activities per destination (breakfast/lunch flags)",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_vendors_vendors",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/vendors/vendors"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataVendors.php",
+        "field": "ExportDataVendors::vendors"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/vendors/vendors",
+    "group": "vendors",
+    "controller": "ExportDataVendors",
+    "handler": "vendors",
+    "returns": "vendors: category, name",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_vendors_vendor_categories",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/vendors/vendor-categories"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataVendors.php",
+        "field": "ExportDataVendors::vendorCategories"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/vendors/vendor-categories",
+    "group": "vendors",
+    "controller": "ExportDataVendors",
+    "handler": "vendorCategories",
+    "returns": "vendor categories",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_order_channels_order_channels",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/order-channels/order-channels"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataOrderChannels.php",
+        "field": "ExportDataOrderChannels::orderChannels"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/order-channels/order-channels",
+    "group": "order-channels",
+    "controller": "ExportDataOrderChannels",
+    "handler": "orderChannels",
+    "returns": "order channels (JVTO, Klook, TWT)",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_policies_policies",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/policies/policies"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPolicies.php",
+        "field": "ExportDataPolicies::policies"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/policies/policies",
+    "group": "policies",
+    "controller": "ExportDataPolicies",
+    "handler": "policies",
+    "returns": "policies (cancellation/reschedule windows)",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_discount_discount",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/discount/discount"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataDiscount.php",
+        "field": "ExportDataDiscount::discount"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/discount/discount",
+    "group": "discount",
+    "controller": "ExportDataDiscount",
+    "handler": "discount",
+    "returns": "discounts: customer-linked, verification/usage (PII-linked)",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_payment_methods_payment_methods",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/payment-methods/payment-methods"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataPaymentMethods.php",
+        "field": "ExportDataPaymentMethods::paymentMethods"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/payment-methods/payment-methods",
+    "group": "payment-methods",
+    "controller": "ExportDataPaymentMethods",
+    "handler": "paymentMethods",
+    "returns": "payment methods: account numbers",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_durations_durations",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/durations/durations"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataDurations.php",
+        "field": "ExportDataDurations::durations"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/durations/durations",
+    "group": "durations",
+    "controller": "ExportDataDurations",
+    "handler": "durations",
+    "returns": "trip durations: day/night counts",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_bookings_bookings",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/bookings"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookings"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/bookings",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookings",
+    "returns": "bookings (PII): customer id, status, media links",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_payment_terms",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-payment-terms"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingPaymentTerms"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-payment-terms",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingPaymentTerms",
+    "returns": "payment terms per booking (PII-linked)",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_payment_histories",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-payment-histories"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingPaymentHistories"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-payment-histories",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingPaymentHistories",
+    "returns": "payment history rows (PII-linked)",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_logistics",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-logistics"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingLogistics"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-logistics",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingLogistics",
+    "returns": "pickup/dropoff locations, times, ticket numbers (PII)",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_police_escorts",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-police-escorts"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingPoliceEscorts"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-police-escorts",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingPoliceEscorts",
+    "returns": "police escorts: date, route",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_tshirts",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-tshirts"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingTshirts"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-tshirts",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingTshirts",
+    "returns": "t-shirt size distribution",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_destination_schedules",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-destination-schedules"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingDestinationSchedules"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-destination-schedules",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingDestinationSchedules",
+    "returns": "destination visit dates per booking",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_whatsapp_logs",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-whatsapp-logs"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingWhatsappLogs"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-whatsapp-logs",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingWhatsappLogs",
+    "returns": "whatsapp schedules/statuses (PII)",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_finances",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-finances"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingFinances"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-finances",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingFinances",
+    "returns": "booking financials: expense, profit",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_itineraries",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-itineraries"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingItineraries"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-itineraries",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingItineraries",
+    "returns": "booking itinerary days",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_hotels",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-hotels"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingHotels"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-hotels",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingHotels",
+    "returns": "booked hotels",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_hotel_rooms",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-hotel-rooms"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingHotelRooms"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-hotel-rooms",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingHotelRooms",
+    "returns": "hotel room assignments",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_hotel_meals",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-hotel-meals"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingHotelMeals"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-hotel-meals",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingHotelMeals",
+    "returns": "hotel meal orders",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_addons",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-addons"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingAddons"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-addons",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingAddons",
+    "returns": "booked add-ons",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_vehicle_units",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-vehicle-units"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingVehcileUnits"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-vehicle-units",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingVehcileUnits",
+    "returns": "booked vehicle units",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_crew_members",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-crew-members"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingCrewMembers"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-crew-members",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingCrewMembers",
+    "returns": "booked crew members",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_crew_member_activities",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-crew-member-activities"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingCrewMemberActivities"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-crew-member-activities",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingCrewMemberActivities",
+    "returns": "crew role charges per booking",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_destination_activities",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-destination-activities"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingDestinationActivities"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-destination-activities",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingDestinationActivities",
+    "returns": "destination activity charges per booking",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_bookings_booking_other_activities",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/bookings/booking-other-activities"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataBookings.php",
+        "field": "ExportDataBookings::bookingOtherActivities"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/bookings/booking-other-activities",
+    "group": "bookings",
+    "controller": "ExportDataBookings",
+    "handler": "bookingOtherActivities",
+    "returns": "other activity charges per booking",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  },
+  {
+    "id": "endpoint__export_data_itinerary_core_bundle",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/itinerary-core/bundle"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataItineraryCore.php",
+        "field": "ExportDataItineraryCore::bundle"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/itinerary-core/bundle",
+    "group": "itinerary-core",
+    "controller": "ExportDataItineraryCore",
+    "handler": "bundle",
+    "returns": "PII-free aggregate bundle (reference sections + redacted booking patterns) designed for jvto-itinerary-core",
+    "pii_class": "open",
+    "excluded_from_extraction": false
+  },
+  {
+    "id": "endpoint__export_data_all",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": "/export-data/all"
+      },
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataAllController.php",
+        "field": "ExportDataAllController::all"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "method": "GET",
+    "path": "/export-data/all",
+    "group": null,
+    "controller": "ExportDataAllController",
+    "handler": "all",
+    "returns": "zips ~20 CSV exports incl. PII booking/customer exports",
+    "pii_class": "restricted",
+    "excluded_from_extraction": true
+  }
+]

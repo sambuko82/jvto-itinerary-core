@@ -1,0 +1,20 @@
+{
+  "schema_version": "itinerary-intelligence/source-snapshot-v1",
+  "repo": "jvto-devteam/jvto-web",
+  "source_path": "src/lib/packages/",
+  "files": [
+    {
+      "path": "src/lib/packages/getWebPackageDetail.ts",
+      "exports": ["getWebPackageDetail"],
+      "role": "package detail helper (slug -> TourPackageDetail)",
+      "package_slug_literals": []
+    },
+    {
+      "path": "src/lib/packages/getWebPackagesList.ts",
+      "exports": ["ImageAsset", "PackageListItem", "WebPackagesListFilters", "getWebPackagesList"],
+      "role": "package list helper (filters -> PackageListItem[])",
+      "package_slug_literals": [],
+      "notable_constants": ["EXCLUDED_DESTINATION_IDS"]
+    }
+  ]
+}

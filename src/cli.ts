@@ -3,6 +3,12 @@ import { compileGeneratedData } from './compile/index.js';
 import { validateGeneratedData } from './validate/validate-generated-data.js';
 import { evaluateScenarioFromFile } from './scenario/evaluateScenario.js';
 import type { ItineraryScenario } from './domain/itinerary.js';
+import { GENERATED_DIR } from './config/paths.js';
+import { writeJson } from './utils/fs.js';
+import { buildSourceInventory } from './compile/build-source-inventory.js';
+import { buildSchemaInventory } from './compile/build-schema-inventory.js';
+import { buildExportEndpointInventory } from './compile/build-export-endpoint-inventory.js';
+import { validateItineraryIntelligence } from './validate/validate-itinerary-intelligence.js';
 
 async function main() {
   const command = process.argv[2];
@@ -17,6 +23,21 @@ async function main() {
   if (command === 'validate') {
     const result = await validateGeneratedData();
     console.log(JSON.stringify(result, null, 2));
+    return;
+  }
+
+  if (command === 'inventory') {
+    // Phase 1 Source Discovery: deterministic inventories from committed input/ snapshots.
+    await writeJson(`${GENERATED_DIR}/source-inventory.json`, buildSourceInventory());
+    await writeJson(`${GENERATED_DIR}/schema-inventory.json`, buildSchemaInventory());
+    await writeJson(`${GENERATED_DIR}/export-endpoint-inventory.json`, buildExportEndpointInventory());
+    const report = await validateItineraryIntelligence();
+    console.log(JSON.stringify(report.summary, null, 2));
+    console.log(`status: ${report.status}`);
+    if (report.status !== 'pass') {
+      console.error('Phase 1 validation FAILED: critical errors present.');
+      process.exit(1);
+    }
     return;
   }
 
@@ -38,6 +59,7 @@ async function main() {
   console.log(`Usage:
   npm run compile
   npm run validate
+  npm run inventory
   npm run inspect
   npm run scenario -- samples/customer-scenario-surabaya-bromo-ijen-ketapang.json`);
 }

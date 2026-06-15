@@ -1,0 +1,162 @@
+[
+  {
+    "package_id": "bromo-1d1n",
+    "slug": "bromo-1d1n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  },
+  {
+    "package_id": "bromo-2d1n",
+    "slug": "bromo-2d1n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  },
+  {
+    "package_id": "ijen-2d1n",
+    "slug": "ijen-2d1n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-3d2n",
+    "slug": "ijen-bromo-madakaripura-3d2n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  },
+  {
+    "package_id": "bromo-madakaripura-ijen-3d2n",
+    "slug": "bromo-madakaripura-ijen-3d2n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-4d3n",
+    "slug": "ijen-bromo-madakaripura-4d3n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  },
+  {
+    "package_id": "tumpak-sewu-bromo-ijen-4d3n",
+    "slug": "tumpak-sewu-bromo-ijen-4d3n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-malang-5d4n",
+    "slug": "ijen-bromo-madakaripura-malang-5d4n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  },
+  {
+    "package_id": "taman-safari-prigen-bromo-madakaripura-3d2n",
+    "slug": "taman-safari-prigen-bromo-madakaripura-3d2n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  },
+  {
+    "package_id": "bali/bromo-ijen-3d2n",
+    "slug": "bromo-ijen-3d2n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  },
+  {
+    "package_id": "bali/ijen-bromo-madakaripura-3d2n",
+    "slug": "ijen-bromo-madakaripura-3d2n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  },
+  {
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  },
+  {
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "instant_book": true,
+    "whatsapp_assisted": true,
+    "booking_paths": [
+      "website_instant_book",
+      "whatsapp_assisted"
+    ]
+  }
+]
