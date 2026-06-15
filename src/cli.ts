@@ -17,6 +17,7 @@ import { buildRouteLegIndexDerived } from './compile/build-route-leg-index-deriv
 import { buildPackageRouteMapDerived } from './compile/build-package-route-map-derived.js';
 import { buildRouteSourceCandidates } from './compile/build-route-source-candidates.js';
 import { buildOperationalContextGapReport } from './compile/build-operational-context-gap-report.js';
+import { buildOperationalContext } from './compile/build-operational-context.js';
 
 async function main() {
   const command = process.argv[2];
@@ -91,6 +92,26 @@ async function main() {
     console.log(`status: ${report.status}`);
     if (report.status !== 'pass') {
       console.error('Phase 4 validation FAILED: critical errors present.');
+      process.exit(1);
+    }
+    return;
+  }
+
+  if (command === 'context') {
+    // Phase 5: operational context datasets from the handoff labels (no route changes).
+    const b = await buildOperationalContext();
+    await writeJson(`${GENERATED_DIR}/operational-context-index.json`, b.index);
+    await writeJson(`${GENERATED_DIR}/pickup-contexts.json`, b.pickup);
+    await writeJson(`${GENERATED_DIR}/dropoff-contexts.json`, b.dropoff);
+    await writeJson(`${GENERATED_DIR}/staging-area-contexts.json`, b.staging);
+    await writeJson(`${GENERATED_DIR}/time-window-rules.json`, b.timeRules);
+    await writeJson(`${GENERATED_DIR}/route-node-candidate-review.json`, b.nodeReview);
+    await writeJson(`${GENERATED_DIR}/operational-context-resolution-report.json`, b.resolution);
+    const report = await validateItineraryIntelligence();
+    console.log(JSON.stringify(report.summary, null, 2));
+    console.log(`status: ${report.status}`);
+    if (report.status !== 'pass') {
+      console.error('Phase 5 validation FAILED: critical errors present.');
       process.exit(1);
     }
     return;

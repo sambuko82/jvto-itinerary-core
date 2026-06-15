@@ -345,6 +345,62 @@ export async function validateItineraryIntelligence(
     }
   }
 
+  // ── Phase 5: operational context datasets (validate if present) ──
+  if (!opts.skipPhase4) {
+    const p5files = [
+      'operational-context-index.json',
+      'pickup-contexts.json',
+      'dropoff-contexts.json',
+      'staging-area-contexts.json',
+      'time-window-rules.json',
+      'route-node-candidate-review.json',
+      'operational-context-resolution-report.json'
+    ];
+    const loaded: Record<string, Array<Record<string, unknown>> | null> = {};
+    for (const f of p5files) {
+      const recs = await tryRead(f);
+      loaded[f] = recs;
+      if (!recs) continue;
+      total += recs.length;
+      for (const rec of recs) {
+        checkContract(rec, f, findings);
+        scanPii(rec, String(rec.id ?? f), '$', findings);
+        // no invented buffer minutes without source
+        const json = JSON.stringify(rec);
+        if (/"(buffer_minutes|default_ready_buffer_minutes|latest_safe_departure)"\s*:\s*\d/.test(json)) {
+          findings.push({ severity: 'critical', check: 'invented_buffer', record_id: String(rec.id ?? ''), message: `invented buffer/time without source in ${f}` });
+        }
+      }
+    }
+
+    // every operational-context-gap label must be accounted for in the resolution report
+    if (opcontext && loaded['operational-context-resolution-report.json']) {
+      const resolved = new Set(loaded['operational-context-resolution-report.json']!.map((r) => String(r.label)));
+      for (const o of opcontext) {
+        if (!resolved.has(String(o.label))) {
+          findings.push({ severity: 'critical', check: 'operational_label_unaccounted', record_id: String(o.label), message: `handoff label "${o.label}" missing from operational-context-resolution-report` });
+        }
+      }
+    }
+
+    // time-window-rules must not assert exact times without a source
+    for (const r of loaded['time-window-rules.json'] ?? []) {
+      if (r.exact_time_available === true) {
+        findings.push({ severity: 'critical', check: 'exact_time_without_source', record_id: String(r.rule_id ?? ''), message: `time rule claims exact_time_available without source` });
+      }
+    }
+
+    // operational labels must not be promoted into destination route nodes
+    if (nodes) {
+      const nodeIds = new Set(nodes.map((n) => String(n.node_id)));
+      for (const rec of loaded['operational-context-index.json'] ?? []) {
+        if (nodeIds.has(String(rec.normalized_candidate_id))) {
+          findings.push({ severity: 'critical', check: 'operational_promoted_to_node', record_id: String(rec.label), message: `operational label "${rec.label}" promoted into a route node` });
+        }
+      }
+    }
+  }
+
   // missing packageDetailSnapshots must produce a gap report, not crash
   if (!opts.skipPhase4) try {
     const jvto = await readJson<{ package_detail_count?: number; missing_fields?: string[] }>(`${dir}/extract-jvto-web.json`);
