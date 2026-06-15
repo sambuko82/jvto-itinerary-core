@@ -1,8 +1,8 @@
 import type { Confidence, SourceTrace } from '../domain/common.js';
 import type { BackofficeExtract } from '../extract/sourceTypes.js';
 import {
-  coreIdToBackofficeDestinationId,
   crosswalkByCoreId,
+  resolveBackofficeDestinationId,
   resolveDestinationToken
 } from '../config/destination-crosswalk.js';
 
@@ -144,18 +144,19 @@ export function accommodationObserved(extract: BackofficeExtract, areaId: string
   const coreId = AREA_TO_CORE_DESTINATION[areaId];
   if (!coreId) return null;
   const entry = crosswalkByCoreId(coreId);
-  const backofficeId = coreIdToBackofficeDestinationId(coreId);
-  // No verified/placeholder numeric id => cannot safely filter backoffice hotels.
-  if (backofficeId == null) return null;
+  // Prefer the export's destination registry (slug join => verified id);
+  // fall back to the static placeholder when the export has no registry.
+  const resolved = resolveBackofficeDestinationId(coreId, extract.destination_registry);
+  if (resolved.backofficeDestinationId == null) return null;
 
-  const hotels = extract.hotel_meal_sources.filter((h) => h.destination_id === backofficeId);
+  const hotels = extract.hotel_meal_sources.filter((h) => h.destination_id === resolved.backofficeDestinationId);
   if (hotels.length === 0) return null;
 
   return {
     core_destination_id: coreId,
     jvto_web_slug: entry?.slug ?? null,
-    backoffice_destination_id: backofficeId,
-    backoffice_id_provenance: entry?.backofficeIdProvenance ?? 'unknown',
+    backoffice_destination_id: resolved.backofficeDestinationId,
+    backoffice_id_provenance: resolved.provenance,
     hotels: hotels.map((h) => {
       const roomRates = h.room_types.map((r) => r.rate_idr).filter((r): r is number => r != null);
       return {

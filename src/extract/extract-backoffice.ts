@@ -73,6 +73,11 @@ function transformBundle(bundle: BackofficeBundle, path: string): BackofficeExtr
     generated_at: bundle.generated_at ?? null,
     source: bundle.source ?? 'new-backoffice',
     pii_policy: bundle.pii_policy ?? null,
+    destination_registry: bundle.destinations.map((d) => ({
+      id: d.id,
+      slug: d.slug ?? null,
+      name: d.name ?? null
+    })),
     pickup_patterns: buildPickupPatterns(bundle),
     dropoff_patterns: buildDropoffPatterns(bundle),
     hotel_meal_sources: buildHotelMealSources(bundle),
@@ -271,6 +276,12 @@ function buildDataQualityNotes(bundle: BackofficeBundle, extract: BackofficeExtr
   if (bundle.pii_policy) {
     notes.push(`pii_policy: ${bundle.pii_policy}`);
   }
+
+  notes.push(
+    extract.destination_registry.length
+      ? `destination registry: ${extract.destination_registry.length} records (slug join enables verified backoffice_destination_id)`
+      : 'destination registry: none in export (backoffice_destination_id stays placeholder/unknown)'
+  );
 
   notes.push(
     `coverage: ${extract.pickup_patterns.length} pickup / ${extract.dropoff_patterns.length} dropoff groups, ` +

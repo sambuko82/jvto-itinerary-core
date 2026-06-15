@@ -16,6 +16,14 @@ import { z } from 'zod';
 const num = z.coerce.number();
 const intNum = z.coerce.number().int();
 
+const destinationSchema = z
+  .object({
+    id: intNum,
+    slug: z.string().nullable().optional(),
+    name: z.string().nullable().optional()
+  })
+  .passthrough();
+
 const packageSchema = z
   .object({
     id: intNum,
@@ -233,6 +241,7 @@ export const backofficeBundleSchema = z
     pii_policy: z.string().optional(),
     source: z.string().optional(),
 
+    destinations: z.array(destinationSchema).default([]),
     packages: z.array(packageSchema).default([]),
     package_prices: z.array(packagePriceSchema).default([]),
     package_itinerary_days: z.array(packageItineraryDaySchema).default([]),
@@ -257,6 +266,7 @@ export const backofficeBundleSchema = z
   .passthrough();
 
 export type BackofficeBundle = z.infer<typeof backofficeBundleSchema>;
+export type BackofficeDestination = z.infer<typeof destinationSchema>;
 export type BackofficeHotel = z.infer<typeof hotelSchema>;
 export type BackofficeRoomType = z.infer<typeof roomTypeSchema>;
 export type BackofficeRoomConfiguration = z.infer<typeof roomConfigurationSchema>;

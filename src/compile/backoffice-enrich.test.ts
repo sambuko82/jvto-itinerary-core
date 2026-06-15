@@ -69,8 +69,8 @@ test('accommodation logic attaches hotel rate evidence via jvto-web crosswalk', 
   };
   assert.equal(observed.core_destination_id, 'ijen');
   assert.equal(observed.jvto_web_slug, 'ijen-crater');
-  // numeric backoffice id remains an unverified placeholder, surfaced honestly
-  assert.equal(observed.backoffice_id_provenance, 'fixture_placeholder_unverified');
+  // fixture now carries a destinations registry; slug join verifies the numeric id
+  assert.equal(observed.backoffice_id_provenance, 'verified');
 });
 
 test('cost components fill default_rate_idr from a single clear backoffice rate', () => {

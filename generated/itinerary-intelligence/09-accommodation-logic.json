@@ -43,7 +43,7 @@
       "core_destination_id": "ijen",
       "jvto_web_slug": "ijen-crater",
       "backoffice_destination_id": 5,
-      "backoffice_id_provenance": "fixture_placeholder_unverified",
+      "backoffice_id_provenance": "verified",
       "hotels": [
         {
           "hotel_id": 2,
@@ -99,7 +99,7 @@
       "core_destination_id": "bromo",
       "jvto_web_slug": "mount-bromo",
       "backoffice_destination_id": 2,
-      "backoffice_id_provenance": "fixture_placeholder_unverified",
+      "backoffice_id_provenance": "verified",
       "hotels": [
         {
           "hotel_id": 1,
@@ -232,7 +232,7 @@
       "core_destination_id": "ijen",
       "jvto_web_slug": "ijen-crater",
       "backoffice_destination_id": 5,
-      "backoffice_id_provenance": "fixture_placeholder_unverified",
+      "backoffice_id_provenance": "verified",
       "hotels": [
         {
           "hotel_id": 2,

@@ -3,6 +3,11 @@
   "generated_at": "2026-06-15T08:00:00+07:00",
   "pii_policy": "redacted_no_raw_customer_contact",
   "source": "new-backoffice",
+  "destinations": [
+    { "id": 2, "slug": "mount-bromo", "name": "Mount Bromo" },
+    { "id": 5, "slug": "ijen-crater", "name": "Ijen Crater" },
+    { "id": 8, "slug": "tumpak-sewu-waterfall", "name": "Tumpak Sewu Waterfall" }
+  ],
   "packages": [
     {
       "id": 47,

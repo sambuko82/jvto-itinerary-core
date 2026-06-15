@@ -4,7 +4,8 @@ import {
   DESTINATION_CROSSWALK,
   resolveDestinationToken,
   crosswalkByCoreId,
-  coreIdToBackofficeDestinationId
+  coreIdToBackofficeDestinationId,
+  resolveBackofficeDestinationId
 } from './destination-crosswalk.js';
 
 test('resolves tokens by core id, jvto-web id, slug, name, and alias', () => {
@@ -40,4 +41,32 @@ test('lookup helpers return crosswalk data', () => {
   assert.equal(coreIdToBackofficeDestinationId('bromo'), 2);
   assert.equal(coreIdToBackofficeDestinationId('tumpak_sewu'), null);
   assert.equal(crosswalkByCoreId('nope'), null);
+});
+
+test('registry slug join verifies the backoffice destination id', () => {
+  const registry = [
+    { id: 2, slug: 'mount-bromo' },
+    { id: 5, slug: 'ijen-crater' }
+  ];
+  const bromo = resolveBackofficeDestinationId('bromo', registry);
+  assert.equal(bromo.backofficeDestinationId, 2);
+  assert.equal(bromo.provenance, 'verified');
+
+  // tumpak_sewu absent from this registry -> falls back to static (unknown)
+  const tumpak = resolveBackofficeDestinationId('tumpak_sewu', registry);
+  assert.equal(tumpak.backofficeDestinationId, null);
+  assert.equal(tumpak.provenance, 'unknown');
+});
+
+test('without a registry, resolver returns the static placeholder', () => {
+  const bromo = resolveBackofficeDestinationId('bromo');
+  assert.equal(bromo.backofficeDestinationId, 2);
+  assert.equal(bromo.provenance, 'fixture_placeholder_unverified');
+});
+
+test('registry id overrides a stale placeholder when slug matches', () => {
+  // export says ijen-crater is id 99 (not the fixture placeholder 5)
+  const resolved = resolveBackofficeDestinationId('ijen', [{ id: 99, slug: 'ijen-crater' }]);
+  assert.equal(resolved.backofficeDestinationId, 99);
+  assert.equal(resolved.provenance, 'verified');
 });

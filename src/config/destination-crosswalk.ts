@@ -134,3 +134,33 @@ export function crosswalkByCoreId(coreId: string): DestinationCrosswalkEntry | n
 export function coreIdToBackofficeDestinationId(coreId: string): number | null {
   return byCoreId.get(coreId)?.backofficeDestinationId ?? null;
 }
+
+export interface ResolvedBackofficeDestination {
+  backofficeDestinationId: number | null;
+  provenance: BackofficeIdProvenance;
+}
+
+/**
+ * Resolve a core id to its backoffice numeric destination id.
+ *
+ * When a bundle destination registry is supplied (the PII-free `destinations`
+ * section: id + slug), a slug match against the jvto-web crosswalk yields a
+ * VERIFIED id. Otherwise it falls back to the static placeholder/unknown value.
+ */
+export function resolveBackofficeDestinationId(
+  coreId: string,
+  registry?: ReadonlyArray<{ id: number; slug: string | null }>
+): ResolvedBackofficeDestination {
+  const entry = byCoreId.get(coreId);
+  if (!entry) return { backofficeDestinationId: null, provenance: 'unknown' };
+
+  if (registry && entry.slug) {
+    const wantSlug = entry.slug.toLowerCase();
+    const match = registry.find((r) => r.slug != null && r.slug.toLowerCase() === wantSlug);
+    if (match) {
+      return { backofficeDestinationId: match.id, provenance: 'verified' };
+    }
+  }
+
+  return { backofficeDestinationId: entry.backofficeDestinationId, provenance: entry.backofficeIdProvenance };
+}

@@ -14,6 +14,15 @@ test('extractBackoffice parses the redacted bundle fixture', async () => {
   assert.equal(extract.pii_policy, 'redacted_no_raw_customer_contact');
 });
 
+test('destination registry is extracted with id + slug for crosswalk join', async () => {
+  const extract = await extractBackoffice(FIXTURE);
+
+  assert.ok(extract.destination_registry.length >= 2);
+  const ijen = extract.destination_registry.find((d) => d.slug === 'ijen-crater');
+  assert.ok(ijen);
+  assert.equal(ijen.id, 5);
+});
+
 test('pickup patterns aggregate logistics by location group with buckets', async () => {
   const extract = await extractBackoffice(FIXTURE);
 

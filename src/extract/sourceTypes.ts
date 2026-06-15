@@ -31,6 +31,7 @@ export interface BackofficeExtract {
   generated_at: string | null;
   source: string;
   pii_policy: string | null;
+  destination_registry: DestinationRegistryEntry[];
   pickup_patterns: PickupPattern[];
   dropoff_patterns: DropoffPattern[];
   hotel_meal_sources: HotelMealSource[];
@@ -39,6 +40,16 @@ export interface BackofficeExtract {
   destination_activity_cost_sources: ActivityCostSource[];
   actual_cost_patterns: ActualCostPattern[];
   data_quality_notes: string[];
+}
+
+/**
+ * PII-free destination reference from the bundle `destinations` section.
+ * `slug` is the stable cross-system join key to the jvto-web destination crosswalk.
+ */
+export interface DestinationRegistryEntry {
+  id: number;
+  slug: string | null;
+  name: string | null;
 }
 
 export interface PickupTimeBucket {
@@ -136,6 +147,7 @@ export const emptyBackofficeExtract = (): BackofficeExtract => ({
   generated_at: null,
   source: 'new-backoffice',
   pii_policy: null,
+  destination_registry: [],
   pickup_patterns: [],
   dropoff_patterns: [],
   hotel_meal_sources: [],
