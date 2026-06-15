@@ -1,0 +1,517 @@
+{
+  "source_mode": "source_connected",
+  "generated_at": "2026-06-15T00:00:00Z",
+  "status": "active",
+  "source_trace": [
+    {
+      "repo": "sambuko82/llm-wiki",
+      "path": "output/products/package-readiness/package-registry.json",
+      "field": null
+    },
+    {
+      "repo": "sambuko82/llm-wiki",
+      "path": "output/products/package-readiness/package-pricing.json",
+      "field": null
+    },
+    {
+      "repo": "sambuko82/llm-wiki",
+      "path": "output/products/package-readiness/package-itineraries.json",
+      "field": null
+    },
+    {
+      "repo": "sambuko82/llm-wiki",
+      "path": "output/products/package-readiness/booking-compatibility.json",
+      "field": null
+    }
+  ],
+  "manual_fields": [],
+  "missing_fields": [],
+  "packages": [
+    {
+      "package_id": "bromo-1d1n",
+      "slug": "bromo-1d1n",
+      "origin": "surabaya",
+      "duration": "1D1N",
+      "public_url": "/tours/from-surabaya/bromo-1d1n",
+      "ijen_relevant": false,
+      "visits_madakaripura": false,
+      "is_specialty": false
+    },
+    {
+      "package_id": "bromo-2d1n",
+      "slug": "bromo-2d1n",
+      "origin": "surabaya",
+      "duration": "2D1N",
+      "public_url": "/tours/from-surabaya/bromo-2d1n",
+      "ijen_relevant": false,
+      "visits_madakaripura": false,
+      "is_specialty": false
+    },
+    {
+      "package_id": "ijen-2d1n",
+      "slug": "ijen-2d1n",
+      "origin": "surabaya",
+      "duration": "2D1N",
+      "public_url": "/tours/from-surabaya/ijen-2d1n",
+      "ijen_relevant": true,
+      "visits_madakaripura": false,
+      "is_specialty": false
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-3d2n",
+      "slug": "ijen-bromo-madakaripura-3d2n",
+      "origin": "surabaya",
+      "duration": "3D2N",
+      "public_url": "/tours/from-surabaya/ijen-bromo-madakaripura-3d2n",
+      "ijen_relevant": true,
+      "visits_madakaripura": true,
+      "is_specialty": false
+    },
+    {
+      "package_id": "bromo-madakaripura-ijen-3d2n",
+      "slug": "bromo-madakaripura-ijen-3d2n",
+      "origin": "surabaya",
+      "duration": "3D2N",
+      "public_url": "/tours/from-surabaya/bromo-madakaripura-ijen-3d2n",
+      "ijen_relevant": true,
+      "visits_madakaripura": true,
+      "is_specialty": false
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "origin": "surabaya",
+      "duration": "4D3N",
+      "public_url": "/tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen_relevant": true,
+      "visits_madakaripura": false,
+      "is_specialty": false
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-4d3n",
+      "slug": "ijen-bromo-madakaripura-4d3n",
+      "origin": "surabaya",
+      "duration": "4D3N",
+      "public_url": "/tours/from-surabaya/ijen-bromo-madakaripura-4d3n",
+      "ijen_relevant": true,
+      "visits_madakaripura": true,
+      "is_specialty": false
+    },
+    {
+      "package_id": "tumpak-sewu-bromo-ijen-4d3n",
+      "slug": "tumpak-sewu-bromo-ijen-4d3n",
+      "origin": "surabaya",
+      "duration": "4D3N",
+      "public_url": "/tours/from-surabaya/tumpak-sewu-bromo-ijen-4d3n",
+      "ijen_relevant": true,
+      "visits_madakaripura": false,
+      "is_specialty": false
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "origin": "surabaya",
+      "duration": "5D4N",
+      "public_url": "/tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen_relevant": true,
+      "visits_madakaripura": false,
+      "is_specialty": false
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-malang-5d4n",
+      "slug": "ijen-bromo-madakaripura-malang-5d4n",
+      "origin": "surabaya",
+      "duration": "5D4N",
+      "public_url": "/tours/from-surabaya/ijen-bromo-madakaripura-malang-5d4n",
+      "ijen_relevant": true,
+      "visits_madakaripura": true,
+      "is_specialty": false
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "origin": "surabaya",
+      "duration": "6D5N",
+      "public_url": "/tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "ijen_relevant": true,
+      "visits_madakaripura": false,
+      "is_specialty": false
+    },
+    {
+      "package_id": "taman-safari-prigen-bromo-madakaripura-3d2n",
+      "slug": "taman-safari-prigen-bromo-madakaripura-3d2n",
+      "origin": "surabaya",
+      "duration": "3D2N",
+      "public_url": "/tours/from-surabaya/taman-safari-prigen-bromo-madakaripura-3d2n",
+      "ijen_relevant": false,
+      "visits_madakaripura": true,
+      "is_specialty": true
+    },
+    {
+      "package_id": "bali/bromo-ijen-3d2n",
+      "slug": "bromo-ijen-3d2n",
+      "origin": "bali",
+      "duration": "3D2N",
+      "public_url": "/tours/from-bali/bromo-ijen-3d2n",
+      "ijen_relevant": true,
+      "visits_madakaripura": false,
+      "is_specialty": false
+    },
+    {
+      "package_id": "bali/ijen-bromo-madakaripura-3d2n",
+      "slug": "ijen-bromo-madakaripura-3d2n",
+      "origin": "bali",
+      "duration": "3D2N",
+      "public_url": "/tours/from-bali/ijen-bromo-madakaripura-3d2n",
+      "ijen_relevant": true,
+      "visits_madakaripura": true,
+      "is_specialty": false
+    },
+    {
+      "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "origin": "bali",
+      "duration": "4D3N",
+      "public_url": "/tours/from-bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen_relevant": true,
+      "visits_madakaripura": false,
+      "is_specialty": false
+    },
+    {
+      "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "origin": "bali",
+      "duration": "5D4N",
+      "public_url": "/tours/from-bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen_relevant": true,
+      "visits_madakaripura": false,
+      "is_specialty": false
+    }
+  ],
+  "pricing": [
+    {
+      "package_id": "bromo-1d1n",
+      "slug": "bromo-1d1n",
+      "currency": "IDR",
+      "ferry_included": false,
+      "pax_tier_count": 5,
+      "idr_per_person_min": 1000000,
+      "idr_per_person_max": 1550000
+    },
+    {
+      "package_id": "bromo-2d1n",
+      "slug": "bromo-2d1n",
+      "currency": "IDR",
+      "ferry_included": false,
+      "pax_tier_count": 6,
+      "idr_per_person_min": 1750000,
+      "idr_per_person_max": 2800000
+    },
+    {
+      "package_id": "ijen-2d1n",
+      "slug": "ijen-2d1n",
+      "currency": "IDR",
+      "ferry_included": false,
+      "pax_tier_count": 6,
+      "idr_per_person_min": 1550000,
+      "idr_per_person_max": 2300000
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-3d2n",
+      "slug": "ijen-bromo-madakaripura-3d2n",
+      "currency": "IDR",
+      "ferry_included": false,
+      "pax_tier_count": 7,
+      "idr_per_person_min": 2450000,
+      "idr_per_person_max": 6300000
+    },
+    {
+      "package_id": "bromo-madakaripura-ijen-3d2n",
+      "slug": "bromo-madakaripura-ijen-3d2n",
+      "currency": "IDR",
+      "ferry_included": false,
+      "pax_tier_count": 7,
+      "idr_per_person_min": 2450000,
+      "idr_per_person_max": 6300000
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "currency": "IDR",
+      "ferry_included": false,
+      "pax_tier_count": 7,
+      "idr_per_person_min": 3125000,
+      "idr_per_person_max": 8050000
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-4d3n",
+      "slug": "ijen-bromo-madakaripura-4d3n",
+      "currency": "IDR",
+      "ferry_included": false,
+      "pax_tier_count": 7,
+      "idr_per_person_min": 3025000,
+      "idr_per_person_max": 7550000
+    },
+    {
+      "package_id": "tumpak-sewu-bromo-ijen-4d3n",
+      "slug": "tumpak-sewu-bromo-ijen-4d3n",
+      "currency": "IDR",
+      "ferry_included": false,
+      "pax_tier_count": 7,
+      "idr_per_person_min": 3125000,
+      "idr_per_person_max": 8050000
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "currency": "IDR",
+      "ferry_included": false,
+      "pax_tier_count": 7,
+      "idr_per_person_min": 3650000,
+      "idr_per_person_max": 9050000
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-malang-5d4n",
+      "slug": "ijen-bromo-madakaripura-malang-5d4n",
+      "currency": "IDR",
+      "ferry_included": false,
+      "pax_tier_count": 6,
+      "idr_per_person_min": 3850000,
+      "idr_per_person_max": 5250000
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "currency": "IDR",
+      "ferry_included": false,
+      "pax_tier_count": 6,
+      "idr_per_person_min": 4750000,
+      "idr_per_person_max": 6050000
+    },
+    {
+      "package_id": "taman-safari-prigen-bromo-madakaripura-3d2n",
+      "slug": "taman-safari-prigen-bromo-madakaripura-3d2n",
+      "currency": "IDR",
+      "ferry_included": false,
+      "pax_tier_count": 6,
+      "idr_per_person_min": 3450000,
+      "idr_per_person_max": 4350000
+    },
+    {
+      "package_id": "bali/bromo-ijen-3d2n",
+      "slug": "bromo-ijen-3d2n",
+      "currency": "IDR",
+      "ferry_included": true,
+      "pax_tier_count": 6,
+      "idr_per_person_min": 2850000,
+      "idr_per_person_max": 4050000
+    },
+    {
+      "package_id": "bali/ijen-bromo-madakaripura-3d2n",
+      "slug": "ijen-bromo-madakaripura-3d2n",
+      "currency": "IDR",
+      "ferry_included": true,
+      "pax_tier_count": 7,
+      "idr_per_person_min": 2850000,
+      "idr_per_person_max": 7500000
+    },
+    {
+      "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "currency": "IDR",
+      "ferry_included": true,
+      "pax_tier_count": 7,
+      "idr_per_person_min": 3475000,
+      "idr_per_person_max": 9050000
+    },
+    {
+      "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "currency": "IDR",
+      "ferry_included": true,
+      "pax_tier_count": 6,
+      "idr_per_person_min": 4050000,
+      "idr_per_person_max": 5450000
+    }
+  ],
+  "itineraries": [
+    {
+      "package_id": "bromo-1d1n",
+      "slug": "bromo-1d1n",
+      "day_count": 1
+    },
+    {
+      "package_id": "bromo-2d1n",
+      "slug": "bromo-2d1n",
+      "day_count": 2
+    },
+    {
+      "package_id": "ijen-2d1n",
+      "slug": "ijen-2d1n",
+      "day_count": 2
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-3d2n",
+      "slug": "ijen-bromo-madakaripura-3d2n",
+      "day_count": 3
+    },
+    {
+      "package_id": "bromo-madakaripura-ijen-3d2n",
+      "slug": "bromo-madakaripura-ijen-3d2n",
+      "day_count": 3
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "day_count": 4
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-4d3n",
+      "slug": "ijen-bromo-madakaripura-4d3n",
+      "day_count": 4
+    },
+    {
+      "package_id": "tumpak-sewu-bromo-ijen-4d3n",
+      "slug": "tumpak-sewu-bromo-ijen-4d3n",
+      "day_count": 4
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "day_count": 5
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-malang-5d4n",
+      "slug": "ijen-bromo-madakaripura-malang-5d4n",
+      "day_count": 5
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "day_count": 6
+    },
+    {
+      "package_id": "taman-safari-prigen-bromo-madakaripura-3d2n",
+      "slug": "taman-safari-prigen-bromo-madakaripura-3d2n",
+      "day_count": 3
+    },
+    {
+      "package_id": "bali/bromo-ijen-3d2n",
+      "slug": "bromo-ijen-3d2n",
+      "day_count": 3
+    },
+    {
+      "package_id": "bali/ijen-bromo-madakaripura-3d2n",
+      "slug": "ijen-bromo-madakaripura-3d2n",
+      "day_count": 3
+    },
+    {
+      "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "day_count": 4
+    },
+    {
+      "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "day_count": 5
+    }
+  ],
+  "booking_compatibility": [
+    {
+      "package_id": "bromo-1d1n",
+      "slug": "bromo-1d1n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    },
+    {
+      "package_id": "bromo-2d1n",
+      "slug": "bromo-2d1n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    },
+    {
+      "package_id": "ijen-2d1n",
+      "slug": "ijen-2d1n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-3d2n",
+      "slug": "ijen-bromo-madakaripura-3d2n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    },
+    {
+      "package_id": "bromo-madakaripura-ijen-3d2n",
+      "slug": "bromo-madakaripura-ijen-3d2n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-4d3n",
+      "slug": "ijen-bromo-madakaripura-4d3n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    },
+    {
+      "package_id": "tumpak-sewu-bromo-ijen-4d3n",
+      "slug": "tumpak-sewu-bromo-ijen-4d3n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-malang-5d4n",
+      "slug": "ijen-bromo-madakaripura-malang-5d4n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    },
+    {
+      "package_id": "taman-safari-prigen-bromo-madakaripura-3d2n",
+      "slug": "taman-safari-prigen-bromo-madakaripura-3d2n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    },
+    {
+      "package_id": "bali/bromo-ijen-3d2n",
+      "slug": "bromo-ijen-3d2n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    },
+    {
+      "package_id": "bali/ijen-bromo-madakaripura-3d2n",
+      "slug": "ijen-bromo-madakaripura-3d2n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    },
+    {
+      "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    },
+    {
+      "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "instant_book": true,
+      "whatsapp_assisted": true
+    }
+  ]
+}

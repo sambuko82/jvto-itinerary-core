@@ -49,10 +49,10 @@
     "Round 3 gaps: Tumpak Sewu access/guide/descent-time, Bromo opening hours + per-year Kasada dates + booking-vs-jeep timing, Ijen gas-mask-rental/local-guide mandate, Ketapang peak queue times"
   ],
   "next_actions": [
-    "Connect llm-wiki extractor",
-    "Connect jvto-web route/destination extractor (needed for backoffice destination_id crosswalk)",
+    "Phase 2 done: llm-wiki + jvto-web + new-backoffice extractors connected (see generated/itinerary-intelligence/extraction-manifest.json, source_mode=source_connected)",
+    "Phase 3: build package-catalog-index + location-alias-registry + route-node-index from connected extracts",
     "Replace redacted backoffice fixture with a real ExportDataItineraryCore export",
-    "Replace manual_seed fields with verified source_trace where possible",
+    "Replace remaining manual_seed dataset fields with verified source_trace where possible",
     "Run deep-research round 3 for the remaining Tumpak Sewu / Bromo / Ijen-guide gaps"
   ],
   "status": "mvp_seed_outputs_ready"

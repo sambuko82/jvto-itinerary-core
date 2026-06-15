@@ -9,6 +9,7 @@ import { buildSourceInventory } from './compile/build-source-inventory.js';
 import { buildSchemaInventory } from './compile/build-schema-inventory.js';
 import { buildExportEndpointInventory } from './compile/build-export-endpoint-inventory.js';
 import { validateItineraryIntelligence } from './validate/validate-itinerary-intelligence.js';
+import { buildExtractionManifest } from './compile/build-extraction-manifest.js';
 
 async function main() {
   const command = process.argv[2];
@@ -38,6 +39,20 @@ async function main() {
       console.error('Phase 1 validation FAILED: critical errors present.');
       process.exit(1);
     }
+    return;
+  }
+
+  if (command === 'extract') {
+    // Phase 2 Extractor Connection: connected, normalized source extracts.
+    // Note: the raw backoffice extract carries hotel/vehicle/crew `name` keys, so it is
+    // NOT persisted as JSON (PII-key convention). It is consumed in-memory by builders and
+    // covered by extract-backoffice.test.ts; the manifest records its connection + counts.
+    const { manifest, llmWiki, jvtoWeb } = await buildExtractionManifest();
+    await writeJson(`${GENERATED_DIR}/extract-llm-wiki.json`, llmWiki);
+    await writeJson(`${GENERATED_DIR}/extract-jvto-web.json`, jvtoWeb);
+    await writeJson(`${GENERATED_DIR}/extraction-manifest.json`, manifest);
+    console.log(JSON.stringify(manifest.extractors.map((e) => ({ extractor: e.extractor, connected: e.connected, counts: e.record_counts })), null, 2));
+    console.log(`source_mode: ${manifest.source_mode} | status: ${manifest.status}`);
     return;
   }
 
