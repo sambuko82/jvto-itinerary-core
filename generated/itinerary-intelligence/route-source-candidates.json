@@ -1,0 +1,1268 @@
+[
+  {
+    "id": "candidate__bali_bromo_ijen_3d2n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bali/bromo-ijen-3d2n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-bali/bromo-ijen-3d2n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "bali/bromo-ijen-3d2n",
+    "slug": "bromo-ijen-3d2n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Ijen Crater",
+      "Mount Bromo",
+      "Madakaripura Waterfall"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Hotel in Bali",
+        "to_label": "Gilimanuk Harbor",
+        "from_node": "bali",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Gilimanuk Harbor",
+        "to_label": "Ketapang Port",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Ketapang Port",
+        "to_label": "Bromo Area",
+        "from_node": null,
+        "to_node": "bromo",
+        "resolved": false
+      },
+      {
+        "from_label": "Bromo Hotel",
+        "to_label": "Madakaripura Waterfall",
+        "from_node": "bromo",
+        "to_node": "madakaripura",
+        "resolved": true
+      },
+      {
+        "from_label": "Madakaripura",
+        "to_label": "Bondowoso",
+        "from_node": "madakaripura",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Ijen area",
+        "to_label": "Ketapang Harbor",
+        "from_node": "ijen",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Ketapang Port",
+        "to_label": "Gilimanuk Harbor",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Gilimanuk Harbor",
+        "to_label": "Bali",
+        "from_node": null,
+        "to_node": "bali",
+        "resolved": false
+      }
+    ],
+    "compound_phrase_candidates": [],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  },
+  {
+    "id": "candidate__bali_ijen_bromo_madakaripura_3d2n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bali/ijen-bromo-madakaripura-3d2n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-bali/ijen-bromo-madakaripura-3d2n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "bali/ijen-bromo-madakaripura-3d2n",
+    "slug": "ijen-bromo-madakaripura-3d2n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Ijen Crater",
+      "Mount Bromo",
+      "Madakaripura Waterfall"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Hotel in Bali",
+        "to_label": "Gilimanuk Harbor",
+        "from_node": "bali",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Gilimanuk Harbor",
+        "to_label": "Ketapang Port",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Ketapang Port",
+        "to_label": "Banyuwangi Hotel",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Bondowoso City",
+        "to_label": "Bromo Area",
+        "from_node": null,
+        "to_node": "bromo",
+        "resolved": false
+      },
+      {
+        "from_label": "Madakaripura",
+        "to_label": "Surabaya",
+        "from_node": "madakaripura",
+        "to_node": "surabaya",
+        "resolved": true
+      }
+    ],
+    "compound_phrase_candidates": [],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  },
+  {
+    "id": "candidate__bali_ijen_papuma_tumpak_sewu_bromo_4d3n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-bali/ijen-papuma-tumpak-sewu-bromo-4d3n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Ijen Crater",
+      "Mount Bromo",
+      "Papuma Beach"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Hotel in Bali",
+        "to_label": "Gilimanuk Harbor",
+        "from_node": "bali",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Gilimanuk Harbor",
+        "to_label": "Ketapang Port",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Ketapang Port",
+        "to_label": "Banyuwangi Hotel",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Bondowoso City",
+        "to_label": "Jember",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Papuma Beach",
+        "to_label": "Hotel in Jember",
+        "from_node": "papuma",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Hotel in Jember",
+        "to_label": "Tumpak Sewu",
+        "from_node": null,
+        "to_node": "tumpak_sewu",
+        "resolved": false
+      },
+      {
+        "from_label": "Bromo Area",
+        "to_label": "Surabaya",
+        "from_node": "bromo",
+        "to_node": "surabaya",
+        "resolved": true
+      },
+      {
+        "from_label": "Surabaya",
+        "to_label": "Airport / Hotel",
+        "from_node": "surabaya",
+        "to_node": null,
+        "resolved": false
+      }
+    ],
+    "compound_phrase_candidates": [
+      {
+        "node_id": "tumpak_sewu",
+        "member_tokens": [
+          "tumpak",
+          "sewu"
+        ],
+        "source_strength": "confirmed",
+        "sources": [
+          "jvto-web:accommodationPlan.area",
+          "jvto-web:keyExperiences",
+          "jvto-web:product.route",
+          "jvto-web:travelAction",
+          "new-backoffice:destinations.name",
+          "new-backoffice:destinations.slug"
+        ]
+      }
+    ],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  },
+  {
+    "id": "candidate__bali_ijen_papuma_tumpak_sewu_bromo_5d4n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-bali/ijen-papuma-tumpak-sewu-bromo-5d4n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Ijen Crater",
+      "Mount Bromo",
+      "Papuma Beach"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Hotel in Bali",
+        "to_label": "Gilimanuk Harbor",
+        "from_node": "bali",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Gilimanuk Harbor",
+        "to_label": "Ketapang Port",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Ketapang Port",
+        "to_label": "Banyuwangi Hotel",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Bondowoso City",
+        "to_label": "Jember",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Papuma Beach",
+        "to_label": "Hotel in Jember",
+        "from_node": "papuma",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Hotel in Jember",
+        "to_label": "Tumpak Sewu",
+        "from_node": null,
+        "to_node": "tumpak_sewu",
+        "resolved": false
+      },
+      {
+        "from_label": "Bromo Area",
+        "to_label": "Surabaya",
+        "from_node": "bromo",
+        "to_node": "surabaya",
+        "resolved": true
+      },
+      {
+        "from_label": "Surabaya",
+        "to_label": "Airport / Hotel",
+        "from_node": "surabaya",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Hotel",
+        "to_label": "Juanda Airport",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      }
+    ],
+    "compound_phrase_candidates": [
+      {
+        "node_id": "tumpak_sewu",
+        "member_tokens": [
+          "tumpak",
+          "sewu"
+        ],
+        "source_strength": "confirmed",
+        "sources": [
+          "jvto-web:accommodationPlan.area",
+          "jvto-web:keyExperiences",
+          "jvto-web:product.route",
+          "jvto-web:travelAction",
+          "new-backoffice:destinations.name",
+          "new-backoffice:destinations.slug"
+        ]
+      }
+    ],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  },
+  {
+    "id": "candidate__bromo_1d1n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bromo-1d1n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-surabaya/bromo-1d1n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "bromo-1d1n",
+    "slug": "bromo-1d1n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Mount Bromo"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Surabaya",
+        "to_label": "Bromo Transit",
+        "from_node": "surabaya",
+        "to_node": "bromo",
+        "resolved": true
+      },
+      {
+        "from_label": "Bromo",
+        "to_label": "Transit Point",
+        "from_node": "bromo",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Bromo",
+        "to_label": "Surabaya",
+        "from_node": "bromo",
+        "to_node": "surabaya",
+        "resolved": true
+      }
+    ],
+    "compound_phrase_candidates": [],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  },
+  {
+    "id": "candidate__bromo_2d1n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bromo-2d1n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-surabaya/bromo-2d1n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "bromo-2d1n",
+    "slug": "bromo-2d1n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Mount Bromo",
+      "Madakaripura Waterfall"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Surabaya",
+        "to_label": "Bromo Area",
+        "from_node": "surabaya",
+        "to_node": "bromo",
+        "resolved": true
+      },
+      {
+        "from_label": "Madakaripura",
+        "to_label": "Surabaya",
+        "from_node": "madakaripura",
+        "to_node": "surabaya",
+        "resolved": true
+      }
+    ],
+    "compound_phrase_candidates": [],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  },
+  {
+    "id": "candidate__bromo_madakaripura_ijen_3d2n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bromo-madakaripura-ijen-3d2n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-surabaya/bromo-madakaripura-ijen-3d2n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "bromo-madakaripura-ijen-3d2n",
+    "slug": "bromo-madakaripura-ijen-3d2n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Ijen Crater",
+      "Mount Bromo",
+      "Madakaripura Waterfall"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Surabaya",
+        "to_label": "Bromo Area",
+        "from_node": "surabaya",
+        "to_node": "bromo",
+        "resolved": true
+      },
+      {
+        "from_label": "Bromo Hotel",
+        "to_label": "Madakaripura Waterfall",
+        "from_node": "bromo",
+        "to_node": "madakaripura",
+        "resolved": true
+      },
+      {
+        "from_label": "Madakaripura",
+        "to_label": "Bondowoso",
+        "from_node": "madakaripura",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Ijen area",
+        "to_label": "Ketapang Harbor",
+        "from_node": "ijen",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Ketapang Port",
+        "to_label": "Gilimanuk Harbor",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Gilimanuk Harbor",
+        "to_label": "Bali",
+        "from_node": null,
+        "to_node": "bali",
+        "resolved": false
+      }
+    ],
+    "compound_phrase_candidates": [],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  },
+  {
+    "id": "candidate__ijen_2d1n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen-2d1n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-surabaya/ijen-2d1n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "ijen-2d1n",
+    "slug": "ijen-2d1n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Ijen Crater"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Surabaya",
+        "to_label": "Bondowoso",
+        "from_node": "surabaya",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Ijen area",
+        "to_label": "Surabaya",
+        "from_node": "ijen",
+        "to_node": "surabaya",
+        "resolved": true
+      }
+    ],
+    "compound_phrase_candidates": [],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  },
+  {
+    "id": "candidate__ijen_bromo_madakaripura_3d2n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen-bromo-madakaripura-3d2n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-surabaya/ijen-bromo-madakaripura-3d2n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "ijen-bromo-madakaripura-3d2n",
+    "slug": "ijen-bromo-madakaripura-3d2n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Ijen Crater",
+      "Mount Bromo",
+      "Madakaripura Waterfall"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Surabaya",
+        "to_label": "Bondowoso",
+        "from_node": "surabaya",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Bondowoso City",
+        "to_label": "Bromo Area",
+        "from_node": null,
+        "to_node": "bromo",
+        "resolved": false
+      },
+      {
+        "from_label": "Madakaripura",
+        "to_label": "Surabaya",
+        "from_node": "madakaripura",
+        "to_node": "surabaya",
+        "resolved": true
+      }
+    ],
+    "compound_phrase_candidates": [],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  },
+  {
+    "id": "candidate__ijen_bromo_madakaripura_4d3n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen-bromo-madakaripura-4d3n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-surabaya/ijen-bromo-madakaripura-4d3n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "ijen-bromo-madakaripura-4d3n",
+    "slug": "ijen-bromo-madakaripura-4d3n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Ijen Crater",
+      "Mount Bromo",
+      "Madakaripura Waterfall"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Surabaya",
+        "to_label": "Bondowoso",
+        "from_node": "surabaya",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Bondowoso City",
+        "to_label": "Bromo Area",
+        "from_node": null,
+        "to_node": "bromo",
+        "resolved": false
+      },
+      {
+        "from_label": "Madakaripura",
+        "to_label": "Surabaya",
+        "from_node": "madakaripura",
+        "to_node": "surabaya",
+        "resolved": true
+      },
+      {
+        "from_label": "Hotel",
+        "to_label": "Juanda Airport",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      }
+    ],
+    "compound_phrase_candidates": [],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  },
+  {
+    "id": "candidate__ijen_bromo_madakaripura_malang_5d4n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen-bromo-madakaripura-malang-5d4n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-surabaya/ijen-bromo-madakaripura-malang-5d4n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "ijen-bromo-madakaripura-malang-5d4n",
+    "slug": "ijen-bromo-madakaripura-malang-5d4n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Ijen Crater",
+      "Mount Bromo",
+      "Madakaripura Waterfall"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Surabaya",
+        "to_label": "Bondowoso",
+        "from_node": "surabaya",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Bondowoso City",
+        "to_label": "Bromo Area",
+        "from_node": null,
+        "to_node": "bromo",
+        "resolved": false
+      },
+      {
+        "from_label": "Bromo Hotel",
+        "to_label": "Madakaripura Waterfall",
+        "from_node": "bromo",
+        "to_node": "madakaripura",
+        "resolved": true
+      },
+      {
+        "from_label": "Madakaripura",
+        "to_label": "Malang",
+        "from_node": "madakaripura",
+        "to_node": "malang",
+        "resolved": true
+      },
+      {
+        "from_label": "Batu",
+        "to_label": "Surabaya",
+        "from_node": null,
+        "to_node": "surabaya",
+        "resolved": false
+      },
+      {
+        "from_label": "Hotel",
+        "to_label": "Juanda Airport",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      }
+    ],
+    "compound_phrase_candidates": [],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  },
+  {
+    "id": "candidate__ijen_papuma_tumpak_sewu_bromo_4d3n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen-papuma-tumpak-sewu-bromo-4d3n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-4d3n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Ijen Crater",
+      "Mount Bromo",
+      "Papuma Beach"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Surabaya",
+        "to_label": "Bondowoso",
+        "from_node": "surabaya",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Bondowoso City",
+        "to_label": "Jember",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Papuma Beach",
+        "to_label": "Hotel in Jember",
+        "from_node": "papuma",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Hotel in Jember",
+        "to_label": "Tumpak Sewu",
+        "from_node": null,
+        "to_node": "tumpak_sewu",
+        "resolved": false
+      },
+      {
+        "from_label": "Bromo Area",
+        "to_label": "Surabaya",
+        "from_node": "bromo",
+        "to_node": "surabaya",
+        "resolved": true
+      },
+      {
+        "from_label": "Surabaya",
+        "to_label": "Airport / Hotel",
+        "from_node": "surabaya",
+        "to_node": null,
+        "resolved": false
+      }
+    ],
+    "compound_phrase_candidates": [
+      {
+        "node_id": "tumpak_sewu",
+        "member_tokens": [
+          "tumpak",
+          "sewu"
+        ],
+        "source_strength": "confirmed",
+        "sources": [
+          "jvto-web:accommodationPlan.area",
+          "jvto-web:keyExperiences",
+          "jvto-web:product.route",
+          "jvto-web:travelAction",
+          "new-backoffice:destinations.name",
+          "new-backoffice:destinations.slug"
+        ]
+      }
+    ],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  },
+  {
+    "id": "candidate__ijen_papuma_tumpak_sewu_bromo_5d4n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen-papuma-tumpak-sewu-bromo-5d4n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-5d4n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Ijen Crater",
+      "Mount Bromo",
+      "Papuma Beach"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Surabaya",
+        "to_label": "Bondowoso",
+        "from_node": "surabaya",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Bondowoso City",
+        "to_label": "Jember",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Papuma Beach",
+        "to_label": "Hotel in Jember",
+        "from_node": "papuma",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Hotel in Jember",
+        "to_label": "Tumpak Sewu",
+        "from_node": null,
+        "to_node": "tumpak_sewu",
+        "resolved": false
+      },
+      {
+        "from_label": "Bromo Area",
+        "to_label": "Surabaya",
+        "from_node": "bromo",
+        "to_node": "surabaya",
+        "resolved": true
+      },
+      {
+        "from_label": "Surabaya",
+        "to_label": "Airport / Hotel",
+        "from_node": "surabaya",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Hotel",
+        "to_label": "Juanda Airport",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      }
+    ],
+    "compound_phrase_candidates": [
+      {
+        "node_id": "tumpak_sewu",
+        "member_tokens": [
+          "tumpak",
+          "sewu"
+        ],
+        "source_strength": "confirmed",
+        "sources": [
+          "jvto-web:accommodationPlan.area",
+          "jvto-web:keyExperiences",
+          "jvto-web:product.route",
+          "jvto-web:travelAction",
+          "new-backoffice:destinations.name",
+          "new-backoffice:destinations.slug"
+        ]
+      }
+    ],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  },
+  {
+    "id": "candidate__ijen_papuma_tumpak_sewu_bromo_malang_6d5n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Ijen Crater",
+      "Mount Bromo",
+      "Malang City",
+      "Papuma Beach"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Surabaya",
+        "to_label": "Bondowoso",
+        "from_node": "surabaya",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Bondowoso City",
+        "to_label": "Jember",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Papuma Beach",
+        "to_label": "Hotel in Jember",
+        "from_node": "papuma",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Hotel in Jember",
+        "to_label": "Tumpak Sewu",
+        "from_node": null,
+        "to_node": "tumpak_sewu",
+        "resolved": false
+      },
+      {
+        "from_label": "Bromo Area",
+        "to_label": "Malang",
+        "from_node": "bromo",
+        "to_node": "malang",
+        "resolved": true
+      },
+      {
+        "from_label": "Batu",
+        "to_label": "Malang",
+        "from_node": null,
+        "to_node": "malang",
+        "resolved": false
+      },
+      {
+        "from_label": "Hotel",
+        "to_label": "Juanda Airport",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      }
+    ],
+    "compound_phrase_candidates": [
+      {
+        "node_id": "tumpak_sewu",
+        "member_tokens": [
+          "tumpak",
+          "sewu"
+        ],
+        "source_strength": "confirmed",
+        "sources": [
+          "jvto-web:accommodationPlan.area",
+          "jvto-web:keyExperiences",
+          "jvto-web:product.route",
+          "jvto-web:travelAction",
+          "new-backoffice:destinations.name",
+          "new-backoffice:destinations.slug"
+        ]
+      }
+    ],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  },
+  {
+    "id": "candidate__taman_safari_prigen_bromo_madakaripura_3d2n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "taman-safari-prigen-bromo-madakaripura-3d2n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-surabaya/taman-safari-prigen-bromo-madakaripura-3d2n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "taman-safari-prigen-bromo-madakaripura-3d2n",
+    "slug": "taman-safari-prigen-bromo-madakaripura-3d2n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Taman Safari Prigen",
+      "Mount Bromo",
+      "Madakaripura Waterfall"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Hotel in Surabaya",
+        "to_label": "Prigen Safari Park",
+        "from_node": "surabaya",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Prigen Safari Park",
+        "to_label": "Bromo area",
+        "from_node": null,
+        "to_node": "bromo",
+        "resolved": false
+      },
+      {
+        "from_label": "Hotel in Surabaya",
+        "to_label": "Prigen Safari Park",
+        "from_node": "surabaya",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Prigen Safari Park",
+        "to_label": "Bromo area",
+        "from_node": null,
+        "to_node": "bromo",
+        "resolved": false
+      },
+      {
+        "from_label": "Madakaripura",
+        "to_label": "Surabaya",
+        "from_node": "madakaripura",
+        "to_node": "surabaya",
+        "resolved": true
+      }
+    ],
+    "compound_phrase_candidates": [
+      {
+        "node_id": "taman_safari_prigen",
+        "member_tokens": [
+          "taman",
+          "safari",
+          "prigen"
+        ],
+        "source_strength": "supported",
+        "sources": [
+          "jvto-web:accommodationPlan.area",
+          "jvto-web:keyExperiences",
+          "jvto-web:product.route"
+        ]
+      }
+    ],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  },
+  {
+    "id": "candidate__tumpak_sewu_bromo_ijen_4d3n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "tumpak-sewu-bromo-ijen-4d3n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tours/from-surabaya/tumpak-sewu-bromo-ijen-4d3n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "tumpak-sewu-bromo-ijen-4d3n",
+    "slug": "tumpak-sewu-bromo-ijen-4d3n",
+    "candidate_source": "jvto_web_package_detail",
+    "route_labels": [
+      "Mount Bromo",
+      "Tumpak Sewu Waterfall",
+      "Ijen Crater"
+    ],
+    "movement_candidates": [
+      {
+        "from_label": "Surabaya",
+        "to_label": "Tumpak Sewu area",
+        "from_node": "surabaya",
+        "to_node": "tumpak_sewu",
+        "resolved": true
+      },
+      {
+        "from_label": "Tumpak Sewu",
+        "to_label": "Mount Bromo area",
+        "from_node": "tumpak_sewu",
+        "to_node": "bromo",
+        "resolved": true
+      },
+      {
+        "from_label": "Bromo Area",
+        "to_label": "Bondowoso",
+        "from_node": "bromo",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Ijen area",
+        "to_label": "Ketapang Harbor",
+        "from_node": "ijen",
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Ketapang Port",
+        "to_label": "Gilimanuk Harbor",
+        "from_node": null,
+        "to_node": null,
+        "resolved": false
+      },
+      {
+        "from_label": "Gilimanuk Harbor",
+        "to_label": "Bali",
+        "from_node": null,
+        "to_node": "bali",
+        "resolved": false
+      }
+    ],
+    "compound_phrase_candidates": [
+      {
+        "node_id": "tumpak_sewu",
+        "member_tokens": [
+          "tumpak",
+          "sewu"
+        ],
+        "source_strength": "confirmed",
+        "sources": [
+          "jvto-web:accommodationPlan.area",
+          "jvto-web:keyExperiences",
+          "jvto-web:product.route",
+          "jvto-web:travelAction",
+          "new-backoffice:destinations.name",
+          "new-backoffice:destinations.slug"
+        ]
+      }
+    ],
+    "unresolved_tokens": [],
+    "source_strength": "confirmed"
+  }
+]

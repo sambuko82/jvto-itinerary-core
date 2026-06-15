@@ -9,7 +9,7 @@
         "field": "bali"
       }
     ],
-    "confidence": "high",
+    "confidence": "medium",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
@@ -18,6 +18,9 @@
     ],
     "status": "active",
     "node_id": "bali",
+    "member_tokens": [
+      "bali"
+    ],
     "node_roles": [
       "origin"
     ],
@@ -28,7 +31,10 @@
       "ijen-papuma-tumpak-sewu-bromo-5d4n"
     ],
     "reference_count": 4,
-    "standalone_destination": false,
+    "source_strength": "supported",
+    "source_labels": [
+      "llm-wiki:package-registry.origin"
+    ],
     "geo": null,
     "type": null,
     "ambiguous": false
@@ -52,6 +58,9 @@
     ],
     "status": "active",
     "node_id": "bromo",
+    "member_tokens": [
+      "bromo"
+    ],
     "node_roles": [
       "destination"
     ],
@@ -70,7 +79,15 @@
       "tumpak-sewu-bromo-ijen-4d3n"
     ],
     "reference_count": 12,
-    "standalone_destination": true,
+    "source_strength": "confirmed",
+    "source_labels": [
+      "jvto-web:accommodationPlan.area",
+      "jvto-web:keyExperiences",
+      "jvto-web:product.route",
+      "jvto-web:travelAction",
+      "new-backoffice:destinations.name",
+      "new-backoffice:destinations.slug"
+    ],
     "geo": null,
     "type": null,
     "ambiguous": false
@@ -94,6 +111,9 @@
     ],
     "status": "active",
     "node_id": "ijen",
+    "member_tokens": [
+      "ijen"
+    ],
     "node_roles": [
       "destination"
     ],
@@ -110,7 +130,15 @@
       "tumpak-sewu-bromo-ijen-4d3n"
     ],
     "reference_count": 10,
-    "standalone_destination": true,
+    "source_strength": "confirmed",
+    "source_labels": [
+      "jvto-web:accommodationPlan.area",
+      "jvto-web:keyExperiences",
+      "jvto-web:product.route",
+      "jvto-web:travelAction",
+      "new-backoffice:destinations.name",
+      "new-backoffice:destinations.slug"
+    ],
     "geo": null,
     "type": null,
     "ambiguous": false
@@ -125,16 +153,18 @@
         "field": "madakaripura"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "geo",
-      "type",
-      "canonical_confirmation"
+      "type"
     ],
-    "status": "incomplete",
+    "status": "active",
     "node_id": "madakaripura",
+    "member_tokens": [
+      "madakaripura"
+    ],
     "node_roles": [
       "destination"
     ],
@@ -146,10 +176,15 @@
       "taman-safari-prigen-bromo-madakaripura-3d2n"
     ],
     "reference_count": 5,
-    "standalone_destination": false,
+    "source_strength": "confirmed",
+    "source_labels": [
+      "jvto-web:keyExperiences",
+      "jvto-web:product.route",
+      "jvto-web:travelAction"
+    ],
     "geo": null,
     "type": null,
-    "ambiguous": true
+    "ambiguous": false
   },
   {
     "id": "node__malang",
@@ -161,16 +196,18 @@
         "field": "malang"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "geo",
-      "type",
-      "canonical_confirmation"
+      "type"
     ],
-    "status": "incomplete",
+    "status": "active",
     "node_id": "malang",
+    "member_tokens": [
+      "malang"
+    ],
     "node_roles": [
       "destination"
     ],
@@ -179,10 +216,16 @@
       "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
     ],
     "reference_count": 2,
-    "standalone_destination": false,
+    "source_strength": "confirmed",
+    "source_labels": [
+      "jvto-web:accommodationPlan.area",
+      "jvto-web:keyExperiences",
+      "jvto-web:product.route",
+      "jvto-web:travelAction"
+    ],
     "geo": null,
     "type": null,
-    "ambiguous": true
+    "ambiguous": false
   },
   {
     "id": "node__papuma",
@@ -194,16 +237,18 @@
         "field": "papuma"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "geo",
-      "type",
-      "canonical_confirmation"
+      "type"
     ],
-    "status": "incomplete",
+    "status": "active",
     "node_id": "papuma",
+    "member_tokens": [
+      "papuma"
+    ],
     "node_roles": [
       "destination"
     ],
@@ -213,109 +258,16 @@
       "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
     ],
     "reference_count": 3,
-    "standalone_destination": false,
+    "source_strength": "confirmed",
+    "source_labels": [
+      "jvto-web:accommodationPlan.area",
+      "jvto-web:keyExperiences",
+      "jvto-web:product.route",
+      "jvto-web:travelAction"
+    ],
     "geo": null,
     "type": null,
-    "ambiguous": true
-  },
-  {
-    "id": "node__prigen",
-    "schema_version": "itinerary-intelligence/inventory-v1",
-    "source_trace": [
-      {
-        "repo": "sambuko82/llm-wiki",
-        "path": "output/products/package-readiness/package-registry.json",
-        "field": "prigen"
-      }
-    ],
-    "confidence": "low",
-    "generated_at": "2026-06-15T00:00:00Z",
-    "manual_fields": [],
-    "missing_fields": [
-      "geo",
-      "type",
-      "canonical_confirmation"
-    ],
-    "status": "incomplete",
-    "node_id": "prigen",
-    "node_roles": [
-      "destination"
-    ],
-    "referenced_by_slugs": [
-      "taman-safari-prigen-bromo-madakaripura-3d2n"
-    ],
-    "reference_count": 1,
-    "standalone_destination": false,
-    "geo": null,
-    "type": null,
-    "ambiguous": true
-  },
-  {
-    "id": "node__safari",
-    "schema_version": "itinerary-intelligence/inventory-v1",
-    "source_trace": [
-      {
-        "repo": "sambuko82/llm-wiki",
-        "path": "output/products/package-readiness/package-registry.json",
-        "field": "safari"
-      }
-    ],
-    "confidence": "low",
-    "generated_at": "2026-06-15T00:00:00Z",
-    "manual_fields": [],
-    "missing_fields": [
-      "geo",
-      "type",
-      "canonical_confirmation"
-    ],
-    "status": "incomplete",
-    "node_id": "safari",
-    "node_roles": [
-      "destination"
-    ],
-    "referenced_by_slugs": [
-      "taman-safari-prigen-bromo-madakaripura-3d2n"
-    ],
-    "reference_count": 1,
-    "standalone_destination": false,
-    "geo": null,
-    "type": null,
-    "ambiguous": true
-  },
-  {
-    "id": "node__sewu",
-    "schema_version": "itinerary-intelligence/inventory-v1",
-    "source_trace": [
-      {
-        "repo": "sambuko82/llm-wiki",
-        "path": "output/products/package-readiness/package-registry.json",
-        "field": "sewu"
-      }
-    ],
-    "confidence": "low",
-    "generated_at": "2026-06-15T00:00:00Z",
-    "manual_fields": [],
-    "missing_fields": [
-      "geo",
-      "type",
-      "canonical_confirmation"
-    ],
-    "status": "incomplete",
-    "node_id": "sewu",
-    "node_roles": [
-      "destination"
-    ],
-    "referenced_by_slugs": [
-      "ijen-papuma-tumpak-sewu-bromo-4d3n",
-      "ijen-papuma-tumpak-sewu-bromo-5d4n",
-      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
-      "tumpak-sewu-bromo-ijen-4d3n"
-    ],
-    "reference_count": 4,
-    "standalone_destination": false,
-    "geo": null,
-    "type": null,
-    "ambiguous": true
+    "ambiguous": false
   },
   {
     "id": "node__surabaya",
@@ -327,7 +279,7 @@
         "field": "surabaya"
       }
     ],
-    "confidence": "high",
+    "confidence": "medium",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
@@ -336,6 +288,9 @@
     ],
     "status": "active",
     "node_id": "surabaya",
+    "member_tokens": [
+      "surabaya"
+    ],
     "node_roles": [
       "origin"
     ],
@@ -354,31 +309,38 @@
       "tumpak-sewu-bromo-ijen-4d3n"
     ],
     "reference_count": 12,
-    "standalone_destination": false,
+    "source_strength": "supported",
+    "source_labels": [
+      "llm-wiki:package-registry.origin"
+    ],
     "geo": null,
     "type": null,
     "ambiguous": false
   },
   {
-    "id": "node__taman",
+    "id": "node__taman_safari_prigen",
     "schema_version": "itinerary-intelligence/inventory-v1",
     "source_trace": [
       {
         "repo": "sambuko82/llm-wiki",
         "path": "output/products/package-readiness/package-registry.json",
-        "field": "taman"
+        "field": "taman_safari_prigen"
       }
     ],
-    "confidence": "low",
+    "confidence": "medium",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "geo",
-      "type",
-      "canonical_confirmation"
+      "type"
     ],
-    "status": "incomplete",
-    "node_id": "taman",
+    "status": "active",
+    "node_id": "taman_safari_prigen",
+    "member_tokens": [
+      "taman",
+      "safari",
+      "prigen"
+    ],
     "node_roles": [
       "destination"
     ],
@@ -386,31 +348,39 @@
       "taman-safari-prigen-bromo-madakaripura-3d2n"
     ],
     "reference_count": 1,
-    "standalone_destination": false,
+    "source_strength": "supported",
+    "source_labels": [
+      "jvto-web:accommodationPlan.area",
+      "jvto-web:keyExperiences",
+      "jvto-web:product.route"
+    ],
     "geo": null,
     "type": null,
-    "ambiguous": true
+    "ambiguous": false
   },
   {
-    "id": "node__tumpak",
+    "id": "node__tumpak_sewu",
     "schema_version": "itinerary-intelligence/inventory-v1",
     "source_trace": [
       {
         "repo": "sambuko82/llm-wiki",
         "path": "output/products/package-readiness/package-registry.json",
-        "field": "tumpak"
+        "field": "tumpak_sewu"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "geo",
-      "type",
-      "canonical_confirmation"
+      "type"
     ],
-    "status": "incomplete",
-    "node_id": "tumpak",
+    "status": "active",
+    "node_id": "tumpak_sewu",
+    "member_tokens": [
+      "tumpak",
+      "sewu"
+    ],
     "node_roles": [
       "destination"
     ],
@@ -421,9 +391,17 @@
       "tumpak-sewu-bromo-ijen-4d3n"
     ],
     "reference_count": 4,
-    "standalone_destination": false,
+    "source_strength": "confirmed",
+    "source_labels": [
+      "jvto-web:accommodationPlan.area",
+      "jvto-web:keyExperiences",
+      "jvto-web:product.route",
+      "jvto-web:travelAction",
+      "new-backoffice:destinations.name",
+      "new-backoffice:destinations.slug"
+    ],
     "geo": null,
     "type": null,
-    "ambiguous": true
+    "ambiguous": false
   }
 ]

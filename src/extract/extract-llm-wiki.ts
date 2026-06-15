@@ -65,11 +65,15 @@ export async function extractLlmWiki(): Promise<LlmWikiExtract> {
     };
   });
 
-  const itinOut: LlmWikiItinerary[] = itineraries.map((p) => ({
-    package_id: String(p.package_id),
-    slug: String(p.slug),
-    day_count: Array.isArray(p.days) ? (p.days as unknown[]).length : 0
-  }));
+  const itinOut: LlmWikiItinerary[] = itineraries.map((p) => {
+    const days = Array.isArray(p.days) ? (p.days as Array<Record<string, unknown>>) : [];
+    return {
+      package_id: String(p.package_id),
+      slug: String(p.slug),
+      day_count: days.length,
+      day_titles: days.map((d) => (typeof d.title === 'string' ? d.title : '')).filter((t) => t.length > 0)
+    };
+  });
 
   const compatOut: LlmWikiCompatibility[] = compat.map((p) => ({
     package_id: String(p.package_id),

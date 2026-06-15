@@ -58,6 +58,11 @@
           "repo": "jvto-devteam/jvto-web",
           "path": "src/lib/packages/",
           "field": "package_helpers"
+        },
+        {
+          "repo": "jvto-devteam/jvto-web",
+          "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+          "field": "package_details"
         }
       ]
     },
@@ -116,6 +121,11 @@
       "repo": "jvto-devteam/jvto-web",
       "path": "src/lib/packages/",
       "field": "package_helpers"
+    },
+    {
+      "repo": "jvto-devteam/jvto-web",
+      "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+      "field": "package_details"
     },
     {
       "repo": "jvto-devteam/new-backoffice",

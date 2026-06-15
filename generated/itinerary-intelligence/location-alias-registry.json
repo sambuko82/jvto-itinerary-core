@@ -9,7 +9,7 @@
         "field": "bali"
       }
     ],
-    "confidence": "high",
+    "confidence": "medium",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
@@ -51,12 +51,44 @@
     "status": "active",
     "node_id": "bromo",
     "aliases": [
-      "bromo"
+      "Bromo",
+      "Bromo Area",
+      "Bromo Hotel",
+      "Bromo Transit",
+      "Bromo area",
+      "Mount Bromo",
+      "Mount Bromo area",
+      "bromo",
+      "mount bromo"
     ],
-    "alias_count": 1,
+    "alias_count": 9,
     "alias_sources": {
+      "Bromo": [
+        "jvto-web/new-backoffice:label"
+      ],
+      "Bromo Area": [
+        "jvto-web/new-backoffice:label"
+      ],
+      "Bromo Hotel": [
+        "jvto-web/new-backoffice:label"
+      ],
+      "Bromo Transit": [
+        "jvto-web/new-backoffice:label"
+      ],
+      "Bromo area": [
+        "jvto-web/new-backoffice:label"
+      ],
+      "Mount Bromo": [
+        "jvto-web/new-backoffice:label"
+      ],
+      "Mount Bromo area": [
+        "jvto-web/new-backoffice:label"
+      ],
       "bromo": [
         "package-registry.json:slug"
+      ],
+      "mount bromo": [
+        "jvto-web/new-backoffice:label"
       ]
     },
     "geo": null
@@ -80,12 +112,24 @@
     "status": "active",
     "node_id": "ijen",
     "aliases": [
-      "ijen"
+      "Ijen Crater",
+      "Ijen area",
+      "ijen",
+      "ijen crater"
     ],
-    "alias_count": 1,
+    "alias_count": 4,
     "alias_sources": {
+      "Ijen Crater": [
+        "jvto-web/new-backoffice:label"
+      ],
+      "Ijen area": [
+        "jvto-web/new-backoffice:label"
+      ],
       "ijen": [
         "package-registry.json:slug"
+      ],
+      "ijen crater": [
+        "jvto-web/new-backoffice:label"
       ]
     },
     "geo": null
@@ -100,19 +144,27 @@
         "field": "madakaripura"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "geo"
     ],
-    "status": "incomplete",
+    "status": "active",
     "node_id": "madakaripura",
     "aliases": [
+      "Madakaripura",
+      "Madakaripura Waterfall",
       "madakaripura"
     ],
-    "alias_count": 1,
+    "alias_count": 3,
     "alias_sources": {
+      "Madakaripura": [
+        "jvto-web/new-backoffice:label"
+      ],
+      "Madakaripura Waterfall": [
+        "jvto-web/new-backoffice:label"
+      ],
       "madakaripura": [
         "package-registry.json:slug"
       ]
@@ -129,19 +181,31 @@
         "field": "malang"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "geo"
     ],
-    "status": "incomplete",
+    "status": "active",
     "node_id": "malang",
     "aliases": [
+      "Hotel in Malang",
+      "Malang",
+      "Malang City",
       "malang"
     ],
-    "alias_count": 1,
+    "alias_count": 4,
     "alias_sources": {
+      "Hotel in Malang": [
+        "jvto-web/new-backoffice:label"
+      ],
+      "Malang": [
+        "jvto-web/new-backoffice:label"
+      ],
+      "Malang City": [
+        "jvto-web/new-backoffice:label"
+      ],
       "malang": [
         "package-registry.json:slug"
       ]
@@ -158,107 +222,24 @@
         "field": "papuma"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "geo"
     ],
-    "status": "incomplete",
+    "status": "active",
     "node_id": "papuma",
     "aliases": [
+      "Papuma Beach",
       "papuma"
     ],
-    "alias_count": 1,
+    "alias_count": 2,
     "alias_sources": {
+      "Papuma Beach": [
+        "jvto-web/new-backoffice:label"
+      ],
       "papuma": [
-        "package-registry.json:slug"
-      ]
-    },
-    "geo": null
-  },
-  {
-    "id": "alias__prigen",
-    "schema_version": "itinerary-intelligence/inventory-v1",
-    "source_trace": [
-      {
-        "repo": "sambuko82/llm-wiki",
-        "path": "output/products/package-readiness/package-registry.json",
-        "field": "prigen"
-      }
-    ],
-    "confidence": "low",
-    "generated_at": "2026-06-15T00:00:00Z",
-    "manual_fields": [],
-    "missing_fields": [
-      "geo"
-    ],
-    "status": "incomplete",
-    "node_id": "prigen",
-    "aliases": [
-      "prigen"
-    ],
-    "alias_count": 1,
-    "alias_sources": {
-      "prigen": [
-        "package-registry.json:slug"
-      ]
-    },
-    "geo": null
-  },
-  {
-    "id": "alias__safari",
-    "schema_version": "itinerary-intelligence/inventory-v1",
-    "source_trace": [
-      {
-        "repo": "sambuko82/llm-wiki",
-        "path": "output/products/package-readiness/package-registry.json",
-        "field": "safari"
-      }
-    ],
-    "confidence": "low",
-    "generated_at": "2026-06-15T00:00:00Z",
-    "manual_fields": [],
-    "missing_fields": [
-      "geo"
-    ],
-    "status": "incomplete",
-    "node_id": "safari",
-    "aliases": [
-      "safari"
-    ],
-    "alias_count": 1,
-    "alias_sources": {
-      "safari": [
-        "package-registry.json:slug"
-      ]
-    },
-    "geo": null
-  },
-  {
-    "id": "alias__sewu",
-    "schema_version": "itinerary-intelligence/inventory-v1",
-    "source_trace": [
-      {
-        "repo": "sambuko82/llm-wiki",
-        "path": "output/products/package-readiness/package-registry.json",
-        "field": "sewu"
-      }
-    ],
-    "confidence": "low",
-    "generated_at": "2026-06-15T00:00:00Z",
-    "manual_fields": [],
-    "missing_fields": [
-      "geo"
-    ],
-    "status": "incomplete",
-    "node_id": "sewu",
-    "aliases": [
-      "sewu"
-    ],
-    "alias_count": 1,
-    "alias_sources": {
-      "sewu": [
         "package-registry.json:slug"
       ]
     },
@@ -274,7 +255,7 @@
         "field": "surabaya"
       }
     ],
-    "confidence": "high",
+    "confidence": "medium",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
@@ -298,59 +279,79 @@
     "geo": null
   },
   {
-    "id": "alias__taman",
+    "id": "alias__taman_safari_prigen",
     "schema_version": "itinerary-intelligence/inventory-v1",
     "source_trace": [
       {
         "repo": "sambuko82/llm-wiki",
         "path": "output/products/package-readiness/package-registry.json",
-        "field": "taman"
+        "field": "taman_safari_prigen"
       }
     ],
-    "confidence": "low",
+    "confidence": "medium",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "geo"
     ],
-    "status": "incomplete",
-    "node_id": "taman",
+    "status": "active",
+    "node_id": "taman_safari_prigen",
     "aliases": [
-      "taman"
+      "Taman Safari Prigen",
+      "taman safari prigen"
     ],
-    "alias_count": 1,
+    "alias_count": 2,
     "alias_sources": {
-      "taman": [
+      "Taman Safari Prigen": [
+        "jvto-web/new-backoffice:label"
+      ],
+      "taman safari prigen": [
         "package-registry.json:slug"
       ]
     },
     "geo": null
   },
   {
-    "id": "alias__tumpak",
+    "id": "alias__tumpak_sewu",
     "schema_version": "itinerary-intelligence/inventory-v1",
     "source_trace": [
       {
         "repo": "sambuko82/llm-wiki",
         "path": "output/products/package-readiness/package-registry.json",
-        "field": "tumpak"
+        "field": "tumpak_sewu"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "geo"
     ],
-    "status": "incomplete",
-    "node_id": "tumpak",
+    "status": "active",
+    "node_id": "tumpak_sewu",
     "aliases": [
-      "tumpak"
+      "Tumpak Sewu",
+      "Tumpak Sewu Waterfall",
+      "Tumpak Sewu area",
+      "tumpak sewu",
+      "tumpak sewu waterfall"
     ],
-    "alias_count": 1,
+    "alias_count": 5,
     "alias_sources": {
-      "tumpak": [
+      "Tumpak Sewu": [
+        "jvto-web/new-backoffice:label"
+      ],
+      "Tumpak Sewu Waterfall": [
+        "jvto-web/new-backoffice:label"
+      ],
+      "Tumpak Sewu area": [
+        "jvto-web/new-backoffice:label"
+      ],
+      "tumpak sewu": [
         "package-registry.json:slug"
+      ],
+      "tumpak sewu waterfall": [
+        "jvto-web/new-backoffice:label"
       ]
     },
     "geo": null

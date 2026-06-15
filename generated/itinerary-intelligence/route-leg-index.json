@@ -36,7 +36,8 @@
       "bali/bromo-ijen-3d2n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": false
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence"
   },
   {
     "id": "leg__bali__to__ijen",
@@ -77,7 +78,8 @@
       "bali/ijen-papuma-tumpak-sewu-bromo-5d4n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": false
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence"
   },
   {
     "id": "leg__bromo__to__ijen",
@@ -117,7 +119,8 @@
       "tumpak-sewu-bromo-ijen-4d3n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": false
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence"
   },
   {
     "id": "leg__bromo__to__madakaripura",
@@ -129,7 +132,7 @@
         "field": "bromo__to__madakaripura"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
@@ -139,10 +142,9 @@
       "duration_minutes_mapbox",
       "road_profile",
       "night_drive_possible",
-      "meal_stop_possible",
-      "node_disambiguation"
+      "meal_stop_possible"
     ],
-    "status": "incomplete",
+    "status": "active",
     "route_leg_id": "bromo__to__madakaripura",
     "from_node": "bromo",
     "to_node": "madakaripura",
@@ -154,6 +156,7 @@
     "night_drive_possible": null,
     "meal_stop_possible": null,
     "used_by_packages": [
+      "bali/bromo-ijen-3d2n",
       "bali/ijen-bromo-madakaripura-3d2n",
       "bromo-madakaripura-ijen-3d2n",
       "ijen-bromo-madakaripura-3d2n",
@@ -162,7 +165,8 @@
       "taman-safari-prigen-bromo-madakaripura-3d2n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": true
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action"
   },
   {
     "id": "leg__bromo__to__malang",
@@ -174,7 +178,7 @@
         "field": "bromo__to__malang"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
@@ -184,10 +188,9 @@
       "duration_minutes_mapbox",
       "road_profile",
       "night_drive_possible",
-      "meal_stop_possible",
-      "node_disambiguation"
+      "meal_stop_possible"
     ],
-    "status": "incomplete",
+    "status": "active",
     "route_leg_id": "bromo__to__malang",
     "from_node": "bromo",
     "to_node": "malang",
@@ -202,7 +205,52 @@
       "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": true
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action"
+  },
+  {
+    "id": "leg__bromo__to__surabaya",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bromo__to__surabaya"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "distance_km_mapbox",
+      "duration_minutes_operator",
+      "duration_minutes_mapbox",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "bromo__to__surabaya",
+    "from_node": "bromo",
+    "to_node": "surabaya",
+    "distance_km_operator": null,
+    "distance_km_mapbox": null,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": null,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "bromo-1d1n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action"
   },
   {
     "id": "leg__ijen__to__bromo",
@@ -244,7 +292,8 @@
       "ijen-bromo-madakaripura-malang-5d4n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": false
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence"
   },
   {
     "id": "leg__ijen__to__papuma",
@@ -256,7 +305,7 @@
         "field": "ijen__to__papuma"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
@@ -266,10 +315,9 @@
       "duration_minutes_mapbox",
       "road_profile",
       "night_drive_possible",
-      "meal_stop_possible",
-      "node_disambiguation"
+      "meal_stop_possible"
     ],
-    "status": "incomplete",
+    "status": "active",
     "route_leg_id": "ijen__to__papuma",
     "from_node": "ijen",
     "to_node": "papuma",
@@ -288,7 +336,48 @@
       "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": true
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence"
+  },
+  {
+    "id": "leg__ijen__to__surabaya",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen__to__surabaya"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "distance_km_mapbox",
+      "duration_minutes_operator",
+      "duration_minutes_mapbox",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "ijen__to__surabaya",
+    "from_node": "ijen",
+    "to_node": "surabaya",
+    "distance_km_operator": null,
+    "distance_km_mapbox": null,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": null,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "ijen-2d1n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action"
   },
   {
     "id": "leg__madakaripura__to__ijen",
@@ -300,7 +389,7 @@
         "field": "madakaripura__to__ijen"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
@@ -310,10 +399,9 @@
       "duration_minutes_mapbox",
       "road_profile",
       "night_drive_possible",
-      "meal_stop_possible",
-      "node_disambiguation"
+      "meal_stop_possible"
     ],
-    "status": "incomplete",
+    "status": "active",
     "route_leg_id": "madakaripura__to__ijen",
     "from_node": "madakaripura",
     "to_node": "ijen",
@@ -328,7 +416,8 @@
       "bromo-madakaripura-ijen-3d2n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": true
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence"
   },
   {
     "id": "leg__madakaripura__to__malang",
@@ -340,7 +429,7 @@
         "field": "madakaripura__to__malang"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
@@ -350,10 +439,9 @@
       "duration_minutes_mapbox",
       "road_profile",
       "night_drive_possible",
-      "meal_stop_possible",
-      "node_disambiguation"
+      "meal_stop_possible"
     ],
-    "status": "incomplete",
+    "status": "active",
     "route_leg_id": "madakaripura__to__malang",
     "from_node": "madakaripura",
     "to_node": "malang",
@@ -368,19 +456,20 @@
       "ijen-bromo-madakaripura-malang-5d4n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": true
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action"
   },
   {
-    "id": "leg__papuma__to__tumpak",
+    "id": "leg__madakaripura__to__surabaya",
     "schema_version": "itinerary-intelligence/inventory-v1",
     "source_trace": [
       {
         "repo": "sambuko82/llm-wiki",
         "path": "output/products/package-readiness/package-registry.json",
-        "field": "papuma__to__tumpak"
+        "field": "madakaripura__to__surabaya"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
@@ -390,13 +479,56 @@
       "duration_minutes_mapbox",
       "road_profile",
       "night_drive_possible",
-      "meal_stop_possible",
-      "node_disambiguation"
+      "meal_stop_possible"
     ],
-    "status": "incomplete",
-    "route_leg_id": "papuma__to__tumpak",
+    "status": "active",
+    "route_leg_id": "madakaripura__to__surabaya",
+    "from_node": "madakaripura",
+    "to_node": "surabaya",
+    "distance_km_operator": null,
+    "distance_km_mapbox": null,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": null,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bromo-2d1n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "taman-safari-prigen-bromo-madakaripura-3d2n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action"
+  },
+  {
+    "id": "leg__papuma__to__tumpak_sewu",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "papuma__to__tumpak_sewu"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "distance_km_mapbox",
+      "duration_minutes_operator",
+      "duration_minutes_mapbox",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "papuma__to__tumpak_sewu",
     "from_node": "papuma",
-    "to_node": "tumpak",
+    "to_node": "tumpak_sewu",
     "distance_km_operator": null,
     "distance_km_mapbox": null,
     "duration_minutes_operator": null,
@@ -412,132 +544,8 @@
       "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": true
-  },
-  {
-    "id": "leg__prigen__to__bromo",
-    "schema_version": "itinerary-intelligence/inventory-v1",
-    "source_trace": [
-      {
-        "repo": "sambuko82/llm-wiki",
-        "path": "output/products/package-readiness/package-registry.json",
-        "field": "prigen__to__bromo"
-      }
-    ],
-    "confidence": "low",
-    "generated_at": "2026-06-15T00:00:00Z",
-    "manual_fields": [],
-    "missing_fields": [
-      "distance_km_operator",
-      "distance_km_mapbox",
-      "duration_minutes_operator",
-      "duration_minutes_mapbox",
-      "road_profile",
-      "night_drive_possible",
-      "meal_stop_possible",
-      "node_disambiguation"
-    ],
-    "status": "incomplete",
-    "route_leg_id": "prigen__to__bromo",
-    "from_node": "prigen",
-    "to_node": "bromo",
-    "distance_km_operator": null,
-    "distance_km_mapbox": null,
-    "duration_minutes_operator": null,
-    "duration_minutes_mapbox": null,
-    "road_profile": [],
-    "night_drive_possible": null,
-    "meal_stop_possible": null,
-    "used_by_packages": [
-      "taman-safari-prigen-bromo-madakaripura-3d2n"
-    ],
-    "both_nodes_known": true,
-    "touches_ambiguous_node": true
-  },
-  {
-    "id": "leg__safari__to__prigen",
-    "schema_version": "itinerary-intelligence/inventory-v1",
-    "source_trace": [
-      {
-        "repo": "sambuko82/llm-wiki",
-        "path": "output/products/package-readiness/package-registry.json",
-        "field": "safari__to__prigen"
-      }
-    ],
-    "confidence": "low",
-    "generated_at": "2026-06-15T00:00:00Z",
-    "manual_fields": [],
-    "missing_fields": [
-      "distance_km_operator",
-      "distance_km_mapbox",
-      "duration_minutes_operator",
-      "duration_minutes_mapbox",
-      "road_profile",
-      "night_drive_possible",
-      "meal_stop_possible",
-      "node_disambiguation"
-    ],
-    "status": "incomplete",
-    "route_leg_id": "safari__to__prigen",
-    "from_node": "safari",
-    "to_node": "prigen",
-    "distance_km_operator": null,
-    "distance_km_mapbox": null,
-    "duration_minutes_operator": null,
-    "duration_minutes_mapbox": null,
-    "road_profile": [],
-    "night_drive_possible": null,
-    "meal_stop_possible": null,
-    "used_by_packages": [
-      "taman-safari-prigen-bromo-madakaripura-3d2n"
-    ],
-    "both_nodes_known": true,
-    "touches_ambiguous_node": true
-  },
-  {
-    "id": "leg__sewu__to__bromo",
-    "schema_version": "itinerary-intelligence/inventory-v1",
-    "source_trace": [
-      {
-        "repo": "sambuko82/llm-wiki",
-        "path": "output/products/package-readiness/package-registry.json",
-        "field": "sewu__to__bromo"
-      }
-    ],
-    "confidence": "low",
-    "generated_at": "2026-06-15T00:00:00Z",
-    "manual_fields": [],
-    "missing_fields": [
-      "distance_km_operator",
-      "distance_km_mapbox",
-      "duration_minutes_operator",
-      "duration_minutes_mapbox",
-      "road_profile",
-      "night_drive_possible",
-      "meal_stop_possible",
-      "node_disambiguation"
-    ],
-    "status": "incomplete",
-    "route_leg_id": "sewu__to__bromo",
-    "from_node": "sewu",
-    "to_node": "bromo",
-    "distance_km_operator": null,
-    "distance_km_mapbox": null,
-    "duration_minutes_operator": null,
-    "duration_minutes_mapbox": null,
-    "road_profile": [],
-    "night_drive_possible": null,
-    "meal_stop_possible": null,
-    "used_by_packages": [
-      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
-      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
-      "ijen-papuma-tumpak-sewu-bromo-4d3n",
-      "ijen-papuma-tumpak-sewu-bromo-5d4n",
-      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
-      "tumpak-sewu-bromo-ijen-4d3n"
-    ],
-    "both_nodes_known": true,
-    "touches_ambiguous_node": true
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence"
   },
   {
     "id": "leg__surabaya__to__bromo",
@@ -578,7 +586,8 @@
       "bromo-madakaripura-ijen-3d2n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": false
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action"
   },
   {
     "id": "leg__surabaya__to__ijen",
@@ -623,19 +632,20 @@
       "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": false
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence"
   },
   {
-    "id": "leg__surabaya__to__taman",
+    "id": "leg__surabaya__to__taman_safari_prigen",
     "schema_version": "itinerary-intelligence/inventory-v1",
     "source_trace": [
       {
         "repo": "sambuko82/llm-wiki",
         "path": "output/products/package-readiness/package-registry.json",
-        "field": "surabaya__to__taman"
+        "field": "surabaya__to__taman_safari_prigen"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
@@ -645,13 +655,12 @@
       "duration_minutes_mapbox",
       "road_profile",
       "night_drive_possible",
-      "meal_stop_possible",
-      "node_disambiguation"
+      "meal_stop_possible"
     ],
-    "status": "incomplete",
-    "route_leg_id": "surabaya__to__taman",
+    "status": "active",
+    "route_leg_id": "surabaya__to__taman_safari_prigen",
     "from_node": "surabaya",
-    "to_node": "taman",
+    "to_node": "taman_safari_prigen",
     "distance_km_operator": null,
     "distance_km_mapbox": null,
     "duration_minutes_operator": null,
@@ -663,19 +672,20 @@
       "taman-safari-prigen-bromo-madakaripura-3d2n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": true
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence"
   },
   {
-    "id": "leg__surabaya__to__tumpak",
+    "id": "leg__surabaya__to__tumpak_sewu",
     "schema_version": "itinerary-intelligence/inventory-v1",
     "source_trace": [
       {
         "repo": "sambuko82/llm-wiki",
         "path": "output/products/package-readiness/package-registry.json",
-        "field": "surabaya__to__tumpak"
+        "field": "surabaya__to__tumpak_sewu"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
@@ -685,13 +695,12 @@
       "duration_minutes_mapbox",
       "road_profile",
       "night_drive_possible",
-      "meal_stop_possible",
-      "node_disambiguation"
+      "meal_stop_possible"
     ],
-    "status": "incomplete",
-    "route_leg_id": "surabaya__to__tumpak",
+    "status": "active",
+    "route_leg_id": "surabaya__to__tumpak_sewu",
     "from_node": "surabaya",
-    "to_node": "tumpak",
+    "to_node": "tumpak_sewu",
     "distance_km_operator": null,
     "distance_km_mapbox": null,
     "duration_minutes_operator": null,
@@ -703,19 +712,20 @@
       "tumpak-sewu-bromo-ijen-4d3n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": true
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action"
   },
   {
-    "id": "leg__taman__to__safari",
+    "id": "leg__taman_safari_prigen__to__bromo",
     "schema_version": "itinerary-intelligence/inventory-v1",
     "source_trace": [
       {
         "repo": "sambuko82/llm-wiki",
         "path": "output/products/package-readiness/package-registry.json",
-        "field": "taman__to__safari"
+        "field": "taman_safari_prigen__to__bromo"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
@@ -725,13 +735,12 @@
       "duration_minutes_mapbox",
       "road_profile",
       "night_drive_possible",
-      "meal_stop_possible",
-      "node_disambiguation"
+      "meal_stop_possible"
     ],
-    "status": "incomplete",
-    "route_leg_id": "taman__to__safari",
-    "from_node": "taman",
-    "to_node": "safari",
+    "status": "active",
+    "route_leg_id": "taman_safari_prigen__to__bromo",
+    "from_node": "taman_safari_prigen",
+    "to_node": "bromo",
     "distance_km_operator": null,
     "distance_km_mapbox": null,
     "duration_minutes_operator": null,
@@ -743,19 +752,20 @@
       "taman-safari-prigen-bromo-madakaripura-3d2n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": true
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence"
   },
   {
-    "id": "leg__tumpak__to__sewu",
+    "id": "leg__tumpak_sewu__to__bromo",
     "schema_version": "itinerary-intelligence/inventory-v1",
     "source_trace": [
       {
         "repo": "sambuko82/llm-wiki",
         "path": "output/products/package-readiness/package-registry.json",
-        "field": "tumpak__to__sewu"
+        "field": "tumpak_sewu__to__bromo"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
@@ -765,13 +775,12 @@
       "duration_minutes_mapbox",
       "road_profile",
       "night_drive_possible",
-      "meal_stop_possible",
-      "node_disambiguation"
+      "meal_stop_possible"
     ],
-    "status": "incomplete",
-    "route_leg_id": "tumpak__to__sewu",
-    "from_node": "tumpak",
-    "to_node": "sewu",
+    "status": "active",
+    "route_leg_id": "tumpak_sewu__to__bromo",
+    "from_node": "tumpak_sewu",
+    "to_node": "bromo",
     "distance_km_operator": null,
     "distance_km_mapbox": null,
     "duration_minutes_operator": null,
@@ -788,6 +797,7 @@
       "tumpak-sewu-bromo-ijen-4d3n"
     ],
     "both_nodes_known": true,
-    "touches_ambiguous_node": true
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action"
   }
 ]

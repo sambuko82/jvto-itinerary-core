@@ -38,10 +38,11 @@ test('route nodes derived only from source refs, no duplicate ids, geo not guess
   // origins discovered from package.origin
   assert.ok(nodes.some((n) => n.node_id === 'surabaya' && (n.node_roles as string[]).includes('origin')));
   assert.ok(nodes.some((n) => n.node_id === 'bali' && (n.node_roles as string[]).includes('origin')));
-  // standalone destination tokens are high-confidence
+  // movement-confirmed destination is high-confidence
   const bromo = nodes.find((n) => n.node_id === 'bromo');
   assert.ok(bromo);
-  assert.equal(bromo.standalone_destination, true);
+  assert.equal(bromo.source_strength, 'confirmed');
+  assert.equal(bromo.confidence, 'high');
   assert.equal(bromo.ambiguous, false);
   // geo never guessed
   for (const n of nodes) {
@@ -51,13 +52,16 @@ test('route nodes derived only from source refs, no duplicate ids, geo not guess
   }
 });
 
-test('compound/non-standalone tokens are flagged ambiguous, not merged or guessed', () => {
-  const ambiguous = nodes.filter((n) => n.ambiguous === true).map((n) => n.node_id);
-  assert.ok(ambiguous.includes('tumpak'));
-  assert.ok(ambiguous.includes('sewu'));
-  for (const n of nodes) {
-    if (n.ambiguous) assert.ok((n.missing_fields as string[]).includes('canonical_confirmation'));
-  }
+test('compound tokens merge only when source-backed (Phase 4.5)', () => {
+  // tumpak+sewu merged into one node via source phrase ("Tumpak Sewu Waterfall" / TravelAction)
+  const tumpakSewu = nodes.find((n) => n.node_id === 'tumpak_sewu');
+  assert.ok(tumpakSewu, 'expected merged tumpak_sewu node');
+  assert.deepEqual(tumpakSewu.member_tokens, ['tumpak', 'sewu']);
+  assert.ok(['confirmed', 'supported'].includes(String(tumpakSewu.source_strength)));
+  // raw split tokens must NOT exist as standalone nodes
+  assert.ok(!nodes.some((n) => n.node_id === 'sewu'));
+  // taman_safari_prigen merged from route[] label
+  assert.ok(nodes.some((n) => n.node_id === 'taman_safari_prigen'));
 });
 
 test('aliases come only from source spellings', () => {
@@ -77,9 +81,8 @@ test('no PII keys in any Phase 3 output', () => {
   assertNoPiiKeys(aliases);
 });
 
-test('validation-report has 0 critical errors (ambiguity is low, not critical)', async () => {
+test('validation-report has 0 critical errors', async () => {
   const report = await validateItineraryIntelligence();
   assert.equal(report.summary.critical, 0);
   assert.equal(report.status, 'pass');
-  assert.ok(report.findings.some((f) => f.check === 'ambiguous_location_token'));
 });

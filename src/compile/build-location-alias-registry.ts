@@ -15,7 +15,7 @@ export interface LocationAliasRecord extends InventoryRecord {
 
 export async function buildLocationAliasRegistry(dir: string = GENERATED_DIR): Promise<LocationAliasRecord[]> {
   const generated_at = inventoryGeneratedAt();
-  const nodes = await deriveLocationNodes(dir);
+  const { nodes } = await deriveLocationNodes(dir);
 
   return nodes.map<LocationAliasRecord>((n) => {
     const { confidence, ambiguous } = nodeConfidence(n);

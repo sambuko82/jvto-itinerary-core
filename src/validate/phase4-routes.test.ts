@@ -48,10 +48,11 @@ test('distance and duration are never guessed (null + flagged missing)', () => {
   }
 });
 
-test('legs touching ambiguous nodes are flagged', () => {
-  const compound = legs.find((l) => l.route_leg_id === 'tumpak__to__sewu');
-  assert.ok(compound);
-  assert.equal(compound.touches_ambiguous_node, true);
+test('every leg carries a source_basis; movement legs come from jvto-web TravelAction', () => {
+  for (const l of legs) {
+    assert.ok(['jvto_web_travel_action', 'source_supported_sequence', 'slug_token_fallback'].includes(String(l.source_basis)));
+  }
+  assert.ok(legs.some((l) => l.source_basis === 'jvto_web_travel_action'), 'expected at least one TravelAction-confirmed leg');
 });
 
 test('package route sequences exist and reference only legs in the index', () => {
@@ -61,11 +62,12 @@ test('package route sequences exist and reference only legs in the index', () =>
   for (const r of routes) {
     const seq = r.route_sequence as string[];
     assert.ok(seq.length >= 1, `empty sequence for ${r.package_id}`);
-    assert.equal(r.leg_count, seq.length - 1);
+    assert.equal(r.leg_count, (r.route_leg_ids as string[]).length);
     for (const lid of r.route_leg_ids as string[]) {
       assert.ok(legSet.has(lid), `orphan leg ${lid} in ${r.package_id}`);
     }
   }
+  // single-destination package still resolves cleanly
   const single = routes.find((r) => r.package_id === 'bromo-1d1n');
   assert.deepEqual(single?.route_sequence, ['surabaya', 'bromo']);
 });

@@ -29,6 +29,7 @@ export interface RouteLegRecord extends InventoryRecord {
   used_by_packages: string[];
   both_nodes_known: boolean;
   touches_ambiguous_node: boolean;
+  source_basis: 'jvto_web_travel_action' | 'source_supported_sequence' | 'slug_token_fallback';
 }
 
 export async function buildRouteLegIndexDerived(dir: string = GENERATED_DIR): Promise<RouteLegRecord[]> {
@@ -58,7 +59,8 @@ export async function buildRouteLegIndexDerived(dir: string = GENERATED_DIR): Pr
       meal_stop_possible: null,
       used_by_packages: [...leg.used_by_packages].sort(),
       both_nodes_known: leg.both_nodes_known,
-      touches_ambiguous_node: leg.touches_ambiguous_node
+      touches_ambiguous_node: leg.touches_ambiguous_node,
+      source_basis: leg.source_basis
     };
   });
 }

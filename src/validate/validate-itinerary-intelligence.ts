@@ -100,7 +100,10 @@ function checkRestrictedExcluded(rec: Record<string, unknown>, findings: Finding
   }
 }
 
-export async function validateItineraryIntelligence(dir: string = GENERATED_DIR): Promise<ValidationReport> {
+export async function validateItineraryIntelligence(
+  dir: string = GENERATED_DIR,
+  opts: { skipPhase4?: boolean } = {}
+): Promise<ValidationReport> {
   const files = ['source-inventory.json', 'schema-inventory.json', 'export-endpoint-inventory.json'];
   const findings: Finding[] = [];
   let total = 0;
@@ -203,8 +206,10 @@ export async function validateItineraryIntelligence(dir: string = GENERATED_DIR)
   }
 
   // ── Phase 4: route legs + package route map (validate if present) ──
-  const legs = await tryRead('route-leg-index.json');
-  const routes = await tryRead('package-route-map.json');
+  // Skipped when validating an earlier phase, so freshly regenerated Phase 3 nodes
+  // are not judged against not-yet-regenerated downstream leg/route files.
+  const legs = opts.skipPhase4 ? null : await tryRead('route-leg-index.json');
+  const routes = opts.skipPhase4 ? null : await tryRead('package-route-map.json');
 
   for (const [file, recs] of [
     ['route-leg-index.json', legs],
@@ -253,6 +258,59 @@ export async function validateItineraryIntelligence(dir: string = GENERATED_DIR)
     if (catalog && routes.length !== catalog.length) {
       findings.push({ severity: 'high', check: 'route_map_coverage', record_id: null, message: `package-route-map has ${routes.length} but catalog has ${catalog.length}` });
     }
+  }
+
+  // ── Phase 4.5: source-backed route resolution (validate if present) ──
+  const candidates = opts.skipPhase4 ? null : await tryRead('route-source-candidates.json');
+  const gaps = opts.skipPhase4 ? null : await tryRead('route-source-gap-report.json');
+
+  for (const [file, recs] of [
+    ['route-source-candidates.json', candidates],
+    ['route-source-gap-report.json', gaps]
+  ] as const) {
+    if (!recs) continue;
+    total += recs.length;
+    for (const rec of recs) {
+      checkContract(rec, file, findings);
+      scanPii(rec, String(rec.id ?? file), '$', findings);
+    }
+  }
+
+  if (legs) {
+    for (const leg of legs) {
+      const id = String(leg.route_leg_id);
+      // every route record must carry a source_basis
+      if (typeof leg.source_basis !== 'string') {
+        findings.push({ severity: 'critical', check: 'missing_source_basis', record_id: id, message: `route leg "${id}" has no source_basis` });
+      }
+      // distance/duration must never be guessed in this phase
+      for (const f of ['distance_km_operator', 'distance_km_mapbox', 'duration_minutes_operator', 'duration_minutes_mapbox']) {
+        if (leg[f] !== null && leg[f] !== undefined) {
+          findings.push({ severity: 'critical', check: 'guessed_distance_duration', record_id: id, message: `route leg "${id}" has non-null ${f} without a source` });
+        }
+      }
+    }
+  }
+
+  if (nodes) {
+    for (const n of nodes) {
+      const members = Array.isArray(n.member_tokens) ? (n.member_tokens as unknown[]) : [];
+      // a compound (merged) node MUST be source-backed — never a blind slug merge
+      if (members.length > 1 && (n.source_strength === 'fallback' || n.source_strength === 'unresolved')) {
+        findings.push({ severity: 'critical', check: 'unsourced_compound_merge', record_id: String(n.node_id), message: `compound node "${n.node_id}" merged without source backing` });
+      }
+    }
+  }
+
+  // missing packageDetailSnapshots must produce a gap report, not crash
+  if (!opts.skipPhase4) try {
+    const jvto = await readJson<{ package_detail_count?: number; missing_fields?: string[] }>(`${dir}/extract-jvto-web.json`);
+    const detailMissing = (jvto.missing_fields ?? []).includes('jvto_web_package_detail_snapshots') || (jvto.package_detail_count ?? 0) === 0;
+    if (detailMissing && !gaps) {
+      findings.push({ severity: 'high', check: 'missing_detail_snapshot_no_gap', record_id: null, message: 'packageDetailSnapshots missing and no route-source-gap-report present' });
+    }
+  } catch {
+    // extract not present; skip
   }
 
   const summary = {

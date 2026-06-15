@@ -31,10 +31,11 @@
     ],
     "route_leg_ids": [
       "bali__to__bromo",
-      "bromo__to__ijen"
+      "bromo__to__ijen",
+      "bromo__to__madakaripura"
     ],
     "node_count": 3,
-    "leg_count": 2,
+    "leg_count": 3,
     "sequence_basis": "slug_token_order_from_catalog",
     "contains_ambiguous_node": false
   },
@@ -53,13 +54,13 @@
         "field": "bali/ijen-bromo-madakaripura-3d2n"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "travel_direction_confirmation"
     ],
-    "status": "incomplete",
+    "status": "active",
     "package_id": "bali/ijen-bromo-madakaripura-3d2n",
     "slug": "ijen-bromo-madakaripura-3d2n",
     "origin": "bali",
@@ -72,12 +73,13 @@
     "route_leg_ids": [
       "bali__to__ijen",
       "ijen__to__bromo",
-      "bromo__to__madakaripura"
+      "bromo__to__madakaripura",
+      "madakaripura__to__surabaya"
     ],
     "node_count": 4,
-    "leg_count": 3,
+    "leg_count": 4,
     "sequence_basis": "slug_token_order_from_catalog",
-    "contains_ambiguous_node": true
+    "contains_ambiguous_node": false
   },
   {
     "id": "route__bali_ijen_papuma_tumpak_sewu_bromo_4d3n",
@@ -94,13 +96,13 @@
         "field": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "travel_direction_confirmation"
     ],
-    "status": "incomplete",
+    "status": "active",
     "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
     "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
     "origin": "bali",
@@ -108,21 +110,20 @@
       "bali",
       "ijen",
       "papuma",
-      "tumpak",
-      "sewu",
+      "tumpak_sewu",
       "bromo"
     ],
     "route_leg_ids": [
       "bali__to__ijen",
       "ijen__to__papuma",
-      "papuma__to__tumpak",
-      "tumpak__to__sewu",
-      "sewu__to__bromo"
+      "papuma__to__tumpak_sewu",
+      "tumpak_sewu__to__bromo",
+      "bromo__to__surabaya"
     ],
-    "node_count": 6,
+    "node_count": 5,
     "leg_count": 5,
     "sequence_basis": "slug_token_order_from_catalog",
-    "contains_ambiguous_node": true
+    "contains_ambiguous_node": false
   },
   {
     "id": "route__bali_ijen_papuma_tumpak_sewu_bromo_5d4n",
@@ -139,13 +140,13 @@
         "field": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "travel_direction_confirmation"
     ],
-    "status": "incomplete",
+    "status": "active",
     "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
     "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
     "origin": "bali",
@@ -153,21 +154,20 @@
       "bali",
       "ijen",
       "papuma",
-      "tumpak",
-      "sewu",
+      "tumpak_sewu",
       "bromo"
     ],
     "route_leg_ids": [
       "bali__to__ijen",
       "ijen__to__papuma",
-      "papuma__to__tumpak",
-      "tumpak__to__sewu",
-      "sewu__to__bromo"
+      "papuma__to__tumpak_sewu",
+      "tumpak_sewu__to__bromo",
+      "bromo__to__surabaya"
     ],
-    "node_count": 6,
+    "node_count": 5,
     "leg_count": 5,
     "sequence_basis": "slug_token_order_from_catalog",
-    "contains_ambiguous_node": true
+    "contains_ambiguous_node": false
   },
   {
     "id": "route__bromo_1d1n",
@@ -199,10 +199,11 @@
       "bromo"
     ],
     "route_leg_ids": [
-      "surabaya__to__bromo"
+      "surabaya__to__bromo",
+      "bromo__to__surabaya"
     ],
     "node_count": 2,
-    "leg_count": 1,
+    "leg_count": 2,
     "sequence_basis": "slug_token_order_from_catalog",
     "contains_ambiguous_node": false
   },
@@ -236,10 +237,11 @@
       "bromo"
     ],
     "route_leg_ids": [
-      "surabaya__to__bromo"
+      "surabaya__to__bromo",
+      "madakaripura__to__surabaya"
     ],
     "node_count": 2,
-    "leg_count": 1,
+    "leg_count": 2,
     "sequence_basis": "slug_token_order_from_catalog",
     "contains_ambiguous_node": false
   },
@@ -258,13 +260,13 @@
         "field": "bromo-madakaripura-ijen-3d2n"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "travel_direction_confirmation"
     ],
-    "status": "incomplete",
+    "status": "active",
     "package_id": "bromo-madakaripura-ijen-3d2n",
     "slug": "bromo-madakaripura-ijen-3d2n",
     "origin": "surabaya",
@@ -282,7 +284,7 @@
     "node_count": 4,
     "leg_count": 3,
     "sequence_basis": "slug_token_order_from_catalog",
-    "contains_ambiguous_node": true
+    "contains_ambiguous_node": false
   },
   {
     "id": "route__ijen_2d1n",
@@ -314,10 +316,11 @@
       "ijen"
     ],
     "route_leg_ids": [
-      "surabaya__to__ijen"
+      "surabaya__to__ijen",
+      "ijen__to__surabaya"
     ],
     "node_count": 2,
-    "leg_count": 1,
+    "leg_count": 2,
     "sequence_basis": "slug_token_order_from_catalog",
     "contains_ambiguous_node": false
   },
@@ -336,13 +339,13 @@
         "field": "ijen-bromo-madakaripura-3d2n"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "travel_direction_confirmation"
     ],
-    "status": "incomplete",
+    "status": "active",
     "package_id": "ijen-bromo-madakaripura-3d2n",
     "slug": "ijen-bromo-madakaripura-3d2n",
     "origin": "surabaya",
@@ -355,12 +358,13 @@
     "route_leg_ids": [
       "surabaya__to__ijen",
       "ijen__to__bromo",
-      "bromo__to__madakaripura"
+      "bromo__to__madakaripura",
+      "madakaripura__to__surabaya"
     ],
     "node_count": 4,
-    "leg_count": 3,
+    "leg_count": 4,
     "sequence_basis": "slug_token_order_from_catalog",
-    "contains_ambiguous_node": true
+    "contains_ambiguous_node": false
   },
   {
     "id": "route__ijen_bromo_madakaripura_4d3n",
@@ -377,13 +381,13 @@
         "field": "ijen-bromo-madakaripura-4d3n"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "travel_direction_confirmation"
     ],
-    "status": "incomplete",
+    "status": "active",
     "package_id": "ijen-bromo-madakaripura-4d3n",
     "slug": "ijen-bromo-madakaripura-4d3n",
     "origin": "surabaya",
@@ -396,12 +400,13 @@
     "route_leg_ids": [
       "surabaya__to__ijen",
       "ijen__to__bromo",
-      "bromo__to__madakaripura"
+      "bromo__to__madakaripura",
+      "madakaripura__to__surabaya"
     ],
     "node_count": 4,
-    "leg_count": 3,
+    "leg_count": 4,
     "sequence_basis": "slug_token_order_from_catalog",
-    "contains_ambiguous_node": true
+    "contains_ambiguous_node": false
   },
   {
     "id": "route__ijen_bromo_madakaripura_malang_5d4n",
@@ -418,13 +423,13 @@
         "field": "ijen-bromo-madakaripura-malang-5d4n"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "travel_direction_confirmation"
     ],
-    "status": "incomplete",
+    "status": "active",
     "package_id": "ijen-bromo-madakaripura-malang-5d4n",
     "slug": "ijen-bromo-madakaripura-malang-5d4n",
     "origin": "surabaya",
@@ -444,7 +449,7 @@
     "node_count": 5,
     "leg_count": 4,
     "sequence_basis": "slug_token_order_from_catalog",
-    "contains_ambiguous_node": true
+    "contains_ambiguous_node": false
   },
   {
     "id": "route__ijen_papuma_tumpak_sewu_bromo_4d3n",
@@ -461,13 +466,13 @@
         "field": "ijen-papuma-tumpak-sewu-bromo-4d3n"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "travel_direction_confirmation"
     ],
-    "status": "incomplete",
+    "status": "active",
     "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
     "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
     "origin": "surabaya",
@@ -475,21 +480,20 @@
       "surabaya",
       "ijen",
       "papuma",
-      "tumpak",
-      "sewu",
+      "tumpak_sewu",
       "bromo"
     ],
     "route_leg_ids": [
       "surabaya__to__ijen",
       "ijen__to__papuma",
-      "papuma__to__tumpak",
-      "tumpak__to__sewu",
-      "sewu__to__bromo"
+      "papuma__to__tumpak_sewu",
+      "tumpak_sewu__to__bromo",
+      "bromo__to__surabaya"
     ],
-    "node_count": 6,
+    "node_count": 5,
     "leg_count": 5,
     "sequence_basis": "slug_token_order_from_catalog",
-    "contains_ambiguous_node": true
+    "contains_ambiguous_node": false
   },
   {
     "id": "route__ijen_papuma_tumpak_sewu_bromo_5d4n",
@@ -506,13 +510,13 @@
         "field": "ijen-papuma-tumpak-sewu-bromo-5d4n"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "travel_direction_confirmation"
     ],
-    "status": "incomplete",
+    "status": "active",
     "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
     "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
     "origin": "surabaya",
@@ -520,21 +524,20 @@
       "surabaya",
       "ijen",
       "papuma",
-      "tumpak",
-      "sewu",
+      "tumpak_sewu",
       "bromo"
     ],
     "route_leg_ids": [
       "surabaya__to__ijen",
       "ijen__to__papuma",
-      "papuma__to__tumpak",
-      "tumpak__to__sewu",
-      "sewu__to__bromo"
+      "papuma__to__tumpak_sewu",
+      "tumpak_sewu__to__bromo",
+      "bromo__to__surabaya"
     ],
-    "node_count": 6,
+    "node_count": 5,
     "leg_count": 5,
     "sequence_basis": "slug_token_order_from_catalog",
-    "contains_ambiguous_node": true
+    "contains_ambiguous_node": false
   },
   {
     "id": "route__ijen_papuma_tumpak_sewu_bromo_malang_6d5n",
@@ -551,13 +554,13 @@
         "field": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "travel_direction_confirmation"
     ],
-    "status": "incomplete",
+    "status": "active",
     "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
     "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
     "origin": "surabaya",
@@ -565,23 +568,21 @@
       "surabaya",
       "ijen",
       "papuma",
-      "tumpak",
-      "sewu",
+      "tumpak_sewu",
       "bromo",
       "malang"
     ],
     "route_leg_ids": [
       "surabaya__to__ijen",
       "ijen__to__papuma",
-      "papuma__to__tumpak",
-      "tumpak__to__sewu",
-      "sewu__to__bromo",
+      "papuma__to__tumpak_sewu",
+      "tumpak_sewu__to__bromo",
       "bromo__to__malang"
     ],
-    "node_count": 7,
-    "leg_count": 6,
+    "node_count": 6,
+    "leg_count": 5,
     "sequence_basis": "slug_token_order_from_catalog",
-    "contains_ambiguous_node": true
+    "contains_ambiguous_node": false
   },
   {
     "id": "route__taman_safari_prigen_bromo_madakaripura_3d2n",
@@ -598,35 +599,32 @@
         "field": "taman-safari-prigen-bromo-madakaripura-3d2n"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "travel_direction_confirmation"
     ],
-    "status": "incomplete",
+    "status": "active",
     "package_id": "taman-safari-prigen-bromo-madakaripura-3d2n",
     "slug": "taman-safari-prigen-bromo-madakaripura-3d2n",
     "origin": "surabaya",
     "route_sequence": [
       "surabaya",
-      "taman",
-      "safari",
-      "prigen",
+      "taman_safari_prigen",
       "bromo",
       "madakaripura"
     ],
     "route_leg_ids": [
-      "surabaya__to__taman",
-      "taman__to__safari",
-      "safari__to__prigen",
-      "prigen__to__bromo",
-      "bromo__to__madakaripura"
+      "surabaya__to__taman_safari_prigen",
+      "taman_safari_prigen__to__bromo",
+      "bromo__to__madakaripura",
+      "madakaripura__to__surabaya"
     ],
-    "node_count": 6,
-    "leg_count": 5,
+    "node_count": 4,
+    "leg_count": 4,
     "sequence_basis": "slug_token_order_from_catalog",
-    "contains_ambiguous_node": true
+    "contains_ambiguous_node": false
   },
   {
     "id": "route__tumpak_sewu_bromo_ijen_4d3n",
@@ -643,32 +641,30 @@
         "field": "tumpak-sewu-bromo-ijen-4d3n"
       }
     ],
-    "confidence": "low",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
       "travel_direction_confirmation"
     ],
-    "status": "incomplete",
+    "status": "active",
     "package_id": "tumpak-sewu-bromo-ijen-4d3n",
     "slug": "tumpak-sewu-bromo-ijen-4d3n",
     "origin": "surabaya",
     "route_sequence": [
       "surabaya",
-      "tumpak",
-      "sewu",
+      "tumpak_sewu",
       "bromo",
       "ijen"
     ],
     "route_leg_ids": [
-      "surabaya__to__tumpak",
-      "tumpak__to__sewu",
-      "sewu__to__bromo",
+      "surabaya__to__tumpak_sewu",
+      "tumpak_sewu__to__bromo",
       "bromo__to__ijen"
     ],
-    "node_count": 5,
-    "leg_count": 4,
+    "node_count": 4,
+    "leg_count": 3,
     "sequence_basis": "slug_token_order_from_catalog",
-    "contains_ambiguous_node": true
+    "contains_ambiguous_node": false
   }
 ]

@@ -3,10 +3,69 @@ import { resolve } from 'node:path';
 import { INPUT_DIR } from '../config/paths.js';
 import { inventoryGeneratedAt, type InventorySourceTrace } from '../config/inventory-meta.js';
 import { buildSchemaInventory } from '../compile/build-schema-inventory.js';
-import type { JvtoWebExtract, JvtoWebPackageHelper } from './extractTypes.js';
+import type {
+  JvtoWebExtract,
+  JvtoWebPackageHelper,
+  JvtoWebPackageDetail,
+  JvtoWebItineraryDay,
+  JvtoWebActivity
+} from './extractTypes.js';
 
 const REPO = 'jvto-devteam/jvto-web';
 const LIB_INDEX = resolve(INPUT_DIR, 'jvto-web/lib-packages.index.json');
+const PKG_DETAIL = resolve(INPUT_DIR, 'jvto-web/publicContent/generated/packageDetailSnapshots.json');
+
+const str = (v: unknown): string | null => (typeof v === 'string' && v.length > 0 ? v : null);
+const strList = (arr: unknown, key?: string): string[] => {
+  if (!Array.isArray(arr)) return [];
+  return arr
+    .map((x) => (key ? (x as Record<string, unknown>)?.[key] : x))
+    .filter((v): v is string => typeof v === 'string' && v.length > 0);
+};
+
+/** Parse the PII-safe subset of packageDetailSnapshots, if the snapshot exists. */
+function parsePackageDetails(missing: string[]): JvtoWebPackageDetail[] {
+  let snap: { items?: unknown[] };
+  try {
+    snap = JSON.parse(readFileSync(PKG_DETAIL, 'utf8'));
+  } catch {
+    missing.push('jvto_web_package_detail_snapshots');
+    return [];
+  }
+  const items = Array.isArray(snap.items) ? snap.items : [];
+  return items.map((raw): JvtoWebPackageDetail => {
+    const it = raw as Record<string, unknown>;
+    const product = ((it.payload as Record<string, unknown>)?.product ?? {}) as Record<string, unknown>;
+    const days = Array.isArray(product.itineraryDays) ? (product.itineraryDays as Array<Record<string, unknown>>) : [];
+
+    const itinerary_days: JvtoWebItineraryDay[] = days.map((d) => {
+      const acts = Array.isArray(d.activities) ? (d.activities as Array<Record<string, unknown>>) : [];
+      const activities: JvtoWebActivity[] = acts.map((a) => ({
+        action_type: str(a.type),
+        action_name: str(a.name),
+        time_window: str(a.timeWindow),
+        duration_minutes: typeof a.durationMinutes === 'number' ? a.durationMinutes : null,
+        from_location: str(a.fromLocation),
+        to_location: str(a.toLocation),
+        destination: str(a.destination)
+      }));
+      return { day: typeof d.day === 'number' ? d.day : null, title: str(d.title), summary: str(d.summary), activities };
+    });
+
+    return {
+      public_url: String(it.slug ?? product.slug ?? ''),
+      product_slug: str(product.slug),
+      origin_city: str(product.originCity),
+      end_city: str(product.endCity),
+      route_labels: strList(product.route),
+      key_experiences: strList(product.keyExperiences, 'name'),
+      accommodation_areas: strList(product.accommodationPlan, 'area'),
+      addon_types: strList(product.addOns, 'type'),
+      addon_transport_destinations: strList(product.addOns, 'transportDestination'),
+      itinerary_days
+    };
+  });
+}
 
 function trace(path: string, field: string | null = null): InventorySourceTrace {
   return { repo: REPO, path, field };
@@ -39,14 +98,18 @@ export async function extractJvtoWeb(): Promise<JvtoWebExtract> {
     missing_fields.push('lib-packages.index.json');
   }
 
+  const package_details = parsePackageDetails(missing_fields);
+
+  const source_trace = [trace('prisma/schema.prisma', 'models'), trace('src/lib/packages/', 'package_helpers')];
+  if (package_details.length) {
+    source_trace.push(trace('src/lib/publicContent/generated/packageDetailSnapshots.json', 'package_details'));
+  }
+
   return {
     source_mode: 'source_connected',
     generated_at: inventoryGeneratedAt(),
     status: missing_fields.length ? 'incomplete' : 'active',
-    source_trace: [
-      trace('prisma/schema.prisma', 'models'),
-      trace('src/lib/packages/', 'package_helpers')
-    ],
+    source_trace,
     manual_fields: [],
     missing_fields,
     schema_model_count: models.length,
@@ -55,6 +118,8 @@ export async function extractJvtoWeb(): Promise<JvtoWebExtract> {
     package_model_names: models_by_domain.package ?? [],
     route_model_names: models_by_domain.route ?? [],
     destination_model_names: models_by_domain.destination ?? [],
-    package_helpers
+    package_helpers,
+    package_detail_count: package_details.length,
+    package_details
   };
 }

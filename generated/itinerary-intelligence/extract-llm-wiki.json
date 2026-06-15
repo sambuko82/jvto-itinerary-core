@@ -338,82 +338,171 @@
     {
       "package_id": "bromo-1d1n",
       "slug": "bromo-1d1n",
-      "day_count": 1
+      "day_count": 1,
+      "day_titles": [
+        "Midnight Departure from Surabaya for Bromo Sunrise"
+      ]
     },
     {
       "package_id": "bromo-2d1n",
       "slug": "bromo-2d1n",
-      "day_count": 2
+      "day_count": 2,
+      "day_titles": [
+        "Surabaya to the Bromo Side for Overnight Staging",
+        "Bromo Sunrise, Madakaripura, and Return to Surabaya"
+      ]
     },
     {
       "package_id": "ijen-2d1n",
       "slug": "ijen-2d1n",
-      "day_count": 2
+      "day_count": 2,
+      "day_titles": [
+        "Surabaya to Bondowoso for Ijen Staging",
+        "Ijen Climb and Return to Surabaya"
+      ]
     },
     {
       "package_id": "ijen-bromo-madakaripura-3d2n",
       "slug": "ijen-bromo-madakaripura-3d2n",
-      "day_count": 3
+      "day_count": 3,
+      "day_titles": [
+        "Surabaya to Bondowoso for Ijen Staging",
+        "Ijen Climb and Transfer Toward the Bromo Side",
+        "Bromo Sunrise, Madakaripura, and Return to Surabaya"
+      ]
     },
     {
       "package_id": "bromo-madakaripura-ijen-3d2n",
       "slug": "bromo-madakaripura-ijen-3d2n",
-      "day_count": 3
+      "day_count": 3,
+      "day_titles": [
+        "Surabaya to the Bromo Side for Overnight Staging",
+        "Bromo Sunrise, Madakaripura, and Transfer Toward Ijen",
+        "Ijen Climb and Forward Finish into Bali"
+      ]
     },
     {
       "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
       "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
-      "day_count": 4
+      "day_count": 4,
+      "day_titles": [
+        "Surabaya to Bondowoso for Ijen Staging",
+        "Ijen Climb and Continue to the Papuma Side",
+        "Papuma Area to Tumpak Sewu Staging",
+        "Tumpak Sewu, Bromo Sequence, and Return to Surabaya"
+      ]
     },
     {
       "package_id": "ijen-bromo-madakaripura-4d3n",
       "slug": "ijen-bromo-madakaripura-4d3n",
-      "day_count": 4
+      "day_count": 4,
+      "day_titles": [
+        "Surabaya to Bondowoso for Ijen Staging",
+        "Ijen Climb and Transfer Toward the Bromo Side",
+        "Bromo Sunrise, Madakaripura, and Return to Surabaya City",
+        "Surabaya Hotel Stay and Airport Transfer"
+      ]
     },
     {
       "package_id": "tumpak-sewu-bromo-ijen-4d3n",
       "slug": "tumpak-sewu-bromo-ijen-4d3n",
-      "day_count": 4
+      "day_count": 4,
+      "day_titles": [
+        "Surabaya to the Tumpak Sewu Side",
+        "Tumpak Sewu and Continue Toward the Bromo Side",
+        "Bromo Sunrise and Transfer to the Ijen Side",
+        "Ijen Climb and Finish into Bali"
+      ]
     },
     {
       "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
       "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
-      "day_count": 5
+      "day_count": 5,
+      "day_titles": [
+        "Surabaya to Bondowoso for Ijen Staging",
+        "Ijen Climb and Transfer to the Papuma Side",
+        "Papuma Side to Tumpak Sewu Staging",
+        "Tumpak Sewu and Transfer Toward the Bromo Side",
+        "Bromo Sunrise and Final Return"
+      ]
     },
     {
       "package_id": "ijen-bromo-madakaripura-malang-5d4n",
       "slug": "ijen-bromo-madakaripura-malang-5d4n",
-      "day_count": 5
+      "day_count": 5,
+      "day_titles": [
+        "Surabaya to Bondowoso for Ijen Staging",
+        "Ijen Climb and Transfer Toward the Bromo Side",
+        "Bromo Sunrise, Madakaripura, and Continue to Malang",
+        "Malang and Batu Exploration with Return Toward Surabaya",
+        "Surabaya Hotel Finish and Airport Transfer"
+      ]
     },
     {
       "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
       "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
-      "day_count": 6
+      "day_count": 6,
+      "day_titles": [
+        "Surabaya to Bondowoso for Ijen Staging",
+        "Ijen Climb and Continue to the Papuma Side",
+        "Papuma Area to Tumpak Sewu Staging",
+        "Tumpak Sewu and Transfer Toward the Bromo Side",
+        "Bromo Sunrise and Continue to Malang",
+        "Malang and Surabaya Departure Handoff"
+      ]
     },
     {
       "package_id": "taman-safari-prigen-bromo-madakaripura-3d2n",
       "slug": "taman-safari-prigen-bromo-madakaripura-3d2n",
-      "day_count": 3
+      "day_count": 3,
+      "day_titles": [
+        "Surabaya to Taman Safari Prigen and Bromo Overnight",
+        "Bromo Sunrise and Caldera Exploration",
+        "Madakaripura Waterfall and Return to Surabaya"
+      ]
     },
     {
       "package_id": "bali/bromo-ijen-3d2n",
       "slug": "bromo-ijen-3d2n",
-      "day_count": 3
+      "day_count": 3,
+      "day_titles": [
+        "Bali to the Bromo Side via East Java Crossing",
+        "Bromo Sunrise, Madakaripura, and Transfer to Bondowoso",
+        "Ijen Climb and Return to Bali"
+      ]
     },
     {
       "package_id": "bali/ijen-bromo-madakaripura-3d2n",
       "slug": "ijen-bromo-madakaripura-3d2n",
-      "day_count": 3
+      "day_count": 3,
+      "day_titles": [
+        "Bali to Banyuwangi for Ijen Staging",
+        "Ijen Climb and Transfer Toward the Bromo Side",
+        "Bromo Sunrise, Madakaripura, and Finish in Surabaya"
+      ]
     },
     {
       "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
       "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
-      "day_count": 4
+      "day_count": 4,
+      "day_titles": [
+        "Bali to Banyuwangi for Ijen Staging",
+        "Ijen Climb and Papuma Transfer",
+        "Tumpak Sewu Segment and Transfer Toward Bromo",
+        "Bromo Sunrise and Finish in Surabaya"
+      ]
     },
     {
       "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
       "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
-      "day_count": 5
+      "day_count": 5,
+      "day_titles": [
+        "Bali to Banyuwangi for Ijen Staging",
+        "Ijen Climb and Transfer to the Papuma Side",
+        "Papuma Side to Tumpak Sewu Staging",
+        "Tumpak Sewu and Transfer Toward Bromo",
+        "Bromo Sunrise and Final Surabaya Handoff"
+      ]
     }
   ],
   "booking_compatibility": [

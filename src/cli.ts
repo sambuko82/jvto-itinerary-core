@@ -15,6 +15,7 @@ import { buildLocationAliasRegistry } from './compile/build-location-alias-regis
 import { buildRouteNodeIndex } from './compile/build-route-node-index.js';
 import { buildRouteLegIndexDerived } from './compile/build-route-leg-index-derived.js';
 import { buildPackageRouteMapDerived } from './compile/build-package-route-map-derived.js';
+import { buildRouteSourceCandidates } from './compile/build-route-source-candidates.js';
 
 async function main() {
   const command = process.argv[2];
@@ -66,7 +67,7 @@ async function main() {
     await writeJson(`${GENERATED_DIR}/package-catalog-index.json`, await buildPackageCatalogIndex());
     await writeJson(`${GENERATED_DIR}/location-alias-registry.json`, await buildLocationAliasRegistry());
     await writeJson(`${GENERATED_DIR}/route-node-index.json`, await buildRouteNodeIndex());
-    const report = await validateItineraryIntelligence();
+    const report = await validateItineraryIntelligence(GENERATED_DIR, { skipPhase4: true });
     console.log(JSON.stringify(report.summary, null, 2));
     console.log(`status: ${report.status}`);
     if (report.status !== 'pass') {
@@ -77,7 +78,10 @@ async function main() {
   }
 
   if (command === 'routes') {
-    // Phase 4 Route Intelligence: legs + package route map derived from Phase 3 outputs.
+    // Phase 4 + 4.5: source-backed route candidates, gap report, legs + package route map.
+    const rsc = await buildRouteSourceCandidates();
+    await writeJson(`${GENERATED_DIR}/route-source-candidates.json`, rsc.candidates);
+    await writeJson(`${GENERATED_DIR}/route-source-gap-report.json`, rsc.gaps);
     await writeJson(`${GENERATED_DIR}/route-leg-index.json`, await buildRouteLegIndexDerived());
     await writeJson(`${GENERATED_DIR}/package-route-map.json`, await buildPackageRouteMapDerived());
     const report = await validateItineraryIntelligence();

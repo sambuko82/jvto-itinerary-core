@@ -13,7 +13,7 @@ import { writeText } from '../utils/fs.js';
  * structure files. Run: `npm run refresh:snapshots`.
  */
 
-const RAW_SNAPSHOTS: Array<{ repo: string; path: string; out: string }> = [
+const RAW_SNAPSHOTS: Array<{ repo: string; path: string; out: string; optional?: boolean }> = [
   { repo: 'sambuko82/llm-wiki', path: 'output/products/package-readiness/_manifest.json', out: 'llm-wiki/package-readiness/_manifest.json' },
   { repo: 'sambuko82/llm-wiki', path: 'output/products/package-readiness/booking-compatibility.json', out: 'llm-wiki/package-readiness/booking-compatibility.json' },
   { repo: 'sambuko82/llm-wiki', path: 'output/products/package-readiness/gap-report.json', out: 'llm-wiki/package-readiness/gap-report.json' },
@@ -21,6 +21,18 @@ const RAW_SNAPSHOTS: Array<{ repo: string; path: string; out: string }> = [
   { repo: 'sambuko82/llm-wiki', path: 'output/products/package-readiness/package-pricing.json', out: 'llm-wiki/package-readiness/package-pricing.json' },
   { repo: 'sambuko82/llm-wiki', path: 'output/products/package-readiness/package-registry.json', out: 'llm-wiki/package-readiness/package-registry.json' },
   { repo: 'jvto-devteam/jvto-web', path: 'prisma/schema.prisma', out: 'jvto-web/schema.prisma' },
+  {
+    repo: 'jvto-devteam/jvto-web',
+    path: 'src/lib/publicContent/generated/packageDetailSnapshots.json',
+    out: 'jvto-web/publicContent/generated/packageDetailSnapshots.json',
+    optional: true
+  },
+  {
+    repo: 'jvto-devteam/jvto-web',
+    path: 'src/lib/publicContent/generated/destinationDetailSnapshots.json',
+    out: 'jvto-web/publicContent/generated/destinationDetailSnapshots.json',
+    optional: true
+  },
   { repo: 'jvto-devteam/new-backoffice', path: 'routes/data.php', out: 'new-backoffice/routes-data.php' }
 ];
 
@@ -36,9 +48,17 @@ async function main(): Promise<void> {
   for (const s of RAW_SNAPSHOTS) {
     const out = resolve(INPUT_DIR, s.out);
     mkdirSync(dirname(out), { recursive: true });
-    const content = ghContent(s.repo, s.path);
-    await writeText(out, content);
-    console.log(`refreshed ${s.out} (${content.length} bytes) <- ${s.repo}/${s.path}`);
+    try {
+      const content = ghContent(s.repo, s.path);
+      await writeText(out, content);
+      console.log(`refreshed ${s.out} (${content.length} bytes) <- ${s.repo}/${s.path}`);
+    } catch (err) {
+      if (s.optional) {
+        console.warn(`optional snapshot not available, skipped: ${s.repo}/${s.path}`);
+      } else {
+        throw err;
+      }
+    }
   }
   console.log(
     '\nNote: input/source-snapshot-manifest.json, lib-packages.index.json, and ' +

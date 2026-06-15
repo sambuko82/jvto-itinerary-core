@@ -11,11 +11,12 @@
     "extract": "tsx src/cli.ts extract",
     "catalog": "tsx src/cli.ts catalog",
     "routes": "tsx src/cli.ts routes",
+    "intelligence:all": "npm run extract && npm run catalog && npm run routes && npm run validate",
     "refresh:snapshots": "tsx src/extract/refresh-source-snapshots.ts",
     "inspect": "tsx src/cli.ts inspect",
     "scenario": "tsx src/cli.ts scenario",
     "build:all": "npm run compile && npm run validate",
-    "test": "tsx --test src/scenario/evaluateScenario.test.ts src/extract/extract-backoffice.test.ts src/compile/backoffice-enrich.test.ts src/config/destination-crosswalk.test.ts src/validate/inventory.test.ts src/extract/extraction-manifest.test.ts src/validate/phase3-catalog.test.ts src/validate/phase4-routes.test.ts",
+    "test": "tsx --test src/scenario/evaluateScenario.test.ts src/extract/extract-backoffice.test.ts src/compile/backoffice-enrich.test.ts src/config/destination-crosswalk.test.ts src/validate/inventory.test.ts src/extract/extraction-manifest.test.ts src/validate/phase3-catalog.test.ts src/validate/phase4-routes.test.ts src/validate/phase45-route-source.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

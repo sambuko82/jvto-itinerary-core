@@ -35,6 +35,7 @@ export interface LlmWikiItinerary {
   package_id: string;
   slug: string;
   day_count: number;
+  day_titles: string[];
 }
 
 export interface LlmWikiCompatibility {
@@ -56,6 +57,37 @@ export interface JvtoWebPackageHelper {
   exports: string[];
 }
 
+/** PII-safe travel movement from a jvto-web TravelAction activity. */
+export interface JvtoWebActivity {
+  action_type: string | null;
+  action_name: string | null;
+  time_window: string | null;
+  duration_minutes: number | null;
+  from_location: string | null;
+  to_location: string | null;
+  destination: string | null;
+}
+
+export interface JvtoWebItineraryDay {
+  day: number | null;
+  title: string | null;
+  summary: string | null;
+  activities: JvtoWebActivity[];
+}
+
+export interface JvtoWebPackageDetail {
+  public_url: string;
+  product_slug: string | null;
+  origin_city: string | null;
+  end_city: string | null;
+  route_labels: string[];
+  key_experiences: string[];
+  accommodation_areas: string[];
+  addon_types: string[];
+  addon_transport_destinations: string[];
+  itinerary_days: JvtoWebItineraryDay[];
+}
+
 export interface JvtoWebExtract extends ExtractEnvelope {
   schema_model_count: number;
   restricted_model_count: number;
@@ -64,6 +96,8 @@ export interface JvtoWebExtract extends ExtractEnvelope {
   route_model_names: string[];
   destination_model_names: string[];
   package_helpers: JvtoWebPackageHelper[];
+  package_detail_count: number;
+  package_details: JvtoWebPackageDetail[];
 }
 
 export interface ExtractorStatus {
