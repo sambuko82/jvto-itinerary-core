@@ -27,6 +27,92 @@ export function buildAccommodationLogic(): AccommodationLogic[] {
       risk_if_arrival_late: ['less rest before sunrise', 'late check-in', 'higher fatigue'],
       cost_components: ['hotel_bromo_area', 'bromo_jeep'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/accommodation-logic.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'tumpak_sewu_staging',
+      label: 'Tumpak Sewu / Lumajang staging overnight',
+      status: 'active',
+      confidence: 'manual_seed',
+      area_id: 'tumpak_sewu_staging',
+      purpose: 'overnight_before_tumpak_sewu',
+      recommended_for: ['Tumpak Sewu as first destination', 'Tumpak Sewu before Bromo route', 'extended waterfall packages'],
+      operational_notes: [
+        'Artha Cottage / Lumajang area is the closest base',
+        'early morning start recommended 07:00–08:00 for waterfall access',
+        'waterfall descent takes 1–2h; weather-sensitive — plan around rain',
+        'local guide mandatory'
+      ],
+      risk_if_arrival_late: ['delayed waterfall start', 'fatigue before descent', 'rain risk increases with later start'],
+      cost_components: ['hotel_room', 'restaurant_meal'],
+      source_trace: [
+        { source: 'llm_wiki', ref: 'output/products/package-readiness/package-itineraries.json', confidence: 'inferred' }
+      ]
+    },
+    {
+      id: 'papuma_staging',
+      label: 'Papuma / Jember staging overnight',
+      status: 'active',
+      confidence: 'manual_seed',
+      area_id: 'papuma_staging',
+      purpose: 'overnight_before_papuma_beach',
+      recommended_for: ['Papuma beach visit', 'extended Ijen + Papuma route', 'packages including coastal stop'],
+      operational_notes: [
+        'Doho Homestay / Jember area is the closest base',
+        'Papuma best visited in morning before crowds',
+        'coastal road is rain-sensitive; check weather',
+        'not suitable before a tight airport or train deadline'
+      ],
+      risk_if_arrival_late: ['limited beach time', 'tired during coastal hike', 'tight next-day transfer'],
+      cost_components: ['hotel_room', 'restaurant_meal'],
+      source_trace: [
+        { source: 'llm_wiki', ref: 'output/products/package-readiness/package-itineraries.json', confidence: 'inferred' }
+      ]
+    },
+    {
+      id: 'banyuwangi_staging',
+      label: 'Banyuwangi staging overnight (Bali-origin Ijen packages)',
+      status: 'active',
+      confidence: 'manual_seed',
+      area_id: 'banyuwangi_staging',
+      purpose: 'overnight_after_bali_ferry_before_ijen',
+      recommended_for: [
+        'Bali-origin guests crossing via Ketapang/Gilimanuk',
+        'Ijen as first East Java stop',
+        'packages starting from Bali side'
+      ],
+      operational_notes: [
+        'Luminor Hotel / Banyuwangi area used for Bali-origin packages',
+        'ferry from Gilimanuk requires Ferizy pre-booking',
+        'arrive Banyuwangi by 18:00–20:00 recommended for adequate Ijen rest',
+        'medical check and briefing arranged at hotel',
+        'midnight departure to Ijen from here'
+      ],
+      risk_if_arrival_late: ['reduced rest before midnight Ijen departure', 'late medical check', 'higher fatigue at crater'],
+      cost_components: ['hotel_room', 'restaurant_meal'],
+      source_trace: [
+        { source: 'llm_wiki', ref: 'output/products/package-readiness/package-itineraries.json', confidence: 'inferred' },
+        { source: 'manual_seed', ref: 'seed/research/east-java-field-data-2026.json', confidence: 'inferred' }
+      ]
+    },
+    {
+      id: 'malang_batu_staging',
+      label: 'Malang / Batu staging overnight (extended packages)',
+      status: 'active',
+      confidence: 'manual_seed',
+      area_id: 'malang_batu_staging',
+      purpose: 'overnight_for_malang_batu_city_stop',
+      recommended_for: ['5D4N and 6D5N packages', 'guests requesting Malang city stop', 'Malang dropoff packages'],
+      operational_notes: [
+        'Whiz Prime Malang / Holiday Inn Express Surabaya used for city stays',
+        'Malang city and Batu attractions accessible on day-use basis',
+        'suitable for leisure day after highland activities',
+        'Surabaya airport accessible 2–4h from Malang depending on traffic'
+      ],
+      risk_if_arrival_late: ['late checkout reduces city time', 'Surabaya airport deadline risk if traffic'],
+      cost_components: ['hotel_room', 'restaurant_meal'],
+      source_trace: [
+        { source: 'llm_wiki', ref: 'output/products/package-readiness/package-itineraries.json', confidence: 'inferred' }
+      ]
     }
   ];
 }

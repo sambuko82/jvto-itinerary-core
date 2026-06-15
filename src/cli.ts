@@ -27,8 +27,7 @@ async function main() {
   }
 
   if (command === 'scenario') {
-    const path = process.argv[3];
-    if (!path) throw new Error('Provide scenario path.');
+    const path = process.argv[3] ?? 'samples/customer-scenario-surabaya-bromo-ijen-ketapang.json';
     const raw = await readFile(path, 'utf8');
     const scenario = JSON.parse(raw) as ItineraryScenario;
     const evaluation = await evaluateScenarioFromFile(scenario);
