@@ -302,6 +302,49 @@ export async function validateItineraryIntelligence(
     }
   }
 
+  // ── Phase 4.6: route-map consistency + operational context handoff ──
+  const opcontext = opts.skipPhase4 ? null : await tryRead('operational-context-gap-report.json');
+  if (opcontext) {
+    total += opcontext.length;
+    for (const rec of opcontext) {
+      checkContract(rec, 'operational-context-gap-report.json', findings);
+      scanPii(rec, String(rec.id ?? 'operational-context-gap-report.json'), '$', findings);
+    }
+  }
+
+  if (routes) {
+    const STALE = 'slug_token_order_from_catalog';
+    const VALID_BASIS = new Set(['source_grouped_sequence', 'slug_token_fallback']);
+    if (routes.length > 0 && routes.every((r) => r.sequence_basis === STALE)) {
+      findings.push({ severity: 'critical', check: 'stale_route_map_metadata', record_id: null, message: 'all package-route-map records still use stale sequence_basis' });
+    }
+    const handed = new Set((opcontext ?? []).map((o) => String(o.label)));
+    for (const r of routes) {
+      const pid = String(r.package_id);
+      if (!VALID_BASIS.has(String(r.sequence_basis))) {
+        findings.push({ severity: 'critical', check: 'stale_route_map_metadata', record_id: pid, message: `invalid/stale sequence_basis "${r.sequence_basis}"` });
+      }
+      if (!r.route_leg_source_summary || typeof r.route_leg_source_summary !== 'object') {
+        findings.push({ severity: 'critical', check: 'missing_leg_source_summary', record_id: pid, message: `route_leg_source_summary missing on "${pid}"` });
+      }
+      for (const lab of (r.unresolved_movement_labels as string[] | undefined) ?? []) {
+        if (!handed.has(lab)) {
+          findings.push({ severity: 'critical', check: 'unhanded_movement_label', record_id: pid, message: `unresolved movement label "${lab}" not in operational-context-gap-report` });
+        }
+      }
+    }
+  }
+
+  // operational labels must NOT be silently promoted into destination route nodes
+  if (opcontext && nodes) {
+    const nodeIds = new Set(nodes.map((n) => String(n.node_id)));
+    for (const o of opcontext) {
+      if (nodeIds.has(String(o.normalized_candidate_id))) {
+        findings.push({ severity: 'critical', check: 'operational_promoted_to_node', record_id: String(o.label), message: `operational label "${o.label}" was promoted into a destination node` });
+      }
+    }
+  }
+
   // missing packageDetailSnapshots must produce a gap report, not crash
   if (!opts.skipPhase4) try {
     const jvto = await readJson<{ package_detail_count?: number; missing_fields?: string[] }>(`${dir}/extract-jvto-web.json`);

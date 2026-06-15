@@ -16,6 +16,7 @@ import { buildRouteNodeIndex } from './compile/build-route-node-index.js';
 import { buildRouteLegIndexDerived } from './compile/build-route-leg-index-derived.js';
 import { buildPackageRouteMapDerived } from './compile/build-package-route-map-derived.js';
 import { buildRouteSourceCandidates } from './compile/build-route-source-candidates.js';
+import { buildOperationalContextGapReport } from './compile/build-operational-context-gap-report.js';
 
 async function main() {
   const command = process.argv[2];
@@ -84,6 +85,7 @@ async function main() {
     await writeJson(`${GENERATED_DIR}/route-source-gap-report.json`, rsc.gaps);
     await writeJson(`${GENERATED_DIR}/route-leg-index.json`, await buildRouteLegIndexDerived());
     await writeJson(`${GENERATED_DIR}/package-route-map.json`, await buildPackageRouteMapDerived());
+    await writeJson(`${GENERATED_DIR}/operational-context-gap-report.json`, await buildOperationalContextGapReport());
     const report = await validateItineraryIntelligence();
     console.log(JSON.stringify(report.summary, null, 2));
     console.log(`status: ${report.status}`);

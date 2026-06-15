@@ -13,6 +13,14 @@ import { groupSlugTokens, resolveLabelToNode, type SourceContext, type SourceStr
 
 export type LegSourceBasis = 'jvto_web_travel_action' | 'source_supported_sequence' | 'slug_token_fallback';
 
+export type RouteMapStatus = 'confirmed' | 'supported' | 'incomplete';
+
+export interface LegSourceSummary {
+  jvto_web_travel_action: number;
+  source_supported_sequence: number;
+  slug_token_fallback: number;
+}
+
 export interface DerivedRoute {
   package_id: string;
   slug: string;
@@ -20,6 +28,19 @@ export interface DerivedRoute {
   sequence: string[];
   legIds: string[];
   containsAmbiguous: boolean;
+  sequence_basis: 'source_grouped_sequence' | 'slug_token_fallback';
+  route_source_strength: SourceStrength;
+  route_leg_source_summary: LegSourceSummary;
+  route_map_status: RouteMapStatus;
+  source_backed_compound_nodes: string[];
+  unresolved_movement_labels: string[];
+  missing_real: boolean;
+}
+
+export interface UnresolvedMovement {
+  label: string;
+  seenInPackages: Set<string>;
+  seenAs: Set<string>;
 }
 
 export interface DerivedLeg {
@@ -37,6 +58,7 @@ export interface RouteDerivation {
   legs: DerivedLeg[];
   knownNodes: Set<string>;
   ambiguousNodes: Set<string>;
+  unresolvedMovements: UnresolvedMovement[];
 }
 
 interface CatalogRow {
@@ -88,39 +110,87 @@ export async function deriveRoutes(dir: string = GENERATED_DIR): Promise<RouteDe
     return leg;
   };
 
-  const routes: DerivedRoute[] = catalog
-    .map((p) => {
-      // grouped sequence (origin + source-grouped destination nodes)
-      const sequence: string[] = [];
-      if (p.origin) sequence.push(p.origin.trim().toLowerCase());
-      for (const g of groupSlugTokens(p.destination_tokens, ctx)) sequence.push(g.node_id);
+  const unresolvedMap = new Map<string, UnresolvedMovement>();
+  const noteUnresolved = (label: string, pkg: string, side: string) => {
+    const e = unresolvedMap.get(label) ?? { label, seenInPackages: new Set(), seenAs: new Set() };
+    e.seenInPackages.add(pkg);
+    e.seenAs.add(side);
+    unresolvedMap.set(label, e);
+  };
 
-      const legIds: string[] = [];
-      for (let i = 1; i < sequence.length; i++) {
-        const from = sequence[i - 1];
-        const to = sequence[i];
-        const supported =
-          (strengthById.get(from) ?? 'fallback') !== 'fallback' && (strengthById.get(to) ?? 'fallback') !== 'fallback';
-        const basis: LegSourceBasis = supported ? 'source_supported_sequence' : 'slug_token_fallback';
-        upsertLeg(from, to, p.package_id, basis);
-        legIds.push(legId(from, to));
-      }
+  interface Raw {
+    p: CatalogRow;
+    sequence: string[];
+    legIds: string[];
+    compoundNodes: string[];
+    unresolvedLabels: Set<string>;
+  }
 
-      // jvto-web TravelAction confirmed movements (real direction)
-      const detail = p.public_url ? ctx.detailByUrl.get(p.public_url.replace(/^\//, '')) : undefined;
-      if (detail) {
-        for (const day of detail.itinerary_days) {
-          for (const act of day.activities) {
-            if (act.action_type !== 'TravelAction') continue;
-            const from = act.from_location ? resolveLabelToNode(act.from_location, knownNodes, ctx) : null;
-            const to = act.to_location ? resolveLabelToNode(act.to_location, knownNodes, ctx) : null;
-            if (from && to && from !== to) {
-              upsertLeg(from, to, p.package_id, 'jvto_web_travel_action');
-              if (!legIds.includes(legId(from, to))) legIds.push(legId(from, to));
-            }
+  const raws: Raw[] = catalog.map((p) => {
+    // grouped sequence (origin + source-grouped destination nodes)
+    const sequence: string[] = [];
+    if (p.origin) sequence.push(p.origin.trim().toLowerCase());
+    const grouped = groupSlugTokens(p.destination_tokens, ctx);
+    const compoundNodes: string[] = [];
+    for (const g of grouped) {
+      sequence.push(g.node_id);
+      if (g.member_tokens.length > 1) compoundNodes.push(g.node_id);
+    }
+
+    const legIds: string[] = [];
+    for (let i = 1; i < sequence.length; i++) {
+      const from = sequence[i - 1];
+      const to = sequence[i];
+      const supported =
+        (strengthById.get(from) ?? 'fallback') !== 'fallback' && (strengthById.get(to) ?? 'fallback') !== 'fallback';
+      upsertLeg(from, to, p.package_id, supported ? 'source_supported_sequence' : 'slug_token_fallback');
+      legIds.push(legId(from, to));
+    }
+
+    const unresolvedLabels = new Set<string>();
+    const detail = p.public_url ? ctx.detailByUrl.get(p.public_url.replace(/^\//, '')) : undefined;
+    if (detail) {
+      for (const day of detail.itinerary_days) {
+        for (const act of day.activities) {
+          if (act.action_type !== 'TravelAction') continue;
+          const fromNode = act.from_location ? resolveLabelToNode(act.from_location, knownNodes, ctx) : null;
+          const toNode = act.to_location ? resolveLabelToNode(act.to_location, knownNodes, ctx) : null;
+          if (fromNode && toNode && fromNode !== toNode) {
+            upsertLeg(fromNode, toNode, p.package_id, 'jvto_web_travel_action');
+            if (!legIds.includes(legId(fromNode, toNode))) legIds.push(legId(fromNode, toNode));
           }
+          if (act.from_location && !fromNode) { unresolvedLabels.add(act.from_location); noteUnresolved(act.from_location, p.package_id, 'from'); }
+          if (act.to_location && !toNode) { unresolvedLabels.add(act.to_location); noteUnresolved(act.to_location, p.package_id, 'to'); }
         }
       }
+    }
+
+    return { p, sequence, legIds, compoundNodes, unresolvedLabels };
+  });
+
+  const legs = [...legMap.values()].sort((a, b) => a.route_leg_id.localeCompare(b.route_leg_id));
+  const legBasisById = new Map(legs.map((l) => [l.route_leg_id, l.source_basis]));
+
+  const routes: DerivedRoute[] = raws
+    .map(({ p, sequence, legIds, compoundNodes, unresolvedLabels }): DerivedRoute => {
+      const summary: LegSourceSummary = { jvto_web_travel_action: 0, source_supported_sequence: 0, slug_token_fallback: 0 };
+      for (const id of legIds) summary[legBasisById.get(id) ?? 'slug_token_fallback'] += 1;
+
+      const destNodes = sequence.filter((n) => n !== (p.origin ?? '').trim().toLowerCase());
+      const anyFallback = sequence.some((n) => (strengthById.get(n) ?? 'fallback') === 'fallback');
+      const anyUnresolvedNode = sequence.some((n) => (strengthById.get(n) ?? 'fallback') === 'unresolved');
+      const hasTA = summary.jvto_web_travel_action > 0;
+
+      const sequence_basis: DerivedRoute['sequence_basis'] = anyFallback || anyUnresolvedNode ? 'slug_token_fallback' : 'source_grouped_sequence';
+      const route_source_strength: SourceStrength = hasTA
+        ? 'confirmed'
+        : anyFallback
+          ? 'fallback'
+          : anyUnresolvedNode
+            ? 'unresolved'
+            : 'supported';
+      const route_map_status: RouteMapStatus = hasTA ? 'confirmed' : sequence_basis === 'source_grouped_sequence' ? 'supported' : 'incomplete';
+      const missing_real = route_map_status === 'incomplete' || anyFallback || anyUnresolvedNode;
 
       return {
         package_id: p.package_id,
@@ -128,11 +198,18 @@ export async function deriveRoutes(dir: string = GENERATED_DIR): Promise<RouteDe
         origin: p.origin,
         sequence,
         legIds,
-        containsAmbiguous: sequence.some((n) => ambiguousNodes.has(n))
+        containsAmbiguous: destNodes.some((n) => ambiguousNodes.has(n)),
+        sequence_basis,
+        route_source_strength,
+        route_leg_source_summary: summary,
+        route_map_status,
+        source_backed_compound_nodes: compoundNodes,
+        unresolved_movement_labels: [...unresolvedLabels].sort(),
+        missing_real
       };
     })
     .sort((a, b) => a.package_id.localeCompare(b.package_id));
 
-  const legs = [...legMap.values()].sort((a, b) => a.route_leg_id.localeCompare(b.route_leg_id));
-  return { routes, legs, knownNodes, ambiguousNodes };
+  const unresolvedMovements = [...unresolvedMap.values()].sort((a, b) => a.label.localeCompare(b.label));
+  return { routes, legs, knownNodes, ambiguousNodes, unresolvedMovements };
 }
