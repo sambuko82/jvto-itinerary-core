@@ -227,6 +227,23 @@ export function buildPackageRouteMap(backoffice?: BackofficeExtract): PackageRou
       source_trace: LLMWIKI_TRACE
     },
     {
+      package_id: 'bromo-ijen-bali-4d3n',
+      label: '4D3N Bromo and Ijen ending in Bali (Surabaya origin)',
+      origin: 'Surabaya',
+      duration: '4D3N',
+      route_sequence: ['Surabaya', 'Bromo Area', 'Bondowoso / Ijen Area', 'Ijen Crater', 'Ketapang Harbor', 'Bali'],
+      route_legs: [
+        'surabaya_airport_to_bromo_area',
+        'bromo_area_to_bondowoso_ijen_area',
+        'bondowoso_to_ijen_base',
+        'ijen_base_to_ketapang_harbor',
+        'ketapang_harbor_to_gilimanuk_bali_side'
+      ],
+      standard_dropoff_options: ['Bali hotel area', 'Ketapang Harbor', 'Gilimanuk / Bali side'],
+      possible_customizations: ['add Madakaripura spur from Bromo', 'Surabaya return instead of Bali continuation'],
+      source_trace: LLMWIKI_TRACE
+    },
+    {
       package_id: 'bromo-ijen-3d2n-bali',
       label: '3D2N Bromo and Ijen (Bali origin)',
       origin: 'Bali',

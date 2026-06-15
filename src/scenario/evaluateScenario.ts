@@ -9,8 +9,11 @@ export interface ScenarioEvaluation {
   status: 'recommended' | 'possible_with_warning' | 'not_recommended' | 'needs_manual_review';
   recommended_route: string[]; // ordered location labels
   route_leg_ids: string[]; // joinable to 04-route-leg-index.json
+  package_route_id: string | null; // joinable to 11-package-route-map.json (package_id)
   warnings: string[];
   operational_events: string[]; // joinable to 07-operational-events.json
+  meal_logic: string[]; // joinable to 08-meal-logic.json
+  accommodation_logic: string[]; // joinable to 09-accommodation-logic.json
   cost_components: string[]; // canonical IDs only, joinable to 10-cost-components.json (NO rates/totals)
   better_route_notes: string[];
   next_required_info: string[];
@@ -23,21 +26,28 @@ interface Datasets {
   legs: Array<Record<string, unknown>>;
   destinations: Array<Record<string, unknown>>;
   events: Array<Record<string, unknown>>;
+  meals: Array<Record<string, unknown>>;
+  accommodations: Array<Record<string, unknown>>;
   costs: Array<Record<string, unknown>>;
+  packageRoutes: Array<Record<string, unknown>>;
   rules: Array<Record<string, unknown>>;
 }
 
 export async function loadDatasets(dir: string = GENERATED_DIR): Promise<Datasets> {
-  const [pickups, dropoffs, legs, destinations, events, costs, rules] = await Promise.all([
-    readJson<Datasets['pickups']>(`${dir}/01-pickup-contexts.json`),
-    readJson<Datasets['dropoffs']>(`${dir}/02-dropoff-contexts.json`),
-    readJson<Datasets['legs']>(`${dir}/04-route-leg-index.json`),
-    readJson<Datasets['destinations']>(`${dir}/06-destination-activity-profiles.json`),
-    readJson<Datasets['events']>(`${dir}/07-operational-events.json`),
-    readJson<Datasets['costs']>(`${dir}/10-cost-components.json`),
-    readJson<Datasets['rules']>(`${dir}/12-recommendation-rules.json`)
-  ]);
-  return { pickups, dropoffs, legs, destinations, events, costs, rules };
+  const [pickups, dropoffs, legs, destinations, events, meals, accommodations, costs, packageRoutes, rules] =
+    await Promise.all([
+      readJson<Datasets['pickups']>(`${dir}/01-pickup-contexts.json`),
+      readJson<Datasets['dropoffs']>(`${dir}/02-dropoff-contexts.json`),
+      readJson<Datasets['legs']>(`${dir}/04-route-leg-index.json`),
+      readJson<Datasets['destinations']>(`${dir}/06-destination-activity-profiles.json`),
+      readJson<Datasets['events']>(`${dir}/07-operational-events.json`),
+      readJson<Datasets['meals']>(`${dir}/08-meal-logic.json`),
+      readJson<Datasets['accommodations']>(`${dir}/09-accommodation-logic.json`),
+      readJson<Datasets['costs']>(`${dir}/10-cost-components.json`),
+      readJson<Datasets['packageRoutes']>(`${dir}/11-package-route-map.json`),
+      readJson<Datasets['rules']>(`${dir}/12-recommendation-rules.json`)
+    ]);
+  return { pickups, dropoffs, legs, destinations, events, meals, accommodations, costs, packageRoutes, rules };
 }
 
 // ─── Destination normalization ───
@@ -90,6 +100,24 @@ const REGION = {
   west: new Set(['sby_airport', 'sby_hotel', 'sby', 'malang']),
   east: new Set(['ketapang', 'bali'])
 };
+
+// Map a routing area key (from areaKey) back to a corridor/spur destination key.
+function areaToDest(area: string | null): string | null {
+  switch (area) {
+    case 'bromo':
+      return 'bromo';
+    case 'ijen_area':
+      return 'ijen';
+    case 'tumpak':
+      return 'tumpak_sewu';
+    case 'madakaripura':
+      return 'madakaripura';
+    case 'malang':
+      return 'malang_batu';
+    default:
+      return null;
+  }
+}
 
 function pickupNode(p: { type?: string; location?: string }): { area: string; label: string } | null {
   const loc = (p.location ?? '').toLowerCase();
@@ -195,6 +223,47 @@ export function evaluateScenario(scenario: ItineraryScenario, datasets: Datasets
     else betterRouteNotes.push(`No direct route leg defined for ${nodeSeq[i - 1].label} -> ${nodeSeq[i].label} (needs verification).`);
   }
 
+  // ── Package-aware baseline (11-package-route-map) ──
+  // When a package_slug is given, use the package route_sequence/route_legs as
+  // the baseline and only flag conflicts with pickup/dropoff/requested dests.
+  let packageRouteId: string | null = null;
+  if (scenario.package_slug) {
+    const pkg = datasets.packageRoutes.find((p) => p.package_id === scenario.package_slug);
+    if (!pkg) {
+      betterRouteNotes.push(`package_slug "${scenario.package_slug}" not found in 11-package-route-map; using derived route.`);
+    } else {
+      packageRouteId = String(pkg.package_id);
+      const seq = (pkg.route_sequence as string[] | undefined) ?? [];
+      const pkgLegs = ((pkg.route_legs as string[] | undefined) ?? []).filter((id) =>
+        datasets.legs.some((l) => l.id === id)
+      );
+      if (seq.length) {
+        recommendedRoute.length = 0;
+        recommendedRoute.push(...seq);
+      }
+      if (pkgLegs.length) {
+        routeLegIds.length = 0;
+        routeLegIds.push(...pkgLegs);
+      }
+      // conflict: a requested destination is not part of the package route
+      const pkgDestKeys = new Set(seq.map((s) => areaToDest(areaKey(s))).filter((d): d is string => !!d));
+      for (const d of dests) {
+        if (!pkgDestKeys.has(d)) {
+          warnings.push(
+            `Requested destination "${d}" is not part of package route "${packageRouteId}"; package route may need adjustment.`
+          );
+        }
+      }
+      // conflict: requested dropoff differs from where the package route ends
+      const pkgEndArea = seq.length ? areaKey(seq[seq.length - 1]) : null;
+      if (pkgEndArea && endArea && pkgEndArea !== endArea && !(REGION.east.has(pkgEndArea) && REGION.east.has(endArea))) {
+        warnings.push(
+          `Package route "${packageRouteId}" ends at "${seq[seq.length - 1]}" but requested dropoff resolves to "${endArea}"; confirm dropoff handling.`
+        );
+      }
+    }
+  }
+
   // ── Spur legs (e.g. Madakaripura out-and-back from Bromo) ──
   const traversedLegIds = [...routeLegIds];
   for (const spur of spurs) {
@@ -232,6 +301,31 @@ export function evaluateScenario(scenario: ItineraryScenario, datasets: Datasets
   for (const ev of datasets.events) {
     if (eventApplicable[String(ev.id)]) operationalEvents.push(String(ev.id));
   }
+
+  // ── Meal logic (08) by applicability ──
+  const longTransfer = routeLegIds.length >= 3 || mains.length >= 2;
+  const mealApplicable: Record<string, boolean> = {
+    dinner_before_ijen: dests.has('ijen'),
+    takeaway_breakfast_after_ijen_or_bromo: dests.has('ijen') || dests.has('bromo'),
+    lunch_stop_own_expense_long_transfer: longTransfer
+  };
+  const meal_logic = datasets.meals
+    .filter((m) => mealApplicable[String(m.id)])
+    .map((m) => String(m.id));
+
+  // ── Accommodation logic (09) by applicability ──
+  const baliOrigin = startArea === 'bali';
+  const accApplicable: Record<string, boolean> = {
+    bromo_area_sunrise_staging: dests.has('bromo'),
+    bondowoso_ijen_staging: dests.has('ijen') && !baliOrigin,
+    banyuwangi_staging: dests.has('ijen') && baliOrigin,
+    tumpak_sewu_staging: dests.has('tumpak_sewu'),
+    papuma_staging: dests.has('papuma'),
+    malang_batu_staging: dests.has('malang_batu') || endArea === 'malang'
+  };
+  const accommodation_logic = datasets.accommodations
+    .filter((a) => accApplicable[String(a.area_id)])
+    .map((a) => String(a.id));
 
   // ── Cost components: gather raw tags, resolve to canonical 10 IDs ──
   const rawCostTags = new Set<string>();
@@ -317,7 +411,10 @@ export function evaluateScenario(scenario: ItineraryScenario, datasets: Datasets
     { source: 'generated', ref: 'generated/itinerary-intelligence/04-route-leg-index.json', confidence: 'inferred' },
     { source: 'generated', ref: 'generated/itinerary-intelligence/06-destination-activity-profiles.json', confidence: 'inferred' },
     { source: 'generated', ref: 'generated/itinerary-intelligence/07-operational-events.json', confidence: 'inferred' },
+    { source: 'generated', ref: 'generated/itinerary-intelligence/08-meal-logic.json', confidence: 'inferred' },
+    { source: 'generated', ref: 'generated/itinerary-intelligence/09-accommodation-logic.json', confidence: 'inferred' },
     { source: 'generated', ref: 'generated/itinerary-intelligence/10-cost-components.json', confidence: 'inferred' },
+    { source: 'generated', ref: 'generated/itinerary-intelligence/11-package-route-map.json', confidence: 'inferred' },
     { source: 'generated', ref: 'generated/itinerary-intelligence/12-recommendation-rules.json', confidence: 'inferred' }
   ];
 
@@ -325,8 +422,11 @@ export function evaluateScenario(scenario: ItineraryScenario, datasets: Datasets
     status,
     recommended_route: recommendedRoute,
     route_leg_ids: routeLegIds,
+    package_route_id: packageRouteId,
     warnings,
     operational_events: operationalEvents,
+    meal_logic,
+    accommodation_logic,
     cost_components: costComponents,
     better_route_notes: betterRouteNotes,
     next_required_info: nextRequiredInfo,

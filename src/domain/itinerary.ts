@@ -21,6 +21,8 @@ export interface TravelEndpoint {
 export interface ItineraryScenario {
   scenario_id: string;
   channel?: 'JVTO' | 'KLOOK' | 'TWT' | 'CUSTOM';
+  /** Optional package template slug, joinable to 11-package-route-map.json. */
+  package_slug?: string;
   pickup: TravelEndpoint;
   dropoff: TravelEndpoint;
   pax: number;

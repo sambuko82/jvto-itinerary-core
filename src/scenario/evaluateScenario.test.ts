@@ -10,6 +10,9 @@ const datasets = await loadDatasets();
 const canonicalCostIds = new Set((await readJson<Array<{ id: string }>>(`${GENERATED_DIR}/10-cost-components.json`)).map((c) => c.id));
 const legIds = new Set((await readJson<Array<{ id: string }>>(`${GENERATED_DIR}/04-route-leg-index.json`)).map((l) => l.id));
 const eventIds = new Set((await readJson<Array<{ id: string }>>(`${GENERATED_DIR}/07-operational-events.json`)).map((e) => e.id));
+const mealIds = new Set((await readJson<Array<{ id: string }>>(`${GENERATED_DIR}/08-meal-logic.json`)).map((m) => m.id));
+const accIds = new Set((await readJson<Array<{ id: string }>>(`${GENERATED_DIR}/09-accommodation-logic.json`)).map((a) => a.id));
+const packageIds = new Set((await readJson<Array<{ package_id: string }>>(`${GENERATED_DIR}/11-package-route-map.json`)).map((p) => p.package_id));
 
 const PII_KEYS = new Set([
   'name', 'full_name', 'customer_name', 'guest_name', 'email', 'email_address',
@@ -84,6 +87,63 @@ for (const file of ALL_SAMPLES) {
     for (const id of r.operational_events) {
       assert.ok(eventIds.has(id), `operational_event "${id}" not joinable to 07-operational-events.json`);
     }
+    // new package-aware fields present + joinable
+    assert.ok(Array.isArray(r.meal_logic));
+    assert.ok(Array.isArray(r.accommodation_logic));
+    assert.ok(r.package_route_id === null || typeof r.package_route_id === 'string');
+    for (const id of r.meal_logic) assert.ok(mealIds.has(id), `meal_logic "${id}" not joinable to 08-meal-logic.json`);
+    for (const id of r.accommodation_logic) assert.ok(accIds.has(id), `accommodation_logic "${id}" not joinable to 09-accommodation-logic.json`);
     assertNoPii(r);
   });
 }
+
+// ── Package-aware scenario ──
+test('package_slug bromo-ijen-bali-4d3n is present in 11-package-route-map', () => {
+  assert.ok(packageIds.has('bromo-ijen-bali-4d3n'));
+});
+
+test('package-aware scenario uses package route baseline and is recommended', async () => {
+  const r = await evalSample('customer-scenario-package-bromo-ijen-bali-4d3n.json');
+  assert.equal(r.status, 'recommended');
+  assert.equal(r.package_route_id, 'bromo-ijen-bali-4d3n');
+  assert.equal(r.warnings.length, 0);
+  // baseline route from the package
+  assert.deepEqual(r.recommended_route, [
+    'Surabaya',
+    'Bromo Area',
+    'Bondowoso / Ijen Area',
+    'Ijen Crater',
+    'Ketapang Harbor',
+    'Bali'
+  ]);
+  for (const id of r.route_leg_ids) assert.ok(legIds.has(id));
+  // meal + accommodation intelligence wired
+  assert.ok(r.meal_logic.includes('dinner_before_ijen'));
+  assert.ok(r.accommodation_logic.includes('bondowoso_ijen_staging'));
+  assert.ok(r.accommodation_logic.includes('bromo_area_sunrise_staging'));
+});
+
+test('package route conflicting with requested destination raises a warning', () => {
+  // bromo-ijen-3d2n covers Bromo+Ijen only; requesting Tumpak Sewu conflicts.
+  const scenario = {
+    scenario_id: 'pkg_conflict',
+    package_slug: 'bromo-ijen-3d2n',
+    pickup: { type: 'airport', location: 'Surabaya Airport', time: '09:00' },
+    dropoff: { type: 'harbor', location: 'Ketapang Harbor' },
+    pax: 2,
+    duration_days: 4,
+    requested_destinations: ['Bromo', 'Ijen', 'Tumpak Sewu'],
+    arrival_time: '09:00'
+  } as ItineraryScenario;
+  const r = evaluateScenario(scenario, datasets);
+  assert.equal(r.package_route_id, 'bromo-ijen-3d2n');
+  assert.ok(
+    r.warnings.some((w) => w.includes('tumpak_sewu') && w.includes('not part of package route')),
+    'expected a package-conflict warning for tumpak_sewu'
+  );
+});
+
+test('no package_slug yields package_route_id null (unchanged behavior)', async () => {
+  const r = await evalSample('customer-scenario-surabaya-hotel-early-bromo-ijen-bali.json');
+  assert.equal(r.package_route_id, null);
+});

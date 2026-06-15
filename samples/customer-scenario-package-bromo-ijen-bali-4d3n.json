@@ -1,0 +1,18 @@
+{
+  "scenario_id": "package_bromo_ijen_bali_4d3n",
+  "channel": "CUSTOM",
+  "package_slug": "bromo-ijen-bali-4d3n",
+  "pickup": {
+    "type": "airport",
+    "location": "Surabaya Airport",
+    "time": "09:00"
+  },
+  "dropoff": {
+    "type": "bali_area",
+    "location": "Bali"
+  },
+  "pax": 2,
+  "duration_days": 4,
+  "requested_destinations": ["Bromo", "Ijen"],
+  "arrival_time": "09:00"
+}

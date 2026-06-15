@@ -547,6 +547,72 @@
     }
   },
   {
+    "package_id": "bromo-ijen-bali-4d3n",
+    "label": "4D3N Bromo and Ijen ending in Bali (Surabaya origin)",
+    "origin": "Surabaya",
+    "duration": "4D3N",
+    "route_sequence": [
+      "Surabaya",
+      "Bromo Area",
+      "Bondowoso / Ijen Area",
+      "Ijen Crater",
+      "Ketapang Harbor",
+      "Bali"
+    ],
+    "route_legs": [
+      "surabaya_airport_to_bromo_area",
+      "bromo_area_to_bondowoso_ijen_area",
+      "bondowoso_to_ijen_base",
+      "ijen_base_to_ketapang_harbor",
+      "ketapang_harbor_to_gilimanuk_bali_side"
+    ],
+    "standard_dropoff_options": [
+      "Bali hotel area",
+      "Ketapang Harbor",
+      "Gilimanuk / Bali side"
+    ],
+    "possible_customizations": [
+      "add Madakaripura spur from Bromo",
+      "Surabaya return instead of Bali continuation"
+    ],
+    "source_trace": [
+      {
+        "source": "llm_wiki",
+        "ref": "output/products/package-readiness/package-registry.json",
+        "confidence": "inferred"
+      },
+      {
+        "source": "llm_wiki",
+        "ref": "output/products/package-readiness/package-itineraries.json",
+        "confidence": "inferred"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "package template structure (packages, itinerary days/details, destinations, hotels)",
+        "confidence": "inferred"
+      }
+    ],
+    "backoffice_observed": {
+      "backoffice_package_id": 48,
+      "code": "BRM-IJN-BALI-4D",
+      "duration_id": 4,
+      "order_channel_id": 1,
+      "day_count": 0,
+      "hotel_count": 0,
+      "start_core_destination": null,
+      "end_core_destination": null,
+      "destination_core_ids": [
+        "bromo"
+      ],
+      "meal_totals": {
+        "breakfast": 3,
+        "lunch": 1,
+        "dinner": 3
+      }
+    }
+  },
+  {
     "package_id": "bromo-ijen-3d2n-bali",
     "label": "3D2N Bromo and Ijen (Bali origin)",
     "origin": "Bali",
