@@ -57,15 +57,20 @@ test('time-window rules attach late-arrival evidence', () => {
   assert.ok((ijen.backoffice_observed as { late_arrival_samples: number }).late_arrival_samples > 0);
 });
 
-test('accommodation logic attaches hotel rate evidence with crosswalk caveat', () => {
+test('accommodation logic attaches hotel rate evidence via jvto-web crosswalk', () => {
   const logic = buildAccommodationLogic(extract);
   const ijenStaging = logic.find((l) => l.area_id === 'bondowoso_ijen_staging');
   assert.ok(ijenStaging);
   assert.ok(hasBackofficeTrace(ijenStaging));
-  assert.equal(
-    (ijenStaging.backoffice_observed as { crosswalk: string }).crosswalk,
-    'pending_jvto_web_destination_map'
-  );
+  const observed = ijenStaging.backoffice_observed as {
+    core_destination_id: string;
+    jvto_web_slug: string;
+    backoffice_id_provenance: string;
+  };
+  assert.equal(observed.core_destination_id, 'ijen');
+  assert.equal(observed.jvto_web_slug, 'ijen-crater');
+  // numeric backoffice id remains an unverified placeholder, surfaced honestly
+  assert.equal(observed.backoffice_id_provenance, 'fixture_placeholder_unverified');
 });
 
 test('cost components fill default_rate_idr from a single clear backoffice rate', () => {

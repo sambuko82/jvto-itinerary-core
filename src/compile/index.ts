@@ -73,7 +73,7 @@ export async function compileGeneratedData() {
     missing_data: [
       'distance_km for some legs still requires Mapbox/manual verification (corridor legs now researched)',
       backofficeConnected
-        ? 'accommodation hotel->area mapping is best-effort pending the jvto-web destination crosswalk'
+        ? 'destination crosswalk (jvto-web) maps area->core id; numeric backoffice destination_id is still a placeholder (provenance flagged) pending a backoffice destinations export keyed by slug/name'
         : 'actual vehicle/crew/hotel rates require backoffice export ingestion',
       'real route polyline is not yet generated',
       'exact pickup/dropoff deadlines require customer travel details collected outside this PII-free sample',

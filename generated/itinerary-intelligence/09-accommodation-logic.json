@@ -40,10 +40,10 @@
       }
     ],
     "backoffice_observed": {
-      "crosswalk": "pending_jvto_web_destination_map",
-      "backoffice_destination_ids": [
-        5
-      ],
+      "core_destination_id": "ijen",
+      "jvto_web_slug": "ijen-crater",
+      "backoffice_destination_id": 5,
+      "backoffice_id_provenance": "fixture_placeholder_unverified",
       "hotels": [
         {
           "hotel_id": 2,
@@ -96,10 +96,10 @@
       }
     ],
     "backoffice_observed": {
-      "crosswalk": "pending_jvto_web_destination_map",
-      "backoffice_destination_ids": [
-        2
-      ],
+      "core_destination_id": "bromo",
+      "jvto_web_slug": "mount-bromo",
+      "backoffice_destination_id": 2,
+      "backoffice_id_provenance": "fixture_placeholder_unverified",
       "hotels": [
         {
           "hotel_id": 1,
@@ -229,10 +229,10 @@
       }
     ],
     "backoffice_observed": {
-      "crosswalk": "pending_jvto_web_destination_map",
-      "backoffice_destination_ids": [
-        5
-      ],
+      "core_destination_id": "ijen",
+      "jvto_web_slug": "ijen-crater",
+      "backoffice_destination_id": 5,
+      "backoffice_id_provenance": "fixture_placeholder_unverified",
       "hotels": [
         {
           "hotel_id": 2,

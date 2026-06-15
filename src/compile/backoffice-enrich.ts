@@ -1,5 +1,10 @@
 import type { Confidence, SourceTrace } from '../domain/common.js';
 import type { BackofficeExtract } from '../extract/sourceTypes.js';
+import {
+  coreIdToBackofficeDestinationId,
+  crosswalkByCoreId,
+  resolveDestinationToken
+} from '../config/destination-crosswalk.js';
 
 /**
  * Maps the new-backoffice structured extract onto generated datasets
@@ -86,9 +91,15 @@ export function lateArrivalEvidence(
   extract: BackofficeExtract,
   opts: { destination?: string; pickupGroups?: string[] }
 ): Record<string, unknown> | null {
+  const wantCoreId = opts.destination ? resolveDestinationToken(opts.destination) : null;
   const patterns = extract.pickup_patterns.filter((p) => {
     if (opts.pickupGroups && !opts.pickupGroups.includes(p.location_group)) return false;
-    if (opts.destination && !p.destinations.includes(opts.destination)) return false;
+    if (opts.destination) {
+      const matched = p.destinations.some((d) =>
+        wantCoreId ? resolveDestinationToken(d) === wantCoreId : d === opts.destination
+      );
+      if (!matched) return false;
+    }
     return true;
   });
   if (patterns.length === 0) return null;
@@ -115,27 +126,36 @@ export function lateArrivalEvidence(
 // ---------------------------------------------------------------------------
 // 09 accommodation logic — hotel meal/room rate availability by area
 //
-// Area -> backoffice destination_id mapping is best-effort and pending the
-// jvto-web destination crosswalk; flagged in the observed payload.
+// Area -> core destination id is jvto-web-verified (DESTINATION_CROSSWALK).
+// core id -> numeric backoffice destination_id is still a placeholder pending a
+// real backoffice destinations export; provenance is surfaced in the payload.
 // ---------------------------------------------------------------------------
 
-const AREA_DESTINATION_IDS: Record<string, number[]> = {
-  bromo_area_sunrise_staging: [2],
-  bondowoso_ijen_staging: [5],
-  banyuwangi_staging: [5]
+const AREA_TO_CORE_DESTINATION: Record<string, string> = {
+  bromo_area_sunrise_staging: 'bromo',
+  bondowoso_ijen_staging: 'ijen',
+  banyuwangi_staging: 'ijen',
+  tumpak_sewu_staging: 'tumpak_sewu',
+  papuma_staging: 'papuma',
+  malang_batu_staging: 'malang_batu'
 };
 
 export function accommodationObserved(extract: BackofficeExtract, areaId: string): Record<string, unknown> | null {
-  const destIds = AREA_DESTINATION_IDS[areaId];
-  if (!destIds) return null;
-  const hotels = extract.hotel_meal_sources.filter(
-    (h) => h.destination_id != null && destIds.includes(h.destination_id)
-  );
+  const coreId = AREA_TO_CORE_DESTINATION[areaId];
+  if (!coreId) return null;
+  const entry = crosswalkByCoreId(coreId);
+  const backofficeId = coreIdToBackofficeDestinationId(coreId);
+  // No verified/placeholder numeric id => cannot safely filter backoffice hotels.
+  if (backofficeId == null) return null;
+
+  const hotels = extract.hotel_meal_sources.filter((h) => h.destination_id === backofficeId);
   if (hotels.length === 0) return null;
 
   return {
-    crosswalk: 'pending_jvto_web_destination_map',
-    backoffice_destination_ids: destIds,
+    core_destination_id: coreId,
+    jvto_web_slug: entry?.slug ?? null,
+    backoffice_destination_id: backofficeId,
+    backoffice_id_provenance: entry?.backofficeIdProvenance ?? 'unknown',
     hotels: hotels.map((h) => {
       const roomRates = h.room_types.map((r) => r.rate_idr).filter((r): r is number => r != null);
       return {

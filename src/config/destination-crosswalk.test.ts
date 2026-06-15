@@ -1,0 +1,43 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import {
+  DESTINATION_CROSSWALK,
+  resolveDestinationToken,
+  crosswalkByCoreId,
+  coreIdToBackofficeDestinationId
+} from './destination-crosswalk.js';
+
+test('resolves tokens by core id, jvto-web id, slug, name, and alias', () => {
+  assert.equal(resolveDestinationToken('ijen'), 'ijen');
+  assert.equal(resolveDestinationToken('ijen-crater'), 'ijen'); // jvto-web slug
+  assert.equal(resolveDestinationToken('Kawah Ijen'), 'ijen'); // alias, case-insensitive
+  assert.equal(resolveDestinationToken('Mount Bromo'), 'bromo'); // name
+  assert.equal(resolveDestinationToken('tumpak-sewu-waterfall'), 'tumpak_sewu'); // slug -> core id differs
+  assert.equal(resolveDestinationToken('unknown place'), null);
+});
+
+test('core ids align with generated dataset destination ids', () => {
+  const required = ['bromo', 'ijen', 'tumpak_sewu', 'madakaripura', 'papuma', 'malang_batu', 'surabaya_city', 'bali_ketapang'];
+  const present = new Set(DESTINATION_CROSSWALK.map((e) => e.coreId));
+  for (const id of required) {
+    assert.ok(present.has(id), `crosswalk missing core id ${id}`);
+  }
+});
+
+test('numeric backoffice ids are only ever placeholders/unknown (none verified yet)', () => {
+  for (const e of DESTINATION_CROSSWALK) {
+    if (e.backofficeDestinationId != null) {
+      assert.equal(e.backofficeIdProvenance, 'fixture_placeholder_unverified');
+    } else {
+      assert.equal(e.backofficeIdProvenance, 'unknown');
+    }
+    assert.notEqual(e.backofficeIdProvenance, 'verified');
+  }
+});
+
+test('lookup helpers return crosswalk data', () => {
+  assert.equal(crosswalkByCoreId('bromo')?.slug, 'mount-bromo');
+  assert.equal(coreIdToBackofficeDestinationId('bromo'), 2);
+  assert.equal(coreIdToBackofficeDestinationId('tumpak_sewu'), null);
+  assert.equal(crosswalkByCoreId('nope'), null);
+});
