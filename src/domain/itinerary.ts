@@ -1,4 +1,4 @@
-import type { BaseEntity } from './common.js';
+import type { BaseEntity, BackofficeObserved } from './common.js';
 
 export type LocationType =
   | 'airport'
@@ -40,6 +40,7 @@ export interface PickupContext extends BaseEntity {
   required_customer_fields: string[];
   risk_factors: string[];
   affects: string[];
+  backoffice_observed?: BackofficeObserved;
 }
 
 export interface DropoffContext extends BaseEntity {
@@ -50,6 +51,7 @@ export interface DropoffContext extends BaseEntity {
   required_customer_fields?: string[];
   cost_impacts: string[];
   risk_factors: string[];
+  backoffice_observed?: BackofficeObserved;
 }
 
 export interface RouteLeg extends BaseEntity {

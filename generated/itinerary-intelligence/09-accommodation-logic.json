@@ -3,7 +3,7 @@
     "id": "bondowoso_ijen_staging",
     "label": "Bondowoso / Ijen staging overnight",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "area_id": "bondowoso_ijen_staging",
     "purpose": "overnight_before_ijen",
     "recommended_for": [
@@ -31,14 +31,36 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/accommodation-logic.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "hotel meal/room rates (hotels, room_types)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "crosswalk": "pending_jvto_web_destination_map",
+      "backoffice_destination_ids": [
+        5
+      ],
+      "hotels": [
+        {
+          "hotel_id": 2,
+          "lunch_rate": 55000,
+          "dinner_rate": 80000,
+          "room_type_count": 1,
+          "room_rate_min_idr": 480000,
+          "room_rate_max_idr": 480000
+        }
+      ]
+    }
   },
   {
     "id": "bromo_area_sunrise_staging",
     "label": "Bromo area sunrise staging overnight",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "area_id": "bromo_area_sunrise_staging",
     "purpose": "overnight_before_bromo_sunrise",
     "recommended_for": [
@@ -65,8 +87,30 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/accommodation-logic.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "hotel meal/room rates (hotels, room_types)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "crosswalk": "pending_jvto_web_destination_map",
+      "backoffice_destination_ids": [
+        2
+      ],
+      "hotels": [
+        {
+          "hotel_id": 1,
+          "lunch_rate": 60000,
+          "dinner_rate": 85000,
+          "room_type_count": 2,
+          "room_rate_min_idr": 550000,
+          "room_rate_max_idr": 650000
+        }
+      ]
+    }
   },
   {
     "id": "tumpak_sewu_staging",
@@ -142,7 +186,7 @@
     "id": "banyuwangi_staging",
     "label": "Banyuwangi staging overnight (Bali-origin Ijen packages)",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "area_id": "banyuwangi_staging",
     "purpose": "overnight_after_bali_ferry_before_ijen",
     "recommended_for": [
@@ -176,8 +220,30 @@
         "source": "manual_seed",
         "ref": "seed/research/east-java-field-data-2026.json",
         "confidence": "inferred"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "hotel meal/room rates (hotels, room_types)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "crosswalk": "pending_jvto_web_destination_map",
+      "backoffice_destination_ids": [
+        5
+      ],
+      "hotels": [
+        {
+          "hotel_id": 2,
+          "lunch_rate": 55000,
+          "dinner_rate": 80000,
+          "room_type_count": 1,
+          "room_rate_min_idr": 480000,
+          "room_rate_max_idr": 480000
+        }
+      ]
+    }
   },
   {
     "id": "malang_batu_staging",

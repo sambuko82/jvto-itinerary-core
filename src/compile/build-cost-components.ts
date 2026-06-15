@@ -1,9 +1,11 @@
 import type { CostComponent } from '../domain/cost.js';
+import type { BackofficeExtract } from '../extract/sourceTypes.js';
+import { backofficeTrace, bumpConfidence, costEnrichment } from './backoffice-enrich.js';
 
 const RESEARCH_REF = 'seed/research/east-java-field-data-2026.json';
 
-export function buildCostComponents(): CostComponent[] {
-  return [
+export function buildCostComponents(backoffice?: BackofficeExtract): CostComponent[] {
+  const components: CostComponent[] = [
     {
       id: 'vehicle_private_car_day',
       label: 'Private vehicle day cost',
@@ -367,4 +369,20 @@ export function buildCostComponents(): CostComponent[] {
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'needs_review' }]
     }
   ];
+
+  if (!backoffice) return components;
+
+  for (const component of components) {
+    const enrichment = costEnrichment(backoffice, component.id);
+    if (!enrichment) continue;
+    component.confidence = bumpConfidence(component.confidence);
+    component.source_trace.push(backofficeTrace('observed rates (reference + actual_cost_patterns)'));
+    component.backoffice_observed = enrichment.observed;
+    // Fill default_rate_idr only when the seed left it null and a single clear rate exists.
+    if (enrichment.defaultRateIdr != null && (component.default_rate_idr == null)) {
+      component.default_rate_idr = enrichment.defaultRateIdr;
+    }
+  }
+
+  return components;
 }

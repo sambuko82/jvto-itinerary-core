@@ -1,7 +1,9 @@
 import type { DropoffContext } from '../domain/itinerary.js';
+import type { BackofficeExtract } from '../extract/sourceTypes.js';
+import { backofficeTrace, bumpConfidence, dropoffObserved } from './backoffice-enrich.js';
 
-export function buildDropoffContexts(): DropoffContext[] {
-  return [
+export function buildDropoffContexts(backoffice?: BackofficeExtract): DropoffContext[] {
+  const contexts: DropoffContext[] = [
     {
       id: 'ketapang_harbor_dropoff',
       label: 'Ketapang Harbor dropoff',
@@ -95,4 +97,16 @@ export function buildDropoffContexts(): DropoffContext[] {
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/pickup-dropoff.yaml', confidence: 'manual_seed' }]
     }
   ];
+
+  if (!backoffice) return contexts;
+
+  for (const ctx of contexts) {
+    const observed = dropoffObserved(backoffice, ctx.id);
+    if (!observed) continue;
+    ctx.confidence = bumpConfidence(ctx.confidence);
+    ctx.source_trace.push(backofficeTrace('dropoff reality (booking_logistics_patterns)'));
+    ctx.backoffice_observed = observed;
+  }
+
+  return contexts;
 }

@@ -1,7 +1,9 @@
 import type { PickupContext } from '../domain/itinerary.js';
+import type { BackofficeExtract } from '../extract/sourceTypes.js';
+import { backofficeTrace, bumpConfidence, pickupObserved } from './backoffice-enrich.js';
 
-export function buildPickupContexts(): PickupContext[] {
-  return [
+export function buildPickupContexts(backoffice?: BackofficeExtract): PickupContext[] {
+  const contexts: PickupContext[] = [
     {
       id: 'surabaya_airport_pickup',
       label: 'Surabaya Airport pickup',
@@ -94,4 +96,16 @@ export function buildPickupContexts(): PickupContext[] {
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/pickup-dropoff.yaml', confidence: 'manual_seed' }]
     }
   ];
+
+  if (!backoffice) return contexts;
+
+  for (const ctx of contexts) {
+    const observed = pickupObserved(backoffice, ctx.id);
+    if (!observed) continue;
+    ctx.confidence = bumpConfidence(ctx.confidence);
+    ctx.source_trace.push(backofficeTrace('pickup reality (booking_logistics_patterns)'));
+    ctx.backoffice_observed = observed;
+  }
+
+  return contexts;
 }

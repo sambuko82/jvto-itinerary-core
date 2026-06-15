@@ -33,7 +33,7 @@
     "id": "late_airport_arrival_requires_rest_warning",
     "label": "Late airport arrival requires rest warning",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "condition": {
       "pickup_type": "airport",
       "arrival_after": "17:00",
@@ -54,8 +54,24 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/recommendation-rules.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "booking evidence (logistics/finance/actuals)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "late_arrival_samples": 9,
+      "by_bucket": {
+        "evening_night": 9
+      },
+      "matched_pickup_groups": [
+        "Surabaya Airport"
+      ],
+      "destination_filter": null
+    }
   },
   {
     "id": "waterfall_before_airport_deadline_risk",
@@ -109,8 +125,28 @@
         "source": "manual_seed",
         "ref": "seed/research/east-java-field-data-2026.json",
         "confidence": "inferred"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "booking evidence (logistics/finance/actuals)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "ferry_actuals": {
+        "sample_count": 8,
+        "avg_qty": 1,
+        "avg_price": 200000,
+        "avg_subtotal": 200000
+      },
+      "ferry_list_price_idr": 200000,
+      "bali_ketapang_dropoff_samples": 17,
+      "dropoff_groups": [
+        "Bali",
+        "Ketapang Harbor"
+      ]
+    }
   },
   {
     "id": "ijen_access_closure_risk",

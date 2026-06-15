@@ -1,7 +1,9 @@
 import type { RecommendationRule } from '../domain/output.js';
+import type { BackofficeExtract } from '../extract/sourceTypes.js';
+import { backofficeTrace, bumpConfidence, recommendationObserved } from './backoffice-enrich.js';
 
-export function buildRecommendationRules(): RecommendationRule[] {
-  return [
+export function buildRecommendationRules(backoffice?: BackofficeExtract): RecommendationRule[] {
+  const rules: RecommendationRule[] = [
     {
       id: 'avoid_backtracking_ijen_bromo_ketapang',
       label: 'Avoid inefficient backtracking if final dropoff is Ketapang or Bali',
@@ -73,4 +75,16 @@ export function buildRecommendationRules(): RecommendationRule[] {
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/recommendation-rules.yaml', confidence: 'manual_seed' }]
     }
   ];
+
+  if (!backoffice) return rules;
+
+  for (const rule of rules) {
+    const observed = recommendationObserved(backoffice, rule.id);
+    if (!observed) continue;
+    rule.confidence = bumpConfidence(rule.confidence);
+    rule.source_trace.push(backofficeTrace('booking evidence (logistics/finance/actuals)'));
+    rule.backoffice_observed = observed;
+  }
+
+  return rules;
 }

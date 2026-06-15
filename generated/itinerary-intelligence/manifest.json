@@ -27,21 +27,30 @@
   ],
   "warnings": [
     "MVP output is generated from controlled manual seed data.",
-    "External source extraction hooks exist but are not connected in this MVP.",
+    "new-backoffice extractor connected: datasets 01/02/03/09/10/12 carry backoffice_observed evidence and inferred source_trace where booking patterns matched.",
+    "backoffice_observed figures are aggregated, PII-free calibration evidence — not quotes or final prices.",
     "Cost payloads explain components only and do not produce final quote totals.",
-    "Researched fields (confidence: inferred) come from web sources in seed/research/east-java-field-data-2026.json; re-verify fees/fares at booking time."
+    "Researched fields (confidence: inferred) come from web sources in seed/research/east-java-field-data-2026.json; re-verify fees/fares at booking time.",
+    "backoffice: ingested backoffice bundle backoffice-itinerary-core/v1 from D:\\jvto-itinerary-core\\input\\new-backoffice\\exports\\itinerary-core-bundle.json",
+    "backoffice: pii_policy: redacted_no_raw_customer_contact",
+    "backoffice: coverage: 2 pickup / 2 dropoff groups, 2 hotels, 3 vehicles, 2 crew roles, 3 activities, 2 finance patterns",
+    "backoffice: low-sample pickup groups (<3): Surabaya",
+    "backoffice: 1 activities have list price but no historical actual-cost samples",
+    "backoffice: Booking-derived sections are aggregated patterns; no per-customer rows, names, contacts, or documents are exported.",
+    "backoffice: Cost and finance figures are historical aggregates for calibration only and are not quotes or final prices.",
+    "backoffice: Reference data is limited to the curated itinerary-core package scope."
   ],
   "missing_data": [
     "distance_km for some legs still requires Mapbox/manual verification (corridor legs now researched)",
-    "actual vehicle/crew/hotel rates require backoffice export ingestion",
+    "accommodation hotel->area mapping is best-effort pending the jvto-web destination crosswalk",
     "real route polyline is not yet generated",
     "exact pickup/dropoff deadlines require customer travel details collected outside this PII-free sample",
     "Round 3 gaps: Tumpak Sewu access/guide/descent-time, Bromo opening hours + per-year Kasada dates + booking-vs-jeep timing, Ijen gas-mask-rental/local-guide mandate, Ketapang peak queue times"
   ],
   "next_actions": [
     "Connect llm-wiki extractor",
-    "Connect jvto-web route/destination extractor",
-    "Connect new-backoffice redacted logistics and cost extractor",
+    "Connect jvto-web route/destination extractor (needed for backoffice destination_id crosswalk)",
+    "Replace redacted backoffice fixture with a real ExportDataItineraryCore export",
     "Replace manual_seed fields with verified source_trace where possible",
     "Run deep-research round 3 for the remaining Tumpak Sewu / Bromo / Ijen-guide gaps"
   ],

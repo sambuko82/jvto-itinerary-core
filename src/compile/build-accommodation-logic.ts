@@ -1,7 +1,9 @@
 import type { AccommodationLogic } from '../domain/operations.js';
+import type { BackofficeExtract } from '../extract/sourceTypes.js';
+import { accommodationObserved, backofficeTrace, bumpConfidence } from './backoffice-enrich.js';
 
-export function buildAccommodationLogic(): AccommodationLogic[] {
-  return [
+export function buildAccommodationLogic(backoffice?: BackofficeExtract): AccommodationLogic[] {
+  const logic: AccommodationLogic[] = [
     {
       id: 'bondowoso_ijen_staging',
       label: 'Bondowoso / Ijen staging overnight',
@@ -115,4 +117,16 @@ export function buildAccommodationLogic(): AccommodationLogic[] {
       ]
     }
   ];
+
+  if (!backoffice) return logic;
+
+  for (const entry of logic) {
+    const observed = accommodationObserved(backoffice, entry.area_id);
+    if (!observed) continue;
+    entry.confidence = bumpConfidence(entry.confidence);
+    entry.source_trace.push(backofficeTrace('hotel meal/room rates (hotels, room_types)'));
+    entry.backoffice_observed = observed;
+  }
+
+  return logic;
 }

@@ -3,7 +3,7 @@
     "id": "ketapang_harbor_dropoff",
     "label": "Ketapang Harbor dropoff",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "type": "harbor",
     "location_group": "Banyuwangi",
     "default_buffer_minutes": 45,
@@ -35,8 +35,27 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/pickup-dropoff.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "dropoff reality (booking_logistics_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "matched_groups": [
+        "Ketapang Harbor"
+      ],
+      "total_samples": 6,
+      "destinations": [
+        "Bromo",
+        "Ijen"
+      ],
+      "package_ids": [
+        47
+      ]
+    }
   },
   {
     "id": "surabaya_airport_dropoff",
@@ -72,7 +91,7 @@
     "id": "bali_hotel_dropoff",
     "label": "Bali hotel dropoff",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "type": "bali_area",
     "location_group": "Bali",
     "default_buffer_minutes": 60,
@@ -95,8 +114,27 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/pickup-dropoff.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "dropoff reality (booking_logistics_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "matched_groups": [
+        "Bali"
+      ],
+      "total_samples": 11,
+      "destinations": [
+        "Bromo",
+        "Ijen"
+      ],
+      "package_ids": [
+        48
+      ]
+    }
   },
   {
     "id": "surabaya_hotel_dropoff",

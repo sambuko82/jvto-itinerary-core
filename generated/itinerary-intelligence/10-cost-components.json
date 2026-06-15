@@ -3,7 +3,7 @@
     "id": "vehicle_private_car_day",
     "label": "Private vehicle day cost",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "transport_day_cost",
     "unit": "per_day",
     "applies_when": [
@@ -24,8 +24,41 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "rate_per_day_min_idr": 650000,
+      "rate_per_day_max_idr": 1250000,
+      "sources": [
+        {
+          "vehicle_type_id": 1,
+          "capacity_min_pax": 1,
+          "capacity_max_pax": 4,
+          "price_per_day": 650000,
+          "price_twt_per_day": 700000
+        },
+        {
+          "vehicle_type_id": 2,
+          "capacity_min_pax": 1,
+          "capacity_max_pax": 5,
+          "price_per_day": 850000,
+          "price_twt_per_day": 900000
+        },
+        {
+          "vehicle_type_id": 3,
+          "capacity_min_pax": 6,
+          "capacity_max_pax": 12,
+          "price_per_day": 1250000,
+          "price_twt_per_day": 1350000
+        }
+      ]
+    }
   },
   {
     "id": "bromo_jeep",
@@ -39,7 +72,7 @@
     ],
     "customer_visible": "included_in_package",
     "formula": "jeep_unit_price * jeep_count",
-    "default_rate_idr": null,
+    "default_rate_idr": 700000,
     "rate_table_idr": {
       "note": "paguyuban (driver-cooperative) rate, fluctuative by gate/season, excludes entrance tickets",
       "cemoro_lawang_2_location": "450000-550000",
@@ -61,8 +94,26 @@
         "ref": "seed/research/east-java-field-data-2026.json",
         "field": "rate_table_idr",
         "confidence": "inferred"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "activity_id": 10,
+      "scope": "destination",
+      "unit": "per_jeep",
+      "list_price_idr": 700000,
+      "actuals": {
+        "sample_count": 14,
+        "avg_qty": 1.2,
+        "avg_price": 700000,
+        "avg_subtotal": 840000
+      }
+    }
   },
   {
     "id": "bromo_entrance_fee",
@@ -180,7 +231,7 @@
     "id": "ijen_local_guide",
     "label": "Ijen local guide",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "local_guide_cost",
     "unit": "per_group",
     "applies_when": [
@@ -188,7 +239,7 @@
     ],
     "customer_visible": "included_in_package",
     "formula": "ijen_local_guide_rate * guide_count",
-    "default_rate_idr": null,
+    "default_rate_idr": 150000,
     "channel_behavior": [
       "included_in_private_package"
     ],
@@ -197,8 +248,21 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "activity_id": 11,
+      "scope": "destination",
+      "unit": "per_group",
+      "list_price_idr": 150000,
+      "actuals": null
+    }
   },
   {
     "id": "madakaripura_local_guide",
@@ -277,7 +341,7 @@
     "id": "driver_cost",
     "label": "Driver cost",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "driver_cost",
     "unit": "per_day",
     "applies_when": [
@@ -286,7 +350,7 @@
     ],
     "customer_visible": false,
     "formula": "driver_day_rate * assigned_days",
-    "default_rate_idr": null,
+    "default_rate_idr": 250000,
     "channel_behavior": [
       "internal_cost_component"
     ],
@@ -295,8 +359,21 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "crew_role_id": 2,
+      "rate_per_day_idr": 250000,
+      "rate_twt_per_day_idr": 300000,
+      "order_channel_id": 1,
+      "assignment_rule_count": 1
+    }
   },
   {
     "id": "parking_toll_fuel_allowance",
@@ -326,7 +403,7 @@
     "id": "escort_cost",
     "label": "Escort cost",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "escort_cost",
     "unit": "per_day",
     "applies_when": [
@@ -334,7 +411,7 @@
     ],
     "customer_visible": false,
     "formula": "escort_day_rate * assigned_days",
-    "default_rate_idr": null,
+    "default_rate_idr": 350000,
     "channel_behavior": [
       "optional_internal_cost_component"
     ],
@@ -343,8 +420,21 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "crew_role_id": 1,
+      "rate_per_day_idr": 350000,
+      "rate_twt_per_day_idr": 400000,
+      "order_channel_id": 1,
+      "assignment_rule_count": 2
+    }
   },
   {
     "id": "destination_ticket",
@@ -374,7 +464,7 @@
     "id": "hotel_room",
     "label": "Hotel room",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "hotel_room",
     "unit": "per_room",
     "applies_when": [
@@ -392,8 +482,19 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "room_rate_min_idr": 480000,
+      "room_rate_max_idr": 650000,
+      "hotel_sample_count": 2
+    }
   },
   {
     "id": "hotel_breakfast_or_takeaway",
@@ -423,7 +524,7 @@
     "id": "restaurant_meal",
     "label": "Restaurant meal",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "restaurant_meal",
     "unit": "per_person",
     "applies_when": [
@@ -440,8 +541,20 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "lunch_rate_min_idr": 55000,
+      "lunch_rate_max_idr": 60000,
+      "dinner_rate_min_idr": 80000,
+      "dinner_rate_max_idr": 85000
+    }
   },
   {
     "id": "gas_mask",
@@ -511,8 +624,26 @@
         "ref": "seed/research/east-java-field-data-2026.json",
         "field": "default_rate_idr,rate_table_idr",
         "confidence": "inferred"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "activity_id": 50,
+      "scope": "other",
+      "unit": "per_vehicle",
+      "list_price_idr": 200000,
+      "actuals": {
+        "sample_count": 8,
+        "avg_qty": 1,
+        "avg_price": 200000,
+        "avg_subtotal": 200000
+      }
+    }
   },
   {
     "id": "addon_activity",
@@ -607,7 +738,31 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "needs_review"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "package_finance": [
+        {
+          "package_id": 47,
+          "sample_count": 6,
+          "avg_total_expense_idr": 1850000,
+          "avg_total_expense_crew_idr": 350000,
+          "avg_profit_idr": 620000
+        },
+        {
+          "package_id": 48,
+          "sample_count": 11,
+          "avg_total_expense_idr": 2650000,
+          "avg_total_expense_crew_idr": 480000,
+          "avg_profit_idr": 910000
+        }
+      ]
+    }
   }
 ]

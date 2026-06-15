@@ -1,7 +1,9 @@
 import type { TimeWindowRule } from '../domain/operations.js';
+import type { BackofficeExtract } from '../extract/sourceTypes.js';
+import { backofficeTrace, bumpConfidence, lateArrivalEvidence } from './backoffice-enrich.js';
 
-export function buildTimeWindowRules(): TimeWindowRule[] {
-  return [
+export function buildTimeWindowRules(backoffice?: BackofficeExtract): TimeWindowRule[] {
+  const rules: TimeWindowRule[] = [
     {
       id: 'late_arrival_before_ijen',
       label: 'Late arrival before Ijen',
@@ -36,4 +38,24 @@ export function buildTimeWindowRules(): TimeWindowRule[] {
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/time-window-rules.yaml', confidence: 'manual_seed' }]
     }
   ];
+
+  if (!backoffice) return rules;
+
+  const evidenceById: Record<string, Record<string, unknown> | null> = {
+    late_arrival_before_ijen: lateArrivalEvidence(backoffice, { destination: 'Ijen' }),
+    late_surabaya_arrival_before_bromo: lateArrivalEvidence(backoffice, {
+      pickupGroups: ['Surabaya', 'Surabaya Airport', 'Airport'],
+      destination: 'Bromo'
+    })
+  };
+
+  for (const rule of rules) {
+    const observed = evidenceById[rule.id];
+    if (!observed) continue;
+    rule.confidence = bumpConfidence(rule.confidence);
+    rule.source_trace.push(backofficeTrace('late-arrival frequency (booking_logistics_patterns)'));
+    rule.backoffice_observed = observed;
+  }
+
+  return rules;
 }
