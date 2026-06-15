@@ -141,6 +141,67 @@ export async function validateItineraryIntelligence(dir: string = GENERATED_DIR)
     }
   }
 
+  // ── Phase 3: package catalog + location normalization (validate if present) ──
+  const tryRead = async (file: string): Promise<Array<Record<string, unknown>> | null> => {
+    try {
+      const recs = await readJson<Array<Record<string, unknown>>>(`${dir}/${file}`);
+      return Array.isArray(recs) ? recs : null;
+    } catch {
+      return null;
+    }
+  };
+
+  const catalog = await tryRead('package-catalog-index.json');
+  const aliases = await tryRead('location-alias-registry.json');
+  const nodes = await tryRead('route-node-index.json');
+
+  for (const [file, recs] of [
+    ['package-catalog-index.json', catalog],
+    ['location-alias-registry.json', aliases],
+    ['route-node-index.json', nodes]
+  ] as const) {
+    if (!recs) continue;
+    total += recs.length;
+    for (const rec of recs) {
+      checkContract(rec, file, findings);
+      scanPii(rec, String(rec.id ?? file), '$', findings);
+    }
+  }
+
+  if (nodes) {
+    const seen = new Set<string>();
+    for (const n of nodes) {
+      const id = String(n.node_id);
+      if (seen.has(id)) findings.push({ severity: 'critical', check: 'duplicate_node_id', record_id: id, message: `duplicate canonical node id "${id}"` });
+      seen.add(id);
+      if (n.ambiguous === true) {
+        findings.push({ severity: 'low', check: 'ambiguous_location_token', record_id: id, message: `node "${id}" derived from non-standalone slug token; needs source confirmation` });
+      }
+    }
+  }
+
+  if (catalog) {
+    const ids = new Set<string>();
+    const keys = new Set<string>();
+    for (const c of catalog) {
+      const pid = String(c.package_id);
+      if (ids.has(pid)) findings.push({ severity: 'critical', check: 'package_slug_conflict', record_id: pid, message: `duplicate package_id "${pid}"` });
+      ids.add(pid);
+      const key = String(c.catalog_key);
+      if (keys.has(key)) findings.push({ severity: 'critical', check: 'package_slug_conflict', record_id: pid, message: `duplicate catalog_key "${key}"` });
+      keys.add(key);
+    }
+    // coverage: every extracted package must be mapped into the catalog
+    try {
+      const extract = await readJson<{ packages: Array<{ package_id: string }> }>(`${dir}/extract-llm-wiki.json`);
+      if (extract.packages.length !== catalog.length) {
+        findings.push({ severity: 'high', check: 'package_coverage', record_id: null, message: `catalog has ${catalog.length} packages but extract has ${extract.packages.length}` });
+      }
+    } catch {
+      // extract not present in this dir; skip coverage cross-check
+    }
+  }
+
   const summary = {
     total_records: total,
     critical: findings.filter((f) => f.severity === 'critical').length,

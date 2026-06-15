@@ -10,6 +10,9 @@ import { buildSchemaInventory } from './compile/build-schema-inventory.js';
 import { buildExportEndpointInventory } from './compile/build-export-endpoint-inventory.js';
 import { validateItineraryIntelligence } from './validate/validate-itinerary-intelligence.js';
 import { buildExtractionManifest } from './compile/build-extraction-manifest.js';
+import { buildPackageCatalogIndex } from './compile/build-package-catalog-index.js';
+import { buildLocationAliasRegistry } from './compile/build-location-alias-registry.js';
+import { buildRouteNodeIndex } from './compile/build-route-node-index.js';
 
 async function main() {
   const command = process.argv[2];
@@ -53,6 +56,21 @@ async function main() {
     await writeJson(`${GENERATED_DIR}/extraction-manifest.json`, manifest);
     console.log(JSON.stringify(manifest.extractors.map((e) => ({ extractor: e.extractor, connected: e.connected, counts: e.record_counts })), null, 2));
     console.log(`source_mode: ${manifest.source_mode} | status: ${manifest.status}`);
+    return;
+  }
+
+  if (command === 'catalog') {
+    // Phase 3 Package + Location Normalization (derived from connected extracts only).
+    await writeJson(`${GENERATED_DIR}/package-catalog-index.json`, await buildPackageCatalogIndex());
+    await writeJson(`${GENERATED_DIR}/location-alias-registry.json`, await buildLocationAliasRegistry());
+    await writeJson(`${GENERATED_DIR}/route-node-index.json`, await buildRouteNodeIndex());
+    const report = await validateItineraryIntelligence();
+    console.log(JSON.stringify(report.summary, null, 2));
+    console.log(`status: ${report.status}`);
+    if (report.status !== 'pass') {
+      console.error('Phase 3 validation FAILED: critical errors present.');
+      process.exit(1);
+    }
     return;
   }
 

@@ -1,0 +1,429 @@
+[
+  {
+    "id": "node__bali",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bali"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo",
+      "type"
+    ],
+    "status": "active",
+    "node_id": "bali",
+    "node_roles": [
+      "origin"
+    ],
+    "referenced_by_slugs": [
+      "bromo-ijen-3d2n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n"
+    ],
+    "reference_count": 4,
+    "standalone_destination": false,
+    "geo": null,
+    "type": null,
+    "ambiguous": false
+  },
+  {
+    "id": "node__bromo",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bromo"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo",
+      "type"
+    ],
+    "status": "active",
+    "node_id": "bromo",
+    "node_roles": [
+      "destination"
+    ],
+    "referenced_by_slugs": [
+      "bromo-1d1n",
+      "bromo-2d1n",
+      "bromo-ijen-3d2n",
+      "bromo-madakaripura-ijen-3d2n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "taman-safari-prigen-bromo-madakaripura-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "reference_count": 12,
+    "standalone_destination": true,
+    "geo": null,
+    "type": null,
+    "ambiguous": false
+  },
+  {
+    "id": "node__ijen",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo",
+      "type"
+    ],
+    "status": "active",
+    "node_id": "ijen",
+    "node_roles": [
+      "destination"
+    ],
+    "referenced_by_slugs": [
+      "bromo-ijen-3d2n",
+      "bromo-madakaripura-ijen-3d2n",
+      "ijen-2d1n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "reference_count": 10,
+    "standalone_destination": true,
+    "geo": null,
+    "type": null,
+    "ambiguous": false
+  },
+  {
+    "id": "node__madakaripura",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "madakaripura"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo",
+      "type",
+      "canonical_confirmation"
+    ],
+    "status": "incomplete",
+    "node_id": "madakaripura",
+    "node_roles": [
+      "destination"
+    ],
+    "referenced_by_slugs": [
+      "bromo-madakaripura-ijen-3d2n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "taman-safari-prigen-bromo-madakaripura-3d2n"
+    ],
+    "reference_count": 5,
+    "standalone_destination": false,
+    "geo": null,
+    "type": null,
+    "ambiguous": true
+  },
+  {
+    "id": "node__malang",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "malang"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo",
+      "type",
+      "canonical_confirmation"
+    ],
+    "status": "incomplete",
+    "node_id": "malang",
+    "node_roles": [
+      "destination"
+    ],
+    "referenced_by_slugs": [
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "reference_count": 2,
+    "standalone_destination": false,
+    "geo": null,
+    "type": null,
+    "ambiguous": true
+  },
+  {
+    "id": "node__papuma",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "papuma"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo",
+      "type",
+      "canonical_confirmation"
+    ],
+    "status": "incomplete",
+    "node_id": "papuma",
+    "node_roles": [
+      "destination"
+    ],
+    "referenced_by_slugs": [
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "reference_count": 3,
+    "standalone_destination": false,
+    "geo": null,
+    "type": null,
+    "ambiguous": true
+  },
+  {
+    "id": "node__prigen",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "prigen"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo",
+      "type",
+      "canonical_confirmation"
+    ],
+    "status": "incomplete",
+    "node_id": "prigen",
+    "node_roles": [
+      "destination"
+    ],
+    "referenced_by_slugs": [
+      "taman-safari-prigen-bromo-madakaripura-3d2n"
+    ],
+    "reference_count": 1,
+    "standalone_destination": false,
+    "geo": null,
+    "type": null,
+    "ambiguous": true
+  },
+  {
+    "id": "node__safari",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "safari"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo",
+      "type",
+      "canonical_confirmation"
+    ],
+    "status": "incomplete",
+    "node_id": "safari",
+    "node_roles": [
+      "destination"
+    ],
+    "referenced_by_slugs": [
+      "taman-safari-prigen-bromo-madakaripura-3d2n"
+    ],
+    "reference_count": 1,
+    "standalone_destination": false,
+    "geo": null,
+    "type": null,
+    "ambiguous": true
+  },
+  {
+    "id": "node__sewu",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "sewu"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo",
+      "type",
+      "canonical_confirmation"
+    ],
+    "status": "incomplete",
+    "node_id": "sewu",
+    "node_roles": [
+      "destination"
+    ],
+    "referenced_by_slugs": [
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "reference_count": 4,
+    "standalone_destination": false,
+    "geo": null,
+    "type": null,
+    "ambiguous": true
+  },
+  {
+    "id": "node__surabaya",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "surabaya"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo",
+      "type"
+    ],
+    "status": "active",
+    "node_id": "surabaya",
+    "node_roles": [
+      "origin"
+    ],
+    "referenced_by_slugs": [
+      "bromo-1d1n",
+      "bromo-2d1n",
+      "bromo-madakaripura-ijen-3d2n",
+      "ijen-2d1n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "taman-safari-prigen-bromo-madakaripura-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "reference_count": 12,
+    "standalone_destination": false,
+    "geo": null,
+    "type": null,
+    "ambiguous": false
+  },
+  {
+    "id": "node__taman",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "taman"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo",
+      "type",
+      "canonical_confirmation"
+    ],
+    "status": "incomplete",
+    "node_id": "taman",
+    "node_roles": [
+      "destination"
+    ],
+    "referenced_by_slugs": [
+      "taman-safari-prigen-bromo-madakaripura-3d2n"
+    ],
+    "reference_count": 1,
+    "standalone_destination": false,
+    "geo": null,
+    "type": null,
+    "ambiguous": true
+  },
+  {
+    "id": "node__tumpak",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "tumpak"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo",
+      "type",
+      "canonical_confirmation"
+    ],
+    "status": "incomplete",
+    "node_id": "tumpak",
+    "node_roles": [
+      "destination"
+    ],
+    "referenced_by_slugs": [
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "reference_count": 4,
+    "standalone_destination": false,
+    "geo": null,
+    "type": null,
+    "ambiguous": true
+  }
+]

@@ -1,0 +1,358 @@
+[
+  {
+    "id": "alias__bali",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bali"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo"
+    ],
+    "status": "active",
+    "node_id": "bali",
+    "aliases": [
+      "bali",
+      "from-bali"
+    ],
+    "alias_count": 2,
+    "alias_sources": {
+      "bali": [
+        "package-registry.json:origin"
+      ],
+      "from-bali": [
+        "package-registry.json:public_url"
+      ]
+    },
+    "geo": null
+  },
+  {
+    "id": "alias__bromo",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bromo"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo"
+    ],
+    "status": "active",
+    "node_id": "bromo",
+    "aliases": [
+      "bromo"
+    ],
+    "alias_count": 1,
+    "alias_sources": {
+      "bromo": [
+        "package-registry.json:slug"
+      ]
+    },
+    "geo": null
+  },
+  {
+    "id": "alias__ijen",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo"
+    ],
+    "status": "active",
+    "node_id": "ijen",
+    "aliases": [
+      "ijen"
+    ],
+    "alias_count": 1,
+    "alias_sources": {
+      "ijen": [
+        "package-registry.json:slug"
+      ]
+    },
+    "geo": null
+  },
+  {
+    "id": "alias__madakaripura",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "madakaripura"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo"
+    ],
+    "status": "incomplete",
+    "node_id": "madakaripura",
+    "aliases": [
+      "madakaripura"
+    ],
+    "alias_count": 1,
+    "alias_sources": {
+      "madakaripura": [
+        "package-registry.json:slug"
+      ]
+    },
+    "geo": null
+  },
+  {
+    "id": "alias__malang",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "malang"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo"
+    ],
+    "status": "incomplete",
+    "node_id": "malang",
+    "aliases": [
+      "malang"
+    ],
+    "alias_count": 1,
+    "alias_sources": {
+      "malang": [
+        "package-registry.json:slug"
+      ]
+    },
+    "geo": null
+  },
+  {
+    "id": "alias__papuma",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "papuma"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo"
+    ],
+    "status": "incomplete",
+    "node_id": "papuma",
+    "aliases": [
+      "papuma"
+    ],
+    "alias_count": 1,
+    "alias_sources": {
+      "papuma": [
+        "package-registry.json:slug"
+      ]
+    },
+    "geo": null
+  },
+  {
+    "id": "alias__prigen",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "prigen"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo"
+    ],
+    "status": "incomplete",
+    "node_id": "prigen",
+    "aliases": [
+      "prigen"
+    ],
+    "alias_count": 1,
+    "alias_sources": {
+      "prigen": [
+        "package-registry.json:slug"
+      ]
+    },
+    "geo": null
+  },
+  {
+    "id": "alias__safari",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "safari"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo"
+    ],
+    "status": "incomplete",
+    "node_id": "safari",
+    "aliases": [
+      "safari"
+    ],
+    "alias_count": 1,
+    "alias_sources": {
+      "safari": [
+        "package-registry.json:slug"
+      ]
+    },
+    "geo": null
+  },
+  {
+    "id": "alias__sewu",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "sewu"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo"
+    ],
+    "status": "incomplete",
+    "node_id": "sewu",
+    "aliases": [
+      "sewu"
+    ],
+    "alias_count": 1,
+    "alias_sources": {
+      "sewu": [
+        "package-registry.json:slug"
+      ]
+    },
+    "geo": null
+  },
+  {
+    "id": "alias__surabaya",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "surabaya"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo"
+    ],
+    "status": "active",
+    "node_id": "surabaya",
+    "aliases": [
+      "from-surabaya",
+      "surabaya"
+    ],
+    "alias_count": 2,
+    "alias_sources": {
+      "from-surabaya": [
+        "package-registry.json:public_url"
+      ],
+      "surabaya": [
+        "package-registry.json:origin"
+      ]
+    },
+    "geo": null
+  },
+  {
+    "id": "alias__taman",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "taman"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo"
+    ],
+    "status": "incomplete",
+    "node_id": "taman",
+    "aliases": [
+      "taman"
+    ],
+    "alias_count": 1,
+    "alias_sources": {
+      "taman": [
+        "package-registry.json:slug"
+      ]
+    },
+    "geo": null
+  },
+  {
+    "id": "alias__tumpak",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "tumpak"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "geo"
+    ],
+    "status": "incomplete",
+    "node_id": "tumpak",
+    "aliases": [
+      "tumpak"
+    ],
+    "alias_count": 1,
+    "alias_sources": {
+      "tumpak": [
+        "package-registry.json:slug"
+      ]
+    },
+    "geo": null
+  }
+]

@@ -7,13 +7,62 @@
     "export-endpoint-inventory.json"
   ],
   "summary": {
-    "total_records": 179,
+    "total_records": 219,
     "critical": 0,
     "high": 0,
     "medium": 0,
-    "low": 0
+    "low": 8
   },
   "status": "pass",
   "critical_errors": [],
-  "findings": []
+  "findings": [
+    {
+      "severity": "low",
+      "check": "ambiguous_location_token",
+      "record_id": "madakaripura",
+      "message": "node \"madakaripura\" derived from non-standalone slug token; needs source confirmation"
+    },
+    {
+      "severity": "low",
+      "check": "ambiguous_location_token",
+      "record_id": "malang",
+      "message": "node \"malang\" derived from non-standalone slug token; needs source confirmation"
+    },
+    {
+      "severity": "low",
+      "check": "ambiguous_location_token",
+      "record_id": "papuma",
+      "message": "node \"papuma\" derived from non-standalone slug token; needs source confirmation"
+    },
+    {
+      "severity": "low",
+      "check": "ambiguous_location_token",
+      "record_id": "prigen",
+      "message": "node \"prigen\" derived from non-standalone slug token; needs source confirmation"
+    },
+    {
+      "severity": "low",
+      "check": "ambiguous_location_token",
+      "record_id": "safari",
+      "message": "node \"safari\" derived from non-standalone slug token; needs source confirmation"
+    },
+    {
+      "severity": "low",
+      "check": "ambiguous_location_token",
+      "record_id": "sewu",
+      "message": "node \"sewu\" derived from non-standalone slug token; needs source confirmation"
+    },
+    {
+      "severity": "low",
+      "check": "ambiguous_location_token",
+      "record_id": "taman",
+      "message": "node \"taman\" derived from non-standalone slug token; needs source confirmation"
+    },
+    {
+      "severity": "low",
+      "check": "ambiguous_location_token",
+      "record_id": "tumpak",
+      "message": "node \"tumpak\" derived from non-standalone slug token; needs source confirmation"
+    }
+  ]
 }
