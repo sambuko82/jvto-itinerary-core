@@ -1,0 +1,3675 @@
+{
+  "schema_version": "jvto-web-package-activity-snapshots/v1",
+  "generated_at": "2026-05-11T02:07:57.370Z",
+  "source": "jvto-web",
+  "items": [
+    {
+      "package_id": "package-SUB-3D2N-003",
+      "slug": "tours/from-surabaya/bromo-madakaripura-ijen-3d2n",
+      "day": 1,
+      "day_title": "Surabaya to the Bromo Side for Overnight Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TravelAction",
+          "activity_name": "Surabaya to Bromo Pickup",
+          "time_window": "12:00",
+          "duration_minutes": 30,
+          "from_label": "Surabaya",
+          "to_label": "Bromo Area",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Local Restaurant",
+          "time_window": "12:30",
+          "duration_minutes": 210,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in Bromo Hotel",
+          "time_window": "16:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-3D2N-003",
+      "slug": "tours/from-surabaya/bromo-madakaripura-ijen-3d2n",
+      "day": 2,
+      "day_title": "Bromo Sunrise, Madakaripura, and Transfer Toward Ijen",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Bromo Jeep Tour",
+          "time_window": "02:00",
+          "duration_minutes": 390,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Breakfast at Hotel",
+          "time_window": "09:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TravelAction",
+          "activity_name": "Check-out and Transfer to Madakaripura",
+          "time_window": "11:00",
+          "duration_minutes": 60,
+          "from_label": "Bromo Hotel",
+          "to_label": "Madakaripura Waterfall",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Madakaripura Trekking",
+          "time_window": "00:00",
+          "duration_minutes": 180,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Waterfall",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TravelAction",
+          "activity_name": "Finish explore Madakaripura waterfall",
+          "time_window": "15:00",
+          "duration_minutes": 0,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Waterfall",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Bondowoso",
+          "time_window": "15:00",
+          "duration_minutes": 180,
+          "from_label": "Madakaripura",
+          "to_label": "Bondowoso",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in at Bondowoso Hotel",
+          "time_window": "18:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Bondowoso",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 8,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Health screening for Ijen",
+          "time_window": "18:30",
+          "duration_minutes": 15,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Bondowoso",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 9,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Dinner at Accommodation",
+          "time_window": "19:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Accommodation",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-3D2N-003",
+      "slug": "tours/from-surabaya/bromo-madakaripura-ijen-3d2n",
+      "day": 3,
+      "day_title": "Ijen Climb and Forward Finish into Bali",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Short break after the hike",
+          "time_window": "09:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Ijen Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Ketapang",
+          "time_window": "09:30",
+          "duration_minutes": 60,
+          "from_label": "Ijen area",
+          "to_label": "Ketapang Harbor",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TravelAction",
+          "activity_name": "Ferry to Gilimanuk Harbor",
+          "time_window": "10:30",
+          "duration_minutes": 60,
+          "from_label": "Ketapang Port",
+          "to_label": "Gilimanuk Harbor",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Arrival at Bali",
+          "time_window": "12:30",
+          "duration_minutes": 10,
+          "from_label": "Gilimanuk Harbor",
+          "to_label": "Bali",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-3D2N-002",
+      "slug": "tours/from-surabaya/ijen-bromo-madakaripura-3d2n",
+      "day": 1,
+      "day_title": "Surabaya to Bondowoso for Ijen Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TravelAction",
+          "activity_name": "Surabaya to Bondowoso Transfer",
+          "time_window": "11:00",
+          "duration_minutes": 300,
+          "from_label": "Surabaya",
+          "to_label": "Bondowoso",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Local Restaurant",
+          "time_window": "13:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in Bondowoso Hotel",
+          "time_window": "16:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen health screening",
+          "time_window": "17:00",
+          "duration_minutes": 90,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Dinner at Accommodation",
+          "time_window": "18:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-3D2N-002",
+      "slug": "tours/from-surabaya/ijen-bromo-madakaripura-3d2n",
+      "day": 2,
+      "day_title": "Ijen Climb and Transfer Toward the Bromo Side",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen Tour Experience",
+          "time_window": "00:00",
+          "duration_minutes": 540,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Ijen Crater",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Ijen Hotel Check-out",
+          "time_window": "11:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Restaurant",
+          "time_window": "11:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Journey to Bromo",
+          "time_window": "12:30",
+          "duration_minutes": 210,
+          "from_label": "Bondowoso City",
+          "to_label": "Bromo Area",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "CheckInAction",
+          "activity_name": "Bromo Hotel Check-in",
+          "time_window": "16:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Bromo Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-3D2N-002",
+      "slug": "tours/from-surabaya/ijen-bromo-madakaripura-3d2n",
+      "day": 3,
+      "day_title": "Bromo Sunrise, Madakaripura, and Return to Surabaya",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Bromo Jeep Tour Experience",
+          "time_window": "02:30",
+          "duration_minutes": 390,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Hotel Breakfast",
+          "time_window": "09:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Bromo Hotel Check-out",
+          "time_window": "11:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Madakaripura Trekking",
+          "time_window": "11:30",
+          "duration_minutes": 180,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Waterfall",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch After Trek (Own Expense)",
+          "time_window": "13:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Surabaya",
+          "time_window": "14:30",
+          "duration_minutes": 120,
+          "from_label": "Madakaripura",
+          "to_label": "Surabaya",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "TravelAction",
+          "activity_name": "Arrival in Surabaya",
+          "time_window": "16:30",
+          "duration_minutes": 0,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Surabaya",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-4D3N-001",
+      "slug": "tours/from-surabaya/ijen-bromo-madakaripura-4d3n",
+      "day": 1,
+      "day_title": "Surabaya to Bondowoso for Ijen Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TravelAction",
+          "activity_name": "Surabaya to Bondowoso Transfer",
+          "time_window": "11:00",
+          "duration_minutes": 300,
+          "from_label": "Surabaya",
+          "to_label": "Bondowoso",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Local Restaurant",
+          "time_window": "13:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in Bondowoso Hotel",
+          "time_window": "16:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen health screening",
+          "time_window": "17:00",
+          "duration_minutes": 90,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Dinner at Accommodation",
+          "time_window": "18:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-4D3N-001",
+      "slug": "tours/from-surabaya/ijen-bromo-madakaripura-4d3n",
+      "day": 2,
+      "day_title": "Ijen Climb and Transfer Toward the Bromo Side",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen Tour Experience",
+          "time_window": "00:00",
+          "duration_minutes": 540,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Ijen Crater",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Ijen Hotel Check-out",
+          "time_window": "11:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Restaurant",
+          "time_window": "11:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Journey to Bromo",
+          "time_window": "12:30",
+          "duration_minutes": 210,
+          "from_label": "Bondowoso City",
+          "to_label": "Bromo Area",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "CheckInAction",
+          "activity_name": "Bromo Hotel Check-in",
+          "time_window": "16:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Bromo Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-4D3N-001",
+      "slug": "tours/from-surabaya/ijen-bromo-madakaripura-4d3n",
+      "day": 3,
+      "day_title": "Bromo Sunrise, Madakaripura, and Return to Surabaya City",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Bromo Jeep Tour Experience",
+          "time_window": "02:30",
+          "duration_minutes": 390,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Hotel Breakfast",
+          "time_window": "09:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Bromo Hotel Check-out",
+          "time_window": "11:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Madakaripura Trekking",
+          "time_window": "11:30",
+          "duration_minutes": 180,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Waterfall",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch After Trek (Own Expense)",
+          "time_window": "13:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Surabaya",
+          "time_window": "14:30",
+          "duration_minutes": 120,
+          "from_label": "Madakaripura",
+          "to_label": "Surabaya",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "TravelAction",
+          "activity_name": "Arrival in Surabaya",
+          "time_window": "16:30",
+          "duration_minutes": 0,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Surabaya",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-4D3N-001",
+      "slug": "tours/from-surabaya/ijen-bromo-madakaripura-4d3n",
+      "day": 4,
+      "day_title": "Surabaya Hotel Stay and Airport Transfer",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Breakfast and Free Time",
+          "time_window": "08:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Juanda Airport",
+          "time_window": "09:00",
+          "duration_minutes": 60,
+          "from_label": "Hotel",
+          "to_label": "Juanda Airport",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-4D3N-002",
+      "slug": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "day": 1,
+      "day_title": "Surabaya to Bondowoso for Ijen Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TravelAction",
+          "activity_name": "Surabaya to Bondowoso Transfer",
+          "time_window": "11:00",
+          "duration_minutes": 300,
+          "from_label": "Surabaya",
+          "to_label": "Bondowoso",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Local Restaurant",
+          "time_window": "13:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in Bondowoso Hotel",
+          "time_window": "16:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen health screening",
+          "time_window": "17:00",
+          "duration_minutes": 90,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Dinner at Accommodation",
+          "time_window": "18:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-4D3N-002",
+      "slug": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "day": 2,
+      "day_title": "Ijen Climb and Continue to the Papuma Side",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen Tour",
+          "time_window": "00:00",
+          "duration_minutes": 540,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Ijen Crater",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Ijen Hotel Check-out",
+          "time_window": "12:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Restaurant",
+          "time_window": "12:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Journey to Jember",
+          "time_window": "13:00",
+          "duration_minutes": 60,
+          "from_label": "Bondowoso City",
+          "to_label": "Jember",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "CheckInAction",
+          "activity_name": "Jember Hotel Check-in",
+          "time_window": "14:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Jember",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Papuma Sunset Experience",
+          "time_window": "17:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Papuma Beach",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "TravelAction",
+          "activity_name": "Return to Jember Hotel",
+          "time_window": "18:00",
+          "duration_minutes": 60,
+          "from_label": "Papuma Beach",
+          "to_label": "Hotel in Jember",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-4D3N-002",
+      "slug": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "day": 3,
+      "day_title": "Papuma Area to Tumpak Sewu Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Check out from hotel",
+          "time_window": "03:30",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Jember",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Journey to Tumpak Sewu",
+          "time_window": "03:30",
+          "duration_minutes": 180,
+          "from_label": "Hotel in Jember",
+          "to_label": "Tumpak Sewu",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Explore Tumpak Sewu Waterfall",
+          "time_window": "06:30",
+          "duration_minutes": 240,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Tumpak Sewu Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-4D3N-002",
+      "slug": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "day": 4,
+      "day_title": "Tumpak Sewu, Bromo Sequence, and Return to Surabaya",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Bromo Jeep Tour Experience",
+          "time_window": "02:00",
+          "duration_minutes": 420,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Hotel Breakfast",
+          "time_window": "09:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Bromo Hotel Check-out",
+          "time_window": "12:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Surabaya",
+          "time_window": "12:00",
+          "duration_minutes": 180,
+          "from_label": "Bromo Area",
+          "to_label": "Surabaya",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TravelAction",
+          "activity_name": "Finish at Surabaya City",
+          "time_window": "15:00",
+          "duration_minutes": 30,
+          "from_label": "Surabaya",
+          "to_label": "Airport / Hotel",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-4D3N-003",
+      "slug": "tours/from-surabaya/tumpak-sewu-bromo-ijen-4d3n",
+      "day": 1,
+      "day_title": "Surabaya to the Tumpak Sewu Side",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TravelAction",
+          "activity_name": "Pickup and Transfer to Tumpak Sewu",
+          "time_window": "12:00",
+          "duration_minutes": 210,
+          "from_label": "Surabaya",
+          "to_label": "Tumpak Sewu area",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in at Tumpak Sewu Homestay",
+          "time_window": "15:30",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Homestay in Tumpak Sewu area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-4D3N-003",
+      "slug": "tours/from-surabaya/tumpak-sewu-bromo-ijen-4d3n",
+      "day": 2,
+      "day_title": "Tumpak Sewu and Continue Toward the Bromo Side",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Tumpak Sewu Trekking",
+          "time_window": "07:30",
+          "duration_minutes": 240,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Tumpak Sewu Waterfall",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch",
+          "time_window": "11:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Mount Bromo Area",
+          "time_window": "12:30",
+          "duration_minutes": 270,
+          "from_label": "Tumpak Sewu",
+          "to_label": "Mount Bromo area",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in at Bromo Hotel",
+          "time_window": "16:30",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Bromo area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-4D3N-003",
+      "slug": "tours/from-surabaya/tumpak-sewu-bromo-ijen-4d3n",
+      "day": 3,
+      "day_title": "Bromo Sunrise and Transfer to the Ijen Side",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Bromo Jeep Tour Experience",
+          "time_window": "02:00",
+          "duration_minutes": 390,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Hotel Breakfast",
+          "time_window": "08:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Bromo Hotel Check-out",
+          "time_window": "12:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Bondowoso",
+          "time_window": "12:00",
+          "duration_minutes": 210,
+          "from_label": "Bromo Area",
+          "to_label": "Bondowoso",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch Break (Own Expense)",
+          "time_window": "13:30",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "En route to Bondowoso",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "CheckInAction",
+          "activity_name": "Bondowoso Hotel Check-in",
+          "time_window": "15:30",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen health screening",
+          "time_window": "17:30",
+          "duration_minutes": 15,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 8,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Included Dinner at Hotel",
+          "time_window": "19:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-4D3N-003",
+      "slug": "tours/from-surabaya/tumpak-sewu-bromo-ijen-4d3n",
+      "day": 4,
+      "day_title": "Ijen Climb and Finish into Bali",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Short break after the hike",
+          "time_window": "09:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Ijen Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Ketapang",
+          "time_window": "09:30",
+          "duration_minutes": 60,
+          "from_label": "Ijen area",
+          "to_label": "Ketapang Harbor",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TravelAction",
+          "activity_name": "Ferry to Gilimanuk Harbor",
+          "time_window": "10:30",
+          "duration_minutes": 60,
+          "from_label": "Ketapang Port",
+          "to_label": "Gilimanuk Harbor",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Arrival at Bali",
+          "time_window": "12:30",
+          "duration_minutes": 10,
+          "from_label": "Gilimanuk Harbor",
+          "to_label": "Bali",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-5D4N-002",
+      "slug": "tours/from-surabaya/ijen-bromo-madakaripura-malang-5d4n",
+      "day": 1,
+      "day_title": "Surabaya to Bondowoso for Ijen Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TravelAction",
+          "activity_name": "Surabaya to Bondowoso Transfer",
+          "time_window": "11:00",
+          "duration_minutes": 300,
+          "from_label": "Surabaya",
+          "to_label": "Bondowoso",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Local Restaurant",
+          "time_window": "13:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in Bondowoso Hotel",
+          "time_window": "16:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen health screening",
+          "time_window": "17:00",
+          "duration_minutes": 90,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Dinner at Accommodation",
+          "time_window": "18:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-5D4N-002",
+      "slug": "tours/from-surabaya/ijen-bromo-madakaripura-malang-5d4n",
+      "day": 2,
+      "day_title": "Ijen Climb and Transfer Toward the Bromo Side",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen Tour Experience",
+          "time_window": "00:00",
+          "duration_minutes": 540,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Ijen Crater",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Ijen Hotel Check-out",
+          "time_window": "11:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Restaurant",
+          "time_window": "11:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Journey to Bromo",
+          "time_window": "12:30",
+          "duration_minutes": 210,
+          "from_label": "Bondowoso City",
+          "to_label": "Bromo Area",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "CheckInAction",
+          "activity_name": "Bromo Hotel Check-in",
+          "time_window": "16:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Bromo Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-5D4N-002",
+      "slug": "tours/from-surabaya/ijen-bromo-madakaripura-malang-5d4n",
+      "day": 3,
+      "day_title": "Bromo Sunrise, Madakaripura, and Continue to Malang",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Bromo Jeep Tour",
+          "time_window": "02:00",
+          "duration_minutes": 390,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Breakfast at Hotel",
+          "time_window": "09:00",
+          "duration_minutes": 90,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TravelAction",
+          "activity_name": "Check-out and Transfer to Madakaripura",
+          "time_window": "11:00",
+          "duration_minutes": 60,
+          "from_label": "Bromo Hotel",
+          "to_label": "Madakaripura Waterfall",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Madakaripura Trekking",
+          "time_window": "00:00",
+          "duration_minutes": 120,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Waterfall",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Finish explore Madakaripura waterfall",
+          "time_window": "15:00",
+          "duration_minutes": 0,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Waterfall",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Malang",
+          "time_window": "15:00",
+          "duration_minutes": 180,
+          "from_label": "Madakaripura",
+          "to_label": "Malang",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in at Malang Hotel",
+          "time_window": "18:30",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Malang",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-5D4N-002",
+      "slug": "tours/from-surabaya/ijen-bromo-madakaripura-malang-5d4n",
+      "day": 4,
+      "day_title": "Malang and Batu Exploration with Return Toward Surabaya",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Check-out Malang Hotel",
+          "time_window": "08:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Malang Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Malang to Batu Tour Start",
+          "time_window": "08:30",
+          "duration_minutes": 240,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Batu City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch in Batu",
+          "time_window": "12:30",
+          "duration_minutes": 90,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Batu",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Batu to Surabaya Transfer",
+          "time_window": "14:00",
+          "duration_minutes": 150,
+          "from_label": "Batu",
+          "to_label": "Surabaya",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TravelAction",
+          "activity_name": "Arrival in Surabaya",
+          "time_window": "16:30",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": "Surabaya",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-5D4N-002",
+      "slug": "tours/from-surabaya/ijen-bromo-madakaripura-malang-5d4n",
+      "day": 5,
+      "day_title": "Surabaya Hotel Finish and Airport Transfer",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Breakfast and Free Time",
+          "time_window": "08:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Juanda Airport",
+          "time_window": "09:00",
+          "duration_minutes": 60,
+          "from_label": "Hotel",
+          "to_label": "Juanda Airport",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-2D1N-001",
+      "slug": "tours/from-surabaya/ijen-2d1n",
+      "day": 1,
+      "day_title": "Surabaya to Bondowoso for Ijen Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TravelAction",
+          "activity_name": "Surabaya to Bondowoso Transfer",
+          "time_window": "11:00",
+          "duration_minutes": 300,
+          "from_label": "Surabaya",
+          "to_label": "Bondowoso",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Local Restaurant",
+          "time_window": "13:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in Bondowoso Hotel",
+          "time_window": "16:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen health screening",
+          "time_window": "17:00",
+          "duration_minutes": 90,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Dinner at Accommodation",
+          "time_window": "18:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-2D1N-001",
+      "slug": "tours/from-surabaya/ijen-2d1n",
+      "day": 2,
+      "day_title": "Ijen Climb and Return to Surabaya",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Short break after the hike",
+          "time_window": "08:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Ijen Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Check-out and Transfer to Surabaya",
+          "time_window": "09:00",
+          "duration_minutes": 390,
+          "from_label": "Ijen area",
+          "to_label": "Surabaya",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Having lunch at the hotel",
+          "time_window": "12:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Restaurant at the hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Arrival and Transfer in Surabaya",
+          "time_window": "16:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": "Surabaya Hotel/Airport",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "2D1N",
+      "slug": "tours/from-surabaya/bromo-2d1n",
+      "day": 1,
+      "day_title": "Surabaya to the Bromo Side for Overnight Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TravelAction",
+          "activity_name": "Surabaya to Bromo Pickup",
+          "time_window": "12:00",
+          "duration_minutes": 30,
+          "from_label": "Surabaya",
+          "to_label": "Bromo Area",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Local Restaurant",
+          "time_window": "12:30",
+          "duration_minutes": 210,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in Bromo Hotel",
+          "time_window": "16:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "2D1N",
+      "slug": "tours/from-surabaya/bromo-2d1n",
+      "day": 2,
+      "day_title": "Bromo Sunrise, Madakaripura, and Return to Surabaya",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Bromo Jeep Tour Experience",
+          "time_window": "02:30",
+          "duration_minutes": 390,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Hotel Breakfast",
+          "time_window": "09:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Bromo Hotel Check-out",
+          "time_window": "11:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Madakaripura Trekking",
+          "time_window": "11:30",
+          "duration_minutes": 180,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Waterfall",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch After Trek (Own Expense)",
+          "time_window": "13:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Surabaya",
+          "time_window": "14:30",
+          "duration_minutes": 120,
+          "from_label": "Madakaripura",
+          "to_label": "Surabaya",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "TravelAction",
+          "activity_name": "Arrival in Surabaya",
+          "time_window": "16:30",
+          "duration_minutes": 0,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Surabaya",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-BALI-4D3N-001",
+      "slug": "tours/from-bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "day": 1,
+      "day_title": "Bali to Banyuwangi for Ijen Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TravelAction",
+          "activity_name": "Bali Hotel Pick-up to Gilimanuk",
+          "time_window": "10:00",
+          "duration_minutes": 240,
+          "from_label": "Hotel in Bali",
+          "to_label": "Gilimanuk Harbor",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Ferry Crossing to Ketapang",
+          "time_window": "14:00",
+          "duration_minutes": 60,
+          "from_label": "Gilimanuk Harbor",
+          "to_label": "Ketapang Port",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to hotel in Banyuwangi",
+          "time_window": "14:15",
+          "duration_minutes": 15,
+          "from_label": "Ketapang Port",
+          "to_label": "Banyuwangi Hotel",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "CheckInAction",
+          "activity_name": "Hotel Check-in",
+          "time_window": "14:15",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Banyuwangi Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen Health Screening",
+          "time_window": "14:30",
+          "duration_minutes": 15,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Clinic",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Dinner",
+          "time_window": "19:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Banyuwangi City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-BALI-4D3N-001",
+      "slug": "tours/from-bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "day": 2,
+      "day_title": "Ijen Climb and Papuma Transfer",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen Tour",
+          "time_window": "00:00",
+          "duration_minutes": 540,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Ijen Crater",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Ijen Hotel Check-out",
+          "time_window": "12:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Restaurant",
+          "time_window": "12:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Journey to Jember",
+          "time_window": "13:00",
+          "duration_minutes": 60,
+          "from_label": "Bondowoso City",
+          "to_label": "Jember",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "CheckInAction",
+          "activity_name": "Jember Hotel Check-in",
+          "time_window": "14:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Jember",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Papuma Sunset Experience",
+          "time_window": "17:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Papuma Beach",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "TravelAction",
+          "activity_name": "Return to Jember Hotel",
+          "time_window": "18:00",
+          "duration_minutes": 60,
+          "from_label": "Papuma Beach",
+          "to_label": "Hotel in Jember",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-BALI-4D3N-001",
+      "slug": "tours/from-bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "day": 3,
+      "day_title": "Tumpak Sewu Segment and Transfer Toward Bromo",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Check out from hotel",
+          "time_window": "03:30",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Jember",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Journey to Tumpak Sewu",
+          "time_window": "03:30",
+          "duration_minutes": 180,
+          "from_label": "Hotel in Jember",
+          "to_label": "Tumpak Sewu",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Explore Tumpak Sewu Waterfall",
+          "time_window": "06:30",
+          "duration_minutes": 240,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Tumpak Sewu Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-BALI-4D3N-001",
+      "slug": "tours/from-bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "day": 4,
+      "day_title": "Bromo Sunrise and Finish in Surabaya",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Bromo Jeep Tour Experience",
+          "time_window": "02:00",
+          "duration_minutes": 420,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Hotel Breakfast",
+          "time_window": "09:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Bromo Hotel Check-out",
+          "time_window": "12:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Surabaya",
+          "time_window": "12:00",
+          "duration_minutes": 180,
+          "from_label": "Bromo Area",
+          "to_label": "Surabaya",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TravelAction",
+          "activity_name": "Finish at Surabaya City",
+          "time_window": "15:00",
+          "duration_minutes": 30,
+          "from_label": "Surabaya",
+          "to_label": "Airport / Hotel",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-BALI-5D4N-001",
+      "slug": "tours/from-bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "day": 1,
+      "day_title": "Bali to Banyuwangi for Ijen Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TravelAction",
+          "activity_name": "Bali Hotel Pick-up to Gilimanuk",
+          "time_window": "10:00",
+          "duration_minutes": 240,
+          "from_label": "Hotel in Bali",
+          "to_label": "Gilimanuk Harbor",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Ferry Crossing to Ketapang",
+          "time_window": "14:00",
+          "duration_minutes": 60,
+          "from_label": "Gilimanuk Harbor",
+          "to_label": "Ketapang Port",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to hotel in Banyuwangi",
+          "time_window": "14:15",
+          "duration_minutes": 15,
+          "from_label": "Ketapang Port",
+          "to_label": "Banyuwangi Hotel",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "CheckInAction",
+          "activity_name": "Hotel Check-in",
+          "time_window": "14:15",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Banyuwangi Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen Health Screening",
+          "time_window": "14:30",
+          "duration_minutes": 15,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Clinic",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Dinner",
+          "time_window": "19:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Banyuwangi City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-BALI-5D4N-001",
+      "slug": "tours/from-bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "day": 2,
+      "day_title": "Ijen Climb and Transfer to the Papuma Side",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen Tour",
+          "time_window": "00:00",
+          "duration_minutes": 540,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Ijen Crater",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Ijen Hotel Check-out",
+          "time_window": "12:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Restaurant",
+          "time_window": "12:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Journey to Jember",
+          "time_window": "13:00",
+          "duration_minutes": 60,
+          "from_label": "Bondowoso City",
+          "to_label": "Jember",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "CheckInAction",
+          "activity_name": "Jember Hotel Check-in",
+          "time_window": "14:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Jember",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Papuma Sunset Experience",
+          "time_window": "17:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Papuma Beach",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "TravelAction",
+          "activity_name": "Return to Jember Hotel",
+          "time_window": "18:00",
+          "duration_minutes": 60,
+          "from_label": "Papuma Beach",
+          "to_label": "Hotel in Jember",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-BALI-5D4N-001",
+      "slug": "tours/from-bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "day": 3,
+      "day_title": "Papuma Side to Tumpak Sewu Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Check out from hotel",
+          "time_window": "03:30",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Jember",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Journey to Tumpak Sewu",
+          "time_window": "03:30",
+          "duration_minutes": 180,
+          "from_label": "Hotel in Jember",
+          "to_label": "Tumpak Sewu",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Explore Tumpak Sewu Waterfall",
+          "time_window": "06:30",
+          "duration_minutes": 240,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Tumpak Sewu Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-BALI-5D4N-001",
+      "slug": "tours/from-bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "day": 4,
+      "day_title": "Tumpak Sewu and Transfer Toward Bromo",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Bromo Jeep Tour Experience",
+          "time_window": "02:00",
+          "duration_minutes": 420,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Hotel Breakfast",
+          "time_window": "09:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Bromo Hotel Check-out",
+          "time_window": "12:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Surabaya",
+          "time_window": "12:00",
+          "duration_minutes": 180,
+          "from_label": "Bromo Area",
+          "to_label": "Surabaya",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TravelAction",
+          "activity_name": "Finish at Surabaya City",
+          "time_window": "15:00",
+          "duration_minutes": 30,
+          "from_label": "Surabaya",
+          "to_label": "Airport / Hotel",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-BALI-5D4N-001",
+      "slug": "tours/from-bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "day": 5,
+      "day_title": "Bromo Sunrise and Final Surabaya Handoff",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Breakfast and Free Time",
+          "time_window": "08:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Juanda Airport",
+          "time_window": "09:00",
+          "duration_minutes": 60,
+          "from_label": "Hotel",
+          "to_label": "Juanda Airport",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-5D4N-001",
+      "slug": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "day": 1,
+      "day_title": "Surabaya to Bondowoso for Ijen Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TravelAction",
+          "activity_name": "Surabaya to Bondowoso Transfer",
+          "time_window": "11:00",
+          "duration_minutes": 300,
+          "from_label": "Surabaya",
+          "to_label": "Bondowoso",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Local Restaurant",
+          "time_window": "13:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in Bondowoso Hotel",
+          "time_window": "16:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen health screening",
+          "time_window": "17:00",
+          "duration_minutes": 90,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Dinner at Accommodation",
+          "time_window": "18:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-5D4N-001",
+      "slug": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "day": 2,
+      "day_title": "Ijen Climb and Transfer to the Papuma Side",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen Tour",
+          "time_window": "00:00",
+          "duration_minutes": 540,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Ijen Crater",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Ijen Hotel Check-out",
+          "time_window": "12:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Restaurant",
+          "time_window": "12:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Journey to Jember",
+          "time_window": "13:00",
+          "duration_minutes": 60,
+          "from_label": "Bondowoso City",
+          "to_label": "Jember",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "CheckInAction",
+          "activity_name": "Jember Hotel Check-in",
+          "time_window": "14:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Jember",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Papuma Sunset Experience",
+          "time_window": "17:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Papuma Beach",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "TravelAction",
+          "activity_name": "Return to Jember Hotel",
+          "time_window": "18:00",
+          "duration_minutes": 60,
+          "from_label": "Papuma Beach",
+          "to_label": "Hotel in Jember",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-5D4N-001",
+      "slug": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "day": 3,
+      "day_title": "Papuma Side to Tumpak Sewu Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Check out from hotel",
+          "time_window": "03:30",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Jember",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Journey to Tumpak Sewu",
+          "time_window": "03:30",
+          "duration_minutes": 180,
+          "from_label": "Hotel in Jember",
+          "to_label": "Tumpak Sewu",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Explore Tumpak Sewu Waterfall",
+          "time_window": "06:30",
+          "duration_minutes": 240,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Tumpak Sewu Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-5D4N-001",
+      "slug": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "day": 4,
+      "day_title": "Tumpak Sewu and Transfer Toward the Bromo Side",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Bromo Jeep Tour Experience",
+          "time_window": "02:00",
+          "duration_minutes": 420,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Hotel Breakfast",
+          "time_window": "09:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Bromo Hotel Check-out",
+          "time_window": "12:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Surabaya",
+          "time_window": "12:00",
+          "duration_minutes": 180,
+          "from_label": "Bromo Area",
+          "to_label": "Surabaya",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TravelAction",
+          "activity_name": "Finish at Surabaya City",
+          "time_window": "15:00",
+          "duration_minutes": 30,
+          "from_label": "Surabaya",
+          "to_label": "Airport / Hotel",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-5D4N-001",
+      "slug": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "day": 5,
+      "day_title": "Bromo Sunrise and Final Return",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Breakfast and Free Time",
+          "time_window": "08:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Juanda Airport",
+          "time_window": "09:00",
+          "duration_minutes": 60,
+          "from_label": "Hotel",
+          "to_label": "Juanda Airport",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-BALI-3D2N-003",
+      "slug": "tours/from-bali/ijen-bromo-madakaripura-3d2n",
+      "day": 1,
+      "day_title": "Bali to Banyuwangi for Ijen Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TravelAction",
+          "activity_name": "Bali Hotel Pick-up to Gilimanuk",
+          "time_window": "10:00",
+          "duration_minutes": 240,
+          "from_label": "Hotel in Bali",
+          "to_label": "Gilimanuk Harbor",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Ferry Crossing to Ketapang",
+          "time_window": "14:00",
+          "duration_minutes": 60,
+          "from_label": "Gilimanuk Harbor",
+          "to_label": "Ketapang Port",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to hotel in Banyuwangi",
+          "time_window": "14:15",
+          "duration_minutes": 15,
+          "from_label": "Ketapang Port",
+          "to_label": "Banyuwangi Hotel",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "CheckInAction",
+          "activity_name": "Hotel Check-in",
+          "time_window": "14:15",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Banyuwangi Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen Health Screening",
+          "time_window": "14:30",
+          "duration_minutes": 15,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Clinic",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Dinner",
+          "time_window": "19:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Banyuwangi City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-BALI-3D2N-003",
+      "slug": "tours/from-bali/ijen-bromo-madakaripura-3d2n",
+      "day": 2,
+      "day_title": "Ijen Climb and Transfer Toward the Bromo Side",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen Tour Experience",
+          "time_window": "00:00",
+          "duration_minutes": 540,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Ijen Crater",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Ijen Hotel Check-out",
+          "time_window": "11:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Restaurant",
+          "time_window": "11:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Journey to Bromo",
+          "time_window": "12:30",
+          "duration_minutes": 210,
+          "from_label": "Bondowoso City",
+          "to_label": "Bromo Area",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "CheckInAction",
+          "activity_name": "Bromo Hotel Check-in",
+          "time_window": "16:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Bromo Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-BALI-3D2N-003",
+      "slug": "tours/from-bali/ijen-bromo-madakaripura-3d2n",
+      "day": 3,
+      "day_title": "Bromo Sunrise, Madakaripura, and Finish in Surabaya",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Bromo Jeep Tour Experience",
+          "time_window": "02:30",
+          "duration_minutes": 390,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Hotel Breakfast",
+          "time_window": "09:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Bromo Hotel Check-out",
+          "time_window": "11:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Madakaripura Trekking",
+          "time_window": "11:30",
+          "duration_minutes": 180,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Waterfall",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch After Trek (Own Expense)",
+          "time_window": "13:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Surabaya",
+          "time_window": "14:30",
+          "duration_minutes": 120,
+          "from_label": "Madakaripura",
+          "to_label": "Surabaya",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "TravelAction",
+          "activity_name": "Arrival in Surabaya",
+          "time_window": "16:30",
+          "duration_minutes": 0,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Surabaya",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "1D1N",
+      "slug": "tours/from-surabaya/bromo-1d1n",
+      "day": 1,
+      "day_title": "Midnight Departure from Surabaya for Bromo Sunrise",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TravelAction",
+          "activity_name": "Surabaya to Bromo Pickup",
+          "time_window": "00:00",
+          "duration_minutes": 150,
+          "from_label": "Surabaya",
+          "to_label": "Bromo Transit",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Start Bromo Sunrise Tour",
+          "time_window": "02:30",
+          "duration_minutes": 180,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Transit Point",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Bromo Sunrise Viewing",
+          "time_window": "05:30",
+          "duration_minutes": 210,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Viewpoint",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Explore Sea of Sand and Bromo Crater",
+          "time_window": "07:00",
+          "duration_minutes": 120,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Sea of Sand and Bromo Crater",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TravelAction",
+          "activity_name": "Return to Transit Point",
+          "time_window": "09:00",
+          "duration_minutes": 30,
+          "from_label": "Bromo",
+          "to_label": "Transit Point",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Simple Breakfast",
+          "time_window": "09:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "TravelAction",
+          "activity_name": "Bromo to Surabaya Return",
+          "time_window": "10:30",
+          "duration_minutes": 240,
+          "from_label": "Bromo",
+          "to_label": "Surabaya",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 8,
+          "activity_type": "TravelAction",
+          "activity_name": "Arrival in Surabaya",
+          "time_window": "14:30",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": "Surabaya",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-6D5N-001",
+      "slug": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "day": 1,
+      "day_title": "Surabaya to Bondowoso for Ijen Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TravelAction",
+          "activity_name": "Surabaya to Bondowoso Transfer",
+          "time_window": "11:00",
+          "duration_minutes": 300,
+          "from_label": "Surabaya",
+          "to_label": "Bondowoso",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Local Restaurant",
+          "time_window": "13:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Local Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in Bondowoso Hotel",
+          "time_window": "16:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen health screening",
+          "time_window": "17:00",
+          "duration_minutes": 90,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Dinner at Accommodation",
+          "time_window": "18:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-6D5N-001",
+      "slug": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "day": 2,
+      "day_title": "Ijen Climb and Continue to the Papuma Side",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Ijen Tour",
+          "time_window": "00:00",
+          "duration_minutes": 540,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Ijen Crater",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Ijen Hotel Check-out",
+          "time_window": "12:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Restaurant",
+          "time_window": "12:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bondowoso City",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Journey to Jember",
+          "time_window": "13:00",
+          "duration_minutes": 60,
+          "from_label": "Bondowoso City",
+          "to_label": "Jember",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "CheckInAction",
+          "activity_name": "Jember Hotel Check-in",
+          "time_window": "14:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Jember",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Papuma Sunset Experience",
+          "time_window": "17:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Papuma Beach",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "TravelAction",
+          "activity_name": "Return to Jember Hotel",
+          "time_window": "18:00",
+          "duration_minutes": 60,
+          "from_label": "Papuma Beach",
+          "to_label": "Hotel in Jember",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-6D5N-001",
+      "slug": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "day": 3,
+      "day_title": "Papuma Area to Tumpak Sewu Staging",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Check out from hotel",
+          "time_window": "03:30",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Jember",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Journey to Tumpak Sewu",
+          "time_window": "03:30",
+          "duration_minutes": 180,
+          "from_label": "Hotel in Jember",
+          "to_label": "Tumpak Sewu",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Explore Tumpak Sewu Waterfall",
+          "time_window": "06:30",
+          "duration_minutes": 240,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Tumpak Sewu Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-6D5N-001",
+      "slug": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "day": 4,
+      "day_title": "Tumpak Sewu and Transfer Toward the Bromo Side",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Bromo Jeep Tour Experience",
+          "time_window": "02:00",
+          "duration_minutes": 420,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Hotel Breakfast",
+          "time_window": "09:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Bromo Hotel Check-out",
+          "time_window": "12:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Malang",
+          "time_window": "12:00",
+          "duration_minutes": 150,
+          "from_label": "Bromo Area",
+          "to_label": "Malang",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "CheckInAction",
+          "activity_name": "Malang Hotel Check-in",
+          "time_window": "14:30",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Malang Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-6D5N-001",
+      "slug": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "day": 5,
+      "day_title": "Bromo Sunrise and Continue to Malang",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Hotel Breakfast",
+          "time_window": "08:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Malang",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Malang Hotel Pick-up",
+          "time_window": "09:00",
+          "duration_minutes": 30,
+          "from_label": "Hotel in Malang",
+          "to_label": null,
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Visit Jodipan Colorful Village",
+          "time_window": "09:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Jodipan Colorful Village",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Explore San Terra De Laponte",
+          "time_window": "11:00",
+          "duration_minutes": 120,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "San Terra De Laponte",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch in Batu",
+          "time_window": "13:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Batu",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Photo Session at Taman Langit",
+          "time_window": "14:00",
+          "duration_minutes": 90,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Taman Langit & Goa Pinus",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Visit Apple Picking Agrotourism",
+          "time_window": "16:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Apple Picking Agrotourism",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 8,
+          "activity_type": "TravelAction",
+          "activity_name": "Return to Malang Hotel",
+          "time_window": "17:00",
+          "duration_minutes": 60,
+          "from_label": "Batu",
+          "to_label": "Malang",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-6D5N-001",
+      "slug": "tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "day": 6,
+      "day_title": "Malang and Surabaya Departure Handoff",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Breakfast and Free Time",
+          "time_window": "08:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Juanda Airport",
+          "time_window": "09:00",
+          "duration_minutes": 60,
+          "from_label": "Hotel",
+          "to_label": "Juanda Airport",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-BALI-3D2N-001",
+      "slug": "tours/from-bali/bromo-ijen-3d2n",
+      "day": 1,
+      "day_title": "Bali to the Bromo Side via East Java Crossing",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TravelAction",
+          "activity_name": "Bali Morning Pick-up to Gilimanuk",
+          "time_window": "08:00",
+          "duration_minutes": 240,
+          "from_label": "Hotel in Bali",
+          "to_label": "Gilimanuk Harbor",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Ferry Crossing to Ketapang",
+          "time_window": "12:00",
+          "duration_minutes": 60,
+          "from_label": "Gilimanuk Harbor",
+          "to_label": "Ketapang Port",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TravelAction",
+          "activity_name": "Long Journey to Bromo",
+          "time_window": "12:00",
+          "duration_minutes": 300,
+          "from_label": "Ketapang Port",
+          "to_label": "Bromo Area",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch Break (Own Expense)",
+          "time_window": "13:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "En route to Bromo",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "CheckInAction",
+          "activity_name": "Bromo Hotel Check-in",
+          "time_window": "18:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-BALI-3D2N-001",
+      "slug": "tours/from-bali/bromo-ijen-3d2n",
+      "day": 2,
+      "day_title": "Bromo Sunrise, Madakaripura, and Transfer to Bondowoso",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Bromo Jeep Tour",
+          "time_window": "02:00",
+          "duration_minutes": 390,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Breakfast at Hotel",
+          "time_window": "09:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TravelAction",
+          "activity_name": "Check-out and Transfer to Madakaripura",
+          "time_window": "11:00",
+          "duration_minutes": 60,
+          "from_label": "Bromo Hotel",
+          "to_label": "Madakaripura Waterfall",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Madakaripura Trekking",
+          "time_window": "00:00",
+          "duration_minutes": 180,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Waterfall",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TravelAction",
+          "activity_name": "Finish explore Madakaripura waterfall",
+          "time_window": "15:00",
+          "duration_minutes": 0,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Waterfall",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Bondowoso",
+          "time_window": "15:00",
+          "duration_minutes": 180,
+          "from_label": "Madakaripura",
+          "to_label": "Bondowoso",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in at Bondowoso Hotel",
+          "time_window": "18:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Bondowoso",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 8,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Health screening for Ijen",
+          "time_window": "18:30",
+          "duration_minutes": 15,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Bondowoso",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 9,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Dinner at Accommodation",
+          "time_window": "19:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Accommodation",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-BALI-3D2N-001",
+      "slug": "tours/from-bali/bromo-ijen-3d2n",
+      "day": 3,
+      "day_title": "Ijen Climb and Return to Bali",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Short break after the hike",
+          "time_window": "09:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Ijen Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Ketapang",
+          "time_window": "09:30",
+          "duration_minutes": 60,
+          "from_label": "Ijen area",
+          "to_label": "Ketapang Harbor",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TravelAction",
+          "activity_name": "Ferry to Gilimanuk Harbor",
+          "time_window": "10:30",
+          "duration_minutes": 60,
+          "from_label": "Ketapang Port",
+          "to_label": "Gilimanuk Harbor",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TravelAction",
+          "activity_name": "Arrival at Bali",
+          "time_window": "12:30",
+          "duration_minutes": 10,
+          "from_label": "Gilimanuk Harbor",
+          "to_label": "Bali",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-3D2N-006",
+      "slug": "tours/from-surabaya/taman-safari-prigen-bromo-madakaripura-3d2n",
+      "day": 1,
+      "day_title": "Surabaya to Taman Safari Prigen and Continue Toward Bromo",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Breakfast at Accommodation",
+          "time_window": "08:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Accommodation",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Pick up and Transfer to Prigen Safari",
+          "time_window": "09:00",
+          "duration_minutes": 90,
+          "from_label": "Hotel in Surabaya",
+          "to_label": "Prigen Safari Park",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Safari Adventure at Prigen",
+          "time_window": "10:30",
+          "duration_minutes": 150,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Prigen Safari Park",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Safari Area",
+          "time_window": "13:00",
+          "duration_minutes": 120,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Safari Area Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Bromo Area",
+          "time_window": "15:00",
+          "duration_minutes": 120,
+          "from_label": "Prigen Safari Park",
+          "to_label": "Bromo area",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in at Bromo Hotel",
+          "time_window": "17:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Bromo area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-3D2N-006",
+      "slug": "tours/from-surabaya/taman-safari-prigen-bromo-madakaripura-3d2n",
+      "day": 2,
+      "day_title": "Bromo-side Overnight and Final Sunrise Preparation",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Breakfast at Accommodation",
+          "time_window": "08:00",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Accommodation",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TravelAction",
+          "activity_name": "Pick up and Transfer to Prigen Safari",
+          "time_window": "09:00",
+          "duration_minutes": 90,
+          "from_label": "Hotel in Surabaya",
+          "to_label": "Prigen Safari Park",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Safari Adventure at Prigen",
+          "time_window": "10:30",
+          "duration_minutes": 150,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Prigen Safari Park",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch at Safari Area",
+          "time_window": "13:00",
+          "duration_minutes": 120,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Safari Area Restaurant",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Bromo Area",
+          "time_window": "15:00",
+          "duration_minutes": 120,
+          "from_label": "Prigen Safari Park",
+          "to_label": "Bromo area",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "CheckInAction",
+          "activity_name": "Check-in at Bromo Hotel",
+          "time_window": "17:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Hotel in Bromo area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    },
+    {
+      "package_id": "package-SUB-3D2N-006",
+      "slug": "tours/from-surabaya/taman-safari-prigen-bromo-madakaripura-3d2n",
+      "day": 3,
+      "day_title": "Bromo Sunrise, Madakaripura, and Return to Surabaya",
+      "activities": [
+        {
+          "activity_order": 1,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Bromo Jeep Tour Experience",
+          "time_window": "02:30",
+          "duration_minutes": 390,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Mount Bromo",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 2,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Hotel Breakfast",
+          "time_window": "09:00",
+          "duration_minutes": 30,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 3,
+          "activity_type": "CheckOutAction",
+          "activity_name": "Bromo Hotel Check-out",
+          "time_window": "11:00",
+          "duration_minutes": 10,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Bromo Hotel",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 4,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Madakaripura Trekking",
+          "time_window": "11:30",
+          "duration_minutes": 180,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Waterfall",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 5,
+          "activity_type": "TouristAttractionVisit",
+          "activity_name": "Lunch After Trek (Own Expense)",
+          "time_window": "13:30",
+          "duration_minutes": 60,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Madakaripura Area",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 6,
+          "activity_type": "TravelAction",
+          "activity_name": "Transfer to Surabaya",
+          "time_window": "14:30",
+          "duration_minutes": 120,
+          "from_label": "Madakaripura",
+          "to_label": "Surabaya",
+          "destination_label": null,
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        },
+        {
+          "activity_order": 7,
+          "activity_type": "TravelAction",
+          "activity_name": "Arrival in Surabaya",
+          "time_window": "16:30",
+          "duration_minutes": 0,
+          "from_label": null,
+          "to_label": null,
+          "destination_label": "Surabaya",
+          "source_basis": "packageDetailSnapshots.itineraryDays.activities"
+        }
+      ]
+    }
+  ]
+}
