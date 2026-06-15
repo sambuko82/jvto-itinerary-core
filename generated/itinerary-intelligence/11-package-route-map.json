@@ -518,8 +518,33 @@
         "source": "llm_wiki",
         "ref": "output/products/package-readiness/package-itineraries.json",
         "confidence": "inferred"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "package template structure (packages, itinerary days/details, destinations, hotels)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "backoffice_package_id": 47,
+      "code": "BRM-IJN-3D",
+      "duration_id": 3,
+      "order_channel_id": 1,
+      "day_count": 2,
+      "hotel_count": 2,
+      "start_core_destination": null,
+      "end_core_destination": "ijen",
+      "destination_core_ids": [
+        "bromo",
+        "ijen"
+      ],
+      "meal_totals": {
+        "breakfast": 2,
+        "lunch": 1,
+        "dinner": 2
+      }
+    }
   },
   {
     "package_id": "bromo-ijen-3d2n-bali",

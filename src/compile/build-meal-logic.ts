@@ -1,7 +1,9 @@
 import type { MealLogic } from '../domain/operations.js';
+import type { BackofficeExtract } from '../extract/sourceTypes.js';
+import { backofficeTrace, bumpConfidence, mealLogicObserved } from './backoffice-enrich.js';
 
-export function buildMealLogic(): MealLogic[] {
-  return [
+export function buildMealLogic(backoffice?: BackofficeExtract): MealLogic[] {
+  const meals: MealLogic[] = [
     {
       id: 'dinner_before_ijen',
       label: 'Dinner before Ijen preparation',
@@ -39,4 +41,16 @@ export function buildMealLogic(): MealLogic[] {
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/meal-logic.yaml', confidence: 'manual_seed' }]
     }
   ];
+
+  if (!backoffice) return meals;
+
+  for (const meal of meals) {
+    const observed = mealLogicObserved(backoffice, meal.id);
+    if (!observed) continue;
+    meal.confidence = bumpConfidence(meal.confidence);
+    meal.source_trace.push(backofficeTrace('meal rates + package meal inclusion (hotels, packages)'));
+    meal.backoffice_observed = observed;
+  }
+
+  return meals;
 }

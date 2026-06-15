@@ -32,6 +32,7 @@ export interface BackofficeExtract {
   source: string;
   pii_policy: string | null;
   destination_registry: DestinationRegistryEntry[];
+  package_registry: PackageRegistryEntry[];
   pickup_patterns: PickupPattern[];
   dropoff_patterns: DropoffPattern[];
   hotel_meal_sources: HotelMealSource[];
@@ -50,6 +51,43 @@ export interface DestinationRegistryEntry {
   id: number;
   slug: string | null;
   name: string | null;
+}
+
+/** PII-free package itinerary day (no free-text title/activity copy). */
+export interface PackageItineraryDay {
+  day_no: number;
+  hotel_id: number | null;
+  meal_breakfast: boolean | null;
+  meal_lunch: boolean | null;
+  meal_dinner: boolean | null;
+  detail_count: number;
+  detail_times: string[];
+}
+
+/**
+ * PII-free package template (reference structure for route maps / meal logic).
+ * Carries code/slug/ids only — never the package `name` (PII-key blocked).
+ */
+export interface PackageRegistryEntry {
+  id: number;
+  code: string | null;
+  slug: string | null;
+  duration_id: number | null;
+  order_channel_id: number | null;
+  category_id: number | null;
+  start_destination_id: number | null;
+  end_destination_id: number | null;
+  ideal_arrival: string | null;
+  physicality: string | null;
+  suitable_for: string | null;
+  is_publish: boolean;
+  total_breakfast: number;
+  total_lunch: number;
+  total_dinner: number;
+  destination_ids: number[];
+  hotel_ids: number[];
+  day_count: number;
+  days: PackageItineraryDay[];
 }
 
 export interface PickupTimeBucket {
@@ -148,6 +186,7 @@ export const emptyBackofficeExtract = (): BackofficeExtract => ({
   source: 'new-backoffice',
   pii_policy: null,
   destination_registry: [],
+  package_registry: [],
   pickup_patterns: [],
   dropoff_patterns: [],
   hotel_meal_sources: [],

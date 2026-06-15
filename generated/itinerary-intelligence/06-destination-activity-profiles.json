@@ -3,7 +3,7 @@
     "id": "destination_bromo_activity_profile",
     "label": "Mount Bromo activity profile",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "destination_id": "bromo",
     "activity_window": {
       "jeep_pickup": "02:30–03:30",
@@ -34,14 +34,39 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/destination-activity-profiles.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "activity cost/unit/formula (destination_activities, other_activities)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "activity_count": 1,
+      "activities": [
+        {
+          "activity_id": 10,
+          "code": "BROMO-JEEP",
+          "scope": "destination",
+          "unit": "per_jeep",
+          "formula": "per_jeep",
+          "list_price_idr": 700000,
+          "actuals": {
+            "sample_count": 14,
+            "avg_qty": 1.2,
+            "avg_price": 700000,
+            "avg_subtotal": 840000
+          }
+        }
+      ]
+    }
   },
   {
     "id": "destination_ijen_activity_profile",
     "label": "Ijen activity profile",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "destination_id": "ijen",
     "activity_window": {
       "hotel_departure": "00:00",
@@ -82,8 +107,28 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/destination-activity-profiles.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "activity cost/unit/formula (destination_activities, other_activities)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "activity_count": 1,
+      "activities": [
+        {
+          "activity_id": 11,
+          "code": "IJEN-GUIDE",
+          "scope": "destination",
+          "unit": "per_group",
+          "formula": "per_group",
+          "list_price_idr": 150000,
+          "actuals": null
+        }
+      ]
+    }
   },
   {
     "id": "destination_tumpak_sewu_activity_profile",
@@ -257,7 +302,7 @@
     "id": "destination_bali_ketapang_activity_profile",
     "label": "Bali / Ketapang connection profile",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "destination_id": "bali_ketapang",
     "activity_window": {
       "ferry_connection": "24_hours_with_queue_variability",
@@ -286,7 +331,32 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/destination-activity-profiles.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "activity cost/unit/formula (destination_activities, other_activities)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "activity_count": 1,
+      "activities": [
+        {
+          "activity_id": 50,
+          "code": "KETAPANG-FERRY",
+          "scope": "other",
+          "unit": "per_vehicle",
+          "formula": "per_vehicle",
+          "list_price_idr": 200000,
+          "actuals": {
+            "sample_count": 8,
+            "avg_qty": 1,
+            "avg_price": 200000,
+            "avg_subtotal": 200000
+          }
+        }
+      ]
+    }
   }
 ]

@@ -30,12 +30,12 @@ export async function compileGeneratedData() {
     ['03-time-window-rules.json', buildTimeWindowRules(backoffice)],
     ['04-route-leg-index.json', buildRouteLegIndex()],
     ['05-road-situation-profiles.json', buildRoadSituationProfiles()],
-    ['06-destination-activity-profiles.json', buildDestinationActivityProfiles()],
-    ['07-operational-events.json', buildOperationalEvents()],
-    ['08-meal-logic.json', buildMealLogic()],
+    ['06-destination-activity-profiles.json', buildDestinationActivityProfiles(backoffice)],
+    ['07-operational-events.json', buildOperationalEvents(backoffice)],
+    ['08-meal-logic.json', buildMealLogic(backoffice)],
     ['09-accommodation-logic.json', buildAccommodationLogic(backoffice)],
     ['10-cost-components.json', buildCostComponents(backoffice)],
-    ['11-package-route-map.json', buildPackageRouteMap()],
+    ['11-package-route-map.json', buildPackageRouteMap(backoffice)],
     ['12-recommendation-rules.json', buildRecommendationRules(backoffice)],
     ['13-visual-map-layer.json', buildVisualMapLayer()],
     ['14-output-template-map.json', buildOutputTemplateMap()],
@@ -63,7 +63,7 @@ export async function compileGeneratedData() {
     warnings: [
       'MVP output is generated from controlled manual seed data.',
       backofficeConnected
-        ? 'new-backoffice extractor connected: datasets 01/02/03/09/10/12 carry backoffice_observed evidence and inferred source_trace where booking patterns matched.'
+        ? 'new-backoffice extractor connected: datasets 01/02/03/06/07/08/09/10/11/12 carry backoffice_observed evidence and inferred source_trace where booking/reference data matched.'
         : 'External source extraction hooks exist but are not connected in this MVP.',
       'backoffice_observed figures are aggregated, PII-free calibration evidence — not quotes or final prices.',
       'Cost payloads explain components only and do not produce final quote totals.',

@@ -317,6 +317,164 @@ export function recommendationObserved(extract: BackofficeExtract, id: string): 
 }
 
 // ---------------------------------------------------------------------------
+// 06 destination activity profiles
+// ---------------------------------------------------------------------------
+
+/** Resolve a numeric backoffice destination_id to a core id via the registry + crosswalk. */
+function numericDestinationToCore(extract: BackofficeExtract, numericId: number | null): string | null {
+  if (numericId == null) return null;
+  const reg = extract.destination_registry.find((d) => d.id === numericId);
+  if (reg?.slug) {
+    const core = resolveDestinationToken(reg.slug);
+    if (core) return core;
+  }
+  return null;
+}
+
+export function activityProfileObserved(extract: BackofficeExtract, coreDestId: string): Record<string, unknown> | null {
+  const activities = extract.destination_activity_cost_sources.filter((a) => {
+    if (a.scope === 'destination') return numericDestinationToCore(extract, a.destination_id) === coreDestId;
+    // 'other' activities are destination-less; attach the ferry to the Bali/Ketapang connection profile.
+    if (a.scope === 'other' && coreDestId === 'bali_ketapang') return /ferry|ketapang|gilimanuk/i.test(a.code ?? '');
+    return false;
+  });
+  if (activities.length === 0) return null;
+
+  return {
+    activity_count: activities.length,
+    activities: activities.map((a) => ({
+      activity_id: a.activity_id,
+      code: a.code,
+      scope: a.scope,
+      unit: a.unit,
+      formula: a.formula,
+      list_price_idr: a.list_price,
+      actuals: a.actuals
+    }))
+  };
+}
+
+// ---------------------------------------------------------------------------
+// 07 operational events
+// ---------------------------------------------------------------------------
+
+function findActivityByCode(extract: BackofficeExtract, code: string) {
+  return extract.destination_activity_cost_sources.find((a) => a.code === code) ?? null;
+}
+
+function hotelsForCore(extract: BackofficeExtract, coreId: string) {
+  const id = resolveBackofficeDestinationId(coreId, extract.destination_registry).backofficeDestinationId;
+  if (id == null) return [];
+  return extract.hotel_meal_sources.filter((h) => h.destination_id === id);
+}
+
+export function operationalEventObserved(extract: BackofficeExtract, id: string): Record<string, unknown> | null {
+  switch (id) {
+    case 'bromo_jeep_handoff': {
+      const jeep = findActivityByCode(extract, 'BROMO-JEEP');
+      if (!jeep) return null;
+      return { activity_id: jeep.activity_id, unit: jeep.unit, list_price_idr: jeep.list_price, actuals: jeep.actuals };
+    }
+    case 'ketapang_ferry_connection': {
+      const ferry = findActivityByCode(extract, 'KETAPANG-FERRY');
+      const dropoffs = extract.dropoff_patterns.filter((p) => ['Bali', 'Ketapang Harbor'].includes(p.location_group));
+      if (!ferry && dropoffs.length === 0) return null;
+      return {
+        ferry_activity_id: ferry?.activity_id ?? null,
+        ferry_unit: ferry?.unit ?? null,
+        ferry_list_price_idr: ferry?.list_price ?? null,
+        ferry_actuals: ferry?.actuals ?? null,
+        bali_ketapang_dropoff_samples: dropoffs.reduce((sum, p) => sum + p.total_samples, 0)
+      };
+    }
+    case 'bondowoso_dinner_medical_check': {
+      const hotels = hotelsForCore(extract, 'ijen');
+      const lateIjen = lateArrivalEvidence(extract, { destination: 'ijen' });
+      if (hotels.length === 0 && !lateIjen) return null;
+      const dinner = hotels.map((h) => h.dinner_rate).filter((r): r is number => r != null);
+      return {
+        ijen_area_hotels: hotels.length,
+        dinner_rate_min_idr: dinner.length ? Math.min(...dinner) : null,
+        dinner_rate_max_idr: dinner.length ? Math.max(...dinner) : null,
+        late_arrival_samples: lateIjen ? (lateIjen as { late_arrival_samples: number }).late_arrival_samples : 0
+      };
+    }
+    default:
+      return null;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 08 meal logic
+// ---------------------------------------------------------------------------
+
+function mealRateRange(extract: BackofficeExtract, meal: 'lunch' | 'dinner'): { min: number; max: number } | null {
+  const rates = extract.hotel_meal_sources
+    .map((h) => (meal === 'lunch' ? h.lunch_rate : h.dinner_rate))
+    .filter((r): r is number => r != null);
+  if (rates.length === 0) return null;
+  return { min: Math.min(...rates), max: Math.max(...rates) };
+}
+
+export function mealLogicObserved(extract: BackofficeExtract, id: string): Record<string, unknown> | null {
+  switch (id) {
+    case 'dinner_before_ijen': {
+      const range = mealRateRange(extract, 'dinner');
+      const packagesWithDinner = extract.package_registry.filter((p) => p.total_dinner > 0).length;
+      if (!range && packagesWithDinner === 0) return null;
+      return {
+        dinner_rate_min_idr: range?.min ?? null,
+        dinner_rate_max_idr: range?.max ?? null,
+        packages_with_dinner: packagesWithDinner
+      };
+    }
+    case 'takeaway_breakfast_after_ijen_or_bromo': {
+      const packagesWithBreakfast = extract.package_registry.filter((p) => p.total_breakfast > 0).length;
+      const earlyDays = extract.package_registry
+        .flatMap((p) => p.days)
+        .filter((d) => d.meal_breakfast === true && d.detail_times.some((t) => t < '06:00')).length;
+      if (packagesWithBreakfast === 0 && earlyDays === 0) return null;
+      return { packages_with_breakfast: packagesWithBreakfast, early_departure_breakfast_days: earlyDays };
+    }
+    case 'lunch_stop_own_expense_long_transfer': {
+      const range = mealRateRange(extract, 'lunch');
+      const packagesWithLunch = extract.package_registry.filter((p) => p.total_lunch > 0).length;
+      if (!range && packagesWithLunch === 0) return null;
+      return {
+        lunch_rate_min_idr: range?.min ?? null,
+        lunch_rate_max_idr: range?.max ?? null,
+        packages_with_lunch: packagesWithLunch
+      };
+    }
+    default:
+      return null;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 11 package route map
+// ---------------------------------------------------------------------------
+
+export function packageRouteObserved(extract: BackofficeExtract, packageId: string): Record<string, unknown> | null {
+  const entry = extract.package_registry.find((p) => p.slug === packageId || p.code === packageId);
+  if (!entry) return null;
+  return {
+    backoffice_package_id: entry.id,
+    code: entry.code,
+    duration_id: entry.duration_id,
+    order_channel_id: entry.order_channel_id,
+    day_count: entry.day_count,
+    hotel_count: entry.hotel_ids.length,
+    start_core_destination: numericDestinationToCore(extract, entry.start_destination_id),
+    end_core_destination: numericDestinationToCore(extract, entry.end_destination_id),
+    destination_core_ids: entry.destination_ids
+      .map((id) => numericDestinationToCore(extract, id))
+      .filter((c): c is string => c != null),
+    meal_totals: { breakfast: entry.total_breakfast, lunch: entry.total_lunch, dinner: entry.total_dinner }
+  };
+}
+
+// ---------------------------------------------------------------------------
 // helpers
 // ---------------------------------------------------------------------------
 

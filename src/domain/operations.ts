@@ -27,6 +27,7 @@ export interface DestinationActivityProfile extends BaseEntity {
   bad_previous_overnight?: string[];
   cost_components: string[];
   warning_rules?: string[];
+  backoffice_observed?: BackofficeObserved;
 }
 
 export interface OperationalEvent extends BaseEntity {
@@ -38,6 +39,7 @@ export interface OperationalEvent extends BaseEntity {
   risk_if_late?: string[];
   customer_visible: boolean;
   cost_components?: string[];
+  backoffice_observed?: BackofficeObserved;
 }
 
 export interface MealLogic extends BaseEntity {
@@ -46,6 +48,7 @@ export interface MealLogic extends BaseEntity {
   applies_when: string[];
   customer_note?: string;
   cost_components?: string[];
+  backoffice_observed?: BackofficeObserved;
 }
 
 export interface AccommodationLogic extends BaseEntity {

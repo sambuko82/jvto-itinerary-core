@@ -23,6 +23,20 @@ test('destination registry is extracted with id + slug for crosswalk join', asyn
   assert.equal(ijen.id, 5);
 });
 
+test('package registry joins packages with itinerary days, destinations, hotels', async () => {
+  const extract = await extractBackoffice(FIXTURE);
+
+  const pkg = extract.package_registry.find((p) => p.slug === 'bromo-ijen-3d2n');
+  assert.ok(pkg);
+  assert.equal(pkg.id, 47);
+  assert.equal(pkg.day_count, 2);
+  assert.deepEqual(pkg.destination_ids, [1, 2, 5]);
+  assert.ok(pkg.hotel_ids.includes(1));
+  assert.equal(pkg.total_breakfast, 2);
+  // day detail times surfaced for early-departure meal logic
+  assert.ok(pkg.days.some((d) => d.detail_times.length > 0));
+});
+
 test('pickup patterns aggregate logistics by location group with buckets', async () => {
   const extract = await extractBackoffice(FIXTURE);
 

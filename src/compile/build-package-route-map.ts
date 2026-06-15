@@ -7,16 +7,20 @@ export interface PackageRouteMapItem {
   route_legs: string[];
   standard_dropoff_options: string[];
   possible_customizations: string[];
-  source_trace: Array<{ source: string; ref: string; confidence: string }>;
+  source_trace: Array<{ source: string; ref: string; confidence?: string; field?: string }>;
+  backoffice_observed?: Record<string, unknown>;
 }
+
+import type { BackofficeExtract } from '../extract/sourceTypes.js';
+import { backofficeTrace, packageRouteObserved } from './backoffice-enrich.js';
 
 const LLMWIKI_TRACE = [
   { source: 'llm_wiki', ref: 'output/products/package-readiness/package-registry.json', confidence: 'inferred' },
   { source: 'llm_wiki', ref: 'output/products/package-readiness/package-itineraries.json', confidence: 'inferred' }
 ];
 
-export function buildPackageRouteMap(): PackageRouteMapItem[] {
-  return [
+export function buildPackageRouteMap(backoffice?: BackofficeExtract): PackageRouteMapItem[] {
+  const items: PackageRouteMapItem[] = [
     // ── Surabaya origin — 1D1N ──────────────────────────────────────────────
     {
       package_id: 'bromo-1d1n',
@@ -273,4 +277,18 @@ export function buildPackageRouteMap(): PackageRouteMapItem[] {
       source_trace: LLMWIKI_TRACE
     }
   ];
+
+  if (!backoffice) return items;
+
+  for (const item of items) {
+    const observed = packageRouteObserved(backoffice, item.package_id);
+    if (!observed) continue;
+    item.source_trace = [
+      ...item.source_trace,
+      backofficeTrace('package template structure (packages, itinerary days/details, destinations, hotels)')
+    ];
+    item.backoffice_observed = observed;
+  }
+
+  return items;
 }

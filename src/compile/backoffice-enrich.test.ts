@@ -9,6 +9,10 @@ import { buildTimeWindowRules } from './build-time-window-rules.js';
 import { buildAccommodationLogic } from './build-accommodation-logic.js';
 import { buildCostComponents } from './build-cost-components.js';
 import { buildRecommendationRules } from './build-recommendation-rules.js';
+import { buildDestinationActivityProfiles } from './build-destination-activity-profiles.js';
+import { buildOperationalEvents } from './build-operational-events.js';
+import { buildMealLogic } from './build-meal-logic.js';
+import { buildPackageRouteMap } from './build-package-route-map.js';
 
 const FIXTURE = resolve(INPUT_DIR, 'new-backoffice/exports/itinerary-core-bundle.json');
 const extract = await extractBackoffice(FIXTURE);
@@ -104,11 +108,61 @@ test('recommendation rules attach booking evidence', () => {
   assert.ok(hasBackofficeTrace(ferry));
 });
 
+test('06 destination activity profiles attach activity cost evidence', () => {
+  const profiles = buildDestinationActivityProfiles(extract);
+  const bromo = profiles.find((p) => p.destination_id === 'bromo');
+  assert.ok(bromo);
+  assert.ok(hasBackofficeTrace(bromo));
+  const obs = bromo.backoffice_observed as { activities: { code: string; list_price_idr: number }[] };
+  assert.ok(obs.activities.some((a) => a.code === 'BROMO-JEEP' && a.list_price_idr === 700000));
+
+  // ferry (other activity) attaches to the Bali/Ketapang connection profile
+  const bali = profiles.find((p) => p.destination_id === 'bali_ketapang');
+  assert.ok(bali?.backoffice_observed);
+});
+
+test('07 operational events attach activity/logistics evidence', () => {
+  const events = buildOperationalEvents(extract);
+  const jeep = events.find((e) => e.id === 'bromo_jeep_handoff');
+  assert.ok(jeep);
+  assert.ok(hasBackofficeTrace(jeep));
+  assert.equal((jeep.backoffice_observed as { list_price_idr: number }).list_price_idr, 700000);
+
+  const ferry = events.find((e) => e.id === 'ketapang_ferry_connection');
+  assert.ok(ferry?.backoffice_observed);
+});
+
+test('08 meal logic attaches rate ranges + package inclusion counts', () => {
+  const meals = buildMealLogic(extract);
+  const dinner = meals.find((m) => m.id === 'dinner_before_ijen');
+  assert.ok(dinner);
+  assert.ok(hasBackofficeTrace(dinner));
+  const obs = dinner.backoffice_observed as { dinner_rate_min_idr: number; packages_with_dinner: number };
+  assert.ok(obs.dinner_rate_min_idr > 0);
+  assert.ok(obs.packages_with_dinner >= 1);
+});
+
+test('11 package route map joins by slug to backoffice package template', () => {
+  const items = buildPackageRouteMap(extract);
+  const item = items.find((i) => i.package_id === 'bromo-ijen-3d2n');
+  assert.ok(item);
+  assert.ok(item.source_trace.some((t) => t.source === 'new_backoffice'));
+  const obs = item.backoffice_observed as { backoffice_package_id: number; destination_core_ids: string[] };
+  assert.equal(obs.backoffice_package_id, 47);
+  assert.deepEqual(obs.destination_core_ids, ['bromo', 'ijen']);
+});
+
 test('enriched entities never expose a name key (PII guard)', () => {
-  const cost = buildCostComponents(extract);
-  for (const c of cost) {
-    if (!c.backoffice_observed) continue;
-    const json = JSON.stringify(c.backoffice_observed);
-    assert.equal(/"name"\s*:/.test(json), false, `name key leaked in ${c.id}`);
+  const all = [
+    ...buildCostComponents(extract),
+    ...buildDestinationActivityProfiles(extract),
+    ...buildOperationalEvents(extract),
+    ...buildMealLogic(extract),
+    ...buildPackageRouteMap(extract)
+  ];
+  for (const e of all) {
+    if (!e.backoffice_observed) continue;
+    const json = JSON.stringify(e.backoffice_observed);
+    assert.equal(/"name"\s*:/.test(json), false, `name key leaked`);
   }
 });

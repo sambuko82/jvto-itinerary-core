@@ -13,7 +13,9 @@ import {
   type CrewCostSource,
   type ActivityCostSource,
   type ActivityActuals,
-  type ActualCostPattern
+  type ActualCostPattern,
+  type PackageRegistryEntry,
+  type PackageItineraryDay
 } from './sourceTypes.js';
 
 /** Redacted bundle location, overridable for tests / alternate exports. */
@@ -78,6 +80,7 @@ function transformBundle(bundle: BackofficeBundle, path: string): BackofficeExtr
       slug: d.slug ?? null,
       name: d.name ?? null
     })),
+    package_registry: buildPackageRegistry(bundle),
     pickup_patterns: buildPickupPatterns(bundle),
     dropoff_patterns: buildDropoffPatterns(bundle),
     hotel_meal_sources: buildHotelMealSources(bundle),
@@ -90,6 +93,72 @@ function transformBundle(bundle: BackofficeBundle, path: string): BackofficeExtr
 
   extract.data_quality_notes = buildDataQualityNotes(bundle, extract, path);
   return extract;
+}
+
+function buildPackageRegistry(bundle: BackofficeBundle): PackageRegistryEntry[] {
+  // index child rows by package / itinerary-day for O(1) joins
+  const detailsByDayId = new Map<number, { sort: number; time: string | null }[]>();
+  for (const d of bundle.package_itinerary_day_details) {
+    const list = detailsByDayId.get(d.itinerary_day_id) ?? [];
+    list.push({ sort: d.sort_order ?? 0, time: d.time ?? null });
+    detailsByDayId.set(d.itinerary_day_id, list);
+  }
+
+  const destIdsByPackage = new Map<number, number[]>();
+  for (const pd of bundle.package_destinations) {
+    const list = destIdsByPackage.get(pd.package_id) ?? [];
+    if (!list.includes(pd.destination_id)) list.push(pd.destination_id);
+    destIdsByPackage.set(pd.package_id, list);
+  }
+
+  const hotelIdsByPackage = new Map<number, number[]>();
+  for (const ph of bundle.package_hotel_options) {
+    if (ph.hotel_id == null) continue;
+    const list = hotelIdsByPackage.get(ph.package_id) ?? [];
+    if (!list.includes(ph.hotel_id)) list.push(ph.hotel_id);
+    hotelIdsByPackage.set(ph.package_id, list);
+  }
+
+  const daysByPackage = new Map<number, PackageItineraryDay[]>();
+  for (const day of bundle.package_itinerary_days) {
+    const details = (detailsByDayId.get(day.id) ?? []).sort((a, b) => a.sort - b.sort);
+    const list = daysByPackage.get(day.package_id) ?? [];
+    list.push({
+      day_no: day.day_no,
+      hotel_id: day.hotel_id ?? null,
+      meal_breakfast: day.meal_breakfast ?? null,
+      meal_lunch: day.meal_lunch ?? null,
+      meal_dinner: day.meal_dinner ?? null,
+      detail_count: details.length,
+      detail_times: details.map((d) => d.time).filter((t): t is string => t != null)
+    });
+    daysByPackage.set(day.package_id, list);
+  }
+
+  return bundle.packages.map((p) => {
+    const days = (daysByPackage.get(p.id) ?? []).sort((a, b) => a.day_no - b.day_no);
+    return {
+      id: p.id,
+      code: p.code ?? null,
+      slug: p.slug ?? null,
+      duration_id: p.duration_id ?? null,
+      order_channel_id: p.order_channel_id ?? null,
+      category_id: p.package_category_id ?? null,
+      start_destination_id: p.start_destination_id ?? null,
+      end_destination_id: p.end_destination_id ?? null,
+      ideal_arrival: p.ideal_arrival ?? null,
+      physicality: p.physicality ?? null,
+      suitable_for: p.suitable_for ?? null,
+      is_publish: p.is_publish ?? false,
+      total_breakfast: p.total_breakfast ?? 0,
+      total_lunch: p.total_lunch ?? 0,
+      total_dinner: p.total_dinner ?? 0,
+      destination_ids: (destIdsByPackage.get(p.id) ?? []).sort((a, b) => a - b),
+      hotel_ids: (hotelIdsByPackage.get(p.id) ?? []).sort((a, b) => a - b),
+      day_count: days.length,
+      days
+    };
+  });
 }
 
 function buildPickupPatterns(bundle: BackofficeBundle): PickupPattern[] {
@@ -287,7 +356,7 @@ function buildDataQualityNotes(bundle: BackofficeBundle, extract: BackofficeExtr
     `coverage: ${extract.pickup_patterns.length} pickup / ${extract.dropoff_patterns.length} dropoff groups, ` +
       `${extract.hotel_meal_sources.length} hotels, ${extract.vehicle_cost_sources.length} vehicles, ` +
       `${extract.crew_cost_sources.length} crew roles, ${extract.destination_activity_cost_sources.length} activities, ` +
-      `${extract.actual_cost_patterns.length} finance patterns`
+      `${extract.actual_cost_patterns.length} finance patterns, ${extract.package_registry.length} package templates`
   );
 
   const lowSamplePickup = extract.pickup_patterns
