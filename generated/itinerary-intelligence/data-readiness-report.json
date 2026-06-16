@@ -1,0 +1,599 @@
+{
+  "schema_version": "itinerary-intelligence/data-readiness-report-v1",
+  "generated_at": "2026-06-15T00:00:00Z",
+  "ok": false,
+  "summary": {
+    "covered": 3,
+    "partial": 12,
+    "blocked": 0,
+    "not_started": 0
+  },
+  "groups": {
+    "packages": {
+      "status": "covered",
+      "evidence": [
+        "llm-wiki package-readiness clean=true",
+        "16 packages in package-catalog-index",
+        "gap-report total 0",
+        "extractor llm_wiki connected=true"
+      ],
+      "covered_items": [
+        "registry",
+        "pricing",
+        "itineraries",
+        "booking_compatibility"
+      ],
+      "partial_items": [],
+      "missing_items": [],
+      "source_exists_not_promoted": [],
+      "do_not_duplicate": [
+        "do not recreate package registry manually",
+        "do not rewrite package pricing or itineraries manually"
+      ],
+      "next_actions": [
+        "consume existing package-readiness artifacts only"
+      ],
+      "counts": {
+        "wiki_canonical": 16,
+        "catalog_index": 16,
+        "gap_total": 0
+      }
+    },
+    "package_operational_days": {
+      "status": "partial",
+      "evidence": [
+        "57 operational days across 16 packages in llm-wiki package-itineraries.json",
+        "6 backoffice package_itinerary_days rows in export bundle",
+        "4 promoted entries in 07-operational-events.json"
+      ],
+      "covered_items": [
+        "57 day-plans available in source (day/title/meals/hotel)"
+      ],
+      "partial_items": [],
+      "missing_items": [
+        "day-level operational-event mapping for the majority of the 57 source days"
+      ],
+      "source_exists_not_promoted": [
+        "per-day meal/hotel/sequence detail exists in source but only 4 operational events are promoted"
+      ],
+      "do_not_duplicate": [
+        "do not re-key itinerary day plans manually — derive from package-itineraries.json + backoffice day_details"
+      ],
+      "next_actions": [
+        "promote day-level meal/hotel/sequence into 07-operational-events from existing source days"
+      ],
+      "counts": {
+        "source_days_llm_wiki": 57,
+        "source_packages": 16,
+        "backoffice_itinerary_days": 6,
+        "operational_events_promoted": 4
+      }
+    },
+    "source_snapshot_freshness": {
+      "status": "partial",
+      "evidence": [
+        "local llm-wiki snapshot package-readiness/v1.2 generated_at 2026-06-07T16:52:25.857534+00:00",
+        "local snapshot artifacts: package-registry.json, package-pricing.json, package-itineraries.json, booking-compatibility.json, gap-report.json",
+        "upstream repo outputs not fetched in this run (scope limited to jvto-itinerary-core)"
+      ],
+      "covered_items": [
+        "llm-wiki snapshot present (package-readiness/v1.2)"
+      ],
+      "partial_items": [],
+      "missing_items": [
+        "upstream-vs-local version comparison not performed (no related-repo access this run)"
+      ],
+      "source_exists_not_promoted": [],
+      "do_not_duplicate": [],
+      "next_actions": [
+        "fetch upstream llm-wiki output/products/package-readiness/_manifest.json and compare schema_version before promoting operational-day logic"
+      ],
+      "counts": {
+        "llm_wiki_artifacts": 5
+      },
+      "confidence": "medium",
+      "stale_items": [
+        "no dedicated package-operational-days.json artifact in local snapshot (days are embedded in package-itineraries.json)"
+      ]
+    },
+    "backoffice_reference_data": {
+      "status": "partial",
+      "evidence": [
+        "extraction-manifest new_backoffice.connected=true",
+        "bundle reference groups: hotels, room_types, vehicle_types, crew_roles, transport_crew_rules, destination_activities, other_activities",
+        "generated manifest still reports source_mode=manual_seed_mvp (production freshness unproven)"
+      ],
+      "covered_items": [
+        "hotels",
+        "vehicles",
+        "crew_roles",
+        "activities"
+      ],
+      "partial_items": [
+        "production freshness unproven — manifest still manual_seed_mvp"
+      ],
+      "missing_items": [
+        "proof that snapshot reference rows match current production backoffice"
+      ],
+      "source_exists_not_promoted": [],
+      "do_not_duplicate": [
+        "do not re-enter hotels/vehicles/crew/activities manually — they exist in the backoffice export bundle"
+      ],
+      "next_actions": [
+        "re-run backoffice extractor against live export and reconcile manifest source_mode"
+      ],
+      "counts": {
+        "pickup_patterns": 2,
+        "dropoff_patterns": 2,
+        "hotels": 2,
+        "vehicles": 3,
+        "crew_roles": 2,
+        "activities": 3,
+        "finance_patterns": 2,
+        "package_templates": 2
+      },
+      "confidence": "medium"
+    },
+    "backoffice_booking_patterns": {
+      "status": "partial",
+      "evidence": [
+        "bundle booking_logistics_patterns=3, booking_finance_patterns=2, actual_cost_patterns=0",
+        "patterns are aggregated and PII-free; not per-customer rows"
+      ],
+      "covered_items": [
+        "aggregated booking logistics / finance / actual-cost patterns present"
+      ],
+      "partial_items": [
+        "low sample counts; route coverage incomplete"
+      ],
+      "missing_items": [
+        "booking-pattern coverage across all route legs (sparse vs route-leg-index)"
+      ],
+      "source_exists_not_promoted": [],
+      "do_not_duplicate": [
+        "do not reconstruct booking patterns manually — consume aggregated backoffice patterns"
+      ],
+      "next_actions": [
+        "widen backoffice booking-pattern sampling to cover Tumpak Sewu / Madakaripura / Papuma routes"
+      ],
+      "counts": {
+        "booking_logistics_patterns": 3,
+        "booking_finance_patterns": 2,
+        "actual_cost_patterns": 0
+      },
+      "confidence": "low"
+    },
+    "jvto_web_destination_intelligence": {
+      "status": "partial",
+      "evidence": [
+        "extraction-manifest jvto_web.connected=true",
+        "destination-intelligence fields present in input/jvto-web/schema.prisma: physical_demand, difficulty_level, altitude, weather_by_season, rainfall_intensity, trail_details, required_gear, permit_required, permit_details, guide_required, risk_factors",
+        "fields found in generated datasets 06/07/12: none"
+      ],
+      "covered_items": [],
+      "partial_items": [],
+      "missing_items": [
+        "11 jvto-web intelligence fields not yet promoted into evaluator datasets"
+      ],
+      "source_exists_not_promoted": [
+        "physical_demand → 06-destination-activity-profiles (in schema, not in generated datasets)",
+        "difficulty_level → 06-destination-activity-profiles (in schema, not in generated datasets)",
+        "altitude → 06-destination-activity-profiles (in schema, not in generated datasets)",
+        "weather_by_season → 12-recommendation-rules (in schema, not in generated datasets)",
+        "rainfall_intensity → 12-recommendation-rules (in schema, not in generated datasets)",
+        "trail_details → 06-destination-activity-profiles (in schema, not in generated datasets)",
+        "required_gear → 07-operational-events (in schema, not in generated datasets)",
+        "permit_required → 07-operational-events (in schema, not in generated datasets)",
+        "permit_details → 07-operational-events (in schema, not in generated datasets)",
+        "guide_required → 07-operational-events (in schema, not in generated datasets)",
+        "risk_factors → 12-recommendation-rules (in schema, not in generated datasets)"
+      ],
+      "do_not_duplicate": [
+        "do not hand-author destination risk/gear/weather data — promote it from the jvto-web schema source"
+      ],
+      "next_actions": [
+        "design an extractor pass that promotes jvto-web destination-intelligence fields into 06/07/12"
+      ],
+      "counts": {
+        "intel_fields_in_schema": 11,
+        "promoted": 0,
+        "not_promoted": 11
+      },
+      "confidence": "high"
+    },
+    "route_nodes": {
+      "status": "partial",
+      "evidence": [
+        "4 route-node candidates pending review",
+        "nodereview__batu: pending_review (evidence low, action needs_source_confirmation)",
+        "nodereview__bondowoso: pending_review (evidence medium, action review_for_future_route_node)",
+        "nodereview__jember: pending_review (evidence medium, action review_for_future_route_node)",
+        "nodereview__prigen_safari_park: pending_review (evidence low, action needs_source_confirmation)"
+      ],
+      "covered_items": [],
+      "partial_items": [
+        "nodereview__batu",
+        "nodereview__bondowoso",
+        "nodereview__jember",
+        "nodereview__prigen_safari_park"
+      ],
+      "missing_items": [
+        "nodereview__batu: insufficient source evidence to promote",
+        "nodereview__prigen_safari_park: insufficient source evidence to promote"
+      ],
+      "source_exists_not_promoted": [],
+      "do_not_duplicate": [
+        "do not auto-promote route nodes without explicit source evidence"
+      ],
+      "next_actions": [
+        "resolve pending candidates only where source evidence justifies promote/hold/reject"
+      ],
+      "counts": {
+        "pending": 4,
+        "total": 4
+      }
+    },
+    "route_legs": {
+      "status": "partial",
+      "evidence": [
+        "16 legs in route-leg-index",
+        "1 explicit_movement_source gap(s) in route-source-gap-report",
+        "13 legs with null distance_km"
+      ],
+      "covered_items": [
+        "3 legs with distance + duration"
+      ],
+      "partial_items": [
+        "bromo_area_to_madakaripura",
+        "bondowoso_ijen_area_to_ijen_crater",
+        "ijen_area_to_ketapang_harbor",
+        "surabaya_hotel_to_bromo_area",
+        "surabaya_to_bondowoso_ijen_area",
+        "tumpak_sewu_to_bromo_area",
+        "bondowoso_to_ijen_base",
+        "banyuwangi_to_ijen_base",
+        "ketapang_harbor_to_gilimanuk_bali_side",
+        "ijen_base_to_ketapang_harbor",
+        "bali_hotel_area_to_banyuwangi_ijen_area",
+        "bromo_area_to_malang",
+        "malang_to_surabaya"
+      ],
+      "missing_items": [
+        "taman/safari/prigen: explicit_movement_source missing"
+      ],
+      "source_exists_not_promoted": [],
+      "do_not_duplicate": [
+        "do not mark route direction/distance fully covered while an explicit movement source is missing"
+      ],
+      "next_actions": [
+        "source explicit TravelAction fromLocation/toLocation for taman/safari/prigen"
+      ],
+      "counts": {
+        "legs": 16,
+        "null_distance": 13,
+        "explicit_movement_source_gaps": 1
+      }
+    },
+    "pickup_dropoff_contexts": {
+      "status": "covered",
+      "evidence": [
+        "7 pickup contexts (field default_ready_buffer_minutes), 7 dropoff contexts (field default_buffer_minutes)",
+        "all buffers populated=true",
+        "source basis: manual_seed, inferred"
+      ],
+      "covered_items": [
+        "14 contexts with buffers populated"
+      ],
+      "partial_items": [],
+      "missing_items": [],
+      "source_exists_not_promoted": [],
+      "do_not_duplicate": [
+        "do not re-enter pickup/dropoff buffers manually — they are generated with backoffice_observed calibration"
+      ],
+      "next_actions": [
+        "confirm custom-address and previous-dropoff buffer assumptions with ops (currently manual_seed)"
+      ],
+      "counts": {
+        "pickup": 7,
+        "dropoff": 7,
+        "pickup_missing_buffer": 0,
+        "dropoff_missing_buffer": 0
+      },
+      "confidence": "medium"
+    },
+    "operational_contexts": {
+      "status": "partial",
+      "evidence": [
+        "operational-context-resolution-report present",
+        "resolution tally: {\"resolved\":8,\"partially_resolved\":2,\"pending\":4}"
+      ],
+      "covered_items": [
+        "Airport / Hotel",
+        "Gilimanuk Harbor",
+        "Hotel",
+        "Hotel in Jember",
+        "Juanda Airport",
+        "Ketapang Harbor",
+        "Ketapang Port",
+        "Transit Point"
+      ],
+      "partial_items": [
+        "Banyuwangi Hotel",
+        "Bondowoso City"
+      ],
+      "missing_items": [
+        "operational_rule_source",
+        "route_node_decision",
+        "alias_registry_resolution"
+      ],
+      "source_exists_not_promoted": [],
+      "do_not_duplicate": [],
+      "next_actions": [
+        "fill buffer_minutes / ferry_or_transfer_timing / operational_rule_source from booking logistics or explicit ops rules"
+      ],
+      "counts": {
+        "resolved": 8,
+        "partially_resolved": 2,
+        "pending": 4
+      }
+    },
+    "meal_logic": {
+      "status": "partial",
+      "evidence": [
+        "3 meal-logic entries",
+        "entries carry backoffice_observed rate ranges where matched"
+      ],
+      "covered_items": [
+        "dinner_before_ijen",
+        "takeaway_breakfast_after_ijen_or_bromo",
+        "lunch_stop_own_expense_long_transfer"
+      ],
+      "partial_items": [],
+      "missing_items": [
+        "lunch/dinner scenarios for waterfall days and multi-day packages"
+      ],
+      "source_exists_not_promoted": [],
+      "do_not_duplicate": [],
+      "next_actions": [
+        "add meal logic for Tumpak Sewu / Madakaripura days and multi-day lunch patterns from package-itineraries days"
+      ],
+      "counts": {
+        "entries": 3
+      }
+    },
+    "accommodation_logic": {
+      "status": "partial",
+      "evidence": [
+        "6 accommodation-logic entries",
+        "3 without backoffice_observed confirmation"
+      ],
+      "covered_items": [
+        "bondowoso_ijen_staging",
+        "bromo_area_sunrise_staging",
+        "tumpak_sewu_staging",
+        "papuma_staging",
+        "banyuwangi_staging",
+        "malang_batu_staging"
+      ],
+      "partial_items": [
+        "tumpak_sewu_staging",
+        "papuma_staging",
+        "malang_batu_staging"
+      ],
+      "missing_items": [
+        "backoffice confirmation for llm-wiki-only staging areas (e.g. Tumpak Sewu / Papuma)"
+      ],
+      "source_exists_not_promoted": [],
+      "do_not_duplicate": [],
+      "next_actions": [
+        "confirm staging-area hotel rates from backoffice where currently llm-wiki-only"
+      ],
+      "counts": {
+        "entries": 6,
+        "without_backoffice_observed": 3
+      }
+    },
+    "cost_components": {
+      "status": "partial",
+      "evidence": [
+        "22 cost components (IDs joinable to evaluator); 9 carry a default_rate_idr",
+        "evaluator emits component IDs only — no totals, no final pricing",
+        "null-rate classification: {\"null_but_backoffice_observed\":3,\"manual_seed_needs_rate\":4,\"variable_by_route_or_channel\":4,\"future_or_approval_only\":1,\"needs_review\":1}"
+      ],
+      "covered_items": [
+        "bromo_jeep",
+        "bromo_entrance_fee",
+        "ijen_entrance_fee",
+        "ijen_medical_check",
+        "ijen_local_guide",
+        "driver_cost",
+        "escort_cost",
+        "gas_mask",
+        "ferry_ticket"
+      ],
+      "partial_items": [
+        "vehicle_private_car_day",
+        "hotel_room",
+        "restaurant_meal"
+      ],
+      "missing_items": [
+        "madakaripura_local_guide",
+        "tumpak_sewu_local_guide",
+        "destination_ticket",
+        "hotel_breakfast_or_takeaway"
+      ],
+      "source_exists_not_promoted": [],
+      "do_not_duplicate": [
+        "evaluator must not output final pricing",
+        "do not build a cost engine that computes totals in this layer"
+      ],
+      "next_actions": [
+        "promote quantity/rate/channel rules to a dedicated cost engine only when manual_seed_needs_rate items have sourced rates"
+      ],
+      "counts": {
+        "total": 22,
+        "with_default_rate": 9,
+        "null_rate": 13
+      },
+      "null_rate_classification": {
+        "null_but_backoffice_observed": [
+          "vehicle_private_car_day",
+          "hotel_room",
+          "restaurant_meal"
+        ],
+        "manual_seed_needs_rate": [
+          "madakaripura_local_guide",
+          "tumpak_sewu_local_guide",
+          "destination_ticket",
+          "hotel_breakfast_or_takeaway"
+        ],
+        "variable_by_route_or_channel": [
+          "bali_dropoff_after_ketapang",
+          "parking_toll_fuel_allowance",
+          "addon_activity",
+          "crew_cash"
+        ],
+        "future_or_approval_only": [
+          "police_escort"
+        ],
+        "needs_review": [
+          "actual_expense_calibration"
+        ]
+      },
+      "needs_human_decision": [
+        "police_escort",
+        "actual_expense_calibration"
+      ]
+    },
+    "scenario_evaluator_readiness": {
+      "status": "covered",
+      "evidence": [
+        "evaluateScenario.ts present=true",
+        "ADR engine=true, ADR checklist=true",
+        "scenario test present=true",
+        "intelligence:check readiness command lives in PR #11 (not yet on main)"
+      ],
+      "covered_items": [
+        "evaluator",
+        "ADR-0001 engine",
+        "ADR-0001 PR checklist",
+        "scenario gate tests"
+      ],
+      "partial_items": [],
+      "missing_items": [],
+      "source_exists_not_promoted": [],
+      "do_not_duplicate": [
+        "do not refactor evaluator",
+        "do not add pricing to evaluator"
+      ],
+      "next_actions": [
+        "after PR #11 merges, run npm run intelligence:check before any evaluator change"
+      ]
+    },
+    "source_status_consistency": {
+      "status": "partial",
+      "evidence": [
+        "extraction-manifest.source_mode=source_connected",
+        "generated manifest.source_mode=manual_seed_mvp",
+        "status reporting inconsistent: extraction is source_connected but generated manifest still reports manual_seed_mvp"
+      ],
+      "covered_items": [],
+      "partial_items": [],
+      "missing_items": [
+        "generated manifest source_mode not reconciled with connected extraction"
+      ],
+      "source_exists_not_promoted": [],
+      "do_not_duplicate": [
+        "do not silently trust stale manifest wording — it misleads future agents"
+      ],
+      "next_actions": [
+        "reconcile generated manifest.source_mode to reflect Phase-2 source-connected extraction"
+      ],
+      "counts": {
+        "extraction_source_mode": "source_connected",
+        "generated_source_mode": "manual_seed_mvp"
+      },
+      "confidence": "high"
+    }
+  },
+  "implementation_opportunities": [
+    {
+      "id": "promote-jvto-web-destination-intelligence",
+      "priority": "high",
+      "why": "11 destination-intelligence fields exist in jvto-web schema but are absent from generated datasets 06/07/12",
+      "source": "input/jvto-web/schema.prisma + generated datasets 06/07/12 comparison",
+      "target": [
+        "06-destination-activity-profiles.json",
+        "07-operational-events.json",
+        "12-recommendation-rules.json"
+      ],
+      "fields": [
+        "physical_demand",
+        "difficulty_level",
+        "altitude",
+        "weather_by_season",
+        "rainfall_intensity",
+        "trail_details",
+        "required_gear",
+        "permit_required",
+        "permit_details",
+        "guide_required",
+        "risk_factors"
+      ],
+      "blocked_by": []
+    },
+    {
+      "id": "reconcile-manifest-source-mode",
+      "priority": "high",
+      "why": "extraction is source_connected but generated manifest still reports manual_seed_mvp",
+      "source": "extraction-manifest.json vs manifest.json",
+      "target": [
+        "generated/itinerary-intelligence/manifest.json"
+      ],
+      "blocked_by": []
+    },
+    {
+      "id": "resolve-route-node-candidates",
+      "priority": "medium",
+      "why": "4 route-node candidates pending review",
+      "source": "route-node-candidate-review.json",
+      "target": [
+        "route-node-candidate-review",
+        "route-leg generation"
+      ],
+      "blocked_by": [
+        "needs explicit source evidence per node before promotion"
+      ]
+    },
+    {
+      "id": "close-route-source-gaps",
+      "priority": "medium",
+      "why": "1 leg(s) split from slug tokens lack an explicit movement source",
+      "source": "route-source-gap-report.json",
+      "target": [
+        "route-leg-index.json"
+      ],
+      "blocked_by": [
+        "needs explicit movement source from llm-wiki package-registry or backoffice"
+      ]
+    },
+    {
+      "id": "source-missing-cost-component-rates",
+      "priority": "medium",
+      "why": "4 cost components have null rate with no backoffice/formula basis",
+      "source": "10-cost-components.json",
+      "target": [
+        "10-cost-components.json"
+      ],
+      "fields": [
+        "madakaripura_local_guide",
+        "tumpak_sewu_local_guide",
+        "destination_ticket",
+        "hotel_breakfast_or_takeaway"
+      ],
+      "blocked_by": [
+        "needs sourced rate (backoffice actuals or vendor quote)"
+      ]
+    }
+  ]
+}
