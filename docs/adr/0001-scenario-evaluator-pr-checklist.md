@@ -31,8 +31,13 @@ grep result, or diff proves it — not on assumption.
 > reaches the evaluator output contract**. A clean grep alone does not satisfy this check.
 
 ## P4 — Traceability
-- [ ] Every emitted ID (`route_leg_ids`, `operational_events`, `meal_logic`,
-      `accommodation_logic`, `cost_components`) has a matching `source_trace` entry
+- [ ] `source_trace` covers the generated **dataset categories** used by the emitted
+      outputs — i.e. every emitted ID is joinable to a dataset whose `ref` appears in
+      `source_trace` (`route_leg_ids`→`04`, `operational_events`→`07`/`06`,
+      `meal_logic`→`08`, `accommodation_logic`→`09`, `cost_components`→`10`).
+      This is the current **dataset-level** trace contract; one `source_trace` entry
+      per emitted ID is **not** required here (per-ID traces are a future revisit
+      trigger, not a precondition for these PRs).
 - [ ] A value with no source dataset record is **not** emitted — it degrades to
       `needs_manual_review`
 
@@ -59,7 +64,7 @@ npm run scenario -- samples/customer-scenario-surabaya-airport-late-bromo-ijen-k
 - [ ] CLI output for the Surabaya sample returns:
   - [ ] `status` = `possible_with_warning`
   - [ ] `cost_components` are IDs only (no numbers)
-  - [ ] `source_trace` is populated for every emitted ID
+  - [ ] `source_trace` covers every emitted ID's dataset category (dataset-level contract)
   - [ ] no PII fields present
 
 ---
