@@ -9,13 +9,11 @@
         "field": "Batu"
       }
     ],
-    "confidence": "low",
+    "confidence": "medium",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
-    "missing_fields": [
-      "route_node_decision"
-    ],
-    "status": "incomplete",
+    "missing_fields": [],
+    "status": "active",
     "candidate_id": "nodereview__batu",
     "label": "Batu",
     "normalized_candidate_id": "batu",
@@ -29,7 +27,10 @@
     "evidence_strength": "low",
     "recommended_action": "needs_source_confirmation",
     "reason": "appears as a TravelAction movement label but is not a slug-derived destination node",
-    "review_status": "pending_review"
+    "route_node_decision": "reject_existing_alias",
+    "decision_basis": "already represented by existing route node 'malang_batu' (destination-crosswalk alias); not a distinct node",
+    "resolved_to_node": "malang_batu",
+    "review_status": "resolved"
   },
   {
     "id": "nodereview__bondowoso",
@@ -41,13 +42,11 @@
         "field": "Bondowoso"
       }
     ],
-    "confidence": "low",
+    "confidence": "medium",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
-    "missing_fields": [
-      "route_node_decision"
-    ],
-    "status": "incomplete",
+    "missing_fields": [],
+    "status": "active",
     "candidate_id": "nodereview__bondowoso",
     "label": "Bondowoso",
     "normalized_candidate_id": "bondowoso",
@@ -69,7 +68,10 @@
     "evidence_strength": "medium",
     "recommended_action": "review_for_future_route_node",
     "reason": "appears as a TravelAction movement label but is not a slug-derived destination node",
-    "review_status": "pending_review"
+    "route_node_decision": "hold_for_future",
+    "decision_basis": "overnight/transit handoff (seen_as to) across 10 packages; represented operationally, not a distinct destination route node — revisit when an explicit movement source supports promotion",
+    "resolved_to_node": null,
+    "review_status": "resolved"
   },
   {
     "id": "nodereview__jember",
@@ -81,13 +83,11 @@
         "field": "Jember"
       }
     ],
-    "confidence": "low",
+    "confidence": "medium",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
-    "missing_fields": [
-      "route_node_decision"
-    ],
-    "status": "incomplete",
+    "missing_fields": [],
+    "status": "active",
     "candidate_id": "nodereview__jember",
     "label": "Jember",
     "normalized_candidate_id": "jember",
@@ -104,7 +104,10 @@
     "evidence_strength": "medium",
     "recommended_action": "review_for_future_route_node",
     "reason": "appears as a TravelAction movement label but is not a slug-derived destination node",
-    "review_status": "pending_review"
+    "route_node_decision": "hold_for_future",
+    "decision_basis": "overnight/transit handoff (seen_as to) across 5 packages; represented operationally, not a distinct destination route node — revisit when an explicit movement source supports promotion",
+    "resolved_to_node": null,
+    "review_status": "resolved"
   },
   {
     "id": "nodereview__prigen_safari_park",
@@ -120,7 +123,7 @@
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
-      "route_node_decision"
+      "explicit_movement_source"
     ],
     "status": "incomplete",
     "candidate_id": "nodereview__prigen_safari_park",
@@ -136,6 +139,9 @@
     "evidence_strength": "low",
     "recommended_action": "needs_source_confirmation",
     "reason": "appears as a TravelAction movement label but is not a slug-derived destination node",
-    "review_status": "pending_review"
+    "route_node_decision": "hold_pending_source",
+    "decision_basis": "spur seen as from+to in a single package with no explicit movement source (see route-source-gap-report); cannot promote without TravelAction fromLocation/toLocation",
+    "resolved_to_node": null,
+    "review_status": "resolved"
   }
 ]

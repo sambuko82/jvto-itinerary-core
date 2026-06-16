@@ -3,8 +3,8 @@
   "generated_at": "2026-06-15T00:00:00Z",
   "ok": false,
   "summary": {
-    "covered": 5,
-    "partial": 10,
+    "covered": 6,
+    "partial": 9,
     "blocked": 0,
     "not_started": 0
   },
@@ -198,25 +198,13 @@
       "confidence": "high"
     },
     "route_nodes": {
-      "status": "partial",
+      "status": "covered",
       "evidence": [
-        "4 route-node candidates pending review",
-        "nodereview__batu: pending_review (evidence low, action needs_source_confirmation)",
-        "nodereview__bondowoso: pending_review (evidence medium, action review_for_future_route_node)",
-        "nodereview__jember: pending_review (evidence medium, action review_for_future_route_node)",
-        "nodereview__prigen_safari_park: pending_review (evidence low, action needs_source_confirmation)"
+        "0 route-node candidates pending review"
       ],
       "covered_items": [],
-      "partial_items": [
-        "nodereview__batu",
-        "nodereview__bondowoso",
-        "nodereview__jember",
-        "nodereview__prigen_safari_park"
-      ],
-      "missing_items": [
-        "nodereview__batu: insufficient source evidence to promote",
-        "nodereview__prigen_safari_park: insufficient source evidence to promote"
-      ],
+      "partial_items": [],
+      "missing_items": [],
       "source_exists_not_promoted": [],
       "do_not_duplicate": [
         "do not auto-promote route nodes without explicit source evidence"
@@ -225,7 +213,7 @@
         "resolve pending candidates only where source evidence justifies promote/hold/reject"
       ],
       "counts": {
-        "pending": 4,
+        "pending": 0,
         "total": 4
       }
     },
@@ -509,19 +497,6 @@
     }
   },
   "implementation_opportunities": [
-    {
-      "id": "resolve-route-node-candidates",
-      "priority": "medium",
-      "why": "4 route-node candidates pending review",
-      "source": "route-node-candidate-review.json",
-      "target": [
-        "route-node-candidate-review",
-        "route-leg generation"
-      ],
-      "blocked_by": [
-        "needs explicit source evidence per node before promotion"
-      ]
-    },
     {
       "id": "close-route-source-gaps",
       "priority": "medium",

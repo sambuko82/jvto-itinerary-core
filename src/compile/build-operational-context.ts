@@ -1,6 +1,7 @@
 import { GENERATED_DIR } from '../config/paths.js';
 import { readJson } from '../utils/fs.js';
 import { extractBackoffice } from '../extract/extract-backoffice.js';
+import { resolveDestinationToken } from '../config/destination-crosswalk.js';
 import { baseRecord, inventoryGeneratedAt, type InventoryRecord, type InventorySourceTrace } from '../config/inventory-meta.js';
 
 const JVTO_REPO = 'jvto-devteam/jvto-web';
@@ -73,6 +74,12 @@ export interface TimeWindowRuleRecord extends InventoryRecord {
   source_time_bucket: string | null;
   exact_time_available: boolean;
 }
+// Resolved decision for a route-node candidate. None are auto-promoted: a real
+// route node requires explicit movement-source evidence the snapshots don't yet
+// carry, so the evidence-grounded outcomes are reject (already an existing node
+// alias) or hold (defer / pending source).
+type NodeDecision = 'promote' | 'hold_for_future' | 'reject_existing_alias' | 'hold_pending_source';
+
 export interface NodeCandidateReviewRecord extends InventoryRecord {
   candidate_id: string;
   label: string;
@@ -82,7 +89,58 @@ export interface NodeCandidateReviewRecord extends InventoryRecord {
   evidence_strength: 'low' | 'medium';
   recommended_action: 'review_for_future_route_node' | 'keep_as_operational_context' | 'needs_source_confirmation';
   reason: string;
-  review_status: 'pending_review';
+  route_node_decision: NodeDecision;
+  decision_basis: string;
+  resolved_to_node: string | null;
+  review_status: 'pending_review' | 'resolved';
+}
+
+interface NodeDecisionResult {
+  decision: NodeDecision;
+  basis: string;
+  resolved_to_node: string | null;
+  missing: string[];
+  status: 'active' | 'incomplete';
+  confidence: 'low' | 'medium';
+}
+
+/**
+ * Resolve a route-node candidate from deterministic repo evidence (no promotion
+ * without explicit movement source):
+ *  - matches an existing crosswalk node alias  -> reject_existing_alias
+ *  - from+to in a single package, no leg source -> hold_pending_source
+ *  - otherwise (overnight/transit handoff)      -> hold_for_future
+ */
+function resolveNodeDecision(label: string, normalizedId: string, seenAs: string[], packageCount: number): NodeDecisionResult {
+  const aliasOf = resolveDestinationToken(label) ?? resolveDestinationToken(normalizedId.replace(/_/g, ' '));
+  if (aliasOf) {
+    return {
+      decision: 'reject_existing_alias',
+      basis: `already represented by existing route node '${aliasOf}' (destination-crosswalk alias); not a distinct node`,
+      resolved_to_node: aliasOf,
+      missing: [],
+      status: 'active',
+      confidence: 'medium'
+    };
+  }
+  if (seenAs.includes('from') && seenAs.includes('to') && packageCount < 2) {
+    return {
+      decision: 'hold_pending_source',
+      basis: 'spur seen as from+to in a single package with no explicit movement source (see route-source-gap-report); cannot promote without TravelAction fromLocation/toLocation',
+      resolved_to_node: null,
+      missing: ['explicit_movement_source'],
+      status: 'incomplete',
+      confidence: 'low'
+    };
+  }
+  return {
+    decision: 'hold_for_future',
+    basis: `overnight/transit handoff (seen_as ${seenAs.join('+')}) across ${packageCount} packages; represented operationally, not a distinct destination route node — revisit when an explicit movement source supports promotion`,
+    resolved_to_node: null,
+    missing: [],
+    status: 'active',
+    confidence: packageCount >= 5 ? 'medium' : 'low'
+  };
 }
 export interface ResolutionReportRecord extends InventoryRecord {
   label: string;
@@ -223,23 +281,29 @@ export async function buildOperationalContext(dir: string = GENERATED_DIR): Prom
 
   const nodeReview: NodeCandidateReviewRecord[] = placed
     .filter(({ pl }) => pl.dataset === 'route-node-candidate-review')
-    .map(({ o }) => ({
-      ...baseRecord(`nodereview__${o.normalized_candidate_id}`, trace(o.label), {
-        generated_at,
-        confidence: 'low',
-        status: 'incomplete',
-        missing_fields: ['route_node_decision']
-      }),
-      candidate_id: `nodereview__${o.normalized_candidate_id}`,
-      label: o.label,
-      normalized_candidate_id: o.normalized_candidate_id,
-      seen_in_packages: o.seen_in_packages,
-      seen_as: o.seen_as,
-      evidence_strength: o.seen_in_packages.length >= 5 ? 'medium' : 'low',
-      recommended_action: o.seen_in_packages.length >= 5 ? 'review_for_future_route_node' : 'needs_source_confirmation',
-      reason: 'appears as a TravelAction movement label but is not a slug-derived destination node',
-      review_status: 'pending_review'
-    }));
+    .map(({ o }) => {
+      const dec = resolveNodeDecision(o.label, o.normalized_candidate_id, o.seen_as, o.seen_in_packages.length);
+      return {
+        ...baseRecord(`nodereview__${o.normalized_candidate_id}`, trace(o.label), {
+          generated_at,
+          confidence: dec.confidence,
+          status: dec.status,
+          missing_fields: dec.missing
+        }),
+        candidate_id: `nodereview__${o.normalized_candidate_id}`,
+        label: o.label,
+        normalized_candidate_id: o.normalized_candidate_id,
+        seen_in_packages: o.seen_in_packages,
+        seen_as: o.seen_as,
+        evidence_strength: o.seen_in_packages.length >= 5 ? 'medium' : 'low',
+        recommended_action: o.seen_in_packages.length >= 5 ? 'review_for_future_route_node' : 'needs_source_confirmation',
+        reason: 'appears as a TravelAction movement label but is not a slug-derived destination node',
+        route_node_decision: dec.decision,
+        decision_basis: dec.basis,
+        resolved_to_node: dec.resolved_to_node,
+        review_status: 'resolved'
+      };
+    });
 
   // ── time-window-rules: backoffice buckets + conservative per-context rules ──
   const idToSlug = new Map<number, string>();

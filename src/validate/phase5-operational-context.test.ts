@@ -63,13 +63,24 @@ test('time-window-rules use source buckets only, never exact times', () => {
   assert.ok(buckets.includes('midday') && buckets.includes('evening_night'));
 });
 
-test('route-node candidates isolated, pending, NOT promoted into route nodes', () => {
+test('route-node candidates resolved with a documented decision, none promoted', () => {
   assert.equal(nodeReview.length, 4);
   const nodeIds = new Set(nodes.map((n) => n.node_id));
+  const decisions = new Set(['reject_existing_alias', 'hold_for_future', 'hold_pending_source']);
   for (const c of nodeReview) {
-    assert.equal(c.review_status, 'pending_review');
+    assert.equal(c.review_status, 'resolved');
+    assert.ok(decisions.has(c.route_node_decision), `unexpected decision ${c.route_node_decision} for ${c.label}`);
+    assert.notEqual(c.route_node_decision, 'promote'); // never auto-promoted
+    assert.ok(typeof c.decision_basis === 'string' && c.decision_basis.length > 0, `no basis for ${c.label}`);
     assert.ok(!nodeIds.has(c.normalized_candidate_id), `promoted ${c.label}`);
   }
+  // Batu is an alias of the existing malang_batu node (crosswalk), not a new node.
+  const batu = nodeReview.find((c) => c.normalized_candidate_id === 'batu');
+  assert.equal(batu?.route_node_decision, 'reject_existing_alias');
+  assert.equal(batu?.resolved_to_node, 'malang_batu');
+  // Prigen Safari Park is held pending the missing explicit movement source.
+  const prigen = nodeReview.find((c) => c.normalized_candidate_id === 'prigen_safari_park');
+  assert.equal(prigen?.route_node_decision, 'hold_pending_source');
   // route-node-index untouched (2 origins + 7 source-backed destinations = 9)
   assert.equal(nodes.length, 9);
   assert.ok(!nodes.some((n) => ['bondowoso', 'batu', 'jember'].includes(n.node_id)));
