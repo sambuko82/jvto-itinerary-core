@@ -1,10 +1,21 @@
 import type { BaseEntity, BackofficeObserved } from './common.js';
 
+export interface RiskFactor {
+  type: string | null;
+  level: string | null;
+  mitigation: string | null;
+  description: string | null;
+}
+
 export interface RecommendationRule extends BaseEntity {
   condition: Record<string, unknown>;
   severity: 'low' | 'medium' | 'high' | 'critical';
   recommendation: string;
   alternatives?: string[];
+  // Promoted from jvto-web destination intelligence (weather / rainfall / risk).
+  weather_by_season?: string | null;
+  rainfall_intensity?: string | null;
+  risk_factors?: RiskFactor[];
   backoffice_observed?: BackofficeObserved;
 }
 

@@ -17,6 +17,18 @@ export interface RoadSituationProfile extends BaseEntity {
   }>;
 }
 
+/**
+ * Destination-level intelligence promoted from the jvto-web destinationDetail
+ * snapshot (source-connected; not authored here). Additive evidence — does not
+ * change the evaluator-consumed core fields.
+ */
+export interface DestinationIntelligence {
+  physical_demand: number | null;
+  difficulty_level: string | null;
+  altitude: number | null;
+  trail_details: string | null;
+}
+
 export interface DestinationActivityProfile extends BaseEntity {
   destination_id: string;
   activity_window: Record<string, string>;
@@ -27,6 +39,7 @@ export interface DestinationActivityProfile extends BaseEntity {
   bad_previous_overnight?: string[];
   cost_components: string[];
   warning_rules?: string[];
+  destination_intelligence?: DestinationIntelligence;
   backoffice_observed?: BackofficeObserved;
 }
 
@@ -39,6 +52,11 @@ export interface OperationalEvent extends BaseEntity {
   risk_if_late?: string[];
   customer_visible: boolean;
   cost_components?: string[];
+  // Promoted from jvto-web destination intelligence (gear / permit / guide).
+  required_gear?: string[];
+  permit_required?: boolean | null;
+  permit_details?: string | null;
+  guide_required?: boolean | null;
   backoffice_observed?: BackofficeObserved;
 }
 
