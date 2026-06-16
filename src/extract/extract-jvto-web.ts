@@ -103,7 +103,7 @@ function parseDestinationDetails(missing: string[]): JvtoWebDestinationDetail[] 
         : [];
       return {
         slug,
-        name: str(p.name),
+        destination_label: str(p.name),
         physical_demand: num(p.physical_demand),
         difficulty_level: str(p.difficulty_level),
         altitude: num(p.altitude),

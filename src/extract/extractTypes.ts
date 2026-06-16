@@ -98,7 +98,8 @@ export interface JvtoWebRiskFactor {
 /** PII-safe destination-intelligence subset of destinationDetailSnapshots. */
 export interface JvtoWebDestinationDetail {
   slug: string;
-  name: string | null;
+  // Not `name`: the extraction PII guard blocks any `name` key in the persisted extract.
+  destination_label: string | null;
   physical_demand: number | null;
   difficulty_level: string | null;
   altitude: number | null;

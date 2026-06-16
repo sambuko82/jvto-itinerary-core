@@ -48,7 +48,7 @@ function rankOf(r: RiskFactor): number {
 }
 
 function recommendationText(d: JvtoWebDestinationDetail): string {
-  const name = d.name ?? d.slug;
+  const name = d.destination_label ?? d.slug;
   const parts: string[] = [`${name}: difficulty ${d.difficulty_level ?? 'n/a'} (physical demand ${d.physical_demand ?? 'n/a'}/5).`];
   if (d.weather_by_season) parts.push(`Weather by season — ${d.weather_by_season}`);
   if (d.rainfall_intensity) parts.push(`Rainfall — ${d.rainfall_intensity}`);
@@ -95,7 +95,7 @@ export function promoteJvtoWebDestinationIntelligence(
     if (!d.required_gear.length && d.permit_required == null && d.guide_required == null) continue;
     events.push({
       id: `${core}_access_requirements`,
-      label: `${d.name ?? core} access requirements (gear, permits, guide)`,
+      label: `${d.destination_label ?? core} access requirements (gear, permits, guide)`,
       status: 'active',
       confidence: 'inferred',
       event_type: 'destination_access_requirements',
@@ -117,7 +117,7 @@ export function promoteJvtoWebDestinationIntelligence(
     if (!d.risk_factors.length && !d.weather_by_season && !d.rainfall_intensity) continue;
     rules.push({
       id: `${core}_weather_risk_advisory`,
-      label: `${d.name ?? core} weather and risk advisory`,
+      label: `${d.destination_label ?? core} weather and risk advisory`,
       status: 'active',
       confidence: 'inferred',
       condition: { route_includes_destination: core },

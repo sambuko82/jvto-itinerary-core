@@ -125,7 +125,7 @@
       "counts": {
         "pickup_patterns": 2,
         "dropoff_patterns": 2,
-        "hotels": 2,
+        "hotels": 3,
         "vehicles": 3,
         "crew_roles": 2,
         "activities": 3,
