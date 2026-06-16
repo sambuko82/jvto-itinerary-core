@@ -23,6 +23,12 @@ Honor any "do not touch" constraints passed in the arguments verbatim.
 1. Confirm mergeability with `mcp__github__pull_request_read` (method `get`):
    check `state: open`, `merged: false`, and `mergeable_state` is `clean`
    (or otherwise mergeable). If not mergeable, stop and report why.
+   - Also verify `base.ref === 'main'`. The `merge_pull_request` tool merges
+     into the PR's configured base branch (it takes no target), and this
+     command then syncs and validates `main` — so a PR based on anything other
+     than `main` (e.g. a release/staging branch) would land there while the
+     report falsely describes `main`. If the base is not `main`, STOP and
+     report the actual base instead of merging.
 2. Merge with `mcp__github__merge_pull_request` using **squash** — the repo's
    established method (PRs land on `main` as single squashed commits). Use a
    commit title of the form `<PR title> (#<number>)`.
