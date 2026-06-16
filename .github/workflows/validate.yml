@@ -16,3 +16,4 @@ jobs:
       - run: npm install
       - run: npm run build:all
       - run: npm run typecheck
+      - run: npm test
