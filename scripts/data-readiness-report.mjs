@@ -62,28 +62,99 @@ function group(status, fields = {}) {
 }
 
 // ── load all inputs once ─────────────────────────────────────────────────
-const extractionManifest = readJson(`${GEN}/extraction-manifest.json`);
-const generatedManifest = readJson(`${GEN}/manifest.json`);
-const sourceInventory = readJson(`${GEN}/source-inventory.json`);
-const packageCatalog = readJson(`${GEN}/package-catalog-index.json`);
-const routeGapReport = readJson(`${GEN}/route-source-gap-report.json`);
-const opContextResolution = readJson(`${GEN}/operational-context-resolution-report.json`);
-const routeNodeReview = readJson(`${GEN}/route-node-candidate-review.json`);
-const costComponents = readJson(`${GEN}/10-cost-components.json`);
-const operationalEvents = readJson(`${GEN}/07-operational-events.json`);
-const destProfiles = readJson(`${GEN}/06-destination-activity-profiles.json`);
-const recommendationRules = readJson(`${GEN}/12-recommendation-rules.json`);
-const mealLogic = readJson(`${GEN}/08-meal-logic.json`);
-const accommodationLogic = readJson(`${GEN}/09-accommodation-logic.json`);
-const routeLegIndex = readJson(`${GEN}/04-route-leg-index.json`);
-const pickupContexts = readJson(`${GEN}/01-pickup-contexts.json`);
-const dropoffContexts = readJson(`${GEN}/02-dropoff-contexts.json`);
+// RAW[key] records the loaded value; null means the input was missing or
+// malformed (readJson/readText return null on failure). This is kept distinct
+// from a valid-but-empty dataset ([]), so a failed upstream artifact is reported
+// as BLOCKED rather than silently treated as zero rows / covered.
+const RAW = {};
+const P = {
+  extractionManifest: `${GEN}/extraction-manifest.json`,
+  generatedManifest: `${GEN}/manifest.json`,
+  sourceInventory: `${GEN}/source-inventory.json`,
+  packageCatalog: `${GEN}/package-catalog-index.json`,
+  routeGapReport: `${GEN}/route-source-gap-report.json`,
+  opContextResolution: `${GEN}/operational-context-resolution-report.json`,
+  routeNodeReview: `${GEN}/route-node-candidate-review.json`,
+  costComponents: `${GEN}/10-cost-components.json`,
+  operationalEvents: `${GEN}/07-operational-events.json`,
+  destProfiles: `${GEN}/06-destination-activity-profiles.json`,
+  recommendationRules: `${GEN}/12-recommendation-rules.json`,
+  mealLogic: `${GEN}/08-meal-logic.json`,
+  accommodationLogic: `${GEN}/09-accommodation-logic.json`,
+  routeLegIndex: `${GEN}/04-route-leg-index.json`,
+  pickupContexts: `${GEN}/01-pickup-contexts.json`,
+  dropoffContexts: `${GEN}/02-dropoff-contexts.json`,
+  wikiManifest: `${WIKI}/_manifest.json`,
+  wikiGapReport: `${WIKI}/gap-report.json`,
+  wikiItineraries: `${WIKI}/package-itineraries.json`,
+  webSchema: `${WEB}/schema.prisma`,
+  boBundle: `${BO}/exports/itinerary-core-bundle.json`,
+  snapshotManifest: 'input/source-snapshot-manifest.json'
+};
+function load(key, asText = false) {
+  const v = asText ? readText(P[key]) : readJson(P[key]);
+  RAW[key] = v;
+  return v;
+}
+const extractionManifest = load('extractionManifest');
+const generatedManifest = load('generatedManifest');
+const sourceInventory = load('sourceInventory');
+const packageCatalog = load('packageCatalog');
+const routeGapReport = load('routeGapReport');
+const opContextResolution = load('opContextResolution');
+const routeNodeReview = load('routeNodeReview');
+const costComponents = load('costComponents');
+const operationalEvents = load('operationalEvents');
+const destProfiles = load('destProfiles');
+const recommendationRules = load('recommendationRules');
+const mealLogic = load('mealLogic');
+const accommodationLogic = load('accommodationLogic');
+const routeLegIndex = load('routeLegIndex');
+const pickupContexts = load('pickupContexts');
+const dropoffContexts = load('dropoffContexts');
+const wikiManifest = load('wikiManifest');
+const wikiGapReport = load('wikiGapReport');
+const wikiItineraries = load('wikiItineraries');
+const webSchema = load('webSchema', true);
+const boBundle = load('boBundle');
+const snapshotManifest = load('snapshotManifest');
 
-const wikiManifest = readJson(`${WIKI}/_manifest.json`);
-const wikiGapReport = readJson(`${WIKI}/gap-report.json`);
-const wikiItineraries = readJson(`${WIKI}/package-itineraries.json`);
-const webSchema = readText(`${WEB}/schema.prisma`);
-const boBundle = readJson(`${BO}/exports/itinerary-core-bundle.json`);
+// Deterministic timestamp — repo convention (src/config/inventory-meta.ts):
+// INVENTORY_GENERATED_AT env, else committed snapshot manifest's
+// snapshot_generated_at, never wall-clock. Keeps the generated JSON reproducible
+// so a rerun with unchanged inputs produces no diff.
+const GENERATED_AT =
+  (process.env.INVENTORY_GENERATED_AT && process.env.INVENTORY_GENERATED_AT.trim()) ||
+  snapshotManifest?.snapshot_generated_at ||
+  '1970-01-01T00:00:00Z';
+
+// Required inputs per group. If any is missing/malformed (RAW[key] === null) the
+// group is forced to BLOCKED after assembly — a valid empty dataset ([]) is not.
+const REQUIRED = {
+  packages: ['wikiManifest', 'packageCatalog'],
+  package_operational_days: ['wikiItineraries'],
+  source_snapshot_freshness: ['wikiManifest'],
+  backoffice_reference_data: ['extractionManifest', 'boBundle'],
+  backoffice_booking_patterns: ['boBundle'],
+  jvto_web_destination_intelligence: ['extractionManifest', 'webSchema'],
+  route_nodes: ['routeNodeReview'],
+  route_legs: ['routeLegIndex', 'routeGapReport'],
+  pickup_dropoff_contexts: ['pickupContexts', 'dropoffContexts'],
+  operational_contexts: ['opContextResolution'],
+  meal_logic: ['mealLogic'],
+  accommodation_logic: ['accommodationLogic'],
+  cost_components: ['costComponents'],
+  source_status_consistency: ['extractionManifest', 'generatedManifest']
+  // scenario_evaluator_readiness intentionally omitted — it checks file presence directly.
+};
+function blockedGroup(missingKeys) {
+  const rels = missingKeys.map((k) => P[k]);
+  return group(STATUS.BLOCKED, {
+    evidence: rels.map((r) => `required input missing or malformed: ${r}`),
+    missing_items: rels,
+    next_actions: [`restore or regenerate ${rels.join(', ')}, then re-run npm run data:readiness`]
+  });
+}
 
 const extractorBy = (id) => arr(extractionManifest?.extractors).find((e) => e.extractor === id) ?? null;
 
@@ -497,13 +568,20 @@ const opportunities = [];
 }
 
 // ── assemble + summary ───────────────────────────────────────────────────────
+// Force BLOCKED for any group whose required input failed to load, so a missing
+// or malformed upstream artifact is never reported as covered/ready.
+for (const [name, keys] of Object.entries(REQUIRED)) {
+  const missing = keys.filter((k) => RAW[k] == null);
+  if (missing.length) groups[name] = blockedGroup(missing);
+}
+
 const summary = { covered: 0, partial: 0, blocked: 0, not_started: 0 };
 for (const g of Object.values(groups)) summary[g.status] += 1;
 const ok = summary.partial === 0 && summary.blocked === 0 && summary.not_started === 0;
 
 const report = {
   schema_version: SCHEMA_VERSION,
-  generated_at: new Date().toISOString(),
+  generated_at: GENERATED_AT,
   ok,
   summary,
   groups,
