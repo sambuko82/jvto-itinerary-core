@@ -3,8 +3,8 @@
   "generated_at": "2026-06-15T00:00:00Z",
   "ok": false,
   "summary": {
-    "covered": 3,
-    "partial": 12,
+    "covered": 4,
+    "partial": 11,
     "blocked": 0,
     "not_started": 0
   },
@@ -44,7 +44,7 @@
       "evidence": [
         "57 operational days across 16 packages in llm-wiki package-itineraries.json",
         "6 backoffice package_itinerary_days rows in export bundle",
-        "4 promoted entries in 07-operational-events.json"
+        "9 promoted entries in 07-operational-events.json"
       ],
       "covered_items": [
         "57 day-plans available in source (day/title/meals/hotel)"
@@ -54,7 +54,7 @@
         "day-level operational-event mapping for the majority of the 57 source days"
       ],
       "source_exists_not_promoted": [
-        "per-day meal/hotel/sequence detail exists in source but only 4 operational events are promoted"
+        "per-day meal/hotel/sequence detail exists in source but only 9 operational events are promoted"
       ],
       "do_not_duplicate": [
         "do not re-key itinerary day plans manually — derive from package-itineraries.json + backoffice day_details"
@@ -66,7 +66,7 @@
         "source_days_llm_wiki": 57,
         "source_packages": 16,
         "backoffice_itinerary_days": 6,
-        "operational_events_promoted": 4
+        "operational_events_promoted": 9
       }
     },
     "source_snapshot_freshness": {
@@ -125,7 +125,7 @@
       "counts": {
         "pickup_patterns": 2,
         "dropoff_patterns": 2,
-        "hotels": 2,
+        "hotels": 3,
         "vehicles": 3,
         "crew_roles": 2,
         "activities": 3,
@@ -164,30 +164,28 @@
       "confidence": "low"
     },
     "jvto_web_destination_intelligence": {
-      "status": "partial",
+      "status": "covered",
       "evidence": [
         "extraction-manifest jvto_web.connected=true",
         "destination-intelligence fields present in input/jvto-web/schema.prisma: physical_demand, difficulty_level, altitude, weather_by_season, rainfall_intensity, trail_details, required_gear, permit_required, permit_details, guide_required, risk_factors",
-        "fields found in generated datasets 06/07/12: none"
+        "fields found in generated datasets 06/07/12: physical_demand, difficulty_level, altitude, weather_by_season, rainfall_intensity, trail_details, required_gear, permit_required, permit_details, guide_required, risk_factors"
       ],
-      "covered_items": [],
+      "covered_items": [
+        "physical_demand",
+        "difficulty_level",
+        "altitude",
+        "weather_by_season",
+        "rainfall_intensity",
+        "trail_details",
+        "required_gear",
+        "permit_required",
+        "permit_details",
+        "guide_required",
+        "risk_factors"
+      ],
       "partial_items": [],
-      "missing_items": [
-        "11 jvto-web intelligence fields not yet promoted into evaluator datasets"
-      ],
-      "source_exists_not_promoted": [
-        "physical_demand → 06-destination-activity-profiles (in schema, not in generated datasets)",
-        "difficulty_level → 06-destination-activity-profiles (in schema, not in generated datasets)",
-        "altitude → 06-destination-activity-profiles (in schema, not in generated datasets)",
-        "weather_by_season → 12-recommendation-rules (in schema, not in generated datasets)",
-        "rainfall_intensity → 12-recommendation-rules (in schema, not in generated datasets)",
-        "trail_details → 06-destination-activity-profiles (in schema, not in generated datasets)",
-        "required_gear → 07-operational-events (in schema, not in generated datasets)",
-        "permit_required → 07-operational-events (in schema, not in generated datasets)",
-        "permit_details → 07-operational-events (in schema, not in generated datasets)",
-        "guide_required → 07-operational-events (in schema, not in generated datasets)",
-        "risk_factors → 12-recommendation-rules (in schema, not in generated datasets)"
-      ],
+      "missing_items": [],
+      "source_exists_not_promoted": [],
       "do_not_duplicate": [
         "do not hand-author destination risk/gear/weather data — promote it from the jvto-web schema source"
       ],
@@ -196,8 +194,8 @@
       ],
       "counts": {
         "intel_fields_in_schema": 11,
-        "promoted": 0,
-        "not_promoted": 11
+        "promoted": 11,
+        "not_promoted": 0
       },
       "confidence": "high"
     },
@@ -517,31 +515,6 @@
     }
   },
   "implementation_opportunities": [
-    {
-      "id": "promote-jvto-web-destination-intelligence",
-      "priority": "high",
-      "why": "11 destination-intelligence fields exist in jvto-web schema but are absent from generated datasets 06/07/12",
-      "source": "input/jvto-web/schema.prisma + generated datasets 06/07/12 comparison",
-      "target": [
-        "06-destination-activity-profiles.json",
-        "07-operational-events.json",
-        "12-recommendation-rules.json"
-      ],
-      "fields": [
-        "physical_demand",
-        "difficulty_level",
-        "altitude",
-        "weather_by_season",
-        "rainfall_intensity",
-        "trail_details",
-        "required_gear",
-        "permit_required",
-        "permit_details",
-        "guide_required",
-        "risk_factors"
-      ],
-      "blocked_by": []
-    },
     {
       "id": "reconcile-manifest-source-mode",
       "priority": "high",

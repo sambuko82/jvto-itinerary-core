@@ -63,6 +63,11 @@
           "repo": "jvto-devteam/jvto-web",
           "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
           "field": "package_details"
+        },
+        {
+          "repo": "jvto-devteam/jvto-web",
+          "path": "src/lib/publicContent/generated/destinationDetailSnapshots.json",
+          "field": "destination_details"
         }
       ]
     },
@@ -73,7 +78,7 @@
       "record_counts": {
         "pickup_patterns": 2,
         "dropoff_patterns": 2,
-        "hotels": 2,
+        "hotels": 3,
         "vehicles": 3,
         "crew_roles": 2,
         "activities": 3,
@@ -126,6 +131,11 @@
       "repo": "jvto-devteam/jvto-web",
       "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
       "field": "package_details"
+    },
+    {
+      "repo": "jvto-devteam/jvto-web",
+      "path": "src/lib/publicContent/generated/destinationDetailSnapshots.json",
+      "field": "destination_details"
     },
     {
       "repo": "jvto-devteam/new-backoffice",

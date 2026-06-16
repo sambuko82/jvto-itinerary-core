@@ -1,6 +1,8 @@
 import { GENERATED_DIR } from '../config/paths.js';
 import { writeJson } from '../utils/fs.js';
 import { extractBackoffice } from '../extract/extract-backoffice.js';
+import { extractJvtoWeb } from '../extract/extract-jvto-web.js';
+import { promoteJvtoWebDestinationIntelligence } from './jvto-web-enrich.js';
 import { buildPickupContexts } from './build-pickup-contexts.js';
 import { buildDropoffContexts } from './build-dropoff-contexts.js';
 import { buildTimeWindowRules } from './build-time-window-rules.js';
@@ -25,19 +27,32 @@ export async function compileGeneratedData() {
   const backoffice = await extractBackoffice();
   const backofficeConnected = backoffice.pickup_patterns.length > 0 || backoffice.hotel_meal_sources.length > 0;
 
+  // Phase 2 promotion: jvto-web destination intelligence (already at source) is
+  // promoted into datasets 06/07/12. Additive — does not alter evaluator output.
+  const jvtoWeb = await extractJvtoWeb();
+  const destinationProfiles = buildDestinationActivityProfiles(backoffice);
+  const operationalEvents = buildOperationalEvents(backoffice);
+  const recommendationRules = buildRecommendationRules(backoffice);
+  const jvtoWebPromoted = promoteJvtoWebDestinationIntelligence(
+    jvtoWeb,
+    destinationProfiles,
+    operationalEvents,
+    recommendationRules
+  );
+
   const files = [
     ['01-pickup-contexts.json', buildPickupContexts(backoffice)],
     ['02-dropoff-contexts.json', buildDropoffContexts(backoffice)],
     ['03-time-window-rules.json', buildTimeWindowRules(backoffice)],
     ['04-route-leg-index.json', buildRouteLegIndex()],
     ['05-road-situation-profiles.json', buildRoadSituationProfiles()],
-    ['06-destination-activity-profiles.json', buildDestinationActivityProfiles(backoffice)],
-    ['07-operational-events.json', buildOperationalEvents(backoffice)],
+    ['06-destination-activity-profiles.json', destinationProfiles],
+    ['07-operational-events.json', operationalEvents],
     ['08-meal-logic.json', buildMealLogic(backoffice)],
     ['09-accommodation-logic.json', buildAccommodationLogic(backoffice)],
     ['10-cost-components.json', buildCostComponents(backoffice)],
     ['11-package-route-map.json', buildPackageRouteMap(backoffice)],
-    ['12-recommendation-rules.json', buildRecommendationRules(backoffice)],
+    ['12-recommendation-rules.json', recommendationRules],
     ['13-visual-map-layer.json', buildVisualMapLayer()],
     ['14-output-template-map.json', buildOutputTemplateMap()],
     ['15-scenario-preview-sample.json', buildScenarioPreview()]
@@ -69,6 +84,9 @@ export async function compileGeneratedData() {
       backofficeConnected
         ? 'new-backoffice extractor connected: datasets 01/02/03/06/07/08/09/10/11/12 carry backoffice_observed evidence and inferred source_trace where booking/reference data matched.'
         : 'External source extraction hooks exist but are not connected in this MVP.',
+      jvtoWebPromoted > 0
+        ? `jvto-web destination intelligence promoted from destinationDetailSnapshots for ${jvtoWebPromoted} destinations: 06 carries physical_demand/difficulty_level/altitude/trail_details; 07 adds <dest>_access_requirements (gear/permit/guide); 12 adds <dest>_weather_risk_advisory (weather/rainfall/risk_factors). All carry jvto_web source_trace; evaluator output is unchanged.`
+        : 'jvto-web destination detail snapshot absent: destination intelligence not promoted.',
       'backoffice_observed figures are aggregated, PII-free calibration evidence — not quotes or final prices.',
       'Cost payloads explain components only and do not produce final quote totals.',
       'Researched fields (confidence: inferred) come from web sources in seed/research/east-java-field-data-2026.json; re-verify fees/fares at booking time.',
