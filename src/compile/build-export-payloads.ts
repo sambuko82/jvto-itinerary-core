@@ -1,6 +1,7 @@
 import { EXPORT_DIR } from '../config/paths.js';
 import { buildScenarioPreview } from './build-scenario-preview.js';
 import { buildVisualMapLayer } from './build-visual-map-layer.js';
+import type { PackageScenarioContext } from './build-package-scenario-context.js';
 
 const scenarioPreview = buildScenarioPreview();
 const [mapLayer] = buildVisualMapLayer();
@@ -12,14 +13,17 @@ const sharedMissingData = [
   'no raw customer PII is included in this sample payload'
 ];
 
-export function buildExportPayloads() {
+export function buildExportPayloads(packageContext: PackageScenarioContext) {
   const base = {
     scenario_id: scenarioPreview.scenario.scenario_id,
     source_mode: 'manual_seed_mvp',
     status: scenarioPreview.status,
     generated_at: 'manual_seed_deterministic',
     pii_policy: 'no_raw_customer_pii',
-    missing_data: sharedMissingData
+    missing_data: sharedMissingData,
+    // Package-aware scenario result threaded through every payload (PII-free:
+    // canonical cost IDs + aggregated package structure, no rates/totals).
+    package_context: packageContext
   };
 
   return [
@@ -36,7 +40,14 @@ export function buildExportPayloads() {
           map_layer_id: mapLayer.id,
           route_leg_ids: scenarioPreview.route_leg_ids,
           warnings: scenarioPreview.warnings,
-          better_route_notes: scenarioPreview.better_route_notes
+          better_route_notes: scenarioPreview.better_route_notes,
+          package_baseline: {
+            package_route_id: packageContext.package_route_id,
+            route_summary: packageContext.recommended_route_sequence,
+            day_count: (packageContext.package_structure?.day_count as number | undefined) ?? null,
+            hotel_count: (packageContext.package_structure?.hotel_count as number | undefined) ?? null,
+            destination_core_ids: (packageContext.package_structure?.destination_core_ids as string[] | undefined) ?? []
+          }
         },
         map_payload: {
           points: mapLayer.points.map((point) => ({ ...point, lat: null, lng: null, coordinate_status: 'needs_verification' })),
@@ -93,6 +104,8 @@ export function buildExportPayloads() {
           meal_events: scenarioPreview.meal_events,
           accommodation_logic: scenarioPreview.accommodation_logic,
           cost_components: scenarioPreview.cost_components,
+          package_route_id: packageContext.package_route_id,
+          package_structure: packageContext.package_structure,
           verification_queue: [
             'confirm flight arrival and actual ready time',
             'confirm Bromo area hotel/staging plan',
