@@ -3,8 +3,8 @@
   "generated_at": "2026-06-15T00:00:00Z",
   "ok": false,
   "summary": {
-    "covered": 4,
-    "partial": 11,
+    "covered": 5,
+    "partial": 10,
     "blocked": 0,
     "not_started": 0
   },
@@ -101,7 +101,7 @@
       "evidence": [
         "extraction-manifest new_backoffice.connected=true",
         "bundle reference groups: hotels, room_types, vehicle_types, crew_roles, transport_crew_rules, destination_activities, other_activities",
-        "generated manifest still reports source_mode=manual_seed_mvp (production freshness unproven)"
+        "generated manifest source_mode reconciled"
       ],
       "covered_items": [
         "hotels",
@@ -109,9 +109,7 @@
         "crew_roles",
         "activities"
       ],
-      "partial_items": [
-        "production freshness unproven — manifest still manual_seed_mvp"
-      ],
+      "partial_items": [],
       "missing_items": [
         "proof that snapshot reference rows match current production backoffice"
       ],
@@ -489,42 +487,28 @@
       ]
     },
     "source_status_consistency": {
-      "status": "partial",
+      "status": "covered",
       "evidence": [
         "extraction-manifest.source_mode=source_connected",
-        "generated manifest.source_mode=manual_seed_mvp",
-        "status reporting inconsistent: extraction is source_connected but generated manifest still reports manual_seed_mvp"
+        "generated manifest.source_mode=source_connected",
+        "extraction and generated source_mode are consistent"
       ],
       "covered_items": [],
       "partial_items": [],
-      "missing_items": [
-        "generated manifest source_mode not reconciled with connected extraction"
-      ],
+      "missing_items": [],
       "source_exists_not_promoted": [],
       "do_not_duplicate": [
         "do not silently trust stale manifest wording — it misleads future agents"
       ],
-      "next_actions": [
-        "reconcile generated manifest.source_mode to reflect Phase-2 source-connected extraction"
-      ],
+      "next_actions": [],
       "counts": {
         "extraction_source_mode": "source_connected",
-        "generated_source_mode": "manual_seed_mvp"
+        "generated_source_mode": "source_connected"
       },
       "confidence": "high"
     }
   },
   "implementation_opportunities": [
-    {
-      "id": "reconcile-manifest-source-mode",
-      "priority": "high",
-      "why": "extraction is source_connected but generated manifest still reports manual_seed_mvp",
-      "source": "extraction-manifest.json vs manifest.json",
-      "target": [
-        "generated/itinerary-intelligence/manifest.json"
-      ],
-      "blocked_by": []
-    },
     {
       "id": "resolve-route-node-candidates",
       "priority": "medium",
