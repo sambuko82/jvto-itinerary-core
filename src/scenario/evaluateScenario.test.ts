@@ -147,3 +147,59 @@ test('no package_slug yields package_route_id null (unchanged behavior)', async 
   const r = await evalSample('customer-scenario-surabaya-hotel-early-bromo-ijen-bali.json');
   assert.equal(r.package_route_id, null);
 });
+
+// ── Review-comment regressions (PR #4) ──
+
+test('Ijen scenarios emit the Ijen crater activity leg in route_leg_ids', async () => {
+  const r = await evalSample('customer-scenario-surabaya-hotel-early-bromo-ijen-bali.json');
+  assert.ok(
+    r.route_leg_ids.includes('bondowoso_ijen_area_to_ijen_crater'),
+    'expected the Ijen crater leg to be emitted for an Ijen route'
+  );
+  assert.ok(r.recommended_route.includes('Ijen Crater'));
+});
+
+test('Ketapang-only dropoff does not inject Bali ferry connection costs', async () => {
+  const r = await evalSample('customer-scenario-surabaya-bromo-ijen-ketapang.json');
+  assert.ok(
+    !r.operational_events.includes('ketapang_ferry_connection'),
+    'Ketapang-only dropoff should not fire the ferry connection event'
+  );
+  assert.ok(!r.cost_components.includes('ferry_ticket'), 'no ferry ticket cost for a Ketapang-only dropoff');
+});
+
+test('Ketapang dropoff continuing to Bali keeps the ferry connection', async () => {
+  const r = await evalSample('customer-scenario-surabaya-airport-late-bromo-ijen-ketapang.json');
+  assert.ok(
+    r.operational_events.includes('ketapang_ferry_connection'),
+    'ferry connection should fire when dropoff.next_destination is Bali'
+  );
+  assert.ok(r.cost_components.includes('ferry_ticket'));
+});
+
+test('Tumpak-Sewu-only scenario emits the Tumpak Sewu guide, not the Madakaripura guide', () => {
+  const scenario = {
+    scenario_id: 'tumpak_only',
+    pickup: { type: 'airport', location: 'Surabaya Airport', time: '09:00' },
+    dropoff: { type: 'harbor', location: 'Ketapang Harbor' },
+    pax: 2,
+    duration_days: 2,
+    requested_destinations: ['Tumpak Sewu'],
+    arrival_time: '09:00'
+  } as ItineraryScenario;
+  const r = evaluateScenario(scenario, datasets);
+  assert.ok(r.cost_components.includes('tumpak_sewu_local_guide'));
+  assert.ok(
+    !r.cost_components.includes('madakaripura_local_guide'),
+    'a Tumpak-Sewu-only scenario must not emit a Madakaripura guide cost'
+  );
+});
+
+test('derived route with undefined (reverse) legs is downgraded to manual review', async () => {
+  const r = await evalSample('customer-scenario-bali-ijen-bromo-surabaya.json');
+  assert.equal(r.status, 'needs_manual_review');
+  assert.ok(
+    r.better_route_notes.some((n) => n.toLowerCase().includes('undefined')),
+    'expected a note about undefined transfer legs'
+  );
+});

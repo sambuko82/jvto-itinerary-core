@@ -215,12 +215,42 @@ export function evaluateScenario(scenario: ItineraryScenario, datasets: Datasets
     if (!nodeSeq.length || nodeSeq[nodeSeq.length - 1].area !== e.area) nodeSeq.push(e);
   }
 
+  let unresolvedLeg = false;
   for (let i = 0; i < nodeSeq.length; i++) {
     recommendedRoute.push(nodeSeq[i].label);
     if (i === 0) continue;
     const legId = resolveLeg(legMap, nodeSeq[i - 1].area, nodeSeq[i].area);
     if (legId) routeLegIds.push(legId);
-    else betterRouteNotes.push(`No direct route leg defined for ${nodeSeq[i - 1].label} -> ${nodeSeq[i].label} (needs verification).`);
+    else {
+      betterRouteNotes.push(`No direct route leg defined for ${nodeSeq[i - 1].label} -> ${nodeSeq[i].label} (needs verification).`);
+      unresolvedLeg = true;
+    }
+  }
+
+  // Ijen crater is an in-area activity leg (Bondowoso / Ijen Area -> Ijen Crater).
+  // areaKey maps both endpoints to `ijen_area`, so buildLegLookup drops it as a
+  // self-loop. Emit it explicitly when the route visits Ijen so the midnight
+  // crater drive/risk and ticket/guide costs are not lost from downstream maps
+  // and ops. (Package scenarios override route_leg_ids below, so this is scoped
+  // to the derived path.)
+  if (dests.has('ijen')) {
+    const craterLeg = datasets.legs.find((l) => String(l.to_location ?? '').toLowerCase().includes('ijen crater'));
+    const ijenNode = nodeSeq.find((n) => n.area === 'ijen_area');
+    if (craterLeg && ijenNode) {
+      const craterId = String(craterLeg.id);
+      const labelIdx = recommendedRoute.indexOf(ijenNode.label);
+      if (labelIdx >= 0 && recommendedRoute[labelIdx + 1] !== 'Ijen Crater') {
+        recommendedRoute.splice(labelIdx + 1, 0, 'Ijen Crater');
+      }
+      if (!routeLegIds.includes(craterId)) {
+        const arriveIdx = routeLegIds.findIndex((id) => {
+          const leg = datasets.legs.find((l) => l.id === id);
+          return leg && areaKey(String(leg.to_location ?? '')) === 'ijen_area';
+        });
+        if (arriveIdx >= 0) routeLegIds.splice(arriveIdx + 1, 0, craterId);
+        else routeLegIds.push(craterId);
+      }
+    }
   }
 
   // ── Package-aware baseline (11-package-route-map) ──
@@ -286,12 +316,24 @@ export function evaluateScenario(scenario: ItineraryScenario, datasets: Datasets
       else routeLegIds.push(legId);
     } else {
       betterRouteNotes.push(`No route leg defined for ${base} -> ${spur} spur (needs verification).`);
+      unresolvedLeg = true;
     }
   }
 
   // ── Operational events (07) by applicability ──
   const operationalEvents: string[] = [];
-  const continuesToBali = endArea === 'bali' || endArea === 'ketapang';
+  // A Ketapang Harbor endpoint only continues to Bali when the customer has
+  // actually chosen a Bali continuation (dropoff.next_destination / transfer
+  // preference). Ketapang-only dropoffs must NOT pull in the ferry connection
+  // event and its ferry_ticket / Bali-transfer cost tags.
+  const dropoffExtra = scenario.dropoff as unknown as Record<string, unknown> | undefined;
+  const nextDestination = String(dropoffExtra?.next_destination ?? '').toLowerCase();
+  const ketapangContinuesToBali =
+    endArea === 'ketapang' &&
+    (nextDestination.includes('bali') ||
+      nextDestination.includes('gilimanuk') ||
+      dropoffExtra?.ferry_or_bali_transfer_preference != null);
+  const continuesToBali = endArea === 'bali' || ketapangContinuesToBali;
   const eventApplicable: Record<string, boolean> = {
     bromo_jeep_handoff: dests.has('bromo'),
     waterfall_local_guide_handoff: dests.has('madakaripura') || dests.has('tumpak_sewu'),
@@ -339,7 +381,17 @@ export function evaluateScenario(scenario: ItineraryScenario, datasets: Datasets
   }
   for (const evId of operationalEvents) {
     const ev = datasets.events.find((x) => x.id === evId);
-    for (const t of (ev?.cost_components as string[] | undefined) ?? []) rawCostTags.add(t);
+    for (const t of (ev?.cost_components as string[] | undefined) ?? []) {
+      // The generic `waterfall_local_guide` event tag aliases to the Madakaripura
+      // guide. Resolve it from the waterfall actually requested so Tumpak-Sewu-only
+      // scenarios don't emit a Madakaripura guide cost.
+      if (t === 'waterfall_local_guide') {
+        if (dests.has('madakaripura')) rawCostTags.add('madakaripura_local_guide');
+        if (dests.has('tumpak_sewu')) rawCostTags.add('tumpak_sewu_local_guide');
+      } else {
+        rawCostTags.add(t);
+      }
+    }
   }
   const costComponents: string[] = [];
   for (const tag of rawCostTags) {
@@ -400,6 +452,12 @@ export function evaluateScenario(scenario: ItineraryScenario, datasets: Datasets
   } else if (tooShort || impossibleOvernight) {
     status = 'not_recommended';
     betterRouteNotes.push(`Requested ${days} day(s) is below the ~${minDays}-day minimum for destinations [${[...dests].join(', ')}]. Add nights or remove a destination.`);
+  } else if (unresolvedLeg && !packageRouteId) {
+    // A derived route with undefined transfer legs cannot be costed or mapped
+    // reliably (the missing legs also drop out of cost output), so it must not
+    // be auto-recommended. Package routes carry their own verified leg list.
+    status = 'needs_manual_review';
+    betterRouteNotes.push('One or more transfer legs between requested stops are undefined (e.g. a reverse-direction leg); manual review required before this route can be recommended.');
   } else if (warnings.length > 0) {
     status = 'possible_with_warning';
   } else {
