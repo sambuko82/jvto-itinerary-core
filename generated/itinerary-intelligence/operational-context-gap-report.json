@@ -1,0 +1,463 @@
+[
+  {
+    "id": "opcontext__airport_hotel",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Airport / Hotel"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "phase5_context_resolution"
+    ],
+    "status": "incomplete",
+    "label": "Airport / Hotel",
+    "normalized_candidate_id": "airport_hotel",
+    "seen_in_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n"
+    ],
+    "seen_as": [
+      "to"
+    ],
+    "likely_context_type": "airport",
+    "resolution_status": "pending_phase5",
+    "recommended_phase5_dataset": "pickup-contexts"
+  },
+  {
+    "id": "opcontext__banyuwangi_hotel",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Banyuwangi Hotel"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "phase5_context_resolution"
+    ],
+    "status": "incomplete",
+    "label": "Banyuwangi Hotel",
+    "normalized_candidate_id": "banyuwangi_hotel",
+    "seen_in_packages": [
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n"
+    ],
+    "seen_as": [
+      "to"
+    ],
+    "likely_context_type": "hotel_area",
+    "resolution_status": "pending_phase5",
+    "recommended_phase5_dataset": "pickup-contexts"
+  },
+  {
+    "id": "opcontext__batu",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Batu"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "phase5_context_resolution"
+    ],
+    "status": "incomplete",
+    "label": "Batu",
+    "normalized_candidate_id": "batu",
+    "seen_in_packages": [
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "seen_as": [
+      "from"
+    ],
+    "likely_context_type": "unknown",
+    "resolution_status": "pending_phase5",
+    "recommended_phase5_dataset": "route-node-index"
+  },
+  {
+    "id": "opcontext__bondowoso",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Bondowoso"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "phase5_context_resolution"
+    ],
+    "status": "incomplete",
+    "label": "Bondowoso",
+    "normalized_candidate_id": "bondowoso",
+    "seen_in_packages": [
+      "bali/bromo-ijen-3d2n",
+      "bromo-madakaripura-ijen-3d2n",
+      "ijen-2d1n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "seen_as": [
+      "to"
+    ],
+    "likely_context_type": "unknown",
+    "resolution_status": "pending_phase5",
+    "recommended_phase5_dataset": "route-node-index"
+  },
+  {
+    "id": "opcontext__bondowoso_city",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Bondowoso City"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "phase5_context_resolution"
+    ],
+    "status": "incomplete",
+    "label": "Bondowoso City",
+    "normalized_candidate_id": "bondowoso_city",
+    "seen_in_packages": [
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "seen_as": [
+      "from"
+    ],
+    "likely_context_type": "city_area",
+    "resolution_status": "pending_phase5",
+    "recommended_phase5_dataset": "location-alias-registry"
+  },
+  {
+    "id": "opcontext__gilimanuk_harbor",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Gilimanuk Harbor"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "phase5_context_resolution"
+    ],
+    "status": "incomplete",
+    "label": "Gilimanuk Harbor",
+    "normalized_candidate_id": "gilimanuk_harbor",
+    "seen_in_packages": [
+      "bali/bromo-ijen-3d2n",
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "bromo-madakaripura-ijen-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "seen_as": [
+      "from",
+      "to"
+    ],
+    "likely_context_type": "harbor",
+    "resolution_status": "pending_phase5",
+    "recommended_phase5_dataset": "dropoff-contexts"
+  },
+  {
+    "id": "opcontext__hotel",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Hotel"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "phase5_context_resolution"
+    ],
+    "status": "incomplete",
+    "label": "Hotel",
+    "normalized_candidate_id": "hotel",
+    "seen_in_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "seen_as": [
+      "from"
+    ],
+    "likely_context_type": "hotel_area",
+    "resolution_status": "pending_phase5",
+    "recommended_phase5_dataset": "pickup-contexts"
+  },
+  {
+    "id": "opcontext__hotel_in_jember",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Hotel in Jember"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "phase5_context_resolution"
+    ],
+    "status": "incomplete",
+    "label": "Hotel in Jember",
+    "normalized_candidate_id": "hotel_in_jember",
+    "seen_in_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "seen_as": [
+      "from",
+      "to"
+    ],
+    "likely_context_type": "hotel_area",
+    "resolution_status": "pending_phase5",
+    "recommended_phase5_dataset": "pickup-contexts"
+  },
+  {
+    "id": "opcontext__jember",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Jember"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "phase5_context_resolution"
+    ],
+    "status": "incomplete",
+    "label": "Jember",
+    "normalized_candidate_id": "jember",
+    "seen_in_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "seen_as": [
+      "to"
+    ],
+    "likely_context_type": "unknown",
+    "resolution_status": "pending_phase5",
+    "recommended_phase5_dataset": "route-node-index"
+  },
+  {
+    "id": "opcontext__juanda_airport",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Juanda Airport"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "phase5_context_resolution"
+    ],
+    "status": "incomplete",
+    "label": "Juanda Airport",
+    "normalized_candidate_id": "juanda_airport",
+    "seen_in_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "seen_as": [
+      "to"
+    ],
+    "likely_context_type": "airport",
+    "resolution_status": "pending_phase5",
+    "recommended_phase5_dataset": "pickup-contexts"
+  },
+  {
+    "id": "opcontext__ketapang_harbor",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Ketapang Harbor"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "phase5_context_resolution"
+    ],
+    "status": "incomplete",
+    "label": "Ketapang Harbor",
+    "normalized_candidate_id": "ketapang_harbor",
+    "seen_in_packages": [
+      "bali/bromo-ijen-3d2n",
+      "bromo-madakaripura-ijen-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "seen_as": [
+      "to"
+    ],
+    "likely_context_type": "harbor",
+    "resolution_status": "pending_phase5",
+    "recommended_phase5_dataset": "dropoff-contexts"
+  },
+  {
+    "id": "opcontext__ketapang_port",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Ketapang Port"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "phase5_context_resolution"
+    ],
+    "status": "incomplete",
+    "label": "Ketapang Port",
+    "normalized_candidate_id": "ketapang_port",
+    "seen_in_packages": [
+      "bali/bromo-ijen-3d2n",
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "bromo-madakaripura-ijen-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "seen_as": [
+      "from",
+      "to"
+    ],
+    "likely_context_type": "harbor",
+    "resolution_status": "pending_phase5",
+    "recommended_phase5_dataset": "dropoff-contexts"
+  },
+  {
+    "id": "opcontext__prigen_safari_park",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Prigen Safari Park"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "phase5_context_resolution"
+    ],
+    "status": "incomplete",
+    "label": "Prigen Safari Park",
+    "normalized_candidate_id": "prigen_safari_park",
+    "seen_in_packages": [
+      "taman-safari-prigen-bromo-madakaripura-3d2n"
+    ],
+    "seen_as": [
+      "from",
+      "to"
+    ],
+    "likely_context_type": "unknown",
+    "resolution_status": "pending_phase5",
+    "recommended_phase5_dataset": "route-node-index"
+  },
+  {
+    "id": "opcontext__transit_point",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Transit Point"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "phase5_context_resolution"
+    ],
+    "status": "incomplete",
+    "label": "Transit Point",
+    "normalized_candidate_id": "transit_point",
+    "seen_in_packages": [
+      "bromo-1d1n"
+    ],
+    "seen_as": [
+      "to"
+    ],
+    "likely_context_type": "staging_area",
+    "resolution_status": "pending_phase5",
+    "recommended_phase5_dataset": "staging-area-contexts"
+  }
+]

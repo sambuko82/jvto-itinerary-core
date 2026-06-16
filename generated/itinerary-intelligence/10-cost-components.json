@@ -3,7 +3,7 @@
     "id": "vehicle_private_car_day",
     "label": "Private vehicle day cost",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "transport_day_cost",
     "unit": "per_day",
     "applies_when": [
@@ -24,14 +24,47 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "rate_per_day_min_idr": 650000,
+      "rate_per_day_max_idr": 1250000,
+      "sources": [
+        {
+          "vehicle_type_id": 1,
+          "capacity_min_pax": 1,
+          "capacity_max_pax": 4,
+          "price_per_day": 650000,
+          "price_twt_per_day": 700000
+        },
+        {
+          "vehicle_type_id": 2,
+          "capacity_min_pax": 1,
+          "capacity_max_pax": 5,
+          "price_per_day": 850000,
+          "price_twt_per_day": 900000
+        },
+        {
+          "vehicle_type_id": 3,
+          "capacity_min_pax": 6,
+          "capacity_max_pax": 12,
+          "price_per_day": 1250000,
+          "price_twt_per_day": 1350000
+        }
+      ]
+    }
   },
   {
     "id": "bromo_jeep",
     "label": "Bromo jeep",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "jeep",
     "unit": "per_vehicle",
     "applies_when": [
@@ -39,7 +72,14 @@
     ],
     "customer_visible": "included_in_package",
     "formula": "jeep_unit_price * jeep_count",
-    "default_rate_idr": null,
+    "default_rate_idr": 700000,
+    "rate_table_idr": {
+      "note": "paguyuban (driver-cooperative) rate, fluctuative by gate/season, excludes entrance tickets",
+      "cemoro_lawang_2_location": "450000-550000",
+      "cemoro_lawang_4_location": "600000-750000",
+      "from_pasuruan_wonokitri": 750000,
+      "from_probolinggo_city": 1100000
+    },
     "channel_behavior": [
       "usually_included"
     ],
@@ -48,14 +88,119 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "manual_seed",
+        "ref": "seed/research/east-java-field-data-2026.json",
+        "field": "rate_table_idr",
+        "confidence": "inferred"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
+      }
+    ],
+    "backoffice_observed": {
+      "activity_id": 10,
+      "scope": "destination",
+      "unit": "per_jeep",
+      "list_price_idr": 700000,
+      "actuals": {
+        "sample_count": 14,
+        "avg_qty": 1.2,
+        "avg_price": 700000,
+        "avg_subtotal": 840000
+      }
+    }
+  },
+  {
+    "id": "bromo_entrance_fee",
+    "label": "Bromo Tengger Semeru entrance fee",
+    "status": "active",
+    "confidence": "inferred",
+    "category": "destination_ticket",
+    "unit": "per_person",
+    "applies_when": [
+      "destination includes Bromo"
+    ],
+    "customer_visible": "included_in_package",
+    "formula": "bromo_entry_rate(nationality, day_type) * pax",
+    "default_rate_idr": 255000,
+    "rate_table_idr": {
+      "regulation": "PP 36/2024, effective Oct 2024",
+      "foreign_flat": 255000,
+      "domestic_weekday": 54000,
+      "domestic_weekend_holiday": 79000,
+      "note": "Foreign is FLAT (no weekday/weekend split). Excludes jeep. Booking mandatory online.",
+      "stale_do_not_use": {
+        "foreign": "220000/320000",
+        "domestic": "29000/34000"
+      }
+    },
+    "channel_behavior": [
+      "rate_varies_by_nationality_and_day_type"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/cost-components.yaml",
+        "confidence": "manual_seed"
+      },
+      {
+        "source": "manual_seed",
+        "ref": "seed/research/east-java-field-data-2026.json",
+        "field": "default_rate_idr,rate_table_idr",
+        "confidence": "inferred"
+      }
+    ]
+  },
+  {
+    "id": "ijen_entrance_fee",
+    "label": "Ijen (Kawah Ijen) entrance fee",
+    "status": "active",
+    "confidence": "inferred",
+    "category": "destination_ticket",
+    "unit": "per_person",
+    "applies_when": [
+      "destination includes Ijen"
+    ],
+    "customer_visible": "included_in_package",
+    "formula": "ijen_entry_rate(nationality, day_type) * pax",
+    "default_rate_idr": 100000,
+    "rate_table_idr": {
+      "authority": "BBKSDA Jatim, effective 2024-10-01",
+      "foreign_weekday": 100000,
+      "foreign_weekend": 150000,
+      "domestic_weekday": 20000,
+      "domestic_weekend": 35000,
+      "student_weekday": 15000,
+      "student_weekend": 20000,
+      "note": "Online booking via tiket.bbksdajatim.org; QRIS-only cashless since 2025-01-31; daily cap ~2000"
+    },
+    "channel_behavior": [
+      "rate_varies_by_nationality_and_day_type"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/cost-components.yaml",
+        "confidence": "manual_seed"
+      },
+      {
+        "source": "manual_seed",
+        "ref": "seed/research/east-java-field-data-2026.json",
+        "field": "default_rate_idr,rate_table_idr",
+        "confidence": "inferred"
       }
     ]
   },
   {
     "id": "ijen_medical_check",
-    "label": "Ijen medical check",
+    "label": "Ijen medical check (surat keterangan sehat)",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "health_check",
     "unit": "per_person",
     "applies_when": [
@@ -63,7 +208,8 @@
     ],
     "customer_visible": true,
     "formula": "medical_check_rate * pax",
-    "default_rate_idr": null,
+    "default_rate_idr": 20000,
+    "rate_note": "MANDATORY since 2024-01-06 (no asthma/heart history). From Feb 2025 issued on-site at Paltuding health post IDR 20,000/pax; checked at barcode->ticket exchange. Valid ~1 week.",
     "channel_behavior": [
       "required_for_ijen"
     ],
@@ -72,6 +218,12 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "manual_seed",
+        "ref": "seed/research/east-java-field-data-2026.json",
+        "field": "default_rate_idr,rate_note",
+        "confidence": "inferred"
       }
     ]
   },
@@ -79,7 +231,7 @@
     "id": "ijen_local_guide",
     "label": "Ijen local guide",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "local_guide_cost",
     "unit": "per_group",
     "applies_when": [
@@ -87,7 +239,7 @@
     ],
     "customer_visible": "included_in_package",
     "formula": "ijen_local_guide_rate * guide_count",
-    "default_rate_idr": null,
+    "default_rate_idr": 150000,
     "channel_behavior": [
       "included_in_private_package"
     ],
@@ -96,8 +248,21 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "activity_id": 11,
+      "scope": "destination",
+      "unit": "per_group",
+      "list_price_idr": 150000,
+      "actuals": null
+    }
   },
   {
     "id": "madakaripura_local_guide",
@@ -111,6 +276,30 @@
     ],
     "customer_visible": "included_in_package",
     "formula": "madakaripura_local_guide_rate * group_count",
+    "default_rate_idr": null,
+    "channel_behavior": [
+      "managed_by_local_organization"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/cost-components.yaml",
+        "confidence": "manual_seed"
+      }
+    ]
+  },
+  {
+    "id": "tumpak_sewu_local_guide",
+    "label": "Tumpak Sewu local guide",
+    "status": "active",
+    "confidence": "manual_seed",
+    "category": "local_guide_cost",
+    "unit": "per_group",
+    "applies_when": [
+      "destination includes Tumpak Sewu"
+    ],
+    "customer_visible": "included_in_package",
+    "formula": "tumpak_sewu_local_guide_rate * group_count",
     "default_rate_idr": null,
     "channel_behavior": [
       "managed_by_local_organization"
@@ -152,7 +341,7 @@
     "id": "driver_cost",
     "label": "Driver cost",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "driver_cost",
     "unit": "per_day",
     "applies_when": [
@@ -161,6 +350,43 @@
     ],
     "customer_visible": false,
     "formula": "driver_day_rate * assigned_days",
+    "default_rate_idr": 250000,
+    "channel_behavior": [
+      "internal_cost_component"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "seed/manual-overrides/cost-components.yaml",
+        "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
+      }
+    ],
+    "backoffice_observed": {
+      "crew_role_id": 2,
+      "rate_per_day_idr": 250000,
+      "rate_twt_per_day_idr": 300000,
+      "order_channel_id": 1,
+      "assignment_rule_count": 1
+    }
+  },
+  {
+    "id": "parking_toll_fuel_allowance",
+    "label": "Parking, toll, and fuel allowance",
+    "status": "active",
+    "confidence": "manual_seed",
+    "category": "parking_toll_fuel_allowance",
+    "unit": "per_day",
+    "applies_when": [
+      "overland route uses toll roads or paid parking"
+    ],
+    "customer_visible": false,
+    "formula": "allowance_estimate_by_route",
     "default_rate_idr": null,
     "channel_behavior": [
       "internal_cost_component"
@@ -177,7 +403,7 @@
     "id": "escort_cost",
     "label": "Escort cost",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "escort_cost",
     "unit": "per_day",
     "applies_when": [
@@ -185,7 +411,7 @@
     ],
     "customer_visible": false,
     "formula": "escort_day_rate * assigned_days",
-    "default_rate_idr": null,
+    "default_rate_idr": 350000,
     "channel_behavior": [
       "optional_internal_cost_component"
     ],
@@ -194,8 +420,21 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "crew_role_id": 1,
+      "rate_per_day_idr": 350000,
+      "rate_twt_per_day_idr": 400000,
+      "order_channel_id": 1,
+      "assignment_rule_count": 2
+    }
   },
   {
     "id": "destination_ticket",
@@ -225,7 +464,7 @@
     "id": "hotel_room",
     "label": "Hotel room",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "hotel_room",
     "unit": "per_room",
     "applies_when": [
@@ -243,8 +482,19 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "room_rate_min_idr": 480000,
+      "room_rate_max_idr": 650000,
+      "hotel_sample_count": 3
+    }
   },
   {
     "id": "hotel_breakfast_or_takeaway",
@@ -274,7 +524,7 @@
     "id": "restaurant_meal",
     "label": "Restaurant meal",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "restaurant_meal",
     "unit": "per_person",
     "applies_when": [
@@ -291,14 +541,26 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "lunch_rate_min_idr": 55000,
+      "lunch_rate_max_idr": 70000,
+      "dinner_rate_min_idr": 80000,
+      "dinner_rate_max_idr": 95000
+    }
   },
   {
     "id": "gas_mask",
     "label": "Ijen gas mask or equipment",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "equipment",
     "unit": "per_person",
     "applies_when": [
@@ -306,7 +568,8 @@
     ],
     "customer_visible": "included_in_package",
     "formula": "equipment_rate * pax",
-    "default_rate_idr": null,
+    "default_rate_idr": 45000,
+    "rate_note": "Gas-mask rental ~IDR 45,000 at Paltuding, separate from entrance fee. Mask use mandatory in medium/extreme crater zones (color-zone SOP, CCTV-enforced); rental-vs-own mandate unresolved.",
     "channel_behavior": [
       "required_for_ijen"
     ],
@@ -315,14 +578,20 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "manual_seed",
+        "ref": "seed/research/east-java-field-data-2026.json",
+        "field": "default_rate_idr",
+        "confidence": "inferred"
       }
     ]
   },
   {
     "id": "ferry_ticket",
-    "label": "Ferry ticket",
+    "label": "Ferry ticket (Ketapang–Gilimanuk)",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "ferry",
     "unit": "per_person",
     "applies_when": [
@@ -330,8 +599,17 @@
       "Bali transfer requested"
     ],
     "customer_visible": true,
-    "formula": "ferry_rate * pax or vehicle_crossing_rate if vehicle crosses",
-    "default_rate_idr": null,
+    "formula": "ferry_pax_rate * pax + vehicle_class_rate if vehicle crosses",
+    "default_rate_idr": 11100,
+    "rate_table_idr": {
+      "regulation": "KM 131/2024, effective 2024-11-01",
+      "passenger_adult": 11100,
+      "pedestrian_adult_no_vehicle": 10600,
+      "infant": 1600,
+      "car_class_IV_passenger": 225000,
+      "car_class_IVA_under_5m": 213400,
+      "note": "Base regular fares; holiday/mudik periods higher. Book via Ferizy app. Crossing duration/frequency pending round 2."
+    },
     "channel_behavior": [
       "requires_transfer_model_decision"
     ],
@@ -340,8 +618,32 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "manual_seed",
+        "ref": "seed/research/east-java-field-data-2026.json",
+        "field": "default_rate_idr,rate_table_idr",
+        "confidence": "inferred"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "activity_id": 50,
+      "scope": "other",
+      "unit": "per_vehicle",
+      "list_price_idr": 200000,
+      "actuals": {
+        "sample_count": 8,
+        "avg_qty": 1,
+        "avg_price": 200000,
+        "avg_subtotal": 200000
+      }
+    }
   },
   {
     "id": "addon_activity",
@@ -436,7 +738,31 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "needs_review"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "observed rates (reference + actual_cost_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "package_finance": [
+        {
+          "package_id": 47,
+          "sample_count": 6,
+          "avg_total_expense_idr": 1850000,
+          "avg_total_expense_crew_idr": 350000,
+          "avg_profit_idr": 620000
+        },
+        {
+          "package_id": 48,
+          "sample_count": 11,
+          "avg_total_expense_idr": 2650000,
+          "avg_total_expense_crew_idr": 480000,
+          "avg_profit_idr": 910000
+        }
+      ]
+    }
   }
 ]

@@ -1,0 +1,317 @@
+[
+  {
+    "id": "time__bucket__surabaya__morning",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataItineraryCore.php",
+        "field": "booking_logistics_patterns"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "exact_time_source"
+    ],
+    "status": "active",
+    "rule_id": "time__bucket__surabaya__morning",
+    "source_context_id": null,
+    "rule_type": "pickup_time_bucket",
+    "applies_to_packages": [
+      "bromo-ijen-bali-4d3n"
+    ],
+    "source_time_bucket": "morning",
+    "exact_time_available": false
+  },
+  {
+    "id": "time__bucket__surabaya_airport__evening_night",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataItineraryCore.php",
+        "field": "booking_logistics_patterns"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "exact_time_source"
+    ],
+    "status": "active",
+    "rule_id": "time__bucket__surabaya_airport__evening_night",
+    "source_context_id": null,
+    "rule_type": "pickup_time_bucket",
+    "applies_to_packages": [
+      "bromo-ijen-3d2n",
+      "bromo-ijen-bali-4d3n"
+    ],
+    "source_time_bucket": "evening_night",
+    "exact_time_available": false
+  },
+  {
+    "id": "time__bucket__surabaya_airport__midday",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/ExportDataItineraryCore.php",
+        "field": "booking_logistics_patterns"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "exact_time_source"
+    ],
+    "status": "active",
+    "rule_id": "time__bucket__surabaya_airport__midday",
+    "source_context_id": null,
+    "rule_type": "pickup_time_bucket",
+    "applies_to_packages": [
+      "bromo-ijen-3d2n",
+      "bromo-ijen-bali-4d3n"
+    ],
+    "source_time_bucket": "midday",
+    "exact_time_available": false
+  },
+  {
+    "id": "time__ctx__airport_hotel",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Airport / Hotel"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "exact_time_source"
+    ],
+    "status": "incomplete",
+    "rule_id": "time__ctx__airport_hotel",
+    "source_context_id": "dropoff__airport_hotel",
+    "rule_type": "airport_handoff_context",
+    "applies_to_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n"
+    ],
+    "source_time_bucket": null,
+    "exact_time_available": false
+  },
+  {
+    "id": "time__ctx__gilimanuk_harbor",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Gilimanuk Harbor"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "exact_time_source"
+    ],
+    "status": "incomplete",
+    "rule_id": "time__ctx__gilimanuk_harbor",
+    "source_context_id": "dropoff__gilimanuk_harbor",
+    "rule_type": "harbor_crossing_context",
+    "applies_to_packages": [
+      "bali/bromo-ijen-3d2n",
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "bromo-madakaripura-ijen-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "source_time_bucket": null,
+    "exact_time_available": false
+  },
+  {
+    "id": "time__ctx__hotel",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Hotel"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "exact_time_source"
+    ],
+    "status": "incomplete",
+    "rule_id": "time__ctx__hotel",
+    "source_context_id": "pickup__hotel",
+    "rule_type": "hotel_staging_context",
+    "applies_to_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "source_time_bucket": null,
+    "exact_time_available": false
+  },
+  {
+    "id": "time__ctx__hotel_in_jember",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Hotel in Jember"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "exact_time_source"
+    ],
+    "status": "incomplete",
+    "rule_id": "time__ctx__hotel_in_jember",
+    "source_context_id": "pickup__hotel_in_jember",
+    "rule_type": "hotel_staging_context",
+    "applies_to_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "source_time_bucket": null,
+    "exact_time_available": false
+  },
+  {
+    "id": "time__ctx__juanda_airport",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Juanda Airport"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "exact_time_source"
+    ],
+    "status": "incomplete",
+    "rule_id": "time__ctx__juanda_airport",
+    "source_context_id": "dropoff__juanda_airport",
+    "rule_type": "airport_handoff_context",
+    "applies_to_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "source_time_bucket": null,
+    "exact_time_available": false
+  },
+  {
+    "id": "time__ctx__ketapang_harbor",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Ketapang Harbor"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "exact_time_source"
+    ],
+    "status": "incomplete",
+    "rule_id": "time__ctx__ketapang_harbor",
+    "source_context_id": "dropoff__ketapang_harbor",
+    "rule_type": "harbor_crossing_context",
+    "applies_to_packages": [
+      "bali/bromo-ijen-3d2n",
+      "bromo-madakaripura-ijen-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "source_time_bucket": null,
+    "exact_time_available": false
+  },
+  {
+    "id": "time__ctx__ketapang_port",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Ketapang Port"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "exact_time_source"
+    ],
+    "status": "incomplete",
+    "rule_id": "time__ctx__ketapang_port",
+    "source_context_id": "dropoff__ketapang_port",
+    "rule_type": "harbor_crossing_context",
+    "applies_to_packages": [
+      "bali/bromo-ijen-3d2n",
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "bromo-madakaripura-ijen-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "source_time_bucket": null,
+    "exact_time_available": false
+  },
+  {
+    "id": "time__ctx__transit_point",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Transit Point"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "exact_time_source"
+    ],
+    "status": "incomplete",
+    "rule_id": "time__ctx__transit_point",
+    "source_context_id": "staging__transit_point",
+    "rule_type": "unknown_time_context",
+    "applies_to_packages": [
+      "bromo-1d1n"
+    ],
+    "source_time_bucket": null,
+    "exact_time_available": false
+  }
+]

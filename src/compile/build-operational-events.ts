@@ -1,7 +1,9 @@
 import type { OperationalEvent } from '../domain/operations.js';
+import type { BackofficeExtract } from '../extract/sourceTypes.js';
+import { backofficeTrace, bumpConfidence, operationalEventObserved } from './backoffice-enrich.js';
 
-export function buildOperationalEvents(): OperationalEvent[] {
-  return [
+export function buildOperationalEvents(backoffice?: BackofficeExtract): OperationalEvent[] {
+  const events: OperationalEvent[] = [
     {
       id: 'bondowoso_dinner_medical_check',
       label: 'Bondowoso dinner and medical check before Ijen',
@@ -54,4 +56,16 @@ export function buildOperationalEvents(): OperationalEvent[] {
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/operational-events.yaml', confidence: 'manual_seed' }]
     }
   ];
+
+  if (!backoffice) return events;
+
+  for (const event of events) {
+    const observed = operationalEventObserved(backoffice, event.id);
+    if (!observed) continue;
+    event.confidence = bumpConfidence(event.confidence);
+    event.source_trace.push(backofficeTrace('event evidence (activities, logistics, hotel rates)'));
+    event.backoffice_observed = observed;
+  }
+
+  return events;
 }

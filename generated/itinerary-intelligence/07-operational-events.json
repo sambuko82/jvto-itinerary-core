@@ -3,7 +3,7 @@
     "id": "bondowoso_dinner_medical_check",
     "label": "Bondowoso dinner and medical check before Ijen",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "event_type": "pre_ijen_preparation",
     "applies_when": [
       "destination includes Ijen",
@@ -33,14 +33,26 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/operational-events.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "event evidence (activities, logistics, hotel rates)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "ijen_area_hotels": 1,
+      "dinner_rate_min_idr": 80000,
+      "dinner_rate_max_idr": 80000,
+      "late_arrival_samples": 9
+    }
   },
   {
     "id": "bromo_jeep_handoff",
     "label": "Bromo jeep handoff",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "event_type": "destination_transport_handoff",
     "applies_when": [
       "destination includes Bromo sunrise"
@@ -60,8 +72,25 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/operational-events.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "event evidence (activities, logistics, hotel rates)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "activity_id": 10,
+      "unit": "per_jeep",
+      "list_price_idr": 700000,
+      "actuals": {
+        "sample_count": 14,
+        "avg_qty": 1.2,
+        "avg_price": 700000,
+        "avg_subtotal": 840000
+      }
+    }
   },
   {
     "id": "waterfall_local_guide_handoff",
@@ -94,7 +123,7 @@
     "id": "ketapang_ferry_connection",
     "label": "Ketapang ferry connection",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "event_type": "dropoff_connection",
     "applies_when": [
       "dropoff is Ketapang Harbor",
@@ -116,7 +145,25 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/operational-events.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "event evidence (activities, logistics, hotel rates)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "ferry_activity_id": 50,
+      "ferry_unit": "per_vehicle",
+      "ferry_list_price_idr": 200000,
+      "ferry_actuals": {
+        "sample_count": 8,
+        "avg_qty": 1,
+        "avg_price": 200000,
+        "avg_subtotal": 200000
+      },
+      "bali_ketapang_dropoff_samples": 17
+    }
   }
 ]

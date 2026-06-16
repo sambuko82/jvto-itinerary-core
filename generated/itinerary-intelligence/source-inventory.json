@@ -1,0 +1,371 @@
+[
+  {
+    "id": "source__llm-wiki__output_products_package_readiness_manifest_json",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/_manifest.json",
+        "field": null
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "repo": "sambuko82/llm-wiki",
+    "source_path": "output/products/package-readiness/_manifest.json",
+    "snapshot_path": "input/llm-wiki/package-readiness/_manifest.json",
+    "file_type": "json",
+    "role": "llm_wiki_package_readiness",
+    "top_level_keys": [
+      "schema_version",
+      "generated_by",
+      "generated_at",
+      "dry_run",
+      "canonical_package_count",
+      "source_hashes",
+      "findings_by_rule",
+      "artifacts",
+      "clean"
+    ],
+    "record_count": null,
+    "package_slugs": []
+  },
+  {
+    "id": "source__llm-wiki__output_products_package_readiness_booking_compatibility_json",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/booking-compatibility.json",
+        "field": null
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "repo": "sambuko82/llm-wiki",
+    "source_path": "output/products/package-readiness/booking-compatibility.json",
+    "snapshot_path": "input/llm-wiki/package-readiness/booking-compatibility.json",
+    "file_type": "json",
+    "role": "llm_wiki_package_readiness",
+    "top_level_keys": [
+      "<array>",
+      "package_id",
+      "slug",
+      "instant_book",
+      "whatsapp_assisted",
+      "booking_paths"
+    ],
+    "record_count": 16,
+    "package_slugs": [
+      "bali/bromo-ijen-3d2n",
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "bromo-1d1n",
+      "bromo-2d1n",
+      "bromo-ijen-3d2n",
+      "bromo-madakaripura-ijen-3d2n",
+      "ijen-2d1n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "taman-safari-prigen-bromo-madakaripura-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ]
+  },
+  {
+    "id": "source__llm-wiki__output_products_package_readiness_gap_report_json",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/gap-report.json",
+        "field": null
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "repo": "sambuko82/llm-wiki",
+    "source_path": "output/products/package-readiness/gap-report.json",
+    "snapshot_path": "input/llm-wiki/package-readiness/gap-report.json",
+    "file_type": "json",
+    "role": "llm_wiki_package_readiness",
+    "top_level_keys": [
+      "summary",
+      "findings"
+    ],
+    "record_count": null,
+    "package_slugs": []
+  },
+  {
+    "id": "source__llm-wiki__output_products_package_readiness_package_itineraries_json",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": null
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "repo": "sambuko82/llm-wiki",
+    "source_path": "output/products/package-readiness/package-itineraries.json",
+    "snapshot_path": "input/llm-wiki/package-readiness/package-itineraries.json",
+    "file_type": "json",
+    "role": "llm_wiki_package_readiness",
+    "top_level_keys": [
+      "<array>",
+      "package_id",
+      "slug",
+      "days"
+    ],
+    "record_count": 16,
+    "package_slugs": [
+      "bali/bromo-ijen-3d2n",
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "bromo-1d1n",
+      "bromo-2d1n",
+      "bromo-ijen-3d2n",
+      "bromo-madakaripura-ijen-3d2n",
+      "ijen-2d1n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "taman-safari-prigen-bromo-madakaripura-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ]
+  },
+  {
+    "id": "source__llm-wiki__output_products_package_readiness_package_pricing_json",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-pricing.json",
+        "field": null
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "repo": "sambuko82/llm-wiki",
+    "source_path": "output/products/package-readiness/package-pricing.json",
+    "snapshot_path": "input/llm-wiki/package-readiness/package-pricing.json",
+    "file_type": "json",
+    "role": "llm_wiki_package_readiness",
+    "top_level_keys": [
+      "<array>",
+      "package_id",
+      "slug",
+      "currency",
+      "ferry_included",
+      "pax_tiers"
+    ],
+    "record_count": 16,
+    "package_slugs": [
+      "bali/bromo-ijen-3d2n",
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "bromo-1d1n",
+      "bromo-2d1n",
+      "bromo-ijen-3d2n",
+      "bromo-madakaripura-ijen-3d2n",
+      "ijen-2d1n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "taman-safari-prigen-bromo-madakaripura-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ]
+  },
+  {
+    "id": "source__llm-wiki__output_products_package_readiness_package_registry_json",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": null
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "repo": "sambuko82/llm-wiki",
+    "source_path": "output/products/package-readiness/package-registry.json",
+    "snapshot_path": "input/llm-wiki/package-readiness/package-registry.json",
+    "file_type": "json",
+    "role": "llm_wiki_package_readiness",
+    "top_level_keys": [
+      "<array>",
+      "package_id",
+      "slug",
+      "origin",
+      "title",
+      "duration",
+      "public_url",
+      "ijen_relevant",
+      "visits_madakaripura",
+      "is_specialty"
+    ],
+    "record_count": 16,
+    "package_slugs": [
+      "bali/bromo-ijen-3d2n",
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "bromo-1d1n",
+      "bromo-2d1n",
+      "bromo-ijen-3d2n",
+      "bromo-madakaripura-ijen-3d2n",
+      "ijen-2d1n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "taman-safari-prigen-bromo-madakaripura-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ]
+  },
+  {
+    "id": "source__jvto-web__prisma_schema_prisma",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "prisma/schema.prisma",
+        "field": null
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "top_level_keys"
+    ],
+    "status": "active",
+    "repo": "jvto-devteam/jvto-web",
+    "source_path": "prisma/schema.prisma",
+    "snapshot_path": "input/jvto-web/schema.prisma",
+    "file_type": "prisma",
+    "role": "jvto_web_prisma_schema",
+    "top_level_keys": [],
+    "record_count": null,
+    "package_slugs": []
+  },
+  {
+    "id": "source__jvto-web__src_lib_packages",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/packages/",
+        "field": null
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "repo": "jvto-devteam/jvto-web",
+    "source_path": "src/lib/packages/",
+    "snapshot_path": "input/jvto-web/lib-packages.index.json",
+    "file_type": "unknown",
+    "role": "jvto_web_package_helpers",
+    "top_level_keys": [
+      "schema_version",
+      "repo",
+      "source_path",
+      "files"
+    ],
+    "record_count": null,
+    "package_slugs": []
+  },
+  {
+    "id": "source__new-backoffice__routes_data_php",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "routes/data.php",
+        "field": null
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "top_level_keys"
+    ],
+    "status": "active",
+    "repo": "jvto-devteam/new-backoffice",
+    "source_path": "routes/data.php",
+    "snapshot_path": "input/new-backoffice/routes-data.php",
+    "file_type": "php",
+    "role": "new_backoffice_export_routes",
+    "top_level_keys": [],
+    "record_count": null,
+    "package_slugs": []
+  },
+  {
+    "id": "source__new-backoffice__app_Http_Controllers_ExportData",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/new-backoffice",
+        "path": "app/Http/Controllers/ExportData/",
+        "field": null
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "repo": "jvto-devteam/new-backoffice",
+    "source_path": "app/Http/Controllers/ExportData/",
+    "snapshot_path": "input/new-backoffice/export-controllers.index.json",
+    "file_type": "unknown",
+    "role": "new_backoffice_export_controllers",
+    "top_level_keys": [
+      "schema_version",
+      "repo",
+      "source_path",
+      "controllers"
+    ],
+    "record_count": null,
+    "package_slugs": []
+  }
+]

@@ -3,7 +3,7 @@
     "id": "surabaya_airport_pickup",
     "label": "Surabaya Airport pickup",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "type": "airport",
     "location_group": "Surabaya",
     "default_ready_buffer_minutes": 45,
@@ -28,8 +28,43 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/pickup-dropoff.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "pickup reality (booking_logistics_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "matched_groups": [
+        "Surabaya Airport"
+      ],
+      "total_samples": 15,
+      "time_buckets": [
+        {
+          "bucket": "evening_night",
+          "sample_count": 9,
+          "risk_notes": [
+            "late arrival",
+            "limited rest before sunrise or Ijen"
+          ]
+        },
+        {
+          "bucket": "midday",
+          "sample_count": 6,
+          "risk_notes": []
+        }
+      ],
+      "destinations": [
+        "Bromo",
+        "Ijen"
+      ],
+      "package_ids": [
+        47,
+        48
+      ]
+    }
   },
   {
     "id": "surabaya_hotel_pickup",
@@ -124,7 +159,7 @@
     "id": "surabaya_city_point_pickup",
     "label": "Surabaya city point pickup",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "type": "city_point",
     "location_group": "Surabaya",
     "default_ready_buffer_minutes": 20,
@@ -146,8 +181,34 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/pickup-dropoff.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "pickup reality (booking_logistics_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "matched_groups": [
+        "Surabaya"
+      ],
+      "total_samples": 2,
+      "time_buckets": [
+        {
+          "bucket": "morning",
+          "sample_count": 2,
+          "risk_notes": []
+        }
+      ],
+      "destinations": [
+        "Bromo",
+        "Ijen"
+      ],
+      "package_ids": [
+        48
+      ]
+    }
   },
   {
     "id": "custom_address_pickup",

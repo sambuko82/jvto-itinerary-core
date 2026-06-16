@@ -1,0 +1,237 @@
+{
+  "_meta": {
+    "title": "East Java volcano corridor — operational field data (Surabaya–Bromo–Ijen–Ketapang)",
+    "purpose": "Manual research layer that fills null distances/durations/rates in the generated itinerary-intelligence datasets. Cited, confidence-rated.",
+    "method": "deep-research workflow: 23 sources, 112 extracted claims, 25 verified, 20 kept, 14 synthesized findings. Round 1 = fares/distances. Round 2 (pending) = ferry ops, Ijen rules, Tumpak Sewu access, Bromo hours.",
+    "generated_round_1": "2026-06-14",
+    "confidence_scale": "high = corroborated/primary or government regulation; medium = single decent source or operator consensus; low = weak/old/conflicting or gap",
+    "global_caveats": [
+      "All fees/fares are post Oct/Nov 2024 regulatory updates; re-verify at booking time.",
+      "Many operator blog pages still display STALE pre-2024 Bromo fees (29k/34k domestic, 220k/320k foreign) — do not use.",
+      "Rome2Rio/Gecko algorithmic route times underestimate this mountain corridor; use operator durations.",
+      "Bromo/Ijen ticketing now online + cashless (QRIS at Ijen since 31 Jan 2025); ferry via Ferizy app."
+    ]
+  },
+
+  "road_legs": [
+    {
+      "leg_id": "surabaya_airport_to_bromo_area",
+      "distance_km": 116,
+      "distance_km_range": "100-136",
+      "duration_operational": "3.5-4.5h",
+      "duration_normal_minutes": 210,
+      "duration_busy_minutes": 270,
+      "confidence": "high",
+      "note": "Rome2Rio 115.6 km. ~100 km via Wonokitri/Pasuruan, ~136 km via Probolinggo/Cemoro Lawang. Algo 1h35m is WRONG for ops. Operators depart midnight-1AM to reach Cemoro Lawang ~3AM for sunrise. Discard a stray 'straight-line 160 km' figure (implausible).",
+      "sources": ["https://www.rome2rio.com/s/Juanda-Surabaya-Airport/Bromo-Tengger-Semeru-National-Park", "https://ijenexpedition.com", "https://cheapbromo.com"]
+    },
+    {
+      "leg_id": "bromo_area_to_madakaripura",
+      "distance_km": null,
+      "duration_operational": "45-60min drive + 20-30min canyon walk",
+      "duration_normal_minutes": 60,
+      "duration_busy_minutes": 90,
+      "confidence": "high",
+      "note": "Drive 45-60min from Bromo; separate 20-30min (~1.5km) walk through canyon/shallow river to main falls. Helmets mandatory. One outlier cites up to ~1.5h drive in traffic. Walk time varies 15-40min by start reference.",
+      "sources": ["https://www.dionjogjadriver.com/news-madakaripura-waterfall-guide-near-mount-bromo-26", "https://triptins.com"]
+    },
+    {
+      "leg_id": "bromo_area_to_bondowoso_ijen_area",
+      "distance_km": 225,
+      "distance_km_range": "210-240",
+      "duration_operational": "5-7h",
+      "duration_normal_minutes": 330,
+      "duration_busy_minutes": 420,
+      "confidence": "medium",
+      "note": "Cemoro Lawang -> Paltuding via Probolinggo-Bondowoso/Sempol. dionjogjadriver 220-240km/6-7h; ijenvolcanotour 212.6km. REJECT Gecko 140km outlier (straight-line). Exact figure depends on endpoint (Paltuding vs Banyuwangi/Ketapang).",
+      "sources": ["https://www.dionjogjadriver.com/news-bromo-to-ijen-travel-guide-route-distance-and-tips-371", "https://ijenvolcanotour.com", "https://www.rome2rio.com"]
+    },
+    {
+      "leg_id": "bromo_area_to_banyuwangi",
+      "distance_km": null,
+      "distance_km_range": "227-315",
+      "duration_operational": "6-9h (~7h typical)",
+      "confidence": "medium",
+      "note": "jeepbromo.com: ~7h, shared car/van IDR 295,000/pax, pickup 9-10am, drop at Banyuwangi accommodation. Competing shuttles ~350k/pax min 4 pax. The 35-40k/pax figure is ONLY the short Cemoro Lawang->Probolinggo green-minivan leg, not full corridor. REJECT Rome2Rio 3h25m.",
+      "sources": ["https://jeepbromo.com/transportation-cemorolawang-banyuwangi/"]
+    },
+    {
+      "leg_id": "surabaya_to_tumpak_sewu",
+      "distance_km": 160,
+      "distance_km_range": "150-163",
+      "duration_operational": "4-5h",
+      "duration_normal_minutes": 240,
+      "duration_busy_minutes": 300,
+      "confidence": "high",
+      "note": "CORRECTION: prior seed had 6-8h; research consensus is 4-5h via Surabaya-Probolinggo toll road. Source erctrans self-contradicts (3.5-4h body vs 5-6h FAQ); distance ~160km is solid.",
+      "sources": ["https://erctrans.com/surabaya-ke-tumpak-sewu/", "https://www.rome2rio.com", "https://theworldtravelguy.com"]
+    }
+  ],
+
+  "entrance_fees": {
+    "bromo_tengger_semeru": {
+      "regulation": "PP No. 36/2024 (PNBP)",
+      "effective": "2024-10-24 to 2024-10-30 (varies by source)",
+      "foreign_idr": { "weekday": 255000, "weekend_holiday": 255000, "note": "FLAT, no weekday/weekend split; incl. IDR 5,000 insurance" },
+      "domestic_idr": { "weekday": 54000, "weekend_holiday": 79000, "note": "incl. IDR 4,000 insurance" },
+      "prior_rates_now_stale": { "foreign": "220000/310000-320000", "domestic": "29000/34000" },
+      "booking": "Mandatory online via bookingbromo.bromotenggersemeru.org",
+      "excludes": ["jeep", "conservation/viewpoint charges"],
+      "photo_video_fee_note": "Same PP raised photo/video to IDR 2,000,000 (domestic) per location",
+      "semeru_differs": { "foreign": 200000, "domestic_weekday": 20000, "domestic_weekend": 30000 },
+      "confidence": "high",
+      "sources": ["https://indonesiaexpat.id/news/bromo-tengger-semeru-national-park-entrance-fee-surges-prompts-reactions-from-tourism-operators/", "https://en.wikivoyage.org/wiki/Bromo-Tengger-Semeru_National_Park", "https://surabayabromotour.com/entrance-fee-bromo-semeru/", "PP 36/2024 via ANTARA/Kompas/Tempo"]
+    },
+    "ijen_kawah_ijen": {
+      "authority": "BBKSDA Jatim",
+      "effective": "2024-10-01",
+      "foreign_idr": { "weekday": 100000, "weekend": 150000 },
+      "domestic_idr": { "weekday": 20000, "weekend": 35000 },
+      "student_idr": { "weekday": 15000, "weekend": 20000 },
+      "booking": "Online via tiket.bbksdajatim.org; daily cap ~2,000 visitors; QRIS-only cashless since 2025-01-31",
+      "gas_mask_rental_idr": 45000,
+      "confidence": "high",
+      "sources": ["https://www.geckoroutes.com/indonesia/bromo-to-ijen/", "https://harrisijentourandtravel.com", "https://mountbromoijen.com"]
+    }
+  },
+
+  "bromo_logistics": {
+    "sunrise": "05:00-05:30",
+    "depart_accommodation": "~03:30 (peak Jul-Aug ~03:00)",
+    "viewpoint": "Penanjakan 1 fills before sunrise, empties ~1h after",
+    "jeep_rates_idr": {
+      "type": "paguyuban (driver-cooperative), NOT official park rate, fluctuative by gate/season; excludes entrance tickets",
+      "cemoro_lawang_2_location": "450000-550000",
+      "cemoro_lawang_4_location": "600000-750000",
+      "from_pasuruan_wonokitri": 750000,
+      "from_probolinggo_city": 1100000
+    },
+    "confidence": "medium",
+    "sources": ["https://surabayabromotour.com/bromo-jeep-tour", "https://en.wikivoyage.org/wiki/Bromo-Tengger-Semeru_National_Park", "https://panoramalenstrip.com/mount-bromo-sunrise-guide/"]
+  },
+
+  "ijen_trek": {
+    "blue_fire_start": "~midnight (operators schedule 00:00-02:00; Paltuding gate official ~01:00)",
+    "trek_duration": "1.5-2h",
+    "trail": "~3km one-way, ~25% incline, Paltuding base to crater rim",
+    "blue_fire_fades": "~04:00",
+    "confidence": "high",
+    "sources": ["https://www.dionjogjadriver.com/news-bromo-to-ijen-travel-guide-route-distance-and-tips-371", "https://kawahijen.org", "https://backindo.com"]
+  },
+
+  "ijen_rules": {
+    "medical_check": {
+      "mandatory": true,
+      "document": "Surat keterangan sehat (doctor health certificate), checked at barcode->hiking-ticket exchange",
+      "effective": "2024-01-06",
+      "on_site_option": "From Feb 2025: Pos Kesehatan Pariwisata at Paltuding parking issues it on-site for IDR 20,000/person",
+      "criteria": "No asthma/heart disease history; physically + mentally fit; on-site checks BP (no hypertension), SpO2, height/weight",
+      "validity": "~1 week",
+      "rationale": "Altitude >2000m + toxic sulfur gas",
+      "enforcement_caveat": "Oct 2024 reports of inconsistent on-the-ground enforcement; rule is official",
+      "confidence": "high",
+      "sources": ["https://www.tribunnews.com/regional/2024/01/05/besok-kawah-ijen-kembali-dibuka-pendaki-wajib-bawa-surat-keterangan-sehat-dari-dokter", "https://surabaya.kompas.com/read/2024/01/05/135127978/kawah-ijen-kembali-dibuka-pengunjung-wajib-bawa-surat-sehat-dan-punya"]
+    },
+    "gear_zone_sop": {
+      "scheme": "Color-coded zones (green/yellow/red flags) post 2024-09-08 reopening",
+      "free_zone": "no equipment",
+      "medium_zone": "mask required",
+      "extreme_zone": "mask + gloves + goggles + full gear",
+      "enforcement": "CCTV; violators forced to descend",
+      "mask_rental_mandate": "UNRESOLVED — mask use mandatory in inner zones, but whether RENTAL (vs own) is mandatory not settled",
+      "confidence": "medium",
+      "sources": ["https://www.liputan6.com/regional/read/5697029/wisata-kawah-ijen-kembali-dibuka-untuk-wisatawan-begini-sop-baru-yang-wajib-dipatuhi"]
+    },
+    "local_guide_mandatory": "UNRESOLVED — not confirmed mandatory under a specific BBKSDA rule (round 3)",
+    "crater_exclusion": "Even at Level I (Normal): no approach to crater rim, no descent into crater, no overnight within 500m of rim (1.5km at Level II)",
+    "volcanic_closures": {
+      "authority_split": "PVMBG/Badan Geologi/ESDM (via MAGMA Indonesia) sets ALERT LEVEL (1-4); BBKSDA Jatim issues operational TWA closure/reopening",
+      "event_2024": "Closed 12/13 Jul 2024 -> reopened 8 Sep 2024 (~2 months). Level II Waspada from 12 Jul 22:00 WIB (NOT noon - Kompas typo), down to Level I Normal 13 Aug 13:00 WIB",
+      "annual_admin_closure": "Brief early-Jan administrative evaluation closure (e.g. 3-6 Jan 2024); also election days",
+      "feb_2026": "Radar Banyuwangi references TWA Kawah Ijen total closure 19-26 Feb 2026 (UNVERIFIED vs primary)",
+      "advice": "Re-check MAGMA Indonesia / bbksdajatim.org before travel",
+      "confidence": "high",
+      "sources": ["https://volcano.si.edu/showreport.cfm?wvar=GVP.WVAR20240807-263350", "https://www.esdm.go.id/en/media-center/news-archives/status-g-ijen-diturunkan-dari-siaga-menjadi-waspada", "https://jatim.antaranews.com/berita/819779/8-september-taman-wisata-alam-kawah-ijen-kembali-dibuka"]
+    }
+  },
+
+  "ketapang_gilimanuk_ferry": {
+    "regulation": "KM 131/2024 (amending KM 61/2023)",
+    "effective": "2024-11-01",
+    "passenger_fares_idr": { "adult": 11100, "pedestrian_adult_no_vehicle": 10600, "infant": 1600 },
+    "vehicle_fares_idr": { "class_I": 11200, "class_II": 33100, "class_III": 46400, "class_IV_passenger_car": 225000, "class_IVA_car_under_5m": 213400, "class_V": 426900, "class_VI": 647100, "class_VII": 664100, "class_VIII": 897600, "class_IX": 1243000 },
+    "note": "Base regular fares; holiday/Nataru/mudik periods apply higher differentiated tariffs + longer queues. IVA 213,400 was prior decree; Class IV 225,000 is Nov 2024.",
+    "confidence": "high",
+    "operations": {
+      "duration_minutes": 60,
+      "duration_range": "45-60 (sailing; ~1h round figure)",
+      "duration_caveat": "Apparent 2h is an artifact of WIB(Java)/WITA(Bali) 1h timezone shift, NOT real sailing time. Add dock queue/berthing.",
+      "frequency": "~hourly round the clock; some sources cite every 20-30 min",
+      "operates_24h": true,
+      "operates_24h_exceptions": ["Balinese Nyepi full shutdown (2024-03-11 24h; 2025: Ketapang 28 Mar 17:00 WIB - 30 Mar 06:00)", "extreme weather/high waves", "severe mudik congestion (diversions)"],
+      "queue_time_peak": null,
+      "queue_time_status": "no quantified peak/holiday wait figures verified — round 3",
+      "confidence": "high"
+    },
+    "booking": {
+      "platform": "Ferizy (trip.ferizy.com, app, official partners: Livin/Alfamart/Indomaret/BRILink/Finpay)",
+      "mandatory": true,
+      "go_show": "ABOLISHED — no on-site purchase; ticketless vehicles turned away",
+      "buy_deadline": "H-1 advised; booking opens H-60",
+      "geofence_block": "Cannot buy online within 2.65 km of Ketapang / 2 km of Gilimanuk (GPS-enforced) — MUST hold ticket before arrival",
+      "effective": "geofence rule 2023-12-11; reinforced mandatory at 4 main ports 2024-07-01",
+      "ops_impact": "Tour must pre-book ferry before staging at harbor; affects dropoff buffer + queue logistics",
+      "confidence": "high"
+    },
+    "sources": ["https://bali.bisnis.com/read/20241031/537/1812258/asdp-lakukan-penyesuaian-tarif-lintas-penyeberangan-ketapang-gilimanuk", "https://travel.kompas.com/read/2023/06/25/210100227/lama-perjalanan-kapal-feri-ketapang-gilimanuk-jangan-bingung-karena-zona", "https://www.suara.com/bisnis/2024/03/22/111418/penumpang-kapal-ferry-ketapang-gilimanuk-wajib-beli-tiket-via-online", "https://www.cnbcindonesia.com/news/20231218164715-4-498290/aturan-baru-beli-tiket-kapal-ferry-cuma-bisa-di-sini", "https://www.detik.com/jatim/berita/d-7823561/pelabuhan-ketapang-dan-gilimanuk-ditutup-3-hari-saat-mudik-lebaran-2025"]
+  },
+
+  "waterfall_access_risk": {
+    "madakaripura": {
+      "closure_triggers": "Heavy rain -> flash flood + landslide; documented road collapse with injuries; 'enter at your own risk' sign during closures",
+      "rule_2pm": "Exit canyon before afternoon tropical rains",
+      "rainy_season": "Dec-Feb road flooding",
+      "monitoring": "24h water-level station, prompt evacuation when water rises",
+      "gear": "Safety helmet mandatory",
+      "confidence": "high",
+      "sources": ["https://www.dionjogjadriver.com/news-madakaripura-waterfall-guide-near-mount-bromo-26", "https://inp.polri.go.id", "https://ijenbridge.com"]
+    },
+    "tumpak_sewu": {
+      "closure_triggers": "Rainy-season lahar/flash-flood in canyon (Semeru lahar feeds the river). Real fatal incidents documented.",
+      "best_hours": "Morning (afternoon rain raises canyon risk)",
+      "safety_incident_leads_unverified": [
+        "Feb 2024: lahar flood trapped 9 people incl. a Chinese tourist (Kompas surabaya 2024-02-01)",
+        "Malaysian tourist death at Tumpak Sewu (Detik d-6714964)",
+        "Foreign tourists trapped by Semeru lahar flood near the waterfall (Antara 3942642)"
+      ],
+      "guide_mandatory": "UNVERIFIED",
+      "descent_transfer_time": "UNVERIFIED",
+      "confidence": "low",
+      "status": "STILL OPEN (round 3) — sources fetched but did NOT rank into verified top-25; treat leads as unverified",
+      "sources": ["https://surabaya.kompas.com/read/2024/02/01/122516778/banjir-lahar-di-tumpak-sewu-lumajang-9-orang-termasuk-wisman-china-sempat", "https://www.detik.com/jatim/berita/d-6714964/kronologi-lengkap-tewasnya-wisatawan-malaysia-di-tumpak-sewu-lumajang", "https://www.antaranews.com/berita/3942642/kunjungi-air-terjun-sejumlah-wisman-terjebak-banjir-lahar-semeru"]
+    }
+  },
+
+  "bromo_park_access": {
+    "opening_hours": "UNVERIFIED (round 3)",
+    "kasada_closure_leads_unverified": [
+      "Yadnya Kasada 2024: Bromo closed 21-24 Jun 2024 (Detik d-7394961)",
+      "Yadnya Kasada 2025: Bromo area closed 10-13 Jun 2025 (Detik d-7956883)"
+    ],
+    "online_booking_vs_jeep_timing": "UNVERIFIED — how mandatory bookingbromo.bromotenggersemeru.org affects jeep sunrise pickup (round 3)",
+    "confidence": "low",
+    "status": "STILL OPEN (round 3) — Kasada/booking sources fetched but did NOT rank into verified top-25",
+    "sources": ["https://www.detik.com/jatim/wisata/d-7394961/ada-upacara-adat-yadnya-kasada-bromo-ditutup-21-hingga-24-juni-2024", "https://news.detik.com/berita/d-7956883/kawasan-bromo-ditutup-pada-10-13-juni-2025-untuk-upacara-yadnya-kasada"]
+  },
+
+  "round_2_resolved": [
+    "Ketapang-Gilimanuk crossing ~45-60min + 24h ops + Nyepi/weather exceptions + Ferizy mandatory/geofence/H-1 — DONE",
+    "Ijen medical check (mandatory, surat sehat, on-site Paltuding IDR 20k), gear zone SOP, crater 500m exclusion, volcanic-closure authority split + 2024 event timeline — DONE"
+  ],
+  "open_gaps_pending_round_3": [
+    "Tumpak Sewu: closure triggers, mandatory-guide, descent transfer time, best hours (sources fetched, unverified leads only)",
+    "Bromo park: opening hours, exact Kasada dates per year, online-booking impact on jeep sunrise pickup (sources fetched, unverified leads only)",
+    "Ijen: is gas-mask RENTAL mandatory vs recommended; is a LOCAL GUIDE mandatory under a specific BBKSDA rule",
+    "Ferry: quantified peak/holiday queue/wait times at Ketapang; confirm Feb 2026 Ijen closure vs primary BBKSDA"
+  ]
+}

@@ -1,0 +1,370 @@
+[
+  {
+    "id": "resolution__airport_hotel",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Airport / Hotel"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "buffer_minutes"
+    ],
+    "status": "active",
+    "label": "Airport / Hotel",
+    "original_recommended_phase5_dataset": "pickup-contexts",
+    "resolved_dataset": "dropoff-contexts",
+    "resolution_status": "resolved",
+    "reason": "airport dropoff handoff",
+    "remaining_missing_fields": [
+      "buffer_minutes"
+    ]
+  },
+  {
+    "id": "resolution__banyuwangi_hotel",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Banyuwangi Hotel"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "operational_rule_source"
+    ],
+    "status": "incomplete",
+    "label": "Banyuwangi Hotel",
+    "original_recommended_phase5_dataset": "pickup-contexts",
+    "resolved_dataset": "operational-context-index",
+    "resolution_status": "partially_resolved",
+    "reason": "hotel seen only as dropoff target; needs operational rule source",
+    "remaining_missing_fields": [
+      "operational_rule_source"
+    ]
+  },
+  {
+    "id": "resolution__batu",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Batu"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "route_node_decision"
+    ],
+    "status": "incomplete",
+    "label": "Batu",
+    "original_recommended_phase5_dataset": "route-node-index",
+    "resolved_dataset": "route-node-candidate-review",
+    "resolution_status": "pending",
+    "reason": "recommended for route-node review; not promoted in Phase 5",
+    "remaining_missing_fields": [
+      "route_node_decision"
+    ]
+  },
+  {
+    "id": "resolution__bondowoso",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Bondowoso"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "route_node_decision"
+    ],
+    "status": "incomplete",
+    "label": "Bondowoso",
+    "original_recommended_phase5_dataset": "route-node-index",
+    "resolved_dataset": "route-node-candidate-review",
+    "resolution_status": "pending",
+    "reason": "recommended for route-node review; not promoted in Phase 5",
+    "remaining_missing_fields": [
+      "route_node_decision"
+    ]
+  },
+  {
+    "id": "resolution__bondowoso_city",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Bondowoso City"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "alias_registry_resolution"
+    ],
+    "status": "incomplete",
+    "label": "Bondowoso City",
+    "original_recommended_phase5_dataset": "location-alias-registry",
+    "resolved_dataset": "operational-context-index",
+    "resolution_status": "partially_resolved",
+    "reason": "city area; candidate for location-alias-registry in a later phase",
+    "remaining_missing_fields": [
+      "alias_registry_resolution"
+    ]
+  },
+  {
+    "id": "resolution__gilimanuk_harbor",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Gilimanuk Harbor"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "ferry_or_transfer_timing"
+    ],
+    "status": "active",
+    "label": "Gilimanuk Harbor",
+    "original_recommended_phase5_dataset": "dropoff-contexts",
+    "resolved_dataset": "dropoff-contexts",
+    "resolution_status": "resolved",
+    "reason": "harbor crossing/dropoff handoff",
+    "remaining_missing_fields": [
+      "ferry_or_transfer_timing"
+    ]
+  },
+  {
+    "id": "resolution__hotel",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Hotel"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "buffer_minutes",
+      "operational_rule_source"
+    ],
+    "status": "active",
+    "label": "Hotel",
+    "original_recommended_phase5_dataset": "pickup-contexts",
+    "resolved_dataset": "pickup-contexts",
+    "resolution_status": "resolved",
+    "reason": "hotel pickup context",
+    "remaining_missing_fields": [
+      "buffer_minutes",
+      "operational_rule_source"
+    ]
+  },
+  {
+    "id": "resolution__hotel_in_jember",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Hotel in Jember"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "buffer_minutes",
+      "operational_rule_source"
+    ],
+    "status": "active",
+    "label": "Hotel in Jember",
+    "original_recommended_phase5_dataset": "pickup-contexts",
+    "resolved_dataset": "pickup-contexts",
+    "resolution_status": "resolved",
+    "reason": "hotel pickup context",
+    "remaining_missing_fields": [
+      "buffer_minutes",
+      "operational_rule_source"
+    ]
+  },
+  {
+    "id": "resolution__jember",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Jember"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "route_node_decision"
+    ],
+    "status": "incomplete",
+    "label": "Jember",
+    "original_recommended_phase5_dataset": "route-node-index",
+    "resolved_dataset": "route-node-candidate-review",
+    "resolution_status": "pending",
+    "reason": "recommended for route-node review; not promoted in Phase 5",
+    "remaining_missing_fields": [
+      "route_node_decision"
+    ]
+  },
+  {
+    "id": "resolution__juanda_airport",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Juanda Airport"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "buffer_minutes"
+    ],
+    "status": "active",
+    "label": "Juanda Airport",
+    "original_recommended_phase5_dataset": "pickup-contexts",
+    "resolved_dataset": "dropoff-contexts",
+    "resolution_status": "resolved",
+    "reason": "airport dropoff handoff",
+    "remaining_missing_fields": [
+      "buffer_minutes"
+    ]
+  },
+  {
+    "id": "resolution__ketapang_harbor",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Ketapang Harbor"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "ferry_or_transfer_timing"
+    ],
+    "status": "active",
+    "label": "Ketapang Harbor",
+    "original_recommended_phase5_dataset": "dropoff-contexts",
+    "resolved_dataset": "dropoff-contexts",
+    "resolution_status": "resolved",
+    "reason": "harbor crossing/dropoff handoff",
+    "remaining_missing_fields": [
+      "ferry_or_transfer_timing"
+    ]
+  },
+  {
+    "id": "resolution__ketapang_port",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Ketapang Port"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "ferry_or_transfer_timing"
+    ],
+    "status": "active",
+    "label": "Ketapang Port",
+    "original_recommended_phase5_dataset": "dropoff-contexts",
+    "resolved_dataset": "dropoff-contexts",
+    "resolution_status": "resolved",
+    "reason": "harbor crossing/dropoff handoff",
+    "remaining_missing_fields": [
+      "ferry_or_transfer_timing"
+    ]
+  },
+  {
+    "id": "resolution__prigen_safari_park",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Prigen Safari Park"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "route_node_decision"
+    ],
+    "status": "incomplete",
+    "label": "Prigen Safari Park",
+    "original_recommended_phase5_dataset": "route-node-index",
+    "resolved_dataset": "route-node-candidate-review",
+    "resolution_status": "pending",
+    "reason": "recommended for route-node review; not promoted in Phase 5",
+    "remaining_missing_fields": [
+      "route_node_decision"
+    ]
+  },
+  {
+    "id": "resolution__transit_point",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Transit Point"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "operational_rule_source"
+    ],
+    "status": "active",
+    "label": "Transit Point",
+    "original_recommended_phase5_dataset": "staging-area-contexts",
+    "resolved_dataset": "staging-area-contexts",
+    "resolution_status": "resolved",
+    "reason": "staging/transit context",
+    "remaining_missing_fields": [
+      "operational_rule_source"
+    ]
+  }
+]

@@ -1,10 +1,23 @@
 {
-  "pickup_type": "airport",
-  "pickup_location": "Surabaya Airport",
-  "arrival_time": "2024-06-15T17:30:00Z",
-  "dropoff_type": "harbor",
-  "dropoff_location": "Ketapang Harbor",
-  "destinations": ["bromo", "madakaripura", "ijen"],
+  "scenario_id": "custom_surabaya_airport_late_bromo_ijen_ketapang_3d2n",
+  "channel": "CUSTOM",
+  "pickup": {
+    "type": "airport",
+    "location": "Surabaya Airport",
+    "time": "18:00",
+    "flight_number": "GA312",
+    "arrival_time": "18:00",
+    "origin_city": "Jakarta"
+  },
+  "dropoff": {
+    "type": "harbor",
+    "location": "Ketapang Harbor",
+    "next_destination": "Bali",
+    "ferry_or_bali_transfer_preference": "ferry_only"
+  },
+  "pax": 2,
   "duration_days": 3,
-  "pax": 2
+  "requested_destinations": ["Bromo", "Ijen"],
+  "arrival_time": "18:00",
+  "constraints": ["private tour", "late evening arrival"]
 }

@@ -1,0 +1,33 @@
+[
+  {
+    "id": "staging__transit_point",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Transit Point"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "operational_rule_source"
+    ],
+    "status": "incomplete",
+    "context_id": "staging__transit_point",
+    "label": "Transit Point",
+    "normalized_candidate_id": "transit_point",
+    "applies_to_packages": [
+      "bromo-1d1n"
+    ],
+    "seen_as": [
+      "to"
+    ],
+    "staging_notes": [
+      "generic staging/transit label",
+      "not promoted to route node"
+    ]
+  }
+]

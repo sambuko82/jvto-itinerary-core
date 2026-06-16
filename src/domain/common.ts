@@ -15,3 +15,10 @@ export interface BaseEntity {
   confidence: Confidence;
   source_trace: SourceTrace[];
 }
+
+/**
+ * Aggregated, PII-free operational evidence attached to a generated entity when
+ * new-backoffice extract data backs it (sample counts, observed rates, buckets).
+ * Never contains a `name` key (blocked by the PII validator).
+ */
+export type BackofficeObserved = Record<string, unknown>;

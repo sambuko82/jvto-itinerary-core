@@ -1,0 +1,141 @@
+[
+  {
+    "id": "nodereview__batu",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Batu"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "route_node_decision"
+    ],
+    "status": "incomplete",
+    "candidate_id": "nodereview__batu",
+    "label": "Batu",
+    "normalized_candidate_id": "batu",
+    "seen_in_packages": [
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "seen_as": [
+      "from"
+    ],
+    "evidence_strength": "low",
+    "recommended_action": "needs_source_confirmation",
+    "reason": "appears as a TravelAction movement label but is not a slug-derived destination node",
+    "review_status": "pending_review"
+  },
+  {
+    "id": "nodereview__bondowoso",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Bondowoso"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "route_node_decision"
+    ],
+    "status": "incomplete",
+    "candidate_id": "nodereview__bondowoso",
+    "label": "Bondowoso",
+    "normalized_candidate_id": "bondowoso",
+    "seen_in_packages": [
+      "bali/bromo-ijen-3d2n",
+      "bromo-madakaripura-ijen-3d2n",
+      "ijen-2d1n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "seen_as": [
+      "to"
+    ],
+    "evidence_strength": "medium",
+    "recommended_action": "review_for_future_route_node",
+    "reason": "appears as a TravelAction movement label but is not a slug-derived destination node",
+    "review_status": "pending_review"
+  },
+  {
+    "id": "nodereview__jember",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Jember"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "route_node_decision"
+    ],
+    "status": "incomplete",
+    "candidate_id": "nodereview__jember",
+    "label": "Jember",
+    "normalized_candidate_id": "jember",
+    "seen_in_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "seen_as": [
+      "to"
+    ],
+    "evidence_strength": "medium",
+    "recommended_action": "review_for_future_route_node",
+    "reason": "appears as a TravelAction movement label but is not a slug-derived destination node",
+    "review_status": "pending_review"
+  },
+  {
+    "id": "nodereview__prigen_safari_park",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Prigen Safari Park"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "route_node_decision"
+    ],
+    "status": "incomplete",
+    "candidate_id": "nodereview__prigen_safari_park",
+    "label": "Prigen Safari Park",
+    "normalized_candidate_id": "prigen_safari_park",
+    "seen_in_packages": [
+      "taman-safari-prigen-bromo-madakaripura-3d2n"
+    ],
+    "seen_as": [
+      "from",
+      "to"
+    ],
+    "evidence_strength": "low",
+    "recommended_action": "needs_source_confirmation",
+    "reason": "appears as a TravelAction movement label but is not a slug-derived destination node",
+    "review_status": "pending_review"
+  }
+]
