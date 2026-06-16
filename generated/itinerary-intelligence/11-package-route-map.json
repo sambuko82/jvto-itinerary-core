@@ -598,12 +598,14 @@
       "code": "BRM-IJN-BALI-4D",
       "duration_id": 4,
       "order_channel_id": 1,
-      "day_count": 0,
-      "hotel_count": 0,
+      "day_count": 4,
+      "hotel_count": 3,
       "start_core_destination": null,
-      "end_core_destination": null,
+      "end_core_destination": "bali_ketapang",
       "destination_core_ids": [
-        "bromo"
+        "bromo",
+        "ijen",
+        "bali_ketapang"
       ],
       "meal_totals": {
         "breakfast": 3,

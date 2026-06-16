@@ -152,6 +152,28 @@ test('11 package route map joins by slug to backoffice package template', () => 
   assert.deepEqual(obs.destination_core_ids, ['bromo', 'ijen']);
 });
 
+test('11 package route map exposes complete structure for bromo-ijen-bali-4d3n', () => {
+  const items = buildPackageRouteMap(extract);
+  const item = items.find((i) => i.package_id === 'bromo-ijen-bali-4d3n');
+  assert.ok(item);
+  const obs = item.backoffice_observed as {
+    backoffice_package_id: number;
+    day_count: number;
+    hotel_count: number;
+    destination_core_ids: string[];
+    meal_totals: { breakfast: number; lunch: number; dinner: number };
+  };
+  assert.equal(obs.backoffice_package_id, 48);
+  assert.ok(obs.day_count > 0, 'day_count should be > 0');
+  assert.ok(obs.hotel_count > 0, 'hotel_count should be > 0');
+  assert.ok(obs.destination_core_ids.includes('bromo'));
+  assert.ok(obs.destination_core_ids.includes('ijen'));
+  assert.ok(obs.destination_core_ids.includes('bali_ketapang'));
+  // meal totals remain available
+  assert.ok(obs.meal_totals);
+  assert.equal(obs.meal_totals.breakfast, 3);
+});
+
 test('enriched entities never expose a name key (PII guard)', () => {
   const all = [
     ...buildCostComponents(extract),

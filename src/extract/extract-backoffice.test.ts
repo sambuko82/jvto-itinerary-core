@@ -37,6 +37,23 @@ test('package registry joins packages with itinerary days, destinations, hotels'
   assert.ok(pkg.days.some((d) => d.detail_times.length > 0));
 });
 
+test('package 48 (bromo-ijen-bali-4d3n) has complete day/hotel/destination structure', async () => {
+  const extract = await extractBackoffice(FIXTURE);
+
+  const pkg = extract.package_registry.find((p) => p.slug === 'bromo-ijen-bali-4d3n');
+  assert.ok(pkg);
+  assert.equal(pkg.id, 48);
+  assert.ok(pkg.day_count > 0, 'day_count should be > 0');
+  assert.equal(pkg.day_count, 4);
+  assert.ok(pkg.hotel_ids.length > 0, 'hotel_count should be > 0');
+  // destinations resolve to bromo (2), ijen (5) and the Bali/Ketapang crossing (9)
+  assert.deepEqual(pkg.destination_ids, [1, 2, 5, 9]);
+  // meal totals remain available
+  assert.equal(pkg.total_breakfast, 3);
+  assert.equal(pkg.total_lunch, 1);
+  assert.equal(pkg.total_dinner, 3);
+});
+
 test('pickup patterns aggregate logistics by location group with buckets', async () => {
   const extract = await extractBackoffice(FIXTURE);
 

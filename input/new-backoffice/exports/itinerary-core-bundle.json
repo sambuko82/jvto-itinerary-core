@@ -6,7 +6,8 @@
   "destinations": [
     { "id": 2, "slug": "mount-bromo", "name": "Mount Bromo" },
     { "id": 5, "slug": "ijen-crater", "name": "Ijen Crater" },
-    { "id": 8, "slug": "tumpak-sewu-waterfall", "name": "Tumpak Sewu Waterfall" }
+    { "id": 8, "slug": "tumpak-sewu-waterfall", "name": "Tumpak Sewu Waterfall" },
+    { "id": 9, "slug": "bali", "name": "Bali (Gilimanuk crossing)" }
   ],
   "packages": [
     {
@@ -76,12 +77,71 @@
       "meal_breakfast": true,
       "meal_lunch": false,
       "meal_dinner": true
+    },
+    {
+      "id": 103,
+      "package_id": 48,
+      "day_no": 1,
+      "activity_start_id": 10,
+      "activity_end_id": 11,
+      "title": "Surabaya - Bromo",
+      "activity": "Pickup, transfer to Bromo area",
+      "hotel_id": 1,
+      "meal_breakfast": false,
+      "meal_lunch": true,
+      "meal_dinner": true
+    },
+    {
+      "id": 104,
+      "package_id": 48,
+      "day_no": 2,
+      "activity_start_id": 12,
+      "activity_end_id": 14,
+      "title": "Bromo Sunrise - Ijen transfer",
+      "activity": "Bromo sunrise, transfer to Bondowoso / Ijen area",
+      "hotel_id": 2,
+      "meal_breakfast": true,
+      "meal_lunch": false,
+      "meal_dinner": true
+    },
+    {
+      "id": 105,
+      "package_id": 48,
+      "day_no": 3,
+      "activity_start_id": 15,
+      "activity_end_id": 16,
+      "title": "Ijen Crater - Ketapang - Bali",
+      "activity": "Ijen sunrise, transfer to Ketapang harbor, ferry crossing to Bali",
+      "hotel_id": 3,
+      "meal_breakfast": true,
+      "meal_lunch": false,
+      "meal_dinner": true
+    },
+    {
+      "id": 106,
+      "package_id": 48,
+      "day_no": 4,
+      "activity_start_id": 17,
+      "activity_end_id": 18,
+      "title": "Bali departure",
+      "activity": "Breakfast, transfer to Bali drop-off point",
+      "hotel_id": null,
+      "meal_breakfast": true,
+      "meal_lunch": false,
+      "meal_dinner": false
     }
   ],
   "package_itinerary_day_details": [
     { "id": 1001, "itinerary_day_id": 101, "sort_order": 1, "time": "12:00", "activity_id": 10, "notes": "Airport pickup" },
     { "id": 1002, "itinerary_day_id": 101, "sort_order": 2, "time": "18:00", "activity_id": 11, "notes": "Hotel check-in Bromo" },
-    { "id": 1003, "itinerary_day_id": 102, "sort_order": 1, "time": "03:30", "activity_id": 12, "notes": "Bromo sunrise jeep" }
+    { "id": 1003, "itinerary_day_id": 102, "sort_order": 1, "time": "03:30", "activity_id": 12, "notes": "Bromo sunrise jeep" },
+    { "id": 1004, "itinerary_day_id": 103, "sort_order": 1, "time": "11:00", "activity_id": 10, "notes": "Airport pickup" },
+    { "id": 1005, "itinerary_day_id": 103, "sort_order": 2, "time": "17:00", "activity_id": 11, "notes": "Hotel check-in Bromo" },
+    { "id": 1006, "itinerary_day_id": 104, "sort_order": 1, "time": "03:30", "activity_id": 12, "notes": "Bromo sunrise jeep" },
+    { "id": 1007, "itinerary_day_id": 104, "sort_order": 2, "time": "13:00", "activity_id": 14, "notes": "Transfer to Bondowoso / Ijen area" },
+    { "id": 1008, "itinerary_day_id": 105, "sort_order": 1, "time": "01:30", "activity_id": 15, "notes": "Ijen crater pre-dawn hike" },
+    { "id": 1009, "itinerary_day_id": 105, "sort_order": 2, "time": "10:30", "activity_id": 16, "notes": "Ketapang ferry crossing to Bali" },
+    { "id": 1010, "itinerary_day_id": 106, "sort_order": 1, "time": "09:00", "activity_id": 17, "notes": "Bali drop-off" }
   ],
   "package_destinations": [
     { "id": 1, "package_id": 47, "destination_id": 1 },
@@ -89,11 +149,15 @@
     { "id": 3, "package_id": 47, "destination_id": 5 },
     { "id": 4, "package_id": 48, "destination_id": 1 },
     { "id": 5, "package_id": 48, "destination_id": 2 },
-    { "id": 6, "package_id": 48, "destination_id": 9 }
+    { "id": 6, "package_id": 48, "destination_id": 9 },
+    { "id": 7, "package_id": 48, "destination_id": 5 }
   ],
   "package_hotel_options": [
     { "id": 1, "package_id": 47, "day_no": 1, "hotel_id": 1 },
-    { "id": 2, "package_id": 47, "day_no": 2, "hotel_id": 2 }
+    { "id": 2, "package_id": 47, "day_no": 2, "hotel_id": 2 },
+    { "id": 3, "package_id": 48, "day_no": 1, "hotel_id": 1 },
+    { "id": 4, "package_id": 48, "day_no": 2, "hotel_id": 2 },
+    { "id": 5, "package_id": 48, "day_no": 3, "hotel_id": 3 }
   ],
   "hotels": [
     {
@@ -113,6 +177,15 @@
       "map_url": "https://maps.example/redacted-2",
       "lunch_rate": 55000,
       "dinner_rate": 80000
+    },
+    {
+      "id": 3,
+      "name": "Bali Side Hotel (redacted)",
+      "destination_id": 9,
+      "address": "Gilimanuk / West Bali area",
+      "map_url": "https://maps.example/redacted-3",
+      "lunch_rate": 70000,
+      "dinner_rate": 95000
     }
   ],
   "room_types": [
