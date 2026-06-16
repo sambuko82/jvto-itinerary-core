@@ -102,6 +102,16 @@ function main(): void {
   filesExist('scenario evaluator files exist', EVALUATOR_FILES);
   filesExist('ADR guardrail files exist', ADR_FILES);
 
+  // Authoritative generated-data gate: schema/PII/joinability over every numbered
+  // dataset. existsSync above and the test list do not cover datasets the scenario
+  // tests never read (13/14/15/manifest), so a malformed/PII-violating file would
+  // otherwise report green. `npm run validate` exits non-zero on critical errors.
+  runScript('generated data passes validation', ['run', 'validate'], (out) => {
+    const files = out.match(/"generated_files":\s*(\d+)/)?.[1] ?? '?';
+    if (!/"ok":\s*true/.test(out)) throw new Error('validateGeneratedData reported not ok');
+    return `ok, ${files} generated files (schema/PII/joinability)`;
+  });
+
   // 4-5: typecheck + tests (real subprocess exit codes)
   runScript('typecheck passes', ['run', 'typecheck']);
   runScript('tests pass', ['test'], (out) => {
