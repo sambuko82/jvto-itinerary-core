@@ -10,6 +10,118 @@
     "actual vehicle/crew/hotel/activity rates require redacted backoffice export ingestion",
     "no raw customer PII is included in this sample payload"
   ],
+  "package_context": {
+    "scenario_id": "package_bromo_ijen_bali_4d3n",
+    "package_route_id": "bromo-ijen-bali-4d3n",
+    "status": "recommended",
+    "duration_days": 4,
+    "recommended_route_sequence": [
+      "Surabaya",
+      "Bromo Area",
+      "Bondowoso / Ijen Area",
+      "Ijen Crater",
+      "Ketapang Harbor",
+      "Bali"
+    ],
+    "route_leg_ids": [
+      "surabaya_airport_to_bromo_area",
+      "bromo_area_to_bondowoso_ijen_area",
+      "bondowoso_to_ijen_base",
+      "ijen_base_to_ketapang_harbor",
+      "ketapang_harbor_to_gilimanuk_bali_side"
+    ],
+    "operational_events": [
+      "bondowoso_dinner_medical_check",
+      "bromo_jeep_handoff",
+      "ketapang_ferry_connection"
+    ],
+    "meal_logic": [
+      "dinner_before_ijen",
+      "takeaway_breakfast_after_ijen_or_bromo",
+      "lunch_stop_own_expense_long_transfer"
+    ],
+    "accommodation_logic": [
+      "bondowoso_ijen_staging",
+      "bromo_area_sunrise_staging"
+    ],
+    "cost_components": [
+      "bali_dropoff_after_ketapang",
+      "bromo_entrance_fee",
+      "bromo_jeep",
+      "driver_cost",
+      "ferry_ticket",
+      "gas_mask",
+      "ijen_entrance_fee",
+      "ijen_local_guide",
+      "ijen_medical_check",
+      "parking_toll_fuel_allowance",
+      "restaurant_meal",
+      "vehicle_private_car_day"
+    ],
+    "warnings": [],
+    "package_structure": {
+      "backoffice_package_id": 48,
+      "code": "BRM-IJN-BALI-4D",
+      "duration_id": 4,
+      "order_channel_id": 1,
+      "day_count": 4,
+      "hotel_count": 3,
+      "start_core_destination": null,
+      "end_core_destination": "bali_ketapang",
+      "destination_core_ids": [
+        "bromo",
+        "ijen",
+        "bali_ketapang"
+      ],
+      "meal_totals": {
+        "breakfast": 3,
+        "lunch": 1,
+        "dinner": 3
+      }
+    },
+    "source_trace": [
+      {
+        "source": "generated",
+        "ref": "generated/itinerary-intelligence/04-route-leg-index.json",
+        "confidence": "inferred"
+      },
+      {
+        "source": "generated",
+        "ref": "generated/itinerary-intelligence/06-destination-activity-profiles.json",
+        "confidence": "inferred"
+      },
+      {
+        "source": "generated",
+        "ref": "generated/itinerary-intelligence/07-operational-events.json",
+        "confidence": "inferred"
+      },
+      {
+        "source": "generated",
+        "ref": "generated/itinerary-intelligence/08-meal-logic.json",
+        "confidence": "inferred"
+      },
+      {
+        "source": "generated",
+        "ref": "generated/itinerary-intelligence/09-accommodation-logic.json",
+        "confidence": "inferred"
+      },
+      {
+        "source": "generated",
+        "ref": "generated/itinerary-intelligence/10-cost-components.json",
+        "confidence": "inferred"
+      },
+      {
+        "source": "generated",
+        "ref": "generated/itinerary-intelligence/11-package-route-map.json",
+        "confidence": "inferred"
+      },
+      {
+        "source": "generated",
+        "ref": "generated/itinerary-intelligence/12-recommendation-rules.json",
+        "confidence": "inferred"
+      }
+    ]
+  },
   "payload_type": "customer_pdf",
   "document_model": {
     "title": "JVTO Custom Itinerary Preview",
