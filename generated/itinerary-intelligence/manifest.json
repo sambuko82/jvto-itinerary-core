@@ -28,6 +28,7 @@
   "warnings": [
     "MVP output is generated from controlled manual seed data.",
     "new-backoffice extractor connected: datasets 01/02/03/06/07/08/09/10/11/12 carry backoffice_observed evidence and inferred source_trace where booking/reference data matched.",
+    "jvto-web destination intelligence promoted from destinationDetailSnapshots for 5 destinations: 06 carries physical_demand/difficulty_level/altitude/trail_details; 07 adds <dest>_access_requirements (gear/permit/guide); 12 adds <dest>_weather_risk_advisory (weather/rainfall/risk_factors). All carry jvto_web source_trace; evaluator output is unchanged.",
     "backoffice_observed figures are aggregated, PII-free calibration evidence — not quotes or final prices.",
     "Cost payloads explain components only and do not produce final quote totals.",
     "Researched fields (confidence: inferred) come from web sources in seed/research/east-java-field-data-2026.json; re-verify fees/fares at booking time.",

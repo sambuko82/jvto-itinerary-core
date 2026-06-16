@@ -165,5 +165,160 @@
       },
       "bali_ketapang_dropoff_samples": 17
     }
+  },
+  {
+    "id": "bromo_access_requirements",
+    "label": "Mount Bromo access requirements (gear, permits, guide)",
+    "status": "active",
+    "confidence": "inferred",
+    "event_type": "destination_access_requirements",
+    "applies_when": [
+      "destination includes bromo"
+    ],
+    "customer_visible": true,
+    "cost_components": [],
+    "required_gear": [
+      "warm_layers",
+      "headlamp",
+      "hiking_shoes",
+      "gloves",
+      "beanie",
+      "dust_mask"
+    ],
+    "permit_required": true,
+    "permit_details": "National Park entry fee: Foreign tourists IDR 220,000 (weekdays), IDR 320,000 (weekends). Domestic: IDR 25,000-50,000. JVTO includes all permits.",
+    "guide_required": false,
+    "source_trace": [
+      {
+        "source": "jvto_web",
+        "ref": "jvto-web:publicContent/generated/destinationDetailSnapshots.json",
+        "field": "required_gear, permit_required, permit_details, guide_required",
+        "confidence": "inferred"
+      }
+    ]
+  },
+  {
+    "id": "ijen_access_requirements",
+    "label": "Ijen Crater access requirements (gear, permits, guide)",
+    "status": "active",
+    "confidence": "inferred",
+    "event_type": "destination_access_requirements",
+    "applies_when": [
+      "destination includes ijen"
+    ],
+    "customer_visible": true,
+    "cost_components": [],
+    "required_gear": [
+      "gas_mask",
+      "headlamp",
+      "hiking_boots",
+      "warm_layers",
+      "gloves",
+      "waterproof_jacket"
+    ],
+    "permit_required": true,
+    "permit_details": "Available at Paltuding entry gate. Foreign tourists: IDR 100,000 (weekdays), IDR 150,000 (weekends). Domestic: IDR 5,000-15,000.",
+    "guide_required": true,
+    "source_trace": [
+      {
+        "source": "jvto_web",
+        "ref": "jvto-web:publicContent/generated/destinationDetailSnapshots.json",
+        "field": "required_gear, permit_required, permit_details, guide_required",
+        "confidence": "inferred"
+      }
+    ]
+  },
+  {
+    "id": "madakaripura_access_requirements",
+    "label": "Madakaripura Waterfall access requirements (gear, permits, guide)",
+    "status": "active",
+    "confidence": "inferred",
+    "event_type": "destination_access_requirements",
+    "applies_when": [
+      "destination includes madakaripura"
+    ],
+    "customer_visible": true,
+    "cost_components": [],
+    "required_gear": [
+      "water_shoes",
+      "waterproof_bag",
+      "raincoat",
+      "quick_dry_clothes",
+      "towel",
+      "dry_bag"
+    ],
+    "permit_required": true,
+    "permit_details": "Local entry ticket required: IDR 15,000-25,000 per person. JVTO includes all entrance fees.",
+    "guide_required": true,
+    "source_trace": [
+      {
+        "source": "jvto_web",
+        "ref": "jvto-web:publicContent/generated/destinationDetailSnapshots.json",
+        "field": "required_gear, permit_required, permit_details, guide_required",
+        "confidence": "inferred"
+      }
+    ]
+  },
+  {
+    "id": "tumpak_sewu_access_requirements",
+    "label": "Tumpak Sewu Waterfall access requirements (gear, permits, guide)",
+    "status": "active",
+    "confidence": "inferred",
+    "event_type": "destination_access_requirements",
+    "applies_when": [
+      "destination includes tumpak_sewu"
+    ],
+    "customer_visible": true,
+    "cost_components": [],
+    "required_gear": [
+      "trekking_shoes",
+      "gloves",
+      "waterproof_bag",
+      "dry_clothes",
+      "water_bottle",
+      "headlamp"
+    ],
+    "permit_required": true,
+    "permit_details": "Entry fee: IDR 20,000-30,000 per person. Additional guide fee for canyon descent. JVTO includes all fees.",
+    "guide_required": true,
+    "source_trace": [
+      {
+        "source": "jvto_web",
+        "ref": "jvto-web:publicContent/generated/destinationDetailSnapshots.json",
+        "field": "required_gear, permit_required, permit_details, guide_required",
+        "confidence": "inferred"
+      }
+    ]
+  },
+  {
+    "id": "papuma_access_requirements",
+    "label": "Papuma Beach access requirements (gear, permits, guide)",
+    "status": "active",
+    "confidence": "inferred",
+    "event_type": "destination_access_requirements",
+    "applies_when": [
+      "destination includes papuma"
+    ],
+    "customer_visible": true,
+    "cost_components": [],
+    "required_gear": [
+      "sunscreen",
+      "swimwear",
+      "beach_towel",
+      "water_shoes",
+      "hat",
+      "sunglasses"
+    ],
+    "permit_required": true,
+    "permit_details": "Entrance fee: IDR 40,000 per person included in package.",
+    "guide_required": false,
+    "source_trace": [
+      {
+        "source": "jvto_web",
+        "ref": "jvto-web:publicContent/generated/destinationDetailSnapshots.json",
+        "field": "required_gear, permit_required, permit_details, guide_required",
+        "confidence": "inferred"
+      }
+    ]
   }
 ]

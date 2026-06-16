@@ -88,6 +88,30 @@ export interface JvtoWebPackageDetail {
   itinerary_days: JvtoWebItineraryDay[];
 }
 
+export interface JvtoWebRiskFactor {
+  type: string | null;
+  level: string | null;
+  mitigation: string | null;
+  description: string | null;
+}
+
+/** PII-safe destination-intelligence subset of destinationDetailSnapshots. */
+export interface JvtoWebDestinationDetail {
+  slug: string;
+  name: string | null;
+  physical_demand: number | null;
+  difficulty_level: string | null;
+  altitude: number | null;
+  trail_details: string | null;
+  required_gear: string[];
+  permit_required: boolean | null;
+  permit_details: string | null;
+  guide_required: boolean | null;
+  weather_by_season: string | null;
+  rainfall_intensity: string | null;
+  risk_factors: JvtoWebRiskFactor[];
+}
+
 export interface JvtoWebExtract extends ExtractEnvelope {
   schema_model_count: number;
   restricted_model_count: number;
@@ -98,6 +122,8 @@ export interface JvtoWebExtract extends ExtractEnvelope {
   package_helpers: JvtoWebPackageHelper[];
   package_detail_count: number;
   package_details: JvtoWebPackageDetail[];
+  destination_detail_count: number;
+  destination_details: JvtoWebDestinationDetail[];
 }
 
 export interface ExtractorStatus {

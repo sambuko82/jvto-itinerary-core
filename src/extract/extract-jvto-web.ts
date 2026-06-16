@@ -8,14 +8,19 @@ import type {
   JvtoWebPackageHelper,
   JvtoWebPackageDetail,
   JvtoWebItineraryDay,
-  JvtoWebActivity
+  JvtoWebActivity,
+  JvtoWebDestinationDetail,
+  JvtoWebRiskFactor
 } from './extractTypes.js';
 
 const REPO = 'jvto-devteam/jvto-web';
 const LIB_INDEX = resolve(INPUT_DIR, 'jvto-web/lib-packages.index.json');
 const PKG_DETAIL = resolve(INPUT_DIR, 'jvto-web/publicContent/generated/packageDetailSnapshots.json');
+const DEST_DETAIL = resolve(INPUT_DIR, 'jvto-web/publicContent/generated/destinationDetailSnapshots.json');
 
 const str = (v: unknown): string | null => (typeof v === 'string' && v.length > 0 ? v : null);
+const num = (v: unknown): number | null => (typeof v === 'number' && Number.isFinite(v) ? v : null);
+const bool = (v: unknown): boolean | null => (typeof v === 'boolean' ? v : null);
 const strList = (arr: unknown, key?: string): string[] => {
   if (!Array.isArray(arr)) return [];
   return arr
@@ -67,6 +72,54 @@ function parsePackageDetails(missing: string[]): JvtoWebPackageDetail[] {
   });
 }
 
+/**
+ * Parse the PII-safe destination-intelligence subset of destinationDetailSnapshots.
+ * These fields (physical_demand, difficulty_level, altitude, trail_details,
+ * required_gear, permit_*, guide_required, weather_by_season, rainfall_intensity,
+ * risk_factors) already exist at source and are promoted into datasets 06/07/12.
+ */
+function parseDestinationDetails(missing: string[]): JvtoWebDestinationDetail[] {
+  let snap: { items?: unknown[] };
+  try {
+    snap = JSON.parse(readFileSync(DEST_DETAIL, 'utf8'));
+  } catch {
+    missing.push('jvto_web_destination_detail_snapshots');
+    return [];
+  }
+  const items = Array.isArray(snap.items) ? snap.items : [];
+  return items
+    .map((raw): JvtoWebDestinationDetail | null => {
+      const it = raw as Record<string, unknown>;
+      const p = ((it.payload as Record<string, unknown>) ?? {}) as Record<string, unknown>;
+      const slug = str(it.slug) ?? str(p.slug);
+      if (!slug) return null;
+      const risk_factors: JvtoWebRiskFactor[] = Array.isArray(p.risk_factors)
+        ? (p.risk_factors as Array<Record<string, unknown>>).map((r) => ({
+            type: str(r.type),
+            level: str(r.level),
+            mitigation: str(r.mitigation),
+            description: str(r.description)
+          }))
+        : [];
+      return {
+        slug,
+        name: str(p.name),
+        physical_demand: num(p.physical_demand),
+        difficulty_level: str(p.difficulty_level),
+        altitude: num(p.altitude),
+        trail_details: str(p.trail_details),
+        required_gear: strList(p.required_gear),
+        permit_required: bool(p.permit_required),
+        permit_details: str(p.permit_details),
+        guide_required: bool(p.guide_required),
+        weather_by_season: str(p.weather_by_season),
+        rainfall_intensity: str(p.rainfall_intensity),
+        risk_factors
+      };
+    })
+    .filter((d): d is JvtoWebDestinationDetail => d !== null);
+}
+
 function trace(path: string, field: string | null = null): InventorySourceTrace {
   return { repo: REPO, path, field };
 }
@@ -99,10 +152,16 @@ export async function extractJvtoWeb(): Promise<JvtoWebExtract> {
   }
 
   const package_details = parsePackageDetails(missing_fields);
+  const destination_details = parseDestinationDetails(missing_fields);
 
   const source_trace = [trace('prisma/schema.prisma', 'models'), trace('src/lib/packages/', 'package_helpers')];
   if (package_details.length) {
     source_trace.push(trace('src/lib/publicContent/generated/packageDetailSnapshots.json', 'package_details'));
+  }
+  if (destination_details.length) {
+    source_trace.push(
+      trace('src/lib/publicContent/generated/destinationDetailSnapshots.json', 'destination_details')
+    );
   }
 
   return {
@@ -120,6 +179,8 @@ export async function extractJvtoWeb(): Promise<JvtoWebExtract> {
     destination_model_names: models_by_domain.destination ?? [],
     package_helpers,
     package_detail_count: package_details.length,
-    package_details
+    package_details,
+    destination_detail_count: destination_details.length,
+    destination_details
   };
 }
