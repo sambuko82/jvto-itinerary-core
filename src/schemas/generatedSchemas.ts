@@ -66,7 +66,10 @@ export const costComponentSchema = baseSchema.extend({
 export const manifestSchema = z.object({
   generated_at: z.string(),
   schema_version: z.number().int().positive(),
-  source_mode: z.literal('manual_seed_mvp'),
+  // Reconciled with the extraction manifest: the dataset pipeline is
+  // source_connected; legacy_dataset_mode records the seed-calibrated content.
+  source_mode: z.literal('source_connected'),
+  legacy_dataset_mode: z.literal('manual_seed_mvp'),
   output_count: z.number().int().positive(),
   outputs: z.array(z.string()).min(20),
   warnings: z.array(z.string()).min(1),

@@ -73,14 +73,19 @@ export async function compileGeneratedData() {
   await writeJson(`${GENERATED_DIR}/manifest.json`, {
     generated_at: 'manual_seed_deterministic',
     schema_version: 1,
-    source_mode: 'manual_seed_mvp',
+    // Reconciled with the extraction manifest: the dataset pipeline is
+    // source-connected (llm-wiki + jvto-web + new-backoffice extractors). The
+    // dataset *content* is still seed values calibrated by connected-source
+    // evidence — recorded as legacy_dataset_mode (mirrors extraction-manifest).
+    source_mode: 'source_connected',
+    legacy_dataset_mode: 'manual_seed_mvp',
     output_count: files.length + exportPayloads.length,
     outputs: [
       ...files.map(([file]) => `${GENERATED_DIR}/${file}`),
       ...exportPayloads.map((payload) => payload.path)
     ],
     warnings: [
-      'MVP output is generated from controlled manual seed data.',
+      'Dataset pipeline is source-connected; dataset fields are seed values calibrated by connected-source evidence (legacy_dataset_mode=manual_seed_mvp), carrying verified/inferred source_trace where matched.',
       backofficeConnected
         ? 'new-backoffice extractor connected: datasets 01/02/03/06/07/08/09/10/11/12 carry backoffice_observed evidence and inferred source_trace where booking/reference data matched.'
         : 'External source extraction hooks exist but are not connected in this MVP.',
