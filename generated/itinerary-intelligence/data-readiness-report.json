@@ -289,16 +289,20 @@
       "status": "partial",
       "evidence": [
         "operational-context-resolution-report present",
-        "resolution tally: {\"resolved\":8,\"partially_resolved\":2,\"pending\":4}"
+        "resolution tally: {\"resolved\":12,\"partially_resolved\":2}"
       ],
       "covered_items": [
         "Airport / Hotel",
+        "Batu",
+        "Bondowoso",
         "Gilimanuk Harbor",
         "Hotel",
         "Hotel in Jember",
+        "Jember",
         "Juanda Airport",
         "Ketapang Harbor",
         "Ketapang Port",
+        "Prigen Safari Park",
         "Transit Point"
       ],
       "partial_items": [
@@ -307,7 +311,6 @@
       ],
       "missing_items": [
         "operational_rule_source",
-        "route_node_decision",
         "alias_registry_resolution"
       ],
       "source_exists_not_promoted": [],
@@ -316,9 +319,8 @@
         "fill buffer_minutes / ferry_or_transfer_timing / operational_rule_source from booking logistics or explicit ops rules"
       ],
       "counts": {
-        "resolved": 8,
-        "partially_resolved": 2,
-        "pending": 4
+        "resolved": 12,
+        "partially_resolved": 2
       }
     },
     "meal_logic": {

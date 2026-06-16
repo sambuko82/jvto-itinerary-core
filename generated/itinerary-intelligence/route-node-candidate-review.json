@@ -28,8 +28,8 @@
     "recommended_action": "needs_source_confirmation",
     "reason": "appears as a TravelAction movement label but is not a slug-derived destination node",
     "route_node_decision": "reject_existing_alias",
-    "decision_basis": "already represented by existing route node 'malang_batu' (destination-crosswalk alias); not a distinct node",
-    "resolved_to_node": "malang_batu",
+    "decision_basis": "candidate label is an alias of existing route-node-index node 'malang'; not a distinct node (label/alias-mapping, not a missing movement source)",
+    "resolved_to_node": "malang",
     "review_status": "resolved"
   },
   {
@@ -69,7 +69,7 @@
     "recommended_action": "review_for_future_route_node",
     "reason": "appears as a TravelAction movement label but is not a slug-derived destination node",
     "route_node_decision": "hold_for_future",
-    "decision_basis": "overnight/transit handoff (seen_as to) across 10 packages; represented operationally, not a distinct destination route node — revisit when an explicit movement source supports promotion",
+    "decision_basis": "overnight/transit handoff (seen_as to) across 10 packages; no matching route-node-index node and not a distinct destination — operational waypoint, revisit if a future source promotes it",
     "resolved_to_node": null,
     "review_status": "resolved"
   },
@@ -105,7 +105,7 @@
     "recommended_action": "review_for_future_route_node",
     "reason": "appears as a TravelAction movement label but is not a slug-derived destination node",
     "route_node_decision": "hold_for_future",
-    "decision_basis": "overnight/transit handoff (seen_as to) across 5 packages; represented operationally, not a distinct destination route node — revisit when an explicit movement source supports promotion",
+    "decision_basis": "overnight/transit handoff (seen_as to) across 5 packages; no matching route-node-index node and not a distinct destination — operational waypoint, revisit if a future source promotes it",
     "resolved_to_node": null,
     "review_status": "resolved"
   },
@@ -119,13 +119,11 @@
         "field": "Prigen Safari Park"
       }
     ],
-    "confidence": "low",
+    "confidence": "medium",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
-    "missing_fields": [
-      "explicit_movement_source"
-    ],
-    "status": "incomplete",
+    "missing_fields": [],
+    "status": "active",
     "candidate_id": "nodereview__prigen_safari_park",
     "label": "Prigen Safari Park",
     "normalized_candidate_id": "prigen_safari_park",
@@ -139,9 +137,9 @@
     "evidence_strength": "low",
     "recommended_action": "needs_source_confirmation",
     "reason": "appears as a TravelAction movement label but is not a slug-derived destination node",
-    "route_node_decision": "hold_pending_source",
-    "decision_basis": "spur seen as from+to in a single package with no explicit movement source (see route-source-gap-report); cannot promote without TravelAction fromLocation/toLocation",
-    "resolved_to_node": null,
+    "route_node_decision": "reject_existing_alias",
+    "decision_basis": "candidate label is an alias of existing route-node-index node 'taman_safari_prigen'; not a distinct node (label/alias-mapping, not a missing movement source)",
+    "resolved_to_node": "taman_safari_prigen",
     "review_status": "resolved"
   }
 ]
