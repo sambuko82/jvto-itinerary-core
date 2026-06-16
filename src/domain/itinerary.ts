@@ -1,4 +1,4 @@
-import type { BaseEntity } from './common.js';
+import type { BaseEntity, BackofficeObserved } from './common.js';
 
 export type LocationType =
   | 'airport'
@@ -21,6 +21,8 @@ export interface TravelEndpoint {
 export interface ItineraryScenario {
   scenario_id: string;
   channel?: 'JVTO' | 'KLOOK' | 'TWT' | 'CUSTOM';
+  /** Optional package template slug, joinable to 11-package-route-map.json. */
+  package_slug?: string;
   pickup: TravelEndpoint;
   dropoff: TravelEndpoint;
   pax: number;
@@ -40,6 +42,7 @@ export interface PickupContext extends BaseEntity {
   required_customer_fields: string[];
   risk_factors: string[];
   affects: string[];
+  backoffice_observed?: BackofficeObserved;
 }
 
 export interface DropoffContext extends BaseEntity {
@@ -50,12 +53,16 @@ export interface DropoffContext extends BaseEntity {
   required_customer_fields?: string[];
   cost_impacts: string[];
   risk_factors: string[];
+  backoffice_observed?: BackofficeObserved;
 }
 
 export interface RouteLeg extends BaseEntity {
   from_location: string;
   to_location: string;
   distance_km?: number | null;
+  /** Researched plausible distance range when a single value is route-dependent. */
+  distance_km_range?: string;
+  research_note?: string;
   duration_text: string;
   duration_normal_minutes?: number | null;
   duration_busy_minutes?: number | null;

@@ -1,0 +1,972 @@
+[
+  {
+    "id": "route__bali_bromo_ijen_3d2n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bali/bromo-ijen-3d2n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "bali/bromo-ijen-3d2n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "bromo-ijen-3d2n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "bali/bromo-ijen-3d2n",
+    "slug": "bromo-ijen-3d2n",
+    "origin": "bali",
+    "route_sequence": [
+      "bali",
+      "bromo",
+      "ijen"
+    ],
+    "route_leg_ids": [
+      "bali__to__bromo",
+      "bromo__to__ijen",
+      "bromo__to__madakaripura"
+    ],
+    "node_count": 3,
+    "leg_count": 3,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 1,
+      "source_supported_sequence": 2,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [],
+    "unresolved_movement_count": 4,
+    "unresolved_movement_labels": [
+      "Bondowoso",
+      "Gilimanuk Harbor",
+      "Ketapang Harbor",
+      "Ketapang Port"
+    ],
+    "contains_ambiguous_node": false
+  },
+  {
+    "id": "route__bali_ijen_bromo_madakaripura_3d2n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bali/ijen-bromo-madakaripura-3d2n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "bali/ijen-bromo-madakaripura-3d2n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "ijen-bromo-madakaripura-3d2n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "bali/ijen-bromo-madakaripura-3d2n",
+    "slug": "ijen-bromo-madakaripura-3d2n",
+    "origin": "bali",
+    "route_sequence": [
+      "bali",
+      "ijen",
+      "bromo",
+      "madakaripura"
+    ],
+    "route_leg_ids": [
+      "bali__to__ijen",
+      "ijen__to__bromo",
+      "bromo__to__madakaripura",
+      "madakaripura__to__surabaya"
+    ],
+    "node_count": 4,
+    "leg_count": 4,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 2,
+      "source_supported_sequence": 2,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [],
+    "unresolved_movement_count": 4,
+    "unresolved_movement_labels": [
+      "Banyuwangi Hotel",
+      "Bondowoso City",
+      "Gilimanuk Harbor",
+      "Ketapang Port"
+    ],
+    "contains_ambiguous_node": false
+  },
+  {
+    "id": "route__bali_ijen_papuma_tumpak_sewu_bromo_4d3n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "ijen-papuma-tumpak-sewu-bromo-4d3n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "origin": "bali",
+    "route_sequence": [
+      "bali",
+      "ijen",
+      "papuma",
+      "tumpak_sewu",
+      "bromo"
+    ],
+    "route_leg_ids": [
+      "bali__to__ijen",
+      "ijen__to__papuma",
+      "papuma__to__tumpak_sewu",
+      "tumpak_sewu__to__bromo",
+      "bromo__to__surabaya"
+    ],
+    "node_count": 5,
+    "leg_count": 5,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 2,
+      "source_supported_sequence": 3,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [
+      "tumpak_sewu"
+    ],
+    "unresolved_movement_count": 7,
+    "unresolved_movement_labels": [
+      "Airport / Hotel",
+      "Banyuwangi Hotel",
+      "Bondowoso City",
+      "Gilimanuk Harbor",
+      "Hotel in Jember",
+      "Jember",
+      "Ketapang Port"
+    ],
+    "contains_ambiguous_node": false
+  },
+  {
+    "id": "route__bali_ijen_papuma_tumpak_sewu_bromo_5d4n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "ijen-papuma-tumpak-sewu-bromo-5d4n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "origin": "bali",
+    "route_sequence": [
+      "bali",
+      "ijen",
+      "papuma",
+      "tumpak_sewu",
+      "bromo"
+    ],
+    "route_leg_ids": [
+      "bali__to__ijen",
+      "ijen__to__papuma",
+      "papuma__to__tumpak_sewu",
+      "tumpak_sewu__to__bromo",
+      "bromo__to__surabaya"
+    ],
+    "node_count": 5,
+    "leg_count": 5,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 2,
+      "source_supported_sequence": 3,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [
+      "tumpak_sewu"
+    ],
+    "unresolved_movement_count": 9,
+    "unresolved_movement_labels": [
+      "Airport / Hotel",
+      "Banyuwangi Hotel",
+      "Bondowoso City",
+      "Gilimanuk Harbor",
+      "Hotel",
+      "Hotel in Jember",
+      "Jember",
+      "Juanda Airport",
+      "Ketapang Port"
+    ],
+    "contains_ambiguous_node": false
+  },
+  {
+    "id": "route__bromo_1d1n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bromo-1d1n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "bromo-1d1n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "bromo-1d1n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "bromo-1d1n",
+    "slug": "bromo-1d1n",
+    "origin": "surabaya",
+    "route_sequence": [
+      "surabaya",
+      "bromo"
+    ],
+    "route_leg_ids": [
+      "surabaya__to__bromo",
+      "bromo__to__surabaya"
+    ],
+    "node_count": 2,
+    "leg_count": 2,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 2,
+      "source_supported_sequence": 0,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [],
+    "unresolved_movement_count": 1,
+    "unresolved_movement_labels": [
+      "Transit Point"
+    ],
+    "contains_ambiguous_node": false
+  },
+  {
+    "id": "route__bromo_2d1n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bromo-2d1n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "bromo-2d1n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "bromo-2d1n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "bromo-2d1n",
+    "slug": "bromo-2d1n",
+    "origin": "surabaya",
+    "route_sequence": [
+      "surabaya",
+      "bromo"
+    ],
+    "route_leg_ids": [
+      "surabaya__to__bromo",
+      "madakaripura__to__surabaya"
+    ],
+    "node_count": 2,
+    "leg_count": 2,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 2,
+      "source_supported_sequence": 0,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [],
+    "unresolved_movement_count": 0,
+    "unresolved_movement_labels": [],
+    "contains_ambiguous_node": false
+  },
+  {
+    "id": "route__bromo_madakaripura_ijen_3d2n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bromo-madakaripura-ijen-3d2n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "bromo-madakaripura-ijen-3d2n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "bromo-madakaripura-ijen-3d2n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "bromo-madakaripura-ijen-3d2n",
+    "slug": "bromo-madakaripura-ijen-3d2n",
+    "origin": "surabaya",
+    "route_sequence": [
+      "surabaya",
+      "bromo",
+      "madakaripura",
+      "ijen"
+    ],
+    "route_leg_ids": [
+      "surabaya__to__bromo",
+      "bromo__to__madakaripura",
+      "madakaripura__to__ijen"
+    ],
+    "node_count": 4,
+    "leg_count": 3,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 2,
+      "source_supported_sequence": 1,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [],
+    "unresolved_movement_count": 4,
+    "unresolved_movement_labels": [
+      "Bondowoso",
+      "Gilimanuk Harbor",
+      "Ketapang Harbor",
+      "Ketapang Port"
+    ],
+    "contains_ambiguous_node": false
+  },
+  {
+    "id": "route__ijen_2d1n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen-2d1n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "ijen-2d1n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "ijen-2d1n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "ijen-2d1n",
+    "slug": "ijen-2d1n",
+    "origin": "surabaya",
+    "route_sequence": [
+      "surabaya",
+      "ijen"
+    ],
+    "route_leg_ids": [
+      "surabaya__to__ijen",
+      "ijen__to__surabaya"
+    ],
+    "node_count": 2,
+    "leg_count": 2,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 1,
+      "source_supported_sequence": 1,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [],
+    "unresolved_movement_count": 1,
+    "unresolved_movement_labels": [
+      "Bondowoso"
+    ],
+    "contains_ambiguous_node": false
+  },
+  {
+    "id": "route__ijen_bromo_madakaripura_3d2n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen-bromo-madakaripura-3d2n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "ijen-bromo-madakaripura-3d2n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "ijen-bromo-madakaripura-3d2n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "ijen-bromo-madakaripura-3d2n",
+    "slug": "ijen-bromo-madakaripura-3d2n",
+    "origin": "surabaya",
+    "route_sequence": [
+      "surabaya",
+      "ijen",
+      "bromo",
+      "madakaripura"
+    ],
+    "route_leg_ids": [
+      "surabaya__to__ijen",
+      "ijen__to__bromo",
+      "bromo__to__madakaripura",
+      "madakaripura__to__surabaya"
+    ],
+    "node_count": 4,
+    "leg_count": 4,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 2,
+      "source_supported_sequence": 2,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [],
+    "unresolved_movement_count": 2,
+    "unresolved_movement_labels": [
+      "Bondowoso",
+      "Bondowoso City"
+    ],
+    "contains_ambiguous_node": false
+  },
+  {
+    "id": "route__ijen_bromo_madakaripura_4d3n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen-bromo-madakaripura-4d3n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "ijen-bromo-madakaripura-4d3n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "ijen-bromo-madakaripura-4d3n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "ijen-bromo-madakaripura-4d3n",
+    "slug": "ijen-bromo-madakaripura-4d3n",
+    "origin": "surabaya",
+    "route_sequence": [
+      "surabaya",
+      "ijen",
+      "bromo",
+      "madakaripura"
+    ],
+    "route_leg_ids": [
+      "surabaya__to__ijen",
+      "ijen__to__bromo",
+      "bromo__to__madakaripura",
+      "madakaripura__to__surabaya"
+    ],
+    "node_count": 4,
+    "leg_count": 4,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 2,
+      "source_supported_sequence": 2,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [],
+    "unresolved_movement_count": 4,
+    "unresolved_movement_labels": [
+      "Bondowoso",
+      "Bondowoso City",
+      "Hotel",
+      "Juanda Airport"
+    ],
+    "contains_ambiguous_node": false
+  },
+  {
+    "id": "route__ijen_bromo_madakaripura_malang_5d4n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen-bromo-madakaripura-malang-5d4n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "ijen-bromo-madakaripura-malang-5d4n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "ijen-bromo-madakaripura-malang-5d4n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "ijen-bromo-madakaripura-malang-5d4n",
+    "slug": "ijen-bromo-madakaripura-malang-5d4n",
+    "origin": "surabaya",
+    "route_sequence": [
+      "surabaya",
+      "ijen",
+      "bromo",
+      "madakaripura",
+      "malang"
+    ],
+    "route_leg_ids": [
+      "surabaya__to__ijen",
+      "ijen__to__bromo",
+      "bromo__to__madakaripura",
+      "madakaripura__to__malang"
+    ],
+    "node_count": 5,
+    "leg_count": 4,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 2,
+      "source_supported_sequence": 2,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [],
+    "unresolved_movement_count": 5,
+    "unresolved_movement_labels": [
+      "Batu",
+      "Bondowoso",
+      "Bondowoso City",
+      "Hotel",
+      "Juanda Airport"
+    ],
+    "contains_ambiguous_node": false
+  },
+  {
+    "id": "route__ijen_papuma_tumpak_sewu_bromo_4d3n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen-papuma-tumpak-sewu-bromo-4d3n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "ijen-papuma-tumpak-sewu-bromo-4d3n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "ijen-papuma-tumpak-sewu-bromo-4d3n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "origin": "surabaya",
+    "route_sequence": [
+      "surabaya",
+      "ijen",
+      "papuma",
+      "tumpak_sewu",
+      "bromo"
+    ],
+    "route_leg_ids": [
+      "surabaya__to__ijen",
+      "ijen__to__papuma",
+      "papuma__to__tumpak_sewu",
+      "tumpak_sewu__to__bromo",
+      "bromo__to__surabaya"
+    ],
+    "node_count": 5,
+    "leg_count": 5,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 2,
+      "source_supported_sequence": 3,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [
+      "tumpak_sewu"
+    ],
+    "unresolved_movement_count": 5,
+    "unresolved_movement_labels": [
+      "Airport / Hotel",
+      "Bondowoso",
+      "Bondowoso City",
+      "Hotel in Jember",
+      "Jember"
+    ],
+    "contains_ambiguous_node": false
+  },
+  {
+    "id": "route__ijen_papuma_tumpak_sewu_bromo_5d4n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen-papuma-tumpak-sewu-bromo-5d4n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "ijen-papuma-tumpak-sewu-bromo-5d4n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "ijen-papuma-tumpak-sewu-bromo-5d4n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "origin": "surabaya",
+    "route_sequence": [
+      "surabaya",
+      "ijen",
+      "papuma",
+      "tumpak_sewu",
+      "bromo"
+    ],
+    "route_leg_ids": [
+      "surabaya__to__ijen",
+      "ijen__to__papuma",
+      "papuma__to__tumpak_sewu",
+      "tumpak_sewu__to__bromo",
+      "bromo__to__surabaya"
+    ],
+    "node_count": 5,
+    "leg_count": 5,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 2,
+      "source_supported_sequence": 3,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [
+      "tumpak_sewu"
+    ],
+    "unresolved_movement_count": 7,
+    "unresolved_movement_labels": [
+      "Airport / Hotel",
+      "Bondowoso",
+      "Bondowoso City",
+      "Hotel",
+      "Hotel in Jember",
+      "Jember",
+      "Juanda Airport"
+    ],
+    "contains_ambiguous_node": false
+  },
+  {
+    "id": "route__ijen_papuma_tumpak_sewu_bromo_malang_6d5n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "origin": "surabaya",
+    "route_sequence": [
+      "surabaya",
+      "ijen",
+      "papuma",
+      "tumpak_sewu",
+      "bromo",
+      "malang"
+    ],
+    "route_leg_ids": [
+      "surabaya__to__ijen",
+      "ijen__to__papuma",
+      "papuma__to__tumpak_sewu",
+      "tumpak_sewu__to__bromo",
+      "bromo__to__malang"
+    ],
+    "node_count": 6,
+    "leg_count": 5,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 2,
+      "source_supported_sequence": 3,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [
+      "tumpak_sewu"
+    ],
+    "unresolved_movement_count": 7,
+    "unresolved_movement_labels": [
+      "Batu",
+      "Bondowoso",
+      "Bondowoso City",
+      "Hotel",
+      "Hotel in Jember",
+      "Jember",
+      "Juanda Airport"
+    ],
+    "contains_ambiguous_node": false
+  },
+  {
+    "id": "route__taman_safari_prigen_bromo_madakaripura_3d2n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "taman-safari-prigen-bromo-madakaripura-3d2n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "taman-safari-prigen-bromo-madakaripura-3d2n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "taman-safari-prigen-bromo-madakaripura-3d2n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "taman-safari-prigen-bromo-madakaripura-3d2n",
+    "slug": "taman-safari-prigen-bromo-madakaripura-3d2n",
+    "origin": "surabaya",
+    "route_sequence": [
+      "surabaya",
+      "taman_safari_prigen",
+      "bromo",
+      "madakaripura"
+    ],
+    "route_leg_ids": [
+      "surabaya__to__taman_safari_prigen",
+      "taman_safari_prigen__to__bromo",
+      "bromo__to__madakaripura",
+      "madakaripura__to__surabaya"
+    ],
+    "node_count": 4,
+    "leg_count": 4,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 2,
+      "source_supported_sequence": 2,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [
+      "taman_safari_prigen"
+    ],
+    "unresolved_movement_count": 1,
+    "unresolved_movement_labels": [
+      "Prigen Safari Park"
+    ],
+    "contains_ambiguous_node": false
+  },
+  {
+    "id": "route__tumpak_sewu_bromo_ijen_4d3n",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "tumpak-sewu-bromo-ijen-4d3n"
+      },
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-itineraries.json",
+        "field": "tumpak-sewu-bromo-ijen-4d3n"
+      },
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "tumpak-sewu-bromo-ijen-4d3n"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [],
+    "status": "active",
+    "package_id": "tumpak-sewu-bromo-ijen-4d3n",
+    "slug": "tumpak-sewu-bromo-ijen-4d3n",
+    "origin": "surabaya",
+    "route_sequence": [
+      "surabaya",
+      "tumpak_sewu",
+      "bromo",
+      "ijen"
+    ],
+    "route_leg_ids": [
+      "surabaya__to__tumpak_sewu",
+      "tumpak_sewu__to__bromo",
+      "bromo__to__ijen"
+    ],
+    "node_count": 4,
+    "leg_count": 3,
+    "sequence_basis": "source_grouped_sequence",
+    "route_source_strength": "confirmed",
+    "route_leg_source_summary": {
+      "jvto_web_travel_action": 2,
+      "source_supported_sequence": 1,
+      "slug_token_fallback": 0
+    },
+    "route_map_status": "confirmed",
+    "source_backed_compound_nodes": [
+      "tumpak_sewu"
+    ],
+    "unresolved_movement_count": 4,
+    "unresolved_movement_labels": [
+      "Bondowoso",
+      "Gilimanuk Harbor",
+      "Ketapang Harbor",
+      "Ketapang Port"
+    ],
+    "contains_ambiguous_node": false
+  }
+]

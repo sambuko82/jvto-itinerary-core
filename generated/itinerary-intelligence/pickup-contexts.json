@@ -1,0 +1,73 @@
+[
+  {
+    "id": "pickup__hotel",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Hotel"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "buffer_minutes",
+      "operational_rule_source"
+    ],
+    "status": "incomplete",
+    "context_id": "pickup__hotel",
+    "label": "Hotel",
+    "normalized_candidate_id": "hotel",
+    "context_type": "hotel_area",
+    "applies_to_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "seen_as": [
+      "from"
+    ],
+    "rules": [],
+    "unresolved_reason": "generic_hotel_label_no_specific_area"
+  },
+  {
+    "id": "pickup__hotel_in_jember",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Hotel in Jember"
+      }
+    ],
+    "confidence": "low",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "buffer_minutes",
+      "operational_rule_source"
+    ],
+    "status": "active",
+    "context_id": "pickup__hotel_in_jember",
+    "label": "Hotel in Jember",
+    "normalized_candidate_id": "hotel_in_jember",
+    "context_type": "hotel_area",
+    "applies_to_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "seen_as": [
+      "from",
+      "to"
+    ],
+    "rules": [],
+    "unresolved_reason": null
+  }
+]

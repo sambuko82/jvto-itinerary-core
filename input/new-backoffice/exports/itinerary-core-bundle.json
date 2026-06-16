@@ -1,0 +1,304 @@
+{
+  "schema_version": "backoffice-itinerary-core/v1",
+  "generated_at": "2026-06-15T08:00:00+07:00",
+  "pii_policy": "redacted_no_raw_customer_contact",
+  "source": "new-backoffice",
+  "destinations": [
+    { "id": 2, "slug": "mount-bromo", "name": "Mount Bromo" },
+    { "id": 5, "slug": "ijen-crater", "name": "Ijen Crater" },
+    { "id": 8, "slug": "tumpak-sewu-waterfall", "name": "Tumpak Sewu Waterfall" },
+    { "id": 9, "slug": "bali", "name": "Bali (Gilimanuk crossing)" }
+  ],
+  "packages": [
+    {
+      "id": 47,
+      "code": "BRM-IJN-3D",
+      "slug": "bromo-ijen-3d2n",
+      "name": "Bromo Ijen 3D2N",
+      "duration_id": 3,
+      "order_channel_id": 1,
+      "package_category_id": 2,
+      "start_destination_id": 1,
+      "end_destination_id": 5,
+      "ideal_arrival": "before 18:00",
+      "physicality": "moderate",
+      "suitable_for": "general",
+      "is_publish": true,
+      "total_breakfast": 2,
+      "total_lunch": 1,
+      "total_dinner": 2
+    },
+    {
+      "id": 48,
+      "code": "BRM-IJN-BALI-4D",
+      "slug": "bromo-ijen-bali-4d3n",
+      "name": "Bromo Ijen Bali 4D3N",
+      "duration_id": 4,
+      "order_channel_id": 1,
+      "package_category_id": 2,
+      "start_destination_id": 1,
+      "end_destination_id": 9,
+      "ideal_arrival": "before 16:00",
+      "physicality": "moderate",
+      "suitable_for": "general",
+      "is_publish": true,
+      "total_breakfast": 3,
+      "total_lunch": 1,
+      "total_dinner": 3
+    }
+  ],
+  "package_prices": [
+    { "id": 1, "package_id": 47, "price_tier_id": 1, "price": 2850000, "klook_retail_price": 3100000, "klook_net_price": 2600000 },
+    { "id": 2, "package_id": 48, "price_tier_id": 1, "price": 3950000, "klook_retail_price": 4300000, "klook_net_price": 3600000 }
+  ],
+  "package_itinerary_days": [
+    {
+      "id": 101,
+      "package_id": 47,
+      "day_no": 1,
+      "activity_start_id": 10,
+      "activity_end_id": 11,
+      "title": "Surabaya - Bromo",
+      "activity": "Pickup, transfer to Bromo area",
+      "hotel_id": 1,
+      "meal_breakfast": false,
+      "meal_lunch": true,
+      "meal_dinner": true
+    },
+    {
+      "id": 102,
+      "package_id": 47,
+      "day_no": 2,
+      "activity_start_id": 12,
+      "activity_end_id": 13,
+      "title": "Bromo Sunrise - Ijen transfer",
+      "activity": "Bromo sunrise, transfer to Ijen area",
+      "hotel_id": 2,
+      "meal_breakfast": true,
+      "meal_lunch": false,
+      "meal_dinner": true
+    },
+    {
+      "id": 103,
+      "package_id": 48,
+      "day_no": 1,
+      "activity_start_id": 10,
+      "activity_end_id": 11,
+      "title": "Surabaya - Bromo",
+      "activity": "Pickup, transfer to Bromo area",
+      "hotel_id": 1,
+      "meal_breakfast": false,
+      "meal_lunch": true,
+      "meal_dinner": true
+    },
+    {
+      "id": 104,
+      "package_id": 48,
+      "day_no": 2,
+      "activity_start_id": 12,
+      "activity_end_id": 14,
+      "title": "Bromo Sunrise - Ijen transfer",
+      "activity": "Bromo sunrise, transfer to Bondowoso / Ijen area",
+      "hotel_id": 2,
+      "meal_breakfast": true,
+      "meal_lunch": false,
+      "meal_dinner": true
+    },
+    {
+      "id": 105,
+      "package_id": 48,
+      "day_no": 3,
+      "activity_start_id": 15,
+      "activity_end_id": 16,
+      "title": "Ijen Crater - Ketapang - Bali",
+      "activity": "Ijen sunrise, transfer to Ketapang harbor, ferry crossing to Bali",
+      "hotel_id": 3,
+      "meal_breakfast": true,
+      "meal_lunch": false,
+      "meal_dinner": true
+    },
+    {
+      "id": 106,
+      "package_id": 48,
+      "day_no": 4,
+      "activity_start_id": 17,
+      "activity_end_id": 18,
+      "title": "Bali departure",
+      "activity": "Breakfast, transfer to Bali drop-off point",
+      "hotel_id": null,
+      "meal_breakfast": true,
+      "meal_lunch": false,
+      "meal_dinner": false
+    }
+  ],
+  "package_itinerary_day_details": [
+    { "id": 1001, "itinerary_day_id": 101, "sort_order": 1, "time": "12:00", "activity_id": 10, "notes": "Airport pickup" },
+    { "id": 1002, "itinerary_day_id": 101, "sort_order": 2, "time": "18:00", "activity_id": 11, "notes": "Hotel check-in Bromo" },
+    { "id": 1003, "itinerary_day_id": 102, "sort_order": 1, "time": "03:30", "activity_id": 12, "notes": "Bromo sunrise jeep" },
+    { "id": 1004, "itinerary_day_id": 103, "sort_order": 1, "time": "11:00", "activity_id": 10, "notes": "Airport pickup" },
+    { "id": 1005, "itinerary_day_id": 103, "sort_order": 2, "time": "17:00", "activity_id": 11, "notes": "Hotel check-in Bromo" },
+    { "id": 1006, "itinerary_day_id": 104, "sort_order": 1, "time": "03:30", "activity_id": 12, "notes": "Bromo sunrise jeep" },
+    { "id": 1007, "itinerary_day_id": 104, "sort_order": 2, "time": "13:00", "activity_id": 14, "notes": "Transfer to Bondowoso / Ijen area" },
+    { "id": 1008, "itinerary_day_id": 105, "sort_order": 1, "time": "01:30", "activity_id": 15, "notes": "Ijen crater pre-dawn hike" },
+    { "id": 1009, "itinerary_day_id": 105, "sort_order": 2, "time": "10:30", "activity_id": 16, "notes": "Ketapang ferry crossing to Bali" },
+    { "id": 1010, "itinerary_day_id": 106, "sort_order": 1, "time": "09:00", "activity_id": 17, "notes": "Bali drop-off" }
+  ],
+  "package_destinations": [
+    { "id": 1, "package_id": 47, "destination_id": 1 },
+    { "id": 2, "package_id": 47, "destination_id": 2 },
+    { "id": 3, "package_id": 47, "destination_id": 5 },
+    { "id": 4, "package_id": 48, "destination_id": 1 },
+    { "id": 5, "package_id": 48, "destination_id": 2 },
+    { "id": 6, "package_id": 48, "destination_id": 9 },
+    { "id": 7, "package_id": 48, "destination_id": 5 }
+  ],
+  "package_hotel_options": [
+    { "id": 1, "package_id": 47, "day_no": 1, "hotel_id": 1 },
+    { "id": 2, "package_id": 47, "day_no": 2, "hotel_id": 2 },
+    { "id": 3, "package_id": 48, "day_no": 1, "hotel_id": 1 },
+    { "id": 4, "package_id": 48, "day_no": 2, "hotel_id": 2 },
+    { "id": 5, "package_id": 48, "day_no": 3, "hotel_id": 3 }
+  ],
+  "hotels": [
+    {
+      "id": 1,
+      "name": "Bromo Area Hotel (redacted)",
+      "destination_id": 2,
+      "address": "Cemoro Lawang area",
+      "map_url": "https://maps.example/redacted-1",
+      "lunch_rate": 60000,
+      "dinner_rate": 85000
+    },
+    {
+      "id": 2,
+      "name": "Ijen Area Hotel (redacted)",
+      "destination_id": 5,
+      "address": "Banyuwangi area",
+      "map_url": "https://maps.example/redacted-2",
+      "lunch_rate": 55000,
+      "dinner_rate": 80000
+    },
+    {
+      "id": 3,
+      "name": "Bali Side Hotel (redacted)",
+      "destination_id": 9,
+      "address": "Gilimanuk / West Bali area",
+      "map_url": "https://maps.example/redacted-3",
+      "lunch_rate": 70000,
+      "dinner_rate": 95000
+    }
+  ],
+  "room_types": [
+    { "id": 11, "hotel_id": 1, "room_name": "Deluxe", "bed_type": "double", "rate_idr": 650000, "rate_twt_idr": 700000 },
+    { "id": 12, "hotel_id": 1, "room_name": "Superior", "bed_type": "twin", "rate_idr": 550000, "rate_twt_idr": 600000 },
+    { "id": 21, "hotel_id": 2, "room_name": "Standard", "bed_type": "double", "rate_idr": 480000, "rate_twt_idr": 520000 }
+  ],
+  "room_configurations": [
+    { "id": 1, "hotel_id": 1, "room_type_id": 11, "pax": 2, "quantity": 1 },
+    { "id": 2, "hotel_id": 1, "room_type_id": 12, "pax": 2, "quantity": 1 },
+    { "id": 3, "hotel_id": 2, "room_type_id": 21, "pax": 2, "quantity": 1 }
+  ],
+  "vehicle_types": [
+    { "id": 1, "name": "MPV", "capacity_min_pax": 1, "capacity_max_pax": 4, "price_per_day": 650000, "price_twt_per_day": 700000 },
+    { "id": 2, "name": "Innova", "capacity_min_pax": 1, "capacity_max_pax": 5, "price_per_day": 850000, "price_twt_per_day": 900000 },
+    { "id": 3, "name": "Hiace", "capacity_min_pax": 6, "capacity_max_pax": 12, "price_per_day": 1250000, "price_twt_per_day": 1350000 }
+  ],
+  "crew_roles": [
+    { "id": 1, "name": "Driver Guide", "rate_per_day": 350000, "rate_twt_per_day": 400000, "order_channel_id": 1 },
+    { "id": 2, "name": "Driver", "rate_per_day": 250000, "rate_twt_per_day": 300000, "order_channel_id": 1 }
+  ],
+  "transport_crew_rules": [
+    { "id": 25, "pax": 1, "vehicle_type_id": 1, "crew_role_id": 1, "order_channel_id": 2 },
+    { "id": 26, "pax": 2, "vehicle_type_id": 1, "crew_role_id": 1, "order_channel_id": 2 },
+    { "id": 28, "pax": 4, "vehicle_type_id": 3, "crew_role_id": 2, "order_channel_id": 2 }
+  ],
+  "destination_activities": [
+    {
+      "id": 10,
+      "code": "BROMO-JEEP",
+      "destination_id": 2,
+      "vendor_id": 100,
+      "name": "Bromo Jeep 4x4",
+      "unit": "per_jeep",
+      "formula": "per_jeep",
+      "price": 700000,
+      "is_default_jvto": true,
+      "is_default_klook": true,
+      "is_default_twt": false
+    },
+    {
+      "id": 11,
+      "code": "IJEN-GUIDE",
+      "destination_id": 5,
+      "vendor_id": 101,
+      "name": "Ijen Local Guide",
+      "unit": "per_group",
+      "formula": "per_group",
+      "price": 150000,
+      "is_default_jvto": true,
+      "is_default_klook": false,
+      "is_default_twt": false
+    }
+  ],
+  "other_activities": [
+    {
+      "id": 50,
+      "code": "KETAPANG-FERRY",
+      "vendor_id": 200,
+      "name": "Ketapang-Gilimanuk Ferry (vehicle)",
+      "unit": "per_vehicle",
+      "formula": "per_vehicle",
+      "price": 200000,
+      "is_default_jvto": true
+    }
+  ],
+  "booking_logistics_patterns": [
+    {
+      "pattern_id": "surabaya_airport_to_bali_evening_night",
+      "pickup_location_group": "Surabaya Airport",
+      "dropoff_location_group": "Bali",
+      "typical_pickup_time_bucket": "evening_night",
+      "destinations": ["Bromo", "Ijen"],
+      "package_ids": [48],
+      "sample_count": 9,
+      "risk_notes": ["late arrival", "limited rest before sunrise or Ijen"]
+    },
+    {
+      "pattern_id": "surabaya_airport_to_ketapang_harbor_midday",
+      "pickup_location_group": "Surabaya Airport",
+      "dropoff_location_group": "Ketapang Harbor",
+      "typical_pickup_time_bucket": "midday",
+      "destinations": ["Bromo", "Ijen"],
+      "package_ids": [47],
+      "sample_count": 6,
+      "risk_notes": []
+    },
+    {
+      "pattern_id": "surabaya_to_bali_morning",
+      "pickup_location_group": "Surabaya",
+      "dropoff_location_group": "Bali",
+      "typical_pickup_time_bucket": "morning",
+      "destinations": ["Bromo", "Ijen"],
+      "package_ids": [48],
+      "sample_count": 2,
+      "risk_notes": []
+    }
+  ],
+  "booking_finance_patterns": [
+    { "package_id": 47, "sample_count": 6, "avg_total_expense": 1850000, "avg_total_expense_crew": 350000, "avg_profit": 620000 },
+    { "package_id": 48, "sample_count": 11, "avg_total_expense": 2650000, "avg_total_expense_crew": 480000, "avg_profit": 910000 }
+  ],
+  "actual_cost_patterns": {
+    "destination_activities": [
+      { "activity_id": 10, "sample_count": 14, "avg_qty": 1.2, "avg_price": 700000, "avg_subtotal": 840000 }
+    ],
+    "other_activities": [
+      { "activity_id": 50, "sample_count": 8, "avg_qty": 1, "avg_price": 200000, "avg_subtotal": 200000 }
+    ]
+  },
+  "warnings": [
+    "Booking-derived sections are aggregated patterns; no per-customer rows, names, contacts, or documents are exported.",
+    "Cost and finance figures are historical aggregates for calibration only and are not quotes or final prices.",
+    "Reference data is limited to the curated itinerary-core package scope."
+  ]
+}

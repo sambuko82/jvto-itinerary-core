@@ -1,0 +1,24 @@
+{
+  "schema_version": "itinerary-intelligence/source-snapshot-v1",
+  "snapshot_generated_at": "2026-06-15T00:00:00Z",
+  "note": "Committed, PII-free source-structure snapshots used by the deterministic Phase 1 inventory compile. Refresh online with `npm run refresh:snapshots`.",
+  "repos": {
+    "llm_wiki": { "repo": "sambuko82/llm-wiki", "ref": "main" },
+    "jvto_web": { "repo": "jvto-devteam/jvto-web", "ref": "main" },
+    "new_backoffice": { "repo": "jvto-devteam/new-backoffice", "ref": "main" }
+  },
+  "files": [
+    { "repo": "sambuko82/llm-wiki", "source_path": "output/products/package-readiness/_manifest.json", "snapshot": "input/llm-wiki/package-readiness/_manifest.json" },
+    { "repo": "sambuko82/llm-wiki", "source_path": "output/products/package-readiness/booking-compatibility.json", "snapshot": "input/llm-wiki/package-readiness/booking-compatibility.json" },
+    { "repo": "sambuko82/llm-wiki", "source_path": "output/products/package-readiness/gap-report.json", "snapshot": "input/llm-wiki/package-readiness/gap-report.json" },
+    { "repo": "sambuko82/llm-wiki", "source_path": "output/products/package-readiness/package-itineraries.json", "snapshot": "input/llm-wiki/package-readiness/package-itineraries.json" },
+    { "repo": "sambuko82/llm-wiki", "source_path": "output/products/package-readiness/package-pricing.json", "snapshot": "input/llm-wiki/package-readiness/package-pricing.json" },
+    { "repo": "sambuko82/llm-wiki", "source_path": "output/products/package-readiness/package-registry.json", "snapshot": "input/llm-wiki/package-readiness/package-registry.json" },
+    { "repo": "jvto-devteam/jvto-web", "source_path": "prisma/schema.prisma", "snapshot": "input/jvto-web/schema.prisma" },
+    { "repo": "jvto-devteam/jvto-web", "source_path": "src/lib/packages/", "snapshot": "input/jvto-web/lib-packages.index.json" },
+    { "repo": "jvto-devteam/jvto-web", "source_path": "src/lib/publicContent/generated/packageDetailSnapshots.json", "snapshot": "input/jvto-web/publicContent/generated/packageDetailSnapshots.json" },
+    { "repo": "jvto-devteam/jvto-web", "source_path": "src/lib/publicContent/generated/destinationDetailSnapshots.json", "snapshot": "input/jvto-web/publicContent/generated/destinationDetailSnapshots.json" },
+    { "repo": "jvto-devteam/new-backoffice", "source_path": "routes/data.php", "snapshot": "input/new-backoffice/routes-data.php" },
+    { "repo": "jvto-devteam/new-backoffice", "source_path": "app/Http/Controllers/ExportData/", "snapshot": "input/new-backoffice/export-controllers.index.json" }
+  ]
+}

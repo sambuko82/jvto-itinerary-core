@@ -1,4 +1,4 @@
-import type { BaseEntity } from './common.js';
+import type { BaseEntity, BackofficeObserved } from './common.js';
 
 export type CostCategory =
   | 'transport_day_cost'
@@ -28,4 +28,9 @@ export interface CostComponent extends BaseEntity {
   formula?: string;
   default_rate_idr?: number | null;
   channel_behavior?: string[];
+  /** Researched rate breakdown (nationality/day-type/vehicle-class). See seed/research/*.json */
+  rate_table_idr?: Record<string, unknown>;
+  rate_note?: string;
+  research_note?: string;
+  backoffice_observed?: BackofficeObserved;
 }

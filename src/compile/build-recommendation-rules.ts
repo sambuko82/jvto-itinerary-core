@@ -1,7 +1,9 @@
 import type { RecommendationRule } from '../domain/output.js';
+import type { BackofficeExtract } from '../extract/sourceTypes.js';
+import { backofficeTrace, bumpConfidence, recommendationObserved } from './backoffice-enrich.js';
 
-export function buildRecommendationRules(): RecommendationRule[] {
-  return [
+export function buildRecommendationRules(backoffice?: BackofficeExtract): RecommendationRule[] {
+  const rules: RecommendationRule[] = [
     {
       id: 'avoid_backtracking_ijen_bromo_ketapang',
       label: 'Avoid inefficient backtracking if final dropoff is Ketapang or Bali',
@@ -34,6 +36,55 @@ export function buildRecommendationRules(): RecommendationRule[] {
       recommendation: 'Do not put waterfall activity before a tight airport dropoff. Skip waterfall or add one night.',
       alternatives: ['move waterfall to previous day', 'drop at hotel instead of airport', 'choose later flight'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/recommendation-rules.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      id: 'ferry_bali_buffer_required',
+      label: 'Ketapang ferry / Bali continuation requires pre-booking and queue buffer',
+      status: 'active',
+      confidence: 'inferred',
+      condition: { dropoff_includes: ['Ketapang Harbor', 'Bali'], or_route_passes_through: 'Ketapang Harbor' },
+      severity: 'high',
+      recommendation: 'Ferizy ticket must be pre-booked H-1 (geofence-gated 2.65km from Ketapang). Allow 2–3h harbor queue buffer especially during peak / holiday periods. Confirm vehicle-crossing or guest-only handoff preference before booking.',
+      alternatives: ['book Ferizy in advance', 'allow earlier departure from Ijen to hit ferry timing', 'use local Bali car handoff at Gilimanuk instead of vehicle crossing'],
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/research/east-java-field-data-2026.json', confidence: 'inferred' }
+      ]
+    },
+    {
+      id: 'ijen_access_closure_risk',
+      label: 'Ijen access / quota / closure operational risk',
+      status: 'active',
+      confidence: 'inferred',
+      condition: { destination_includes: 'Ijen' },
+      severity: 'medium',
+      recommendation: 'Ijen has a daily visitor cap (~2000/day). Online ticket required at tiket.bbksdajatim.org; QRIS-only cashless since Jan 2025. Access can close without notice for volcanic activity or authority decision. Gas mask (IDR 45k rental) and medical check (IDR 20k) are mandatory on-site. Confirm ticket availability before finalizing Ijen date.',
+      alternatives: ['book Ijen ticket ahead of tour date', 'keep alternate date flexible if quota is full', 'confirm eruption / access status with local guide 24h before'],
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/research/east-java-field-data-2026.json', confidence: 'inferred' }
+      ]
+    },
+    {
+      id: 'tight_multi_destination_short_days',
+      label: 'Too many destinations for available days',
+      status: 'active',
+      confidence: 'manual_seed',
+      condition: { destination_count_gte: 3, duration_days_lte: 2 },
+      severity: 'high',
+      recommendation: 'Itinerary has more destination stops than the duration can support with adequate rest. Adding one or two nights significantly improves guest experience and lowers fatigue risk. Consider reducing destinations or extending tour length.',
+      alternatives: ['remove lowest-priority destination', 'extend by one night to allow full activity at each stop', 'prioritize Bromo or Ijen, not both, for very short trips'],
+      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/recommendation-rules.yaml', confidence: 'manual_seed' }]
     }
   ];
+
+  if (!backoffice) return rules;
+
+  for (const rule of rules) {
+    const observed = recommendationObserved(backoffice, rule.id);
+    if (!observed) continue;
+    rule.confidence = bumpConfidence(rule.confidence);
+    rule.source_trace.push(backofficeTrace('booking evidence (logistics/finance/actuals)'));
+    rule.backoffice_observed = observed;
+  }
+
+  return rules;
 }

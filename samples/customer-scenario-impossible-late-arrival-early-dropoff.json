@@ -1,10 +1,23 @@
 {
-  "pickup_type": "airport",
-  "pickup_location": "Surabaya Airport",
-  "arrival_time": "2024-06-15T18:00:00Z",
-  "dropoff_type": "airport",
-  "dropoff_location": "Surabaya Airport",
-  "destinations": ["bromo", "ijen"],
+  "scenario_id": "custom_impossible_late_arrival_early_dropoff_1d",
+  "channel": "CUSTOM",
+  "pickup": {
+    "type": "airport",
+    "location": "Surabaya Airport",
+    "time": "21:30",
+    "flight_number": "QZ7510",
+    "arrival_time": "21:30",
+    "origin_city": "Singapore"
+  },
+  "dropoff": {
+    "type": "airport",
+    "location": "Surabaya Airport",
+    "flight_number": "QZ7511",
+    "departure_time": "07:00"
+  },
+  "pax": 2,
   "duration_days": 1,
-  "pax": 2
+  "requested_destinations": ["Bromo", "Madakaripura", "Ijen"],
+  "arrival_time": "21:30",
+  "constraints": ["impossible timing test", "next-morning departure"]
 }

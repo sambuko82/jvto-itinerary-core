@@ -1,10 +1,11 @@
-import type { BaseEntity } from './common.js';
+import type { BaseEntity, BackofficeObserved } from './common.js';
 
 export interface RecommendationRule extends BaseEntity {
   condition: Record<string, unknown>;
   severity: 'low' | 'medium' | 'high' | 'critical';
   recommendation: string;
   alternatives?: string[];
+  backoffice_observed?: BackofficeObserved;
 }
 
 export interface MapPoint {

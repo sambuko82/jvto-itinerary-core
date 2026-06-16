@@ -1,7 +1,9 @@
 import type { DestinationActivityProfile } from '../domain/operations.js';
+import type { BackofficeExtract } from '../extract/sourceTypes.js';
+import { activityProfileObserved, backofficeTrace, bumpConfidence } from './backoffice-enrich.js';
 
-export function buildDestinationActivityProfiles(): DestinationActivityProfile[] {
-  return [
+export function buildDestinationActivityProfiles(backoffice?: BackofficeExtract): DestinationActivityProfile[] {
+  const profiles: DestinationActivityProfile[] = [
     {
       id: 'destination_bromo_activity_profile',
       label: 'Mount Bromo activity profile',
@@ -148,4 +150,16 @@ export function buildDestinationActivityProfiles(): DestinationActivityProfile[]
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/destination-activity-profiles.yaml', confidence: 'manual_seed' }]
     }
   ];
+
+  if (!backoffice) return profiles;
+
+  for (const profile of profiles) {
+    const observed = activityProfileObserved(backoffice, profile.destination_id);
+    if (!observed) continue;
+    profile.confidence = bumpConfidence(profile.confidence);
+    profile.source_trace.push(backofficeTrace('activity cost/unit/formula (destination_activities, other_activities)'));
+    profile.backoffice_observed = observed;
+  }
+
+  return profiles;
 }

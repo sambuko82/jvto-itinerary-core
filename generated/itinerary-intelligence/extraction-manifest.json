@@ -1,0 +1,136 @@
+{
+  "schema_version": "itinerary-intelligence/inventory-v1",
+  "source_mode": "source_connected",
+  "generated_at": "2026-06-15T00:00:00Z",
+  "legacy_dataset_mode": "manual_seed_mvp",
+  "extractors": [
+    {
+      "extractor": "llm_wiki",
+      "connected": true,
+      "primary_source": "input/llm-wiki/package-readiness/",
+      "record_counts": {
+        "packages": 16,
+        "pricing": 16,
+        "itineraries": 16,
+        "booking_compatibility": 16
+      },
+      "missing_fields": [],
+      "source_trace": [
+        {
+          "repo": "sambuko82/llm-wiki",
+          "path": "output/products/package-readiness/package-registry.json",
+          "field": null
+        },
+        {
+          "repo": "sambuko82/llm-wiki",
+          "path": "output/products/package-readiness/package-pricing.json",
+          "field": null
+        },
+        {
+          "repo": "sambuko82/llm-wiki",
+          "path": "output/products/package-readiness/package-itineraries.json",
+          "field": null
+        },
+        {
+          "repo": "sambuko82/llm-wiki",
+          "path": "output/products/package-readiness/booking-compatibility.json",
+          "field": null
+        }
+      ]
+    },
+    {
+      "extractor": "jvto_web",
+      "connected": true,
+      "primary_source": "input/jvto-web/",
+      "record_counts": {
+        "models": 106,
+        "restricted_models": 48,
+        "package_helpers": 2
+      },
+      "missing_fields": [],
+      "source_trace": [
+        {
+          "repo": "jvto-devteam/jvto-web",
+          "path": "prisma/schema.prisma",
+          "field": "models"
+        },
+        {
+          "repo": "jvto-devteam/jvto-web",
+          "path": "src/lib/packages/",
+          "field": "package_helpers"
+        },
+        {
+          "repo": "jvto-devteam/jvto-web",
+          "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+          "field": "package_details"
+        }
+      ]
+    },
+    {
+      "extractor": "new_backoffice",
+      "connected": true,
+      "primary_source": "input/new-backoffice/exports/itinerary-core-bundle.json",
+      "record_counts": {
+        "pickup_patterns": 2,
+        "dropoff_patterns": 2,
+        "hotels": 2,
+        "vehicles": 3,
+        "crew_roles": 2,
+        "activities": 3,
+        "finance_patterns": 2,
+        "package_templates": 2
+      },
+      "missing_fields": [],
+      "source_trace": [
+        {
+          "repo": "jvto-devteam/new-backoffice",
+          "path": "app/Http/Controllers/ExportData/ExportDataItineraryCore.php",
+          "field": "bundle"
+        }
+      ]
+    }
+  ],
+  "status": "active",
+  "source_trace": [
+    {
+      "repo": "sambuko82/llm-wiki",
+      "path": "output/products/package-readiness/package-registry.json",
+      "field": null
+    },
+    {
+      "repo": "sambuko82/llm-wiki",
+      "path": "output/products/package-readiness/package-pricing.json",
+      "field": null
+    },
+    {
+      "repo": "sambuko82/llm-wiki",
+      "path": "output/products/package-readiness/package-itineraries.json",
+      "field": null
+    },
+    {
+      "repo": "sambuko82/llm-wiki",
+      "path": "output/products/package-readiness/booking-compatibility.json",
+      "field": null
+    },
+    {
+      "repo": "jvto-devteam/jvto-web",
+      "path": "prisma/schema.prisma",
+      "field": "models"
+    },
+    {
+      "repo": "jvto-devteam/jvto-web",
+      "path": "src/lib/packages/",
+      "field": "package_helpers"
+    },
+    {
+      "repo": "jvto-devteam/jvto-web",
+      "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+      "field": "package_details"
+    },
+    {
+      "repo": "jvto-devteam/new-backoffice",
+      "path": "app/Http/Controllers/ExportData/ExportDataItineraryCore.php",
+      "field": "bundle"
+    }
+  ]
+}

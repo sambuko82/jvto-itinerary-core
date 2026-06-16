@@ -1,0 +1,183 @@
+[
+  {
+    "id": "dropoff__airport_hotel",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Airport / Hotel"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "buffer_minutes"
+    ],
+    "status": "active",
+    "context_id": "dropoff__airport_hotel",
+    "label": "Airport / Hotel",
+    "normalized_candidate_id": "airport_hotel",
+    "context_type": "airport",
+    "applies_to_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n"
+    ],
+    "seen_as": [
+      "to"
+    ],
+    "handoff_notes": [
+      "airport dropoff handoff",
+      "departure buffer NOT inferred"
+    ]
+  },
+  {
+    "id": "dropoff__gilimanuk_harbor",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Gilimanuk Harbor"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "ferry_or_transfer_timing"
+    ],
+    "status": "active",
+    "context_id": "dropoff__gilimanuk_harbor",
+    "label": "Gilimanuk Harbor",
+    "normalized_candidate_id": "gilimanuk_harbor",
+    "context_type": "harbor",
+    "applies_to_packages": [
+      "bali/bromo-ijen-3d2n",
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "bromo-madakaripura-ijen-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "seen_as": [
+      "from",
+      "to"
+    ],
+    "handoff_notes": [
+      "harbor/ferry crossing handoff",
+      "ferry buffer and Bali transfer cost NOT inferred"
+    ]
+  },
+  {
+    "id": "dropoff__juanda_airport",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Juanda Airport"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "buffer_minutes"
+    ],
+    "status": "active",
+    "context_id": "dropoff__juanda_airport",
+    "label": "Juanda Airport",
+    "normalized_candidate_id": "juanda_airport",
+    "context_type": "airport",
+    "applies_to_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "seen_as": [
+      "to"
+    ],
+    "handoff_notes": [
+      "airport dropoff handoff",
+      "departure buffer NOT inferred"
+    ]
+  },
+  {
+    "id": "dropoff__ketapang_harbor",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Ketapang Harbor"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "ferry_or_transfer_timing"
+    ],
+    "status": "active",
+    "context_id": "dropoff__ketapang_harbor",
+    "label": "Ketapang Harbor",
+    "normalized_candidate_id": "ketapang_harbor",
+    "context_type": "harbor",
+    "applies_to_packages": [
+      "bali/bromo-ijen-3d2n",
+      "bromo-madakaripura-ijen-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "seen_as": [
+      "to"
+    ],
+    "handoff_notes": [
+      "harbor/ferry crossing handoff",
+      "ferry buffer and Bali transfer cost NOT inferred"
+    ]
+  },
+  {
+    "id": "dropoff__ketapang_port",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "jvto-devteam/jvto-web",
+        "path": "src/lib/publicContent/generated/packageDetailSnapshots.json",
+        "field": "Ketapang Port"
+      }
+    ],
+    "confidence": "medium",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "ferry_or_transfer_timing"
+    ],
+    "status": "active",
+    "context_id": "dropoff__ketapang_port",
+    "label": "Ketapang Port",
+    "normalized_candidate_id": "ketapang_port",
+    "context_type": "harbor",
+    "applies_to_packages": [
+      "bali/bromo-ijen-3d2n",
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "bromo-madakaripura-ijen-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "seen_as": [
+      "from",
+      "to"
+    ],
+    "handoff_notes": [
+      "harbor/ferry crossing handoff",
+      "ferry buffer and Bali transfer cost NOT inferred"
+    ]
+  }
+]

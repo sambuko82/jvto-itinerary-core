@@ -3,7 +3,7 @@
     "id": "late_arrival_before_ijen",
     "label": "Late arrival before Ijen",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "condition": {
       "next_activity": "Ijen",
       "hotel_arrival_after": "21:00"
@@ -21,14 +21,31 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/time-window-rules.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "late-arrival frequency (booking_logistics_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "late_arrival_samples": 9,
+      "by_bucket": {
+        "evening_night": 9
+      },
+      "matched_pickup_groups": [
+        "Surabaya Airport",
+        "Surabaya"
+      ],
+      "destination_filter": "Ijen"
+    }
   },
   {
     "id": "late_surabaya_arrival_before_bromo",
     "label": "Late Surabaya arrival before Bromo sunrise",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "condition": {
       "pickup_area": "Surabaya",
       "arrival_after": "17:00",
@@ -46,8 +63,25 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/time-window-rules.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
+        "field": "late-arrival frequency (booking_logistics_patterns)",
+        "confidence": "inferred"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "late_arrival_samples": 9,
+      "by_bucket": {
+        "evening_night": 9
+      },
+      "matched_pickup_groups": [
+        "Surabaya Airport",
+        "Surabaya"
+      ],
+      "destination_filter": "Bromo"
+    }
   },
   {
     "id": "airport_dropoff_cutoff_after_waterfall",

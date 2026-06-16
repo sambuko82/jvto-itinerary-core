@@ -1,10 +1,11 @@
-import type { BaseEntity } from './common.js';
+import type { BaseEntity, BackofficeObserved } from './common.js';
 
 export interface TimeWindowRule extends BaseEntity {
   condition: Record<string, unknown>;
   impact: string[];
   recommendation: string;
   severity: 'low' | 'medium' | 'high' | 'critical';
+  backoffice_observed?: BackofficeObserved;
 }
 
 export interface RoadSituationProfile extends BaseEntity {
@@ -26,6 +27,7 @@ export interface DestinationActivityProfile extends BaseEntity {
   bad_previous_overnight?: string[];
   cost_components: string[];
   warning_rules?: string[];
+  backoffice_observed?: BackofficeObserved;
 }
 
 export interface OperationalEvent extends BaseEntity {
@@ -37,6 +39,7 @@ export interface OperationalEvent extends BaseEntity {
   risk_if_late?: string[];
   customer_visible: boolean;
   cost_components?: string[];
+  backoffice_observed?: BackofficeObserved;
 }
 
 export interface MealLogic extends BaseEntity {
@@ -45,6 +48,7 @@ export interface MealLogic extends BaseEntity {
   applies_when: string[];
   customer_note?: string;
   cost_components?: string[];
+  backoffice_observed?: BackofficeObserved;
 }
 
 export interface AccommodationLogic extends BaseEntity {
@@ -54,4 +58,5 @@ export interface AccommodationLogic extends BaseEntity {
   operational_notes: string[];
   risk_if_arrival_late?: string[];
   cost_components?: string[];
+  backoffice_observed?: BackofficeObserved;
 }

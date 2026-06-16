@@ -1,0 +1,25 @@
+{
+  "schema_version": "package-readiness/v1.2",
+  "generated_by": "scripts/compile_packages.py",
+  "generated_at": "2026-06-07T16:52:25.857534+00:00",
+  "dry_run": false,
+  "canonical_package_count": 16,
+  "source_hashes": {
+    "packages-overview": "c27b40068df6",
+    "packages-full-pricing": "c78771b3c396",
+    "packages-itineraries": "627317e792f2",
+    "sitemap": "b60018b623d0",
+    "route-data": "78a6b50ada57",
+    "policy-source-ownership": "fb3a6e84deb5",
+    "db-export": "555d2d9dfa66"
+  },
+  "findings_by_rule": {},
+  "artifacts": [
+    "package-registry.json",
+    "package-pricing.json",
+    "package-itineraries.json",
+    "booking-compatibility.json",
+    "gap-report.json"
+  ],
+  "clean": true
+}

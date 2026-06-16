@@ -1,0 +1,178 @@
+[
+  {
+    "package_id": "bromo-1d1n",
+    "slug": "bromo-1d1n",
+    "origin": "surabaya",
+    "title": "1 Day Bromo Midnight Experience from Surabaya",
+    "duration": "1D1N",
+    "public_url": "/tours/from-surabaya/bromo-1d1n",
+    "ijen_relevant": false,
+    "visits_madakaripura": false,
+    "is_specialty": false
+  },
+  {
+    "package_id": "bromo-2d1n",
+    "slug": "bromo-2d1n",
+    "origin": "surabaya",
+    "title": "2 Day Bromo Sunrise Adventure from Surabaya",
+    "duration": "2D1N",
+    "public_url": "/tours/from-surabaya/bromo-2d1n",
+    "ijen_relevant": false,
+    "visits_madakaripura": false,
+    "is_specialty": false
+  },
+  {
+    "package_id": "ijen-2d1n",
+    "slug": "ijen-2d1n",
+    "origin": "surabaya",
+    "title": "2 Day Ijen Blue Fire Expedition from Surabaya",
+    "duration": "2D1N",
+    "public_url": "/tours/from-surabaya/ijen-2d1n",
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-3d2n",
+    "slug": "ijen-bromo-madakaripura-3d2n",
+    "origin": "surabaya",
+    "title": "3 Day Ijen, Bromo & Madakaripura Waterfall Discovery from Surabaya",
+    "duration": "3D2N",
+    "public_url": "/tours/from-surabaya/ijen-bromo-madakaripura-3d2n",
+    "ijen_relevant": true,
+    "visits_madakaripura": true,
+    "is_specialty": false
+  },
+  {
+    "package_id": "bromo-madakaripura-ijen-3d2n",
+    "slug": "bromo-madakaripura-ijen-3d2n",
+    "origin": "surabaya",
+    "title": "3 Day Bromo, Madakaripura & Ijen Overland from Surabaya to Bali",
+    "duration": "3D2N",
+    "public_url": "/tours/from-surabaya/bromo-madakaripura-ijen-3d2n",
+    "ijen_relevant": true,
+    "visits_madakaripura": true,
+    "is_specialty": false
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "origin": "surabaya",
+    "title": "4 Day Ijen, Papuma Beach, Tumpak Sewu & Bromo Journey from Surabaya",
+    "duration": "4D3N",
+    "public_url": "/tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-4d3n",
+    "slug": "ijen-bromo-madakaripura-4d3n",
+    "origin": "surabaya",
+    "title": "4 Day Ijen, Bromo & Madakaripura Waterfall Expedition from Surabaya",
+    "duration": "4D3N",
+    "public_url": "/tours/from-surabaya/ijen-bromo-madakaripura-4d3n",
+    "ijen_relevant": true,
+    "visits_madakaripura": true,
+    "is_specialty": false
+  },
+  {
+    "package_id": "tumpak-sewu-bromo-ijen-4d3n",
+    "slug": "tumpak-sewu-bromo-ijen-4d3n",
+    "origin": "surabaya",
+    "title": "4 Day Tumpak Sewu, Bromo & Ijen Adventure from Surabaya to Bali",
+    "duration": "4D3N",
+    "public_url": "/tours/from-surabaya/tumpak-sewu-bromo-ijen-4d3n",
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "origin": "surabaya",
+    "title": "5 Day Ijen, Papuma Beach, Tumpak Sewu & Bromo Nature Trip from Surabaya",
+    "duration": "5D4N",
+    "public_url": "/tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-malang-5d4n",
+    "slug": "ijen-bromo-madakaripura-malang-5d4n",
+    "origin": "surabaya",
+    "title": "5 Day Ijen, Bromo, Madakaripura & Malang City Adventure from Surabaya",
+    "duration": "5D4N",
+    "public_url": "/tours/from-surabaya/ijen-bromo-madakaripura-malang-5d4n",
+    "ijen_relevant": true,
+    "visits_madakaripura": true,
+    "is_specialty": false
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "origin": "surabaya",
+    "title": "6 Day Ijen, Papuma Beach, Tumpak Sewu, Bromo & Malang City Discovery from Surabaya",
+    "duration": "6D5N",
+    "public_url": "/tours/from-surabaya/ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false
+  },
+  {
+    "package_id": "taman-safari-prigen-bromo-madakaripura-3d2n",
+    "slug": "taman-safari-prigen-bromo-madakaripura-3d2n",
+    "origin": "surabaya",
+    "title": "3 Day Taman Safari Prigen, Bromo & Madakaripura from Surabaya",
+    "duration": "3D2N",
+    "public_url": "/tours/from-surabaya/taman-safari-prigen-bromo-madakaripura-3d2n",
+    "ijen_relevant": false,
+    "visits_madakaripura": true,
+    "is_specialty": true
+  },
+  {
+    "package_id": "bali/bromo-ijen-3d2n",
+    "slug": "bromo-ijen-3d2n",
+    "origin": "bali",
+    "title": "3 Day Bromo & Ijen Volcano Discovery from Bali",
+    "duration": "3D2N",
+    "public_url": "/tours/from-bali/bromo-ijen-3d2n",
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false
+  },
+  {
+    "package_id": "bali/ijen-bromo-madakaripura-3d2n",
+    "slug": "ijen-bromo-madakaripura-3d2n",
+    "origin": "bali",
+    "title": "3 Day Ijen, Bromo & Madakaripura Waterfall Journey from Bali to Surabaya",
+    "duration": "3D2N",
+    "public_url": "/tours/from-bali/ijen-bromo-madakaripura-3d2n",
+    "ijen_relevant": true,
+    "visits_madakaripura": true,
+    "is_specialty": false
+  },
+  {
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "origin": "bali",
+    "title": "4 Day Ijen, Papuma Beach, Tumpak Sewu & Bromo Expedition from Bali to Surabaya",
+    "duration": "4D3N",
+    "public_url": "/tours/from-bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false
+  },
+  {
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "origin": "bali",
+    "title": "5 Day Ijen, Papuma Beach, Tumpak Sewu & Bromo Discovery from Bali to Surabaya",
+    "duration": "5D4N",
+    "public_url": "/tours/from-bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false
+  }
+]
