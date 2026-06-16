@@ -17,6 +17,7 @@ import { buildVisualMapLayer } from './build-visual-map-layer.js';
 import { buildOutputTemplateMap } from './build-output-template-map.js';
 import { buildScenarioPreview } from './build-scenario-preview.js';
 import { buildExportPayloads } from './build-export-payloads.js';
+import { buildPackageScenarioContext } from './build-package-scenario-context.js';
 
 export async function compileGeneratedData() {
   // Phase 1B: enrich the operational/cost datasets with redacted new-backoffice
@@ -46,7 +47,10 @@ export async function compileGeneratedData() {
     await writeJson(`${GENERATED_DIR}/${file}`, data);
   }
 
-  const exportPayloads = buildExportPayloads();
+  // Generated datasets (incl. 11-package-route-map) are now on disk, so the
+  // package-aware scenario can be evaluated and threaded into the export payloads.
+  const packageContext = await buildPackageScenarioContext();
+  const exportPayloads = buildExportPayloads(packageContext);
   for (const payload of exportPayloads) {
     await writeJson(payload.path, payload.data);
   }

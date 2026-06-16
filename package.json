@@ -17,7 +17,7 @@
     "inspect": "tsx src/cli.ts inspect",
     "scenario": "tsx src/cli.ts scenario",
     "build:all": "npm run compile && npm run validate",
-    "test": "tsx --test src/scenario/evaluateScenario.test.ts src/extract/extract-backoffice.test.ts src/compile/backoffice-enrich.test.ts src/config/destination-crosswalk.test.ts src/validate/inventory.test.ts src/extract/extraction-manifest.test.ts src/validate/phase3-catalog.test.ts src/validate/phase4-routes.test.ts src/validate/phase45-route-source.test.ts src/validate/phase46-route-map.test.ts src/validate/phase5-operational-context.test.ts",
+    "test": "tsx --test src/scenario/evaluateScenario.test.ts src/extract/extract-backoffice.test.ts src/compile/backoffice-enrich.test.ts src/compile/export-payloads.test.ts src/config/destination-crosswalk.test.ts src/validate/inventory.test.ts src/extract/extraction-manifest.test.ts src/validate/phase3-catalog.test.ts src/validate/phase4-routes.test.ts src/validate/phase45-route-source.test.ts src/validate/phase46-route-map.test.ts src/validate/phase5-operational-context.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
