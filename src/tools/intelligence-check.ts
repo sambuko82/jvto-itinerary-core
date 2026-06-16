@@ -41,13 +41,18 @@ const ADR_FILES = [
   'docs/adr/0001-scenario-evaluator-pr-checklist.md'
 ];
 
-// emitted-id field -> dataset category that must appear in source_trace.
-const EMITTED_ID_DATASETS: Record<string, string> = {
-  route_leg_ids: '04-route-leg-index',
-  operational_events: '07-operational-events',
-  meal_logic: '08-meal-logic',
-  accommodation_logic: '09-accommodation-logic',
-  cost_components: '10-cost-components'
+// emitted-id field -> every dataset category that drives it and so must appear
+// in source_trace. cost_components is driven by destination profiles (06) and
+// operational events (07) as well as the cost catalog (10) — see
+// evaluateScenario.ts (prof.cost_components / ev.cost_components) — so all three
+// are required; tying it to 10 alone would report green if the evaluator dropped
+// the 06/07 trace, the false positive ADR-0001's dataset-category contract forbids.
+const EMITTED_ID_DATASETS: Record<string, string[]> = {
+  route_leg_ids: ['04-route-leg-index'],
+  operational_events: ['07-operational-events'],
+  meal_logic: ['08-meal-logic'],
+  accommodation_logic: ['09-accommodation-logic'],
+  cost_components: ['10-cost-components', '06-destination-activity-profiles', '07-operational-events']
 };
 
 // numeric pricing keys that must never appear on the evaluator output contract.
@@ -137,8 +142,9 @@ function main(): void {
       ? (s.source_trace as Array<{ ref?: string }>).map((t) => String(t.ref ?? '')).join(' ')
       : '';
     const uncovered = Object.entries(EMITTED_ID_DATASETS)
-      .filter(([field, ds]) => Array.isArray(s[field]) && (s[field] as unknown[]).length > 0 && !traceRefs.includes(ds))
-      .map(([field]) => field);
+      .filter(([field]) => Array.isArray(s[field]) && (s[field] as unknown[]).length > 0)
+      .flatMap(([field, datasets]) =>
+        datasets.filter((ds) => !traceRefs.includes(ds)).map((ds) => `${field}->${ds}`));
     add('source_trace covers emitted dataset categories',
       Array.isArray(s.source_trace) && s.source_trace.length > 0 && uncovered.length === 0,
       uncovered.length ? `uncovered: ${uncovered.join(', ')}` : `${(s.source_trace as unknown[]).length} dataset refs cover all emitted categories`);
