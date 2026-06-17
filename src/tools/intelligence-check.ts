@@ -23,6 +23,7 @@ import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { GENERATED_DIR, SAMPLES_DIR } from '../config/paths.js';
+import { checkNoLlmDependency } from '../validate/llm-dependency-guard.js';
 
 const CANONICAL_SCENARIO = `${SAMPLES_DIR}/customer-scenario-surabaya-airport-late-bromo-ijen-ketapang.json`;
 
@@ -101,6 +102,11 @@ function main(): void {
   filesExist('generated datasets exist', REQUIRED_DATASETS.map((f) => `${GENERATED_DIR}/${f}`));
   filesExist('scenario evaluator files exist', EVALUATOR_FILES);
   filesExist('ADR guardrail files exist', ADR_FILES);
+
+  // Keyless invariant: no external LLM API key / paid model SDK required to run.
+  const llm = checkNoLlmDependency();
+  add('no external LLM key / model SDK required', llm.ok,
+    llm.ok ? `keyless deterministic core — scanned ${llm.scanned} source files, no provider key/SDK` : `violations: ${llm.violations.join('; ')}`);
 
   // Authoritative generated-data gate: schema/PII/joinability over every numbered
   // dataset. existsSync above and the test list do not cover datasets the scenario
