@@ -148,10 +148,31 @@ export interface SourceContractIntake {
   skeleton: PackageDaySkeletonRecord[];
 }
 
-function readRaw(path: string): unknown | undefined {
+type RawRead =
+  | { state: 'missing' }
+  | { state: 'parse_error'; error: string }
+  | { state: 'ok'; value: unknown };
+
+/**
+ * Read + parse a snapshot without throwing. A present-but-malformed snapshot is
+ * reported as `parse_error` so the readiness report can mark the source as
+ * required_failed / schema_failed instead of crashing the intake before any
+ * report is written.
+ */
+function readRaw(path: string): RawRead {
   const abs = resolve(path);
-  if (!existsSync(abs)) return undefined;
-  return JSON.parse(readFileSync(abs, 'utf8')) as unknown;
+  if (!existsSync(abs)) return { state: 'missing' };
+  let text: string;
+  try {
+    text = readFileSync(abs, 'utf8');
+  } catch (err) {
+    return { state: 'parse_error', error: `read failed: ${err instanceof Error ? err.message : String(err)}` };
+  }
+  try {
+    return { state: 'ok', value: JSON.parse(text) as unknown };
+  } catch (err) {
+    return { state: 'parse_error', error: `invalid JSON: ${err instanceof Error ? err.message : String(err)}` };
+  }
 }
 
 function zodErrors(err: z.ZodError): string[] {
@@ -171,7 +192,7 @@ export async function buildSourceContractIntake(): Promise<SourceContractIntake>
   const warnings: string[] = [];
 
   // ── 1. llm-wiki operational days (required) ──
-  const opRaw = readRaw(LLM_WIKI_OP_PATH);
+  const opRead = readRaw(LLM_WIKI_OP_PATH);
   let opDays: OperationalDay[] = [];
   const llmStatus: LlmWikiSourceStatus = {
     status: 'available',
@@ -180,11 +201,14 @@ export async function buildSourceContractIntake(): Promise<SourceContractIntake>
     schema_valid: false,
     errors: []
   };
-  if (opRaw === undefined) {
+  if (opRead.state === 'missing') {
     llmStatus.status = 'missing';
     llmStatus.errors.push('snapshot file not found');
+  } else if (opRead.state === 'parse_error') {
+    llmStatus.status = 'required_failed';
+    llmStatus.errors.push(opRead.error);
   } else {
-    const parsed = operationalDaysSchema.safeParse(opRaw);
+    const parsed = operationalDaysSchema.safeParse(opRead.value);
     if (parsed.success) {
       opDays = parsed.data;
       llmStatus.schema_valid = true;
@@ -196,7 +220,7 @@ export async function buildSourceContractIntake(): Promise<SourceContractIntake>
   }
 
   // ── 2. jvto-web activity snapshots (required) ──
-  const actRaw = readRaw(JVTO_WEB_ACT_PATH);
+  const actRead = readRaw(JVTO_WEB_ACT_PATH);
   let actItems: ActivitySnapshotItem[] = [];
   const jvtoStatus: JvtoWebSourceStatus = {
     status: 'available',
@@ -207,11 +231,14 @@ export async function buildSourceContractIntake(): Promise<SourceContractIntake>
     schema_valid: false,
     errors: []
   };
-  if (actRaw === undefined) {
+  if (actRead.state === 'missing') {
     jvtoStatus.status = 'missing';
     jvtoStatus.errors.push('snapshot file not found');
+  } else if (actRead.state === 'parse_error') {
+    jvtoStatus.status = 'required_failed';
+    jvtoStatus.errors.push(actRead.error);
   } else {
-    const parsed = activitySnapshotFileSchema.safeParse(actRaw);
+    const parsed = activitySnapshotFileSchema.safeParse(actRead.value);
     if (parsed.success) {
       actItems = parsed.data.items;
       jvtoStatus.schema_valid = true;
@@ -225,7 +252,7 @@ export async function buildSourceContractIntake(): Promise<SourceContractIntake>
   }
 
   // ── 3. new-backoffice cost reference (optional) ──
-  const costRaw = readRaw(BACKOFFICE_COST_PATH);
+  const costRead = readRaw(BACKOFFICE_COST_PATH);
   const boStatus: BackofficeSourceStatus = {
     status: 'missing_optional_source',
     path: BACKOFFICE_COST_PATH,
@@ -233,12 +260,15 @@ export async function buildSourceContractIntake(): Promise<SourceContractIntake>
     schema_valid: false,
     errors: []
   };
-  if (costRaw === undefined) {
+  if (costRead.state === 'missing') {
     warnings.push(
       'new-backoffice cost-reference-rates.json not available; run php artisan export:cost-reference-rates in an environment with live DB .env'
     );
+  } else if (costRead.state === 'parse_error') {
+    boStatus.status = 'schema_failed';
+    boStatus.errors.push(costRead.error);
   } else {
-    const parsed = costReferenceSchema.safeParse(costRaw);
+    const parsed = costReferenceSchema.safeParse(costRead.value);
     if (parsed.success) {
       boStatus.status = 'available';
       boStatus.schema_valid = true;
