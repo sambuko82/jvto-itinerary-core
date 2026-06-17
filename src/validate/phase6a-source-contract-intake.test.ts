@@ -99,6 +99,30 @@ test('skeleton: activities sorted by activity_order; records sorted by key then 
   assert.deepEqual(keyDay, [...keyDay].sort(), 'skeleton not stably sorted by key+day');
 });
 
+test('day_flow: derived from sequence + overnight_status, internally consistent', () => {
+  const DISP = new Set(['overnight_hotel', 'continue_onward', 'trip_end', 'unknown']);
+  const CO = new Set(['none', 'checkout_then_continue', 'checkout_at_end']);
+  for (const r of skeleton) {
+    const f = r.day_flow;
+    assert.ok(DISP.has(f.day_end_disposition), `bad disposition in ${r.catalog_package_key} d${r.day}`);
+    assert.ok(CO.has(f.checkout_mode));
+    assert.equal(f.returns_to_hotel, f.day_end_disposition === 'overnight_hotel');
+    if (r.overnight_status === 'hotel') assert.equal(f.returns_to_hotel, true);
+    if (r.overnight_status === 'no_overnight') assert.equal(f.returns_to_hotel, false);
+    assert.equal(f.derived_from, 'activity_sequence+overnight_status');
+  }
+});
+
+test('day_flow: no hotel return when continuing onward (Ijen -> Bali pattern)', () => {
+  const d = skeleton.find((r) => r.slug === 'bromo-ijen-3d2n' && r.day === 3);
+  assert.ok(d, 'expected bromo-ijen-3d2n day 3');
+  assert.equal(d!.overnight_status, 'no_overnight');
+  assert.equal(d!.day_flow.returns_to_hotel, false);
+  assert.equal(d!.day_flow.day_end_disposition, 'continue_onward');
+  // at least one day exhibits same-day checkout before continuing (luggage travels with guest)
+  assert.ok(skeleton.some((r) => r.day_flow.checkout_mode === 'checkout_then_continue'));
+});
+
 test('no PII / forbidden-inference keys anywhere in outputs', () => {
   assertNoForbiddenKeys(readiness);
   assertNoForbiddenKeys(skeleton);

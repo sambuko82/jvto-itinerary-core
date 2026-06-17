@@ -127,6 +127,22 @@ export interface SourceContractReadinessReport {
   };
 }
 
+export type DayEndDisposition = 'overnight_hotel' | 'continue_onward' | 'trip_end' | 'unknown';
+export type CheckoutMode = 'none' | 'checkout_then_continue' | 'checkout_at_end';
+
+/**
+ * Operational day-flow derived purely from the source activity sequence + overnight_status
+ * (no invented durations/distances). Answers: does the guest return to a hotel at day end,
+ * how does the day terminate, and is there a same-day checkout before continuing onward
+ * (e.g. Ijen -> Bali: checkout, then Ijen, then straight to Bali — no hotel return).
+ */
+export interface DayFlow {
+  returns_to_hotel: boolean;
+  day_end_disposition: DayEndDisposition;
+  checkout_mode: CheckoutMode;
+  derived_from: string;
+}
+
 export interface PackageDaySkeletonRecord {
   catalog_package_key: string;
   llm_wiki_package_id: string | null;
@@ -138,6 +154,7 @@ export interface PackageDaySkeletonRecord {
   hotel_label: string | null;
   overnight_status: string;
   activities: Activity[];
+  day_flow: DayFlow;
   source_basis: string[];
   missing_sources: string[];
   notes: string[];
@@ -180,6 +197,46 @@ function zodErrors(err: z.ZodError): string[] {
 }
 
 const dayKey = (catalogKey: string, day: number): string => `${catalogKey}|${day}`;
+
+// Gateway endpoints (origin cities / airports) — used only to tell a final return-home
+// transfer apart from a cross-region continue-onward. Matched against source labels only.
+const GATEWAY_END = /\b(surabaya|juanda|airport|malang)\b/i;
+
+/** Derive operational day-flow from the ordered activity sequence + overnight_status. */
+function deriveDayFlow(activities: Activity[], overnightStatus: string): DayFlow {
+  const last = activities[activities.length - 1];
+  const endsCheckIn = last?.activity_type === 'CheckInAction';
+  const endsOnward = last?.activity_type === 'TravelAction' && !!last.to_label;
+
+  let day_end_disposition: DayEndDisposition;
+  if (overnightStatus === 'hotel') {
+    // Guest sleeps at a hotel tonight (incl. days ending in a transfer to that hotel).
+    day_end_disposition = 'overnight_hotel';
+  } else if (overnightStatus === 'no_overnight' || overnightStatus === 'overnight_in_vehicle') {
+    day_end_disposition = endsOnward && GATEWAY_END.test(last!.to_label ?? '') ? 'trip_end' : 'continue_onward';
+  } else if (endsCheckIn) {
+    day_end_disposition = 'overnight_hotel';
+  } else if (endsOnward) {
+    day_end_disposition = GATEWAY_END.test(last!.to_label ?? '') ? 'trip_end' : 'continue_onward';
+  } else {
+    day_end_disposition = 'unknown';
+  }
+
+  const returns_to_hotel = day_end_disposition === 'overnight_hotel';
+
+  // Same-day checkout that is followed by further visits/onward travel means the guest
+  // carries luggage and does not return to that hotel (e.g. checkout -> Ijen -> Bali).
+  let checkout_mode: CheckoutMode = 'none';
+  const coIdx = activities.findIndex((x) => x.activity_type === 'CheckOutAction');
+  if (coIdx > -1) {
+    const continuesAfter = activities
+      .slice(coIdx + 1)
+      .some((x) => x.activity_type === 'TouristAttractionVisit' || x.activity_type === 'TravelAction');
+    checkout_mode = continuesAfter ? 'checkout_then_continue' : 'checkout_at_end';
+  }
+
+  return { returns_to_hotel, day_end_disposition, checkout_mode, derived_from: 'activity_sequence+overnight_status' };
+}
 
 export async function buildSourceContractIntake(): Promise<SourceContractIntake> {
   const generated_at = inventoryGeneratedAt();
@@ -377,6 +434,7 @@ export async function buildSourceContractIntake(): Promise<SourceContractIntake>
       hotel_label: o ? o.op.hotel_label : null,
       overnight_status: o ? o.op.overnight_status : 'unknown',
       activities,
+      day_flow: deriveDayFlow(activities, o ? o.op.overnight_status : 'unknown'),
       source_basis,
       missing_sources,
       notes
