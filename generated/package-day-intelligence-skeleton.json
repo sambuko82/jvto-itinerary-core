@@ -72,6 +72,12 @@
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -199,6 +205,12 @@
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -269,6 +281,12 @@
       "day_end_disposition": "continue_onward",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "departure",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -365,6 +383,12 @@
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -447,6 +471,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -552,6 +582,12 @@
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "departure",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -646,6 +682,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -752,6 +794,12 @@
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -811,6 +859,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -893,6 +947,12 @@
       "day_end_disposition": "trip_end",
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "departure",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -988,6 +1048,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -1094,6 +1160,12 @@
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -1153,6 +1225,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -1236,6 +1314,12 @@
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -1284,6 +1368,12 @@
       "day_end_disposition": "trip_end",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "departure",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -1402,6 +1492,12 @@
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -1461,6 +1557,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -1566,6 +1668,12 @@
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "departure",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -1625,6 +1733,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -1753,6 +1867,12 @@
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -1823,6 +1943,12 @@
       "day_end_disposition": "continue_onward",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "departure",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -1908,6 +2034,12 @@
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -1979,6 +2111,12 @@
       "day_end_disposition": "trip_end",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "departure",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -2063,6 +2201,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -2146,6 +2290,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -2251,6 +2401,12 @@
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "departure",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -2335,6 +2491,12 @@
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -2417,6 +2579,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -2522,6 +2690,12 @@
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -2570,6 +2744,12 @@
       "day_end_disposition": "trip_end",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "departure",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -2655,6 +2835,12 @@
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -2737,6 +2923,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -2842,6 +3034,12 @@
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -2924,6 +3122,12 @@
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -2972,6 +3176,12 @@
       "day_end_disposition": "trip_end",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "departure",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -3056,6 +3266,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -3162,6 +3378,12 @@
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -3221,6 +3443,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -3303,6 +3531,12 @@
       "day_end_disposition": "trip_end",
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "departure",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -3387,6 +3621,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -3493,6 +3733,12 @@
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -3552,6 +3798,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -3635,6 +3887,12 @@
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -3683,6 +3941,12 @@
       "day_end_disposition": "trip_end",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "departure",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -3767,6 +4031,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -3873,6 +4143,12 @@
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -3932,6 +4208,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -4014,6 +4296,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -4130,6 +4418,12 @@
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -4178,6 +4472,12 @@
       "day_end_disposition": "trip_end",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "departure",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -4274,6 +4574,12 @@
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -4366,6 +4672,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -4471,6 +4783,12 @@
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "departure",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -4519,6 +4837,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "arrival",
+      "time_sensitive": true,
+      "needs_leg_duration": true,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -4591,6 +4915,12 @@
       "day_end_disposition": "overnight_hotel",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",
@@ -4708,6 +5038,12 @@
       "checkout_mode": "checkout_then_continue",
       "derived_from": "activity_sequence+overnight_status"
     },
+    "schedule": {
+      "role": "intermediate",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
+    },
     "source_basis": [
       "llm-wiki.package-operational-days",
       "jvto-web.packageActivitySnapshots"
@@ -4778,6 +5114,12 @@
       "day_end_disposition": "continue_onward",
       "checkout_mode": "none",
       "derived_from": "activity_sequence+overnight_status"
+    },
+    "schedule": {
+      "role": "departure",
+      "time_sensitive": false,
+      "needs_leg_duration": false,
+      "basis": "day_position+day_flow"
     },
     "source_basis": [
       "llm-wiki.package-operational-days",

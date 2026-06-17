@@ -123,6 +123,33 @@ test('day_flow: no hotel return when continuing onward (Ijen -> Bali pattern)', 
   assert.ok(skeleton.some((r) => r.day_flow.checkout_mode === 'checkout_then_continue'));
 });
 
+test('schedule: arrival/departure roles per package + leg-duration dependency flagged', () => {
+  const byPkg = new Map<string, typeof skeleton>();
+  for (const r of skeleton) {
+    const list = byPkg.get(r.catalog_package_key) ?? [];
+    list.push(r);
+    byPkg.set(r.catalog_package_key, list);
+  }
+  for (const [key, days] of byPkg) {
+    const sorted = [...days].sort((a, b) => a.day - b.day);
+    assert.equal(sorted[0].schedule.role, 'arrival', `first day not arrival in ${key}`);
+    if (sorted.length > 1) {
+      assert.equal(sorted[sorted.length - 1].schedule.role, 'departure', `last day not departure in ${key}`);
+    }
+    for (const r of sorted) {
+      assert.ok(['arrival', 'departure', 'intermediate'].includes(r.schedule.role));
+      assert.equal(r.schedule.needs_leg_duration, r.schedule.time_sensitive);
+      assert.equal(r.schedule.basis, 'day_position+day_flow');
+    }
+  }
+  // a return-to-gateway departure day is time-sensitive and flags that a safe flight
+  // buffer needs leg-duration data (the route_legs gap) — never invented here
+  assert.ok(
+    skeleton.some((r) => r.schedule.role === 'departure' && r.schedule.time_sensitive && r.schedule.needs_leg_duration),
+    'expected a departure day flagged for leg-duration-based buffer'
+  );
+});
+
 test('no PII / forbidden-inference keys anywhere in outputs', () => {
   assertNoForbiddenKeys(readiness);
   assertNoForbiddenKeys(skeleton);

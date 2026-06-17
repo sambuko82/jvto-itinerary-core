@@ -492,6 +492,18 @@
   },
   "implementation_opportunities": [
     {
+      "id": "leg-durations-for-arrival-scheduling",
+      "priority": "medium",
+      "why": "13 legs have null distance/duration — arrival-time day sequencing (rest-first nearest) and safe flight-departure buffers cannot be computed without them",
+      "source": "route-leg-index.json",
+      "target": [
+        "package-day-intelligence-skeleton.json (schedule.needs_leg_duration)"
+      ],
+      "blocked_by": [
+        "per-leg travel duration/distance is do-not-invent; needs route research or backoffice route data"
+      ]
+    },
+    {
       "id": "source-missing-cost-component-rates",
       "priority": "medium",
       "why": "4 cost components have null rate with no backoffice/formula basis",

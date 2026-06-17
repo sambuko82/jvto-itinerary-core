@@ -143,6 +143,23 @@ export interface DayFlow {
   derived_from: string;
 }
 
+export type ScheduleRole = 'arrival' | 'departure' | 'intermediate';
+
+/**
+ * Arrival/departure time-sensitivity of a day, derived from day position + disposition
+ * (source-backed, no invented times). Flags WHICH days are sensitive to flight/transport
+ * timing — e.g. a late Surabaya arrival compresses the day-1 transfer, and the final
+ * return-to-gateway day needs a safe departure buffer. Computing the actual sequence
+ * order / buffer minutes additionally requires per-leg travel durations, which are a
+ * known route_legs gap (flagged in the data-readiness report, not invented here).
+ */
+export interface DaySchedule {
+  role: ScheduleRole;
+  time_sensitive: boolean;
+  needs_leg_duration: boolean;
+  basis: string;
+}
+
 export interface PackageDaySkeletonRecord {
   catalog_package_key: string;
   llm_wiki_package_id: string | null;
@@ -155,6 +172,7 @@ export interface PackageDaySkeletonRecord {
   overnight_status: string;
   activities: Activity[];
   day_flow: DayFlow;
+  schedule: DaySchedule;
   source_basis: string[];
   missing_sources: string[];
   notes: string[];
@@ -236,6 +254,25 @@ function deriveDayFlow(activities: Activity[], overnightStatus: string): DayFlow
   }
 
   return { returns_to_hotel, day_end_disposition, checkout_mode, derived_from: 'activity_sequence+overnight_status' };
+}
+
+/** Arrival/departure time-sensitivity from day position + flow (no invented times). */
+function deriveSchedule(activities: Activity[], flow: DayFlow, day: number, minDay: number, maxDay: number): DaySchedule {
+  const hasTransfer = activities.some((x) => x.activity_type === 'TravelAction' && !!x.to_label);
+  let role: ScheduleRole = 'intermediate';
+  let time_sensitive = false;
+  if (day === minDay) {
+    // arrival day: a late gateway arrival compresses any same-day transfer / overnight reach
+    role = 'arrival';
+    time_sensitive = hasTransfer;
+  } else if (day === maxDay) {
+    // final day: returning to the gateway to catch onward transport needs a safe buffer
+    role = 'departure';
+    time_sensitive = flow.day_end_disposition === 'trip_end';
+  }
+  // ordering the rest-first sequence / sizing the departure buffer additionally needs
+  // per-leg travel durations (a known route_legs gap) — flagged, never invented here.
+  return { role, time_sensitive, needs_leg_duration: time_sensitive, basis: 'day_position+day_flow' };
 }
 
 export async function buildSourceContractIntake(): Promise<SourceContractIntake> {
@@ -403,6 +440,17 @@ export async function buildSourceContractIntake(): Promise<SourceContractIntake>
 
   // ── build the package/day skeleton over the union of resolved day keys ──
   const skeleton: PackageDaySkeletonRecord[] = [];
+  // per-package day range, so each day knows whether it is the arrival/departure day
+  const dayRange = new Map<string, { min: number; max: number }>();
+  for (const key of allDayKeys) {
+    const rec = (opByDay.get(key) ?? actByDay.get(key))!;
+    const cur = dayRange.get(rec.catalogKey);
+    if (!cur) dayRange.set(rec.catalogKey, { min: rec.day, max: rec.day });
+    else {
+      cur.min = Math.min(cur.min, rec.day);
+      cur.max = Math.max(cur.max, rec.day);
+    }
+  }
   for (const key of allDayKeys) {
     const o = opByDay.get(key);
     const a = actByDay.get(key);
@@ -422,6 +470,10 @@ export async function buildSourceContractIntake(): Promise<SourceContractIntake>
     if (o && o.op.notes.trim()) notes.push(o.op.notes.trim());
 
     const activities = a ? [...a.item.activities].sort((x, y) => x.activity_order - y.activity_order) : [];
+    const overnight_status = o ? o.op.overnight_status : 'unknown';
+    const day_flow = deriveDayFlow(activities, overnight_status);
+    const range = dayRange.get(catalogKey)!;
+    const schedule = deriveSchedule(activities, day_flow, day, range.min, range.max);
 
     skeleton.push({
       catalog_package_key: catalogKey,
@@ -432,9 +484,10 @@ export async function buildSourceContractIntake(): Promise<SourceContractIntake>
       day_title: a ? a.item.day_title : o ? o.op.title : null,
       meal_codes: o ? o.op.meal_codes : [],
       hotel_label: o ? o.op.hotel_label : null,
-      overnight_status: o ? o.op.overnight_status : 'unknown',
+      overnight_status,
       activities,
-      day_flow: deriveDayFlow(activities, o ? o.op.overnight_status : 'unknown'),
+      day_flow,
+      schedule,
       source_basis,
       missing_sources,
       notes

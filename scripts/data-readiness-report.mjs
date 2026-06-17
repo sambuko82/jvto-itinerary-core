@@ -427,6 +427,16 @@ const opportunities = [];
       blocked_by: ['needs explicit movement source from llm-wiki package-registry or backoffice']
     });
   }
+  if (nullDistance.length) {
+    opportunities.push({
+      id: 'leg-durations-for-arrival-scheduling',
+      priority: 'medium',
+      why: `${nullDistance.length} legs have null distance/duration — arrival-time day sequencing (rest-first nearest) and safe flight-departure buffers cannot be computed without them`,
+      source: 'route-leg-index.json',
+      target: ['package-day-intelligence-skeleton.json (schedule.needs_leg_duration)'],
+      blocked_by: ['per-leg travel duration/distance is do-not-invent; needs route research or backoffice route data']
+    });
+  }
 }
 
 // ── 9. pickup_dropoff_contexts ───────────────────────────────────────────────
