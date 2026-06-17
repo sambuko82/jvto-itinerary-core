@@ -1,19 +1,18 @@
 import { EXPORT_DIR } from '../config/paths.js';
 import { buildScenarioPreview } from './build-scenario-preview.js';
-import { buildVisualMapLayer } from './build-visual-map-layer.js';
+import type { VisualMapLayer } from '../domain/output.js';
 import type { PackageScenarioContext } from './build-package-scenario-context.js';
 
 const scenarioPreview = buildScenarioPreview();
-const [mapLayer] = buildVisualMapLayer();
 
 const sharedMissingData = [
   'distance_km requires Mapbox/manual verification',
-  'real route polyline is not yet generated',
+  'route_lines are great-circle placeholders, not routed road polylines',
   'actual vehicle/crew/hotel/activity rates require redacted backoffice export ingestion',
   'no raw customer PII is included in this sample payload'
 ];
 
-export function buildExportPayloads(packageContext: PackageScenarioContext) {
+export function buildExportPayloads(packageContext: PackageScenarioContext, mapLayer: VisualMapLayer) {
   const base = {
     scenario_id: scenarioPreview.scenario.scenario_id,
     source_mode: 'manual_seed_mvp',
@@ -50,7 +49,12 @@ export function buildExportPayloads(packageContext: PackageScenarioContext) {
           }
         },
         map_payload: {
-          points: mapLayer.points.map((point) => ({ ...point, lat: null, lng: null, coordinate_status: 'needs_verification' })),
+          points: mapLayer.points.map((point) => ({
+            ...point,
+            coordinate_status: point.lat != null ? 'verified_jvto_web' : 'needs_verified_geocode'
+          })),
+          bounds: mapLayer.bounds ?? null,
+          route_lines: mapLayer.route_lines ?? [],
           route_legs: scenarioPreview.route_legs
         }
       }
