@@ -72,12 +72,12 @@
     "source_snapshot_freshness": {
       "status": "partial",
       "evidence": [
-        "local llm-wiki snapshot package-readiness/v1.2 generated_at 2026-06-07T16:52:25.857534+00:00",
-        "local snapshot artifacts: package-registry.json, package-pricing.json, package-itineraries.json, booking-compatibility.json, gap-report.json",
+        "local llm-wiki snapshot package-readiness/v1.3 generated_at 2026-06-15T14:30:19.515689+00:00",
+        "local snapshot artifacts: package-registry.json, package-pricing.json, package-itineraries.json, package-operational-days.json, booking-compatibility.json, gap-report.json",
         "upstream repo outputs not fetched in this run (scope limited to jvto-itinerary-core)"
       ],
       "covered_items": [
-        "llm-wiki snapshot present (package-readiness/v1.2)"
+        "llm-wiki snapshot present (package-readiness/v1.3)"
       ],
       "partial_items": [],
       "missing_items": [
@@ -89,12 +89,10 @@
         "fetch upstream llm-wiki output/products/package-readiness/_manifest.json and compare schema_version before promoting operational-day logic"
       ],
       "counts": {
-        "llm_wiki_artifacts": 5
+        "llm_wiki_artifacts": 6
       },
       "confidence": "medium",
-      "stale_items": [
-        "no dedicated package-operational-days.json artifact in local snapshot (days are embedded in package-itineraries.json)"
-      ]
+      "stale_items": []
     },
     "backoffice_reference_data": {
       "status": "partial",
