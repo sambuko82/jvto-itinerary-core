@@ -33,10 +33,11 @@ export function buildRouteLegIndex(): RouteLeg[] {
       id: 'bromo_area_to_madakaripura',
       label: 'Bromo Area to Madakaripura',
       status: 'active',
-      confidence: 'manual_seed',
+      confidence: 'inferred',
       from_location: 'Bromo Area',
       to_location: 'Madakaripura Waterfall',
-      distance_km: null,
+      distance_km: 30,
+      distance_km_range: '26-30',
       duration_text: '±45–60 min drive (+20–30 min canyon walk)',
       duration_normal_minutes: 60,
       duration_busy_minutes: 90,
@@ -47,10 +48,10 @@ export function buildRouteLegIndex(): RouteLeg[] {
       recommended_departure_window: '08:00–12:00',
       used_by_packages: ['bromo-madakaripura-ijen-3d2n', 'bromo-madakaripura-2d1n'],
       cost_impacts: ['madakaripura_ticket', 'madakaripura_local_guide', 'vehicle_day_usage'],
-      research_note: 'Drive 45–60min; separate 20–30min (~1.5km) canyon walk to main falls. Helmets mandatory. Closes in heavy rain (flash flood). Apply 2PM rule.',
+      research_note: 'Drive 45–60min, ~30km (~26km Probolinggo→Lumbang + ~4km to trailhead); usually visited on the descent toward Probolinggo, not round-trip from Cemoro Lawang. Separate 20–30min (~1.5km) canyon walk to main falls. Helmets mandatory. Closes in heavy rain (flash flood). Apply 2PM rule.',
       source_trace: [
         { source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' },
-        { source: 'manual_seed', ref: RESEARCH_REF, field: 'duration', confidence: 'inferred' }
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'distance_km,duration', confidence: 'inferred' }
       ]
     },
     {
@@ -82,13 +83,14 @@ export function buildRouteLegIndex(): RouteLeg[] {
       id: 'bondowoso_ijen_area_to_ijen_crater',
       label: 'Bondowoso / Ijen Area to Ijen Crater',
       status: 'active',
-      confidence: 'manual_seed',
+      confidence: 'inferred',
       from_location: 'Bondowoso / Ijen Area',
       to_location: 'Ijen Crater',
-      distance_km: null,
+      distance_km: 64,
+      distance_km_range: '64-70',
       duration_text: '±1.5–2 hours before trekking',
       duration_normal_minutes: 105,
-      duration_busy_minutes: 140,
+      duration_busy_minutes: 180,
       road_profiles: ['night_drive', 'mountain_road', 'national_park_access'],
       risk_factors: ['midnight departure', 'fatigue', 'weather', 'health screening dependency'],
       meal_stop_possible: false,
@@ -96,16 +98,21 @@ export function buildRouteLegIndex(): RouteLeg[] {
       recommended_departure_window: '00:00–01:00',
       used_by_packages: ['ijen-2d1n', 'bromo-ijen-3d2n', 'bromo-madakaripura-ijen-3d2n'],
       cost_impacts: ['ijen_ticket', 'ijen_local_guide', 'gas_mask', 'medical_check'],
-      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' }]
+      research_note: 'Bondowoso town->Paltuding 64-70km via Wonosari/Sempol coffee-plantation road; full town-to-base climb 2-3.5h. Endpoint ambiguous: a Sempol/plateau lodge could be only ~15km/60-90min.',
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'distance_km', confidence: 'inferred' }
+      ]
     },
     {
       id: 'ijen_area_to_ketapang_harbor',
       label: 'Ijen Area to Ketapang Harbor',
       status: 'active',
-      confidence: 'manual_seed',
+      confidence: 'inferred',
       from_location: 'Ijen Area',
       to_location: 'Ketapang Harbor',
-      distance_km: null,
+      distance_km: 45,
+      distance_km_range: '40-50',
       duration_text: '±1–2 hours after Ijen',
       duration_normal_minutes: 90,
       duration_busy_minutes: 150,
@@ -116,16 +123,21 @@ export function buildRouteLegIndex(): RouteLeg[] {
       recommended_departure_window: '08:00–11:00',
       used_by_packages: ['ijen-to-bali', 'bromo-ijen-ketapang-3d2n'],
       cost_impacts: ['vehicle_day_usage', 'ketapang_dropoff', 'optional_bali_transfer'],
-      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' }]
+      research_note: 'Paltuding->Ketapang ~45km/~1.5h (operator consensus). Same physical corridor as ijen_base_to_ketapang_harbor (reverse).',
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'distance_km', confidence: 'inferred' }
+      ]
     },
     {
       id: 'surabaya_hotel_to_bromo_area',
       label: 'Surabaya Hotel to Bromo Area',
       status: 'active',
-      confidence: 'manual_seed',
+      confidence: 'inferred',
       from_location: 'Surabaya Hotel',
       to_location: 'Bromo Area',
-      distance_km: null,
+      distance_km: 120,
+      distance_km_range: '100-136',
       duration_text: '+/-3-4 hours',
       duration_normal_minutes: 210,
       duration_busy_minutes: 300,
@@ -136,16 +148,21 @@ export function buildRouteLegIndex(): RouteLeg[] {
       recommended_departure_window: '07:00-15:00',
       used_by_packages: ['bromo-2d1n', 'bromo-madakaripura-ijen-3d2n'],
       cost_impacts: ['vehicle_day_usage', 'driver_cost', 'parking_toll_fuel_allowance'],
-      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' }]
+      research_note: 'City hotel->Cemoro Lawang ~120km via Pasuruan-Probolinggo toll; final mountain segment ~2h alone. Slightly longer than the ~116km Juanda Airport variant. Algo ~2.5h underestimates the climb.',
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'distance_km', confidence: 'inferred' }
+      ]
     },
     {
       id: 'surabaya_to_bondowoso_ijen_area',
       label: 'Surabaya to Bondowoso / Ijen Area',
       status: 'active',
-      confidence: 'manual_seed',
+      confidence: 'inferred',
       from_location: 'Surabaya',
       to_location: 'Bondowoso / Ijen Area',
-      distance_km: null,
+      distance_km: 290,
+      distance_km_range: '270-320',
       duration_text: '+/-6-8 hours',
       duration_normal_minutes: 420,
       duration_busy_minutes: 540,
@@ -156,7 +173,11 @@ export function buildRouteLegIndex(): RouteLeg[] {
       recommended_departure_window: '07:00-12:00',
       used_by_packages: ['ijen-from-surabaya-2d1n', 'custom-ijen-route'],
       cost_impacts: ['vehicle_day_usage', 'driver_cost', 'dinner_bondowoso', 'ijen_preparation'],
-      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' }]
+      research_note: '~6-7h via Pasuruan-Probolinggo-Besuki-Bondowoso to the Ijen-area hotel. Km inferred from corridor (operators quote hours, not km) so distance is lower-confidence than duration. Endpoint is the base hotel, NOT Paltuding (~2h further up).',
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'distance_km', confidence: 'inferred' }
+      ]
     },
     {
       id: 'surabaya_to_tumpak_sewu',
@@ -187,10 +208,11 @@ export function buildRouteLegIndex(): RouteLeg[] {
       id: 'tumpak_sewu_to_bromo_area',
       label: 'Tumpak Sewu to Bromo Area',
       status: 'active',
-      confidence: 'manual_seed',
+      confidence: 'inferred',
       from_location: 'Tumpak Sewu Area',
       to_location: 'Bromo Area',
-      distance_km: null,
+      distance_km: 80,
+      distance_km_range: '70-90',
       duration_text: '+/-4-6 hours',
       duration_normal_minutes: 300,
       duration_busy_minutes: 420,
@@ -201,16 +223,21 @@ export function buildRouteLegIndex(): RouteLeg[] {
       recommended_departure_window: '12:00-15:00',
       used_by_packages: ['tumpak-sewu-bromo-ijen-custom'],
       cost_impacts: ['vehicle_day_usage', 'driver_cost', 'hotel_bromo_area'],
-      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' }]
+      research_note: 'Lumajang/Tumpak Sewu->Cemoro Lawang ~80km. Operators cite ~4h normal (some 4-5h); slow mountain road, via-Malang variant longer. Duration seed kept conservative for late-check-in safety.',
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'distance_km', confidence: 'inferred' }
+      ]
     },
     {
       id: 'bondowoso_to_ijen_base',
       label: 'Bondowoso to Ijen Base',
       status: 'active',
-      confidence: 'manual_seed',
+      confidence: 'inferred',
       from_location: 'Bondowoso',
       to_location: 'Ijen Base',
-      distance_km: null,
+      distance_km: 64,
+      distance_km_range: '64-70',
       duration_text: '+/-1.5-2 hours',
       duration_normal_minutes: 105,
       duration_busy_minutes: 150,
@@ -221,16 +248,21 @@ export function buildRouteLegIndex(): RouteLeg[] {
       recommended_departure_window: '00:00-01:00',
       used_by_packages: ['ijen-2d1n', 'bromo-ijen-3d2n'],
       cost_impacts: ['vehicle_day_usage', 'ijen_ticket', 'ijen_local_guide', 'medical_check'],
-      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' }]
+      research_note: 'Bondowoso town->Paltuding 64-70km via Wonosari-Sempol-Paltuding. One operator quotes ~1h but that under-represents the full climb; 105/150 operational realistic.',
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'distance_km', confidence: 'inferred' }
+      ]
     },
     {
       id: 'banyuwangi_to_ijen_base',
       label: 'Banyuwangi to Ijen Base',
       status: 'active',
-      confidence: 'manual_seed',
+      confidence: 'inferred',
       from_location: 'Banyuwangi',
       to_location: 'Ijen Base',
-      distance_km: null,
+      distance_km: 35,
+      distance_km_range: '35-40',
       duration_text: '+/-1.5-2 hours',
       duration_normal_minutes: 105,
       duration_busy_minutes: 150,
@@ -241,7 +273,11 @@ export function buildRouteLegIndex(): RouteLeg[] {
       recommended_departure_window: '00:00-01:00',
       used_by_packages: ['bali-ijen-bromo-surabaya', 'ijen-from-banyuwangi'],
       cost_impacts: ['vehicle_day_usage', 'ijen_ticket', 'ijen_local_guide', 'medical_check'],
-      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' }]
+      research_note: 'Banyuwangi city->Paltuding ~35km (38-40km older sources) via the steep Licin/Erek-Erek climb. Steep winding road + fog make 90-120min normal, ~150 busy; operator 1h quotes are optimistic.',
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'distance_km', confidence: 'inferred' }
+      ]
     },
     {
       id: 'ketapang_harbor_to_gilimanuk_bali_side',
@@ -250,7 +286,8 @@ export function buildRouteLegIndex(): RouteLeg[] {
       confidence: 'inferred',
       from_location: 'Ketapang Harbor',
       to_location: 'Gilimanuk / Bali side',
-      distance_km: null,
+      distance_km: 5,
+      distance_km_range: '5-6',
       duration_text: '~45–60 min sailing (+ queue/berthing); 24h service',
       duration_normal_minutes: 60,
       duration_busy_minutes: 90,
@@ -261,7 +298,7 @@ export function buildRouteLegIndex(): RouteLeg[] {
       recommended_departure_window: 'after Ijen finish with ferry buffer',
       used_by_packages: ['ijen-to-bali', 'bromo-ijen-bali-custom'],
       cost_impacts: ['ferry_ticket', 'bali_transfer', 'vehicle_crossing_or_handoff'],
-      research_note: '~45-60min sailing (apparent 2h = WIB/WITA timezone artifact). 24h, ~hourly. CLOSED during Nyepi + high waves. Ferizy ticket MANDATORY before arrival (geofence 2.65km Ketapang) — pre-book H-1.',
+      research_note: 'Sea crossing (Bali Strait), not a road leg: ~5-6km route, ~45-60min sailing (apparent 2h = WIB/WITA timezone artifact). 24h, ~hourly. CLOSED during Nyepi + high waves. Ferizy ticket MANDATORY before arrival (geofence 2.65km Ketapang) — pre-book H-1.',
       source_trace: [
         { source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' },
         { source: 'manual_seed', ref: RESEARCH_REF, field: 'duration,operations,booking', confidence: 'inferred' }
@@ -271,10 +308,11 @@ export function buildRouteLegIndex(): RouteLeg[] {
       id: 'ijen_base_to_ketapang_harbor',
       label: 'Ijen Base to Ketapang Harbor',
       status: 'active',
-      confidence: 'manual_seed',
+      confidence: 'inferred',
       from_location: 'Ijen Base',
       to_location: 'Ketapang Harbor',
-      distance_km: null,
+      distance_km: 45,
+      distance_km_range: '40-50',
       duration_text: '+/-1-2 hours after Ijen',
       duration_normal_minutes: 90,
       duration_busy_minutes: 150,
@@ -285,7 +323,11 @@ export function buildRouteLegIndex(): RouteLeg[] {
       recommended_departure_window: '08:00-11:00',
       used_by_packages: ['ijen-to-bali', 'bromo-ijen-ketapang-3d2n'],
       cost_impacts: ['vehicle_day_usage', 'ketapang_dropoff', 'optional_bali_transfer'],
-      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' }]
+      research_note: 'Paltuding->Ketapang ~45km/~1.5h. Same physical corridor as ijen_area_to_ketapang_harbor.',
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'distance_km', confidence: 'inferred' }
+      ]
     },
     {
       id: 'bali_hotel_area_to_banyuwangi_ijen_area',
@@ -305,16 +347,18 @@ export function buildRouteLegIndex(): RouteLeg[] {
       recommended_departure_window: 'morning or early afternoon depending on Ijen plan',
       used_by_packages: ['bali-ijen-bromo-surabaya'],
       cost_impacts: ['bali_transfer', 'ferry_ticket', 'vehicle_day_usage', 'driver_cost'],
+      research_note: 'Multi-modal composite (Bali road + Gilimanuk->Ketapang ferry + Banyuwangi->Paltuding climb). No operator gives a clean end-to-end figure; the Gilimanuk->Banyuwangi road portion is only available from algorithmic sources (rejected). Left as a do-not-invent gap pending per-segment verification — compose from ketapang_harbor_to_gilimanuk_bali_side + banyuwangi_to_ijen_base if needed.',
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' }]
     },
     {
       id: 'bromo_area_to_malang',
       label: 'Bromo Area to Malang',
       status: 'active',
-      confidence: 'manual_seed',
+      confidence: 'inferred',
       from_location: 'Bromo Area',
       to_location: 'Malang',
-      distance_km: null,
+      distance_km: 100,
+      distance_km_range: '90-110',
       duration_text: '+/-2.5-4 hours',
       duration_normal_minutes: 180,
       duration_busy_minutes: 300,
@@ -325,16 +369,21 @@ export function buildRouteLegIndex(): RouteLeg[] {
       recommended_departure_window: '09:00-14:00',
       used_by_packages: ['bromo-malang-dropoff', 'bromo-batu-custom'],
       cost_impacts: ['vehicle_day_usage', 'driver_cost'],
-      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' }]
+      research_note: 'Cemoro Lawang->Malang ~100km (inferred; operators quote hours not km). Highway route ~2-2.5h vs ~3.5-4h national road, but the Probolinggo->Cemoro Lawang climb is slow regardless. Duration seed kept conservative.',
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'distance_km', confidence: 'inferred' }
+      ]
     },
     {
       id: 'malang_to_surabaya',
       label: 'Malang to Surabaya',
       status: 'active',
-      confidence: 'manual_seed',
+      confidence: 'inferred',
       from_location: 'Malang',
       to_location: 'Surabaya',
-      distance_km: null,
+      distance_km: 95,
+      distance_km_range: '90-100',
       duration_text: '+/-2-4 hours',
       duration_normal_minutes: 180,
       duration_busy_minutes: 300,
@@ -345,7 +394,11 @@ export function buildRouteLegIndex(): RouteLeg[] {
       recommended_departure_window: 'allow deadline buffer for airport/train',
       used_by_packages: ['malang-surabaya-dropoff', 'bromo-malang-surabaya-custom'],
       cost_impacts: ['vehicle_day_usage', 'driver_cost', 'parking_toll_fuel_allowance'],
-      source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' }]
+      research_note: '~95km. Pandaan-Malang toll now open: operators advertise "from 2 hours"; prior seed (180/300) looks pre-toll. Duration seed kept conservative for airport/train deadline safety. Surabaya city vs Juanda ~15-20min.',
+      source_trace: [
+        { source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: RESEARCH_REF, field: 'distance_km', confidence: 'inferred' }
+      ]
     }
   ];
 }
