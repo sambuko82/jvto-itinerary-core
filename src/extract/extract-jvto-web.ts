@@ -20,6 +20,15 @@ const DEST_DETAIL = resolve(INPUT_DIR, 'jvto-web/publicContent/generated/destina
 
 const str = (v: unknown): string | null => (typeof v === 'string' && v.length > 0 ? v : null);
 const num = (v: unknown): number | null => (typeof v === 'number' && Number.isFinite(v) ? v : null);
+/** Coordinate value: accept a finite number, or a numeric string (snapshots carry both forms). */
+const coord = (v: unknown): number | null => {
+  if (typeof v === 'number' && Number.isFinite(v)) return v;
+  if (typeof v === 'string' && v.trim() !== '') {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : null;
+  }
+  return null;
+};
 const bool = (v: unknown): boolean | null => (typeof v === 'boolean' ? v : null);
 const strList = (arr: unknown, key?: string): string[] => {
   if (!Array.isArray(arr)) return [];
@@ -104,6 +113,8 @@ function parseDestinationDetails(missing: string[]): JvtoWebDestinationDetail[] 
       return {
         slug,
         destination_label: str(p.name),
+        latitude: coord(p.latitude),
+        longitude: coord(p.longitude),
         physical_demand: num(p.physical_demand),
         difficulty_level: str(p.difficulty_level),
         altitude: num(p.altitude),
@@ -162,6 +173,11 @@ export async function extractJvtoWeb(): Promise<JvtoWebExtract> {
     source_trace.push(
       trace('src/lib/publicContent/generated/destinationDetailSnapshots.json', 'destination_details')
     );
+    if (destination_details.some((d) => d.latitude != null && d.longitude != null)) {
+      source_trace.push(
+        trace('src/lib/publicContent/generated/destinationDetailSnapshots.json', 'destination_coordinates')
+      );
+    }
   }
 
   return {

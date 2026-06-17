@@ -6,7 +6,7 @@
   "pii_policy": "no_raw_customer_pii",
   "missing_data": [
     "distance_km requires Mapbox/manual verification",
-    "real route polyline is not yet generated",
+    "route_lines are great-circle placeholders, not routed road polylines",
     "actual vehicle/crew/hotel/activity rates require redacted backoffice export ingestion",
     "no raw customer PII is included in this sample payload"
   ],

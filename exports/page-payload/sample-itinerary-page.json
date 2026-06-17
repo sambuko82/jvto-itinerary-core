@@ -6,7 +6,7 @@
   "pii_policy": "no_raw_customer_pii",
   "missing_data": [
     "distance_km requires Mapbox/manual verification",
-    "real route polyline is not yet generated",
+    "route_lines are great-circle placeholders, not routed road polylines",
     "actual vehicle/crew/hotel/activity rates require redacted backoffice export ingestion",
     "no raw customer PII is included in this sample payload"
   ],
@@ -188,23 +188,29 @@
         "location_ref": "surabaya_airport",
         "lat": null,
         "lng": null,
-        "coordinate_status": "needs_verification"
+        "geo_status": "needs_verified_geocode",
+        "geo_source": null,
+        "coordinate_status": "needs_verified_geocode"
       },
       {
         "type": "destination",
         "label": "Mount Bromo",
         "location_ref": "bromo",
-        "lat": null,
-        "lng": null,
-        "coordinate_status": "needs_verification"
+        "lat": -7.942,
+        "lng": 112.953,
+        "geo_status": "verified_jvto_web",
+        "geo_source": "jvto_web",
+        "coordinate_status": "verified_jvto_web"
       },
       {
         "type": "destination",
         "label": "Madakaripura Waterfall",
         "location_ref": "madakaripura",
-        "lat": null,
-        "lng": null,
-        "coordinate_status": "needs_verification"
+        "lat": -7.933,
+        "lng": 113.008,
+        "geo_status": "verified_jvto_web",
+        "geo_source": "jvto_web",
+        "coordinate_status": "verified_jvto_web"
       },
       {
         "type": "hotel_area",
@@ -212,15 +218,19 @@
         "location_ref": "bondowoso_ijen_area",
         "lat": null,
         "lng": null,
-        "coordinate_status": "needs_verification"
+        "geo_status": "needs_verified_geocode",
+        "geo_source": null,
+        "coordinate_status": "needs_verified_geocode"
       },
       {
         "type": "destination",
         "label": "Ijen Crater",
         "location_ref": "ijen",
-        "lat": null,
-        "lng": null,
-        "coordinate_status": "needs_verification"
+        "lat": -8.058,
+        "lng": 114.242,
+        "geo_status": "verified_jvto_web",
+        "geo_source": "jvto_web",
+        "coordinate_status": "verified_jvto_web"
       },
       {
         "type": "dropoff",
@@ -228,7 +238,71 @@
         "location_ref": "ketapang_harbor",
         "lat": null,
         "lng": null,
-        "coordinate_status": "needs_verification"
+        "geo_status": "needs_verified_geocode",
+        "geo_source": null,
+        "coordinate_status": "needs_verified_geocode"
+      }
+    ],
+    "bounds": {
+      "south": -8.058,
+      "west": 112.953,
+      "north": -7.933,
+      "east": 114.242
+    },
+    "route_lines": [
+      {
+        "leg_id": "surabaya_airport_to_bromo_area",
+        "geometry_type": null,
+        "not_road_geometry": true,
+        "geometry_status": "needs_endpoint_coordinates",
+        "coordinates": null,
+        "distance_km": 116,
+        "duration_normal_minutes": 210
+      },
+      {
+        "leg_id": "bromo_area_to_madakaripura",
+        "geometry_type": "great_circle_placeholder",
+        "not_road_geometry": true,
+        "geometry_status": "placeholder_from_verified_endpoints",
+        "coordinates": [
+          [
+            -7.942,
+            112.953
+          ],
+          [
+            -7.933,
+            113.008
+          ]
+        ],
+        "distance_km": 30,
+        "duration_normal_minutes": 60
+      },
+      {
+        "leg_id": "bromo_area_to_bondowoso_ijen_area",
+        "geometry_type": null,
+        "not_road_geometry": true,
+        "geometry_status": "needs_endpoint_coordinates",
+        "coordinates": null,
+        "distance_km": 225,
+        "duration_normal_minutes": 330
+      },
+      {
+        "leg_id": "bondowoso_ijen_area_to_ijen_crater",
+        "geometry_type": null,
+        "not_road_geometry": true,
+        "geometry_status": "needs_endpoint_coordinates",
+        "coordinates": null,
+        "distance_km": 64,
+        "duration_normal_minutes": 105
+      },
+      {
+        "leg_id": "ijen_area_to_ketapang_harbor",
+        "geometry_type": null,
+        "not_road_geometry": true,
+        "geometry_status": "needs_endpoint_coordinates",
+        "coordinates": null,
+        "distance_km": 45,
+        "duration_normal_minutes": 90
       }
     ],
     "route_legs": [
