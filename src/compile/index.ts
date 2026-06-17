@@ -16,6 +16,7 @@ import { buildCostComponents } from './build-cost-components.js';
 import { buildPackageRouteMap } from './build-package-route-map.js';
 import { buildRecommendationRules } from './build-recommendation-rules.js';
 import { buildVisualMapLayer } from './build-visual-map-layer.js';
+import { buildLocationCoordinateIndex } from './build-location-coordinate-index.js';
 import { buildOutputTemplateMap } from './build-output-template-map.js';
 import { buildScenarioPreview } from './build-scenario-preview.js';
 import { buildExportPayloads } from './build-export-payloads.js';
@@ -40,6 +41,11 @@ export async function compileGeneratedData() {
     recommendationRules
   );
 
+  // Verified destination coordinates from jvto-web power the map markers/bounds.
+  const coordinateIndex = buildLocationCoordinateIndex(jvtoWeb.destination_details);
+  const [visualMapLayer] = buildVisualMapLayer(coordinateIndex);
+  const mapPointsWithCoords = visualMapLayer.points.filter((p) => p.lat != null).length;
+
   const files = [
     ['01-pickup-contexts.json', buildPickupContexts(backoffice)],
     ['02-dropoff-contexts.json', buildDropoffContexts(backoffice)],
@@ -53,7 +59,7 @@ export async function compileGeneratedData() {
     ['10-cost-components.json', buildCostComponents(backoffice)],
     ['11-package-route-map.json', buildPackageRouteMap(backoffice)],
     ['12-recommendation-rules.json', recommendationRules],
-    ['13-visual-map-layer.json', buildVisualMapLayer()],
+    ['13-visual-map-layer.json', [visualMapLayer]],
     ['14-output-template-map.json', buildOutputTemplateMap()],
     ['15-scenario-preview-sample.json', buildScenarioPreview()]
   ] as const;
@@ -65,7 +71,7 @@ export async function compileGeneratedData() {
   // Generated datasets (incl. 11-package-route-map) are now on disk, so the
   // package-aware scenario can be evaluated and threaded into the export payloads.
   const packageContext = await buildPackageScenarioContext();
-  const exportPayloads = buildExportPayloads(packageContext);
+  const exportPayloads = buildExportPayloads(packageContext, visualMapLayer);
   for (const payload of exportPayloads) {
     await writeJson(payload.path, payload.data);
   }
@@ -102,7 +108,7 @@ export async function compileGeneratedData() {
       backofficeConnected
         ? `destination crosswalk (jvto-web) maps area->core id; numeric backoffice destination_id is verified by slug-join against the bundle destinations registry (${backoffice.destination_registry.length} records) and falls back to a flagged placeholder when absent`
         : 'actual vehicle/crew/hotel rates require backoffice export ingestion',
-      'real route polyline is not yet generated',
+      `visual map layer: ${mapPointsWithCoords} destination markers carry verified jvto-web coordinates; route_lines are great-circle placeholders (NOT road geometry); real routed polylines and transit-node (airport/harbor/staging) geocodes are still pending`,
       'exact pickup/dropoff deadlines require customer travel details collected outside this PII-free sample',
       'Round 3 gaps: Tumpak Sewu access/guide/descent-time, Bromo opening hours + per-year Kasada dates + booking-vs-jeep timing, Ijen gas-mask-rental/local-guide mandate, Ketapang peak queue times'
     ],

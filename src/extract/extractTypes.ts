@@ -100,6 +100,9 @@ export interface JvtoWebDestinationDetail {
   slug: string;
   // Not `name`: the extraction PII guard blocks any `name` key in the persisted extract.
   destination_label: string | null;
+  // Verified geographic coordinates from the jvto-web destination registry.
+  latitude: number | null;
+  longitude: number | null;
   physical_demand: number | null;
   difficulty_level: string | null;
   altitude: number | null;
