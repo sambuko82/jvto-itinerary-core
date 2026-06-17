@@ -63,13 +63,36 @@ test('time-window-rules use source buckets only, never exact times', () => {
   assert.ok(buckets.includes('midday') && buckets.includes('evening_night'));
 });
 
-test('route-node candidates isolated, pending, NOT promoted into route nodes', () => {
+test('route-node candidates resolved with joinable, consistent decisions, none promoted', () => {
   assert.equal(nodeReview.length, 4);
   const nodeIds = new Set(nodes.map((n) => n.node_id));
+  const decisions = new Set(['reject_existing_alias', 'hold_for_future']);
+  const resByLabel = new Map(resolution.map((r) => [r.label, r]));
   for (const c of nodeReview) {
-    assert.equal(c.review_status, 'pending_review');
+    assert.equal(c.review_status, 'resolved');
+    assert.ok(decisions.has(c.route_node_decision), `unexpected decision ${c.route_node_decision} for ${c.label}`);
+    assert.notEqual(c.route_node_decision, 'promote'); // never auto-promoted
+    assert.ok(typeof c.decision_basis === 'string' && c.decision_basis.length > 0, `no basis for ${c.label}`);
     assert.ok(!nodeIds.has(c.normalized_candidate_id), `promoted ${c.label}`);
+    // a rejection must point at a real, joinable route-node-index node
+    if (c.route_node_decision === 'reject_existing_alias') {
+      assert.ok(nodeIds.has(c.resolved_to_node), `resolved_to_node ${c.resolved_to_node} not in route-node-index`);
+    } else {
+      assert.equal(c.resolved_to_node, null);
+    }
+    // resolution report stays in sync — no contradictory pending row for the label
+    const r = resByLabel.get(c.label);
+    assert.equal(r?.resolution_status, 'resolved', `resolution report still pending for ${c.label}`);
+    assert.ok(!(r?.remaining_missing_fields ?? []).includes('route_node_decision'));
   }
+  // Batu is an alias of the existing 'malang' route node (crosswalk malang_batu -> malang).
+  const batu = nodeReview.find((c) => c.normalized_candidate_id === 'batu');
+  assert.equal(batu?.route_node_decision, 'reject_existing_alias');
+  assert.equal(batu?.resolved_to_node, 'malang');
+  // Prigen Safari Park is an alias of the existing 'taman_safari_prigen' node (label mapping).
+  const prigen = nodeReview.find((c) => c.normalized_candidate_id === 'prigen_safari_park');
+  assert.equal(prigen?.route_node_decision, 'reject_existing_alias');
+  assert.equal(prigen?.resolved_to_node, 'taman_safari_prigen');
   // route-node-index untouched (2 origins + 7 source-backed destinations = 9)
   assert.equal(nodes.length, 9);
   assert.ok(!nodes.some((n) => ['bondowoso', 'batu', 'jember'].includes(n.node_id)));

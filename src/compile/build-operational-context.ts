@@ -1,6 +1,7 @@
 import { GENERATED_DIR } from '../config/paths.js';
 import { readJson } from '../utils/fs.js';
 import { extractBackoffice } from '../extract/extract-backoffice.js';
+import { resolveDestinationToken, DESTINATION_CROSSWALK } from '../config/destination-crosswalk.js';
 import { baseRecord, inventoryGeneratedAt, type InventoryRecord, type InventorySourceTrace } from '../config/inventory-meta.js';
 
 const JVTO_REPO = 'jvto-devteam/jvto-web';
@@ -73,6 +74,12 @@ export interface TimeWindowRuleRecord extends InventoryRecord {
   source_time_bucket: string | null;
   exact_time_available: boolean;
 }
+// Resolved decision for a route-node candidate. None are auto-promoted: a real
+// route node requires explicit movement-source evidence, so the evidence-grounded
+// outcomes are reject (the candidate label is an alias of an existing route-node-
+// index node) or hold (no matching node; an operational waypoint to revisit).
+type NodeDecision = 'promote' | 'hold_for_future' | 'reject_existing_alias';
+
 export interface NodeCandidateReviewRecord extends InventoryRecord {
   candidate_id: string;
   label: string;
@@ -82,7 +89,82 @@ export interface NodeCandidateReviewRecord extends InventoryRecord {
   evidence_strength: 'low' | 'medium';
   recommended_action: 'review_for_future_route_node' | 'keep_as_operational_context' | 'needs_source_confirmation';
   reason: string;
-  review_status: 'pending_review';
+  route_node_decision: NodeDecision;
+  decision_basis: string;
+  resolved_to_node: string | null;
+  review_status: 'pending_review' | 'resolved';
+}
+
+interface NodeDecisionResult {
+  decision: NodeDecision;
+  basis: string;
+  resolved_to_node: string | null;
+  missing: string[];
+  status: 'active' | 'incomplete';
+  confidence: 'low' | 'medium';
+}
+
+/**
+ * Find the existing route-node-index node a candidate is an alias of, by id the
+ * downstream consumer can actually join (a real `node_id`), or null. Two signals,
+ * both verified against the live node-id set:
+ *  - destination-crosswalk: resolve the label to a coreId, then map to its
+ *    route-node id (jvtoWebId / coreId / slug) — e.g. Batu -> malang_batu -> 'malang'.
+ *  - member-token overlap: the node's slug-derived tokens — e.g. 'Prigen Safari
+ *    Park' shares 'prigen' with node 'taman_safari_prigen'.
+ */
+function resolveExistingNode(
+  label: string,
+  normalizedId: string,
+  nodeIds: Set<string>,
+  tokenToNode: Map<string, string>
+): string | null {
+  const core = resolveDestinationToken(label) ?? resolveDestinationToken(normalizedId.replace(/_/g, ' '));
+  if (core) {
+    const entry = DESTINATION_CROSSWALK.find((e) => e.coreId === core);
+    for (const cand of [entry?.jvtoWebId ?? undefined, core, entry?.slug ?? undefined]) {
+      if (cand && nodeIds.has(cand)) return cand;
+    }
+  }
+  for (const tok of `${label} ${normalizedId}`.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean)) {
+    const n = tokenToNode.get(tok);
+    if (n) return n;
+  }
+  return null;
+}
+
+/**
+ * Resolve a route-node candidate from deterministic repo evidence (never
+ * auto-promote): an alias of an existing route-node-index node -> reject; no
+ * matching node -> hold_for_future (operational waypoint, revisit on new source).
+ */
+function resolveNodeDecision(
+  label: string,
+  normalizedId: string,
+  seenAs: string[],
+  packageCount: number,
+  nodeIds: Set<string>,
+  tokenToNode: Map<string, string>
+): NodeDecisionResult {
+  const existing = resolveExistingNode(label, normalizedId, nodeIds, tokenToNode);
+  if (existing) {
+    return {
+      decision: 'reject_existing_alias',
+      basis: `candidate label is an alias of existing route-node-index node '${existing}'; not a distinct node (label/alias-mapping, not a missing movement source)`,
+      resolved_to_node: existing,
+      missing: [],
+      status: 'active',
+      confidence: 'medium'
+    };
+  }
+  return {
+    decision: 'hold_for_future',
+    basis: `overnight/transit handoff (seen_as ${seenAs.join('+')}) across ${packageCount} packages; no matching route-node-index node and not a distinct destination — operational waypoint, revisit if a future source promotes it`,
+    resolved_to_node: null,
+    missing: [],
+    status: 'active',
+    confidence: packageCount >= 5 ? 'medium' : 'low'
+  };
 }
 export interface ResolutionReportRecord extends InventoryRecord {
   label: string;
@@ -142,6 +224,24 @@ export async function buildOperationalContext(dir: string = GENERATED_DIR): Prom
   const trace = (label: string): InventorySourceTrace[] => [{ repo: JVTO_REPO, path: DETAIL_PATH, field: label }];
 
   const placed = gaps.map((o) => ({ o, pl: place(o) }));
+
+  // Resolve route-node candidates against the live route-node-index, then fold the
+  // decision back into the placement so the index + resolution-report + nodeReview
+  // all report a consistent resolved status (no contradictory pending rows).
+  const routeNodes = await readJson<Array<{ node_id: string; member_tokens?: string[] }>>(`${dir}/route-node-index.json`);
+  const nodeIds = new Set(routeNodes.map((n) => n.node_id));
+  const tokenToNode = new Map<string, string>();
+  for (const n of routeNodes) for (const t of n.member_tokens ?? []) tokenToNode.set(t.toLowerCase(), n.node_id);
+
+  const nodeDecisions = new Map<string, NodeDecisionResult>();
+  for (const { o, pl } of placed) {
+    if (pl.dataset !== 'route-node-candidate-review') continue;
+    const dec = resolveNodeDecision(o.label, o.normalized_candidate_id, o.seen_as, o.seen_in_packages.length, nodeIds, tokenToNode);
+    nodeDecisions.set(o.normalized_candidate_id, dec);
+    pl.status = 'resolved';
+    pl.missing = dec.missing;
+    pl.notes = dec.basis;
+  }
 
   const index: OpContextIndexRecord[] = placed.map(({ o, pl }) => ({
     ...baseRecord(`opindex__${o.normalized_candidate_id}`, trace(o.label), {
@@ -223,23 +323,29 @@ export async function buildOperationalContext(dir: string = GENERATED_DIR): Prom
 
   const nodeReview: NodeCandidateReviewRecord[] = placed
     .filter(({ pl }) => pl.dataset === 'route-node-candidate-review')
-    .map(({ o }) => ({
-      ...baseRecord(`nodereview__${o.normalized_candidate_id}`, trace(o.label), {
-        generated_at,
-        confidence: 'low',
-        status: 'incomplete',
-        missing_fields: ['route_node_decision']
-      }),
-      candidate_id: `nodereview__${o.normalized_candidate_id}`,
-      label: o.label,
-      normalized_candidate_id: o.normalized_candidate_id,
-      seen_in_packages: o.seen_in_packages,
-      seen_as: o.seen_as,
-      evidence_strength: o.seen_in_packages.length >= 5 ? 'medium' : 'low',
-      recommended_action: o.seen_in_packages.length >= 5 ? 'review_for_future_route_node' : 'needs_source_confirmation',
-      reason: 'appears as a TravelAction movement label but is not a slug-derived destination node',
-      review_status: 'pending_review'
-    }));
+    .map(({ o }) => {
+      const dec = nodeDecisions.get(o.normalized_candidate_id)!;
+      return {
+        ...baseRecord(`nodereview__${o.normalized_candidate_id}`, trace(o.label), {
+          generated_at,
+          confidence: dec.confidence,
+          status: dec.status,
+          missing_fields: dec.missing
+        }),
+        candidate_id: `nodereview__${o.normalized_candidate_id}`,
+        label: o.label,
+        normalized_candidate_id: o.normalized_candidate_id,
+        seen_in_packages: o.seen_in_packages,
+        seen_as: o.seen_as,
+        evidence_strength: o.seen_in_packages.length >= 5 ? 'medium' : 'low',
+        recommended_action: o.seen_in_packages.length >= 5 ? 'review_for_future_route_node' : 'needs_source_confirmation',
+        reason: 'appears as a TravelAction movement label but is not a slug-derived destination node',
+        route_node_decision: dec.decision,
+        decision_basis: dec.basis,
+        resolved_to_node: dec.resolved_to_node,
+        review_status: 'resolved'
+      };
+    });
 
   // ── time-window-rules: backoffice buckets + conservative per-context rules ──
   const idToSlug = new Map<number, string>();

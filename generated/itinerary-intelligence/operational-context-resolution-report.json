@@ -61,21 +61,17 @@
         "field": "Batu"
       }
     ],
-    "confidence": "low",
+    "confidence": "medium",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
-    "missing_fields": [
-      "route_node_decision"
-    ],
-    "status": "incomplete",
+    "missing_fields": [],
+    "status": "active",
     "label": "Batu",
     "original_recommended_phase5_dataset": "route-node-index",
     "resolved_dataset": "route-node-candidate-review",
-    "resolution_status": "pending",
-    "reason": "recommended for route-node review; not promoted in Phase 5",
-    "remaining_missing_fields": [
-      "route_node_decision"
-    ]
+    "resolution_status": "resolved",
+    "reason": "candidate label is an alias of existing route-node-index node 'malang'; not a distinct node (label/alias-mapping, not a missing movement source)",
+    "remaining_missing_fields": []
   },
   {
     "id": "resolution__bondowoso",
@@ -87,21 +83,17 @@
         "field": "Bondowoso"
       }
     ],
-    "confidence": "low",
+    "confidence": "medium",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
-    "missing_fields": [
-      "route_node_decision"
-    ],
-    "status": "incomplete",
+    "missing_fields": [],
+    "status": "active",
     "label": "Bondowoso",
     "original_recommended_phase5_dataset": "route-node-index",
     "resolved_dataset": "route-node-candidate-review",
-    "resolution_status": "pending",
-    "reason": "recommended for route-node review; not promoted in Phase 5",
-    "remaining_missing_fields": [
-      "route_node_decision"
-    ]
+    "resolution_status": "resolved",
+    "reason": "overnight/transit handoff (seen_as to) across 10 packages; no matching route-node-index node and not a distinct destination — operational waypoint, revisit if a future source promotes it",
+    "remaining_missing_fields": []
   },
   {
     "id": "resolution__bondowoso_city",
@@ -221,21 +213,17 @@
         "field": "Jember"
       }
     ],
-    "confidence": "low",
+    "confidence": "medium",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
-    "missing_fields": [
-      "route_node_decision"
-    ],
-    "status": "incomplete",
+    "missing_fields": [],
+    "status": "active",
     "label": "Jember",
     "original_recommended_phase5_dataset": "route-node-index",
     "resolved_dataset": "route-node-candidate-review",
-    "resolution_status": "pending",
-    "reason": "recommended for route-node review; not promoted in Phase 5",
-    "remaining_missing_fields": [
-      "route_node_decision"
-    ]
+    "resolution_status": "resolved",
+    "reason": "overnight/transit handoff (seen_as to) across 5 packages; no matching route-node-index node and not a distinct destination — operational waypoint, revisit if a future source promotes it",
+    "remaining_missing_fields": []
   },
   {
     "id": "resolution__juanda_airport",
@@ -325,21 +313,17 @@
         "field": "Prigen Safari Park"
       }
     ],
-    "confidence": "low",
+    "confidence": "medium",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
-    "missing_fields": [
-      "route_node_decision"
-    ],
-    "status": "incomplete",
+    "missing_fields": [],
+    "status": "active",
     "label": "Prigen Safari Park",
     "original_recommended_phase5_dataset": "route-node-index",
     "resolved_dataset": "route-node-candidate-review",
-    "resolution_status": "pending",
-    "reason": "recommended for route-node review; not promoted in Phase 5",
-    "remaining_missing_fields": [
-      "route_node_decision"
-    ]
+    "resolution_status": "resolved",
+    "reason": "candidate label is an alias of existing route-node-index node 'taman_safari_prigen'; not a distinct node (label/alias-mapping, not a missing movement source)",
+    "remaining_missing_fields": []
   },
   {
     "id": "resolution__transit_point",
