@@ -1,0 +1,69 @@
+{
+  "schema_version": "itinerary-core-source-contract-readiness/v1",
+  "generated_at": "2026-06-15T00:00:00Z",
+  "sources": {
+    "llm_wiki_package_operational_days": {
+      "status": "available",
+      "path": "input/llm-wiki/package-readiness/package-operational-days.json",
+      "record_count": 57,
+      "schema_valid": true,
+      "errors": []
+    },
+    "jvto_web_package_activity_snapshots": {
+      "status": "available",
+      "path": "input/jvto-web/publicContent/generated/packageActivitySnapshots.json",
+      "package_count": 16,
+      "day_count": 57,
+      "activity_count": 292,
+      "schema_valid": true,
+      "errors": []
+    },
+    "new_backoffice_cost_reference_rates": {
+      "status": "missing_optional_source",
+      "path": "input/new-backoffice/exports/itinerary-core/cost-reference-rates.json",
+      "section_counts": {},
+      "schema_valid": false,
+      "errors": []
+    }
+  },
+  "joinability": {
+    "join_key": "canonical_catalog_key+day",
+    "llm_wiki_days": 57,
+    "jvto_web_days": 57,
+    "matched_days": 57,
+    "raw_join_count": 0,
+    "resolved_join_count": 57,
+    "unresolved_llm_wiki_package_ids": [],
+    "unresolved_jvto_web_package_ids": [],
+    "missing_in_llm_wiki": [],
+    "missing_in_jvto_web": [],
+    "title_mismatch_warnings": [
+      {
+        "catalog_package_key": "surabaya/taman-safari-prigen-bromo-madakaripura-3d2n",
+        "day": 1,
+        "llm_wiki_title": "Surabaya to Taman Safari Prigen and Bromo Overnight",
+        "jvto_web_day_title": "Surabaya to Taman Safari Prigen and Continue Toward Bromo"
+      },
+      {
+        "catalog_package_key": "surabaya/taman-safari-prigen-bromo-madakaripura-3d2n",
+        "day": 2,
+        "llm_wiki_title": "Bromo Sunrise and Caldera Exploration",
+        "jvto_web_day_title": "Bromo-side Overnight and Final Sunrise Preparation"
+      },
+      {
+        "catalog_package_key": "surabaya/taman-safari-prigen-bromo-madakaripura-3d2n",
+        "day": 3,
+        "llm_wiki_title": "Madakaripura Waterfall and Return to Surabaya",
+        "jvto_web_day_title": "Bromo Sunrise, Madakaripura, and Return to Surabaya"
+      }
+    ]
+  },
+  "quality_report": {
+    "critical_count": 0,
+    "warning_count": 2,
+    "warnings": [
+      "3 day-title mismatch(es) between sources",
+      "new-backoffice cost-reference-rates.json not available; run php artisan export:cost-reference-rates in an environment with live DB .env"
+    ]
+  }
+}

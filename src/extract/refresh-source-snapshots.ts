@@ -20,6 +20,7 @@ const RAW_SNAPSHOTS: Array<{ repo: string; path: string; out: string; optional?:
   { repo: 'sambuko82/llm-wiki', path: 'output/products/package-readiness/package-itineraries.json', out: 'llm-wiki/package-readiness/package-itineraries.json' },
   { repo: 'sambuko82/llm-wiki', path: 'output/products/package-readiness/package-pricing.json', out: 'llm-wiki/package-readiness/package-pricing.json' },
   { repo: 'sambuko82/llm-wiki', path: 'output/products/package-readiness/package-registry.json', out: 'llm-wiki/package-readiness/package-registry.json' },
+  { repo: 'sambuko82/llm-wiki', path: 'output/products/package-readiness/package-operational-days.json', out: 'llm-wiki/package-readiness/package-operational-days.json' },
   { repo: 'jvto-devteam/jvto-web', path: 'prisma/schema.prisma', out: 'jvto-web/schema.prisma' },
   {
     repo: 'jvto-devteam/jvto-web',
@@ -32,6 +33,11 @@ const RAW_SNAPSHOTS: Array<{ repo: string; path: string; out: string; optional?:
     path: 'src/lib/publicContent/generated/destinationDetailSnapshots.json',
     out: 'jvto-web/publicContent/generated/destinationDetailSnapshots.json',
     optional: true
+  },
+  {
+    repo: 'jvto-devteam/jvto-web',
+    path: 'src/lib/publicContent/generated/packageActivitySnapshots.json',
+    out: 'jvto-web/publicContent/generated/packageActivitySnapshots.json'
   },
   { repo: 'jvto-devteam/new-backoffice', path: 'routes/data.php', out: 'new-backoffice/routes-data.php' }
 ];
