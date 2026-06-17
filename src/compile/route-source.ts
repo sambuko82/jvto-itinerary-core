@@ -118,8 +118,19 @@ export async function buildSourceContext(dir: string = GENERATED_DIR): Promise<S
 }
 
 function windowSupport(window: string[], ctx: SourceContext): { strength: SourceStrength; sources: string[] } {
-  const movementConfirmed = ctx.movements.some((m) => contiguousContains(m, window));
   const matching = ctx.phrases.filter((p) => contiguousContains(p.core, window));
+  const windowSet = new Set(window);
+  // A TravelAction movement confirms the window when its core tokens appear contiguously
+  // inside the window, OR — for a same-place label variant (e.g. the movement endpoint
+  // "Prigen Safari Park" → [prigen, safari] vs the slug-derived window "taman safari prigen")
+  // — when the movement core is a >=2-token subset of an already source-named window.
+  // The subset path is gated on an atomic-phrase match (matching.length > 0) so it only
+  // upgrades windows that already name a real destination, never bare/unnamed tokens.
+  const movementConfirmed = ctx.movements.some(
+    (m) =>
+      contiguousContains(m, window) ||
+      (matching.length > 0 && m.length >= 2 && m.every((t) => windowSet.has(t)))
+  );
   if (movementConfirmed) {
     const srcs = ['jvto-web:travelAction', ...matching.map((p) => p.source)];
     return { strength: 'confirmed', sources: [...new Set(srcs)].sort() };

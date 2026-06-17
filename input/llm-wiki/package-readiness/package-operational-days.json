@@ -1,0 +1,806 @@
+[
+  {
+    "package_id": "bromo-1d1n",
+    "slug": "bromo-1d1n",
+    "day": 1,
+    "title": "Midnight Departure from Surabaya for Bromo Sunrise",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": null,
+    "overnight_status": "overnight_in_vehicle",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": "— (overnight in vehicle / return)"
+  },
+  {
+    "package_id": "bromo-2d1n",
+    "slug": "bromo-2d1n",
+    "day": 1,
+    "title": "Surabaya to the Bromo Side for Overnight Staging",
+    "meal_codes": [],
+    "hotel_label": "Joglo Kecombrang Bromo",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "bromo-2d1n",
+    "slug": "bromo-2d1n",
+    "day": 2,
+    "title": "Bromo Sunrise, Madakaripura, and Return to Surabaya",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": null,
+    "overnight_status": "no_overnight",
+    "source_basis": "package-itineraries.days.hotel+title",
+    "missing_fields": [],
+    "notes": "Final day; title indicates trip end/return."
+  },
+  {
+    "package_id": "ijen-2d1n",
+    "slug": "ijen-2d1n",
+    "day": 1,
+    "title": "Surabaya to Bondowoso for Ijen Staging",
+    "meal_codes": [
+      "D"
+    ],
+    "hotel_label": "Riverside Homestay",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-2d1n",
+    "slug": "ijen-2d1n",
+    "day": 2,
+    "title": "Ijen Climb and Return to Surabaya",
+    "meal_codes": [
+      "B",
+      "L"
+    ],
+    "hotel_label": null,
+    "overnight_status": "no_overnight",
+    "source_basis": "package-itineraries.days.hotel+title",
+    "missing_fields": [],
+    "notes": "Final day; title indicates trip end/return."
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-3d2n",
+    "slug": "ijen-bromo-madakaripura-3d2n",
+    "day": 1,
+    "title": "Surabaya to Bondowoso for Ijen Staging",
+    "meal_codes": [
+      "D"
+    ],
+    "hotel_label": "Riverside Homestay",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-3d2n",
+    "slug": "ijen-bromo-madakaripura-3d2n",
+    "day": 2,
+    "title": "Ijen Climb and Transfer Toward the Bromo Side",
+    "meal_codes": [
+      "B",
+      "L"
+    ],
+    "hotel_label": "Joglo Kecombrang Bromo",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-3d2n",
+    "slug": "ijen-bromo-madakaripura-3d2n",
+    "day": 3,
+    "title": "Bromo Sunrise, Madakaripura, and Return to Surabaya",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": null,
+    "overnight_status": "no_overnight",
+    "source_basis": "package-itineraries.days.hotel+title",
+    "missing_fields": [],
+    "notes": "Final day; title indicates trip end/return."
+  },
+  {
+    "package_id": "bromo-madakaripura-ijen-3d2n",
+    "slug": "bromo-madakaripura-ijen-3d2n",
+    "day": 1,
+    "title": "Surabaya to the Bromo Side for Overnight Staging",
+    "meal_codes": [],
+    "hotel_label": "Joglo Kecombrang Bromo",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "bromo-madakaripura-ijen-3d2n",
+    "slug": "bromo-madakaripura-ijen-3d2n",
+    "day": 2,
+    "title": "Bromo Sunrise, Madakaripura, and Transfer Toward Ijen",
+    "meal_codes": [
+      "B",
+      "D"
+    ],
+    "hotel_label": "Riverside Homestay",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "bromo-madakaripura-ijen-3d2n",
+    "slug": "bromo-madakaripura-ijen-3d2n",
+    "day": 3,
+    "title": "Ijen Climb and Forward Finish into Bali",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": null,
+    "overnight_status": "no_overnight",
+    "source_basis": "package-itineraries.days.hotel+title",
+    "missing_fields": [],
+    "notes": "Final day; title indicates trip end/return."
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "day": 1,
+    "title": "Surabaya to Bondowoso for Ijen Staging",
+    "meal_codes": [
+      "D"
+    ],
+    "hotel_label": "Riverside Homestay",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "day": 2,
+    "title": "Ijen Climb and Continue to the Papuma Side",
+    "meal_codes": [
+      "B",
+      "L"
+    ],
+    "hotel_label": "Doho Homestay",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "day": 3,
+    "title": "Papuma Area to Tumpak Sewu Staging",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": "Joglo Kecombrang Bromo",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "day": 4,
+    "title": "Tumpak Sewu, Bromo Sequence, and Return to Surabaya",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": null,
+    "overnight_status": "no_overnight",
+    "source_basis": "package-itineraries.days.hotel+title",
+    "missing_fields": [],
+    "notes": "Final day; title indicates trip end/return."
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-4d3n",
+    "slug": "ijen-bromo-madakaripura-4d3n",
+    "day": 1,
+    "title": "Surabaya to Bondowoso for Ijen Staging",
+    "meal_codes": [
+      "D"
+    ],
+    "hotel_label": "Riverside Homestay",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-4d3n",
+    "slug": "ijen-bromo-madakaripura-4d3n",
+    "day": 2,
+    "title": "Ijen Climb and Transfer Toward the Bromo Side",
+    "meal_codes": [
+      "B",
+      "L"
+    ],
+    "hotel_label": "Joglo Kecombrang Bromo",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-4d3n",
+    "slug": "ijen-bromo-madakaripura-4d3n",
+    "day": 3,
+    "title": "Bromo Sunrise, Madakaripura, and Return to Surabaya City",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": "Holiday Inn Express Surabaya",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-4d3n",
+    "slug": "ijen-bromo-madakaripura-4d3n",
+    "day": 4,
+    "title": "Surabaya Hotel Stay and Airport Transfer",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": null,
+    "overnight_status": "no_overnight",
+    "source_basis": "package-itineraries.days.hotel+title",
+    "missing_fields": [],
+    "notes": "Final day; title indicates trip end/return."
+  },
+  {
+    "package_id": "tumpak-sewu-bromo-ijen-4d3n",
+    "slug": "tumpak-sewu-bromo-ijen-4d3n",
+    "day": 1,
+    "title": "Surabaya to the Tumpak Sewu Side",
+    "meal_codes": [],
+    "hotel_label": "Artha Cottage",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "tumpak-sewu-bromo-ijen-4d3n",
+    "slug": "tumpak-sewu-bromo-ijen-4d3n",
+    "day": 2,
+    "title": "Tumpak Sewu and Continue Toward the Bromo Side",
+    "meal_codes": [
+      "B",
+      "L"
+    ],
+    "hotel_label": "Joglo Kecombrang Bromo",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "tumpak-sewu-bromo-ijen-4d3n",
+    "slug": "tumpak-sewu-bromo-ijen-4d3n",
+    "day": 3,
+    "title": "Bromo Sunrise and Transfer to the Ijen Side",
+    "meal_codes": [
+      "B",
+      "D"
+    ],
+    "hotel_label": "Riverside Homestay",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "tumpak-sewu-bromo-ijen-4d3n",
+    "slug": "tumpak-sewu-bromo-ijen-4d3n",
+    "day": 4,
+    "title": "Ijen Climb and Finish into Bali",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": null,
+    "overnight_status": "no_overnight",
+    "source_basis": "package-itineraries.days.hotel+title",
+    "missing_fields": [],
+    "notes": "Final day; title indicates trip end/return."
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "day": 1,
+    "title": "Surabaya to Bondowoso for Ijen Staging",
+    "meal_codes": [
+      "D"
+    ],
+    "hotel_label": "Riverside Homestay",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "day": 2,
+    "title": "Ijen Climb and Transfer to the Papuma Side",
+    "meal_codes": [
+      "B",
+      "L"
+    ],
+    "hotel_label": "Doho Homestay",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "day": 3,
+    "title": "Papuma Side to Tumpak Sewu Staging",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": "Joglo Kecombrang Bromo",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "day": 4,
+    "title": "Tumpak Sewu and Transfer Toward the Bromo Side",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": "Holiday Inn Express Surabaya",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "day": 5,
+    "title": "Bromo Sunrise and Final Return",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": null,
+    "overnight_status": "no_overnight",
+    "source_basis": "package-itineraries.days.hotel+title",
+    "missing_fields": [],
+    "notes": "Final day; title indicates trip end/return."
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-malang-5d4n",
+    "slug": "ijen-bromo-madakaripura-malang-5d4n",
+    "day": 1,
+    "title": "Surabaya to Bondowoso for Ijen Staging",
+    "meal_codes": [
+      "D"
+    ],
+    "hotel_label": "Riverside Homestay",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-malang-5d4n",
+    "slug": "ijen-bromo-madakaripura-malang-5d4n",
+    "day": 2,
+    "title": "Ijen Climb and Transfer Toward the Bromo Side",
+    "meal_codes": [
+      "B",
+      "L"
+    ],
+    "hotel_label": "Joglo Kecombrang Bromo",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-malang-5d4n",
+    "slug": "ijen-bromo-madakaripura-malang-5d4n",
+    "day": 3,
+    "title": "Bromo Sunrise, Madakaripura, and Continue to Malang",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": "Whiz Prime Malang",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-malang-5d4n",
+    "slug": "ijen-bromo-madakaripura-malang-5d4n",
+    "day": 4,
+    "title": "Malang and Batu Exploration with Return Toward Surabaya",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": "Holiday Inn Express Surabaya",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-bromo-madakaripura-malang-5d4n",
+    "slug": "ijen-bromo-madakaripura-malang-5d4n",
+    "day": 5,
+    "title": "Surabaya Hotel Finish and Airport Transfer",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": null,
+    "overnight_status": "no_overnight",
+    "source_basis": "package-itineraries.days.hotel+title",
+    "missing_fields": [],
+    "notes": "Final day; title indicates trip end/return."
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "day": 1,
+    "title": "Surabaya to Bondowoso for Ijen Staging",
+    "meal_codes": [
+      "D"
+    ],
+    "hotel_label": "Riverside Homestay",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "day": 2,
+    "title": "Ijen Climb and Continue to the Papuma Side",
+    "meal_codes": [
+      "B",
+      "L"
+    ],
+    "hotel_label": "Doho Homestay",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "day": 3,
+    "title": "Papuma Area to Tumpak Sewu Staging",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": "Joglo Kecombrang Bromo",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "day": 4,
+    "title": "Tumpak Sewu and Transfer Toward the Bromo Side",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": "Whiz Prime Malang",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "day": 5,
+    "title": "Bromo Sunrise and Continue to Malang",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": "Holiday Inn Express Surabaya",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "day": 6,
+    "title": "Malang and Surabaya Departure Handoff",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": null,
+    "overnight_status": "no_overnight",
+    "source_basis": "package-itineraries.days.hotel+title",
+    "missing_fields": [],
+    "notes": "Final day; title indicates trip end/return."
+  },
+  {
+    "package_id": "taman-safari-prigen-bromo-madakaripura-3d2n",
+    "slug": "taman-safari-prigen-bromo-madakaripura-3d2n",
+    "day": 1,
+    "title": "Surabaya to Taman Safari Prigen and Bromo Overnight",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": "Joglo Kecombrang Bromo",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "taman-safari-prigen-bromo-madakaripura-3d2n",
+    "slug": "taman-safari-prigen-bromo-madakaripura-3d2n",
+    "day": 2,
+    "title": "Bromo Sunrise and Caldera Exploration",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": "Joglo Kecombrang Bromo",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "taman-safari-prigen-bromo-madakaripura-3d2n",
+    "slug": "taman-safari-prigen-bromo-madakaripura-3d2n",
+    "day": 3,
+    "title": "Madakaripura Waterfall and Return to Surabaya",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": null,
+    "overnight_status": "no_overnight",
+    "source_basis": "package-itineraries.days.hotel+title",
+    "missing_fields": [],
+    "notes": "Final day; title indicates trip end/return."
+  },
+  {
+    "package_id": "bali/bromo-ijen-3d2n",
+    "slug": "bromo-ijen-3d2n",
+    "day": 1,
+    "title": "Bali to the Bromo Side via East Java Crossing",
+    "meal_codes": [],
+    "hotel_label": "Joglo Kecombrang Bromo",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "bali/bromo-ijen-3d2n",
+    "slug": "bromo-ijen-3d2n",
+    "day": 2,
+    "title": "Bromo Sunrise, Madakaripura, and Transfer to Bondowoso",
+    "meal_codes": [
+      "B",
+      "D"
+    ],
+    "hotel_label": "Riverside Homestay",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "bali/bromo-ijen-3d2n",
+    "slug": "bromo-ijen-3d2n",
+    "day": 3,
+    "title": "Ijen Climb and Return to Bali",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": null,
+    "overnight_status": "no_overnight",
+    "source_basis": "package-itineraries.days.hotel+title",
+    "missing_fields": [],
+    "notes": "Final day; title indicates trip end/return."
+  },
+  {
+    "package_id": "bali/ijen-bromo-madakaripura-3d2n",
+    "slug": "ijen-bromo-madakaripura-3d2n",
+    "day": 1,
+    "title": "Bali to Banyuwangi for Ijen Staging",
+    "meal_codes": [
+      "D"
+    ],
+    "hotel_label": "Luminor Hotel",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "bali/ijen-bromo-madakaripura-3d2n",
+    "slug": "ijen-bromo-madakaripura-3d2n",
+    "day": 2,
+    "title": "Ijen Climb and Transfer Toward the Bromo Side",
+    "meal_codes": [
+      "B",
+      "L"
+    ],
+    "hotel_label": "Joglo Kecombrang Bromo",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "bali/ijen-bromo-madakaripura-3d2n",
+    "slug": "ijen-bromo-madakaripura-3d2n",
+    "day": 3,
+    "title": "Bromo Sunrise, Madakaripura, and Finish in Surabaya",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": null,
+    "overnight_status": "no_overnight",
+    "source_basis": "package-itineraries.days.hotel+title",
+    "missing_fields": [],
+    "notes": "Final day; title indicates trip end/return."
+  },
+  {
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "day": 1,
+    "title": "Bali to Banyuwangi for Ijen Staging",
+    "meal_codes": [
+      "D"
+    ],
+    "hotel_label": "Luminor Hotel",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "day": 2,
+    "title": "Ijen Climb and Papuma Transfer",
+    "meal_codes": [
+      "B",
+      "L"
+    ],
+    "hotel_label": "Doho Homestay",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "day": 3,
+    "title": "Tumpak Sewu Segment and Transfer Toward Bromo",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": "Joglo Kecombrang Bromo",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "day": 4,
+    "title": "Bromo Sunrise and Finish in Surabaya",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": null,
+    "overnight_status": "no_overnight",
+    "source_basis": "package-itineraries.days.hotel+title",
+    "missing_fields": [],
+    "notes": "Final day; title indicates trip end/return."
+  },
+  {
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "day": 1,
+    "title": "Bali to Banyuwangi for Ijen Staging",
+    "meal_codes": [
+      "D"
+    ],
+    "hotel_label": "Luminor Hotel",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "day": 2,
+    "title": "Ijen Climb and Transfer to the Papuma Side",
+    "meal_codes": [
+      "B",
+      "L"
+    ],
+    "hotel_label": "Doho Homestay",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "day": 3,
+    "title": "Papuma Side to Tumpak Sewu Staging",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": "Joglo Kecombrang Bromo",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "day": 4,
+    "title": "Tumpak Sewu and Transfer Toward Bromo",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": "Holiday Inn Express Surabaya",
+    "overnight_status": "hotel",
+    "source_basis": "package-itineraries.days.hotel",
+    "missing_fields": [],
+    "notes": ""
+  },
+  {
+    "package_id": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "slug": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "day": 5,
+    "title": "Bromo Sunrise and Final Surabaya Handoff",
+    "meal_codes": [
+      "B"
+    ],
+    "hotel_label": null,
+    "overnight_status": "no_overnight",
+    "source_basis": "package-itineraries.days.hotel+title",
+    "missing_fields": [],
+    "notes": "Final day; title indicates trip end/return."
+  }
+]

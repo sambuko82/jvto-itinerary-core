@@ -14,10 +14,12 @@
     { "repo": "sambuko82/llm-wiki", "source_path": "output/products/package-readiness/package-itineraries.json", "snapshot": "input/llm-wiki/package-readiness/package-itineraries.json" },
     { "repo": "sambuko82/llm-wiki", "source_path": "output/products/package-readiness/package-pricing.json", "snapshot": "input/llm-wiki/package-readiness/package-pricing.json" },
     { "repo": "sambuko82/llm-wiki", "source_path": "output/products/package-readiness/package-registry.json", "snapshot": "input/llm-wiki/package-readiness/package-registry.json" },
+    { "repo": "sambuko82/llm-wiki", "source_path": "output/products/package-readiness/package-operational-days.json", "snapshot": "input/llm-wiki/package-readiness/package-operational-days.json" },
     { "repo": "jvto-devteam/jvto-web", "source_path": "prisma/schema.prisma", "snapshot": "input/jvto-web/schema.prisma" },
     { "repo": "jvto-devteam/jvto-web", "source_path": "src/lib/packages/", "snapshot": "input/jvto-web/lib-packages.index.json" },
     { "repo": "jvto-devteam/jvto-web", "source_path": "src/lib/publicContent/generated/packageDetailSnapshots.json", "snapshot": "input/jvto-web/publicContent/generated/packageDetailSnapshots.json" },
     { "repo": "jvto-devteam/jvto-web", "source_path": "src/lib/publicContent/generated/destinationDetailSnapshots.json", "snapshot": "input/jvto-web/publicContent/generated/destinationDetailSnapshots.json" },
+    { "repo": "jvto-devteam/jvto-web", "source_path": "src/lib/publicContent/generated/packageActivitySnapshots.json", "snapshot": "input/jvto-web/publicContent/generated/packageActivitySnapshots.json" },
     { "repo": "jvto-devteam/new-backoffice", "source_path": "routes/data.php", "snapshot": "input/new-backoffice/routes-data.php" },
     { "repo": "jvto-devteam/new-backoffice", "source_path": "app/Http/Controllers/ExportData/", "snapshot": "input/new-backoffice/export-controllers.index.json" }
   ]

@@ -1161,11 +1161,12 @@
           "safari",
           "prigen"
         ],
-        "source_strength": "supported",
+        "source_strength": "confirmed",
         "sources": [
           "jvto-web:accommodationPlan.area",
           "jvto-web:keyExperiences",
-          "jvto-web:product.route"
+          "jvto-web:product.route",
+          "jvto-web:travelAction"
         ]
       }
     ],
