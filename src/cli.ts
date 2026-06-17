@@ -18,6 +18,7 @@ import { buildPackageRouteMapDerived } from './compile/build-package-route-map-d
 import { buildRouteSourceCandidates } from './compile/build-route-source-candidates.js';
 import { buildOperationalContextGapReport } from './compile/build-operational-context-gap-report.js';
 import { buildOperationalContext } from './compile/build-operational-context.js';
+import { buildSourceContractIntake } from './compile/build-source-contract-intake.js';
 
 async function main() {
   const command = process.argv[2];
@@ -112,6 +113,35 @@ async function main() {
     console.log(`status: ${report.status}`);
     if (report.status !== 'pass') {
       console.error('Phase 5 validation FAILED: critical errors present.');
+      process.exit(1);
+    }
+    return;
+  }
+
+  if (command === 'source-contracts') {
+    // Phase 6A: validate + reconcile + join the Phase 6A-0 source-contract snapshots.
+    // Outputs land at generated/ root (distinct from the itinerary-intelligence bundle).
+    const { readiness, skeleton } = await buildSourceContractIntake();
+    await writeJson('generated/source-contract-readiness-report.json', readiness);
+    await writeJson('generated/package-day-intelligence-skeleton.json', skeleton);
+    console.log(
+      JSON.stringify(
+        {
+          sources: Object.fromEntries(
+            Object.entries(readiness.sources).map(([k, v]) => [k, v.status])
+          ),
+          raw_join_count: readiness.joinability.raw_join_count,
+          resolved_join_count: readiness.joinability.resolved_join_count,
+          skeleton_records: skeleton.length,
+          critical: readiness.quality_report.critical_count,
+          warnings: readiness.quality_report.warning_count
+        },
+        null,
+        2
+      )
+    );
+    if (readiness.quality_report.critical_count > 0) {
+      console.error('Phase 6A intake FAILED: required source contract missing or invalid.');
       process.exit(1);
     }
     return;

@@ -89,6 +89,8 @@ const P = {
   wikiItineraries: `${WIKI}/package-itineraries.json`,
   webSchema: `${WEB}/schema.prisma`,
   boBundle: `${BO}/exports/itinerary-core-bundle.json`,
+  packageDaySkeleton: 'generated/package-day-intelligence-skeleton.json',
+  sourceContractReadiness: 'generated/source-contract-readiness-report.json',
   snapshotManifest: 'input/source-snapshot-manifest.json'
 };
 function load(key, asText = false) {
@@ -117,6 +119,8 @@ const wikiGapReport = load('wikiGapReport');
 const wikiItineraries = load('wikiItineraries');
 const webSchema = load('webSchema', true);
 const boBundle = load('boBundle');
+const packageDaySkeleton = load('packageDaySkeleton');
+const sourceContractReadiness = load('sourceContractReadiness');
 const snapshotManifest = load('snapshotManifest');
 
 // Deterministic timestamp — repo convention (src/config/inventory-meta.ts):
@@ -217,21 +221,47 @@ const opportunities = [];
   const pkgs = arr(wikiItineraries).length;
   const boDays = arr(boBundle?.package_itinerary_days).length;
   const eventCount = arr(operationalEvents).length;
-  // Source days exist; only a sparse subset is promoted into operational events.
-  groups.package_operational_days = group(STATUS.PARTIAL, {
-    counts: { source_days_llm_wiki: days, source_packages: pkgs, backoffice_itinerary_days: boDays, operational_events_promoted: eventCount },
+  // Day-level facts (meals / hotel / overnight / activity sequence) are promoted into the
+  // package-day intelligence layer (skeleton), NOT into 07-operational-events — 07 is
+  // evaluator-gated and pattern-level (ADR-0001), not a per-day store. The group is covered
+  // when every source operational day is reconciled into that package-day layer.
+  const skeleton = arr(packageDaySkeleton);
+  const skeletonDays = skeleton.length;
+  const join = sourceContractReadiness?.joinability ?? null;
+  const sourceOpDays = join?.llm_wiki_days ?? skeletonDays;
+  const resolvedDays = join?.resolved_join_count ?? skeletonDays;
+  const promoted = skeletonDays > 0 && sourceOpDays > 0 && resolvedDays >= sourceOpDays && skeletonDays >= sourceOpDays;
+  groups.package_operational_days = group(promoted ? STATUS.COVERED : STATUS.PARTIAL, {
+    counts: {
+      source_days_llm_wiki: days,
+      source_packages: pkgs,
+      backoffice_itinerary_days: boDays,
+      operational_events_promoted: eventCount,
+      package_day_skeleton_days: skeletonDays,
+      source_contract_op_days: sourceOpDays,
+      reconciled_days: resolvedDays
+    },
     evidence: [
-      `${days} operational days across ${pkgs} packages in llm-wiki package-itineraries.json`,
-      `${boDays} backoffice package_itinerary_days rows in export bundle`,
-      `${eventCount} promoted entries in 07-operational-events.json`
+      `${skeletonDays} day records in package-day-intelligence-skeleton.json (package-day intelligence layer)`,
+      `${resolvedDays}/${sourceOpDays} source operational days reconciled on canonical_catalog_key+day`,
+      `${eventCount} pattern-level entries in 07-operational-events.json (evaluator-gated, not a per-day store)`
     ],
-    covered_items: [`${days} day-plans available in source (day/title/meals/hotel)`],
-    source_exists_not_promoted: [
-      `per-day meal/hotel/sequence detail exists in source but only ${eventCount} operational events are promoted`
+    covered_items: promoted
+      ? [`${skeletonDays} source days promoted into the package-day intelligence layer (meals/hotel/overnight/sequence)`]
+      : [`${skeletonDays} day records available in package-day skeleton`],
+    source_exists_not_promoted: promoted
+      ? []
+      : [`per-day meal/hotel/sequence exists in source but only ${resolvedDays}/${sourceOpDays} days reconciled into the package-day layer`],
+    missing_items: promoted
+      ? []
+      : [`${Math.max(sourceOpDays - resolvedDays, 0)} source operational days not yet reconciled into the package-day layer`],
+    do_not_duplicate: [
+      'do not dump per-day meal/hotel/sequence into 07-operational-events — 07 is evaluator-gated and pattern-level (ADR-0001)',
+      'do not re-key itinerary day plans manually — derive from package-operational-days + packageActivitySnapshots'
     ],
-    missing_items: ['day-level operational-event mapping for the majority of the 57 source days'],
-    do_not_duplicate: ['do not re-key itinerary day plans manually — derive from package-itineraries.json + backoffice day_details'],
-    next_actions: ['promote day-level meal/hotel/sequence into 07-operational-events from existing source days']
+    next_actions: promoted
+      ? []
+      : ['reconcile remaining source operational days into the package-day intelligence layer via npm run source-contracts:intake']
   });
 }
 
@@ -395,6 +425,16 @@ const opportunities = [];
       source: 'route-source-gap-report.json',
       target: ['route-leg-index.json'],
       blocked_by: ['needs explicit movement source from llm-wiki package-registry or backoffice']
+    });
+  }
+  if (nullDistance.length) {
+    opportunities.push({
+      id: 'leg-durations-for-arrival-scheduling',
+      priority: 'medium',
+      why: `${nullDistance.length} legs have null distance/duration — arrival-time day sequencing (rest-first nearest) and safe flight-departure buffers cannot be computed without them`,
+      source: 'route-leg-index.json',
+      target: ['package-day-intelligence-skeleton.json (schedule.needs_leg_duration)'],
+      blocked_by: ['per-leg travel duration/distance is do-not-invent; needs route research or backoffice route data']
     });
   }
 }

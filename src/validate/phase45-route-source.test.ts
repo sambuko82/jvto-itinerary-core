@@ -35,14 +35,21 @@ test('compound phrase candidates are source-backed, not blind splits', () => {
   assert.ok(withCompound, 'expected a package with tumpak_sewu compound candidate');
 });
 
-test('gap report explains unconfirmed ambiguity (taman_safari_prigen)', () => {
-  assert.ok(gaps.length >= 1);
-  const taman = gaps.find((g) => String(g.token_or_node).includes('taman'));
-  assert.ok(taman, 'expected taman/safari/prigen gap entry');
-  assert.ok((taman.sources_checked as string[]).length > 0);
-  assert.ok((taman.missing_stronger_sources as string[]).some((s) => /TravelAction/i.test(s)));
-  assert.ok(String(taman.recommended_action).length > 0);
-  assert.ok(Array.isArray(taman.source_trace) && (taman.source_trace as unknown[]).length > 0);
+test('taman_safari_prigen resolved via same-place TravelAction label variant', () => {
+  // The TravelAction endpoint "Prigen Safari Park" → [prigen, safari] is the same place
+  // as the slug-derived window "taman safari prigen". The source-backed subset match
+  // upgrades it to a confirmed movement source, so it is no longer an unconfirmed
+  // explicit_movement_source gap.
+  assert.ok(!gaps.some((g) => String(g.token_or_node).includes('taman')), 'taman gap should be resolved');
+  const taman = candidates.find((c) =>
+    (c.compound_phrase_candidates as Array<{ node_id: string }>).some((g) => g.node_id === 'taman_safari_prigen')
+  );
+  assert.ok(taman, 'expected a package with taman_safari_prigen compound candidate');
+  const node = (
+    taman!.compound_phrase_candidates as Array<{ node_id: string; source_strength: string; sources: string[] }>
+  ).find((g) => g.node_id === 'taman_safari_prigen')!;
+  assert.equal(node.source_strength, 'confirmed');
+  assert.ok(node.sources.some((s) => /travelAction/i.test(s)), 'confirmed via jvto-web travelAction');
 });
 
 test('no PII keys in candidates or gap report', () => {

@@ -1,7 +1,7 @@
 {
-  "schema_version": "package-readiness/v1.2",
+  "schema_version": "package-readiness/v1.3",
   "generated_by": "scripts/compile_packages.py",
-  "generated_at": "2026-06-07T16:52:25.857534+00:00",
+  "generated_at": "2026-06-15T14:30:19.515689+00:00",
   "dry_run": false,
   "canonical_package_count": 16,
   "source_hashes": {
@@ -18,8 +18,16 @@
     "package-registry.json",
     "package-pricing.json",
     "package-itineraries.json",
+    "package-operational-days.json",
     "booking-compatibility.json",
     "gap-report.json"
   ],
-  "clean": true
+  "clean": true,
+  "record_counts": {
+    "registry": 16,
+    "pricing": 16,
+    "itineraries": 16,
+    "operational_days": 57,
+    "booking_compatibility": 16
+  }
 }
