@@ -218,25 +218,13 @@
       "evidence": [
         "16 legs in route-leg-index",
         "0 explicit_movement_source gap(s) in route-source-gap-report",
-        "13 legs with null distance_km"
+        "1 legs with null distance_km"
       ],
       "covered_items": [
-        "3 legs with distance + duration"
+        "15 legs with distance + duration"
       ],
       "partial_items": [
-        "bromo_area_to_madakaripura",
-        "bondowoso_ijen_area_to_ijen_crater",
-        "ijen_area_to_ketapang_harbor",
-        "surabaya_hotel_to_bromo_area",
-        "surabaya_to_bondowoso_ijen_area",
-        "tumpak_sewu_to_bromo_area",
-        "bondowoso_to_ijen_base",
-        "banyuwangi_to_ijen_base",
-        "ketapang_harbor_to_gilimanuk_bali_side",
-        "ijen_base_to_ketapang_harbor",
-        "bali_hotel_area_to_banyuwangi_ijen_area",
-        "bromo_area_to_malang",
-        "malang_to_surabaya"
+        "bali_hotel_area_to_banyuwangi_ijen_area"
       ],
       "missing_items": [],
       "source_exists_not_promoted": [],
@@ -246,7 +234,7 @@
       "next_actions": [],
       "counts": {
         "legs": 16,
-        "null_distance": 13,
+        "null_distance": 1,
         "explicit_movement_source_gaps": 0
       }
     },
@@ -494,7 +482,7 @@
     {
       "id": "leg-durations-for-arrival-scheduling",
       "priority": "medium",
-      "why": "13 legs have null distance/duration — arrival-time day sequencing (rest-first nearest) and safe flight-departure buffers cannot be computed without them",
+      "why": "1 legs have null distance/duration — arrival-time day sequencing (rest-first nearest) and safe flight-departure buffers cannot be computed without them",
       "source": "route-leg-index.json",
       "target": [
         "package-day-intelligence-skeleton.json (schedule.needs_leg_duration)"
