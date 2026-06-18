@@ -1,0 +1,917 @@
+[
+  {
+    "id": "leg__bali__to__bromo",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bali__to__bromo"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "bali__to__bromo",
+    "from_node": "bali",
+    "to_node": "bromo",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 404.4,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 386,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "bali/bromo-ijen-3d2n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:15.408Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 590
+  },
+  {
+    "id": "leg__bali__to__ijen",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bali__to__ijen"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "bali__to__ijen",
+    "from_node": "bali",
+    "to_node": "ijen",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 175.9,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 186,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:15.958Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 311
+  },
+  {
+    "id": "leg__bromo__to__ijen",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bromo__to__ijen"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "bromo__to__ijen",
+    "from_node": "bromo",
+    "to_node": "ijen",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 222,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 225,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "bali/bromo-ijen-3d2n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:16.353Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 340
+  },
+  {
+    "id": "leg__bromo__to__madakaripura",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bromo__to__madakaripura"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "bromo__to__madakaripura",
+    "from_node": "bromo",
+    "to_node": "madakaripura",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 81.6,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 103,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "bali/bromo-ijen-3d2n",
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bromo-madakaripura-ijen-3d2n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "taman-safari-prigen-bromo-madakaripura-3d2n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:16.839Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 101
+  },
+  {
+    "id": "leg__bromo__to__malang",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bromo__to__malang"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "bromo__to__malang",
+    "from_node": "bromo",
+    "to_node": "malang",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 71.5,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 90,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:18.975Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 123
+  },
+  {
+    "id": "leg__bromo__to__surabaya",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "bromo__to__surabaya"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "bromo__to__surabaya",
+    "from_node": "bromo",
+    "to_node": "surabaya",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 110.7,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 110,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "bromo-1d1n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:19.273Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 169
+  },
+  {
+    "id": "leg__ijen__to__bromo",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen__to__bromo"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "ijen__to__bromo",
+    "from_node": "ijen",
+    "to_node": "bromo",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 219.1,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 225,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:19.592Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 343
+  },
+  {
+    "id": "leg__ijen__to__papuma",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen__to__papuma"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "ijen__to__papuma",
+    "from_node": "ijen",
+    "to_node": "papuma",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 135.1,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 139,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:19.955Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 233
+  },
+  {
+    "id": "leg__ijen__to__surabaya",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "ijen__to__surabaya"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "ijen__to__surabaya",
+    "from_node": "ijen",
+    "to_node": "surabaya",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 255.1,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 219,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "ijen-2d1n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:20.292Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 335
+  },
+  {
+    "id": "leg__madakaripura__to__ijen",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "madakaripura__to__ijen"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "madakaripura__to__ijen",
+    "from_node": "madakaripura",
+    "to_node": "ijen",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 176.1,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 161,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "bromo-madakaripura-ijen-3d2n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:20.585Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 270
+  },
+  {
+    "id": "leg__madakaripura__to__malang",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "madakaripura__to__malang"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "madakaripura__to__malang",
+    "from_node": "madakaripura",
+    "to_node": "malang",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 107.7,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 89,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "ijen-bromo-madakaripura-malang-5d4n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:20.937Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 124
+  },
+  {
+    "id": "leg__madakaripura__to__surabaya",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "madakaripura__to__surabaya"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "madakaripura__to__surabaya",
+    "from_node": "madakaripura",
+    "to_node": "surabaya",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 117.6,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 97,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "bali/ijen-bromo-madakaripura-3d2n",
+      "bromo-2d1n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "taman-safari-prigen-bromo-madakaripura-3d2n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:21.228Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 126
+  },
+  {
+    "id": "leg__papuma__to__tumpak_sewu",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "papuma__to__tumpak_sewu"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "papuma__to__tumpak_sewu",
+    "from_node": "papuma",
+    "to_node": "tumpak_sewu",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 112.6,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 112,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:21.511Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 166
+  },
+  {
+    "id": "leg__surabaya__to__bromo",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "surabaya__to__bromo"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "surabaya__to__bromo",
+    "from_node": "surabaya",
+    "to_node": "bromo",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 110.4,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 110,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "bromo-1d1n",
+      "bromo-2d1n",
+      "bromo-madakaripura-ijen-3d2n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:21.836Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 167
+  },
+  {
+    "id": "leg__surabaya__to__ijen",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "surabaya__to__ijen"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "surabaya__to__ijen",
+    "from_node": "surabaya",
+    "to_node": "ijen",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 257.7,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 219,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "ijen-2d1n",
+      "ijen-bromo-madakaripura-3d2n",
+      "ijen-bromo-madakaripura-4d3n",
+      "ijen-bromo-madakaripura-malang-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:22.139Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 332
+  },
+  {
+    "id": "leg__surabaya__to__taman_safari_prigen",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "surabaya__to__taman_safari_prigen"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "surabaya__to__taman_safari_prigen",
+    "from_node": "surabaya",
+    "to_node": "taman_safari_prigen",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 57,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 49,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "taman-safari-prigen-bromo-madakaripura-3d2n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:22.460Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 83
+  },
+  {
+    "id": "leg__surabaya__to__tumpak_sewu",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "surabaya__to__tumpak_sewu"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "surabaya__to__tumpak_sewu",
+    "from_node": "surabaya",
+    "to_node": "tumpak_sewu",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 153.3,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 121,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:22.749Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 203
+  },
+  {
+    "id": "leg__taman_safari_prigen__to__bromo",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "taman_safari_prigen__to__bromo"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "taman_safari_prigen__to__bromo",
+    "from_node": "taman_safari_prigen",
+    "to_node": "bromo",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 70.2,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 92,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "taman-safari-prigen-bromo-madakaripura-3d2n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "source_supported_sequence",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:23.108Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 125
+  },
+  {
+    "id": "leg__tumpak_sewu__to__bromo",
+    "schema_version": "itinerary-intelligence/inventory-v1",
+    "source_trace": [
+      {
+        "repo": "sambuko82/llm-wiki",
+        "path": "output/products/package-readiness/package-registry.json",
+        "field": "tumpak_sewu__to__bromo"
+      }
+    ],
+    "confidence": "high",
+    "generated_at": "2026-06-15T00:00:00Z",
+    "manual_fields": [],
+    "missing_fields": [
+      "distance_km_operator",
+      "duration_minutes_operator",
+      "road_profile",
+      "night_drive_possible",
+      "meal_stop_possible"
+    ],
+    "status": "active",
+    "route_leg_id": "tumpak_sewu__to__bromo",
+    "from_node": "tumpak_sewu",
+    "to_node": "bromo",
+    "distance_km_operator": null,
+    "distance_km_mapbox": 135,
+    "duration_minutes_operator": null,
+    "duration_minutes_mapbox": 142,
+    "road_profile": [],
+    "night_drive_possible": null,
+    "meal_stop_possible": null,
+    "used_by_packages": [
+      "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "tumpak-sewu-bromo-ijen-4d3n"
+    ],
+    "both_nodes_known": true,
+    "touches_ambiguous_node": false,
+    "source_basis": "jvto_web_travel_action",
+    "_timing_source": {
+      "mapbox_fields_filled_by": "OSRM free-flow (no traffic)",
+      "osrm_url": "https://router.project-osrm.org",
+      "generated_at": "2026-06-18T06:49:23.567Z",
+      "busy_field_filled_by": "Google Routes TRAFFIC_AWARE_OPTIMAL @ next 08:00 WIB",
+      "cache_policy": "refresh <= 30 days per Google Maps Platform ToS"
+    },
+    "duration_minutes_busy_routes": 209
+  }
+]

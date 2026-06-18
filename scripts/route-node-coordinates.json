@@ -1,0 +1,33 @@
+{
+  "seed_meta": {
+    "name": "jvto_route_node_coordinates",
+    "fills": "geo:null on generated/itinerary-intelligence/route-node-index.json (prerequisite for OSRM/Google Routes leg timing)",
+    "generated_at": "2026-06-18",
+    "policy": "Coordinates are geocoding-grade approximations from general geographic knowledge, each tied to the OPERATIONAL point JVTO actually uses (e.g., bromo = Cemoro Lawang jeep staging, NOT the crater). Confidence medium; verify against your real pickup/staging GPS points before production. No repo internals invented: node_id values map to the repo's route-node-index ids where confirmed; others flagged candidate.",
+    "lat_lng_order": "lat, lng (decimal degrees, WGS84)"
+  },
+  "nodes": [
+    {"node_id": "surabaya_airport", "label": "Juanda Intl (SUB)", "lat": -7.3798, "lng": 112.7868, "operational_point": "airport arrivals / pickup", "confirmed_in_repo": true, "confidence": "high"},
+    {"node_id": "surabaya", "label": "Surabaya city / hotel zone", "lat": -7.2575, "lng": 112.7521, "operational_point": "city hotel pickup", "confirmed_in_repo": "unknown", "confidence": "medium"},
+    {"node_id": "malang", "label": "Malang", "lat": -7.9778, "lng": 112.6342, "operational_point": "Malang city (Batu resolves here per repo)", "confirmed_in_repo": true, "confidence": "high"},
+    {"node_id": "probolinggo", "label": "Probolinggo", "lat": -7.7569, "lng": 113.2117, "operational_point": "transit node", "confirmed_in_repo": "unknown", "confidence": "medium"},
+    {"node_id": "bromo", "label": "Bromo (Cemoro Lawang)", "lat": -7.9046, "lng": 112.9525, "operational_point": "Cemoro Lawang jeep staging (NOT crater)", "confirmed_in_repo": true, "confidence": "medium"},
+    {"node_id": "madakaripura", "label": "Madakaripura Waterfall", "lat": -7.9003, "lng": 113.1430, "operational_point": "trailhead/parking near Lumbang", "confirmed_in_repo": "unknown", "confidence": "low_medium_verify"},
+    {"node_id": "bondowoso", "label": "Bondowoso", "lat": -7.9135, "lng": 113.8210, "operational_point": "Ijen staging overnight town", "confirmed_in_repo": "unknown", "confidence": "medium"},
+    {"node_id": "ijen", "label": "Ijen (Paltuding base)", "lat": -8.0590, "lng": 114.2200, "operational_point": "Paltuding parking/gate (NOT crater rim)", "confirmed_in_repo": true, "confidence": "medium"},
+    {"node_id": "ketapang_harbor", "label": "Ketapang Ferry Port", "lat": -8.1447, "lng": 114.3936, "operational_point": "ASDP ferry terminal Banyuwangi", "confirmed_in_repo": true, "confidence": "high"},
+    {"node_id": "gilimanuk_harbor", "label": "Gilimanuk Ferry Port", "lat": -8.1623, "lng": 114.4366, "operational_point": "ASDP ferry terminal Bali", "confirmed_in_repo": false, "note": "proposed node (see ferry-seed.json gilimanuk_node_resolution)", "confidence": "high"},
+    {"node_id": "bali", "label": "Bali hotel zone (proxy: Denpasar)", "lat": -8.6705, "lng": 115.2126, "operational_point": "ZONE PROXY - override per hotel: Kuta -8.7237,115.1750 / Ubud -8.5069,115.2625 / Lovina -8.1610,115.0250", "confirmed_in_repo": true, "confidence": "low_zone_proxy"},
+    {"node_id": "denpasar_airport", "label": "Ngurah Rai (DPS)", "lat": -8.7482, "lng": 115.1672, "operational_point": "Bali airport dropoff", "confirmed_in_repo": false, "note": "no dedicated repo node yet (see data-coverage-report node_id_resolution)", "confidence": "high"},
+    {"node_id": "tumpak_sewu", "label": "Tumpak Sewu Waterfall", "lat": -8.2306, "lng": 112.9170, "operational_point": "east entrance (Lumajang side)", "confirmed_in_repo": "unknown", "confidence": "medium"},
+    {"node_id": "jember", "label": "Jember", "lat": -8.1727, "lng": 113.6996, "operational_point": "transit node", "confirmed_in_repo": "unknown", "confidence": "medium"},
+    {"node_id": "papuma", "label": "Tanjung Papuma", "lat": -8.4297, "lng": 113.5530, "operational_point": "beach", "confirmed_in_repo": "unknown", "confidence": "medium"},
+    {"node_id": "baluran", "label": "Baluran NP (Bekol savanna)", "lat": -7.8417, "lng": 114.4083, "operational_point": "Bekol savanna; gate is ~12-15km before", "confirmed_in_repo": "unknown", "confidence": "medium"},
+    {"node_id": "taman_safari_prigen", "label": "Taman Safari Indonesia 2 (Prigen, Pasuruan)", "lat": -7.6957, "lng": 112.6358, "operational_point": "park entrance/parking, slopes of Arjuno-Welirang", "confirmed_in_repo": true, "confidence": "medium_verify"}
+  ],
+  "open_verification_items": [
+    "Replace each with your real operational GPS point (jeep staging, hotel pickup, parking) before production.",
+    "Confirm which of these node_ids exist in route-node-index.json (only 9 nodes were present in the snapshot); add the missing nodes via the catalog/routes pipeline.",
+    "bali is a zone proxy - per-hotel coordinate override strongly recommended for accurate last-leg timing."
+  ]
+}
