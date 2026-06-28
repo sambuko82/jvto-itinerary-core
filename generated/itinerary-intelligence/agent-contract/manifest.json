@@ -1,0 +1,27 @@
+{
+  "schema_version": "agent-contract-v1",
+  "purpose": "Narrow, agent-safe operational projection for jvto-whatsapp-agent-runtime. Not a duplicate of the full intelligence layer.",
+  "generated_from": "jvto-itinerary-core/generated/itinerary-intelligence (read-only projection)",
+  "files": {
+    "package-operational-composition.json": 16,
+    "route-validation-rules.json": 4,
+    "pickup-dropoff-requirements.json": 14,
+    "destination-operational-overlays.json": 8,
+    "staging-logic.json": 6,
+    "package-customization-boundaries.json": 16,
+    "operational-readiness.json": 1
+  },
+  "guarantees": [
+    "no cost components, vendor/supplier rates, margins, or final quote totals",
+    "no customer PII or raw customer chat",
+    "no marketing copy, URLs, media, or booking CTAs (those belong to Bootstrap/Website/Runtime)",
+    "feasibility truth is computed by the core evaluator, not asserted here"
+  ],
+  "composition_gaps": [
+    {
+      "package_key": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "match_type": "slug_only",
+      "matched_core_route_id": "ijen-papuma-tumpak-sewu-bromo-5d4n"
+    }
+  ]
+}

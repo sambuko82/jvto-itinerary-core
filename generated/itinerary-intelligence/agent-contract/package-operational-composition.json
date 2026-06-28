@@ -1,0 +1,687 @@
+[
+  {
+    "package_key": "bali/bromo-ijen-3d2n",
+    "catalog_key": "bali/bromo-ijen-3d2n",
+    "origin": "bali",
+    "duration": "3D2N",
+    "route_sequence": [
+      "Bali Hotel Area",
+      "Banyuwangi / Ijen Area",
+      "Ijen Crater",
+      "Bromo Area",
+      "Surabaya"
+    ],
+    "route_leg_refs": [
+      "bali_hotel_area_to_banyuwangi_ijen_area",
+      "banyuwangi_to_ijen_base",
+      "bromo_area_to_bondowoso_ijen_area",
+      "malang_to_surabaya"
+    ],
+    "destination_refs": [
+      "destination_bromo_activity_profile",
+      "destination_ijen_activity_profile"
+    ],
+    "staging_refs": [
+      "bromo_area_sunrise_staging",
+      "banyuwangi_staging"
+    ],
+    "allowed_standard_endpoints": [
+      "Surabaya Airport",
+      "Surabaya Hotel",
+      "Malang"
+    ],
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false,
+    "composition_confidence": "high",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  },
+  {
+    "package_key": "bali/ijen-bromo-madakaripura-3d2n",
+    "catalog_key": "bali/ijen-bromo-madakaripura-3d2n",
+    "origin": "bali",
+    "duration": "3D2N",
+    "route_sequence": [
+      "Bali Hotel Area",
+      "Banyuwangi / Ijen Area",
+      "Ijen Crater",
+      "Bromo Area",
+      "Madakaripura Waterfall",
+      "Surabaya"
+    ],
+    "route_leg_refs": [
+      "bali_hotel_area_to_banyuwangi_ijen_area",
+      "banyuwangi_to_ijen_base",
+      "bromo_area_to_bondowoso_ijen_area",
+      "bromo_area_to_madakaripura",
+      "malang_to_surabaya"
+    ],
+    "destination_refs": [
+      "destination_bromo_activity_profile",
+      "destination_ijen_activity_profile",
+      "destination_madakaripura_activity_profile"
+    ],
+    "staging_refs": [
+      "bromo_area_sunrise_staging",
+      "banyuwangi_staging"
+    ],
+    "allowed_standard_endpoints": [
+      "Surabaya Airport",
+      "Surabaya Hotel"
+    ],
+    "ijen_relevant": true,
+    "visits_madakaripura": true,
+    "is_specialty": false,
+    "composition_confidence": "high",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  },
+  {
+    "package_key": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "catalog_key": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "origin": "bali",
+    "duration": "4D3N",
+    "route_sequence": [
+      "Bali Hotel Area",
+      "Banyuwangi / Ijen Area",
+      "Ijen Crater",
+      "Tumpak Sewu Area",
+      "Bromo Area",
+      "Surabaya"
+    ],
+    "route_leg_refs": [
+      "bali_hotel_area_to_banyuwangi_ijen_area",
+      "banyuwangi_to_ijen_base",
+      "surabaya_to_tumpak_sewu",
+      "tumpak_sewu_to_bromo_area",
+      "malang_to_surabaya"
+    ],
+    "destination_refs": [
+      "destination_bromo_activity_profile",
+      "destination_ijen_activity_profile",
+      "destination_papuma_activity_profile",
+      "destination_tumpak_sewu_activity_profile"
+    ],
+    "staging_refs": [
+      "bromo_area_sunrise_staging",
+      "banyuwangi_staging",
+      "tumpak_sewu_staging",
+      "papuma_staging"
+    ],
+    "allowed_standard_endpoints": [
+      "Surabaya Airport",
+      "Surabaya Hotel"
+    ],
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false,
+    "composition_confidence": "high",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  },
+  {
+    "package_key": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "catalog_key": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "origin": "bali",
+    "duration": "5D4N",
+    "route_sequence": [],
+    "route_leg_refs": [],
+    "destination_refs": [
+      "destination_bromo_activity_profile",
+      "destination_ijen_activity_profile",
+      "destination_papuma_activity_profile",
+      "destination_tumpak_sewu_activity_profile"
+    ],
+    "staging_refs": [
+      "bromo_area_sunrise_staging",
+      "banyuwangi_staging",
+      "tumpak_sewu_staging",
+      "papuma_staging"
+    ],
+    "allowed_standard_endpoints": [],
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false,
+    "composition_confidence": "gap",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  },
+  {
+    "package_key": "bromo-1d1n",
+    "catalog_key": "surabaya/bromo-1d1n",
+    "origin": "surabaya",
+    "duration": "1D1N",
+    "route_sequence": [
+      "Surabaya",
+      "Bromo Area",
+      "Surabaya"
+    ],
+    "route_leg_refs": [
+      "surabaya_airport_to_bromo_area",
+      "bromo_area_to_malang",
+      "malang_to_surabaya"
+    ],
+    "destination_refs": [
+      "destination_bromo_activity_profile"
+    ],
+    "staging_refs": [
+      "bromo_area_sunrise_staging"
+    ],
+    "allowed_standard_endpoints": [
+      "Surabaya Hotel",
+      "Surabaya Airport"
+    ],
+    "ijen_relevant": false,
+    "visits_madakaripura": false,
+    "is_specialty": false,
+    "composition_confidence": "high",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  },
+  {
+    "package_key": "bromo-2d1n",
+    "catalog_key": "surabaya/bromo-2d1n",
+    "origin": "surabaya",
+    "duration": "2D1N",
+    "route_sequence": [
+      "Surabaya",
+      "Bromo Area",
+      "Surabaya"
+    ],
+    "route_leg_refs": [
+      "surabaya_hotel_to_bromo_area",
+      "bromo_area_to_malang",
+      "malang_to_surabaya"
+    ],
+    "destination_refs": [
+      "destination_bromo_activity_profile"
+    ],
+    "staging_refs": [
+      "bromo_area_sunrise_staging"
+    ],
+    "allowed_standard_endpoints": [
+      "Surabaya Hotel",
+      "Surabaya Airport"
+    ],
+    "ijen_relevant": false,
+    "visits_madakaripura": false,
+    "is_specialty": false,
+    "composition_confidence": "high",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  },
+  {
+    "package_key": "bromo-madakaripura-ijen-3d2n",
+    "catalog_key": "surabaya/bromo-madakaripura-ijen-3d2n",
+    "origin": "surabaya",
+    "duration": "3D2N",
+    "route_sequence": [
+      "Surabaya",
+      "Bromo Area",
+      "Madakaripura Waterfall",
+      "Bondowoso / Ijen Area",
+      "Ijen Crater",
+      "Ketapang Harbor"
+    ],
+    "route_leg_refs": [
+      "surabaya_airport_to_bromo_area",
+      "bromo_area_to_madakaripura",
+      "bromo_area_to_bondowoso_ijen_area",
+      "bondowoso_to_ijen_base",
+      "ijen_base_to_ketapang_harbor"
+    ],
+    "destination_refs": [
+      "destination_bromo_activity_profile",
+      "destination_ijen_activity_profile",
+      "destination_madakaripura_activity_profile"
+    ],
+    "staging_refs": [
+      "bromo_area_sunrise_staging",
+      "bondowoso_ijen_staging"
+    ],
+    "allowed_standard_endpoints": [
+      "Ketapang Harbor",
+      "Bali with additional transfer",
+      "Surabaya with route adjustment"
+    ],
+    "ijen_relevant": true,
+    "visits_madakaripura": true,
+    "is_specialty": false,
+    "composition_confidence": "high",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  },
+  {
+    "package_key": "ijen-2d1n",
+    "catalog_key": "surabaya/ijen-2d1n",
+    "origin": "surabaya",
+    "duration": "2D1N",
+    "route_sequence": [
+      "Surabaya",
+      "Bondowoso / Ijen Area",
+      "Ijen Crater",
+      "Surabaya"
+    ],
+    "route_leg_refs": [
+      "surabaya_to_bondowoso_ijen_area",
+      "bondowoso_to_ijen_base",
+      "malang_to_surabaya"
+    ],
+    "destination_refs": [
+      "destination_ijen_activity_profile"
+    ],
+    "staging_refs": [
+      "bondowoso_ijen_staging"
+    ],
+    "allowed_standard_endpoints": [
+      "Surabaya Hotel",
+      "Surabaya Airport",
+      "Ketapang Harbor"
+    ],
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false,
+    "composition_confidence": "high",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  },
+  {
+    "package_key": "ijen-bromo-madakaripura-3d2n",
+    "catalog_key": "surabaya/ijen-bromo-madakaripura-3d2n",
+    "origin": "surabaya",
+    "duration": "3D2N",
+    "route_sequence": [
+      "Surabaya",
+      "Bondowoso / Ijen Area",
+      "Ijen Crater",
+      "Bromo Area",
+      "Madakaripura Waterfall",
+      "Surabaya"
+    ],
+    "route_leg_refs": [
+      "surabaya_to_bondowoso_ijen_area",
+      "bondowoso_to_ijen_base",
+      "bromo_area_to_bondowoso_ijen_area",
+      "bromo_area_to_madakaripura",
+      "malang_to_surabaya"
+    ],
+    "destination_refs": [
+      "destination_bromo_activity_profile",
+      "destination_ijen_activity_profile",
+      "destination_madakaripura_activity_profile"
+    ],
+    "staging_refs": [
+      "bromo_area_sunrise_staging",
+      "bondowoso_ijen_staging"
+    ],
+    "allowed_standard_endpoints": [
+      "Surabaya Hotel",
+      "Surabaya Airport"
+    ],
+    "ijen_relevant": true,
+    "visits_madakaripura": true,
+    "is_specialty": false,
+    "composition_confidence": "high",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  },
+  {
+    "package_key": "ijen-bromo-madakaripura-4d3n",
+    "catalog_key": "surabaya/ijen-bromo-madakaripura-4d3n",
+    "origin": "surabaya",
+    "duration": "4D3N",
+    "route_sequence": [
+      "Surabaya",
+      "Bondowoso / Ijen Area",
+      "Ijen Crater",
+      "Bromo Area",
+      "Madakaripura Waterfall",
+      "Surabaya"
+    ],
+    "route_leg_refs": [
+      "surabaya_to_bondowoso_ijen_area",
+      "bondowoso_to_ijen_base",
+      "bromo_area_to_bondowoso_ijen_area",
+      "bromo_area_to_madakaripura",
+      "malang_to_surabaya"
+    ],
+    "destination_refs": [
+      "destination_bromo_activity_profile",
+      "destination_ijen_activity_profile",
+      "destination_madakaripura_activity_profile"
+    ],
+    "staging_refs": [
+      "bromo_area_sunrise_staging",
+      "bondowoso_ijen_staging"
+    ],
+    "allowed_standard_endpoints": [
+      "Surabaya Hotel",
+      "Surabaya Airport"
+    ],
+    "ijen_relevant": true,
+    "visits_madakaripura": true,
+    "is_specialty": false,
+    "composition_confidence": "high",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  },
+  {
+    "package_key": "ijen-bromo-madakaripura-malang-5d4n",
+    "catalog_key": "surabaya/ijen-bromo-madakaripura-malang-5d4n",
+    "origin": "surabaya",
+    "duration": "5D4N",
+    "route_sequence": [
+      "Surabaya",
+      "Bondowoso / Ijen Area",
+      "Ijen Crater",
+      "Bromo Area",
+      "Madakaripura Waterfall",
+      "Malang",
+      "Surabaya"
+    ],
+    "route_leg_refs": [
+      "surabaya_to_bondowoso_ijen_area",
+      "bondowoso_to_ijen_base",
+      "bromo_area_to_bondowoso_ijen_area",
+      "bromo_area_to_madakaripura",
+      "bromo_area_to_malang",
+      "malang_to_surabaya"
+    ],
+    "destination_refs": [
+      "destination_bromo_activity_profile",
+      "destination_ijen_activity_profile",
+      "destination_madakaripura_activity_profile",
+      "destination_malang_batu_activity_profile"
+    ],
+    "staging_refs": [
+      "bromo_area_sunrise_staging",
+      "bondowoso_ijen_staging",
+      "malang_batu_staging"
+    ],
+    "allowed_standard_endpoints": [
+      "Malang Hotel",
+      "Surabaya Airport",
+      "Surabaya Hotel"
+    ],
+    "ijen_relevant": true,
+    "visits_madakaripura": true,
+    "is_specialty": false,
+    "composition_confidence": "high",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  },
+  {
+    "package_key": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "catalog_key": "surabaya/ijen-papuma-tumpak-sewu-bromo-4d3n",
+    "origin": "surabaya",
+    "duration": "4D3N",
+    "route_sequence": [
+      "Surabaya",
+      "Bondowoso / Ijen Area",
+      "Ijen Crater",
+      "Tumpak Sewu Area",
+      "Bromo Area",
+      "Surabaya"
+    ],
+    "route_leg_refs": [
+      "surabaya_to_bondowoso_ijen_area",
+      "bondowoso_to_ijen_base",
+      "surabaya_to_tumpak_sewu",
+      "tumpak_sewu_to_bromo_area",
+      "malang_to_surabaya"
+    ],
+    "destination_refs": [
+      "destination_bromo_activity_profile",
+      "destination_ijen_activity_profile",
+      "destination_papuma_activity_profile",
+      "destination_tumpak_sewu_activity_profile"
+    ],
+    "staging_refs": [
+      "bromo_area_sunrise_staging",
+      "bondowoso_ijen_staging",
+      "tumpak_sewu_staging",
+      "papuma_staging"
+    ],
+    "allowed_standard_endpoints": [
+      "Surabaya Hotel",
+      "Surabaya Airport"
+    ],
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false,
+    "composition_confidence": "high",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  },
+  {
+    "package_key": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "catalog_key": "surabaya/ijen-papuma-tumpak-sewu-bromo-5d4n",
+    "origin": "surabaya",
+    "duration": "5D4N",
+    "route_sequence": [
+      "Surabaya",
+      "Bondowoso / Ijen Area",
+      "Ijen Crater",
+      "Tumpak Sewu Area",
+      "Bromo Area",
+      "Surabaya"
+    ],
+    "route_leg_refs": [
+      "surabaya_to_bondowoso_ijen_area",
+      "bondowoso_to_ijen_base",
+      "surabaya_to_tumpak_sewu",
+      "tumpak_sewu_to_bromo_area",
+      "malang_to_surabaya"
+    ],
+    "destination_refs": [
+      "destination_bromo_activity_profile",
+      "destination_ijen_activity_profile",
+      "destination_papuma_activity_profile",
+      "destination_tumpak_sewu_activity_profile"
+    ],
+    "staging_refs": [
+      "bromo_area_sunrise_staging",
+      "bondowoso_ijen_staging",
+      "tumpak_sewu_staging",
+      "papuma_staging"
+    ],
+    "allowed_standard_endpoints": [
+      "Surabaya Hotel",
+      "Surabaya Airport"
+    ],
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false,
+    "composition_confidence": "high",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  },
+  {
+    "package_key": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "catalog_key": "surabaya/ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+    "origin": "surabaya",
+    "duration": "6D5N",
+    "route_sequence": [
+      "Surabaya",
+      "Bondowoso / Ijen Area",
+      "Ijen Crater",
+      "Tumpak Sewu Area",
+      "Bromo Area",
+      "Malang",
+      "Surabaya"
+    ],
+    "route_leg_refs": [
+      "surabaya_to_bondowoso_ijen_area",
+      "bondowoso_to_ijen_base",
+      "surabaya_to_tumpak_sewu",
+      "tumpak_sewu_to_bromo_area",
+      "bromo_area_to_malang",
+      "malang_to_surabaya"
+    ],
+    "destination_refs": [
+      "destination_bromo_activity_profile",
+      "destination_ijen_activity_profile",
+      "destination_papuma_activity_profile",
+      "destination_tumpak_sewu_activity_profile",
+      "destination_malang_batu_activity_profile"
+    ],
+    "staging_refs": [
+      "bromo_area_sunrise_staging",
+      "bondowoso_ijen_staging",
+      "tumpak_sewu_staging",
+      "papuma_staging",
+      "malang_batu_staging"
+    ],
+    "allowed_standard_endpoints": [
+      "Malang Hotel",
+      "Surabaya Airport",
+      "Surabaya Hotel"
+    ],
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false,
+    "composition_confidence": "high",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  },
+  {
+    "package_key": "taman-safari-prigen-bromo-madakaripura-3d2n",
+    "catalog_key": "surabaya/taman-safari-prigen-bromo-madakaripura-3d2n",
+    "origin": "surabaya",
+    "duration": "3D2N",
+    "route_sequence": [
+      "Surabaya",
+      "Bromo Area",
+      "Madakaripura Waterfall",
+      "Surabaya"
+    ],
+    "route_leg_refs": [
+      "surabaya_airport_to_bromo_area",
+      "bromo_area_to_madakaripura",
+      "malang_to_surabaya"
+    ],
+    "destination_refs": [
+      "destination_bromo_activity_profile",
+      "destination_madakaripura_activity_profile"
+    ],
+    "staging_refs": [
+      "bromo_area_sunrise_staging"
+    ],
+    "allowed_standard_endpoints": [
+      "Surabaya Hotel",
+      "Surabaya Airport"
+    ],
+    "ijen_relevant": false,
+    "visits_madakaripura": true,
+    "is_specialty": true,
+    "composition_confidence": "high",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  },
+  {
+    "package_key": "tumpak-sewu-bromo-ijen-4d3n",
+    "catalog_key": "surabaya/tumpak-sewu-bromo-ijen-4d3n",
+    "origin": "surabaya",
+    "duration": "4D3N",
+    "route_sequence": [
+      "Surabaya",
+      "Tumpak Sewu Area",
+      "Bromo Area",
+      "Bondowoso / Ijen Area",
+      "Ijen Crater",
+      "Ketapang Harbor"
+    ],
+    "route_leg_refs": [
+      "surabaya_to_tumpak_sewu",
+      "tumpak_sewu_to_bromo_area",
+      "bromo_area_to_bondowoso_ijen_area",
+      "bondowoso_to_ijen_base",
+      "ijen_base_to_ketapang_harbor"
+    ],
+    "destination_refs": [
+      "destination_bromo_activity_profile",
+      "destination_ijen_activity_profile",
+      "destination_tumpak_sewu_activity_profile"
+    ],
+    "staging_refs": [
+      "bromo_area_sunrise_staging",
+      "bondowoso_ijen_staging",
+      "tumpak_sewu_staging"
+    ],
+    "allowed_standard_endpoints": [
+      "Ketapang Harbor",
+      "Bali with additional transfer"
+    ],
+    "ijen_relevant": true,
+    "visits_madakaripura": false,
+    "is_specialty": false,
+    "composition_confidence": "high",
+    "source_refs": [
+      "11-package-route-map.json",
+      "package-catalog-index.json",
+      "06-destination-activity-profiles.json",
+      "09-accommodation-logic.json"
+    ]
+  }
+]
