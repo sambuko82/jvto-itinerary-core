@@ -26,8 +26,29 @@ regenerate from source.
 - No marketing copy, URLs, media, or booking CTAs (those belong to Bootstrap / Website / Runtime).
 - Feasibility truth is computed by the core evaluator, not asserted here.
 
+## Route integrity
+
+`package-operational-composition.json` validates every leg ref against the route
+sequence and records `route_integrity` per package:
+
+- **clean** — all legs forward-adjacent, all sold destinations routed, core order
+  matches the published itinerary.
+- **needs_review** — core's seeded route map reuses a directional leg in reverse
+  (`reverse_legs`), references a non-adjacent leg (`non_adjacent_legs`, e.g.
+  `surabaya_to_tumpak_sewu` for an Ijen→Tumpak segment), or drops a sold destination
+  from the model (`destinations_missing_from_route`, e.g. Papuma / Taman Safari).
+  Each leg carries an `alignment` (`forward_adjacent` / `reverse_adjacent` /
+  `non_adjacent` / `transit`). The runtime should validate these via feasibility
+  rather than asserting the literal leg.
+- **gap** — unroutable (no core route entry). `package-customization-boundaries.json`
+  sets `effective_instant_book_eligible: false` for these (forces WhatsApp handoff).
+
+The authoritative **customer-facing** route order is the published itinerary in the
+knowledge-catalog `package-variations.json`, not core's operational map.
+
 ## Known gap
 
 `bali/ijen-papuma-tumpak-sewu-bromo-5d4n` has no Bali-origin 5D4N entry in
-`11-package-route-map.json`; its `route_sequence` / `route_leg_refs` are left empty
-(do-not-invent) and flagged in `operational-readiness.json` + `manifest.json`.
+`11-package-route-map.json` → `route_integrity: gap`, empty `route_sequence`
+(do-not-invent), instant-book gated, flagged in `operational-readiness.json` +
+`manifest.json`.

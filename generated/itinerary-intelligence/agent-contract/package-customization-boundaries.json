@@ -3,6 +3,10 @@
     "package_key": "bali/bromo-ijen-3d2n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "needs_review",
+    "composition_blocks_instant_book": false,
+    "effective_instant_book_eligible": true,
+    "instant_book_gated_reason": null,
     "standard_endpoints": [
       "Surabaya Airport",
       "Surabaya Hotel",
@@ -21,16 +25,21 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   },
   {
     "package_key": "bali/ijen-bromo-madakaripura-3d2n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "needs_review",
+    "composition_blocks_instant_book": false,
+    "effective_instant_book_eligible": true,
+    "instant_book_gated_reason": null,
     "standard_endpoints": [
       "Surabaya Airport",
       "Surabaya Hotel"
@@ -48,16 +57,21 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   },
   {
     "package_key": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "needs_review",
+    "composition_blocks_instant_book": false,
+    "effective_instant_book_eligible": true,
+    "instant_book_gated_reason": null,
     "standard_endpoints": [
       "Surabaya Airport",
       "Surabaya Hotel"
@@ -75,16 +89,21 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   },
   {
     "package_key": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "gap",
+    "composition_blocks_instant_book": true,
+    "effective_instant_book_eligible": false,
+    "instant_book_gated_reason": "composition_gap_unroutable",
     "standard_endpoints": [],
     "documented_customizations": [],
     "handoff_or_quote_triggers": [
@@ -96,16 +115,21 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   },
   {
     "package_key": "bromo-1d1n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "clean",
+    "composition_blocks_instant_book": false,
+    "effective_instant_book_eligible": true,
+    "instant_book_gated_reason": null,
     "standard_endpoints": [
       "Surabaya Hotel",
       "Surabaya Airport"
@@ -123,16 +147,21 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   },
   {
     "package_key": "bromo-2d1n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "clean",
+    "composition_blocks_instant_book": false,
+    "effective_instant_book_eligible": true,
+    "instant_book_gated_reason": null,
     "standard_endpoints": [
       "Surabaya Hotel",
       "Surabaya Airport"
@@ -150,16 +179,21 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   },
   {
     "package_key": "bromo-madakaripura-ijen-3d2n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "needs_review",
+    "composition_blocks_instant_book": false,
+    "effective_instant_book_eligible": true,
+    "instant_book_gated_reason": null,
     "standard_endpoints": [
       "Ketapang Harbor",
       "Bali with additional transfer",
@@ -179,16 +213,21 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   },
   {
     "package_key": "ijen-2d1n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "clean",
+    "composition_blocks_instant_book": false,
+    "effective_instant_book_eligible": true,
+    "instant_book_gated_reason": null,
     "standard_endpoints": [
       "Surabaya Hotel",
       "Surabaya Airport",
@@ -207,16 +246,21 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   },
   {
     "package_key": "ijen-bromo-madakaripura-3d2n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "needs_review",
+    "composition_blocks_instant_book": false,
+    "effective_instant_book_eligible": true,
+    "instant_book_gated_reason": null,
     "standard_endpoints": [
       "Surabaya Hotel",
       "Surabaya Airport"
@@ -234,16 +278,21 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   },
   {
     "package_key": "ijen-bromo-madakaripura-4d3n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "needs_review",
+    "composition_blocks_instant_book": false,
+    "effective_instant_book_eligible": true,
+    "instant_book_gated_reason": null,
     "standard_endpoints": [
       "Surabaya Hotel",
       "Surabaya Airport"
@@ -261,16 +310,21 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   },
   {
     "package_key": "ijen-bromo-madakaripura-malang-5d4n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "needs_review",
+    "composition_blocks_instant_book": false,
+    "effective_instant_book_eligible": true,
+    "instant_book_gated_reason": null,
     "standard_endpoints": [
       "Malang Hotel",
       "Surabaya Airport",
@@ -289,16 +343,21 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   },
   {
     "package_key": "ijen-papuma-tumpak-sewu-bromo-4d3n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "needs_review",
+    "composition_blocks_instant_book": false,
+    "effective_instant_book_eligible": true,
+    "instant_book_gated_reason": null,
     "standard_endpoints": [
       "Surabaya Hotel",
       "Surabaya Airport"
@@ -316,16 +375,21 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   },
   {
     "package_key": "ijen-papuma-tumpak-sewu-bromo-5d4n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "needs_review",
+    "composition_blocks_instant_book": false,
+    "effective_instant_book_eligible": true,
+    "instant_book_gated_reason": null,
     "standard_endpoints": [
       "Surabaya Hotel",
       "Surabaya Airport"
@@ -343,16 +407,21 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   },
   {
     "package_key": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "needs_review",
+    "composition_blocks_instant_book": false,
+    "effective_instant_book_eligible": true,
+    "instant_book_gated_reason": null,
     "standard_endpoints": [
       "Malang Hotel",
       "Surabaya Airport",
@@ -371,16 +440,21 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   },
   {
     "package_key": "taman-safari-prigen-bromo-madakaripura-3d2n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "needs_review",
+    "composition_blocks_instant_book": false,
+    "effective_instant_book_eligible": true,
+    "instant_book_gated_reason": null,
     "standard_endpoints": [
       "Surabaya Hotel",
       "Surabaya Airport"
@@ -397,16 +471,21 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   },
   {
     "package_key": "tumpak-sewu-bromo-ijen-4d3n",
     "instant_book_eligible": true,
     "whatsapp_assisted_eligible": true,
+    "route_integrity": "clean",
+    "composition_blocks_instant_book": false,
+    "effective_instant_book_eligible": true,
+    "instant_book_gated_reason": null,
     "standard_endpoints": [
       "Ketapang Harbor",
       "Bali with additional transfer"
@@ -424,10 +503,11 @@
       "date_specific_availability_request",
       "group_discount_exception"
     ],
-    "boundary_note": "Documented customizations may still be standard-priced if they only swap a standard endpoint/pickup; anything in handoff_or_quote_triggers leaves standard pricing and requires WhatsApp-assisted quote or feasibility.",
+    "boundary_note": "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means the route is covered but core legs are imperfect (reverse/non-adjacent) or a sold destination is dropped from the model — explain with care and prefer feasibility validation.",
     "source_refs": [
       "11-package-route-map.json",
-      "package-catalog-index.json"
+      "package-catalog-index.json",
+      "agent-contract/package-operational-composition.json"
     ]
   }
 ]
