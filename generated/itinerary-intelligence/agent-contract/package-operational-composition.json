@@ -5,35 +5,27 @@
     "origin": "bali",
     "duration": "3D2N",
     "route_sequence": [
-      "Bali Hotel Area",
-      "Banyuwangi / Ijen Area",
-      "Ijen Crater",
-      "Bromo Area",
-      "Surabaya"
+      "Bali",
+      "Bromo",
+      "Ijen"
     ],
     "route_leg_refs": [
       {
-        "leg_ref": "bali_hotel_area_to_banyuwangi_ijen_area",
-        "from": "Bali Hotel Area",
-        "to": "Banyuwangi / Ijen Area",
+        "leg_ref": "bali__to__bromo",
+        "from": "Bali",
+        "to": "Bromo",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "banyuwangi_to_ijen_base",
-        "from": "Banyuwangi",
-        "to": "Ijen Base",
+        "leg_ref": "bromo__to__ijen",
+        "from": "Bromo",
+        "to": "Ijen",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bromo_area_to_bondowoso_ijen_area",
-        "from": "Bromo Area",
-        "to": "Bondowoso / Ijen Area",
-        "alignment": "reverse_adjacent"
-      },
-      {
-        "leg_ref": "malang_to_surabaya",
-        "from": "Malang",
-        "to": "Surabaya",
+        "leg_ref": "bromo__to__madakaripura",
+        "from": "Bromo",
+        "to": "Madakaripura",
         "alignment": "transit"
       }
     ],
@@ -53,18 +45,16 @@
     "ijen_relevant": true,
     "visits_madakaripura": false,
     "is_specialty": false,
-    "route_integrity": "needs_review",
-    "route_review_flags": {
-      "reverse_legs": [
-        "bromo_area_to_bondowoso_ijen_area"
-      ]
-    },
-    "composition_confidence": "needs_review",
+    "route_integrity": "clean",
+    "route_review_flags": {},
+    "operational_movements_pending": 4,
+    "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   },
   {
@@ -73,41 +63,33 @@
     "origin": "bali",
     "duration": "3D2N",
     "route_sequence": [
-      "Bali Hotel Area",
-      "Banyuwangi / Ijen Area",
-      "Ijen Crater",
-      "Bromo Area",
-      "Madakaripura Waterfall",
-      "Surabaya"
+      "Bali",
+      "Ijen",
+      "Bromo",
+      "Madakaripura"
     ],
     "route_leg_refs": [
       {
-        "leg_ref": "bali_hotel_area_to_banyuwangi_ijen_area",
-        "from": "Bali Hotel Area",
-        "to": "Banyuwangi / Ijen Area",
+        "leg_ref": "bali__to__ijen",
+        "from": "Bali",
+        "to": "Ijen",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "banyuwangi_to_ijen_base",
-        "from": "Banyuwangi",
-        "to": "Ijen Base",
+        "leg_ref": "ijen__to__bromo",
+        "from": "Ijen",
+        "to": "Bromo",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bromo_area_to_bondowoso_ijen_area",
-        "from": "Bromo Area",
-        "to": "Bondowoso / Ijen Area",
-        "alignment": "reverse_adjacent"
-      },
-      {
-        "leg_ref": "bromo_area_to_madakaripura",
-        "from": "Bromo Area",
-        "to": "Madakaripura Waterfall",
+        "leg_ref": "bromo__to__madakaripura",
+        "from": "Bromo",
+        "to": "Madakaripura",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "malang_to_surabaya",
-        "from": "Malang",
+        "leg_ref": "madakaripura__to__surabaya",
+        "from": "Madakaripura",
         "to": "Surabaya",
         "alignment": "transit"
       }
@@ -128,19 +110,16 @@
     "ijen_relevant": true,
     "visits_madakaripura": true,
     "is_specialty": false,
-    "route_integrity": "needs_review",
-    "route_review_flags": {
-      "reverse_legs": [
-        "bromo_area_to_bondowoso_ijen_area"
-      ],
-      "core_order_matches_published": true
-    },
-    "composition_confidence": "needs_review",
+    "route_integrity": "clean",
+    "route_review_flags": {},
+    "operational_movements_pending": 4,
+    "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   },
   {
@@ -149,41 +128,40 @@
     "origin": "bali",
     "duration": "4D3N",
     "route_sequence": [
-      "Bali Hotel Area",
-      "Banyuwangi / Ijen Area",
-      "Ijen Crater",
-      "Tumpak Sewu Area",
-      "Bromo Area",
-      "Surabaya"
+      "Bali",
+      "Ijen",
+      "Papuma",
+      "Tumpak Sewu",
+      "Bromo"
     ],
     "route_leg_refs": [
       {
-        "leg_ref": "bali_hotel_area_to_banyuwangi_ijen_area",
-        "from": "Bali Hotel Area",
-        "to": "Banyuwangi / Ijen Area",
+        "leg_ref": "bali__to__ijen",
+        "from": "Bali",
+        "to": "Ijen",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "banyuwangi_to_ijen_base",
-        "from": "Banyuwangi",
-        "to": "Ijen Base",
+        "leg_ref": "ijen__to__papuma",
+        "from": "Ijen",
+        "to": "Papuma",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "surabaya_to_tumpak_sewu",
-        "from": "Surabaya",
-        "to": "Tumpak Sewu Area",
-        "alignment": "non_adjacent"
-      },
-      {
-        "leg_ref": "tumpak_sewu_to_bromo_area",
-        "from": "Tumpak Sewu Area",
-        "to": "Bromo Area",
+        "leg_ref": "papuma__to__tumpak_sewu",
+        "from": "Papuma",
+        "to": "Tumpak Sewu",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "malang_to_surabaya",
-        "from": "Malang",
+        "leg_ref": "tumpak_sewu__to__bromo",
+        "from": "Tumpak Sewu",
+        "to": "Bromo",
+        "alignment": "forward_adjacent"
+      },
+      {
+        "leg_ref": "bromo__to__surabaya",
+        "from": "Bromo",
         "to": "Surabaya",
         "alignment": "transit"
       }
@@ -207,21 +185,16 @@
     "ijen_relevant": true,
     "visits_madakaripura": false,
     "is_specialty": false,
-    "route_integrity": "needs_review",
-    "route_review_flags": {
-      "non_adjacent_legs": [
-        "surabaya_to_tumpak_sewu"
-      ],
-      "destinations_missing_from_route": [
-        "papuma"
-      ]
-    },
-    "composition_confidence": "needs_review",
+    "route_integrity": "clean",
+    "route_review_flags": {},
+    "operational_movements_pending": 7,
+    "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   },
   {
@@ -229,8 +202,45 @@
     "catalog_key": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
     "origin": "bali",
     "duration": "5D4N",
-    "route_sequence": [],
-    "route_leg_refs": [],
+    "route_sequence": [
+      "Bali",
+      "Ijen",
+      "Papuma",
+      "Tumpak Sewu",
+      "Bromo"
+    ],
+    "route_leg_refs": [
+      {
+        "leg_ref": "bali__to__ijen",
+        "from": "Bali",
+        "to": "Ijen",
+        "alignment": "forward_adjacent"
+      },
+      {
+        "leg_ref": "ijen__to__papuma",
+        "from": "Ijen",
+        "to": "Papuma",
+        "alignment": "forward_adjacent"
+      },
+      {
+        "leg_ref": "papuma__to__tumpak_sewu",
+        "from": "Papuma",
+        "to": "Tumpak Sewu",
+        "alignment": "forward_adjacent"
+      },
+      {
+        "leg_ref": "tumpak_sewu__to__bromo",
+        "from": "Tumpak Sewu",
+        "to": "Bromo",
+        "alignment": "forward_adjacent"
+      },
+      {
+        "leg_ref": "bromo__to__surabaya",
+        "from": "Bromo",
+        "to": "Surabaya",
+        "alignment": "transit"
+      }
+    ],
     "destination_refs": [
       "destination_bromo_activity_profile",
       "destination_ijen_activity_profile",
@@ -247,21 +257,16 @@
     "ijen_relevant": true,
     "visits_madakaripura": false,
     "is_specialty": false,
-    "route_integrity": "gap",
-    "route_review_flags": {
-      "destinations_missing_from_route": [
-        "bromo",
-        "ijen",
-        "papuma",
-        "tumpak_sewu"
-      ]
-    },
-    "composition_confidence": "gap",
+    "route_integrity": "clean",
+    "route_review_flags": {},
+    "operational_movements_pending": 9,
+    "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   },
   {
@@ -271,27 +276,20 @@
     "duration": "1D1N",
     "route_sequence": [
       "Surabaya",
-      "Bromo Area",
-      "Surabaya"
+      "Bromo"
     ],
     "route_leg_refs": [
       {
-        "leg_ref": "surabaya_airport_to_bromo_area",
-        "from": "Surabaya Airport",
-        "to": "Bromo Area",
+        "leg_ref": "surabaya__to__bromo",
+        "from": "Surabaya",
+        "to": "Bromo",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bromo_area_to_malang",
-        "from": "Bromo Area",
-        "to": "Malang",
-        "alignment": "transit"
-      },
-      {
-        "leg_ref": "malang_to_surabaya",
-        "from": "Malang",
+        "leg_ref": "bromo__to__surabaya",
+        "from": "Bromo",
         "to": "Surabaya",
-        "alignment": "transit"
+        "alignment": "return_to_origin"
       }
     ],
     "destination_refs": [
@@ -308,15 +306,15 @@
     "visits_madakaripura": false,
     "is_specialty": false,
     "route_integrity": "clean",
-    "route_review_flags": {
-      "core_order_matches_published": true
-    },
+    "route_review_flags": {},
+    "operational_movements_pending": 1,
     "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   },
   {
@@ -326,25 +324,18 @@
     "duration": "2D1N",
     "route_sequence": [
       "Surabaya",
-      "Bromo Area",
-      "Surabaya"
+      "Bromo"
     ],
     "route_leg_refs": [
       {
-        "leg_ref": "surabaya_hotel_to_bromo_area",
-        "from": "Surabaya Hotel",
-        "to": "Bromo Area",
+        "leg_ref": "surabaya__to__bromo",
+        "from": "Surabaya",
+        "to": "Bromo",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bromo_area_to_malang",
-        "from": "Bromo Area",
-        "to": "Malang",
-        "alignment": "transit"
-      },
-      {
-        "leg_ref": "malang_to_surabaya",
-        "from": "Malang",
+        "leg_ref": "madakaripura__to__surabaya",
+        "from": "Madakaripura",
         "to": "Surabaya",
         "alignment": "transit"
       }
@@ -363,15 +354,15 @@
     "visits_madakaripura": false,
     "is_specialty": false,
     "route_integrity": "clean",
-    "route_review_flags": {
-      "core_order_matches_published": true
-    },
+    "route_review_flags": {},
+    "operational_movements_pending": 0,
     "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   },
   {
@@ -381,41 +372,27 @@
     "duration": "3D2N",
     "route_sequence": [
       "Surabaya",
-      "Bromo Area",
-      "Madakaripura Waterfall",
-      "Bondowoso / Ijen Area",
-      "Ijen Crater",
-      "Ketapang Harbor"
+      "Bromo",
+      "Madakaripura",
+      "Ijen"
     ],
     "route_leg_refs": [
       {
-        "leg_ref": "surabaya_airport_to_bromo_area",
-        "from": "Surabaya Airport",
-        "to": "Bromo Area",
+        "leg_ref": "surabaya__to__bromo",
+        "from": "Surabaya",
+        "to": "Bromo",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bromo_area_to_madakaripura",
-        "from": "Bromo Area",
-        "to": "Madakaripura Waterfall",
+        "leg_ref": "bromo__to__madakaripura",
+        "from": "Bromo",
+        "to": "Madakaripura",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bromo_area_to_bondowoso_ijen_area",
-        "from": "Bromo Area",
-        "to": "Bondowoso / Ijen Area",
-        "alignment": "non_adjacent"
-      },
-      {
-        "leg_ref": "bondowoso_to_ijen_base",
-        "from": "Bondowoso",
-        "to": "Ijen Base",
-        "alignment": "forward_adjacent"
-      },
-      {
-        "leg_ref": "ijen_base_to_ketapang_harbor",
-        "from": "Ijen Base",
-        "to": "Ketapang Harbor",
+        "leg_ref": "madakaripura__to__ijen",
+        "from": "Madakaripura",
+        "to": "Ijen",
         "alignment": "forward_adjacent"
       }
     ],
@@ -436,19 +413,16 @@
     "ijen_relevant": true,
     "visits_madakaripura": true,
     "is_specialty": false,
-    "route_integrity": "needs_review",
-    "route_review_flags": {
-      "non_adjacent_legs": [
-        "bromo_area_to_bondowoso_ijen_area"
-      ],
-      "core_order_matches_published": true
-    },
-    "composition_confidence": "needs_review",
+    "route_integrity": "clean",
+    "route_review_flags": {},
+    "operational_movements_pending": 4,
+    "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   },
   {
@@ -458,28 +432,20 @@
     "duration": "2D1N",
     "route_sequence": [
       "Surabaya",
-      "Bondowoso / Ijen Area",
-      "Ijen Crater",
-      "Surabaya"
+      "Ijen"
     ],
     "route_leg_refs": [
       {
-        "leg_ref": "surabaya_to_bondowoso_ijen_area",
+        "leg_ref": "surabaya__to__ijen",
         "from": "Surabaya",
-        "to": "Bondowoso / Ijen Area",
+        "to": "Ijen",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bondowoso_to_ijen_base",
-        "from": "Bondowoso",
-        "to": "Ijen Base",
-        "alignment": "forward_adjacent"
-      },
-      {
-        "leg_ref": "malang_to_surabaya",
-        "from": "Malang",
+        "leg_ref": "ijen__to__surabaya",
+        "from": "Ijen",
         "to": "Surabaya",
-        "alignment": "transit"
+        "alignment": "return_to_origin"
       }
     ],
     "destination_refs": [
@@ -497,15 +463,15 @@
     "visits_madakaripura": false,
     "is_specialty": false,
     "route_integrity": "clean",
-    "route_review_flags": {
-      "core_order_matches_published": true
-    },
+    "route_review_flags": {},
+    "operational_movements_pending": 1,
     "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   },
   {
@@ -515,42 +481,34 @@
     "duration": "3D2N",
     "route_sequence": [
       "Surabaya",
-      "Bondowoso / Ijen Area",
-      "Ijen Crater",
-      "Bromo Area",
-      "Madakaripura Waterfall",
-      "Surabaya"
+      "Ijen",
+      "Bromo",
+      "Madakaripura"
     ],
     "route_leg_refs": [
       {
-        "leg_ref": "surabaya_to_bondowoso_ijen_area",
+        "leg_ref": "surabaya__to__ijen",
         "from": "Surabaya",
-        "to": "Bondowoso / Ijen Area",
+        "to": "Ijen",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bondowoso_to_ijen_base",
-        "from": "Bondowoso",
-        "to": "Ijen Base",
+        "leg_ref": "ijen__to__bromo",
+        "from": "Ijen",
+        "to": "Bromo",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bromo_area_to_bondowoso_ijen_area",
-        "from": "Bromo Area",
-        "to": "Bondowoso / Ijen Area",
-        "alignment": "reverse_adjacent"
-      },
-      {
-        "leg_ref": "bromo_area_to_madakaripura",
-        "from": "Bromo Area",
-        "to": "Madakaripura Waterfall",
+        "leg_ref": "bromo__to__madakaripura",
+        "from": "Bromo",
+        "to": "Madakaripura",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "malang_to_surabaya",
-        "from": "Malang",
+        "leg_ref": "madakaripura__to__surabaya",
+        "from": "Madakaripura",
         "to": "Surabaya",
-        "alignment": "transit"
+        "alignment": "return_to_origin"
       }
     ],
     "destination_refs": [
@@ -569,19 +527,16 @@
     "ijen_relevant": true,
     "visits_madakaripura": true,
     "is_specialty": false,
-    "route_integrity": "needs_review",
-    "route_review_flags": {
-      "reverse_legs": [
-        "bromo_area_to_bondowoso_ijen_area"
-      ],
-      "core_order_matches_published": true
-    },
-    "composition_confidence": "needs_review",
+    "route_integrity": "clean",
+    "route_review_flags": {},
+    "operational_movements_pending": 2,
+    "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   },
   {
@@ -591,42 +546,34 @@
     "duration": "4D3N",
     "route_sequence": [
       "Surabaya",
-      "Bondowoso / Ijen Area",
-      "Ijen Crater",
-      "Bromo Area",
-      "Madakaripura Waterfall",
-      "Surabaya"
+      "Ijen",
+      "Bromo",
+      "Madakaripura"
     ],
     "route_leg_refs": [
       {
-        "leg_ref": "surabaya_to_bondowoso_ijen_area",
+        "leg_ref": "surabaya__to__ijen",
         "from": "Surabaya",
-        "to": "Bondowoso / Ijen Area",
+        "to": "Ijen",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bondowoso_to_ijen_base",
-        "from": "Bondowoso",
-        "to": "Ijen Base",
+        "leg_ref": "ijen__to__bromo",
+        "from": "Ijen",
+        "to": "Bromo",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bromo_area_to_bondowoso_ijen_area",
-        "from": "Bromo Area",
-        "to": "Bondowoso / Ijen Area",
-        "alignment": "reverse_adjacent"
-      },
-      {
-        "leg_ref": "bromo_area_to_madakaripura",
-        "from": "Bromo Area",
-        "to": "Madakaripura Waterfall",
+        "leg_ref": "bromo__to__madakaripura",
+        "from": "Bromo",
+        "to": "Madakaripura",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "malang_to_surabaya",
-        "from": "Malang",
+        "leg_ref": "madakaripura__to__surabaya",
+        "from": "Madakaripura",
         "to": "Surabaya",
-        "alignment": "transit"
+        "alignment": "return_to_origin"
       }
     ],
     "destination_refs": [
@@ -645,19 +592,16 @@
     "ijen_relevant": true,
     "visits_madakaripura": true,
     "is_specialty": false,
-    "route_integrity": "needs_review",
-    "route_review_flags": {
-      "reverse_legs": [
-        "bromo_area_to_bondowoso_ijen_area"
-      ],
-      "core_order_matches_published": true
-    },
-    "composition_confidence": "needs_review",
+    "route_integrity": "clean",
+    "route_review_flags": {},
+    "operational_movements_pending": 4,
+    "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   },
   {
@@ -667,48 +611,34 @@
     "duration": "5D4N",
     "route_sequence": [
       "Surabaya",
-      "Bondowoso / Ijen Area",
-      "Ijen Crater",
-      "Bromo Area",
-      "Madakaripura Waterfall",
-      "Malang",
-      "Surabaya"
+      "Ijen",
+      "Bromo",
+      "Madakaripura",
+      "Malang"
     ],
     "route_leg_refs": [
       {
-        "leg_ref": "surabaya_to_bondowoso_ijen_area",
+        "leg_ref": "surabaya__to__ijen",
         "from": "Surabaya",
-        "to": "Bondowoso / Ijen Area",
+        "to": "Ijen",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bondowoso_to_ijen_base",
-        "from": "Bondowoso",
-        "to": "Ijen Base",
+        "leg_ref": "ijen__to__bromo",
+        "from": "Ijen",
+        "to": "Bromo",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bromo_area_to_bondowoso_ijen_area",
-        "from": "Bromo Area",
-        "to": "Bondowoso / Ijen Area",
-        "alignment": "reverse_adjacent"
-      },
-      {
-        "leg_ref": "bromo_area_to_madakaripura",
-        "from": "Bromo Area",
-        "to": "Madakaripura Waterfall",
+        "leg_ref": "bromo__to__madakaripura",
+        "from": "Bromo",
+        "to": "Madakaripura",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bromo_area_to_malang",
-        "from": "Bromo Area",
+        "leg_ref": "madakaripura__to__malang",
+        "from": "Madakaripura",
         "to": "Malang",
-        "alignment": "non_adjacent"
-      },
-      {
-        "leg_ref": "malang_to_surabaya",
-        "from": "Malang",
-        "to": "Surabaya",
         "alignment": "forward_adjacent"
       }
     ],
@@ -731,22 +661,16 @@
     "ijen_relevant": true,
     "visits_madakaripura": true,
     "is_specialty": false,
-    "route_integrity": "needs_review",
-    "route_review_flags": {
-      "reverse_legs": [
-        "bromo_area_to_bondowoso_ijen_area"
-      ],
-      "non_adjacent_legs": [
-        "bromo_area_to_malang"
-      ],
-      "core_order_matches_published": true
-    },
-    "composition_confidence": "needs_review",
+    "route_integrity": "clean",
+    "route_review_flags": {},
+    "operational_movements_pending": 5,
+    "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   },
   {
@@ -756,42 +680,41 @@
     "duration": "4D3N",
     "route_sequence": [
       "Surabaya",
-      "Bondowoso / Ijen Area",
-      "Ijen Crater",
-      "Tumpak Sewu Area",
-      "Bromo Area",
-      "Surabaya"
+      "Ijen",
+      "Papuma",
+      "Tumpak Sewu",
+      "Bromo"
     ],
     "route_leg_refs": [
       {
-        "leg_ref": "surabaya_to_bondowoso_ijen_area",
+        "leg_ref": "surabaya__to__ijen",
         "from": "Surabaya",
-        "to": "Bondowoso / Ijen Area",
+        "to": "Ijen",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bondowoso_to_ijen_base",
-        "from": "Bondowoso",
-        "to": "Ijen Base",
+        "leg_ref": "ijen__to__papuma",
+        "from": "Ijen",
+        "to": "Papuma",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "surabaya_to_tumpak_sewu",
-        "from": "Surabaya",
-        "to": "Tumpak Sewu Area",
-        "alignment": "non_adjacent"
-      },
-      {
-        "leg_ref": "tumpak_sewu_to_bromo_area",
-        "from": "Tumpak Sewu Area",
-        "to": "Bromo Area",
+        "leg_ref": "papuma__to__tumpak_sewu",
+        "from": "Papuma",
+        "to": "Tumpak Sewu",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "malang_to_surabaya",
-        "from": "Malang",
+        "leg_ref": "tumpak_sewu__to__bromo",
+        "from": "Tumpak Sewu",
+        "to": "Bromo",
+        "alignment": "forward_adjacent"
+      },
+      {
+        "leg_ref": "bromo__to__surabaya",
+        "from": "Bromo",
         "to": "Surabaya",
-        "alignment": "transit"
+        "alignment": "return_to_origin"
       }
     ],
     "destination_refs": [
@@ -813,21 +736,16 @@
     "ijen_relevant": true,
     "visits_madakaripura": false,
     "is_specialty": false,
-    "route_integrity": "needs_review",
-    "route_review_flags": {
-      "non_adjacent_legs": [
-        "surabaya_to_tumpak_sewu"
-      ],
-      "destinations_missing_from_route": [
-        "papuma"
-      ]
-    },
-    "composition_confidence": "needs_review",
+    "route_integrity": "clean",
+    "route_review_flags": {},
+    "operational_movements_pending": 5,
+    "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   },
   {
@@ -837,42 +755,41 @@
     "duration": "5D4N",
     "route_sequence": [
       "Surabaya",
-      "Bondowoso / Ijen Area",
-      "Ijen Crater",
-      "Tumpak Sewu Area",
-      "Bromo Area",
-      "Surabaya"
+      "Ijen",
+      "Papuma",
+      "Tumpak Sewu",
+      "Bromo"
     ],
     "route_leg_refs": [
       {
-        "leg_ref": "surabaya_to_bondowoso_ijen_area",
+        "leg_ref": "surabaya__to__ijen",
         "from": "Surabaya",
-        "to": "Bondowoso / Ijen Area",
+        "to": "Ijen",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bondowoso_to_ijen_base",
-        "from": "Bondowoso",
-        "to": "Ijen Base",
+        "leg_ref": "ijen__to__papuma",
+        "from": "Ijen",
+        "to": "Papuma",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "surabaya_to_tumpak_sewu",
-        "from": "Surabaya",
-        "to": "Tumpak Sewu Area",
-        "alignment": "non_adjacent"
-      },
-      {
-        "leg_ref": "tumpak_sewu_to_bromo_area",
-        "from": "Tumpak Sewu Area",
-        "to": "Bromo Area",
+        "leg_ref": "papuma__to__tumpak_sewu",
+        "from": "Papuma",
+        "to": "Tumpak Sewu",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "malang_to_surabaya",
-        "from": "Malang",
+        "leg_ref": "tumpak_sewu__to__bromo",
+        "from": "Tumpak Sewu",
+        "to": "Bromo",
+        "alignment": "forward_adjacent"
+      },
+      {
+        "leg_ref": "bromo__to__surabaya",
+        "from": "Bromo",
         "to": "Surabaya",
-        "alignment": "transit"
+        "alignment": "return_to_origin"
       }
     ],
     "destination_refs": [
@@ -894,21 +811,16 @@
     "ijen_relevant": true,
     "visits_madakaripura": false,
     "is_specialty": false,
-    "route_integrity": "needs_review",
-    "route_review_flags": {
-      "non_adjacent_legs": [
-        "surabaya_to_tumpak_sewu"
-      ],
-      "destinations_missing_from_route": [
-        "papuma"
-      ]
-    },
-    "composition_confidence": "needs_review",
+    "route_integrity": "clean",
+    "route_review_flags": {},
+    "operational_movements_pending": 7,
+    "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   },
   {
@@ -918,48 +830,41 @@
     "duration": "6D5N",
     "route_sequence": [
       "Surabaya",
-      "Bondowoso / Ijen Area",
-      "Ijen Crater",
-      "Tumpak Sewu Area",
-      "Bromo Area",
-      "Malang",
-      "Surabaya"
+      "Ijen",
+      "Papuma",
+      "Tumpak Sewu",
+      "Bromo",
+      "Malang"
     ],
     "route_leg_refs": [
       {
-        "leg_ref": "surabaya_to_bondowoso_ijen_area",
+        "leg_ref": "surabaya__to__ijen",
         "from": "Surabaya",
-        "to": "Bondowoso / Ijen Area",
+        "to": "Ijen",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bondowoso_to_ijen_base",
-        "from": "Bondowoso",
-        "to": "Ijen Base",
+        "leg_ref": "ijen__to__papuma",
+        "from": "Ijen",
+        "to": "Papuma",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "surabaya_to_tumpak_sewu",
-        "from": "Surabaya",
-        "to": "Tumpak Sewu Area",
-        "alignment": "non_adjacent"
-      },
-      {
-        "leg_ref": "tumpak_sewu_to_bromo_area",
-        "from": "Tumpak Sewu Area",
-        "to": "Bromo Area",
+        "leg_ref": "papuma__to__tumpak_sewu",
+        "from": "Papuma",
+        "to": "Tumpak Sewu",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bromo_area_to_malang",
-        "from": "Bromo Area",
+        "leg_ref": "tumpak_sewu__to__bromo",
+        "from": "Tumpak Sewu",
+        "to": "Bromo",
+        "alignment": "forward_adjacent"
+      },
+      {
+        "leg_ref": "bromo__to__malang",
+        "from": "Bromo",
         "to": "Malang",
-        "alignment": "forward_adjacent"
-      },
-      {
-        "leg_ref": "malang_to_surabaya",
-        "from": "Malang",
-        "to": "Surabaya",
         "alignment": "forward_adjacent"
       }
     ],
@@ -985,21 +890,16 @@
     "ijen_relevant": true,
     "visits_madakaripura": false,
     "is_specialty": false,
-    "route_integrity": "needs_review",
-    "route_review_flags": {
-      "non_adjacent_legs": [
-        "surabaya_to_tumpak_sewu"
-      ],
-      "destinations_missing_from_route": [
-        "papuma"
-      ]
-    },
-    "composition_confidence": "needs_review",
+    "route_integrity": "clean",
+    "route_review_flags": {},
+    "operational_movements_pending": 7,
+    "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   },
   {
@@ -1009,28 +909,34 @@
     "duration": "3D2N",
     "route_sequence": [
       "Surabaya",
-      "Bromo Area",
-      "Madakaripura Waterfall",
-      "Surabaya"
+      "Taman Safari Prigen",
+      "Bromo",
+      "Madakaripura"
     ],
     "route_leg_refs": [
       {
-        "leg_ref": "surabaya_airport_to_bromo_area",
-        "from": "Surabaya Airport",
-        "to": "Bromo Area",
+        "leg_ref": "surabaya__to__taman_safari_prigen",
+        "from": "Surabaya",
+        "to": "Taman Safari Prigen",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bromo_area_to_madakaripura",
-        "from": "Bromo Area",
-        "to": "Madakaripura Waterfall",
+        "leg_ref": "taman_safari_prigen__to__bromo",
+        "from": "Taman Safari Prigen",
+        "to": "Bromo",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "malang_to_surabaya",
-        "from": "Malang",
+        "leg_ref": "bromo__to__madakaripura",
+        "from": "Bromo",
+        "to": "Madakaripura",
+        "alignment": "forward_adjacent"
+      },
+      {
+        "leg_ref": "madakaripura__to__surabaya",
+        "from": "Madakaripura",
         "to": "Surabaya",
-        "alignment": "transit"
+        "alignment": "return_to_origin"
       }
     ],
     "destination_refs": [
@@ -1047,18 +953,16 @@
     "ijen_relevant": false,
     "visits_madakaripura": true,
     "is_specialty": true,
-    "route_integrity": "needs_review",
-    "route_review_flags": {
-      "destinations_missing_from_route": [
-        "taman_safari_prigen"
-      ]
-    },
-    "composition_confidence": "needs_review",
+    "route_integrity": "clean",
+    "route_review_flags": {},
+    "operational_movements_pending": 1,
+    "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   },
   {
@@ -1068,41 +972,27 @@
     "duration": "4D3N",
     "route_sequence": [
       "Surabaya",
-      "Tumpak Sewu Area",
-      "Bromo Area",
-      "Bondowoso / Ijen Area",
-      "Ijen Crater",
-      "Ketapang Harbor"
+      "Tumpak Sewu",
+      "Bromo",
+      "Ijen"
     ],
     "route_leg_refs": [
       {
-        "leg_ref": "surabaya_to_tumpak_sewu",
+        "leg_ref": "surabaya__to__tumpak_sewu",
         "from": "Surabaya",
-        "to": "Tumpak Sewu Area",
+        "to": "Tumpak Sewu",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "tumpak_sewu_to_bromo_area",
-        "from": "Tumpak Sewu Area",
-        "to": "Bromo Area",
+        "leg_ref": "tumpak_sewu__to__bromo",
+        "from": "Tumpak Sewu",
+        "to": "Bromo",
         "alignment": "forward_adjacent"
       },
       {
-        "leg_ref": "bromo_area_to_bondowoso_ijen_area",
-        "from": "Bromo Area",
-        "to": "Bondowoso / Ijen Area",
-        "alignment": "forward_adjacent"
-      },
-      {
-        "leg_ref": "bondowoso_to_ijen_base",
-        "from": "Bondowoso",
-        "to": "Ijen Base",
-        "alignment": "forward_adjacent"
-      },
-      {
-        "leg_ref": "ijen_base_to_ketapang_harbor",
-        "from": "Ijen Base",
-        "to": "Ketapang Harbor",
+        "leg_ref": "bromo__to__ijen",
+        "from": "Bromo",
+        "to": "Ijen",
         "alignment": "forward_adjacent"
       }
     ],
@@ -1124,15 +1014,15 @@
     "visits_madakaripura": false,
     "is_specialty": false,
     "route_integrity": "clean",
-    "route_review_flags": {
-      "core_order_matches_published": true
-    },
+    "route_review_flags": {},
+    "operational_movements_pending": 4,
     "composition_confidence": "high",
+    "route_source_strength": "confirmed",
     "source_refs": [
-      "11-package-route-map.json",
-      "package-catalog-index.json",
-      "06-destination-activity-profiles.json",
-      "09-accommodation-logic.json"
+      "package-route-map.json (derived, source-backed)",
+      "route-leg-index.filled.json",
+      "11-package-route-map.json (legacy: endpoints only)",
+      "package-catalog-index.json"
     ]
   }
 ]
