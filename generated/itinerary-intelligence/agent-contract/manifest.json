@@ -12,8 +12,8 @@
     "operational-readiness.json": 1
   },
   "route_integrity_summary": {
-    "clean": 16,
-    "needs_review": 0,
+    "clean": 14,
+    "needs_review": 2,
     "gap": 0
   },
   "guarantees": [
@@ -22,5 +22,24 @@
     "no marketing copy, URLs, media, or booking CTAs",
     "route order + coverage sourced from the confirmed derived map; feasibility is the core evaluator's job"
   ],
-  "composition_gaps": []
+  "composition_gaps": [
+    {
+      "package_key": "bali/bromo-ijen-3d2n",
+      "integrity": "needs_review",
+      "flags": {
+        "off_sequence_legs": [
+          "bromo__to__madakaripura"
+        ]
+      }
+    },
+    {
+      "package_key": "bromo-2d1n",
+      "integrity": "needs_review",
+      "flags": {
+        "off_sequence_legs": [
+          "madakaripura__to__surabaya"
+        ]
+      }
+    }
+  ]
 }

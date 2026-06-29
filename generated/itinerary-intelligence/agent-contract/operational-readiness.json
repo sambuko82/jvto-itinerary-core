@@ -16,8 +16,27 @@
         "route_integrity != clean",
         "custom_route"
       ],
-      "note": "16/16 packages have clean route integrity (confirmed order, all sold destinations routed, no ambiguous node). Source: derived package-route-map.json. Unresolved operational movements (hotel/transit labels) are surfaced per package as operational_movements_pending and handled by live tools, not the route gate.",
-      "gaps": []
+      "note": "14/16 packages have clean route integrity (confirmed order, all sold destinations routed, no ambiguous node). Source: derived package-route-map.json. Unresolved operational movements (hotel/transit labels) are surfaced per package as operational_movements_pending and handled by live tools, not the route gate.",
+      "gaps": [
+        {
+          "package_key": "bali/bromo-ijen-3d2n",
+          "integrity": "needs_review",
+          "flags": {
+            "off_sequence_legs": [
+              "bromo__to__madakaripura"
+            ]
+          }
+        },
+        {
+          "package_key": "bromo-2d1n",
+          "integrity": "needs_review",
+          "flags": {
+            "off_sequence_legs": [
+              "madakaripura__to__surabaya"
+            ]
+          }
+        }
+      ]
     },
     {
       "dataset": "route_validation_rules",

@@ -49,6 +49,9 @@ const NODE_LABEL = {
   malang: "Malang", taman_safari_prigen: "Taman Safari Prigen", bali_ketapang: "Bali / Ketapang",
 };
 const label = (tok) => NODE_LABEL[tok] ?? tok;
+// destination nodes (a leg endpoint here that is NOT in the route_sequence is a real
+// discrepancy) vs benign transit hubs (pass-through / return points).
+const DEST_NODES = new Set(["bromo", "ijen", "madakaripura", "papuma", "tumpak_sewu", "taman_safari_prigen"]);
 
 function canonDests(tokens) {
   const ts = new Set(tokens);
@@ -102,16 +105,19 @@ for (const cat of catalog) {
 
   // per-leg detail + consecutive-pair regression guard
   const legRefs = [];
-  const nonForward = [];
+  const nonForward = []; // reverse/non-adjacent legs between two sequenced nodes
+  const offSeq = [];     // a DESTINATION endpoint missing from route_sequence (leg/sequence disagree)
   for (const lid of legIds) {
     const leg = legByIdFilled[lid];
     const from = leg ? leg.from_node : null;
     const to = leg ? leg.to_node : null;
-    let alignment = "transit"; // one endpoint not a visited node (benign)
+    let alignment = "transit"; // one endpoint is a transit hub not in the sequence (benign)
     if (from != null && to != null) {
       const i = seqTokens.indexOf(from), j = seqTokens.indexOf(to);
-      if (i === -1 || j === -1) alignment = "transit";
-      else if (to === seqTokens[0]) alignment = "return_to_origin"; // final leg back to start (benign)
+      const missingDest = (i === -1 && DEST_NODES.has(from)) || (j === -1 && DEST_NODES.has(to));
+      if (missingDest) { alignment = "off_sequence"; offSeq.push(lid); }      // leg references an unsequenced destination
+      else if (to === seqTokens[0]) alignment = "return_to_origin";          // final leg back to start (origin may also be sequenced)
+      else if (i === -1 || j === -1) alignment = "transit";                  // benign pass-through hub
       else if (j === i + 1) alignment = "forward_adjacent";
       else if (i === j + 1) { alignment = "reverse_adjacent"; nonForward.push(lid); }
       else { alignment = "non_adjacent"; nonForward.push(lid); }
@@ -128,7 +134,7 @@ for (const cat of catalog) {
   const ambiguous = !!d.contains_ambiguous_node;
   let integrity;
   if (mapStatus !== "confirmed" || seq.length === 0) integrity = "gap";
-  else if (strength !== "confirmed" || ambiguous || missing.length || nonForward.length) integrity = "needs_review";
+  else if (strength !== "confirmed" || ambiguous || missing.length || nonForward.length || offSeq.length) integrity = "needs_review";
   else integrity = "clean";
   integrityByKey[key] = integrity;
   const confidence = integrity === "clean" ? "high" : integrity;
@@ -136,6 +142,7 @@ for (const cat of catalog) {
   const flags = {};
   if (missing.length) flags.destinations_missing_from_route = missing;
   if (nonForward.length) flags.non_forward_legs = nonForward;
+  if (offSeq.length) flags.off_sequence_legs = offSeq;
   if (ambiguous) flags.contains_ambiguous_node = true;
   if (strength && strength !== "confirmed") flags.route_source_strength = strength;
 
@@ -260,8 +267,13 @@ const HANDOFF_TRIGGERS = ["own_hotel", "non_standard_rooming", "special_or_overs
 const boundaries = catalog.map((cat) => {
   const key = cat.package_id;
   const integrity = integrityByKey[key] ?? "gap";
-  const blocks = integrity === "gap";
   const lg = legacyFor(cat);
+  const endpoints = lg?.standard_dropoff_options ?? [];
+  // Block instant-book if unroutable OR if there is no standard-endpoint boundary data
+  // (the runtime can't distinguish a standard drop-off from a custom route without it).
+  const noEndpoints = endpoints.length === 0;
+  const blocks = integrity === "gap" || noEndpoints;
+  const gatedReason = integrity === "gap" ? "composition_gap_unroutable" : (noEndpoints ? "no_standard_endpoints" : null);
   return {
     package_key: key,
     instant_book_eligible: cat.instant_book,
@@ -269,8 +281,8 @@ const boundaries = catalog.map((cat) => {
     route_integrity: integrity,
     composition_blocks_instant_book: blocks,
     effective_instant_book_eligible: Boolean(cat.instant_book) && !blocks,
-    instant_book_gated_reason: blocks ? "composition_gap_unroutable" : null,
-    standard_endpoints: lg?.standard_dropoff_options ?? [],
+    instant_book_gated_reason: gatedReason,
+    standard_endpoints: endpoints,
     documented_customizations: lg?.possible_customizations ?? [],
     handoff_or_quote_triggers: HANDOFF_TRIGGERS,
     boundary_note: "Honor effective_instant_book_eligible, not the raw catalog instant_book_eligible: a composition gap (unroutable) forces WhatsApp-assisted handoff. route_integrity=needs_review means route order is confirmed but a source/coverage signal needs validation; explain with care and prefer feasibility validation.",

@@ -42,21 +42,33 @@ test('every sold destination is routed (Papuma & Taman Safari included)', () => 
   }
 });
 
-test('no route is a gap; no reverse/non-adjacent legs (derived map is forward-by-construction)', () => {
+test('no route is a gap; reverse/non-adjacent/off-sequence legs force needs_review', () => {
+  const VALID = ['forward_adjacent', 'transit', 'return_to_origin', 'reverse_adjacent', 'non_adjacent', 'off_sequence'];
   for (const c of composition) {
     assert.notEqual(c.route_integrity, 'gap', `${c.package_key} is gap`);
+    let flagged = false;
     for (const leg of c.route_leg_refs as any[]) {
-      assert.ok(
-        ['forward_adjacent', 'transit', 'return_to_origin'].includes(leg.alignment),
-        `${c.package_key}: leg ${leg.leg_ref} alignment ${leg.alignment}`,
-      );
+      assert.ok(VALID.includes(leg.alignment), `${c.package_key}: bad alignment ${leg.alignment}`);
+      if (['reverse_adjacent', 'non_adjacent', 'off_sequence'].includes(leg.alignment)) flagged = true;
+    }
+    // a leg that disagrees with the sequence must not leave the package marked clean
+    if (flagged) assert.equal(c.route_integrity, 'needs_review', `${c.package_key} has a flagged leg but is ${c.route_integrity}`);
+  }
+});
+
+test('a routable package with no standard endpoints is not instant-bookable', () => {
+  for (const b of boundaries) {
+    if (b.route_integrity !== 'gap' && (b.standard_endpoints ?? []).length === 0) {
+      assert.equal(b.effective_instant_book_eligible, false, `${b.package_key} bookable with no endpoints`);
+      assert.equal(b.instant_book_gated_reason, 'no_standard_endpoints', b.package_key);
     }
   }
 });
 
-test('booking eligibility: effective gates on composition (only gap blocks instant book)', () => {
+test('booking eligibility: effective gates on composition gap OR missing endpoints', () => {
   for (const b of boundaries) {
-    if (b.route_integrity === 'gap') assert.equal(b.effective_instant_book_eligible, false, b.package_key);
+    const blocked = b.route_integrity === 'gap' || (b.standard_endpoints ?? []).length === 0;
+    if (blocked) assert.equal(b.effective_instant_book_eligible, false, b.package_key);
     else assert.equal(b.effective_instant_book_eligible, Boolean(b.instant_book_eligible), b.package_key);
   }
 });
