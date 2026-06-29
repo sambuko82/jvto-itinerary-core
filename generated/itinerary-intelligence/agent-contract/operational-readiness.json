@@ -1,176 +1,38 @@
 {
   "schema_version": "agent-contract-v1",
   "source_mode": "source_connected",
-  "legacy_dataset_mode": "manual_seed_mvp",
+  "legacy_dataset_mode": "derived_source_backed",
   "global_guardrails": [
     "Static knowledge is never live truth: availability, closure, booking, payment, and hotel/vehicle/guide confirmation require a live tool.",
-    "Route map line geometry is great-circle placeholder, NOT road geometry — never present as an accurate map.",
-    "Distances/durations are operator-calibrated seeds; treat as guardrails, re-verify at booking.",
+    "Route order + legs are projected from the source-backed derived map; operator distances are seeds, re-verify at booking.",
     "This agent-contract carries NO cost, vendor rate, margin, crew identity, or PII."
   ],
   "datasets": [
     {
       "dataset": "package_operational_composition",
-      "status": "partial",
+      "status": "covered",
       "customer_usage": "structure_and_routing",
       "requires_human_review_when": [
         "route_integrity != clean",
         "custom_route"
       ],
-      "note": "4/16 packages have clean route integrity (forward-adjacent legs, all sold destinations routed, core order == published). The rest are needs_review (core route map reuses directional legs in reverse, references non-adjacent legs, drops a sold destination like Papuma/Taman Safari, or disagrees with the published order) or gap (unroutable). Customer-facing route order lives in the knowledge-catalog package-variations (published_itinerary).",
+      "note": "14/16 packages have clean route integrity (confirmed order, all sold destinations routed, no ambiguous node). Source: derived package-route-map.json. Unresolved operational movements (hotel/transit labels) are surfaced per package as operational_movements_pending and handled by live tools, not the route gate.",
       "gaps": [
         {
           "package_key": "bali/bromo-ijen-3d2n",
-          "match_type": "exact",
-          "matched_core_route_id": "bromo-ijen-3d2n-bali",
           "integrity": "needs_review",
           "flags": {
-            "reverse_legs": [
-              "bromo_area_to_bondowoso_ijen_area"
+            "off_sequence_legs": [
+              "bromo__to__madakaripura"
             ]
           }
         },
         {
-          "package_key": "bali/ijen-bromo-madakaripura-3d2n",
-          "match_type": "exact",
-          "matched_core_route_id": "ijen-bromo-madakaripura-3d2n-bali",
+          "package_key": "bromo-2d1n",
           "integrity": "needs_review",
           "flags": {
-            "reverse_legs": [
-              "bromo_area_to_bondowoso_ijen_area"
-            ],
-            "core_order_matches_published": true
-          }
-        },
-        {
-          "package_key": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
-          "match_type": "exact",
-          "matched_core_route_id": "ijen-papuma-tumpak-sewu-bromo-4d3n-bali",
-          "integrity": "needs_review",
-          "flags": {
-            "non_adjacent_legs": [
-              "surabaya_to_tumpak_sewu"
-            ],
-            "destinations_missing_from_route": [
-              "papuma"
-            ]
-          }
-        },
-        {
-          "package_key": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
-          "match_type": "slug_only",
-          "matched_core_route_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
-          "integrity": "gap",
-          "flags": {
-            "destinations_missing_from_route": [
-              "bromo",
-              "ijen",
-              "papuma",
-              "tumpak_sewu"
-            ]
-          }
-        },
-        {
-          "package_key": "bromo-madakaripura-ijen-3d2n",
-          "match_type": "exact",
-          "matched_core_route_id": "bromo-madakaripura-ijen-3d2n",
-          "integrity": "needs_review",
-          "flags": {
-            "non_adjacent_legs": [
-              "bromo_area_to_bondowoso_ijen_area"
-            ],
-            "core_order_matches_published": true
-          }
-        },
-        {
-          "package_key": "ijen-bromo-madakaripura-3d2n",
-          "match_type": "exact",
-          "matched_core_route_id": "ijen-bromo-madakaripura-3d2n",
-          "integrity": "needs_review",
-          "flags": {
-            "reverse_legs": [
-              "bromo_area_to_bondowoso_ijen_area"
-            ],
-            "core_order_matches_published": true
-          }
-        },
-        {
-          "package_key": "ijen-bromo-madakaripura-4d3n",
-          "match_type": "exact",
-          "matched_core_route_id": "ijen-bromo-madakaripura-4d3n",
-          "integrity": "needs_review",
-          "flags": {
-            "reverse_legs": [
-              "bromo_area_to_bondowoso_ijen_area"
-            ],
-            "core_order_matches_published": true
-          }
-        },
-        {
-          "package_key": "ijen-bromo-madakaripura-malang-5d4n",
-          "match_type": "exact",
-          "matched_core_route_id": "ijen-bromo-madakaripura-malang-5d4n",
-          "integrity": "needs_review",
-          "flags": {
-            "reverse_legs": [
-              "bromo_area_to_bondowoso_ijen_area"
-            ],
-            "non_adjacent_legs": [
-              "bromo_area_to_malang"
-            ],
-            "core_order_matches_published": true
-          }
-        },
-        {
-          "package_key": "ijen-papuma-tumpak-sewu-bromo-4d3n",
-          "match_type": "exact",
-          "matched_core_route_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
-          "integrity": "needs_review",
-          "flags": {
-            "non_adjacent_legs": [
-              "surabaya_to_tumpak_sewu"
-            ],
-            "destinations_missing_from_route": [
-              "papuma"
-            ]
-          }
-        },
-        {
-          "package_key": "ijen-papuma-tumpak-sewu-bromo-5d4n",
-          "match_type": "exact",
-          "matched_core_route_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
-          "integrity": "needs_review",
-          "flags": {
-            "non_adjacent_legs": [
-              "surabaya_to_tumpak_sewu"
-            ],
-            "destinations_missing_from_route": [
-              "papuma"
-            ]
-          }
-        },
-        {
-          "package_key": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
-          "match_type": "exact",
-          "matched_core_route_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
-          "integrity": "needs_review",
-          "flags": {
-            "non_adjacent_legs": [
-              "surabaya_to_tumpak_sewu"
-            ],
-            "destinations_missing_from_route": [
-              "papuma"
-            ]
-          }
-        },
-        {
-          "package_key": "taman-safari-prigen-bromo-madakaripura-3d2n",
-          "match_type": "exact",
-          "matched_core_route_id": "taman-safari-prigen-bromo-madakaripura-3d2n",
-          "integrity": "needs_review",
-          "flags": {
-            "destinations_missing_from_route": [
-              "taman_safari_prigen"
+            "off_sequence_legs": [
+              "madakaripura__to__surabaya"
             ]
           }
         }
@@ -223,16 +85,11 @@
       "dataset": "package_customization_boundaries",
       "status": "covered",
       "customer_usage": "handoff_decision"
-    },
-    {
-      "dataset": "route_legs",
-      "status": "partial",
-      "customer_usage": "feasibility_input",
-      "note": "1 leg (bali_hotel_area_to_banyuwangi_ijen_area) has null distance/duration — compose from sub-legs; do not invent."
     }
   ],
   "source_refs": [
-    "data-readiness-report.json",
-    "manifest.json"
+    "package-route-map.json",
+    "route-leg-index.filled.json",
+    "data-readiness-report.json"
   ]
 }
