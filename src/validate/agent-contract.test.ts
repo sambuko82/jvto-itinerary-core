@@ -99,3 +99,32 @@ test('generator is deterministic and committed output is not stale', () => {
   const regen = readFileSync(join(AC, 'package-operational-composition.json'), 'utf8');
   assert.equal(regen, snap, 'committed agent-contract differs from generator output (stale or non-deterministic)');
 });
+
+test('legacy Papuma-family rows include Papuma in route_sequence/route_legs (codex P1)', () => {
+  const legacy = JSON.parse(
+    readFileSync(join(ROOT, 'generated', 'itinerary-intelligence', '11-package-route-map.json'), 'utf8'),
+  ) as any[];
+  const papumaFamily = [
+    'ijen-papuma-tumpak-sewu-bromo-4d3n', 'ijen-papuma-tumpak-sewu-bromo-5d4n',
+    'ijen-papuma-tumpak-sewu-bromo-malang-6d5n', 'ijen-papuma-tumpak-sewu-bromo-4d3n-bali',
+    'ijen-papuma-tumpak-sewu-bromo-5d4n-bali',
+  ];
+  for (const pid of papumaFamily) {
+    const row = legacy.find((r) => r.package_id === pid);
+    assert.ok(row, `missing legacy row for ${pid}`);
+    assert.ok(row.route_sequence.some((s: string) => /papuma/i.test(s)), `${pid}: Papuma missing from legacy route_sequence`);
+    assert.ok(row.route_legs.includes('ijen_area_to_papuma'), `${pid}: missing ijen_area_to_papuma leg`);
+    assert.ok(row.route_legs.includes('papuma_to_tumpak_sewu_area'), `${pid}: missing papuma_to_tumpak_sewu_area leg`);
+  }
+});
+
+test('a plain Ketapang-only endpoint is not classified as a Bali crossing (codex P2)', () => {
+  const routeTruth = rj('standard-route-truth.json');
+  const ijen2d1n = routeTruth.packages.find((p: any) => p.package_key === 'ijen-2d1n');
+  assert.equal(ijen2d1n.bali_transfer.crosses_boundary, false);
+  assert.equal(ijen2d1n.bali_transfer.direction, 'none');
+  // a package that explicitly offers a Bali/Gilimanuk continuation still crosses
+  const withBaliOption = routeTruth.packages.find((p: any) => p.package_key === 'tumpak-sewu-bromo-ijen-4d3n');
+  assert.equal(withBaliOption.bali_transfer.crosses_boundary, true);
+  assert.equal(withBaliOption.bali_transfer.direction, 'to_bali');
+});
