@@ -94,6 +94,28 @@ export function buildPickupContexts(backoffice?: BackofficeExtract): PickupConte
       risk_factors: ['previous_tour_delay', 'crew_handoff_gap', 'unclear_luggage_plan'],
       affects: ['route_continuity', 'crew_handoff', 'vehicle_day_usage'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/pickup-dropoff.yaml', confidence: 'manual_seed' }]
+    },
+    {
+      // Origin-scoped standard: every Bali-origin package's route_sequence[0] is 'bali' and
+      // package-catalog-index.json marks origin=Bali, so the guest is picked up at their Bali
+      // hotel. This was previously synthesized inline (not stored) by
+      // scripts/build-agent-contract.mjs's validPickups(); promoted here as a first-class
+      // context so it carries a real source_trace and is looked up like every other context,
+      // not re-derived ad hoc downstream.
+      id: 'bali_hotel_pickup',
+      label: 'Bali hotel area pickup (origin)',
+      status: 'active',
+      confidence: 'manual_seed',
+      type: 'hotel',
+      location_group: 'Bali',
+      default_ready_buffer_minutes: 15,
+      required_customer_fields: ['hotel_area', 'pickup_time'],
+      risk_factors: ['late_checkout', 'luggage_loading', 'bali_traffic'],
+      affects: ['actual_departure_time', 'first_day_route_feasibility'],
+      source_trace: [
+        { source: 'manual_seed', ref: 'package-route-map.json (route_sequence[0]=bali)', confidence: 'manual_seed' },
+        { source: 'manual_seed', ref: 'package-catalog-index.json (origin=Bali)', confidence: 'manual_seed' }
+      ]
     }
   ];
 

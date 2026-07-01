@@ -78,7 +78,7 @@ test('no cost / vendor / PII keys, no rupiah-scale numbers anywhere in agent-con
   const files = ['package-operational-composition.json', 'route-validation-rules.json',
     'pickup-dropoff-requirements.json', 'destination-operational-overlays.json',
     'staging-logic.json', 'package-customization-boundaries.json',
-    'operational-readiness.json', 'manifest.json'];
+    'operational-readiness.json', 'manifest.json', 'standard-route-truth.json'];
   const walk = (n: any, path: string, f: string) => {
     if (Array.isArray(n)) n.forEach((v, i) => walk(v, `${path}[${i}]`, f));
     else if (n && typeof n === 'object') for (const [k, v] of Object.entries(n)) {
@@ -127,4 +127,136 @@ test('a plain Ketapang-only endpoint is not classified as a Bali crossing (codex
   const withBaliOption = routeTruth.packages.find((p: any) => p.package_key === 'tumpak-sewu-bromo-ijen-4d3n');
   assert.equal(withBaliOption.bali_transfer.crosses_boundary, true);
   assert.equal(withBaliOption.bali_transfer.direction, 'to_bali');
+});
+
+test('Bali pickup is a real 01-pickup-contexts.json record, not a synthesized gap', () => {
+  const pickups = JSON.parse(readFileSync(join(ROOT, 'generated', 'itinerary-intelligence', '01-pickup-contexts.json'), 'utf8')) as any[];
+  const ctx = pickups.find((p) => p.id === 'bali_hotel_pickup');
+  assert.ok(ctx, 'bali_hotel_pickup context missing from 01-pickup-contexts.json');
+  assert.equal(ctx.location_group, 'Bali');
+
+  const routeTruth = rj('standard-route-truth.json');
+  for (const key of ['bali/bromo-ijen-3d2n', 'bali/ijen-bromo-madakaripura-3d2n', 'bali/ijen-papuma-tumpak-sewu-bromo-4d3n', 'bali/ijen-papuma-tumpak-sewu-bromo-5d4n']) {
+    const pkg = routeTruth.packages.find((p: any) => p.package_key === key);
+    const pickup = pkg.valid_pickups.find((p: any) => p.type === 'hotel');
+    assert.equal(pickup.location_ref, 'bali_hotel_pickup', `${key}: pickup location_ref should resolve to the real context, not null`);
+    assert.equal(pickup.classification, 'final_jvto_standard');
+  }
+  // the previously-recorded "no bali_hotel_pickup context" gap must be gone now that it exists
+  assert.ok(!routeTruth.gaps.some((g: any) => g.field === 'pickup_context'), 'stale pickup_context gap should be resolved, not left stale');
+});
+
+test('Madakaripura route-leg conflict is a complete, non-invented missing_data record (2 packages)', () => {
+  const manifest = rj('manifest.json');
+  const affected = ['bali/bromo-ijen-3d2n', 'bromo-2d1n'];
+  for (const key of affected) {
+    const g = manifest.composition_gaps.find((x: any) => x.package_key === key);
+    assert.ok(g, `missing composition_gaps entry for ${key}`);
+    assert.ok(g.missing_data, `${key}: composition gap has no structured missing_data record`);
+    for (const field of ['field', 'affected', 'required_source', 'current_fallback', 'gating']) {
+      assert.ok(g.missing_data[field], `${key}: missing_data.${field} should be populated`);
+    }
+    assert.equal(g.missing_data.gating, 'warns');
+  }
+  // this is a source conflict (jvto-web TravelActions vs llm-wiki destination_tokens), not a bug:
+  // it must not silently block instant-book (needs_review only warns, 'gap' blocks).
+  const boundaries = rj('package-customization-boundaries.json');
+  for (const key of affected) {
+    const b = boundaries.find((x: any) => x.package_key === key);
+    assert.equal(b.route_integrity, 'needs_review');
+    assert.equal(b.effective_instant_book_eligible, true, `${key}: needs_review must not block instant-book (only integrity=gap does)`);
+  }
+});
+
+test('malang_batu destination_intelligence absence is a complete missing_data record, not a silent null', () => {
+  const routeTruth = rj('standard-route-truth.json');
+  const affected = ['ijen-bromo-madakaripura-malang-5d4n', 'ijen-papuma-tumpak-sewu-bromo-malang-6d5n'];
+  for (const key of affected) {
+    const g = routeTruth.gaps.find((x: any) => x.package_key === key && x.field.includes('malang_batu'));
+    assert.ok(g, `missing malang_batu gap entry for ${key}`);
+    for (const field of ['required_source', 'current_fallback', 'gating']) assert.ok(g[field], `${key}: gap.${field} should be populated`);
+    assert.equal(g.gating, 'optional', 'a descriptive-only gap must not block booking');
+
+    const pkg = routeTruth.packages.find((p: any) => p.package_key === key);
+    const malang = pkg.destinations.find((d: any) => d.destination === 'malang_batu');
+    assert.equal(malang.difficulty_level.classification, 'absent');
+    // fatigue_score/activity_window must still be populated even though difficulty is absent
+    assert.ok(malang.fatigue_score.value != null, `${key}: fatigue_score should still be populated from 06`);
+  }
+});
+
+test('12-recommendation-rules.json package/route rules now reach route-validation-rules.json (previously CLI-only)', () => {
+  const rvRules = rj('route-validation-rules.json') as any[];
+  const projected = ['avoid_backtracking_ijen_bromo_ketapang', 'ferry_bali_buffer_required', 'ijen_access_closure_risk', 'tight_multi_destination_short_days'];
+  for (const id of projected) {
+    const r = rvRules.find((x) => x.rule_id === id);
+    assert.ok(r, `rule ${id} from 12-recommendation-rules.json missing from route-validation-rules.json`);
+    assert.deepEqual(r.source_refs, ['12-recommendation-rules.json']);
+  }
+  // per-destination weather advisories are NOT duplicated here (they land on destinations instead)
+  assert.ok(!rvRules.some((r) => r.rule_id.endsWith('_weather_risk_advisory')), 'weather advisories should not be duplicated into route-validation-rules.json');
+});
+
+test('Ijen access-risk advisory is redacted of rate figures before reaching the agent-contract', () => {
+  const rvRules = rj('route-validation-rules.json') as any[];
+  const r = rvRules.find((x) => x.rule_id === 'ijen_access_closure_risk');
+  assert.ok(r.recommendation.includes('daily visitor cap'), 'operational fact should survive redaction');
+  assert.ok(!/\bIDR\b/.test(r.recommendation), 'rate figure must be redacted from the agent-contract');
+
+  const routeTruth = rj('standard-route-truth.json');
+  const ijenPkg = routeTruth.packages.find((p: any) => p.package_key === 'ijen-2d1n');
+  const rec = ijenPkg.route_recommendations.find((x: any) => x.rule_id === 'ijen_access_closure_risk');
+  assert.ok(rec, 'ijen-2d1n should carry the ijen_access_closure_risk recommendation (destinations includes ijen)');
+  assert.ok(!/\bIDR\b/.test(rec.note), 'rate figure must be redacted from standard-route-truth.json too');
+});
+
+test('package-level route_recommendations are condition-matched against real package data, not blanket-applied', () => {
+  const routeTruth = rj('standard-route-truth.json');
+  // Ketapang/Bali-continuing package with both Bromo+Ijen in the recommended order: compliant, not a live warning
+  const compliant = routeTruth.packages.find((p: any) => p.package_key === 'tumpak-sewu-bromo-ijen-4d3n');
+  const backtrack = compliant.route_recommendations.find((r: any) => r.rule_id === 'avoid_backtracking_ijen_bromo_ketapang');
+  assert.equal(backtrack.classification, 'final_jvto_standard');
+  assert.ok(compliant.route_recommendations.some((r: any) => r.rule_id === 'ferry_bali_buffer_required'));
+
+  // a Surabaya-only package with no Ketapang/Bali endpoint must NOT get the ferry-buffer recommendation
+  const noFerry = routeTruth.packages.find((p: any) => p.package_key === 'bromo-1d1n');
+  assert.ok(!noFerry.route_recommendations.some((r: any) => r.rule_id === 'ferry_bali_buffer_required'), 'bromo-1d1n never touches Ketapang/Bali; must not carry the ferry-buffer recommendation');
+  assert.ok(!noFerry.route_recommendations.some((r: any) => r.rule_id === 'ijen_access_closure_risk'), 'bromo-1d1n has no Ijen destination; must not carry the Ijen access-risk recommendation');
+
+  // tight_multi_destination_short_days correctly applies to none of the 16 (honest empty result)
+  assert.ok(!routeTruth.packages.some((p: any) => p.route_recommendations.some((r: any) => r.rule_id === 'tight_multi_destination_short_days')),
+    'no current package genuinely has 3+ destinations in <=2 days; the rule should not fire anywhere');
+});
+
+test('destination weather advisories are attached per-destination, absent only where jvto-web has no page (malang_batu)', () => {
+  const routeTruth = rj('standard-route-truth.json');
+  const bromoPkg = routeTruth.packages.find((p: any) => p.package_key === 'bromo-1d1n');
+  const bromo = bromoPkg.destinations.find((d: any) => d.destination === 'bromo');
+  assert.equal(bromo.weather_advisory.classification, 'live_condition');
+  assert.ok(bromo.weather_advisory.value.includes('season'));
+
+  const malangPkg = routeTruth.packages.find((p: any) => p.package_key === 'ijen-bromo-madakaripura-malang-5d4n');
+  const malang = malangPkg.destinations.find((d: any) => d.destination === 'malang_batu');
+  assert.equal(malang.weather_advisory.classification, 'absent');
+});
+
+test('the stale used_by_packages reference on the null-duration Bali leg is corrected', () => {
+  const legs = JSON.parse(readFileSync(join(ROOT, 'generated', 'itinerary-intelligence', '04-route-leg-index.json'), 'utf8')) as any[];
+  const leg = legs.find((l) => l.id === 'bali_hotel_area_to_banyuwangi_ijen_area');
+  assert.ok(!leg.used_by_packages.includes('bali-ijen-bromo-surabaya'), 'stale non-existent package_id should be removed');
+  for (const pid of ['bromo-ijen-3d2n-bali', 'ijen-bromo-madakaripura-3d2n-bali', 'ijen-papuma-tumpak-sewu-bromo-4d3n-bali', 'ijen-papuma-tumpak-sewu-bromo-5d4n-bali']) {
+    assert.ok(leg.used_by_packages.includes(pid), `used_by_packages should include the real referencing package ${pid}`);
+  }
+  // the null duration itself is a deliberate do-not-invent gap; it must be tracked, not silently null
+  const readiness = rj('operational-readiness.json');
+  const ds = readiness.datasets.find((d: any) => d.dataset === 'legacy_route_leg_index');
+  assert.ok(ds, 'legacy_route_leg_index dataset entry missing from operational-readiness.json');
+  assert.equal(ds.gaps[0].gating, 'optional');
+});
+
+test('operational_movements_pending_labels are now projected (previously only the count reached agent-contract)', () => {
+  const composition = rj('package-operational-composition.json') as any[];
+  const r = composition.find((c) => c.package_key === 'bali/bromo-ijen-3d2n');
+  assert.ok(r.operational_movements_pending > 0);
+  assert.ok(Array.isArray(r.operational_movements_pending_labels) && r.operational_movements_pending_labels.length === r.operational_movements_pending);
 });

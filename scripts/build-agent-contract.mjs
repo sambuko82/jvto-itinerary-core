@@ -15,7 +15,16 @@
 //                  OR a sold destination is missing from the route_sequence
 //   clean        : otherwise
 // unresolved_movement_count (hotel/transit labels -> Phase 5 contexts) is surfaced as
-// operational_movements_pending (informational, NON-gating).
+// operational_movements_pending (informational, NON-gating); the underlying labels are
+// projected too, as operational_movements_pending_labels.
+//
+// 12-recommendation-rules.json (package/route rules + per-destination weather advisories) is
+// now also read: previously it was consumed only by src/scenario/evaluateScenario.ts (the CLI
+// `scenario` command, not called by the WhatsApp runtime), so its facts never reached this
+// agent-safe contract. Package/route rules are folded into route-validation-rules.json;
+// per-destination weather advisories are attached to destination_operational_overlays /
+// standard-route-truth.destinations[].weather_advisory; package-decidable applicability is
+// computed per package into standard-route-truth.packages[].route_recommendations.
 
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -41,6 +50,25 @@ const dropoffs = rj("02-dropoff-contexts.json");
 const twr = rj("03-time-window-rules.json");
 const destProfiles = rj("06-destination-activity-profiles.json");
 const staging = rj("09-accommodation-logic.json");
+const recRules = rj("12-recommendation-rules.json");
+// 12-recommendation-rules.json mixes package/route-level rules with per-destination weather
+// advisories (identified by carrying a `condition.route_includes_destination` string). Shared
+// by route-validation-rules.json (section 2), operational-readiness.json (section 7), and
+// destinationTruth/packageRouteRecommendations (section 7.5).
+const RECOMMENDATION_WEATHER_IDS = new Set(recRules.filter((r) => "route_includes_destination" in (r.condition || {})).map((r) => r.id));
+const weatherAdvisoryByDest = Object.fromEntries(
+  recRules.filter((r) => "route_includes_destination" in (r.condition || {}))
+    .map((r) => [r.condition.route_includes_destination, r]),
+);
+// This agent-contract's own established guarantee is NO cost/rate data, ever (enforced by
+// src/validate/agent-contract.test.ts). A couple of 12-recommendation-rules.json's advisory
+// texts embed an IDR figure inline (e.g. "Gas mask (IDR 45k rental)"); strip those parenthetical
+// price mentions before projecting the surrounding operational advice (visitor cap, booking
+// requirement, payment method, closure risk) into this contract or standard-route-truth.json.
+function redactRates(text) {
+  if (!text) return text;
+  return text.replace(/\s*\(IDR[^)]*\)/gi, "").replace(/\bIDR\s*[\d.,]+k?\b/gi, "").replace(/\s{2,}/g, " ").trim();
+}
 
 // ---- helpers --------------------------------------------------------------
 const NODE_LABEL = {
@@ -146,7 +174,24 @@ for (const cat of catalog) {
   if (ambiguous) flags.contains_ambiguous_node = true;
   if (strength && strength !== "confirmed") flags.route_source_strength = strength;
 
-  if (integrity !== "clean") compGaps.push({ package_key: key, integrity, flags });
+  // A destination-node leg that reaches a real DEST_NODE the catalog doesn't sell for this
+  // package (off_sequence) is a genuine upstream conflict, not a builder bug: jvto-web's
+  // package-detail TravelActions include the movement but llm-wiki's destination_tokens for
+  // this package do not list that destination. Not decidable here (which source is right) —
+  // recorded as a structured missing_data record, not silently fixed either way.
+  let missingData = null;
+  const offSeqMadakaripura = offSeq.filter((l) => l.includes("madakaripura"));
+  if (offSeqMadakaripura.length) {
+    missingData = {
+      field: `route_leg_ids: ${offSeqMadakaripura.join(", ")}`,
+      affected: key,
+      required_source: "ops/llm-wiki confirmation of whether this package actually includes a Madakaripura stop, or jvto-web's packageDetailSnapshots.json TravelActions overstate the itinerary (package-catalog-index.json destination_tokens does not list madakaripura for this package)",
+      current_fallback: "route_integrity stays needs_review; effective_instant_book_eligible is unaffected (needs_review does not gate instant-book, only 'gap' does) — the WhatsApp runtime adds a route-validation disclosure instead of blocking or asking for human review",
+      gating: "warns",
+    };
+  }
+
+  if (integrity !== "clean") compGaps.push({ package_key: key, integrity, flags, missing_data: missingData });
 
   composition.push({
     package_key: key,
@@ -164,6 +209,7 @@ for (const cat of catalog) {
     route_integrity: integrity,
     route_review_flags: flags,
     operational_movements_pending: d.unresolved_movement_count ?? 0,
+    operational_movements_pending_labels: d.unresolved_movement_labels ?? [],
     composition_confidence: confidence,
     route_source_strength: strength ?? null,
     source_refs: [
@@ -200,6 +246,25 @@ rvRules.push({
   customer_safe_message_key: "ask_exact_departure_time", requires_feasibility: true,
   severity: "medium", impact: ["missed_connection_risk"], source_refs: ["02-dropoff-contexts.json"],
 });
+// 12-recommendation-rules.json's condition-based (non-weather) rules were previously consumed
+// only by src/scenario/evaluateScenario.ts (CLI `scenario` command; the WhatsApp runtime does
+// not call it) and never reached this agent-safe projection. Projected here verbatim (same
+// trigger/severity/confidence) so Bootstrap + the runtime can surface them as disclosures
+// through the same route-validation-rules.json consumers already reading this file.
+for (const r of recRules) {
+  if (RECOMMENDATION_WEATHER_IDS.has(r.id)) continue; // per-destination weather advisories are projected onto destinations instead (see destinationTruth)
+  // NOTE: r.backoffice_observed is deliberately NOT projected — it can carry rate/price
+  // figures (e.g. ferry_list_price_idr), which this agent-safe contract's own guarantees
+  // forbid ("no cost components, vendor/supplier rates, margins, or quote totals").
+  rvRules.push({
+    rule_id: r.id, trigger: r.condition || {}, required_customer_fields: [],
+    minimum_buffer_minutes: null, customer_safe_message_key: r.id,
+    requires_feasibility: r.severity === "high", severity: r.severity,
+    impact: [], recommendation: redactRates(r.recommendation), alternatives: r.alternatives || [],
+    confidence: r.confidence,
+    source_refs: ["12-recommendation-rules.json"],
+  });
+}
 
 // ---- 3. pickup-dropoff-requirements.json ----------------------------------
 function fzWhen(role, ctx) {
@@ -308,7 +373,8 @@ const opReadiness = {
       note: `${cleanCount}/${catalog.length} packages have clean route integrity (confirmed order, all sold destinations routed, no ambiguous node). Source: derived package-route-map.json. Unresolved operational movements (hotel/transit labels) are surfaced per package as operational_movements_pending and handled by live tools, not the route gate.`,
       gaps: compGaps },
     { dataset: "route_validation_rules", status: "partial", customer_usage: "guardrail_only", requires_feasibility: true,
-      requires_human_review_when: ["custom_route", "tight_connection", "special_pickup"] },
+      requires_human_review_when: ["custom_route", "tight_connection", "special_pickup"],
+      note: `${rvRules.length} rules: 3 from 03-time-window-rules.json, 1 connection-buffer synthetic, and ${recRules.length - Object.keys(weatherAdvisoryByDest).length} package/route-level rules newly projected from 12-recommendation-rules.json (previously consumed only by the internal CLI scenario evaluator, never reaching this agent-safe contract). The ${Object.keys(weatherAdvisoryByDest).length} per-destination weather advisories from the same source are projected onto destination_operational_overlays / standard-route-truth.destinations[].weather_advisory instead.` },
     { dataset: "pickup_dropoff_requirements", status: "covered", customer_usage: "clarification_questions",
       requires_human_review_when: ["custom_address", "previous_tour_dropoff"], note: "Several buffers are manual_seed; confirm with ops." },
     { dataset: "destination_operational_overlays", status: "covered", customer_usage: "readiness_and_warnings",
@@ -316,8 +382,17 @@ const opReadiness = {
     { dataset: "staging_logic", status: "partial", customer_usage: "explanation",
       requires_human_review_when: ["tumpak_sewu_staging (llm-wiki only)", "papuma_staging (llm-wiki only)", "malang_batu_staging (llm-wiki only)"] },
     { dataset: "package_customization_boundaries", status: "covered", customer_usage: "handoff_decision" },
+    { dataset: "legacy_route_leg_index", status: "partial", customer_usage: "internal_cli_scenario_tool_only",
+      note: "04-route-leg-index.json (legacy) is consumed only by the CLI `scenario` command, not by this agent-contract or the WhatsApp runtime (which read route-leg-index.filled.json / package-route-map.json instead).",
+      gaps: [{
+        field: "distance_km, duration_normal_minutes, duration_busy_minutes",
+        affected: "leg bali_hotel_area_to_banyuwangi_ijen_area, used by bromo-ijen-3d2n-bali, ijen-bromo-madakaripura-3d2n-bali, ijen-papuma-tumpak-sewu-bromo-4d3n-bali, ijen-papuma-tumpak-sewu-bromo-5d4n-bali",
+        required_source: "operator-timed multi-segment transfer (Bali hotel road + Gilimanuk->Ketapang ferry + Gilimanuk->Banyuwangi road + Banyuwangi->Ijen base); the Gilimanuk->Banyuwangi segment is currently only available from algorithmic sources, deliberately rejected as unreliable for this composite leg",
+        current_fallback: "null in the legacy CLI dataset; the WhatsApp runtime path is unaffected because standard-route-truth.json's route_legs for these 4 packages already use the derived route-leg-index.filled.json leg 'bali__to__ijen', which has real mapbox timing (175.9km/186min/311min busy)",
+        gating: "optional",
+      }] },
   ],
-  source_refs: ["package-route-map.json", "route-leg-index.filled.json", "data-readiness-report.json"],
+  source_refs: ["package-route-map.json", "route-leg-index.filled.json", "12-recommendation-rules.json", "data-readiness-report.json"],
 };
 
 // ---- 7.5 standard-route-truth.json ----------------------------------------
@@ -347,8 +422,8 @@ function pickupEntry(p) {
     required_fields: p.required_customer_fields || [], classification: CLASS.STANDARD, evidence: ["01-pickup-contexts.json"] };
 }
 // Valid pickups are origin-scoped (a shared JVTO rule): Surabaya-origin tours use the
-// Surabaya pickup contexts; Bali-origin tours are picked up at the guest's Bali hotel.
-// custom_address is universal. There is no structured bali_hotel_pickup context yet.
+// Surabaya pickup contexts; Bali-origin tours use the bali_hotel_pickup context (both are
+// real 01-pickup-contexts.json records — no synthesis needed). custom_address is universal.
 function validPickups(cat) {
   const gaps = [];
   const universal = pickups.filter((p) => p.location_group === "Custom").map(pickupEntry);
@@ -356,15 +431,8 @@ function validPickups(cat) {
     const grp = pickups.filter((p) => p.location_group === "Surabaya").map(pickupEntry);
     return { options: [...grp, ...universal], gaps };
   }
-  const originEntry = {
-    location_ref: null, label: "Bali hotel area pickup (origin)", type: "hotel", location_group: "Bali",
-    required_fields: ["hotel_area", "pickup_time"], classification: CLASS.STANDARD,
-    evidence: ["package-route-map.json (route_sequence[0])", "package-catalog-index.json (origin=Bali)"],
-    note: "Origin-scoped standard: Bali-origin tours are picked up at the guest's Bali hotel. No structured 01-pickup-context exists for this yet.",
-  };
-  gaps.push({ field: "pickup_context", classification: CLASS.ABSENT,
-    reason: "no bali_hotel_pickup context in 01-pickup-contexts.json for Bali-origin packages (pickup rule is origin-derived, not a structured context)" });
-  return { options: [originEntry, ...universal], gaps };
+  const grp = pickups.filter((p) => p.location_group === "Bali").map(pickupEntry);
+  return { options: [...grp, ...universal], gaps };
 }
 function dropoffCtxFor(opt) {
   const o = opt.toLowerCase();
@@ -437,15 +505,64 @@ function legTruth(cat) {
         classification: kmClass, evidence: ["route-leg-index.filled.json"] } };
   });
 }
+// 12-recommendation-rules.json's per-destination weather/risk advisories (jvto-web-sourced,
+// looked up via weatherAdvisoryByDest defined near the top) are attached here per destination
+// — where they're actually asked about — rather than as a generic route-validation-rules.json
+// entry, since weather is inherently live/seasonal.
 function destinationTruth(cat) {
   return destRefs(cat.destination_tokens).map((ref) => {
     const dp = destProfileById[ref] || {};
+    const wx = weatherAdvisoryByDest[dp.destination_id];
     return { destination: dp.destination_id ?? ref,
       activity_window: { value: dp.activity_window || {}, classification: CLASS.ESTIMATE, evidence: ["06-destination-activity-profiles.json"] },
       fatigue_score: { value: dp.fatigue_score ?? null, classification: dp.fatigue_score != null ? CLASS.STANDARD : CLASS.ABSENT, evidence: ["06-destination-activity-profiles.json"] },
       live_dependencies: { value: (dp.dependencies || []).filter((x) => LIVE_DEP.has(x)).sort(), classification: CLASS.LIVE, evidence: ["06-destination-activity-profiles.json"] },
-      difficulty_level: { value: dp.destination_intelligence?.difficulty_level ?? null, classification: dp.destination_intelligence?.difficulty_level ? CLASS.STANDARD : CLASS.ABSENT, evidence: ["06-destination-activity-profiles.json"] } };
+      difficulty_level: { value: dp.destination_intelligence?.difficulty_level ?? null, classification: dp.destination_intelligence?.difficulty_level ? CLASS.STANDARD : CLASS.ABSENT, evidence: ["06-destination-activity-profiles.json"] },
+      weather_advisory: wx
+        ? { value: wx.recommendation, weather_by_season: wx.weather_by_season ?? null, rainfall_intensity: wx.rainfall_intensity ?? null,
+            risk_factors: wx.risk_factors ?? [], classification: CLASS.LIVE, evidence: ["12-recommendation-rules.json"] }
+        : { value: null, classification: CLASS.ABSENT, evidence: ["12-recommendation-rules.json"] } };
   });
+}
+// Package-level recommendation rules that ARE decidable from this package's own already-
+// computed data (destinations, bali_transfer, endpoints, duration) — condition-matched
+// against real values, not invented. Request-time-only rules (late arrival, waterfall-before-
+// airport) stay generic in route-validation-rules.json since a package has no fixed arrival
+// time of its own.
+function parseDurationDays(duration) {
+  const m = /^(\d+)D/.exec(duration || "");
+  return m ? Number(m[1]) : null;
+}
+function packageRouteRecommendations(cat, dests, bali, dropoffOpts) {
+  const out = [];
+  const hasBromo = dests.some((d) => d.destination === "bromo");
+  const hasIjen = dests.some((d) => d.destination === "ijen");
+  const endpointsText = dropoffOpts.map((o) => o.option.toLowerCase()).join(" ");
+  const endsTowardBaliOrKetapang = bali.crosses_boundary && (bali.direction === "to_bali" || bali.direction === "both") || /ketapang|bali/.test(endpointsText);
+  const rule = (id) => recRules.find((r) => r.id === id);
+  if (hasBromo && hasIjen && endsTowardBaliOrKetapang) {
+    const r = rule("avoid_backtracking_ijen_bromo_ketapang");
+    const seq = derived[cat.package_id]?.route_sequence ?? [];
+    const bromoIdx = seq.indexOf("bromo"), ijenIdx = seq.indexOf("ijen");
+    const compliant = bromoIdx !== -1 && ijenIdx !== -1 && bromoIdx < ijenIdx;
+    out.push({ rule_id: r.id, classification: compliant ? CLASS.STANDARD : CLASS.LIVE,
+      note: compliant ? "Standard route already follows the recommended Bromo→Ijen→Ketapang/Bali order, avoiding the documented backtracking risk." : redactRates(r.recommendation),
+      severity: r.severity, evidence: ["12-recommendation-rules.json"] });
+  }
+  if (bali.crosses_boundary || /ketapang/.test(endpointsText)) {
+    const r = rule("ferry_bali_buffer_required");
+    out.push({ rule_id: r.id, classification: CLASS.LIVE, note: redactRates(r.recommendation), severity: r.severity, evidence: ["12-recommendation-rules.json"] });
+  }
+  if (hasIjen) {
+    const r = rule("ijen_access_closure_risk");
+    out.push({ rule_id: r.id, classification: CLASS.LIVE, note: redactRates(r.recommendation), severity: r.severity, evidence: ["12-recommendation-rules.json"] });
+  }
+  const durationDays = parseDurationDays(cat.duration);
+  if (dests.length >= 3 && durationDays != null && durationDays <= 2) {
+    const r = rule("tight_multi_destination_short_days");
+    out.push({ rule_id: r.id, classification: CLASS.LIVE, note: redactRates(r.recommendation), severity: r.severity, evidence: ["12-recommendation-rules.json"] });
+  }
+  return out;
 }
 // Package-specific deviations from a shared JVTO rule (source-backed, not invented).
 function packageExceptions(cat) {
@@ -468,6 +585,7 @@ function stagingTruth(cat) {
   return stagingRefs(cat.destination_tokens, cat.origin).map((sid) => {
     const s = stagingById[sid] || {};
     return { staging_ref: sid, label: s.label ?? null, purpose: s.purpose ?? null,
+      operational_notes: s.operational_notes || [], risk_if_arrival_late: s.risk_if_arrival_late || [],
       classification: ESTIMATE_ONLY_STAGING.has(sid) ? CLASS.ESTIMATE : CLASS.STANDARD,
       evidence: ["09-accommodation-logic.json"] };
   });
@@ -481,10 +599,29 @@ const routeTruth = catalog.map((cat) => {
   for (const g of pk.gaps) routeTruthGaps.push({ package_key: key, ...g });
   const legs = legTruth(cat);
   const dests = destinationTruth(cat);
+  const dropoffOpts = validDropoffs(cat);
+  const bali = baliBoundary(cat);
   // absent leg time evidence is a real, honest gap (operator durations are frequently null)
   for (const l of legs) {
     if (l.duration_minutes.classification === CLASS.ABSENT)
-      routeTruthGaps.push({ package_key: key, field: `leg_duration:${l.leg_ref}`, classification: CLASS.ABSENT, reason: "no operator or mapbox duration for this leg" });
+      routeTruthGaps.push({ package_key: key, field: `leg_duration:${l.leg_ref}`, classification: CLASS.ABSENT,
+        reason: "no operator or mapbox duration for this leg",
+        required_source: "operator-timed drive for this specific leg (mapbox/OSRM estimate not yet available either)",
+        current_fallback: "duration_minutes.value is null; the leg is still listed in route_legs so the sequence itself is not affected",
+        gating: "optional" });
+  }
+  // destination_intelligence absent (difficulty_level/physical_demand/altitude/trail_details) —
+  // currently only malang_batu, because jvto-web has no destination-detail page for it
+  // (destination-crosswalk.ts maps malang_batu -> slug 'malang-highlands', which does not
+  // exist in destinationDetailSnapshots.json). Genuine source absence, not a builder skip.
+  for (const d of dests) {
+    if (d.difficulty_level.classification === CLASS.ABSENT) {
+      routeTruthGaps.push({ package_key: key, field: `destinations[destination=${d.destination}].difficulty_level`, classification: CLASS.ABSENT,
+        reason: "jvto-web has no destination-detail page for this destination; destination-crosswalk.ts targets a slug that does not exist in destinationDetailSnapshots.json",
+        required_source: "a jvto-web destination-detail page for Malang/Batu (or a corrected crosswalk slug), or an llm-wiki-sourced difficulty rating",
+        current_fallback: "difficulty_level/physical_demand/altitude/trail_details render as null; fatigue_score and activity_window remain populated from 06-destination-activity-profiles.json",
+        gating: "optional" });
+    }
   }
   return {
     package_key: key,
@@ -497,15 +634,16 @@ const routeTruth = catalog.map((cat) => {
       evidence: ["package-route-map.json (derived, source-backed)"],
     },
     valid_pickups: pk.options,
-    valid_dropoffs: validDropoffs(cat),
-    bali_transfer: baliBoundary(cat),
+    valid_dropoffs: dropoffOpts,
+    bali_transfer: bali,
     route_legs: legs,
     destinations: dests,
     staging: stagingTruth(cat),
     exceptions: packageExceptions(cat),
+    route_recommendations: packageRouteRecommendations(cat, dests, bali, dropoffOpts),
     connection_rules: {
       // onward connections exist only at Ketapang harbor; they are live arrangements
-      value: validDropoffs(cat).flatMap((d) => d.connects_to),
+      value: dropoffOpts.flatMap((d) => d.connects_to),
       classification: CLASS.LIVE,
       evidence: ["02-dropoff-contexts.json (connects_to)"],
     },
@@ -514,7 +652,7 @@ const routeTruth = catalog.map((cat) => {
       "agent-contract/pickup-dropoff-requirements.json",
       "package-route-map.json (derived)", "route-leg-index.filled.json",
       "06-destination-activity-profiles.json", "09-accommodation-logic.json",
-      "11-package-route-map.json (endpoints)",
+      "12-recommendation-rules.json", "11-package-route-map.json (endpoints)",
     ],
   };
 });
@@ -577,7 +715,20 @@ function auditMarkdown() {
     lines.push(`- route_legs (time evidence) → ${p.route_legs.map((l) => `${l.leg_ref}:${l.duration_minutes.value ?? "—"}m/${l.duration_minutes.basis ?? "none"}[${l.duration_minutes.classification}]`).join("; ") || "—"}`);
     lines.push(`- destinations (fatigue/live) → ${p.destinations.map((d) => `${d.destination}:fatigue=${d.fatigue_score.value ?? "—"}[${d.fatigue_score.classification}],live=${d.live_dependencies.value.join("/") || "none"}[live_condition]`).join("; ") || "—"}`);
     lines.push(`- staging → ${p.staging.map((s) => `${s.staging_ref}[${s.classification}]`).join("; ") || "—"}`);
+    lines.push(`- route_recommendations → ${p.route_recommendations.map((r) => `${r.rule_id}[${r.classification}]`).join("; ") || "—"}`);
+    const wxDests = p.destinations.filter((d) => d.weather_advisory.classification === "live_condition");
+    lines.push(`- weather_advisory → ${wxDests.map((d) => `${d.destination}[live_condition]`).join("; ") || "—"}`);
     lines.push("");
+  }
+  if (routeTruthGaps.length) {
+    lines.push("## Missing-data detail (required_source / current_fallback / gating)", "");
+    for (const g of routeTruthGaps) {
+      if (!g.required_source) continue;
+      lines.push(`- \`${g.package_key}\` — ${g.field}`,
+        `  - required_source: ${g.required_source}`,
+        `  - current_fallback: ${g.current_fallback}`,
+        `  - gating: ${g.gating}`, "");
+    }
   }
   return lines.join("\n") + "\n";
 }
@@ -586,7 +737,7 @@ function auditMarkdown() {
 const manifest = {
   schema_version: CONTRACT_VERSION,
   purpose: "Narrow, agent-safe operational projection for jvto-whatsapp-agent-runtime. Generated by scripts/build-agent-contract.mjs from the source-backed derived route map.",
-  generated_from: "generated/itinerary-intelligence/{package-route-map.json,route-leg-index.filled.json,package-catalog-index.json,06,09,01,02,03} + 11-package-route-map.json (endpoints)",
+  generated_from: "generated/itinerary-intelligence/{package-route-map.json,route-leg-index.filled.json,package-catalog-index.json,06,09,01,02,03,12} + 11-package-route-map.json (endpoints)",
   files: {
     "package-operational-composition.json": composition.length,
     "route-validation-rules.json": rvRules.length,
