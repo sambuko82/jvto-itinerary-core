@@ -60,14 +60,20 @@ const weatherAdvisoryByDest = Object.fromEntries(
   recRules.filter((r) => "route_includes_destination" in (r.condition || {}))
     .map((r) => [r.condition.route_includes_destination, r]),
 );
-// This agent-contract's own established guarantee is NO cost/rate data, ever (enforced by
-// src/validate/agent-contract.test.ts). A couple of 12-recommendation-rules.json's advisory
-// texts embed an IDR figure inline (e.g. "Gas mask (IDR 45k rental)"); strip those parenthetical
-// price mentions before projecting the surrounding operational advice (visitor cap, booking
-// requirement, payment method, closure risk) into this contract or standard-route-truth.json.
-function redactRates(text) {
+// This agent-contract's own established guarantees are NO cost/rate data and NO marketing
+// copy/URLs/booking CTAs, ever (enforced by src/validate/agent-contract.test.ts). Some
+// 12-recommendation-rules.json advisory texts embed: an IDR figure inline (e.g. "Gas mask
+// (IDR 45k rental)"), a literal booking URL (e.g. "tiket.bbksdajatim.org"), and/or JVTO-
+// branded service-promise sentences (e.g. "JVTO provides blankets and hot drinks."). Strip
+// all three before projecting the surrounding operational advice into this contract or
+// standard-route-truth.json — drop whole sentences that mention JVTO rather than rewrite
+// them, so nothing is invented, only removed.
+function sanitizeForContract(text) {
   if (!text) return text;
-  return text.replace(/\s*\(IDR[^)]*\)/gi, "").replace(/\bIDR\s*[\d.,]+k?\b/gi, "").replace(/\s{2,}/g, " ").trim();
+  const noRates = text.replace(/\s*\(IDR[^)]*\)/gi, "").replace(/\bIDR\s*[\d.,]+k?\b/gi, "");
+  const noUrls = noRates.replace(/\b[a-z0-9-]+(?:\.[a-z0-9-]+)+\.(?:org|com|id|net)\S*/gi, "");
+  const sentences = noUrls.split(/(?<=[.!?])\s+/).filter((s) => !/\bJVTO\b/i.test(s));
+  return sentences.join(" ").replace(/\s{2,}/g, " ").trim() || null;
 }
 
 // ---- helpers --------------------------------------------------------------
@@ -260,7 +266,7 @@ for (const r of recRules) {
     rule_id: r.id, trigger: r.condition || {}, required_customer_fields: [],
     minimum_buffer_minutes: null, customer_safe_message_key: r.id,
     requires_feasibility: r.severity === "high", severity: r.severity,
-    impact: [], recommendation: redactRates(r.recommendation), alternatives: r.alternatives || [],
+    impact: [], recommendation: sanitizeForContract(r.recommendation), alternatives: r.alternatives || [],
     confidence: r.confidence,
     source_refs: ["12-recommendation-rules.json"],
   });
@@ -519,8 +525,12 @@ function destinationTruth(cat) {
       live_dependencies: { value: (dp.dependencies || []).filter((x) => LIVE_DEP.has(x)).sort(), classification: CLASS.LIVE, evidence: ["06-destination-activity-profiles.json"] },
       difficulty_level: { value: dp.destination_intelligence?.difficulty_level ?? null, classification: dp.destination_intelligence?.difficulty_level ? CLASS.STANDARD : CLASS.ABSENT, evidence: ["06-destination-activity-profiles.json"] },
       weather_advisory: wx
-        ? { value: wx.recommendation, weather_by_season: wx.weather_by_season ?? null, rainfall_intensity: wx.rainfall_intensity ?? null,
-            risk_factors: wx.risk_factors ?? [], classification: CLASS.LIVE, evidence: ["12-recommendation-rules.json"] }
+        ? { value: sanitizeForContract(wx.recommendation), weather_by_season: wx.weather_by_season ?? null, rainfall_intensity: wx.rainfall_intensity ?? null,
+            // mitigation text is jvto-web copy meant for the public site, not this agent-safe
+            // contract (some of it is JVTO-branded service-promise wording); type/level/
+            // description are the neutral, factual parts, kept as-is.
+            risk_factors: (wx.risk_factors ?? []).map((rf) => ({ type: rf.type, level: rf.level, description: rf.description, mitigation: sanitizeForContract(rf.mitigation) })),
+            classification: CLASS.LIVE, evidence: ["12-recommendation-rules.json"] }
         : { value: null, classification: CLASS.ABSENT, evidence: ["12-recommendation-rules.json"] } };
   });
 }
@@ -533,34 +543,38 @@ function parseDurationDays(duration) {
   const m = /^(\d+)D/.exec(duration || "");
   return m ? Number(m[1]) : null;
 }
-function packageRouteRecommendations(cat, dests, bali, dropoffOpts) {
+function packageRouteRecommendations(cat, dests, bali) {
   const out = [];
   const hasBromo = dests.some((d) => d.destination === "bromo");
   const hasIjen = dests.some((d) => d.destination === "ijen");
-  const endpointsText = dropoffOpts.map((o) => o.option.toLowerCase()).join(" ");
-  const endsTowardBaliOrKetapang = bali.crosses_boundary && (bali.direction === "to_bali" || bali.direction === "both") || /ketapang|bali/.test(endpointsText);
+  // Gate on bali.crosses_boundary alone (to_bali/from_bali/both) — the SAME strict rule
+  // baliBoundary() already enforces (the endpoint option must itself name Bali/Gilimanuk, not
+  // merely Ketapang). A plain Ketapang Harbor dropoff with no Bali continuation offered is
+  // NOT a ferry/Bali event; evaluateScenario.ts only continues past Ketapang when the customer
+  // explicitly supplies a Bali/Gilimanuk destination or ferry preference (codex review).
+  const endsTowardBali = bali.crosses_boundary && (bali.direction === "to_bali" || bali.direction === "both" || bali.direction === "from_bali");
   const rule = (id) => recRules.find((r) => r.id === id);
-  if (hasBromo && hasIjen && endsTowardBaliOrKetapang) {
+  if (hasBromo && hasIjen && endsTowardBali) {
     const r = rule("avoid_backtracking_ijen_bromo_ketapang");
     const seq = derived[cat.package_id]?.route_sequence ?? [];
     const bromoIdx = seq.indexOf("bromo"), ijenIdx = seq.indexOf("ijen");
     const compliant = bromoIdx !== -1 && ijenIdx !== -1 && bromoIdx < ijenIdx;
     out.push({ rule_id: r.id, classification: compliant ? CLASS.STANDARD : CLASS.LIVE,
-      note: compliant ? "Standard route already follows the recommended Bromo→Ijen→Ketapang/Bali order, avoiding the documented backtracking risk." : redactRates(r.recommendation),
+      note: compliant ? "Standard route already follows the recommended Bromo→Ijen→Ketapang/Bali order, avoiding the documented backtracking risk." : sanitizeForContract(r.recommendation),
       severity: r.severity, evidence: ["12-recommendation-rules.json"] });
   }
-  if (bali.crosses_boundary || /ketapang/.test(endpointsText)) {
+  if (bali.crosses_boundary) {
     const r = rule("ferry_bali_buffer_required");
-    out.push({ rule_id: r.id, classification: CLASS.LIVE, note: redactRates(r.recommendation), severity: r.severity, evidence: ["12-recommendation-rules.json"] });
+    out.push({ rule_id: r.id, classification: CLASS.LIVE, note: sanitizeForContract(r.recommendation), severity: r.severity, evidence: ["12-recommendation-rules.json"] });
   }
   if (hasIjen) {
     const r = rule("ijen_access_closure_risk");
-    out.push({ rule_id: r.id, classification: CLASS.LIVE, note: redactRates(r.recommendation), severity: r.severity, evidence: ["12-recommendation-rules.json"] });
+    out.push({ rule_id: r.id, classification: CLASS.LIVE, note: sanitizeForContract(r.recommendation), severity: r.severity, evidence: ["12-recommendation-rules.json"] });
   }
   const durationDays = parseDurationDays(cat.duration);
   if (dests.length >= 3 && durationDays != null && durationDays <= 2) {
     const r = rule("tight_multi_destination_short_days");
-    out.push({ rule_id: r.id, classification: CLASS.LIVE, note: redactRates(r.recommendation), severity: r.severity, evidence: ["12-recommendation-rules.json"] });
+    out.push({ rule_id: r.id, classification: CLASS.LIVE, note: sanitizeForContract(r.recommendation), severity: r.severity, evidence: ["12-recommendation-rules.json"] });
   }
   return out;
 }
@@ -640,7 +654,7 @@ const routeTruth = catalog.map((cat) => {
     destinations: dests,
     staging: stagingTruth(cat),
     exceptions: packageExceptions(cat),
-    route_recommendations: packageRouteRecommendations(cat, dests, bali, dropoffOpts),
+    route_recommendations: packageRouteRecommendations(cat, dests, bali),
     connection_rules: {
       // onward connections exist only at Ketapang harbor; they are live arrangements
       value: dropoffOpts.flatMap((d) => d.connects_to),
