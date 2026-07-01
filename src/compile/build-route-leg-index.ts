@@ -345,9 +345,13 @@ export function buildRouteLegIndex(): RouteLeg[] {
       meal_stop_possible: true,
       night_drive_possible: true,
       recommended_departure_window: 'morning or early afternoon depending on Ijen plan',
-      used_by_packages: ['bali-ijen-bromo-surabaya'],
+      // Corrected from a stale 'bali-ijen-bromo-surabaya' reference (not a real package_id
+      // anywhere in package-catalog-index.json/11-package-route-map.json). The real referencing
+      // packages are every legacy 11-package-route-map.json row whose route_legs includes this
+      // leg id — verified by grep against that file.
+      used_by_packages: ['bromo-ijen-3d2n-bali', 'ijen-bromo-madakaripura-3d2n-bali', 'ijen-papuma-tumpak-sewu-bromo-4d3n-bali', 'ijen-papuma-tumpak-sewu-bromo-5d4n-bali'],
       cost_impacts: ['bali_transfer', 'ferry_ticket', 'vehicle_day_usage', 'driver_cost'],
-      research_note: 'Multi-modal composite (Bali road + Gilimanuk->Ketapang ferry + Banyuwangi->Paltuding climb). No operator gives a clean end-to-end figure; the Gilimanuk->Banyuwangi road portion is only available from algorithmic sources (rejected). Left as a do-not-invent gap pending per-segment verification — compose from ketapang_harbor_to_gilimanuk_bali_side + banyuwangi_to_ijen_base if needed.',
+      research_note: 'Multi-modal composite (Bali road + Gilimanuk->Ketapang ferry + Banyuwangi->Paltuding climb). No operator gives a clean end-to-end figure; the Gilimanuk->Banyuwangi road portion is only available from algorithmic sources (rejected). Left as a do-not-invent gap pending per-segment verification — compose from ketapang_harbor_to_gilimanuk_bali_side + banyuwangi_to_ijen_base if needed. NOTE: the derived route-leg-index.filled.json carries a real end-to-end mapbox estimate for the same city-pair as node-leg "bali__to__ijen" (175.9km/186min/311min busy); not reused here because it is algorithmic-only for the same rejected Gilimanuk->Banyuwangi segment this note already flags — see the structured missing_data record in agent-contract/operational-readiness.json for the current fallback and required source.',
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' }]
     },
     {

@@ -12,11 +12,11 @@
 
 ## Classification tally (all classified fields)
 
-- final_jvto_standard: **236**
+- final_jvto_standard: **238**
 - source_backed_estimate: **182**
-- live_condition: **66**
+- live_condition: **131**
 - exception: **5**
-- absent: **2**
+- absent: **4**
 
 ## Route integrity
 
@@ -34,10 +34,8 @@
 
 ## Genuine gaps (classified `absent` — surfaced as handoff, never invented)
 
-- `bali/bromo-ijen-3d2n` — pickup_context: no bali_hotel_pickup context in 01-pickup-contexts.json for Bali-origin packages (pickup rule is origin-derived, not a structured context)
-- `bali/ijen-bromo-madakaripura-3d2n` — pickup_context: no bali_hotel_pickup context in 01-pickup-contexts.json for Bali-origin packages (pickup rule is origin-derived, not a structured context)
-- `bali/ijen-papuma-tumpak-sewu-bromo-4d3n` — pickup_context: no bali_hotel_pickup context in 01-pickup-contexts.json for Bali-origin packages (pickup rule is origin-derived, not a structured context)
-- `bali/ijen-papuma-tumpak-sewu-bromo-5d4n` — pickup_context: no bali_hotel_pickup context in 01-pickup-contexts.json for Bali-origin packages (pickup rule is origin-derived, not a structured context)
+- `ijen-bromo-madakaripura-malang-5d4n` — destinations[destination=malang_batu].difficulty_level: jvto-web has no destination-detail page for this destination; destination-crosswalk.ts targets a slug that does not exist in destinationDetailSnapshots.json
+- `ijen-papuma-tumpak-sewu-bromo-malang-6d5n` — destinations[destination=malang_batu].difficulty_level: jvto-web has no destination-detail page for this destination; destination-crosswalk.ts targets a slug that does not exist in destinationDetailSnapshots.json
 
 ## Per-package field classification
 
@@ -49,6 +47,8 @@
 - route_legs (time evidence) → bali__to__bromo:386m/mapbox[source_backed_estimate]; bromo__to__ijen:225m/mapbox[source_backed_estimate]; bromo__to__madakaripura:103m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → bromo:fatigue=3[final_jvto_standard],live=national_park_access/weather[live_condition]; ijen:fatigue=5[final_jvto_standard],live=health_screening/monthly_closure/weather[live_condition]
 - staging → bromo_area_sunrise_staging[final_jvto_standard]; banyuwangi_staging[final_jvto_standard]
+- route_recommendations → ferry_bali_buffer_required[live_condition]; ijen_access_closure_risk[live_condition]
+- weather_advisory → bromo[live_condition]; ijen[live_condition]
 
 ### bali/ijen-bromo-madakaripura-3d2n  `(bali, 3D2N)`
 - route_sequence → **final_jvto_standard** (integrity: clean) — Bali → Ijen → Bromo → Madakaripura
@@ -58,6 +58,8 @@
 - route_legs (time evidence) → bali__to__ijen:186m/mapbox[source_backed_estimate]; ijen__to__bromo:225m/mapbox[source_backed_estimate]; bromo__to__madakaripura:103m/mapbox[source_backed_estimate]; madakaripura__to__surabaya:97m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → bromo:fatigue=3[final_jvto_standard],live=national_park_access/weather[live_condition]; ijen:fatigue=5[final_jvto_standard],live=health_screening/monthly_closure/weather[live_condition]; madakaripura:fatigue=3[final_jvto_standard],live=waterfall_access_condition/weather[live_condition]
 - staging → bromo_area_sunrise_staging[final_jvto_standard]; banyuwangi_staging[final_jvto_standard]
+- route_recommendations → ferry_bali_buffer_required[live_condition]; ijen_access_closure_risk[live_condition]
+- weather_advisory → bromo[live_condition]; ijen[live_condition]; madakaripura[live_condition]
 
 ### bali/ijen-papuma-tumpak-sewu-bromo-4d3n  `(bali, 4D3N)`
 - route_sequence → **final_jvto_standard** (integrity: clean) — Bali → Ijen → Papuma → Tumpak Sewu → Bromo
@@ -67,6 +69,8 @@
 - route_legs (time evidence) → bali__to__ijen:186m/mapbox[source_backed_estimate]; ijen__to__papuma:139m/mapbox[source_backed_estimate]; papuma__to__tumpak_sewu:112m/mapbox[source_backed_estimate]; tumpak_sewu__to__bromo:142m/mapbox[source_backed_estimate]; bromo__to__surabaya:110m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → bromo:fatigue=3[final_jvto_standard],live=national_park_access/weather[live_condition]; ijen:fatigue=5[final_jvto_standard],live=health_screening/monthly_closure/weather[live_condition]; papuma:fatigue=2[final_jvto_standard],live=coastal_access_condition/weather[live_condition]; tumpak_sewu:fatigue=5[final_jvto_standard],live=waterfall_access_condition/weather[live_condition]
 - staging → bromo_area_sunrise_staging[final_jvto_standard]; banyuwangi_staging[final_jvto_standard]; tumpak_sewu_staging[source_backed_estimate]; papuma_staging[source_backed_estimate]
+- route_recommendations → ferry_bali_buffer_required[live_condition]; ijen_access_closure_risk[live_condition]
+- weather_advisory → bromo[live_condition]; ijen[live_condition]; papuma[live_condition]; tumpak_sewu[live_condition]
 
 ### bali/ijen-papuma-tumpak-sewu-bromo-5d4n  `(bali, 5D4N)`
 - route_sequence → **final_jvto_standard** (integrity: clean) — Bali → Ijen → Papuma → Tumpak Sewu → Bromo
@@ -76,6 +80,8 @@
 - route_legs (time evidence) → bali__to__ijen:186m/mapbox[source_backed_estimate]; ijen__to__papuma:139m/mapbox[source_backed_estimate]; papuma__to__tumpak_sewu:112m/mapbox[source_backed_estimate]; tumpak_sewu__to__bromo:142m/mapbox[source_backed_estimate]; bromo__to__surabaya:110m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → bromo:fatigue=3[final_jvto_standard],live=national_park_access/weather[live_condition]; ijen:fatigue=5[final_jvto_standard],live=health_screening/monthly_closure/weather[live_condition]; papuma:fatigue=2[final_jvto_standard],live=coastal_access_condition/weather[live_condition]; tumpak_sewu:fatigue=5[final_jvto_standard],live=waterfall_access_condition/weather[live_condition]
 - staging → bromo_area_sunrise_staging[final_jvto_standard]; banyuwangi_staging[final_jvto_standard]; tumpak_sewu_staging[source_backed_estimate]; papuma_staging[source_backed_estimate]
+- route_recommendations → ferry_bali_buffer_required[live_condition]; ijen_access_closure_risk[live_condition]
+- weather_advisory → bromo[live_condition]; ijen[live_condition]; papuma[live_condition]; tumpak_sewu[live_condition]
 
 ### bromo-1d1n  `(surabaya, 1D1N)`
 - route_sequence → **final_jvto_standard** (integrity: clean) — Surabaya → Bromo
@@ -85,6 +91,8 @@
 - route_legs (time evidence) → surabaya__to__bromo:110m/mapbox[source_backed_estimate]; bromo__to__surabaya:110m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → bromo:fatigue=3[final_jvto_standard],live=national_park_access/weather[live_condition]
 - staging → bromo_area_sunrise_staging[final_jvto_standard]
+- route_recommendations → —
+- weather_advisory → bromo[live_condition]
 
 ### bromo-2d1n  `(surabaya, 2D1N)`
 - route_sequence → **source_backed_estimate** (integrity: needs_review) — Surabaya → Bromo
@@ -94,6 +102,8 @@
 - route_legs (time evidence) → surabaya__to__bromo:110m/mapbox[source_backed_estimate]; madakaripura__to__surabaya:97m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → bromo:fatigue=3[final_jvto_standard],live=national_park_access/weather[live_condition]
 - staging → bromo_area_sunrise_staging[final_jvto_standard]
+- route_recommendations → —
+- weather_advisory → bromo[live_condition]
 
 ### bromo-madakaripura-ijen-3d2n  `(surabaya, 3D2N)`
 - route_sequence → **final_jvto_standard** (integrity: clean) — Surabaya → Bromo → Madakaripura → Ijen
@@ -103,6 +113,8 @@
 - route_legs (time evidence) → surabaya__to__bromo:110m/mapbox[source_backed_estimate]; bromo__to__madakaripura:103m/mapbox[source_backed_estimate]; madakaripura__to__ijen:161m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → bromo:fatigue=3[final_jvto_standard],live=national_park_access/weather[live_condition]; ijen:fatigue=5[final_jvto_standard],live=health_screening/monthly_closure/weather[live_condition]; madakaripura:fatigue=3[final_jvto_standard],live=waterfall_access_condition/weather[live_condition]
 - staging → bromo_area_sunrise_staging[final_jvto_standard]; bondowoso_ijen_staging[final_jvto_standard]
+- route_recommendations → avoid_backtracking_ijen_bromo_ketapang[final_jvto_standard]; ferry_bali_buffer_required[live_condition]; ijen_access_closure_risk[live_condition]
+- weather_advisory → bromo[live_condition]; ijen[live_condition]; madakaripura[live_condition]
 
 ### ijen-2d1n  `(surabaya, 2D1N)`
 - route_sequence → **final_jvto_standard** (integrity: clean) — Surabaya → Ijen
@@ -112,6 +124,8 @@
 - route_legs (time evidence) → surabaya__to__ijen:219m/mapbox[source_backed_estimate]; ijen__to__surabaya:219m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → ijen:fatigue=5[final_jvto_standard],live=health_screening/monthly_closure/weather[live_condition]
 - staging → bondowoso_ijen_staging[final_jvto_standard]
+- route_recommendations → ferry_bali_buffer_required[live_condition]; ijen_access_closure_risk[live_condition]
+- weather_advisory → ijen[live_condition]
 
 ### ijen-bromo-madakaripura-3d2n  `(surabaya, 3D2N)`
 - route_sequence → **final_jvto_standard** (integrity: clean) — Surabaya → Ijen → Bromo → Madakaripura
@@ -121,6 +135,8 @@
 - route_legs (time evidence) → surabaya__to__ijen:219m/mapbox[source_backed_estimate]; ijen__to__bromo:225m/mapbox[source_backed_estimate]; bromo__to__madakaripura:103m/mapbox[source_backed_estimate]; madakaripura__to__surabaya:97m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → bromo:fatigue=3[final_jvto_standard],live=national_park_access/weather[live_condition]; ijen:fatigue=5[final_jvto_standard],live=health_screening/monthly_closure/weather[live_condition]; madakaripura:fatigue=3[final_jvto_standard],live=waterfall_access_condition/weather[live_condition]
 - staging → bromo_area_sunrise_staging[final_jvto_standard]; bondowoso_ijen_staging[final_jvto_standard]
+- route_recommendations → ijen_access_closure_risk[live_condition]
+- weather_advisory → bromo[live_condition]; ijen[live_condition]; madakaripura[live_condition]
 
 ### ijen-bromo-madakaripura-4d3n  `(surabaya, 4D3N)`
 - route_sequence → **final_jvto_standard** (integrity: clean) — Surabaya → Ijen → Bromo → Madakaripura
@@ -130,6 +146,8 @@
 - route_legs (time evidence) → surabaya__to__ijen:219m/mapbox[source_backed_estimate]; ijen__to__bromo:225m/mapbox[source_backed_estimate]; bromo__to__madakaripura:103m/mapbox[source_backed_estimate]; madakaripura__to__surabaya:97m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → bromo:fatigue=3[final_jvto_standard],live=national_park_access/weather[live_condition]; ijen:fatigue=5[final_jvto_standard],live=health_screening/monthly_closure/weather[live_condition]; madakaripura:fatigue=3[final_jvto_standard],live=waterfall_access_condition/weather[live_condition]
 - staging → bromo_area_sunrise_staging[final_jvto_standard]; bondowoso_ijen_staging[final_jvto_standard]
+- route_recommendations → ijen_access_closure_risk[live_condition]
+- weather_advisory → bromo[live_condition]; ijen[live_condition]; madakaripura[live_condition]
 
 ### ijen-bromo-madakaripura-malang-5d4n  `(surabaya, 5D4N)`
 - route_sequence → **final_jvto_standard** (integrity: clean) — Surabaya → Ijen → Bromo → Madakaripura → Malang
@@ -139,6 +157,8 @@
 - route_legs (time evidence) → surabaya__to__ijen:219m/mapbox[source_backed_estimate]; ijen__to__bromo:225m/mapbox[source_backed_estimate]; bromo__to__madakaripura:103m/mapbox[source_backed_estimate]; madakaripura__to__malang:89m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → bromo:fatigue=3[final_jvto_standard],live=national_park_access/weather[live_condition]; ijen:fatigue=5[final_jvto_standard],live=health_screening/monthly_closure/weather[live_condition]; madakaripura:fatigue=3[final_jvto_standard],live=waterfall_access_condition/weather[live_condition]; malang_batu:fatigue=2[final_jvto_standard],live=none[live_condition]
 - staging → bromo_area_sunrise_staging[final_jvto_standard]; bondowoso_ijen_staging[final_jvto_standard]; malang_batu_staging[source_backed_estimate]
+- route_recommendations → ijen_access_closure_risk[live_condition]
+- weather_advisory → bromo[live_condition]; ijen[live_condition]; madakaripura[live_condition]
 
 ### ijen-papuma-tumpak-sewu-bromo-4d3n  `(surabaya, 4D3N)`
 - route_sequence → **final_jvto_standard** (integrity: clean) — Surabaya → Ijen → Papuma → Tumpak Sewu → Bromo
@@ -148,6 +168,8 @@
 - route_legs (time evidence) → surabaya__to__ijen:219m/mapbox[source_backed_estimate]; ijen__to__papuma:139m/mapbox[source_backed_estimate]; papuma__to__tumpak_sewu:112m/mapbox[source_backed_estimate]; tumpak_sewu__to__bromo:142m/mapbox[source_backed_estimate]; bromo__to__surabaya:110m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → bromo:fatigue=3[final_jvto_standard],live=national_park_access/weather[live_condition]; ijen:fatigue=5[final_jvto_standard],live=health_screening/monthly_closure/weather[live_condition]; papuma:fatigue=2[final_jvto_standard],live=coastal_access_condition/weather[live_condition]; tumpak_sewu:fatigue=5[final_jvto_standard],live=waterfall_access_condition/weather[live_condition]
 - staging → bromo_area_sunrise_staging[final_jvto_standard]; bondowoso_ijen_staging[final_jvto_standard]; tumpak_sewu_staging[source_backed_estimate]; papuma_staging[source_backed_estimate]
+- route_recommendations → ijen_access_closure_risk[live_condition]
+- weather_advisory → bromo[live_condition]; ijen[live_condition]; papuma[live_condition]; tumpak_sewu[live_condition]
 
 ### ijen-papuma-tumpak-sewu-bromo-5d4n  `(surabaya, 5D4N)`
 - route_sequence → **final_jvto_standard** (integrity: clean) — Surabaya → Ijen → Papuma → Tumpak Sewu → Bromo
@@ -157,6 +179,8 @@
 - route_legs (time evidence) → surabaya__to__ijen:219m/mapbox[source_backed_estimate]; ijen__to__papuma:139m/mapbox[source_backed_estimate]; papuma__to__tumpak_sewu:112m/mapbox[source_backed_estimate]; tumpak_sewu__to__bromo:142m/mapbox[source_backed_estimate]; bromo__to__surabaya:110m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → bromo:fatigue=3[final_jvto_standard],live=national_park_access/weather[live_condition]; ijen:fatigue=5[final_jvto_standard],live=health_screening/monthly_closure/weather[live_condition]; papuma:fatigue=2[final_jvto_standard],live=coastal_access_condition/weather[live_condition]; tumpak_sewu:fatigue=5[final_jvto_standard],live=waterfall_access_condition/weather[live_condition]
 - staging → bromo_area_sunrise_staging[final_jvto_standard]; bondowoso_ijen_staging[final_jvto_standard]; tumpak_sewu_staging[source_backed_estimate]; papuma_staging[source_backed_estimate]
+- route_recommendations → ijen_access_closure_risk[live_condition]
+- weather_advisory → bromo[live_condition]; ijen[live_condition]; papuma[live_condition]; tumpak_sewu[live_condition]
 
 ### ijen-papuma-tumpak-sewu-bromo-malang-6d5n  `(surabaya, 6D5N)`
 - route_sequence → **final_jvto_standard** (integrity: clean) — Surabaya → Ijen → Papuma → Tumpak Sewu → Bromo → Malang
@@ -166,6 +190,8 @@
 - route_legs (time evidence) → surabaya__to__ijen:219m/mapbox[source_backed_estimate]; ijen__to__papuma:139m/mapbox[source_backed_estimate]; papuma__to__tumpak_sewu:112m/mapbox[source_backed_estimate]; tumpak_sewu__to__bromo:142m/mapbox[source_backed_estimate]; bromo__to__malang:90m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → bromo:fatigue=3[final_jvto_standard],live=national_park_access/weather[live_condition]; ijen:fatigue=5[final_jvto_standard],live=health_screening/monthly_closure/weather[live_condition]; papuma:fatigue=2[final_jvto_standard],live=coastal_access_condition/weather[live_condition]; tumpak_sewu:fatigue=5[final_jvto_standard],live=waterfall_access_condition/weather[live_condition]; malang_batu:fatigue=2[final_jvto_standard],live=none[live_condition]
 - staging → bromo_area_sunrise_staging[final_jvto_standard]; bondowoso_ijen_staging[final_jvto_standard]; tumpak_sewu_staging[source_backed_estimate]; papuma_staging[source_backed_estimate]; malang_batu_staging[source_backed_estimate]
+- route_recommendations → ijen_access_closure_risk[live_condition]
+- weather_advisory → bromo[live_condition]; ijen[live_condition]; papuma[live_condition]; tumpak_sewu[live_condition]
 
 ### taman-safari-prigen-bromo-madakaripura-3d2n  `(surabaya, 3D2N)`
 - route_sequence → **final_jvto_standard** (integrity: clean) — Surabaya → Taman Safari Prigen → Bromo → Madakaripura
@@ -175,6 +201,8 @@
 - route_legs (time evidence) → surabaya__to__taman_safari_prigen:49m/mapbox[source_backed_estimate]; taman_safari_prigen__to__bromo:92m/mapbox[source_backed_estimate]; bromo__to__madakaripura:103m/mapbox[source_backed_estimate]; madakaripura__to__surabaya:97m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → bromo:fatigue=3[final_jvto_standard],live=national_park_access/weather[live_condition]; madakaripura:fatigue=3[final_jvto_standard],live=waterfall_access_condition/weather[live_condition]
 - staging → bromo_area_sunrise_staging[final_jvto_standard]
+- route_recommendations → —
+- weather_advisory → bromo[live_condition]; madakaripura[live_condition]
 
 ### tumpak-sewu-bromo-ijen-4d3n  `(surabaya, 4D3N)`
 - route_sequence → **final_jvto_standard** (integrity: clean) — Surabaya → Tumpak Sewu → Bromo → Ijen
@@ -184,4 +212,18 @@
 - route_legs (time evidence) → surabaya__to__tumpak_sewu:121m/mapbox[source_backed_estimate]; tumpak_sewu__to__bromo:142m/mapbox[source_backed_estimate]; bromo__to__ijen:225m/mapbox[source_backed_estimate]
 - destinations (fatigue/live) → bromo:fatigue=3[final_jvto_standard],live=national_park_access/weather[live_condition]; ijen:fatigue=5[final_jvto_standard],live=health_screening/monthly_closure/weather[live_condition]; tumpak_sewu:fatigue=5[final_jvto_standard],live=waterfall_access_condition/weather[live_condition]
 - staging → bromo_area_sunrise_staging[final_jvto_standard]; bondowoso_ijen_staging[final_jvto_standard]; tumpak_sewu_staging[source_backed_estimate]
+- route_recommendations → avoid_backtracking_ijen_bromo_ketapang[final_jvto_standard]; ferry_bali_buffer_required[live_condition]; ijen_access_closure_risk[live_condition]
+- weather_advisory → bromo[live_condition]; ijen[live_condition]; tumpak_sewu[live_condition]
+
+## Missing-data detail (required_source / current_fallback / gating)
+
+- `ijen-bromo-madakaripura-malang-5d4n` — destinations[destination=malang_batu].difficulty_level
+  - required_source: a jvto-web destination-detail page for Malang/Batu (or a corrected crosswalk slug), or an llm-wiki-sourced difficulty rating
+  - current_fallback: difficulty_level/physical_demand/altitude/trail_details render as null; fatigue_score and activity_window remain populated from 06-destination-activity-profiles.json
+  - gating: optional
+
+- `ijen-papuma-tumpak-sewu-bromo-malang-6d5n` — destinations[destination=malang_batu].difficulty_level
+  - required_source: a jvto-web destination-detail page for Malang/Batu (or a corrected crosswalk slug), or an llm-wiki-sourced difficulty rating
+  - current_fallback: difficulty_level/physical_demand/altitude/trail_details render as null; fatigue_score and activity_window remain populated from 06-destination-activity-profiles.json
+  - gating: optional
 
