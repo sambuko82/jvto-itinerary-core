@@ -181,18 +181,23 @@ for (const cat of catalog) {
   if (strength && strength !== "confirmed") flags.route_source_strength = strength;
 
   // A destination-node leg that reaches a real DEST_NODE the catalog doesn't sell for this
-  // package (off_sequence) is a genuine upstream conflict, not a builder bug: jvto-web's
-  // package-detail TravelActions include the movement but llm-wiki's destination_tokens for
-  // this package do not list that destination. Not decidable here (which source is right) —
-  // recorded as a structured missing_data record, not silently fixed either way.
+  // package (off_sequence). Owner-adjudicated (2026-07-01): these packages DO include the
+  // Madakaripura stop — jvto-web's package-detail TravelActions are correct, and llm-wiki's
+  // destination_tokens (which drive both the sold-destination list AND the derived
+  // route_sequence) under-list a sold destination. The leg is therefore right; the gap is
+  // upstream in llm-wiki, which is generated outside these three repos and cannot be edited
+  // here. Recorded as a structured missing_data record with a concrete propagation request,
+  // not a vague note.
   let missingData = null;
   const offSeqMadakaripura = offSeq.filter((l) => l.includes("madakaripura"));
   if (offSeqMadakaripura.length) {
     missingData = {
       field: `route_leg_ids: ${offSeqMadakaripura.join(", ")}`,
       affected: key,
-      required_source: "ops/llm-wiki confirmation of whether this package actually includes a Madakaripura stop, or jvto-web's packageDetailSnapshots.json TravelActions overstate the itinerary (package-catalog-index.json destination_tokens does not list madakaripura for this package)",
-      current_fallback: "route_integrity stays needs_review; effective_instant_book_eligible is unaffected (needs_review does not gate instant-book, only 'gap' does) — the WhatsApp runtime adds a route-validation disclosure instead of blocking or asking for human review",
+      adjudication: "owner_confirmed_2026-07-01: package DOES include Madakaripura; jvto-web itinerary is correct, llm-wiki destination_tokens under-lists the sold destination",
+      required_source: "correction in llm-wiki output/products/package-readiness/package-registry.json: add 'madakaripura' to destination_tokens (and the itinerary sequence) for this package. destination_tokens + the derived route_sequence are generated upstream in llm-wiki, outside itinerary-core/knowledge-catalog/runtime, so this cannot be fixed in these three repos.",
+      current_fallback: "route_integrity stays needs_review because the derived route_sequence (also from llm-wiki) omits Madakaripura while a leg reaches it; effective_instant_book_eligible is unaffected (needs_review warns, does not gate — only integrity=gap blocks). The WhatsApp runtime adds a route-validation disclosure rather than blocking.",
+      propagation_recommendation: "llm-wiki source owner: add 'madakaripura' to this package's destination_tokens and itinerary sequence so the regenerated derived route_sequence includes it and route_integrity clears to clean on the next Core rebuild.",
       gating: "warns",
     };
   }
@@ -271,6 +276,30 @@ for (const r of recRules) {
     source_refs: ["12-recommendation-rules.json"],
   });
 }
+
+// applies_at: which CONSUMPTION PATH each rule can actually be evaluated on — derived from
+// the rule's own trigger, not hand-labelled. A rule needs live request context (and so
+// belongs to the Phase-2 feasibility / decision-envelope path, NOT the static package
+// response) iff it asks the customer for a field OR its trigger references a request-time
+// signal (actual arrival time, chosen dropoff type, flight buffer). Otherwise it is decidable
+// from the package's own static facts (destinations, route order, duration) and is consumed
+// today in standard-route-truth.packages[].route_recommendations. This turns "10 rules, only
+// 2 visibly used" into a provable routing record: every rule is labelled where it is (or will
+// be) consumed, so none is ambiguously-unused metadata.
+const REQUEST_TIME_TRIGGER_KEYS = new Set([
+  "hotel_arrival_after", "arrival_after", "next_day_activity", "pickup_type",
+  "dropoff_type", "minimum_flight_buffer_minutes", "flight_buffer_less_than_minutes",
+]);
+const STATIC_CONSUMER = "standard-route-truth.packages[].route_recommendations (package-decidable, evaluated at catalog build). Surfaced to customers today: ferry_bali_buffer_required + ijen_access_closure_risk as runtime disclosures; avoid_backtracking_ijen_bromo_ketapang only when a package's order is non-compliant (all current packages comply, so it confirms rather than warns); tight_multi_destination_short_days only when it fires (no current package has >=3 destinations in <=2 days).";
+const LIVE_CONSUMER = "feasibility / decision-envelope path (Phase 2 — scaffolded, not yet built). Requires live request context the static package response does not have (customer arrival time / chosen dropoff type / flight buffer), so it is intentionally NOT consumed by the runtime's static customer-response flow. Consumed today only by the CLI scenario evaluator (src/scenario/evaluateScenario.ts).";
+for (const rule of rvRules) {
+  const triggerKeys = Object.keys(rule.trigger || {});
+  const needsLive = (rule.required_customer_fields || []).length > 0 || triggerKeys.some((k) => REQUEST_TIME_TRIGGER_KEYS.has(k));
+  rule.applies_at = needsLive ? "live_feasibility_request" : "static_package_response";
+  rule.consumed_by = needsLive ? LIVE_CONSUMER : STATIC_CONSUMER;
+}
+const rvStaticCount = rvRules.filter((r) => r.applies_at === "static_package_response").length;
+const rvLiveCount = rvRules.filter((r) => r.applies_at === "live_feasibility_request").length;
 
 // ---- 3. pickup-dropoff-requirements.json ----------------------------------
 function fzWhen(role, ctx) {
@@ -380,7 +409,7 @@ const opReadiness = {
       gaps: compGaps },
     { dataset: "route_validation_rules", status: "partial", customer_usage: "guardrail_only", requires_feasibility: true,
       requires_human_review_when: ["custom_route", "tight_connection", "special_pickup"],
-      note: `${rvRules.length} rules: 3 from 03-time-window-rules.json, 1 connection-buffer synthetic, and ${recRules.length - Object.keys(weatherAdvisoryByDest).length} package/route-level rules newly projected from 12-recommendation-rules.json (previously consumed only by the internal CLI scenario evaluator, never reaching this agent-safe contract). The ${Object.keys(weatherAdvisoryByDest).length} per-destination weather advisories from the same source are projected onto destination_operational_overlays / standard-route-truth.destinations[].weather_advisory instead.` },
+      note: `${rvRules.length} rules, each carrying an applies_at consumption label derived from its own trigger: ${rvStaticCount} are static_package_response (package-decidable — evaluated now in standard-route-truth.route_recommendations; ferry_bali_buffer_required + ijen_access_closure_risk are surfaced as runtime disclosures today) and ${rvLiveCount} are live_feasibility_request (need customer arrival time / dropoff type / flight buffer, so they belong to the Phase-2 feasibility path and are NOT evaluable in the static customer-response flow). This is the honest split behind "not all rules are actively used": the ${rvLiveCount} live rules are not unused-by-accident, they await the feasibility boundary. Source: 3 from 03-time-window-rules.json + 1 synthetic connection-buffer + ${recRules.length - Object.keys(weatherAdvisoryByDest).length} projected from 12-recommendation-rules.json; the ${Object.keys(weatherAdvisoryByDest).length} weather advisories go to destinations[].weather_advisory.` },
     { dataset: "pickup_dropoff_requirements", status: "covered", customer_usage: "clarification_questions",
       requires_human_review_when: ["custom_address", "previous_tour_dropoff"], note: "Several buffers are manual_seed; confirm with ops." },
     { dataset: "destination_operational_overlays", status: "covered", customer_usage: "readiness_and_warnings",
