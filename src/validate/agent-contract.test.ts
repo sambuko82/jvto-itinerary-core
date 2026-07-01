@@ -260,3 +260,40 @@ test('operational_movements_pending_labels are now projected (previously only th
   assert.ok(r.operational_movements_pending > 0);
   assert.ok(Array.isArray(r.operational_movements_pending_labels) && r.operational_movements_pending_labels.length === r.operational_movements_pending);
 });
+
+test('a plain Ketapang-only dropoff does not trigger the ferry-buffer or backtracking recommendation (codex P2)', () => {
+  const routeTruth = rj('standard-route-truth.json');
+  const ijen2d1n = routeTruth.packages.find((p: any) => p.package_key === 'ijen-2d1n');
+  assert.equal(ijen2d1n.bali_transfer.crosses_boundary, false);
+  const ruleIds = ijen2d1n.route_recommendations.map((r: any) => r.rule_id);
+  assert.ok(!ruleIds.includes('ferry_bali_buffer_required'), 'plain Ketapang dropoff must not trigger the ferry-buffer recommendation');
+
+  // a genuine Bali-continuing package (offers "...with additional transfer") still gets it
+  const withBali = routeTruth.packages.find((p: any) => p.package_key === 'tumpak-sewu-bromo-ijen-4d3n');
+  assert.equal(withBali.bali_transfer.crosses_boundary, true);
+  assert.ok(withBali.route_recommendations.some((r: any) => r.rule_id === 'ferry_bali_buffer_required'));
+});
+
+test('weather advisories carry no JVTO marketing copy or booking URLs anywhere (codex P2)', () => {
+  const routeTruth = rj('standard-route-truth.json');
+  const rvRules = rj('route-validation-rules.json') as any[];
+  const urlPattern = /\b[a-z0-9-]+\.[a-z0-9-]+\.(org|com|id|net)\b/i;
+  for (const p of routeTruth.packages) {
+    for (const d of p.destinations) {
+      const wx = d.weather_advisory;
+      if (wx.value) {
+        assert.ok(!/\bJVTO\b/i.test(wx.value), `${p.package_key}/${d.destination}: weather_advisory.value carries JVTO marketing copy`);
+        assert.ok(!urlPattern.test(wx.value), `${p.package_key}/${d.destination}: weather_advisory.value carries a URL`);
+      }
+      for (const rf of wx.risk_factors ?? []) {
+        if (rf.mitigation) assert.ok(!/\bJVTO\b/i.test(rf.mitigation), `${p.package_key}/${d.destination}: risk_factor.mitigation carries JVTO marketing copy`);
+      }
+    }
+    for (const rec of p.route_recommendations) {
+      assert.ok(!urlPattern.test(rec.note), `${p.package_key}: route_recommendations note carries a URL`);
+    }
+  }
+  for (const r of rvRules) {
+    if (r.recommendation) assert.ok(!urlPattern.test(r.recommendation), `route-validation-rules ${r.rule_id}: carries a URL`);
+  }
+});
