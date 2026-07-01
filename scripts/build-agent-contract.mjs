@@ -400,8 +400,12 @@ function baliBoundary(cat) {
   const legs = derived[cat.package_id]?.route_leg_ids ?? [];
   const endpoints = (legacyFor(cat)?.standard_dropoff_options ?? []).map((s) => s.toLowerCase());
   const crossesFromBali = origin === "bali";
+  // A plain "Ketapang Harbor" endpoint stays in East Java: evaluateScenario.ts only treats
+  // Ketapang as continuing to Bali when the customer explicitly chose a Bali continuation
+  // (dropoff.next_destination / ferry preference) — mirrored here by requiring the endpoint
+  // option ITSELF to name Bali/Gilimanuk, not merely mention Ketapang.
   const crossesToBali = origin !== "bali" &&
-    endpoints.some((o) => o.includes("bali") || o.includes("gilimanuk") || o.includes("ketapang"));
+    endpoints.some((o) => o.includes("bali") || o.includes("gilimanuk"));
   let direction = "none";
   if (crossesFromBali && crossesToBali) direction = "both";
   else if (crossesFromBali) direction = "from_bali";
@@ -557,7 +561,9 @@ function auditMarkdown() {
   lines.push("## Resolved mismatches", "",
     "- `bali/ijen-papuma-tumpak-sewu-bromo-5d4n`: derived route was already `confirmed`/`clean`, but the legacy `11-package-route-map.json` endpoint table lacked its `-bali` row, force-blocking instant-book with `no_standard_endpoints`. Added the mirrored Bali-origin-corridor row (same endpoints as its 4D3N sibling) — now `effective_instant_book_eligible: true`.",
     "- Bali-transfer boundary is now a structured `bali_transfer` field (direction from_bali/to_bali/both). This corrects the free-text \"finish in Bali\" note that was mis-applied to Bali-origin packages which actually finish in Surabaya.",
-    "- Package-key naming: Core keeps two representations — canonical `bali/X` (catalog + agent-contract, aligned with the runtime) and legacy `X-bali` (endpoints only, resolved via `legacyFor()`). Legacy-only Surabaya extras `bromo-ijen-3d2n` / `bromo-ijen-bali-4d3n` are not sold as separate runtime packages.", "");
+    "- Package-key naming: Core keeps two representations — canonical `bali/X` (catalog + agent-contract, aligned with the runtime) and legacy `X-bali` (endpoints only, resolved via `legacyFor()`). Legacy-only Surabaya extras `bromo-ijen-3d2n` / `bromo-ijen-bali-4d3n` are not sold as separate runtime packages.",
+    "- **(review fix)** All 5 legacy Papuma-family rows (`ijen-papuma-tumpak-sewu-bromo-{4d3n,5d4n,malang-6d5n}` + their `-bali` variants) previously omitted Papuma from `route_sequence`/`route_legs` entirely — only flagged in `possible_customizations` as \"requires dedicated leg not yet in index\". Since `evaluateScenario.ts` uses this legacy file's `route_sequence`/`route_legs` verbatim when a matching `package_slug` is supplied, this silently dropped a sold destination and used the wrong legs for scenario evaluation. Fixed by adding two real legs (`ijen_area_to_papuma`, `papuma_to_tumpak_sewu_area`) reusing the already-computed distance/duration evidence from `route-leg-index.filled.json` (not invented), and correcting all 5 rows' sequence/legs.",
+    "- **(review fix)** `bali_transfer.crosses_boundary` previously fired on any endpoint option merely containing \"ketapang\" (e.g. `ijen-2d1n`'s plain `Ketapang Harbor` dropoff), overstating Bali-transfer requirements. `evaluateScenario.ts` only treats a Ketapang dropoff as continuing to Bali when the customer explicitly supplies a Bali/Gilimanuk destination or ferry preference; the classifier now requires the endpoint option to name Bali/Gilimanuk itself, matching that rule.", "");
   lines.push("## Genuine gaps (classified `absent` — surfaced as handoff, never invented)", "");
   if (routeTruthGaps.length === 0) lines.push("- none");
   else for (const g of routeTruthGaps) lines.push(`- \`${g.package_key}\` — ${g.field}: ${g.reason}`);

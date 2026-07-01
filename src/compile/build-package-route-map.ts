@@ -108,16 +108,17 @@ export function buildPackageRouteMap(backoffice?: BackofficeExtract): PackageRou
       label: '4D3N Ijen, Papuma, Tumpak Sewu, Bromo',
       origin: 'Surabaya',
       duration: '4D3N',
-      route_sequence: ['Surabaya', 'Bondowoso / Ijen Area', 'Ijen Crater', 'Tumpak Sewu Area', 'Bromo Area', 'Surabaya'],
+      route_sequence: ['Surabaya', 'Bondowoso / Ijen Area', 'Ijen Crater', 'Papuma Area', 'Tumpak Sewu Area', 'Bromo Area', 'Surabaya'],
       route_legs: [
         'surabaya_to_bondowoso_ijen_area',
         'bondowoso_to_ijen_base',
-        'surabaya_to_tumpak_sewu',
+        'ijen_area_to_papuma',
+        'papuma_to_tumpak_sewu_area',
         'tumpak_sewu_to_bromo_area',
         'malang_to_surabaya'
       ],
       standard_dropoff_options: ['Surabaya Hotel', 'Surabaya Airport'],
-      possible_customizations: ['Papuma beach stop between Ijen and Tumpak Sewu; requires dedicated Papuma leg not yet in index', 'skip Papuma for cleaner 4D route'],
+      possible_customizations: ['skip Papuma for cleaner 4D route'],
       source_trace: LLMWIKI_TRACE
     },
     {
@@ -160,16 +161,17 @@ export function buildPackageRouteMap(backoffice?: BackofficeExtract): PackageRou
       label: '5D4N Ijen, Papuma, Tumpak Sewu, Bromo',
       origin: 'Surabaya',
       duration: '5D4N',
-      route_sequence: ['Surabaya', 'Bondowoso / Ijen Area', 'Ijen Crater', 'Tumpak Sewu Area', 'Bromo Area', 'Surabaya'],
+      route_sequence: ['Surabaya', 'Bondowoso / Ijen Area', 'Ijen Crater', 'Papuma Area', 'Tumpak Sewu Area', 'Bromo Area', 'Surabaya'],
       route_legs: [
         'surabaya_to_bondowoso_ijen_area',
         'bondowoso_to_ijen_base',
-        'surabaya_to_tumpak_sewu',
+        'ijen_area_to_papuma',
+        'papuma_to_tumpak_sewu_area',
         'tumpak_sewu_to_bromo_area',
         'malang_to_surabaya'
       ],
       standard_dropoff_options: ['Surabaya Hotel', 'Surabaya Airport'],
-      possible_customizations: ['Papuma stop between Ijen and Tumpak Sewu; requires dedicated leg', 'Malang city stop on return'],
+      possible_customizations: ['Malang city stop on return'],
       source_trace: LLMWIKI_TRACE
     },
     {
@@ -196,17 +198,18 @@ export function buildPackageRouteMap(backoffice?: BackofficeExtract): PackageRou
       label: '6D5N Ijen, Papuma, Tumpak Sewu, Bromo, Malang',
       origin: 'Surabaya',
       duration: '6D5N',
-      route_sequence: ['Surabaya', 'Bondowoso / Ijen Area', 'Ijen Crater', 'Tumpak Sewu Area', 'Bromo Area', 'Malang', 'Surabaya'],
+      route_sequence: ['Surabaya', 'Bondowoso / Ijen Area', 'Ijen Crater', 'Papuma Area', 'Tumpak Sewu Area', 'Bromo Area', 'Malang', 'Surabaya'],
       route_legs: [
         'surabaya_to_bondowoso_ijen_area',
         'bondowoso_to_ijen_base',
-        'surabaya_to_tumpak_sewu',
+        'ijen_area_to_papuma',
+        'papuma_to_tumpak_sewu_area',
         'tumpak_sewu_to_bromo_area',
         'bromo_area_to_malang',
         'malang_to_surabaya'
       ],
       standard_dropoff_options: ['Malang Hotel', 'Surabaya Airport', 'Surabaya Hotel'],
-      possible_customizations: ['Papuma stop between Ijen and Tumpak Sewu; requires dedicated leg', 'Malang dropoff instead of Surabaya return'],
+      possible_customizations: ['Malang dropoff instead of Surabaya return'],
       source_trace: LLMWIKI_TRACE
     },
     // ── Bali origin ─────────────────────────────────────────────────────────
@@ -281,16 +284,17 @@ export function buildPackageRouteMap(backoffice?: BackofficeExtract): PackageRou
       label: '4D3N Ijen, Papuma, Tumpak Sewu, Bromo (Bali origin)',
       origin: 'Bali',
       duration: '4D3N',
-      route_sequence: ['Bali Hotel Area', 'Banyuwangi / Ijen Area', 'Ijen Crater', 'Tumpak Sewu Area', 'Bromo Area', 'Surabaya'],
+      route_sequence: ['Bali Hotel Area', 'Banyuwangi / Ijen Area', 'Ijen Crater', 'Papuma Area', 'Tumpak Sewu Area', 'Bromo Area', 'Surabaya'],
       route_legs: [
         'bali_hotel_area_to_banyuwangi_ijen_area',
         'banyuwangi_to_ijen_base',
-        'surabaya_to_tumpak_sewu',
+        'ijen_area_to_papuma',
+        'papuma_to_tumpak_sewu_area',
         'tumpak_sewu_to_bromo_area',
         'malang_to_surabaya'
       ],
       standard_dropoff_options: ['Surabaya Airport', 'Surabaya Hotel'],
-      possible_customizations: ['Papuma stop between Ijen and Tumpak Sewu; requires dedicated leg', 'Malang dropoff'],
+      possible_customizations: ['Malang dropoff'],
       source_trace: LLMWIKI_TRACE
     },
     {
@@ -298,22 +302,23 @@ export function buildPackageRouteMap(backoffice?: BackofficeExtract): PackageRou
       // (Bali → Ijen → Papuma → Tumpak Sewu → Bromo → Surabaya) with one extra night.
       // Endpoints follow the shared Bali-origin rule "the corridor finishes in Surabaya"
       // (identical to the 4D3N sibling); the derived package-route-map.json already carries
-      // its confirmed route_sequence — this legacy row only supplies the standard endpoints
+      // its confirmed route_sequence — this legacy row also supplies the standard endpoints
       // that agent-contract reads via legacyFor(), closing the no_standard_endpoints gate.
       package_id: 'ijen-papuma-tumpak-sewu-bromo-5d4n-bali',
       label: '5D4N Ijen, Papuma, Tumpak Sewu, Bromo (Bali origin)',
       origin: 'Bali',
       duration: '5D4N',
-      route_sequence: ['Bali Hotel Area', 'Banyuwangi / Ijen Area', 'Ijen Crater', 'Tumpak Sewu Area', 'Bromo Area', 'Surabaya'],
+      route_sequence: ['Bali Hotel Area', 'Banyuwangi / Ijen Area', 'Ijen Crater', 'Papuma Area', 'Tumpak Sewu Area', 'Bromo Area', 'Surabaya'],
       route_legs: [
         'bali_hotel_area_to_banyuwangi_ijen_area',
         'banyuwangi_to_ijen_base',
-        'surabaya_to_tumpak_sewu',
+        'ijen_area_to_papuma',
+        'papuma_to_tumpak_sewu_area',
         'tumpak_sewu_to_bromo_area',
         'malang_to_surabaya'
       ],
       standard_dropoff_options: ['Surabaya Airport', 'Surabaya Hotel'],
-      possible_customizations: ['Papuma stop between Ijen and Tumpak Sewu; requires dedicated leg', 'Malang dropoff'],
+      possible_customizations: ['Malang dropoff'],
       source_trace: LLMWIKI_TRACE
     }
   ];
