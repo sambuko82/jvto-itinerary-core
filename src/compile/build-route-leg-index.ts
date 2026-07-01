@@ -399,6 +399,64 @@ export function buildRouteLegIndex(): RouteLeg[] {
         { source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' },
         { source: 'manual_seed', ref: RESEARCH_REF, field: 'distance_km', confidence: 'inferred' }
       ]
+    },
+    {
+      // Reused (not invented): distance/duration match the already-computed derived+filled
+      // leg `ijen__to__papuma` (OSRM free-flow + Google Routes traffic-aware), which every
+      // Papuma-family package already relies on in the derived map. The legacy Papuma-family
+      // rows previously omitted Papuma from route_sequence/route_legs entirely (flagged only
+      // in possible_customizations as "requires dedicated leg not yet in index"); this leg
+      // closes that gap so package_slug-based scenario evaluation sees the real route.
+      id: 'ijen_area_to_papuma',
+      label: 'Ijen Area to Papuma',
+      status: 'active',
+      confidence: 'inferred',
+      from_location: 'Ijen Crater',
+      to_location: 'Papuma Area',
+      distance_km: 135,
+      distance_km_range: '135.1',
+      duration_text: '±2.3 hours (139 min free-flow / 233 min traffic-aware)',
+      duration_normal_minutes: 139,
+      duration_busy_minutes: 233,
+      road_profiles: ['intercity_road', 'coastal_access_condition'],
+      risk_factors: ['long drive fatigue after night trek', 'coastal road traffic'],
+      meal_stop_possible: true,
+      night_drive_possible: false,
+      recommended_departure_window: '08:00-12:00',
+      used_by_packages: ['ijen-papuma-tumpak-sewu-bromo-4d3n', 'ijen-papuma-tumpak-sewu-bromo-5d4n',
+        'ijen-papuma-tumpak-sewu-bromo-malang-6d5n', 'ijen-papuma-tumpak-sewu-bromo-4d3n-bali',
+        'ijen-papuma-tumpak-sewu-bromo-5d4n-bali'],
+      cost_impacts: ['vehicle_day_usage', 'driver_cost', 'parking_toll_fuel_allowance'],
+      research_note: 'Distance/duration reused from generated/itinerary-intelligence/route-leg-index.filled.json leg "ijen__to__papuma" (OSRM free-flow 139min + Google Routes TRAFFIC_AWARE_OPTIMAL 233min); not independently re-researched here.',
+      source_trace: [
+        { source: 'generated', ref: 'generated/itinerary-intelligence/route-leg-index.filled.json', field: 'ijen__to__papuma', confidence: 'inferred' }
+      ]
+    },
+    {
+      id: 'papuma_to_tumpak_sewu_area',
+      label: 'Papuma to Tumpak Sewu Area',
+      status: 'active',
+      confidence: 'inferred',
+      from_location: 'Papuma Area',
+      to_location: 'Tumpak Sewu Area',
+      distance_km: 113,
+      distance_km_range: '112.6',
+      duration_text: '±1.9 hours (112 min free-flow / 166 min traffic-aware)',
+      duration_normal_minutes: 112,
+      duration_busy_minutes: 166,
+      road_profiles: ['intercity_road', 'coastal_access_condition', 'village_road'],
+      risk_factors: ['coastal road traffic', 'rain sensitive access'],
+      meal_stop_possible: true,
+      night_drive_possible: false,
+      recommended_departure_window: '10:00-14:00',
+      used_by_packages: ['ijen-papuma-tumpak-sewu-bromo-4d3n', 'ijen-papuma-tumpak-sewu-bromo-5d4n',
+        'ijen-papuma-tumpak-sewu-bromo-malang-6d5n', 'ijen-papuma-tumpak-sewu-bromo-4d3n-bali',
+        'ijen-papuma-tumpak-sewu-bromo-5d4n-bali'],
+      cost_impacts: ['vehicle_day_usage', 'driver_cost', 'parking_toll_fuel_allowance'],
+      research_note: 'Distance/duration reused from generated/itinerary-intelligence/route-leg-index.filled.json leg "papuma__to__tumpak_sewu" (OSRM free-flow 112min + Google Routes TRAFFIC_AWARE_OPTIMAL 166min); not independently re-researched here.',
+      source_trace: [
+        { source: 'generated', ref: 'generated/itinerary-intelligence/route-leg-index.filled.json', field: 'papuma__to__tumpak_sewu', confidence: 'inferred' }
+      ]
     }
   ];
 }
