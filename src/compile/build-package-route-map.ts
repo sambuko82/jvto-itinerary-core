@@ -292,6 +292,29 @@ export function buildPackageRouteMap(backoffice?: BackofficeExtract): PackageRou
       standard_dropoff_options: ['Surabaya Airport', 'Surabaya Hotel'],
       possible_customizations: ['Papuma stop between Ijen and Tumpak Sewu; requires dedicated leg', 'Malang dropoff'],
       source_trace: LLMWIKI_TRACE
+    },
+    {
+      // 5D4N Bali-origin variant of the 4D3N above: same source-backed corridor
+      // (Bali → Ijen → Papuma → Tumpak Sewu → Bromo → Surabaya) with one extra night.
+      // Endpoints follow the shared Bali-origin rule "the corridor finishes in Surabaya"
+      // (identical to the 4D3N sibling); the derived package-route-map.json already carries
+      // its confirmed route_sequence — this legacy row only supplies the standard endpoints
+      // that agent-contract reads via legacyFor(), closing the no_standard_endpoints gate.
+      package_id: 'ijen-papuma-tumpak-sewu-bromo-5d4n-bali',
+      label: '5D4N Ijen, Papuma, Tumpak Sewu, Bromo (Bali origin)',
+      origin: 'Bali',
+      duration: '5D4N',
+      route_sequence: ['Bali Hotel Area', 'Banyuwangi / Ijen Area', 'Ijen Crater', 'Tumpak Sewu Area', 'Bromo Area', 'Surabaya'],
+      route_legs: [
+        'bali_hotel_area_to_banyuwangi_ijen_area',
+        'banyuwangi_to_ijen_base',
+        'surabaya_to_tumpak_sewu',
+        'tumpak_sewu_to_bromo_area',
+        'malang_to_surabaya'
+      ],
+      standard_dropoff_options: ['Surabaya Airport', 'Surabaya Hotel'],
+      possible_customizations: ['Papuma stop between Ijen and Tumpak Sewu; requires dedicated leg', 'Malang dropoff'],
+      source_trace: LLMWIKI_TRACE
     }
   ];
 

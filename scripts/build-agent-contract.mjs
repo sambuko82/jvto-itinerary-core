@@ -320,6 +320,262 @@ const opReadiness = {
   source_refs: ["package-route-map.json", "route-leg-index.filled.json", "data-readiness-report.json"],
 };
 
+// ---- 7.5 standard-route-truth.json ----------------------------------------
+// Per-package consolidated STANDARD ROUTE TRUTH with an explicit classification on
+// every field, so the runtime can answer topic questions with a class — not a bare
+// string it might present as settled fact. Taxonomy (exactly one per field):
+//   final_jvto_standard  : fixed operating policy, independent of date/conditions
+//   source_backed_estimate: directionally reliable but not guaranteed (seed/mapbox)
+//   live_condition       : only valid at request time; never asserted statically
+//   exception            : package-specific deviation from a shared JVTO rule
+//   absent               : no source rule + no shared JVTO rule of same scope (gap)
+const CLASS = {
+  STANDARD: "final_jvto_standard",
+  ESTIMATE: "source_backed_estimate",
+  LIVE: "live_condition",
+  EXCEPTION: "exception",
+  ABSENT: "absent",
+};
+const LIVE_DEP = new Set(["health_screening", "monthly_closure", "weather", "national_park_access",
+  "waterfall_access_condition", "coastal_access_condition", "ferry_crossing", "authority_access", "blue_fire"]);
+const ESTIMATE_ONLY_STAGING = new Set(["tumpak_sewu_staging", "papuma_staging", "malang_batu_staging"]);
+const destProfileById = Object.fromEntries(destProfiles.map((d) => [d.id, d]));
+const stagingById = Object.fromEntries(staging.map((s) => [s.id, s]));
+
+function pickupEntry(p) {
+  return { location_ref: p.id, label: p.label, type: p.type, location_group: p.location_group,
+    required_fields: p.required_customer_fields || [], classification: CLASS.STANDARD, evidence: ["01-pickup-contexts.json"] };
+}
+// Valid pickups are origin-scoped (a shared JVTO rule): Surabaya-origin tours use the
+// Surabaya pickup contexts; Bali-origin tours are picked up at the guest's Bali hotel.
+// custom_address is universal. There is no structured bali_hotel_pickup context yet.
+function validPickups(cat) {
+  const gaps = [];
+  const universal = pickups.filter((p) => p.location_group === "Custom").map(pickupEntry);
+  if (cat.origin.toLowerCase() === "surabaya") {
+    const grp = pickups.filter((p) => p.location_group === "Surabaya").map(pickupEntry);
+    return { options: [...grp, ...universal], gaps };
+  }
+  const originEntry = {
+    location_ref: null, label: "Bali hotel area pickup (origin)", type: "hotel", location_group: "Bali",
+    required_fields: ["hotel_area", "pickup_time"], classification: CLASS.STANDARD,
+    evidence: ["package-route-map.json (route_sequence[0])", "package-catalog-index.json (origin=Bali)"],
+    note: "Origin-scoped standard: Bali-origin tours are picked up at the guest's Bali hotel. No structured 01-pickup-context exists for this yet.",
+  };
+  gaps.push({ field: "pickup_context", classification: CLASS.ABSENT,
+    reason: "no bali_hotel_pickup context in 01-pickup-contexts.json for Bali-origin packages (pickup rule is origin-derived, not a structured context)" });
+  return { options: [originEntry, ...universal], gaps };
+}
+function dropoffCtxFor(opt) {
+  const o = opt.toLowerCase();
+  for (const d of dropoffs) {
+    const ty = (d.type || "").toLowerCase(), grp = (d.location_group || "").toLowerCase();
+    if (o.includes("airport") && ty === "airport") return d;
+    if (o.includes("hotel") && ty === "hotel" && !o.includes("bali")) return d;
+    if ((o.includes("ketapang") || o.includes("harbor")) && ty === "harbor") return d;
+    if ((o.includes("gilimanuk") || o.includes("bali")) && d.type === "bali_area") return d;
+    if (o.includes("malang") && grp === "malang") return d;
+  }
+  return null;
+}
+// Valid dropoffs are the package's standard_dropoff_options (per-package endpoint
+// whitelist). A "…with additional transfer" / "…with route adjustment" option is a
+// live_condition (needs a live arrangement), not a settled standard endpoint.
+function validDropoffs(cat) {
+  const opts = legacyFor(cat)?.standard_dropoff_options ?? [];
+  return opts.map((opt) => {
+    const o = opt.toLowerCase();
+    const ctx = dropoffCtxFor(opt);
+    const isLive = o.includes("additional transfer") || o.includes("route adjustment");
+    return { option: opt, location_ref: ctx?.id ?? null, type: ctx?.type ?? null,
+      connects_to: ctx?.connects_to ?? [], required_fields: ctx?.required_customer_fields ?? [],
+      classification: isLive ? CLASS.LIVE : CLASS.STANDARD,
+      evidence: ["11-package-route-map.json (standard_dropoff_options)", ...(ctx ? ["02-dropoff-contexts.json"] : [])] };
+  });
+}
+// Bali-transfer boundary as a STRUCTURED fact (replaces the free-text note that was
+// mis-applied to Bali-origin packages which actually finish in Surabaya).
+function baliBoundary(cat) {
+  const origin = cat.origin.toLowerCase();
+  const legs = derived[cat.package_id]?.route_leg_ids ?? [];
+  const endpoints = (legacyFor(cat)?.standard_dropoff_options ?? []).map((s) => s.toLowerCase());
+  const crossesFromBali = origin === "bali";
+  const crossesToBali = origin !== "bali" &&
+    endpoints.some((o) => o.includes("bali") || o.includes("gilimanuk") || o.includes("ketapang"));
+  let direction = "none";
+  if (crossesFromBali && crossesToBali) direction = "both";
+  else if (crossesFromBali) direction = "from_bali";
+  else if (crossesToBali) direction = "to_bali";
+  const crosses = direction !== "none";
+  const ferryLeg = legs.find((l) => /ketapang|gilimanuk|bali/.test(l)) ?? null;
+  const note = !crosses ? "Route stays within East Java; no Bali sea crossing."
+    : direction === "from_bali"
+      ? "Bali-origin: Gilimanuk→Ketapang sea crossing at the START; the tour then finishes in Surabaya (NOT a finish in Bali)."
+      : direction === "to_bali"
+        ? "Finishes toward Bali via a Ketapang/Gilimanuk ferry crossing; the onward Bali hotel transfer is a live arrangement, not a direct hotel drop unless stated."
+        : "Crosses the Java–Bali sea boundary at both ends; both ferry legs are live arrangements.";
+  return { crosses_boundary: crosses, direction, ferry_leg: ferryLeg,
+    boundary_classification: CLASS.STANDARD, onward_transfer_classification: crosses ? CLASS.LIVE : null,
+    note, evidence: ["package-route-map.json", "11-package-route-map.json", "02-dropoff-contexts.json"] };
+}
+function legTruth(cat) {
+  const legs = derived[cat.package_id]?.route_leg_ids ?? [];
+  return legs.map((lid) => {
+    const leg = legByIdFilled[lid] || {};
+    const opDur = leg.duration_minutes_operator ?? null, mbDur = leg.duration_minutes_mapbox ?? null;
+    const opKm = leg.distance_km_operator ?? null, mbKm = leg.distance_km_mapbox ?? null;
+    const timeClass = opDur != null ? CLASS.STANDARD : (mbDur != null ? CLASS.ESTIMATE : CLASS.ABSENT);
+    const kmClass = opKm != null ? CLASS.STANDARD : (mbKm != null ? CLASS.ESTIMATE : CLASS.ABSENT);
+    return { leg_ref: lid, from: leg.from_node ? label(leg.from_node) : null, to: leg.to_node ? label(leg.to_node) : null,
+      duration_minutes: { value: opDur ?? mbDur ?? null, basis: opDur != null ? "operator" : (mbDur != null ? "mapbox" : null),
+        classification: timeClass, evidence: ["route-leg-index.filled.json"] },
+      distance_km: { value: opKm ?? mbKm ?? null, basis: opKm != null ? "operator" : (mbKm != null ? "mapbox" : null),
+        classification: kmClass, evidence: ["route-leg-index.filled.json"] } };
+  });
+}
+function destinationTruth(cat) {
+  return destRefs(cat.destination_tokens).map((ref) => {
+    const dp = destProfileById[ref] || {};
+    return { destination: dp.destination_id ?? ref,
+      activity_window: { value: dp.activity_window || {}, classification: CLASS.ESTIMATE, evidence: ["06-destination-activity-profiles.json"] },
+      fatigue_score: { value: dp.fatigue_score ?? null, classification: dp.fatigue_score != null ? CLASS.STANDARD : CLASS.ABSENT, evidence: ["06-destination-activity-profiles.json"] },
+      live_dependencies: { value: (dp.dependencies || []).filter((x) => LIVE_DEP.has(x)).sort(), classification: CLASS.LIVE, evidence: ["06-destination-activity-profiles.json"] },
+      difficulty_level: { value: dp.destination_intelligence?.difficulty_level ?? null, classification: dp.destination_intelligence?.difficulty_level ? CLASS.STANDARD : CLASS.ABSENT, evidence: ["06-destination-activity-profiles.json"] } };
+  });
+}
+// Package-specific deviations from a shared JVTO rule (source-backed, not invented).
+function packageExceptions(cat) {
+  const out = [];
+  if (cat.origin.toLowerCase() === "bali") {
+    out.push({ field: "corridor_direction", classification: CLASS.EXCEPTION,
+      value: "east_to_west (reverse of the standard Surabaya west→east corridor)",
+      evidence: ["package-route-map.json (route_sequence starts at bali)", "src/scenario/evaluateScenario.ts (reverse-direction rule)"],
+      note: "Bali-origin tours run the corridor in reverse of the standard Surabaya order; feasibility/staging follow the reversed sequence." });
+  }
+  if (cat.is_specialty) {
+    out.push({ field: "specialty_composition", classification: CLASS.EXCEPTION,
+      value: "specialty package (non-standard leg composition)",
+      evidence: ["package-catalog-index.json (is_specialty=true)"],
+      note: "Specialty package: substitutes a standard volcano-first leg (e.g. Taman Safari) and does not follow the default destination set." });
+  }
+  return out;
+}
+function stagingTruth(cat) {
+  return stagingRefs(cat.destination_tokens, cat.origin).map((sid) => {
+    const s = stagingById[sid] || {};
+    return { staging_ref: sid, label: s.label ?? null, purpose: s.purpose ?? null,
+      classification: ESTIMATE_ONLY_STAGING.has(sid) ? CLASS.ESTIMATE : CLASS.STANDARD,
+      evidence: ["09-accommodation-logic.json"] };
+  });
+}
+
+const routeTruthGaps = [];
+const routeTruth = catalog.map((cat) => {
+  const key = cat.package_id;
+  const integrity = integrityByKey[key] ?? "gap";
+  const pk = validPickups(cat);
+  for (const g of pk.gaps) routeTruthGaps.push({ package_key: key, ...g });
+  const legs = legTruth(cat);
+  const dests = destinationTruth(cat);
+  // absent leg time evidence is a real, honest gap (operator durations are frequently null)
+  for (const l of legs) {
+    if (l.duration_minutes.classification === CLASS.ABSENT)
+      routeTruthGaps.push({ package_key: key, field: `leg_duration:${l.leg_ref}`, classification: CLASS.ABSENT, reason: "no operator or mapbox duration for this leg" });
+  }
+  return {
+    package_key: key,
+    origin: cat.origin,
+    duration: cat.duration,
+    route_sequence: {
+      value: (derived[key]?.route_sequence ?? []).map(label),
+      classification: integrity === "clean" ? CLASS.STANDARD : CLASS.ESTIMATE,
+      route_integrity: integrity,
+      evidence: ["package-route-map.json (derived, source-backed)"],
+    },
+    valid_pickups: pk.options,
+    valid_dropoffs: validDropoffs(cat),
+    bali_transfer: baliBoundary(cat),
+    route_legs: legs,
+    destinations: dests,
+    staging: stagingTruth(cat),
+    exceptions: packageExceptions(cat),
+    connection_rules: {
+      // onward connections exist only at Ketapang harbor; they are live arrangements
+      value: validDropoffs(cat).flatMap((d) => d.connects_to),
+      classification: CLASS.LIVE,
+      evidence: ["02-dropoff-contexts.json (connects_to)"],
+    },
+    source_refs: [
+      "agent-contract/package-operational-composition.json",
+      "agent-contract/pickup-dropoff-requirements.json",
+      "package-route-map.json (derived)", "route-leg-index.filled.json",
+      "06-destination-activity-profiles.json", "09-accommodation-logic.json",
+      "11-package-route-map.json (endpoints)",
+    ],
+  };
+});
+
+// classification tally across every classified field (for the manifest + audit)
+const classTally = { final_jvto_standard: 0, source_backed_estimate: 0, live_condition: 0, exception: 0, absent: 0 };
+function tallyClassifications(node) {
+  if (Array.isArray(node)) { node.forEach(tallyClassifications); return; }
+  if (node && typeof node === "object") {
+    if (typeof node.classification === "string" && node.classification in classTally) classTally[node.classification]++;
+    for (const [k, v] of Object.entries(node)) { if (k !== "classification") tallyClassifications(v); }
+  }
+}
+tallyClassifications(routeTruth);
+
+const standardRouteTruth = {
+  schema_version: CONTRACT_VERSION,
+  purpose: "Per-package standard route truth with an explicit classification on every field. Consumed by knowledge-catalog-jvto-bootstrap's customer-sales projection and the WhatsApp runtime so a fact is never presented above its evidence.",
+  classification_taxonomy: {
+    final_jvto_standard: "fixed operating policy, independent of date/conditions",
+    source_backed_estimate: "directionally reliable but not guaranteed (operator seed / mapbox routing)",
+    live_condition: "only valid at request time; never asserted statically (requires a live tool)",
+    exception: "package-specific deviation from a shared JVTO rule",
+    absent: "no source rule and no shared JVTO rule of same scope (recorded as a gap; surfaced as handoff, never invented)",
+  },
+  classification_tally: classTally,
+  packages: routeTruth,
+  gaps: routeTruthGaps,
+};
+
+// ---- 7.6 route-truth audit report (human companion, docs/_audit/) ---------
+function auditMarkdown() {
+  const lines = [];
+  lines.push("# Route-Truth Source Audit — 16 Packages", "");
+  lines.push("> Generated by `scripts/build-agent-contract.mjs` from the source-backed derived route map + operational datasets. Do not hand-edit; re-run `npm run agent-contract`.", "");
+  lines.push("## Classification taxonomy", "");
+  for (const [k, v] of Object.entries(standardRouteTruth.classification_taxonomy)) lines.push(`- **${k}** — ${v}`);
+  lines.push("", "## Classification tally (all classified fields)", "");
+  for (const [k, v] of Object.entries(classTally)) lines.push(`- ${k}: **${v}**`);
+  lines.push("", "## Route integrity", "",
+    `- clean: **${cleanCount}** / ${catalog.length}`,
+    `- needs_review: **${Object.values(integrityByKey).filter((v) => v === "needs_review").length}** (${Object.keys(integrityByKey).filter((k) => integrityByKey[k] === "needs_review").join(", ") || "none"})`,
+    `- gap: **${Object.values(integrityByKey).filter((v) => v === "gap").length}**`, "");
+  lines.push("## Resolved mismatches", "",
+    "- `bali/ijen-papuma-tumpak-sewu-bromo-5d4n`: derived route was already `confirmed`/`clean`, but the legacy `11-package-route-map.json` endpoint table lacked its `-bali` row, force-blocking instant-book with `no_standard_endpoints`. Added the mirrored Bali-origin-corridor row (same endpoints as its 4D3N sibling) — now `effective_instant_book_eligible: true`.",
+    "- Bali-transfer boundary is now a structured `bali_transfer` field (direction from_bali/to_bali/both). This corrects the free-text \"finish in Bali\" note that was mis-applied to Bali-origin packages which actually finish in Surabaya.",
+    "- Package-key naming: Core keeps two representations — canonical `bali/X` (catalog + agent-contract, aligned with the runtime) and legacy `X-bali` (endpoints only, resolved via `legacyFor()`). Legacy-only Surabaya extras `bromo-ijen-3d2n` / `bromo-ijen-bali-4d3n` are not sold as separate runtime packages.", "");
+  lines.push("## Genuine gaps (classified `absent` — surfaced as handoff, never invented)", "");
+  if (routeTruthGaps.length === 0) lines.push("- none");
+  else for (const g of routeTruthGaps) lines.push(`- \`${g.package_key}\` — ${g.field}: ${g.reason}`);
+  lines.push("", "## Per-package field classification", "");
+  for (const p of routeTruth) {
+    lines.push(`### ${p.package_key}  \`(${p.origin}, ${p.duration})\``);
+    lines.push(`- route_sequence → **${p.route_sequence.classification}** (integrity: ${p.route_sequence.route_integrity}) — ${p.route_sequence.value.join(" → ")}`);
+    lines.push(`- valid_pickups → ${p.valid_pickups.map((x) => `${x.label} [${x.classification}]`).join("; ")}`);
+    lines.push(`- valid_dropoffs → ${p.valid_dropoffs.map((x) => `${x.option} [${x.classification}]`).join("; ") || "—"}`);
+    lines.push(`- bali_transfer → crosses=${p.bali_transfer.crosses_boundary} dir=${p.bali_transfer.direction} [${p.bali_transfer.boundary_classification}]`);
+    lines.push(`- route_legs (time evidence) → ${p.route_legs.map((l) => `${l.leg_ref}:${l.duration_minutes.value ?? "—"}m/${l.duration_minutes.basis ?? "none"}[${l.duration_minutes.classification}]`).join("; ") || "—"}`);
+    lines.push(`- destinations (fatigue/live) → ${p.destinations.map((d) => `${d.destination}:fatigue=${d.fatigue_score.value ?? "—"}[${d.fatigue_score.classification}],live=${d.live_dependencies.value.join("/") || "none"}[live_condition]`).join("; ") || "—"}`);
+    lines.push(`- staging → ${p.staging.map((s) => `${s.staging_ref}[${s.classification}]`).join("; ") || "—"}`);
+    lines.push("");
+  }
+  return lines.join("\n") + "\n";
+}
+
 // ---- 8. manifest.json -----------------------------------------------------
 const manifest = {
   schema_version: CONTRACT_VERSION,
@@ -333,7 +589,9 @@ const manifest = {
     "staging-logic.json": stagingOut.length,
     "package-customization-boundaries.json": boundaries.length,
     "operational-readiness.json": 1,
+    "standard-route-truth.json": routeTruth.length,
   },
+  classification_tally: classTally,
   route_integrity_summary: {
     clean: cleanCount,
     needs_review: Object.values(integrityByKey).filter((v) => v === "needs_review").length,
@@ -357,5 +615,13 @@ w("destination-operational-overlays.json", overlays);
 w("staging-logic.json", stagingOut);
 w("package-customization-boundaries.json", boundaries);
 w("operational-readiness.json", opReadiness);
+w("standard-route-truth.json", standardRouteTruth);
 w("manifest.json", manifest);
+
+// human companion audit report (outside generated/, deterministic)
+const AUDIT_PATH = join(ROOT, "docs", "_audit", "route-truth-audit.md");
+mkdirSync(dirname(AUDIT_PATH), { recursive: true });
+writeFileSync(AUDIT_PATH, auditMarkdown(), "utf8");
+
 console.log(`agent-contract: ${composition.length} packages | integrity`, manifest.route_integrity_summary);
+console.log(`standard-route-truth: ${routeTruth.length} packages | classifications`, classTally, `| gaps ${routeTruthGaps.length}`);
