@@ -297,3 +297,33 @@ test('weather advisories carry no JVTO marketing copy or booking URLs anywhere (
     if (r.recommendation) assert.ok(!urlPattern.test(r.recommendation), `route-validation-rules ${r.rule_id}: carries a URL`);
   }
 });
+
+test('every route-validation rule carries an applies_at consumption label derived from its trigger (no unused-by-accident metadata)', () => {
+  const rvRules = rj('route-validation-rules.json') as any[];
+  const REQUEST_TIME = new Set(['hotel_arrival_after', 'arrival_after', 'next_day_activity',
+    'pickup_type', 'dropoff_type', 'minimum_flight_buffer_minutes', 'flight_buffer_less_than_minutes']);
+  for (const r of rvRules) {
+    assert.ok(['static_package_response', 'live_feasibility_request'].includes(r.applies_at), `${r.rule_id}: bad applies_at`);
+    assert.ok(r.consumed_by, `${r.rule_id}: missing consumed_by`);
+    // the label must MATCH the rule's own trigger — a request-time rule cannot be static
+    const needsLive = (r.required_customer_fields || []).length > 0 ||
+      Object.keys(r.trigger || {}).some((k) => REQUEST_TIME.has(k));
+    assert.equal(r.applies_at, needsLive ? 'live_feasibility_request' : 'static_package_response',
+      `${r.rule_id}: applies_at disagrees with its trigger`);
+  }
+  // the 2 rules the runtime actually surfaces today must be static (a live rule can't be
+  // evaluated in the static response, so surfacing it there would be a bug)
+  const byId = Object.fromEntries(rvRules.map((r) => [r.rule_id, r]));
+  assert.equal(byId['ferry_bali_buffer_required'].applies_at, 'static_package_response');
+  assert.equal(byId['ijen_access_closure_risk'].applies_at, 'static_package_response');
+});
+
+test('the Madakaripura needs_review record reflects the owner adjudication + a concrete propagation request', () => {
+  const manifest = rj('manifest.json');
+  for (const key of ['bali/bromo-ijen-3d2n', 'bromo-2d1n']) {
+    const g = manifest.composition_gaps.find((x: any) => x.package_key === key);
+    assert.ok(g.missing_data.adjudication.includes('owner_confirmed'), `${key}: adjudication not recorded`);
+    assert.ok(g.missing_data.propagation_recommendation.includes('llm-wiki'), `${key}: no llm-wiki propagation request`);
+    assert.ok(g.missing_data.required_source.includes('llm-wiki'), `${key}: required_source should point upstream at llm-wiki`);
+  }
+});
