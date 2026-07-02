@@ -23,6 +23,9 @@ interface Props {
   onContinue: () => void
 }
 
+const LABEL_CLASS = 'block text-xs font-semibold text-navy-muted mb-1'
+const INPUT_CLASS = 'w-full border border-navy-border rounded-[10px] px-3 py-2 text-sm bg-navy text-white outline-none focus:border-orange focus:ring-2 focus:ring-orange/15'
+
 export default function Step1TripBasics({
   brain, name, onNameChange, pax, onPaxChange, startDate, onStartDateChange,
   pickupTime, onPickupTimeChange, dropoffTime, onDropoffTimeChange,
@@ -39,59 +42,53 @@ export default function Step1TripBasics({
         <div className="bg-navy-light border border-navy-border rounded-2xl p-5 space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div className="col-span-2">
-              <label className="wizard-label">Name (optional)</label>
-              <input className="wizard-input" placeholder="Guest / group name"
+              <label htmlFor="trip-name" className={LABEL_CLASS}>Name (optional)</label>
+              <input id="trip-name" className={INPUT_CLASS} placeholder="Guest / group name"
                 value={name} onChange={e => onNameChange(e.target.value)} />
             </div>
             <div>
-              <label className="wizard-label">No. of Guests</label>
-              <input className="wizard-input" type="number" min={1} max={30} value={pax}
+              <label htmlFor="trip-pax" className={LABEL_CLASS}>No. of Guests</label>
+              <input id="trip-pax" className={INPUT_CLASS} type="number" min={1} max={30} value={pax}
                 onChange={e => onPaxChange(Math.max(1, parseInt(e.target.value) || 1))} />
             </div>
             <div>
-              <label className="wizard-label">Start Date</label>
-              <input className="wizard-input" type="date" value={startDate}
+              <label htmlFor="trip-start-date" className={LABEL_CLASS}>Start Date</label>
+              <input id="trip-start-date" className={INPUT_CLASS} type="date" value={startDate}
                 onChange={e => onStartDateChange(e.target.value)} />
             </div>
             <div>
-              <label className="wizard-label">Pickup Point</label>
-              <select className="wizard-input" value={originId} onChange={e => onOriginIdChange(e.target.value)}>
+              <label htmlFor="trip-pickup-point" className={LABEL_CLASS}>Pickup Point</label>
+              <select id="trip-pickup-point" className={INPUT_CLASS} value={originId} onChange={e => onOriginIdChange(e.target.value)}>
                 {brain.pickupContexts.map(c => (
                   <option key={c.id} value={c.id}>{locationLabel[c.id] ?? c.label}</option>
                 ))}
               </select>
             </div>
             <div>
-              <label className="wizard-label">Pickup Time</label>
-              <input className="wizard-input" type="time" value={pickupTime}
+              <label htmlFor="trip-pickup-time" className={LABEL_CLASS}>Pickup Time</label>
+              <input id="trip-pickup-time" className={INPUT_CLASS} type="time" value={pickupTime}
                 onChange={e => onPickupTimeChange(e.target.value)} />
             </div>
             <div>
-              <label className="wizard-label">Drop-off Point</label>
-              <select className="wizard-input" value={endCityId} onChange={e => onEndCityIdChange(e.target.value)}>
+              <label htmlFor="trip-dropoff-point" className={LABEL_CLASS}>Drop-off Point</label>
+              <select id="trip-dropoff-point" className={INPUT_CLASS} value={endCityId} onChange={e => onEndCityIdChange(e.target.value)}>
                 {brain.dropoffContexts.map(c => (
                   <option key={c.id} value={c.id}>{locationLabel[c.id] ?? c.label}</option>
                 ))}
               </select>
             </div>
             <div>
-              <label className="wizard-label">Est. Drop-off Time</label>
-              <input className="wizard-input" type="time" value={dropoffTime}
+              <label htmlFor="trip-dropoff-time" className={LABEL_CLASS}>Est. Drop-off Time</label>
+              <input id="trip-dropoff-time" className={INPUT_CLASS} type="time" value={dropoffTime}
                 onChange={e => onDropoffTimeChange(e.target.value)} placeholder="—" />
             </div>
           </div>
         </div>
 
         <button onClick={onContinue}
-          className="mt-6 w-full sm:w-auto sm:ml-auto sm:flex bg-orange text-white font-bold px-8 py-4 rounded-full hover:brightness-110 transition-all items-center justify-center gap-2">
+          className="mt-6 w-full sm:w-auto sm:ml-auto flex bg-orange text-white font-bold px-8 py-4 rounded-full hover:brightness-110 transition-all items-center justify-center gap-2">
           Continue <ArrowRight size={18} />
         </button>
-
-        <style jsx global>{`
-          .wizard-label { display:block; font-size:0.75rem; font-weight:600; color:#9fb0c8; margin-bottom:4px; }
-          .wizard-input { width:100%; border:1px solid #26344C; border-radius:10px; padding:9px 12px; font-size:0.875rem; outline:none; background:#0E1B2E; color:white; }
-          .wizard-input:focus { border-color:#FF6A39; box-shadow:0 0 0 3px rgba(255,106,57,0.15); }
-        `}</style>
       </div>
     </div>
   )

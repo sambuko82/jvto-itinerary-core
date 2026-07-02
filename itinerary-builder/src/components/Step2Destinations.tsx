@@ -62,7 +62,7 @@ export default function Step2Destinations({
           <div className="mt-5 bg-navy-light border border-navy-border rounded-xl px-4 py-3">
             <p className="text-sm text-white">
               <span className="font-semibold text-lime">{estimatedDays} Day{estimatedDays !== 1 ? 's' : ''} {Math.max(0, estimatedDays - 1)} Night{Math.max(0, estimatedDays - 1) !== 1 ? 's' : ''}</span>
-              <span className="text-navy-border"> — route, hotels & schedule generated automatically</span>
+              <span className="text-navy-muted"> — route, hotels & schedule generated automatically</span>
             </p>
             {selDests.includes(1) && (
               <p className="flex items-center gap-1.5 text-xs text-orange mt-1.5"><AlertTriangle size={13} /> Bromo: must arrive the night before — sunrise at 03:00 AM</p>
@@ -86,7 +86,7 @@ export default function Step2Destinations({
           <Sparkles size={18} /> Continue &amp; Generate Itinerary
         </button>
         {!canGenerate && (
-          <p className="text-center text-xs text-navy-border mt-2">Please select at least 1 destination</p>
+          <p className="text-center text-xs text-navy-muted mt-2">Please select at least 1 destination</p>
         )}
       </div>
     </div>

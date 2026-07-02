@@ -265,6 +265,14 @@ export default function ItineraryWizard({ brain }: Props) {
   const toggleDest = (id: number) =>
     setSelDests(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id])
 
+  const invalidateResultIfStale = () => {
+    if (maxReachedStep === 3) {
+      setMaxReachedStep(2)
+      setResult(null)
+      setEditableDays(null)
+    }
+  }
+
   const goToStep = (target: Step) => {
     setStep(target)
     setMaxReachedStep(prev => (target > prev ? target : prev))
@@ -309,13 +317,13 @@ export default function ItineraryWizard({ brain }: Props) {
           {step === 1 && (
             <Step1TripBasics
               brain={brain}
-              name={name} onNameChange={setName}
-              pax={pax} onPaxChange={setPax}
-              startDate={startDate} onStartDateChange={setStartDate}
-              pickupTime={pickupTime} onPickupTimeChange={setPickupTime}
-              dropoffTime={dropoffTime} onDropoffTimeChange={setDropoffTime}
-              originId={originId} onOriginIdChange={setOriginId}
-              endCityId={endCityId} onEndCityIdChange={setEndCityId}
+              name={name} onNameChange={(v) => { setName(v); invalidateResultIfStale() }}
+              pax={pax} onPaxChange={(v) => { setPax(v); invalidateResultIfStale() }}
+              startDate={startDate} onStartDateChange={(v) => { setStartDate(v); invalidateResultIfStale() }}
+              pickupTime={pickupTime} onPickupTimeChange={(v) => { setPickupTime(v); invalidateResultIfStale() }}
+              dropoffTime={dropoffTime} onDropoffTimeChange={(v) => { setDropoffTime(v); invalidateResultIfStale() }}
+              originId={originId} onOriginIdChange={(v) => { setOriginId(v); invalidateResultIfStale() }}
+              endCityId={endCityId} onEndCityIdChange={(v) => { setEndCityId(v); invalidateResultIfStale() }}
               locationLabel={LOCATION_LABEL}
               onContinue={() => goToStep(2)}
             />
@@ -324,7 +332,7 @@ export default function ItineraryWizard({ brain }: Props) {
             <Step2Destinations
               brain={brain}
               selDests={selDests}
-              onToggleDest={toggleDest}
+              onToggleDest={(id) => { toggleDest(id); invalidateResultIfStale() }}
               estimatedDays={estimatedDays}
               canGenerate={canGenerate}
               onBack={() => goToStep(1)}

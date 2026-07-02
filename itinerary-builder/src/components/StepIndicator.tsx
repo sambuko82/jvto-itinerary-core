@@ -41,7 +41,7 @@ export default function StepIndicator({ currentStep, maxReachedStep, onStepClick
           <span
             key={step.id}
             className={`text-[11px] font-semibold tracking-wide flex items-center gap-1 ${
-              step.id === currentStep ? 'text-orange' : step.id < currentStep ? 'text-lime' : 'text-navy-border'
+              step.id === currentStep ? 'text-orange' : step.id < currentStep ? 'text-lime' : 'text-navy-muted'
             }`}
           >
             {step.id < currentStep && <Check size={12} strokeWidth={3} />}
