@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { ArrowLeft, Bus, Mountain, Hotel, UtensilsCrossed, StickyNote, CalendarDays, MessageCircle, Calculator, Download, Copy, Check, CheckCircle2, XCircle } from 'lucide-react'
 import type { ItineraryResult, BrainData, DayInput } from '@/types'
 import { formatWhatsApp, rp } from '@/lib/whatsapp'
 import { DEST_IMAGE, VEH_IMAGE } from '@/lib/images'
@@ -19,9 +20,10 @@ interface Props {
   brain: BrainData
   editableDays: DayInput[]
   onHotelChange: (dayIdx: number, hotelId: number | null) => void
+  onBack: () => void
 }
 
-export default function ResultView({ result, brain, editableDays, onHotelChange }: Props) {
+export default function ResultView({ result, brain, editableDays, onHotelChange, onBack }: Props) {
   const [tab, setTab] = useState<'itinerary' | 'whatsapp' | 'rekap'>('itinerary')
   const [copied, setCopied] = useState(false)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -355,86 +357,92 @@ export default function ResultView({ result, brain, editableDays, onHotelChange 
   let n = 1
   for (const r of [...rekapAccom, ...rekapDest, ...rekapTransp, ...rekapCrew, ...rekapOther]) r.no = n++
 
-  const NAVY_CSS = '#1e3a5f'
   const catHdr = (title: string) => (
     <tr>
-      <td colSpan={6} style={{ backgroundColor: NAVY_CSS }} className="text-white font-semibold py-2 px-3 text-xs uppercase tracking-wide">
+      <td colSpan={6} className="bg-navy text-white font-semibold py-2 px-3 text-xs uppercase tracking-wide">
         {title}
       </td>
     </tr>
   )
   const rekapRow = (r: RekapLine) => (
-    <tr key={r.no} className="border-b border-gray-100 hover:bg-gray-50">
-      <td className="py-1.5 px-2 text-center text-gray-400 text-xs w-7">{r.no}</td>
-      <td className="py-1.5 px-2 text-gray-500 text-xs">{r.subCat}</td>
-      <td className="py-1.5 px-2 text-gray-800 text-xs">{r.item}</td>
-      <td className="py-1.5 px-2 text-center text-gray-600 text-xs w-8">{r.qty}</td>
-      <td className="py-1.5 px-2 text-right text-gray-500 text-xs whitespace-nowrap">{rp(r.unitCost)}</td>
-      <td className="py-1.5 px-2 text-right font-medium text-gray-800 text-xs whitespace-nowrap">{rp(r.total)}</td>
+    <tr key={r.no} className="border-b border-ink/5 hover:bg-cream/60">
+      <td className="py-1.5 px-2 text-center text-ink/30 text-xs w-7">{r.no}</td>
+      <td className="py-1.5 px-2 text-ink/50 text-xs">{r.subCat}</td>
+      <td className="py-1.5 px-2 text-ink text-xs">{r.item}</td>
+      <td className="py-1.5 px-2 text-center text-ink/60 text-xs w-8">{r.qty}</td>
+      <td className="py-1.5 px-2 text-right text-ink/50 text-xs whitespace-nowrap">{rp(r.unitCost)}</td>
+      <td className="py-1.5 px-2 text-right font-medium text-ink text-xs whitespace-nowrap">{rp(r.total)}</td>
     </tr>
   )
 
   return (
-    <div className="rounded-2xl overflow-hidden shadow-md border border-gray-100">
-
-      {/* Price Hero */}
-      <div className="bg-gradient-to-br from-green-800 to-green-700 text-white px-6 py-6">
-        <p className="text-green-200 text-sm mb-1">Estimated Trip Price</p>
-        <p className="text-4xl font-bold tracking-tight">{rp(sellingPrice)}</p>
-        {pax > 1 && <p className="text-green-200 text-sm mt-1">{rp(sellingPricePerPax)} / person &middot; {pax} guests</p>}
-        <div className="mt-4 flex flex-wrap gap-3 text-sm text-green-100">
-          <span>📅 {fmtDateShort(days[0]?.date)}{days.length > 1 ? ` – ${fmtDateShort(days[days.length - 1]?.date)}` : ''}</span>
-          <span>⏱️ {days.length} Day{days.length !== 1 ? 's' : ''} {days.length - 1} Night{days.length - 1 !== 1 ? 's' : ''}</span>
-          <span>🚐 {vehicleType.name} &mdash; private transport</span>
-        </div>
-        <p className="mt-3 text-xs text-green-300">* Estimated price. Final confirmation after coordination with the JVTO team.</p>
-      </div>
-
-      {/* Included banner */}
-      <div className="bg-green-50 px-6 py-4 border-b border-green-100">
-        <p className="text-xs font-semibold text-green-800 uppercase tracking-wide mb-2">What&apos;s included</p>
-        <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-green-700">
-          <span>✅ Private AC Transport</span>
-          {days.some(d => d.hotel) && <span>✅ Accommodation</span>}
-          {days.some(d => d.activityNames.length > 0) && <><span>✅ Destination entry tickets</span><span>✅ Local guide(s)</span></>}
-          {days.some(d => d.meals.length > 0) && <span>✅ Meals as per program</span>}
-          <span>✅ Fuel &amp; driver allowance</span>
-        </div>
-        <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-400 mt-1.5">
-          <span>❌ Flights / train tickets</span>
-          <span>❌ Personal expenses</span>
-          <span>❌ Guide &amp; driver tips (optional)</span>
-        </div>
-      </div>
-
-      {/* Tabs */}
-      <div className="flex bg-white border-b border-gray-100">
-        {([
-          { key: 'itinerary', label: '📅 Itinerary' },
-          { key: 'whatsapp', label: '📲 WhatsApp' },
-          { key: 'rekap', label: '🧮 Expense Report' },
-        ] as const).map(t => (
-          <button key={t.key} onClick={() => setTab(t.key)}
-            className={`flex-1 py-3 text-sm font-medium border-b-2 transition-colors ${
-              tab === t.key ? 'border-green-700 text-green-700' : 'border-transparent text-gray-400 hover:text-gray-600'
-            }`}>
-            {t.label}
+    <div className="min-h-[calc(100vh-4rem)] bg-cream">
+      {/* Hero */}
+      <div className="sticky top-16 z-10 bg-navy text-white px-4 sm:px-6 py-6">
+        <div className="max-w-3xl mx-auto w-full">
+          <button onClick={onBack} className="flex items-center gap-1.5 text-navy-border hover:text-white text-sm font-medium mb-3 transition-colors">
+            <ArrowLeft size={16} /> Back
           </button>
-        ))}
+          <p className="text-orange text-xs font-bold tracking-widest uppercase mb-1">Step 3 / 3 — Your Itinerary</p>
+          <p className="text-4xl font-extrabold tracking-tight">{rp(sellingPrice)}</p>
+          {pax > 1 && <p className="text-white/70 text-sm mt-1">{rp(sellingPricePerPax)} / person &middot; {pax} guests</p>}
+          <div className="mt-4 flex flex-wrap gap-4 text-sm text-white/80">
+            <span className="flex items-center gap-1.5"><CalendarDays size={14} /> {fmtDateShort(days[0]?.date)}{days.length > 1 ? ` – ${fmtDateShort(days[days.length - 1]?.date)}` : ''}</span>
+            <span>{days.length} Day{days.length !== 1 ? 's' : ''} {days.length - 1} Night{days.length - 1 !== 1 ? 's' : ''}</span>
+            <span className="flex items-center gap-1.5"><Bus size={14} /> {vehicleType.name} &mdash; private transport</span>
+          </div>
+          <p className="mt-3 text-xs text-white/40">* Estimated price. Final confirmation after coordination with the JVTO team.</p>
+        </div>
       </div>
 
-      <div className="bg-white p-5">
+      <div className="max-w-3xl mx-auto w-full px-4 sm:px-6 py-6">
+
+        {/* Included banner */}
+        <div className="bg-white border border-lime/40 rounded-2xl px-5 py-4 mb-5">
+          <p className="text-xs font-bold text-ink uppercase tracking-wide mb-2">What&apos;s included</p>
+          <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-sm text-ink/80">
+            <span className="flex items-center gap-1.5"><CheckCircle2 size={15} className="text-orange" /> Private AC Transport</span>
+            {days.some(d => d.hotel) && <span className="flex items-center gap-1.5"><CheckCircle2 size={15} className="text-orange" /> Accommodation</span>}
+            {days.some(d => d.activityNames.length > 0) && <>
+              <span className="flex items-center gap-1.5"><CheckCircle2 size={15} className="text-orange" /> Destination entry tickets</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 size={15} className="text-orange" /> Local guide(s)</span>
+            </>}
+            {days.some(d => d.meals.length > 0) && <span className="flex items-center gap-1.5"><CheckCircle2 size={15} className="text-orange" /> Meals as per program</span>}
+            <span className="flex items-center gap-1.5"><CheckCircle2 size={15} className="text-orange" /> Fuel &amp; driver allowance</span>
+          </div>
+          <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-sm text-ink/35 mt-2">
+            <span className="flex items-center gap-1.5"><XCircle size={15} /> Flights / train tickets</span>
+            <span className="flex items-center gap-1.5"><XCircle size={15} /> Personal expenses</span>
+            <span className="flex items-center gap-1.5"><XCircle size={15} /> Guide &amp; driver tips (optional)</span>
+          </div>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex bg-white rounded-full border border-ink/10 p-1 mb-5">
+          {([
+            { key: 'itinerary', label: 'Itinerary', icon: CalendarDays },
+            { key: 'whatsapp', label: 'WhatsApp', icon: MessageCircle },
+            { key: 'rekap', label: 'Expense Report', icon: Calculator },
+          ] as const).map(t => (
+            <button key={t.key} onClick={() => setTab(t.key)}
+              className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-full text-sm font-semibold transition-colors ${
+                tab === t.key ? 'bg-navy text-white' : 'text-ink/40 hover:text-ink/70'
+              }`}>
+              <t.icon size={15} /> {t.label}
+            </button>
+          ))}
+        </div>
 
         {/* ── Itinerary ── */}
         {tab === 'itinerary' && (
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <h3 className="font-semibold text-gray-800">
+              <h3 className="font-bold text-ink">
                 {input.customer.name ? `${input.customer.name} · ` : ''}{pax} guest{pax !== 1 ? 's' : ''}
               </h3>
               <button onClick={downloadPDF}
-                className="text-sm bg-gray-100 hover:bg-gray-200 px-4 py-1.5 rounded-lg text-gray-600">
-                ⬇️ Download PDF
+                className="flex items-center gap-1.5 text-sm bg-ink/5 hover:bg-ink/10 px-4 py-1.5 rounded-full text-ink/70 font-medium">
+                <Download size={14} /> Download PDF
               </button>
             </div>
 
@@ -448,38 +456,38 @@ export default function ResultView({ result, brain, editableDays, onHotelChange 
                 : []
 
               return (
-                <div key={day.dayNumber} className="border border-gray-100 rounded-xl overflow-hidden">
-                  <div className="bg-green-700 px-4 py-2.5 flex items-center gap-3">
+                <div key={day.dayNumber} className="border border-ink/10 rounded-2xl overflow-hidden bg-white">
+                  <div className="bg-navy px-4 py-2.5 flex items-center gap-3">
                     <span className="text-white font-bold text-sm">Day {day.dayNumber}</span>
-                    <span className="text-green-200 text-sm">{fmtDate(day.date)}</span>
+                    <span className="text-white/50 text-sm">{fmtDate(day.date)}</span>
                   </div>
-                  <div className="p-4 space-y-2.5 text-sm text-gray-700">
+                  <div className="p-4 space-y-2.5 text-sm text-ink/80">
                     {day.pickup && (
-                      <div className="flex gap-2.5">
-                        <span>🚐</span>
+                      <div className="flex gap-2.5 items-center">
+                        <Bus size={15} className="text-orange shrink-0" />
                         <span><strong>Pickup</strong> at {day.pickup.location} &mdash; {day.pickup.time}</span>
                       </div>
                     )}
                     {day.destinationNames.map(dest => (
-                      <div key={dest} className="flex gap-2.5">
-                        <span>🏔️</span><strong>{dest}</strong>
+                      <div key={dest} className="flex gap-2.5 items-center">
+                        <Mountain size={15} className="text-orange shrink-0" /><strong>{dest}</strong>
                       </div>
                     ))}
                     {day.hotel && (
                       <div className="flex gap-2.5 items-center">
-                        <span>🏨</span>
+                        <Hotel size={15} className="text-orange shrink-0" />
                         {hotelOptions.length > 1 ? (
                           <div className="flex items-center gap-2 flex-wrap">
                             <select
                               value={edDay?.hotelId ?? ''}
                               onChange={e => onHotelChange(dayIdx, parseInt(e.target.value))}
-                              className="border border-gray-200 rounded-lg px-2 py-1 text-sm text-gray-700 bg-white focus:outline-none focus:border-green-500"
+                              className="border border-ink/15 rounded-lg px-2 py-1 text-sm text-ink bg-white focus:outline-none focus:border-orange"
                             >
                               {hotelOptions.map(h => (
                                 <option key={h.id} value={h.id}>{h.name}</option>
                               ))}
                             </select>
-                            <span className="text-gray-400 text-xs">&middot; {day.hotel.roomTypeName} &times; {day.hotel.roomCount} room{day.hotel.roomCount !== 1 ? 's' : ''}</span>
+                            <span className="text-ink/40 text-xs">&middot; {day.hotel.roomTypeName} &times; {day.hotel.roomCount} room{day.hotel.roomCount !== 1 ? 's' : ''}</span>
                           </div>
                         ) : (
                           <span>{day.hotel.hotelName} &middot; {day.hotel.roomTypeName} &times; {day.hotel.roomCount} room{day.hotel.roomCount !== 1 ? 's' : ''}</span>
@@ -487,29 +495,29 @@ export default function ResultView({ result, brain, editableDays, onHotelChange 
                       </div>
                     )}
                     {day.meals.length > 0 && (
-                      <div className="flex gap-2.5">
-                        <span>🍽️</span>
+                      <div className="flex gap-2.5 items-center">
+                        <UtensilsCrossed size={15} className="text-orange shrink-0" />
                         <span><strong>Meals:</strong> {day.meals.join(' + ')}</span>
                       </div>
                     )}
                     {day.dropoff && (
-                      <div className="flex gap-2.5">
-                        <span>🚐</span>
+                      <div className="flex gap-2.5 items-center">
+                        <Bus size={15} className="text-orange shrink-0" />
                         <span><strong>Drop-off</strong> at {day.dropoff.location}{day.dropoff.estimatedTime ? ` ~${day.dropoff.estimatedTime}` : ''}</span>
                       </div>
                     )}
-                    {day.notes && <div className="flex gap-2.5 text-gray-400 italic text-xs"><span>📝</span><span>{day.notes}</span></div>}
+                    {day.notes && <div className="flex gap-2.5 text-ink/40 italic text-xs"><StickyNote size={14} className="shrink-0" /><span>{day.notes}</span></div>}
                     {!day.pickup && !day.dropoff && day.destinationNames.length === 0 && !day.hotel && (
-                      <p className="text-gray-400 text-xs italic">No program selected for this day.</p>
+                      <p className="text-ink/40 text-xs italic">No program selected for this day.</p>
                     )}
                   </div>
                 </div>
               )
             })}
 
-            <div className="bg-green-50 border border-green-100 rounded-xl p-4 text-center">
-              <p className="text-sm text-green-800 font-medium">Interested in this itinerary?</p>
-              <p className="text-xs text-green-600 mt-0.5">Switch to the <strong>WhatsApp</strong> tab to send your request to the JVTO team.</p>
+            <div className="bg-navy rounded-2xl p-4 text-center">
+              <p className="text-sm text-white font-semibold">Interested in this itinerary?</p>
+              <p className="text-xs text-white/60 mt-0.5">Switch to the <strong className="text-lime">WhatsApp</strong> tab to send your request to the JVTO team.</p>
             </div>
           </div>
         )}
@@ -517,35 +525,35 @@ export default function ResultView({ result, brain, editableDays, onHotelChange 
         {/* ── WhatsApp ── */}
         {tab === 'whatsapp' && (
           <div className="space-y-4">
-            <div className="bg-green-50 border border-green-100 rounded-xl p-4">
-              <p className="text-sm text-green-800 font-medium mb-1">How to book:</p>
-              <ol className="text-sm text-green-700 space-y-0.5 list-decimal pl-4">
+            <div className="bg-white border border-ink/10 rounded-2xl p-4">
+              <p className="text-sm text-ink font-semibold mb-1">How to book:</p>
+              <ol className="text-sm text-ink/70 space-y-0.5 list-decimal pl-4">
                 <li>Click <strong>Copy Message</strong></li>
                 <li>Open WhatsApp, chat to the JVTO number</li>
                 <li>Paste &amp; send</li>
               </ol>
             </div>
             <div className="flex justify-between items-center">
-              <p className="text-sm text-gray-500">Message preview:</p>
+              <p className="text-sm text-ink/50">Message preview:</p>
               <button onClick={copyWa}
-                className={`text-sm px-5 py-2 rounded-lg font-semibold transition-colors ${copied ? 'bg-green-600 text-white' : 'bg-green-700 text-white hover:bg-green-800'}`}>
-                {copied ? '✓ Copied!' : '📋 Copy Message'}
+                className={`flex items-center gap-1.5 text-sm px-5 py-2 rounded-full font-semibold transition-colors ${copied ? 'bg-lime text-navy' : 'bg-orange text-white hover:brightness-110'}`}>
+                {copied ? <Check size={15} /> : <Copy size={15} />} {copied ? 'Copied!' : 'Copy Message'}
               </button>
             </div>
             <textarea readOnly value={waText}
-              className="w-full h-96 border border-gray-100 rounded-xl p-4 text-xs font-mono resize-none bg-gray-50 text-gray-700 leading-relaxed focus:outline-none" />
+              className="w-full h-96 border border-ink/10 rounded-2xl p-4 text-xs font-mono resize-none bg-white text-ink/80 leading-relaxed focus:outline-none" />
           </div>
         )}
 
         {/* ── Expense Report ── */}
         {tab === 'rekap' && (
           <div className="space-y-4 text-sm">
-            <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800">
-              🧮 Internal verification only &mdash; not visible to customer.
+            <div className="bg-orange/10 border border-orange/30 rounded-xl p-3 text-xs text-orange flex items-center gap-2">
+              <Calculator size={14} /> Internal verification only &mdash; not visible to customer.
             </div>
 
             {/* Trip header */}
-            <div className="grid grid-cols-2 gap-1 text-xs text-gray-600 bg-gray-50 rounded-lg p-3">
+            <div className="grid grid-cols-2 gap-1 text-xs text-ink/70 bg-white border border-ink/10 rounded-lg p-3">
               <div><span className="font-semibold">Customer:</span> {input.customer.name || '—'} ({pax} PAX)</div>
               <div className="text-right"><span className="font-semibold">Duration:</span> {days.length} Day{days.length !== 1 ? 's' : ''} {days.length - 1} Night{days.length - 1 !== 1 ? 's' : ''}</div>
               <div><span className="font-semibold">Travel Date:</span> {fmtDateShort(days[0]?.date)}</div>
@@ -553,9 +561,9 @@ export default function ResultView({ result, brain, editableDays, onHotelChange 
             </div>
 
             {/* Categorical table */}
-            <table className="w-full text-xs border border-gray-200 rounded-lg overflow-hidden">
+            <table className="w-full text-xs border border-ink/10 rounded-lg overflow-hidden">
               <thead>
-                <tr style={{ backgroundColor: NAVY_CSS }} className="text-white">
+                <tr className="bg-navy text-white">
                   <th className="py-2 px-2 text-center w-7">No</th>
                   <th className="py-2 px-2 text-left">Sub Category</th>
                   <th className="py-2 px-2 text-left">Item</th>
@@ -564,7 +572,7 @@ export default function ResultView({ result, brain, editableDays, onHotelChange 
                   <th className="py-2 px-2 text-right">Subtotal</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="bg-white">
                 {rekapAccom.length > 0 && <>{catHdr('Accommodation')}{rekapAccom.map(rekapRow)}</>}
                 {rekapDest.length  > 0 && <>{catHdr('Destination')}{rekapDest.map(rekapRow)}</>}
                 {rekapTransp.length > 0 && <>{catHdr('Transport')}{rekapTransp.map(rekapRow)}</>}
@@ -574,30 +582,30 @@ export default function ResultView({ result, brain, editableDays, onHotelChange 
             </table>
 
             {/* Grand Total */}
-            <div className="border-t-2 border-gray-200 pt-4 space-y-2">
-              <div className="flex justify-between text-gray-500 text-xs">
+            <div className="border-t-2 border-ink/10 pt-4 space-y-2">
+              <div className="flex justify-between text-ink/50 text-xs">
                 <span>Accommodation + Destination</span><span>{rp(days.reduce((s, d) => s + d.daySubtotal, 0))}</span>
               </div>
-              <div className="flex justify-between text-gray-500 text-xs">
+              <div className="flex justify-between text-ink/50 text-xs">
                 <span>Transport</span><span>{rp(vehicleCost)}</span>
               </div>
-              <div className="flex justify-between text-gray-500 text-xs">
+              <div className="flex justify-between text-ink/50 text-xs">
                 <span>Crew</span><span>{rp(crewCost)}</span>
               </div>
-              <div className="flex justify-between text-gray-500 text-xs">
+              <div className="flex justify-between text-ink/50 text-xs">
                 <span>D-codes</span><span>{rp(otherTotal)}</span>
               </div>
-              <div className="flex justify-between text-gray-600 border-t border-gray-100 pt-2">
+              <div className="flex justify-between text-ink/70 border-t border-ink/10 pt-2">
                 <span>Total Expense</span><span className="font-medium">{rp(totalExpense)}</span>
               </div>
-              <div className="flex justify-between text-gray-600">
+              <div className="flex justify-between text-ink/70">
                 <span>Markup 20%</span><span className="font-medium">{rp(sellingPrice - totalExpense)}</span>
               </div>
-              <div className="flex justify-between text-green-800 font-bold text-base pt-2 border-t border-green-200">
+              <div className="flex justify-between text-navy font-bold text-base pt-2 border-t-2 border-orange/30">
                 <span>Selling Price</span><span>{rp(sellingPrice)}</span>
               </div>
               {pax > 1 && (
-                <div className="flex justify-between text-gray-400 text-xs">
+                <div className="flex justify-between text-ink/40 text-xs">
                   <span>Per person</span><span>{rp(sellingPricePerPax)}</span>
                 </div>
               )}
