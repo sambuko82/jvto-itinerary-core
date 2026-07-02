@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "confidence": "manual_seed",
+  "source_trace": [
+    {
+      "source": "manual_seed",
+      "ref": "seed/operational-knowledge/timezone-rules",
+      "confidence": "verified"
+    }
+  ],
+  "overview": "Indonesia terbagi menjadi 3 zona waktu. JVTO beroperasi di area WIB (Jawa) dan WITA (Bali). Selisih 1 jam antara keduanya sering menjadi sumber kebingungan — terutama saat tamu berpindah dari Bali ke Jawa atau sebaliknya.",
+  "timezones": [
+    {
+      "id": "WIB",
+      "name": "Waktu Indonesia Barat",
+      "utc_offset": "UTC+7",
+      "covers": ["Jawa", "Sumatera", "Kalimantan Barat & Tengah"],
+      "jvto_relevance": "HIGH — seluruh destinasi utama JVTO ada di Jawa Timur (WIB): Surabaya, Bromo, Ijen, Malang, Banyuwangi, Tumpak Sewu, Papuma"
+    },
+    {
+      "id": "WITA",
+      "name": "Waktu Indonesia Tengah",
+      "utc_offset": "UTC+8",
+      "covers": ["Bali", "Nusa Tenggara", "Kalimantan Selatan, Timur & Utara", "Sulawesi"],
+      "jvto_relevance": "MEDIUM — Bali adalah titik dropoff / pickup umum untuk tamu yang melanjutkan atau memulai perjalanan dari sana"
+    },
+    {
+      "id": "WIT",
+      "name": "Waktu Indonesia Timur",
+      "utc_offset": "UTC+9",
+      "covers": ["Papua", "Maluku"],
+      "jvto_relevance": "NONE — tidak relevan untuk operasional JVTO saat ini"
+    }
+  ],
+  "wib_vs_wita": {
+    "selisih": "1 jam",
+    "arah": "WITA lebih cepat 1 jam dari WIB",
+    "contoh": [
+      {
+        "kondisi": "Tamu tiba di Surabaya Airport pukul 20:00 WIB",
+        "setara_bali": "Pukul 21:00 WITA — tamu dari Bali mungkin merasa masih jam 9 malam, padahal sudah 8 malam waktu Jawa"
+      },
+      {
+        "kondisi": "Tour Ijen selesai pukul 08:00 WIB",
+        "setara_bali": "Pukul 09:00 WITA — jika tamu akan ke Bali, mereka tiba di hotel Bali sekitar jam 14:00 WITA"
+      },
+      {
+        "kondisi": "Tamu naik ferry dari Ketapang pukul 10:00 WIB",
+        "tiba_gilimanuk": "Pukul 10:45 WIB = 11:45 WITA (Bali)"
+      }
+    ]
+  },
+  "kapan_konfirmasi_timezone": [
+    {
+      "momen": "Saat booking / konfirmasi jadwal",
+      "action": "Selalu tanyakan: 'Are all times in this itinerary in WIB (Java time) or your local time?' Konfirmasi bahwa semua waktu dalam voucher JVTO menggunakan WIB."
+    },
+    {
+      "momen": "Tamu tiba dari Bali ke Ketapang (Jawa)",
+      "action": "Crew pickup Ketapang mengingatkan: 'Welcome to Java! Please note the time here is WIB — 1 hour behind Bali time.'"
+    },
+    {
+      "momen": "Tamu akan ke Bali dari Ketapang",
+      "action": "Crew dropoff mengingatkan: 'Once you arrive in Bali, the time zone changes to WITA — 1 hour ahead of Java time.'"
+    },
+    {
+      "momen": "Koordinasi flight connection",
+      "action": "Jika tamu naik penerbangan dari Denpasar (Bali), pastikan departure time dalam WITA sudah dikonversi dengan benar saat menghitung buffer."
+    }
+  ],
+  "flight_timezone_rules": {
+    "note": "Semua jadwal penerbangan dalam tiket menggunakan waktu lokal bandara keberangkatan/kedatangan.",
+    "examples": [
+      {
+        "penerbangan": "Singapore (SIN) → Surabaya (SUB)",
+        "departure_timezone": "SST (UTC+8) — sama dengan WITA",
+        "arrival_timezone": "WIB (UTC+7)",
+        "implikasi": "Penerbangan 2 jam dari Singapore jam 18:00 SST tiba jam 18:00 WIB (bukan 20:00) karena selisih zona waktu"
+      },
+      {
+        "penerbangan": "Kuala Lumpur (KUL) → Surabaya (SUB)",
+        "departure_timezone": "MYT (UTC+8) — sama dengan WITA",
+        "arrival_timezone": "WIB (UTC+7)",
+        "implikasi": "Penerbangan 2.5 jam dari KL jam 20:00 MYT tiba jam 20:30 WIB"
+      },
+      {
+        "penerbangan": "Surabaya (SUB) → Denpasar (DPS)",
+        "departure_timezone": "WIB (UTC+7)",
+        "arrival_timezone": "WITA (UTC+8)",
+        "implikasi": "Penerbangan 1 jam dari Surabaya jam 10:00 WIB tiba jam 12:00 WITA"
+      }
+    ]
+  },
+  "communication_guidelines": {
+    "standard_time_reference": "Semua komunikasi internal JVTO (voucher, itinerary, konfirmasi) menggunakan WIB.",
+    "to_guest": "Selalu sebut 'Java time (WIB)' atau 'Bali time (WITA)' secara eksplisit saat memberikan jadwal kepada tamu.",
+    "example_messages": [
+      "Your driver will pick you up at 08:00 AM Java time (WIB).",
+      "We will drop you off at Ketapang Harbor at 09:00 AM Java time (WIB). After the ferry (±45 min), you will arrive in Bali at around 10:45 AM Bali time (WITA).",
+      "Your flight departs at 14:00 Bali time (WITA). Please note this is 13:00 Java time (WIB)."
+    ]
+  }
+}

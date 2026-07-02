@@ -3,7 +3,7 @@
     "id": "bondowoso_ijen_staging",
     "label": "Bondowoso / Ijen staging overnight",
     "status": "active",
-    "confidence": "inferred",
+    "confidence": "verified",
     "area_id": "bondowoso_ijen_staging",
     "purpose": "overnight_before_ijen",
     "recommended_for": [
@@ -34,24 +34,44 @@
       },
       {
         "source": "new_backoffice",
-        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
-        "field": "hotel meal/room rates (hotels, room_types)",
-        "confidence": "inferred"
+        "ref": "new-backoffice/export-data/hotels/hotels + room-types",
+        "field": "hotels with destination_id: 2 (Bondowoso area)",
+        "confidence": "verified"
       }
     ],
     "backoffice_observed": {
-      "core_destination_id": "ijen",
-      "jvto_web_slug": "ijen-crater",
-      "backoffice_destination_id": 5,
-      "backoffice_id_provenance": "verified",
+      "destination_id": 2,
+      "destination_name": "Mount Ijen",
       "hotels": [
         {
-          "hotel_id": 2,
-          "lunch_rate": 55000,
-          "dinner_rate": 80000,
-          "room_type_count": 1,
-          "room_rate_min_idr": 480000,
-          "room_rate_max_idr": 480000
+          "hotel_id": 1,
+          "hotel_name": "Baratha Hotel and Resto",
+          "location": "Bondowoso",
+          "lunch_rate_idr": 60000,
+          "dinner_rate_idr": 60000,
+          "room_rate_min_idr": 250000,
+          "room_rate_max_idr": 450000,
+          "room_types_available": ["Superior Twin", "Superior Double", "Deluxe Twin", "Deluxe Double", "Family", "Apartment"]
+        },
+        {
+          "hotel_id": 10,
+          "hotel_name": "Grand Padis Hotel",
+          "location": "Bondowoso",
+          "lunch_rate_idr": 75000,
+          "dinner_rate_idr": 75000,
+          "room_rate_min_idr": 450000,
+          "room_rate_max_idr": 735000,
+          "room_types_available": ["Superior Twin", "Superior Double", "Deluxe Twin", "Deluxe Double", "Family"]
+        },
+        {
+          "hotel_id": 34,
+          "hotel_name": "Riverside Homestay",
+          "location": "Bondowoso",
+          "lunch_rate_idr": 65000,
+          "dinner_rate_idr": 65000,
+          "room_rate_min_idr": 337500,
+          "room_rate_max_idr": 562500,
+          "room_types_available": ["Deluxe Twin", "Deluxe Double", "Executive Twin", "Executive Double", "Emerald", "Platinum", "Family"]
         }
       ]
     }
@@ -60,7 +80,7 @@
     "id": "bromo_area_sunrise_staging",
     "label": "Bromo area sunrise staging overnight",
     "status": "active",
-    "confidence": "inferred",
+    "confidence": "verified",
     "area_id": "bromo_area_sunrise_staging",
     "purpose": "overnight_before_bromo_sunrise",
     "recommended_for": [
@@ -69,9 +89,9 @@
       "Bromo before Ijen transfer"
     ],
     "operational_notes": [
-      "early jeep pickup",
-      "takeaway breakfast possible",
-      "cold-weather preparation"
+      "early jeep pickup at 03:00–03:30",
+      "takeaway breakfast possible from hotel",
+      "cold-weather preparation (bring jacket)"
     ],
     "risk_if_arrival_late": [
       "less rest before sunrise",
@@ -90,24 +110,74 @@
       },
       {
         "source": "new_backoffice",
-        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
-        "field": "hotel meal/room rates (hotels, room_types)",
-        "confidence": "inferred"
+        "ref": "new-backoffice/export-data/hotels/hotels + room-types",
+        "field": "hotels with destination_id: 1 (Mount Bromo)",
+        "confidence": "verified"
       }
     ],
     "backoffice_observed": {
-      "core_destination_id": "bromo",
-      "jvto_web_slug": "mount-bromo",
-      "backoffice_destination_id": 2,
-      "backoffice_id_provenance": "verified",
+      "destination_id": 1,
+      "destination_name": "Mount Bromo",
       "hotels": [
         {
-          "hotel_id": 1,
-          "lunch_rate": 60000,
-          "dinner_rate": 85000,
-          "room_type_count": 2,
-          "room_rate_min_idr": 550000,
-          "room_rate_max_idr": 650000
+          "hotel_id": 2,
+          "hotel_name": "Whizz Bromo",
+          "location": "Sukapura, Probolinggo",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 200000,
+          "room_rate_max_idr": 550000,
+          "room_types_available": ["Capsule", "Superior"]
+        },
+        {
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo",
+          "location": "Sapikerep, Sukapura",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 750000,
+          "room_rate_max_idr": 950000,
+          "room_types_available": ["Twin", "Double", "Family"]
+        },
+        {
+          "hotel_id": 12,
+          "hotel_name": "Bromo Terrace",
+          "location": "Sapikerep, Sukapura",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 1150000,
+          "room_rate_max_idr": 1350000,
+          "room_types_available": ["Twin", "Double", "Double Hillview"]
+        },
+        {
+          "hotel_id": 60,
+          "hotel_name": "Manis Ae Cabin & Resto Bromo",
+          "location": "Jetak, Sukapura, Probolinggo",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 850000,
+          "room_rate_max_idr": 2430000,
+          "room_types_available": ["Standard", "Superior", "Deluxe", "Junior Suite", "Single/Family Cabin — Weekday/Weekend/High Season"]
+        },
+        {
+          "hotel_id": 63,
+          "hotel_name": "ARTOTEL Cabin Bromo",
+          "location": "Bromo area",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 1150000,
+          "room_rate_max_idr": 1150000,
+          "room_types_available": ["Cabin King", "Cabin Twin"]
+        },
+        {
+          "hotel_id": 64,
+          "hotel_name": "Lava View Lodge",
+          "location": "Cemorolawang, Ngadisari, Sukapura",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 680000,
+          "room_rate_max_idr": 2762500,
+          "room_types_available": ["Superior Twin", "Deluxe Twin/Double", "Family Room", "Cottages", "Suite Room — Weekday/Weekend"]
         }
       ]
     }
@@ -116,7 +186,7 @@
     "id": "tumpak_sewu_staging",
     "label": "Tumpak Sewu / Lumajang staging overnight",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "verified",
     "area_id": "tumpak_sewu_staging",
     "purpose": "overnight_before_tumpak_sewu",
     "recommended_for": [
@@ -125,7 +195,8 @@
       "extended waterfall packages"
     ],
     "operational_notes": [
-      "Artha Cottage / Lumajang area is the closest base",
+      "Artha Cottage (Lumajang/Pronojiwo) is closest base to Tumpak Sewu trailhead",
+      "Malang-area hotels (THE 1O1, HARRIS) used when staging in city before drive to Tumpak Sewu",
       "early morning start recommended 07:00–08:00 for waterfall access",
       "waterfall descent takes 1–2h; weather-sensitive — plan around rain",
       "local guide mandatory"
@@ -142,16 +213,58 @@
     "source_trace": [
       {
         "source": "llm_wiki",
-        "ref": "output/products/package-readiness/package-itineraries.json",
+        "ref": "input/llm-wiki/package-readiness/package-itineraries.json",
         "confidence": "inferred"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice/export-data/hotels/hotels + room-types",
+        "field": "hotels with destination_id: 7 (Tumpak Sewu Waterfall)",
+        "confidence": "verified"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "destination_id": 7,
+      "destination_name": "Tumpak Sewu Waterfall",
+      "hotels": [
+        {
+          "hotel_id": 38,
+          "hotel_name": "Artha Cottage",
+          "location": "Pronojiwo, Lumajang (closest to trailhead)",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 467500,
+          "room_rate_max_idr": 595000,
+          "room_types_available": ["Twin", "Double", "VIP Double"]
+        },
+        {
+          "hotel_id": 59,
+          "hotel_name": "THE 1O1 Malang OJ",
+          "location": "Malang city (2.5h from Tumpak Sewu — city staging option)",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 700000,
+          "room_rate_max_idr": 800000,
+          "room_types_available": ["Deluxe Twin/Double Weekday/Weekend"]
+        },
+        {
+          "hotel_id": 66,
+          "hotel_name": "HARRIS Hotel & Conventions Malang",
+          "location": "Malang city (2.5h from Tumpak Sewu — city staging option)",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 650000,
+          "room_rate_max_idr": 1300000,
+          "room_types_available": ["Harris Room Twin/Double", "Harris Sky", "Connecting Room"]
+        }
+      ]
+    }
   },
   {
     "id": "papuma_staging",
     "label": "Papuma / Jember staging overnight",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "verified",
     "area_id": "papuma_staging",
     "purpose": "overnight_before_papuma_beach",
     "recommended_for": [
@@ -160,7 +273,7 @@
       "packages including coastal stop"
     ],
     "operational_notes": [
-      "Doho Homestay / Jember area is the closest base",
+      "Doho Homestay and Kertanegara Homestay both in Jember city — 1h drive from Papuma Beach",
       "Papuma best visited in morning before crowds",
       "coastal road is rain-sensitive; check weather",
       "not suitable before a tight airport or train deadline"
@@ -177,16 +290,48 @@
     "source_trace": [
       {
         "source": "llm_wiki",
-        "ref": "output/products/package-readiness/package-itineraries.json",
+        "ref": "input/llm-wiki/package-readiness/package-itineraries.json",
         "confidence": "inferred"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice/export-data/hotels/hotels + room-types",
+        "field": "hotels with destination_id: 9 (Papuma Beach)",
+        "confidence": "verified"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "destination_id": 9,
+      "destination_name": "Papuma Beach",
+      "hotels": [
+        {
+          "hotel_id": 33,
+          "hotel_name": "Doho Homestay",
+          "location": "Kebonsari, Sumbersari, Jember",
+          "lunch_rate_idr": 50000,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 240000,
+          "room_rate_max_idr": 460000,
+          "room_types_available": ["Superior Twin/Double", "Deluxe Twin/Double", "Executive", "Emerald", "Platinum", "Family"]
+        },
+        {
+          "hotel_id": 67,
+          "hotel_name": "Kertanegara Homestay Jember",
+          "location": "Kaliwates, Jember",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 395000,
+          "room_rate_max_idr": 395000,
+          "room_types_available": ["Deluxe Twin (High Season)"]
+        }
+      ]
+    }
   },
   {
     "id": "banyuwangi_staging",
     "label": "Banyuwangi staging overnight (Bali-origin Ijen packages)",
     "status": "active",
-    "confidence": "inferred",
+    "confidence": "verified",
     "area_id": "banyuwangi_staging",
     "purpose": "overnight_after_bali_ferry_before_ijen",
     "recommended_for": [
@@ -195,7 +340,8 @@
       "packages starting from Bali side"
     ],
     "operational_notes": [
-      "Luminor Hotel / Banyuwangi area used for Bali-origin packages",
+      "Luminor Hotel and Aston Banyuwangi closest to Ketapang port (~10km)",
+      "Hotel Santika Banyuwangi also available for larger groups",
       "ferry from Gilimanuk requires Ferizy pre-booking",
       "arrive Banyuwangi by 18:00–20:00 recommended for adequate Ijen rest",
       "medical check and briefing arranged at hotel",
@@ -213,34 +359,49 @@
     "source_trace": [
       {
         "source": "llm_wiki",
-        "ref": "output/products/package-readiness/package-itineraries.json",
-        "confidence": "inferred"
-      },
-      {
-        "source": "manual_seed",
-        "ref": "seed/research/east-java-field-data-2026.json",
+        "ref": "input/llm-wiki/package-readiness/package-itineraries.json",
         "confidence": "inferred"
       },
       {
         "source": "new_backoffice",
-        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
-        "field": "hotel meal/room rates (hotels, room_types)",
-        "confidence": "inferred"
+        "ref": "new-backoffice/export-data/hotels/hotels + room-types",
+        "field": "hotels with destination_id: 2, location Banyuwangi",
+        "confidence": "verified"
       }
     ],
     "backoffice_observed": {
-      "core_destination_id": "ijen",
-      "jvto_web_slug": "ijen-crater",
-      "backoffice_destination_id": 5,
-      "backoffice_id_provenance": "verified",
+      "destination_id": 2,
+      "destination_name": "Mount Ijen",
       "hotels": [
         {
-          "hotel_id": 2,
-          "lunch_rate": 55000,
-          "dinner_rate": 80000,
-          "room_type_count": 1,
-          "room_rate_min_idr": 480000,
-          "room_rate_max_idr": 480000
+          "hotel_id": 32,
+          "hotel_name": "Luminor Hotel",
+          "location": "Kalipuro, Banyuwangi (~10km from Ketapang port)",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 500000,
+          "room_rate_max_idr": 500000,
+          "room_types_available": ["Deluxe Twin", "Deluxe Double"]
+        },
+        {
+          "hotel_id": 35,
+          "hotel_name": "Aston Banyuwangi",
+          "location": "Giri, Banyuwangi",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 525000,
+          "room_rate_max_idr": 625000,
+          "room_types_available": ["Double", "Premiere Family"]
+        },
+        {
+          "hotel_id": 62,
+          "hotel_name": "Hotel Santika Banyuwangi",
+          "location": "Sobo, Banyuwangi",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 580000,
+          "room_rate_max_idr": 990000,
+          "room_types_available": ["Superior Twin/Double", "Deluxe Twin/Double", "Executive Suite"]
         }
       ]
     }
@@ -249,7 +410,7 @@
     "id": "malang_batu_staging",
     "label": "Malang / Batu staging overnight (extended packages)",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "verified",
     "area_id": "malang_batu_staging",
     "purpose": "overnight_for_malang_batu_city_stop",
     "recommended_for": [
@@ -258,10 +419,10 @@
       "Malang dropoff packages"
     ],
     "operational_notes": [
-      "Whiz Prime Malang / Holiday Inn Express Surabaya used for city stays",
+      "Whiz Prime and Atria Malang in city center — suitable for leisure days",
+      "THE 1O1 Malang and HARRIS Malang also available (destination_id: 7 in backoffice but physically in Malang city)",
       "Malang city and Batu attractions accessible on day-use basis",
-      "suitable for leisure day after highland activities",
-      "Surabaya airport accessible 2–4h from Malang depending on traffic"
+      "Surabaya airport accessible 2–4h from Malang depending on traffic (Pandaan-Malang toll reduces to ~2h)"
     ],
     "risk_if_arrival_late": [
       "late checkout reduces city time",
@@ -274,9 +435,61 @@
     "source_trace": [
       {
         "source": "llm_wiki",
-        "ref": "output/products/package-readiness/package-itineraries.json",
+        "ref": "input/llm-wiki/package-readiness/package-itineraries.json",
         "confidence": "inferred"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice/export-data/hotels/hotels + room-types",
+        "field": "hotels with destination_id: 5 (Malang City)",
+        "confidence": "verified"
       }
-    ]
+    ],
+    "backoffice_observed": {
+      "destination_id": 5,
+      "destination_name": "Malang City",
+      "hotels": [
+        {
+          "hotel_id": 13,
+          "hotel_name": "Whiz Prime Malang",
+          "location": "Klojen, Malang city center",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 496000,
+          "room_rate_max_idr": 644000,
+          "room_types_available": ["Superior Twin/Double", "Deluxe Twin/Double — Weekday/Weekend"]
+        },
+        {
+          "hotel_id": 37,
+          "hotel_name": "Atria Malang",
+          "location": "Blimbing, Malang",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 610000,
+          "room_rate_max_idr": 610000,
+          "room_types_available": ["Twin", "Double"]
+        },
+        {
+          "hotel_id": 59,
+          "hotel_name": "THE 1O1 Malang OJ",
+          "location": "Rampal Celaket, Klojen, Malang",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 700000,
+          "room_rate_max_idr": 800000,
+          "room_types_available": ["Deluxe Twin/Double Weekday/Weekend"]
+        },
+        {
+          "hotel_id": 66,
+          "hotel_name": "HARRIS Hotel & Conventions Malang",
+          "location": "Polowijen, Blimbing, Malang",
+          "lunch_rate_idr": 0,
+          "dinner_rate_idr": 0,
+          "room_rate_min_idr": 650000,
+          "room_rate_max_idr": 1300000,
+          "room_types_available": ["Harris Room Twin/Double", "Harris Sky", "Connecting Room"]
+        }
+      ]
+    }
   }
 ]

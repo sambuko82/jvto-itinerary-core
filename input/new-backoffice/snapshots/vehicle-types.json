@@ -1,0 +1,8 @@
+[
+  {"id":1,"name":"MPV","capacity_min_pax":1,"capacity_max_pax":3,"price_per_day":250000,"price_twt_per_day":500000},
+  {"id":2,"name":"Innova","capacity_min_pax":3,"capacity_max_pax":3,"price_per_day":350000,"price_twt_per_day":570000},
+  {"id":3,"name":"Hiace","capacity_min_pax":4,"capacity_max_pax":null,"price_per_day":1100000,"price_twt_per_day":1100000},
+  {"id":4,"name":"Hiace Premio","capacity_min_pax":4,"capacity_max_pax":null,"price_per_day":1300000,"price_twt_per_day":1300000},
+  {"id":5,"name":"Medium Bus","capacity_min_pax":null,"capacity_max_pax":null,"price_per_day":1800000,"price_twt_per_day":null},
+  {"id":6,"name":"Mini Bus (Elf)","capacity_min_pax":2,"capacity_max_pax":13,"price_per_day":1350000,"price_twt_per_day":null}
+]

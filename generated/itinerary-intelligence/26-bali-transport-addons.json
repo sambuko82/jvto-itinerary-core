@@ -1,0 +1,260 @@
+{
+  "schema_version": "1.0",
+  "confidence": "live_db",
+  "source_trace": [
+    {
+      "source": "jvto_web_db",
+      "ref": "postgresql://31.97.223.43:5432/jvto → table:addons WHERE is_transport=true AND deleted_at IS NULL",
+      "confidence": "live_db",
+      "fetched_at": "2026-06-23"
+    }
+  ],
+  "overview": "Harga transport addon Bali per destinasi, diambil langsung dari DB jvto-web. Digunakan sebagai biaya transfer Bali (Gilimanuk → hotel) setelah tamu menyeberang dengan ferry dari Ketapang. Harga adalah per trip (satu arah), belum termasuk ferry ticket.",
+  "transport_types": {
+    "small": {
+      "label": "Small (MPV)",
+      "description": "Kendaraan kecil / MPV. Cocok untuk 1–4 penumpang.",
+      "addon_id_range": "21–56"
+    },
+    "medium": {
+      "label": "Medium (Hiace / Minibus)",
+      "description": "Kendaraan menengah / Hiace. Cocok untuk 5–9 penumpang.",
+      "addon_id_range": "57–92"
+    },
+    "big": {
+      "label": "Big (Bus / Large Van)",
+      "description": "Kendaraan besar / bus. Cocok untuk 10+ penumpang.",
+      "addon_id_range": "129–164"
+    }
+  },
+  "pricing_note": "Semua harga dalam IDR, per trip (satu arah), sudah termasuk driver. Belum termasuk: ferry ticket, toll, parkir. Harga berlaku dari area Gilimanuk ke destinasi Bali yang dituju.",
+  "total_records": 108,
+  "destinations": [
+    {
+      "name": "PEMUTERAN",
+      "bali_region": "Bali Barat",
+      "prices": { "small": 500000, "medium": 700000, "big": 900000 },
+      "addon_ids": { "small": 21, "medium": 57, "big": 129 }
+    },
+    {
+      "name": "NEGARA KOTA",
+      "bali_region": "Bali Barat",
+      "prices": { "small": 500000, "medium": 700000, "big": 900000 },
+      "addon_ids": { "small": 22, "medium": 58, "big": 130 }
+    },
+    {
+      "name": "MEDEWI",
+      "bali_region": "Bali Barat",
+      "prices": { "small": 650000, "medium": 750000, "big": 1000000 },
+      "addon_ids": { "small": 23, "medium": 59, "big": 131 }
+    },
+    {
+      "name": "LOVINA",
+      "bali_region": "Bali Utara",
+      "prices": { "small": 700000, "medium": 1000000, "big": 1200000 },
+      "addon_ids": { "small": 24, "medium": 60, "big": 132 }
+    },
+    {
+      "name": "MUNDUK",
+      "bali_region": "Bali Utara",
+      "prices": { "small": 700000, "medium": 1100000, "big": 1300000 },
+      "addon_ids": { "small": 25, "medium": 61, "big": 133 }
+    },
+    {
+      "name": "BEDUGUL",
+      "bali_region": "Bali Tengah",
+      "prices": { "small": 850000, "medium": 1200000, "big": 1300000 },
+      "addon_ids": { "small": 26, "medium": 62, "big": 134 }
+    },
+    {
+      "name": "SINGARAJA KOTA",
+      "bali_region": "Bali Utara",
+      "prices": { "small": 750000, "medium": 1100000, "big": 1300000 },
+      "addon_ids": { "small": 27, "medium": 63, "big": 135 }
+    },
+    {
+      "name": "TABANAN KOTA",
+      "bali_region": "Bali Tengah",
+      "prices": { "small": 850000, "medium": 1100000, "big": 1300000 },
+      "addon_ids": { "small": 28, "medium": 64, "big": 136 }
+    },
+    {
+      "name": "BALIAN BEACH",
+      "bali_region": "Bali Barat",
+      "prices": { "small": 750000, "medium": 1000000, "big": 1250000 },
+      "addon_ids": { "small": 29, "medium": 65, "big": 137 }
+    },
+    {
+      "name": "KUTA",
+      "bali_region": "Bali Selatan",
+      "prices": { "small": 900000, "medium": 1200000, "big": 1400000 },
+      "addon_ids": { "small": 30, "medium": 66, "big": 138 }
+    },
+    {
+      "name": "SANUR",
+      "bali_region": "Bali Selatan",
+      "prices": { "small": 900000, "medium": 1200000, "big": 1400000 },
+      "addon_ids": { "small": 31, "medium": 67, "big": 139 }
+    },
+    {
+      "name": "UBUD",
+      "bali_region": "Bali Tengah",
+      "prices": { "small": 900000, "medium": 1200000, "big": 1400000 },
+      "addon_ids": { "small": 32, "medium": 68, "big": 140 }
+    },
+    {
+      "name": "CANGGU",
+      "bali_region": "Bali Selatan",
+      "prices": { "small": 900000, "medium": 1200000, "big": 1400000 },
+      "addon_ids": { "small": 33, "medium": 69, "big": 141 }
+    },
+    {
+      "name": "SEMINYAK",
+      "bali_region": "Bali Selatan",
+      "prices": { "small": 900000, "medium": 1200000, "big": 1400000 },
+      "addon_ids": { "small": 34, "medium": 70, "big": 142 }
+    },
+    {
+      "name": "TANAHLOT",
+      "bali_region": "Bali Selatan",
+      "prices": { "small": 900000, "medium": 1200000, "big": 1400000 },
+      "addon_ids": { "small": 35, "medium": 71, "big": 143 }
+    },
+    {
+      "name": "GIANYAR KOTA",
+      "bali_region": "Bali Tengah",
+      "prices": { "small": 950000, "medium": 1250000, "big": 1450000 },
+      "addon_ids": { "small": 36, "medium": 72, "big": 144 }
+    },
+    {
+      "name": "JIMBARAN",
+      "bali_region": "Bali Selatan",
+      "prices": { "small": 950000, "medium": 1250000, "big": 1450000 },
+      "addon_ids": { "small": 37, "medium": 73, "big": 145 }
+    },
+    {
+      "name": "NUSADUA",
+      "bali_region": "Bali Selatan",
+      "prices": { "small": 950000, "medium": 1250000, "big": 1450000 },
+      "addon_ids": { "small": 38, "medium": 74, "big": 146 }
+    },
+    {
+      "name": "ULUWATU",
+      "bali_region": "Bali Selatan",
+      "prices": { "small": 1000000, "medium": 1300000, "big": 1500000 },
+      "addon_ids": { "small": 39, "medium": 75, "big": 147 }
+    },
+    {
+      "name": "PADANGBAY",
+      "bali_region": "Bali Timur",
+      "prices": { "small": 1050000, "medium": 1300000, "big": 1500000 },
+      "addon_ids": { "small": 40, "medium": 76, "big": 148 }
+    },
+    {
+      "name": "CANDIDASA",
+      "bali_region": "Bali Timur",
+      "prices": { "small": 1050000, "medium": 1300000, "big": 1500000 },
+      "addon_ids": { "small": 41, "medium": 77, "big": 149 }
+    },
+    {
+      "name": "KARANGASEM KOTA",
+      "bali_region": "Bali Timur",
+      "prices": { "small": 1050000, "medium": 1300000, "big": 1500000 },
+      "addon_ids": { "small": 42, "medium": 78, "big": 150 }
+    },
+    {
+      "name": "AMED",
+      "bali_region": "Bali Timur",
+      "prices": { "small": 1000000, "medium": 1300000, "big": 1500000 },
+      "addon_ids": { "small": 43, "medium": 79, "big": 151 }
+    },
+    {
+      "name": "TULAMBEN",
+      "bali_region": "Bali Timur",
+      "prices": { "small": 950000, "medium": 1250000, "big": 1400000 },
+      "addon_ids": { "small": 44, "medium": 80, "big": 152 }
+    },
+    {
+      "name": "TEJAKULA",
+      "bali_region": "Bali Utara",
+      "prices": { "small": 900000, "medium": 1200000, "big": 1400000 },
+      "addon_ids": { "small": 45, "medium": 81, "big": 153 }
+    },
+    {
+      "name": "YEH SANIH",
+      "bali_region": "Bali Utara",
+      "prices": { "small": 900000, "medium": 1200000, "big": 1400000 },
+      "addon_ids": { "small": 46, "medium": 82, "big": 154 }
+    },
+    {
+      "name": "TIRTA GANGGA",
+      "bali_region": "Bali Timur",
+      "prices": { "small": 1050000, "medium": 1300000, "big": 1500000 },
+      "addon_ids": { "small": 47, "medium": 83, "big": 155 }
+    },
+    {
+      "name": "SIDEMEN",
+      "bali_region": "Bali Timur",
+      "prices": { "small": 1050000, "medium": 1300000, "big": 1500000 },
+      "addon_ids": { "small": 48, "medium": 84, "big": 156 }
+    },
+    {
+      "name": "KINTAMANI",
+      "bali_region": "Bali Tengah",
+      "prices": { "small": 1000000, "medium": 1250000, "big": 1500000 },
+      "addon_ids": { "small": 49, "medium": 85, "big": 157 }
+    },
+    {
+      "name": "JATILUWIH",
+      "bali_region": "Bali Tengah",
+      "prices": { "small": 900000, "medium": 1200000, "big": 1400000 },
+      "addon_ids": { "small": 50, "medium": 86, "big": 158 }
+    },
+    {
+      "name": "BANGLI KOTA",
+      "bali_region": "Bali Tengah",
+      "prices": { "small": 1000000, "medium": 1150000, "big": 1400000 },
+      "addon_ids": { "small": 51, "medium": 87, "big": 159 }
+    },
+    {
+      "name": "KLUNGKUNG KOTA",
+      "bali_region": "Bali Tengah",
+      "prices": { "small": 1000000, "medium": 1250000, "big": 1500000 },
+      "addon_ids": { "small": 52, "medium": 88, "big": 160 }
+    },
+    {
+      "name": "DENPASAR KOTA",
+      "bali_region": "Bali Selatan",
+      "prices": { "small": 900000, "medium": 1200000, "big": 1400000 },
+      "addon_ids": { "small": 53, "medium": 89, "big": 161 }
+    },
+    {
+      "name": "AIRPORT NGURAH RAI",
+      "bali_region": "Bali Selatan",
+      "prices": { "small": 950000, "medium": 1200000, "big": 1400000 },
+      "addon_ids": { "small": 54, "medium": 90, "big": 162 }
+    },
+    {
+      "name": "SEBATU",
+      "bali_region": "Bali Tengah",
+      "prices": { "small": 950000, "medium": 1200000, "big": 1400000 },
+      "addon_ids": { "small": 55, "medium": 91, "big": 163 }
+    },
+    {
+      "name": "TEGALALANG",
+      "bali_region": "Bali Tengah",
+      "prices": { "small": 950000, "medium": 1200000, "big": 1400000 },
+      "addon_ids": { "small": 56, "medium": 92, "big": 164 }
+    }
+  ],
+  "price_ranges": {
+    "small": { "min_idr": 500000, "max_idr": 1050000 },
+    "medium": { "min_idr": 700000, "max_idr": 1300000 },
+    "big": { "min_idr": 900000, "max_idr": 1500000 }
+  },
+  "usage_in_calculator": {
+    "when": "Tambahkan biaya ini ke total tour jika dropoff = Bali dan tamu butuh transfer dari Gilimanuk ke hotel Bali.",
+    "how": "Pilih destinasi (nama hotel/area Bali) → ambil harga sesuai transport_type yang digunakan → tambahkan ke cost_components sebagai 'bali_transfer'.",
+    "note": "Jika dropoff = AIRPORT NGURAH RAI, ini adalah biaya untuk antar tamu dari ferry Gilimanuk langsung ke bandara DPS."
+  }
+}

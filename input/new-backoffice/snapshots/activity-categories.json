@@ -1,0 +1,9 @@
+[
+  {"id":1,"name":"Pickup"},
+  {"id":2,"name":"Attraction"},
+  {"id":3,"name":"Accommodation"},
+  {"id":4,"name":"Meals"},
+  {"id":5,"name":"Transportation"},
+  {"id":6,"name":"Drop Off"},
+  {"id":7,"name":"Services"}
+]

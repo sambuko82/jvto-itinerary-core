@@ -1,0 +1,22 @@
+[
+  {"id":1,"destination_id":1,"label":"Bromo Sunrise Start","description":"Pickup from hotel at 03:00–03:30 AM. Transfer by private car to Penanjakan I viewpoint area (~1 hour). Arrive before dawn for sunrise viewing."},
+  {"id":2,"destination_id":2,"label":"Ijen Midnight Start","description":"Depart from hotel/villa at 00:00–00:30. Drive ~1.5 hours to Paltuding basecamp. Register, rent gas masks if needed, begin ascent by 02:00 AM."},
+  {"id":3,"destination_id":1,"label":"Bromo Mid-Morning Start","description":"Pickup from hotel at 06:00 AM. Drive to Sea of Sand jeep station. Transfer by private jeep to crater rim area. Morning exploration at Bromo."},
+  {"id":4,"destination_id":6,"label":"Madakaripura Morning Start","description":"Depart from Probolinggo hotel at 08:00 AM. Drive ~45 minutes to Madakaripura parking area. Begin jungle trail to waterfall (~30 min walk)."},
+  {"id":5,"destination_id":7,"label":"Tumpak Sewu Morning Start","description":"Depart from Lumajang/Artha Cottage at 07:00 AM. Drive ~30 minutes to Tumpak Sewu viewpoint. Begin guided descent to waterfall base (~45 min)."},
+  {"id":6,"destination_id":9,"label":"Papuma Afternoon Start","description":"Depart from Jember hotel at 14:00. Drive ~1 hour to Papuma Beach. Arrive for sunset viewing and beach exploration until 18:00."},
+  {"id":7,"destination_id":4,"label":"Surabaya City Tour Start","description":"Depart from Surabaya hotel at 08:30 AM. Begin city tour covering House of Sampoerna, Tugu Pahlawan, Submarine Museum, and Ampel Mosque."},
+  {"id":8,"destination_id":5,"label":"Malang City Tour Start","description":"Depart from Malang hotel at 08:00 AM. City tour to Jodipan Colorful Village, Batu town area, Alun-alun, and local culinary stops."},
+  {"id":9,"destination_id":38,"label":"Taman Safari Morning Start","description":"Depart from Surabaya/Malang hotel at 08:00 AM. Drive ~1.5 hours to Taman Safari Prigen. Entry at opening (09:00). Safari drive followed by Baby Zoo."},
+  {"id":10,"destination_id":18,"label":"Coffee Technopark Morning Start","description":"Depart from Bondowoso/Jember hotel at 08:30 AM. Drive to Coffee & Cocoa Science Technopark. Guided plantation tour and tasting session."},
+  {"id":11,"destination_id":1,"label":"Bromo Afternoon Check-In","description":"Arrive at Bromo area hotel/villa from Surabaya or Malang. Check-in, rest, prepare gear for early morning Bromo sunrise tour next day."},
+  {"id":12,"destination_id":2,"label":"Ijen Pre-Trek Check-In","description":"Arrive at Banyuwangi/Bondowoso area hotel/villa. Check-in early evening. Set alarm for midnight departure to Ijen. Prepare trekking gear."},
+  {"id":13,"destination_id":5,"label":"Malang Arrival Start","description":"Arrive in Malang city from previous destination. Transfer to city hotel. Optional afternoon visit to Batu town or rest."},
+  {"id":14,"destination_id":4,"label":"Surabaya Arrival Start","description":"Arrive in Surabaya from previous destination. Transfer to city hotel. Optional evening visit to Suramadu Bridge or Kenjeran Beach."},
+  {"id":15,"destination_id":7,"label":"Tumpak Sewu via Lumajang","description":"Depart Malang hotel early AM. Drive ~2.5 hours to Pronojiwo, Lumajang. Check in at Artha Cottage or proceed directly to Tumpak Sewu trailhead."},
+  {"id":16,"destination_id":6,"label":"Madakaripura via Probolinggo","description":"Depart Bromo hotel at 06:30 AM (post-sunrise). Drive ~1 hour to Madakaripura parking. Complete waterfall trek then continue to next destination."},
+  {"id":17,"destination_id":9,"label":"Papuma Morning Start","description":"Depart from Jember hotel at 08:00 AM. Drive ~1 hour to Papuma Beach. Morning beach exploration and cliff walks until early afternoon."},
+  {"id":18,"destination_id":2,"label":"Ijen Post-Sunrise Start","description":"Return to hotel after Ijen trek (~08:00–09:00 AM). Breakfast and shower. Depart to next destination after rest (10:00–11:00 AM)."},
+  {"id":19,"destination_id":1,"label":"Bromo Post-Sunrise Continue","description":"Return from Bromo viewpoint/crater. Breakfast at hotel. Check-out and continue to next destination (Ijen, Malang, or Surabaya) by 09:00–10:00 AM."},
+  {"id":20,"destination_id":4,"label":"Surabaya Departure Day","description":"Morning free time or short city activity. Proceed to Juanda Airport or Surabaya train station for departure. Estimated airport arrival 2–3 hours before flight."}
+]

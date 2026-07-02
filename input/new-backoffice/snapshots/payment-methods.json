@@ -1,0 +1,9 @@
+[
+  {"id":1,"name":"Cash","account_number":null},
+  {"id":2,"name":"PT JAVA VOLCANO RENDEZVOUS","account_number":"001301001779564"},
+  {"id":3,"name":"Debit/Credit Card","account_number":""},
+  {"id":4,"name":"EDC","account_number":""},
+  {"id":5,"name":"WISE","account_number":""},
+  {"id":6,"name":"Bank Transfer","account_number":""},
+  {"id":7,"name":"Pay Later","account_number":""}
+]

@@ -1,0 +1,11 @@
+[
+  {"id":8,"name":"1 Days 1 Nights","day":1,"night":1},
+  {"id":1,"name":"2 Days 1 Nights","day":2,"night":1},
+  {"id":2,"name":"3 Days 2 Nights","day":3,"night":2},
+  {"id":3,"name":"4 Days 3 Nights","day":4,"night":3},
+  {"id":4,"name":"5 Days 4 Nights","day":5,"night":4},
+  {"id":5,"name":"6 Days 5 Nights","day":6,"night":5},
+  {"id":6,"name":"7 Days 6 Nights","day":7,"night":6},
+  {"id":7,"name":"8 Days 7 Nights","day":8,"night":7},
+  {"id":9,"name":"9 Days 8 Nights","day":9,"night":8}
+]

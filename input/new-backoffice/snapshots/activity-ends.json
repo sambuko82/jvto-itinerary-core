@@ -1,0 +1,16 @@
+[
+  {"id":1,"label":"Hotel Check-In","description":"Arrive at hotel. Assist with check-in. Guide briefs for next-day activities. Evening free."},
+  {"id":2,"label":"Airport Drop-Off","description":"Transfer to Juanda International Airport (SUB). Drop-off at departure terminal. Tour ends."},
+  {"id":3,"label":"Train Station Drop-Off","description":"Transfer to Surabaya Gubeng or Malang Kotabaru station. Tour ends upon arrival at station."},
+  {"id":4,"label":"Return to Hotel","description":"Return to accommodation after day activity. Evening at leisure."},
+  {"id":5,"label":"Free Afternoon","description":"Arrive back at hotel after morning activities. Afternoon free for personal exploration or rest."},
+  {"id":6,"label":"Dinner at Restaurant","description":"Transfer to local restaurant for dinner. Return to hotel after dinner."},
+  {"id":7,"label":"Overnight at Bromo","description":"Settle at Bromo area accommodation. Briefing for 03:00 AM sunrise call. Early sleep recommended."},
+  {"id":8,"label":"Overnight at Banyuwangi/Bondowoso","description":"Arrive at Ijen-area hotel/villa. Check-in. Set alarm for midnight departure to Ijen. Gear preparation."},
+  {"id":9,"label":"Continue to Malang","description":"Depart from current destination. Drive to Malang (~2–4 hours depending on origin). Check-in at Malang hotel."},
+  {"id":10,"label":"Continue to Surabaya","description":"Depart from current destination. Drive to Surabaya (~2–4 hours). Check-in at Surabaya hotel or airport transfer."},
+  {"id":11,"label":"Continue to Bondowoso","description":"Depart from Bromo area. Drive ~2.5 hours to Bondowoso. Check-in for Ijen preparation night."},
+  {"id":12,"label":"Continue to Banyuwangi","description":"Depart from Bondowoso or Jember. Drive ~2 hours to Banyuwangi. Check-in at Ijen-access hotel."},
+  {"id":13,"label":"Continue to Jember","description":"Arrive in Jember. Check-in at Jember hotel. Rest before Papuma or Tumpak Sewu next day."},
+  {"id":14,"label":"Bali Ferry Transfer","description":"Drive to Ketapang port, Banyuwangi. Board ferry to Gilimanuk, Bali. Continue by land to Bali destination."}
+]

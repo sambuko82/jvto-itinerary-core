@@ -1,0 +1,15 @@
+[
+  {"id":2,"name":"Transport Allowance","code":"D.2","price":100000,"quantity_formula":"1","order_channel_id":1,"is_publish":true},
+  {"id":3,"name":"Mineral Water","code":"D.1","price":40000,"quantity_formula":"Math.ceil(pax/3)","order_channel_id":1,"is_publish":true},
+  {"id":4,"name":"T-shirt","code":"D.3","price":60000,"quantity_formula":"pax","order_channel_id":1,"is_publish":true},
+  {"id":5,"name":"Toll & Parking","code":"D.4","price":200000,"quantity_formula":"1","order_channel_id":1,"is_publish":true},
+  {"id":10,"name":"Ferry Ticket","code":"D.5","price":16000,"quantity_formula":"pax","order_channel_id":1,"is_publish":true},
+  {"id":11,"name":"Ferry-Guide","code":"D.6","price":100000,"quantity_formula":"1","order_channel_id":1,"is_publish":true},
+  {"id":85,"name":"Transport Allowance","code":"D.2","price":160000,"quantity_formula":"1","order_channel_id":2,"is_publish":true},
+  {"id":86,"name":"Mineral Water","code":"D.1","price":10000,"quantity_formula":"pax","order_channel_id":2,"is_publish":true},
+  {"id":87,"name":"T-shirt","code":"D.3","price":60000,"quantity_formula":"pax","order_channel_id":2,"is_publish":true},
+  {"id":88,"name":"Ferry Ticket","code":"D.5","price":16000,"quantity_formula":"pax","order_channel_id":2,"is_publish":true},
+  {"id":89,"name":"Ferry-Guide","code":"D.6","price":100000,"quantity_formula":"1","order_channel_id":2,"is_publish":true},
+  {"id":93,"name":"Toll & Parking Probolinggo","code":"D.4","price":250000,"quantity_formula":"1","order_channel_id":2,"is_publish":true},
+  {"id":94,"name":"Toll & Parking Malang","code":"D.4","price":350000,"quantity_formula":"1","order_channel_id":2,"is_publish":true}
+]

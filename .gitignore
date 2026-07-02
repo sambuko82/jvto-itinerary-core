@@ -12,3 +12,4 @@ input/**/pii/
 
 # superpowers brainstorming companion
 .superpowers/
+/.playwright-mcp

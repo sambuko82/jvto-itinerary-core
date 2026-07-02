@@ -1,0 +1,181 @@
+{
+  "schema_version": "1.0",
+  "confidence": "manual_seed",
+  "source_trace": [
+    {
+      "source": "manual_seed",
+      "ref": "seed/operational-knowledge/guest-meeting-protocol",
+      "confidence": "verified"
+    }
+  ],
+  "overview": "Protokol standar bagaimana crew JVTO menemui tamu di setiap titik jemput. JVTO melayani tamu internasional (mancanegara) sehingga komunikasi menggunakan Bahasa Inggris. Tamu harus mudah menemukan crew — pickup sign adalah standar utama.",
+  "pickup_sign": {
+    "description": "Papan atau kertas yang dibawa crew saat menunggu tamu di titik penjemputan",
+    "format_standard": "Nama lengkap tamu (sesuai data booking) + 'JVTO Tours'",
+    "contoh": [
+      "Mr. John Smith — JVTO Tours",
+      "Ms. Emma & Mr. Luca Rossi — JVTO Tours",
+      "Lee Family (4 pax) — JVTO Tours"
+    ],
+    "material": "Kertas A4 dicetak / ditulis tangan dengan huruf besar yang jelas, atau papan kecil",
+    "warna": "Putih dengan tulisan hitam tebal, atau gunakan warna yang mencolok agar mudah terlihat di keramaian",
+    "kapan_digunakan": "Wajib di: bandara, pelabuhan, stasiun. Opsional di: hotel (jika lobi besar/ramai), titik kota (jika ramai)"
+  },
+  "protocols_by_location": [
+    {
+      "location_type": "airport_international",
+      "label": "Bandara — Penerbangan Internasional",
+      "applicable_to": ["Surabaya Airport T2 (SUB)", "Denpasar Airport (DPS) jika pickup di Bali"],
+      "crew_position": "Di area Meeters & Greeters — luar pintu keluar Arrival Hall, setelah tamu melewati customs",
+      "timing": "Crew standby minimal 30 menit sebelum estimasi tamu keluar. Estimasi = jam landing + 60 menit (imigrasi + baggage + customs).",
+      "pickup_sign": "WAJIB. Nama tamu + JVTO Tours. Crew berdiri di posisi terlihat dari pintu keluar.",
+      "what_crew_does": [
+        "Pantau status penerbangan real-time via aplikasi (FlightRadar24 / aplikasi bandara setempat)",
+        "Standby di area meeters & greeters 30 menit sebelum estimasi tamu keluar",
+        "Pegang pickup sign setinggi dada agar mudah terlihat",
+        "Jika tamu tidak keluar dalam 30 menit setelah estimasi, hubungi via WhatsApp: 'Hello [name], I am waiting at the arrival exit with your name sign. Are you out yet?'",
+        "Jika tidak ada respons, hubungi supervisor JVTO untuk eskalasi"
+      ],
+      "first_words_to_guest": "Hello [name]! Welcome to Indonesia! I am [crew name], your JVTO guide. How was your flight? Let me help you with your luggage.",
+      "after_meeting": [
+        "Bantu bawa koper ke kendaraan",
+        "Jelaskan singkat rencana hari ini selama di perjalanan ke hotel",
+        "Tawarkan air minum (jika tersedia)",
+        "Tanyakan apakah tamu perlu makan/minum dulu atau langsung berangkat"
+      ],
+      "common_issues": [
+        {
+          "issue": "Tamu tidak keluar lebih dari 60 menit dari estimasi",
+          "cause": "Kemungkinan: antri imigrasi sangat panjang, koper hilang/delay, atau tamu berhenti di toilet/minimarket",
+          "action": "Tunggu terus, hubungi via WhatsApp tiap 15 menit. Informasikan ke supervisor."
+        },
+        {
+          "issue": "Tamu keluar dari pintu yang berbeda",
+          "cause": "Bandara besar kadang punya beberapa pintu keluar Arrival Hall",
+          "action": "Atur titik temu via WhatsApp: 'Please walk to [landmark di bandara] and I will meet you there.'"
+        }
+      ]
+    },
+    {
+      "location_type": "airport_domestic",
+      "label": "Bandara — Penerbangan Domestik",
+      "applicable_to": ["Surabaya Airport T1 (SUB)"],
+      "crew_position": "Di area penjemputan/kedatangan T1 — pintu keluar setelah baggage claim",
+      "timing": "Crew standby minimal 15 menit sebelum estimasi tamu keluar. Estimasi = jam landing + 30 menit.",
+      "pickup_sign": "WAJIB. Nama tamu + JVTO Tours.",
+      "what_crew_does": [
+        "Pantau status penerbangan",
+        "Standby 15 menit sebelum estimasi",
+        "Pegang pickup sign di area penjemputan",
+        "Jika tamu tidak keluar dalam 20 menit dari estimasi, hubungi via WhatsApp"
+      ],
+      "first_words_to_guest": "Hello [name]! I am [crew name] from JVTO. Welcome! Let me help you with your bags.",
+      "after_meeting": [
+        "Bantu koper ke kendaraan",
+        "Jelaskan rencana hari ini",
+        "Berangkat menuju destinasi / hotel"
+      ]
+    },
+    {
+      "location_type": "hotel_lobby",
+      "label": "Hotel — Jemput di Lobi",
+      "applicable_to": ["Semua jenis hotel — budget sampai bintang 5"],
+      "crew_position": "Lobi utama hotel — area duduk atau dekat pintu masuk utama. BUKAN di parkiran atau di luar.",
+      "timing": "Crew tiba di lobi hotel 5–10 menit sebelum jam pickup yang disepakati.",
+      "pickup_sign": "Opsional. Dipakai jika hotel besar/ramai (misalnya hotel bintang 4–5 di pusat kota). Untuk hotel kecil/boutique, crew langsung memperkenalkan diri ke tamu.",
+      "what_crew_does": [
+        "Kirim WhatsApp ke tamu 15 menit sebelum tiba: 'Good morning [name], I am [crew name], your JVTO guide. I will arrive at your hotel lobby in about 15 minutes.'",
+        "Tiba di lobi, perkenalkan diri ke staf resepsionis jika perlu",
+        "Tunggu di lobi, jangan membuat tamu harus keluar ke parkiran",
+        "Jika tamu belum turun 10 menit setelah jam pickup, kirim WhatsApp reminder: 'Hello [name], I am already in the lobby whenever you are ready!'",
+        "Bantu bawa koper dari kamar ke kendaraan jika tamu butuh bantuan (koordinasi dengan bellboy)"
+      ],
+      "first_words_to_guest": "Good morning [name]! I am [crew name], your JVTO driver and guide. Are you ready? Let me help with your luggage.",
+      "after_meeting": [
+        "Bantu koper ke kendaraan",
+        "Brief singkat jadwal hari ini setelah kendaraan bergerak",
+        "Pastikan tamu nyaman: AC, musik, dll"
+      ]
+    },
+    {
+      "location_type": "train_station",
+      "label": "Stasiun Kereta",
+      "applicable_to": ["Stasiun Gubeng", "Stasiun Pasar Turi", "Stasiun Wonokromo", "Stasiun lain"],
+      "crew_position": "Di depan pintu keluar utama stasiun (gate exit / area penjemputan penumpang turun)",
+      "timing": "Crew standby 10 menit sebelum estimasi kereta tiba.",
+      "pickup_sign": "WAJIB. Stasiun bisa sangat ramai — pickup sign sangat membantu tamu asing menemukan crew.",
+      "what_crew_does": [
+        "Pantau status kereta (via aplikasi KAI atau website)",
+        "Standby di luar gate exit dengan pickup sign",
+        "Jika kereta delay, crew tetap standby dan update tamu via WhatsApp",
+        "Kirim WhatsApp saat kereta hampir tiba: 'Hello [name], your train is almost there! I am waiting at the main exit of [station name] with your name sign. See you soon!'"
+      ],
+      "first_words_to_guest": "Hello [name]! Welcome! I am [crew name] from JVTO. How was your journey? Let me take your bags.",
+      "after_meeting": [
+        "Bantu koper ke kendaraan",
+        "Langsung berangkat menuju tujuan"
+      ]
+    },
+    {
+      "location_type": "harbor",
+      "label": "Pelabuhan (Ferry)",
+      "applicable_to": ["Ketapang Harbor (Banyuwangi)", "Gilimanuk Harbor (Bali)"],
+      "crew_position": "Di luar gate exit pelabuhan — area penjemputan penumpang turun dari ferry",
+      "timing": "Crew standby 15 menit sebelum estimasi ferry sandar.",
+      "pickup_sign": "WAJIB. Area pelabuhan bisa ramai, terutama saat peak season.",
+      "what_crew_does": [
+        "Pantau jadwal ferry dan update dari tamu",
+        "Standby di area meeters & greeters pelabuhan dengan pickup sign",
+        "Kirim WhatsApp saat tamu di atas ferry: 'Hello [name], I am waiting at the Ketapang Harbor exit with your name sign. See you in a few minutes! Welcome to Java!'",
+        "Jika ferry delay, crew standby dan update status ke supervisor"
+      ],
+      "first_words_to_guest": "Hello [name]! Welcome to Java! I am [crew name] from JVTO. Ready for the adventure? Let me help with your bags.",
+      "after_meeting": [
+        "Bantu koper ke kendaraan",
+        "Ingatkan tamu perbedaan timezone: 'Please note we are now on Java time (WIB), 1 hour behind Bali.'",
+        "Berangkat menuju destinasi / hotel"
+      ]
+    },
+    {
+      "location_type": "city_point",
+      "label": "Titik Kota / Alamat Kustom",
+      "applicable_to": ["Mal", "Restoran", "Landmark", "Alamat khusus"],
+      "crew_position": "Di titik yang disepakati — depan pintu utama / entrance yang jelas dan mudah dikenali",
+      "timing": "Crew tiba tepat waktu atau 5 menit lebih awal.",
+      "pickup_sign": "Opsional — pakai jika titik ramai. Cukup perkenalkan diri jika lokasi sepi.",
+      "what_crew_does": [
+        "Konfirmasi titik pertemuan spesifik via WhatsApp sehari sebelumnya",
+        "Kirim pesan H-20 menit: 'Hello [name], I am on my way and will arrive at [meeting point] in about 20 minutes.'",
+        "Jika titik susah parkir, crew minta tamu standby — kendaraan mampir sebentar untuk ambil tamu"
+      ],
+      "first_words_to_guest": "Hello [name]! I am [crew name] from JVTO. Great to meet you! Shall we go?"
+    }
+  ],
+  "general_communication_standards": {
+    "language": "English — semua komunikasi dengan tamu menggunakan Bahasa Inggris",
+    "whatsapp_timeline": [
+      {
+        "kapan": "H-1 malam sebelum pickup",
+        "pesan": "Reminder jadwal esok hari: jam pickup, titik jemput, dan nama crew yang akan menjemput"
+      },
+      {
+        "kapan": "Pagi hari pickup (jika pagi)",
+        "pesan": "Good morning greeting + konfirmasi crew sudah dalam perjalanan"
+      },
+      {
+        "kapan": "15–20 menit sebelum tiba di titik pickup",
+        "pesan": "Update ETA kepada tamu"
+      },
+      {
+        "kapan": "Saat menunggu di titik pickup",
+        "pesan": "Konfirmasi posisi crew: 'I am at [location] now with your name sign.'"
+      },
+      {
+        "kapan": "Jika tamu tidak kunjung keluar (bandara)",
+        "pesan": "Check-in tiap 15 menit: 'Hello [name], still waiting for you. Are you out yet? Is everything okay?'"
+      }
+    ],
+    "tone": "Friendly, professional, and reassuring. Tamu internasional sering pertama kali ke Indonesia — crew harus membuat mereka merasa aman dan disambut.",
+    "emergency_contact": "Jika crew tidak bisa menemukan tamu dalam 1 jam setelah estimasi, eskalasi ke supervisor JVTO."
+  }
+}

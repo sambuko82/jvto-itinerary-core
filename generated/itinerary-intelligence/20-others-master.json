@@ -1,0 +1,158 @@
+{
+  "schema_version": 2,
+  "confidence": "verified",
+  "source_trace": {
+    "endpoint": "new-backoffice/export-data/other-activities",
+    "fetched_at": "2026-06-20",
+    "updated_at": "2026-06-22",
+    "total_records_in_api": 131,
+    "canonical_catalog_items": 13,
+    "selection_rule": "Only items with non-empty code values (D.1–D.6 series) are canonical catalog items. The remaining 118 records are per-booking one-offs (fuel, specific transfers, refunds) and are excluded.",
+    "notes": "Added is_default_jvto field per real API data. JVTO defaults: D.2 Transport Allowance, D.1 Mineral Water, D.3 T-shirt, D.4 Toll & Parking. D.5 Ferry and D.6 Ferry-Guide are route-specific (not default — only added when itinerary includes Bali)."
+  },
+  "catalog_items": [
+    {
+      "id": 2,
+      "name": "Transport Allowance",
+      "code": "D.2",
+      "price_idr": 100000,
+      "quantity_formula": "1",
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "is_default_jvto": true,
+      "notes": "Per-trip transport allowance for crew. Always included for JVTO orders."
+    },
+    {
+      "id": 3,
+      "name": "Mineral Water",
+      "code": "D.1",
+      "price_idr": 40000,
+      "quantity_formula": "Math.ceil(pax / 3)",
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "is_default_jvto": true,
+      "notes": "1 pack per 3 pax (rounded up). Always included for JVTO orders."
+    },
+    {
+      "id": 4,
+      "name": "T-shirt",
+      "code": "D.3",
+      "price_idr": 60000,
+      "quantity_formula": "pax",
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "is_default_jvto": true,
+      "notes": "One shirt per guest. is_default_jvto=true — must be included in all JVTO expense calculations."
+    },
+    {
+      "id": 5,
+      "name": "Toll & Parking",
+      "code": "D.4",
+      "price_idr": 200000,
+      "quantity_formula": "1",
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "is_default_jvto": true,
+      "notes": "Flat per-trip toll and parking fee. Always included for JVTO orders."
+    },
+    {
+      "id": 10,
+      "name": "Ferry Ticket",
+      "code": "D.5",
+      "price_idr": 16000,
+      "quantity_formula": "pax",
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "is_default_jvto": false,
+      "notes": "Ketapang–Gilimanuk ferry, per person. Route-specific — only added when Bali (dest=3) is in the itinerary."
+    },
+    {
+      "id": 11,
+      "name": "Ferry-Guide",
+      "code": "D.6",
+      "price_idr": 100000,
+      "quantity_formula": "1",
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "is_default_jvto": false,
+      "notes": "Guide fee for ferry crossing. Route-specific — only added when Bali (dest=3) is in the itinerary."
+    },
+    {
+      "id": 85,
+      "name": "Transport Allowance",
+      "code": "D.2",
+      "price_idr": 160000,
+      "quantity_formula": "1",
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "is_default_jvto": false,
+      "notes": "Higher rate for TWT channel"
+    },
+    {
+      "id": 86,
+      "name": "Mineral Water",
+      "code": "D.1",
+      "price_idr": 10000,
+      "quantity_formula": "pax",
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "is_default_jvto": false,
+      "notes": "Per-person mineral water for TWT (lower unit price)"
+    },
+    {
+      "id": 87,
+      "name": "T-shirt",
+      "code": "D.3",
+      "price_idr": 60000,
+      "quantity_formula": "pax",
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "is_default_jvto": false,
+      "notes": "Same rate as JVTO"
+    },
+    {
+      "id": 88,
+      "name": "Ferry Ticket",
+      "code": "D.5",
+      "price_idr": 16000,
+      "quantity_formula": "pax",
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "is_default_jvto": false,
+      "notes": "Same rate as JVTO"
+    },
+    {
+      "id": 89,
+      "name": "Ferry-Guide",
+      "code": "D.6",
+      "price_idr": 100000,
+      "quantity_formula": "1",
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "is_default_jvto": false,
+      "notes": "Same rate as JVTO"
+    },
+    {
+      "id": 93,
+      "name": "Toll & Parking Probolinggo",
+      "code": "D.4",
+      "price_idr": 250000,
+      "quantity_formula": "1",
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "is_default_jvto": false,
+      "notes": "Toll route via Probolinggo (Bromo access)"
+    },
+    {
+      "id": 94,
+      "name": "Toll & Parking Malang",
+      "code": "D.4",
+      "price_idr": 350000,
+      "quantity_formula": "1",
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "is_default_jvto": false,
+      "notes": "Toll route via Malang (longer route, higher cost)"
+    }
+  ]
+}

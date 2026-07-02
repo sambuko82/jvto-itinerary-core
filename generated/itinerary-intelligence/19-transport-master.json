@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "confidence": "verified",
+  "source_trace": {
+    "endpoints": [
+      "new-backoffice/export-data/vehicle-types",
+      "new-backoffice/export-data/vehicle-units",
+      "new-backoffice/export-data/crew-roles"
+    ],
+    "fetched_at": "2026-06-20",
+    "vehicle_type_count": 6,
+    "vehicle_unit_count": 10,
+    "crew_role_count": 14
+  },
+  "vehicle_types": [
+    {
+      "id": 1,
+      "name": "MPV",
+      "capacity_min_pax": 1,
+      "capacity_max_pax": 3,
+      "rate_jvto_per_day": 250000,
+      "rate_twt_per_day": 500000,
+      "notes": "Small car (Avanza/Sigra class). Used for solo/couple/triple guests."
+    },
+    {
+      "id": 2,
+      "name": "Innova",
+      "capacity_min_pax": 3,
+      "capacity_max_pax": 3,
+      "rate_jvto_per_day": 350000,
+      "rate_twt_per_day": 570000,
+      "notes": "Toyota Innova Reborn. TWT channel uses this for 3-pax groups."
+    },
+    {
+      "id": 3,
+      "name": "Hiace",
+      "capacity_min_pax": 4,
+      "capacity_max_pax": null,
+      "rate_jvto_per_day": 1100000,
+      "rate_twt_per_day": 1100000,
+      "notes": "Toyota Hiace Commuter. Standard group vehicle for 4-9 pax."
+    },
+    {
+      "id": 4,
+      "name": "Hiace Premio",
+      "capacity_min_pax": 4,
+      "capacity_max_pax": null,
+      "rate_jvto_per_day": 1300000,
+      "rate_twt_per_day": 1300000,
+      "notes": "Premium Hiace. Used by TWT for 8-9 pax groups."
+    },
+    {
+      "id": 5,
+      "name": "Medium Bus",
+      "capacity_min_pax": null,
+      "capacity_max_pax": null,
+      "rate_jvto_per_day": 1800000,
+      "rate_twt_per_day": null,
+      "notes": "For large groups. JVTO channel only."
+    },
+    {
+      "id": 6,
+      "name": "Mini Bus (Elf)",
+      "capacity_min_pax": 2,
+      "capacity_max_pax": 13,
+      "rate_jvto_per_day": 1350000,
+      "rate_twt_per_day": null,
+      "notes": "Isuzu Elf minibus. Capacity up to 13 pax."
+    }
+  ],
+  "vehicle_units": [
+    {"id":1,"vehicle_type_id":1,"nickname":"MPV","is_active":true},
+    {"id":2,"vehicle_type_id":2,"nickname":"Innova Reborn","is_active":true},
+    {"id":5,"vehicle_type_id":3,"nickname":"Hiace Commuter","is_active":true},
+    {"id":14,"vehicle_type_id":4,"nickname":"Hiace Premio","is_active":true},
+    {"id":22,"vehicle_type_id":1,"nickname":"Daihatsu Sigra","is_active":true},
+    {"id":23,"vehicle_type_id":1,"nickname":"Avanza Yus 2","is_active":true},
+    {"id":24,"vehicle_type_id":5,"nickname":"Medium Bus","is_active":true},
+    {"id":25,"vehicle_type_id":6,"nickname":"Mini Bus (Elf)","is_active":true},
+    {"id":26,"vehicle_type_id":1,"nickname":"Avanza Yus 3","is_active":true},
+    {"id":27,"vehicle_type_id":1,"nickname":"Avanza Boy","is_active":true}
+  ],
+  "crew_roles": [
+    {
+      "id": 1,
+      "name": "Driver cum guide",
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "rate_per_day": 313000,
+      "rate_twt_per_day": 363000,
+      "notes": "Dual-role for small cars on TWT channel"
+    },
+    {
+      "id": 2,
+      "name": "Escort Guide (Sr)",
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "rate_per_day": 275000,
+      "rate_twt_per_day": 275000,
+      "notes": "Senior escort guide for Hiace groups on TWT"
+    },
+    {
+      "id": 3,
+      "name": "Escort Guide (Jr)",
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "rate_per_day": 250000,
+      "rate_twt_per_day": 250000,
+      "notes": "Junior escort guide, TWT channel"
+    },
+    {
+      "id": 4,
+      "name": "Small car",
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "rate_per_day": 200000,
+      "rate_twt_per_day": 300000,
+      "notes": "Extra small car crew for TWT 10-pax overflow"
+    },
+    {
+      "id": 5,
+      "name": "Driver cum guide",
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "rate_per_day": 250000,
+      "rate_twt_per_day": 0,
+      "notes": "Dual-role for MPV on JVTO channel"
+    },
+    {
+      "id": 6,
+      "name": "Escort Guide",
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "rate_per_day": 250000,
+      "rate_twt_per_day": 0,
+      "notes": "Escort guide for Hiace groups on JVTO"
+    },
+    {
+      "id": 7,
+      "name": "Driver + Guide",
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "rate_per_day": 400000,
+      "rate_twt_per_day": 0,
+      "notes": "Separate driver and guide combined rate, JVTO"
+    },
+    {
+      "id": 8,
+      "name": "Driver cum guide",
+      "order_channel_id": 3,
+      "order_channel_name": "KLOOK",
+      "rate_per_day": 250000,
+      "rate_twt_per_day": 0,
+      "notes": "Dual-role for MPV on KLOOK channel"
+    },
+    {
+      "id": 9,
+      "name": "Escort Guide",
+      "order_channel_id": 3,
+      "order_channel_name": "KLOOK",
+      "rate_per_day": 250000,
+      "rate_twt_per_day": 0,
+      "notes": "Escort guide for Hiace groups on KLOOK"
+    },
+    {
+      "id": 10,
+      "name": "Driver + Guide",
+      "order_channel_id": 3,
+      "order_channel_name": "KLOOK",
+      "rate_per_day": 400000,
+      "rate_twt_per_day": 0,
+      "notes": "Separate driver and guide combined rate, KLOOK"
+    },
+    {
+      "id": 11,
+      "name": "Driver only",
+      "order_channel_id": 3,
+      "order_channel_name": "KLOOK",
+      "rate_per_day": 200000,
+      "rate_twt_per_day": 0,
+      "notes": "Driver only for extra MPV on KLOOK 10-pax"
+    },
+    {
+      "id": 12,
+      "name": "Driver only",
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "rate_per_day": 200000,
+      "rate_twt_per_day": 0,
+      "notes": "Driver only for extra MPV on JVTO 10-11 pax"
+    },
+    {
+      "id": 13,
+      "name": "Driver Outsources",
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "rate_per_day": 250000,
+      "rate_twt_per_day": 0,
+      "notes": "External/contracted driver, JVTO"
+    },
+    {
+      "id": 14,
+      "name": "Driver Outsources",
+      "order_channel_id": 3,
+      "order_channel_name": "KLOOK",
+      "rate_per_day": 250000,
+      "rate_twt_per_day": 0,
+      "notes": "External/contracted driver, KLOOK"
+    }
+  ]
+}

@@ -58,6 +58,54 @@ const TRAVEL_NOTES: Record<number, string> = {
   2: 'Transfer to Ijen area. Check-in and rest — midnight hike departs at 00:00.',
 }
 
+// Narrative route/itinerary description shown per day in the result view
+function buildRouteDescription(
+  seg: { actIds: number[]; hotelDestId: number | null; isTravel: boolean },
+  destNames: string[],
+  isFirst: boolean,
+  isLast: boolean,
+  pickupLabel: string,
+  dropoffLabel: string,
+  hasBaliDrop: boolean,
+  brain: BrainData
+): string {
+  const stagingName = seg.hotelDestId ? brain.destinations.find(d => d.id === seg.hotelDestId)?.name : null
+
+  if (seg.isTravel) {
+    const opening = isFirst
+      ? `The trip begins with pickup at ${pickupLabel}, then the route heads toward the ${stagingName} area`
+      : `From here, the route continues toward the ${stagingName} area`
+    if (destNames.length > 0) {
+      return `${opening}, stopping at ${destNames.join(' and ')} along the way. The group checks in for the night ahead of the early-hours climb.`
+    }
+    return `${opening}. The group checks in and rests at the hotel ahead of the early-hours climb.`
+  }
+
+  const hasBromoHike = seg.actIds.includes(1)
+  const hasIjenHike  = seg.actIds.includes(2)
+  const ferryNote = hasBaliDrop ? ', including the Ketapang–Gilimanuk ferry crossing to Bali' : ''
+
+  if (destNames.length > 0) {
+    const opening = isFirst
+      ? `The day starts with pickup at ${pickupLabel}, then heads to ${destNames.join(' and ')}.`
+      : `The route continues on to ${destNames.join(' and ')}.`
+    const hikeNote = hasBromoHike
+      ? ' The sunrise hike departs before dawn (around 03:00).'
+      : hasIjenHike
+      ? ' The blue-fire hike departs at midnight (00:00).'
+      : ''
+    const closing = isLast
+      ? ` Afterward, the group is transferred to the drop-off point at ${dropoffLabel}${ferryNote}.`
+      : ''
+    return `${opening}${hikeNote}${closing}`
+  }
+
+  if (isLast) {
+    return `The final leg of the trip: the group is transferred to the drop-off point at ${dropoffLabel}${ferryNote}.`
+  }
+  return 'A transfer day as the route repositions toward the next stop on the itinerary.'
+}
+
 function addDays(dateStr: string, n: number): string {
   const d = new Date(dateStr + 'T00:00:00')
   d.setDate(d.getDate() + n)
@@ -210,6 +258,10 @@ function generateDays(
       : null
     const room = hotel?.room_types?.[0] ?? null
 
+    const destNames = seg.actIds
+      .map(id => brain.destinations.find(d => d.id === id)?.name)
+      .filter((n): n is string => Boolean(n))
+
     return {
       dayNumber: idx + 1,
       date: startDate ? addDays(startDate, idx) : '',
@@ -227,6 +279,7 @@ function generateDays(
         dinner: seg.hotelDestId === 2,
       },
       notes: seg.notes,
+      routeDescription: buildRouteDescription(seg, destNames, isFirst, isLast, pickupLabel, dropoffLabel, hasBaliDrop, brain),
       dropoff: isLast ? { location: dropoffLabel, estimatedTime: dropoffTime } : null,
     }
   })

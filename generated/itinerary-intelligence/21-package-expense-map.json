@@ -1,0 +1,2397 @@
+{
+  "schema_version": 1,
+  "confidence": "verified",
+  "source_trace": [
+    {
+      "source": "new_backoffice",
+      "ref": "new-backoffice/export-data/activities/destination-activities",
+      "confidence": "verified"
+    }
+  ],
+  "note": "accommodation/hotel_id merujuk ke 17-hotels-master.json; activities merujuk ke id di 18-activities-master.json destination_activities; vehicle_ids/crew_ids merujuk ke 19-transport-master.json; other_ids merujuk ke 20-others-master.json catalog_items",
+  "packages": [
+    {
+      "package_id": "bromo-1d1n",
+      "backoffice_code": "SUB-1D1N-001",
+      "accommodation": [],
+      "activities": {
+        "Mount Bromo": [
+          "bromo-entrance-dom",
+          "bromo-entrance-for",
+          "bromo-jeep",
+          "bromo-parking",
+          "bromo-guide"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "package_id": "bromo-2d1n",
+      "backoffice_code": "SUB-2D1N-002",
+      "accommodation": [
+        {
+          "day": 1,
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo"
+        }
+      ],
+      "activities": {
+        "Mount Bromo": [
+          "bromo-entrance-dom",
+          "bromo-entrance-for",
+          "bromo-jeep",
+          "bromo-parking",
+          "bromo-guide"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "package_id": "ijen-2d1n",
+      "backoffice_code": "SUB-2D1N-001",
+      "accommodation": [
+        {
+          "day": 1,
+          "hotel_id": 34,
+          "hotel_name": "Riverside Homestay"
+        }
+      ],
+      "activities": {
+        "Mount Ijen": [
+          "ijen-entrance-dom",
+          "ijen-entrance-for",
+          "ijen-local-guide",
+          "ijen-gas-mask",
+          "ijen-porter"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "package_id": "bromo-madakaripura-ijen-3d2n",
+      "backoffice_code": "SUB-3D2N-001",
+      "accommodation": [
+        {
+          "day": 1,
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo"
+        },
+        {
+          "day": 2,
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo"
+        }
+      ],
+      "activities": {
+        "Mount Bromo": [
+          "bromo-entrance-dom",
+          "bromo-entrance-for",
+          "bromo-jeep",
+          "bromo-parking",
+          "bromo-guide"
+        ],
+        "Madakaripura Waterfall": [
+          "madak-entrance",
+          "madak-guide",
+          "madak-parking",
+          "madak-poncho"
+        ],
+        "Mount Ijen": [
+          "ijen-entrance-dom",
+          "ijen-entrance-for",
+          "ijen-local-guide",
+          "ijen-gas-mask",
+          "ijen-porter"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-3d2n",
+      "backoffice_code": "SUB-3D2N-002",
+      "accommodation": [
+        {
+          "day": 1,
+          "hotel_id": 34,
+          "hotel_name": "Riverside Homestay"
+        },
+        {
+          "day": 2,
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo"
+        }
+      ],
+      "activities": {
+        "Mount Ijen": [
+          "ijen-entrance-dom",
+          "ijen-entrance-for",
+          "ijen-local-guide",
+          "ijen-gas-mask",
+          "ijen-porter"
+        ],
+        "Mount Bromo": [
+          "bromo-entrance-dom",
+          "bromo-entrance-for",
+          "bromo-jeep",
+          "bromo-parking",
+          "bromo-guide"
+        ],
+        "Madakaripura Waterfall": [
+          "madak-entrance",
+          "madak-guide",
+          "madak-parking",
+          "madak-poncho"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "package_id": "taman-safari-prigen-bromo-madakaripura-3d2n",
+      "backoffice_code": "SUB-3D2N-006",
+      "accommodation": [
+        {
+          "day": 1,
+          "hotel_id": 42,
+          "hotel_name": "Baobab Safari Resort"
+        },
+        {
+          "day": 2,
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo"
+        }
+      ],
+      "activities": {
+        "Taman Safari Prigen": [
+          "safari-ticket-adult",
+          "safari-ticket-child"
+        ],
+        "Mount Bromo": [
+          "bromo-entrance-dom",
+          "bromo-entrance-for",
+          "bromo-jeep",
+          "bromo-parking",
+          "bromo-guide"
+        ],
+        "Madakaripura Waterfall": [
+          "madak-entrance",
+          "madak-guide",
+          "madak-parking",
+          "madak-poncho"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n",
+      "backoffice_code": "SUB-4D3N-002",
+      "accommodation": [
+        {
+          "day": 1,
+          "hotel_id": 34,
+          "hotel_name": "Riverside Homestay"
+        },
+        {
+          "day": 2,
+          "hotel_id": 33,
+          "hotel_name": "Doho Homestay"
+        },
+        {
+          "day": 3,
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo"
+        }
+      ],
+      "activities": {
+        "Mount Ijen": [
+          "ijen-entrance-dom",
+          "ijen-entrance-for",
+          "ijen-local-guide",
+          "ijen-gas-mask",
+          "ijen-porter"
+        ],
+        "Papuma Beach": [
+          "papuma-entrance",
+          "papuma-parking"
+        ],
+        "Tumpak Sewu Waterfall": [
+          "tumpak-entrance",
+          "tumpak-guide",
+          "tumpak-parking"
+        ],
+        "Mount Bromo": [
+          "bromo-entrance-dom",
+          "bromo-entrance-for",
+          "bromo-jeep",
+          "bromo-parking",
+          "bromo-guide"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-4d3n",
+      "backoffice_code": "SUB-4D3N-001",
+      "accommodation": [
+        {
+          "day": 1,
+          "hotel_id": 34,
+          "hotel_name": "Riverside Homestay"
+        },
+        {
+          "day": 2,
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo"
+        },
+        {
+          "day": 3,
+          "hotel_id": 6,
+          "hotel_name": "Holiday Inn Express Surabaya Centerpoint, an IHG Hotel"
+        }
+      ],
+      "activities": {
+        "Mount Ijen": [
+          "ijen-entrance-dom",
+          "ijen-entrance-for",
+          "ijen-local-guide",
+          "ijen-gas-mask",
+          "ijen-porter"
+        ],
+        "Mount Bromo": [
+          "bromo-entrance-dom",
+          "bromo-entrance-for",
+          "bromo-jeep",
+          "bromo-parking",
+          "bromo-guide"
+        ],
+        "Madakaripura Waterfall": [
+          "madak-entrance",
+          "madak-guide",
+          "madak-parking",
+          "madak-poncho"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "package_id": "tumpak-sewu-bromo-ijen-4d3n",
+      "backoffice_code": "SUB-4D3N-003",
+      "accommodation": [
+        {
+          "day": 1,
+          "hotel_id": 38,
+          "hotel_name": "Artha Cottage"
+        },
+        {
+          "day": 2,
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo"
+        },
+        {
+          "day": 3,
+          "hotel_id": 34,
+          "hotel_name": "Riverside Homestay"
+        }
+      ],
+      "activities": {
+        "Tumpak Sewu Waterfall": [
+          "tumpak-entrance",
+          "tumpak-guide",
+          "tumpak-parking"
+        ],
+        "Mount Bromo": [
+          "bromo-entrance-dom",
+          "bromo-entrance-for",
+          "bromo-jeep",
+          "bromo-parking",
+          "bromo-guide"
+        ],
+        "Mount Ijen": [
+          "ijen-entrance-dom",
+          "ijen-entrance-for",
+          "ijen-local-guide",
+          "ijen-gas-mask",
+          "ijen-porter"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n",
+      "backoffice_code": "SUB-5D4N-001",
+      "accommodation": [
+        {
+          "day": 1,
+          "hotel_id": 34,
+          "hotel_name": "Riverside Homestay"
+        },
+        {
+          "day": 2,
+          "hotel_id": 33,
+          "hotel_name": "Doho Homestay"
+        },
+        {
+          "day": 3,
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo"
+        },
+        {
+          "day": 4,
+          "hotel_id": 6,
+          "hotel_name": "Holiday Inn Express Surabaya Centerpoint, an IHG Hotel"
+        }
+      ],
+      "activities": {
+        "Mount Ijen": [
+          "ijen-entrance-dom",
+          "ijen-entrance-for",
+          "ijen-local-guide",
+          "ijen-gas-mask",
+          "ijen-porter"
+        ],
+        "Papuma Beach": [
+          "papuma-entrance",
+          "papuma-parking"
+        ],
+        "Tumpak Sewu Waterfall": [
+          "tumpak-entrance",
+          "tumpak-guide",
+          "tumpak-parking"
+        ],
+        "Mount Bromo": [
+          "bromo-entrance-dom",
+          "bromo-entrance-for",
+          "bromo-jeep",
+          "bromo-parking",
+          "bromo-guide"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-malang-5d4n",
+      "backoffice_code": "SUB-5D4N-002",
+      "accommodation": [
+        {
+          "day": 1,
+          "hotel_id": 34,
+          "hotel_name": "Riverside Homestay"
+        },
+        {
+          "day": 2,
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo"
+        },
+        {
+          "day": 3,
+          "hotel_id": 13,
+          "hotel_name": "Whiz Prime Malang"
+        },
+        {
+          "day": 4,
+          "hotel_id": 6,
+          "hotel_name": "Holiday Inn Express Surabaya Centerpoint, an IHG Hotel"
+        }
+      ],
+      "activities": {
+        "Mount Ijen": [
+          "ijen-entrance-dom",
+          "ijen-entrance-for",
+          "ijen-local-guide",
+          "ijen-gas-mask",
+          "ijen-porter"
+        ],
+        "Mount Bromo": [
+          "bromo-entrance-dom",
+          "bromo-entrance-for",
+          "bromo-jeep",
+          "bromo-parking",
+          "bromo-guide"
+        ],
+        "Madakaripura Waterfall": [
+          "madak-entrance",
+          "madak-guide",
+          "madak-parking",
+          "madak-poncho"
+        ],
+        "Malang City": [
+          "mlg-coban-rondo",
+          "mlg-selecta"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
+      "backoffice_code": "SUB-6D5N-001",
+      "accommodation": [
+        {
+          "day": 1,
+          "hotel_id": 34,
+          "hotel_name": "Riverside Homestay"
+        },
+        {
+          "day": 2,
+          "hotel_id": 33,
+          "hotel_name": "Doho Homestay"
+        },
+        {
+          "day": 3,
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo"
+        },
+        {
+          "day": 4,
+          "hotel_id": 13,
+          "hotel_name": "Whiz Prime Malang"
+        },
+        {
+          "day": 5,
+          "hotel_id": 6,
+          "hotel_name": "Holiday Inn Express Surabaya Centerpoint, an IHG Hotel"
+        }
+      ],
+      "activities": {
+        "Mount Ijen": [
+          "ijen-entrance-dom",
+          "ijen-entrance-for",
+          "ijen-local-guide",
+          "ijen-gas-mask",
+          "ijen-porter"
+        ],
+        "Papuma Beach": [
+          "papuma-entrance",
+          "papuma-parking"
+        ],
+        "Tumpak Sewu Waterfall": [
+          "tumpak-entrance",
+          "tumpak-guide",
+          "tumpak-parking"
+        ],
+        "Mount Bromo": [
+          "bromo-entrance-dom",
+          "bromo-entrance-for",
+          "bromo-jeep",
+          "bromo-parking",
+          "bromo-guide"
+        ],
+        "Malang City": [
+          "mlg-coban-rondo",
+          "mlg-selecta"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "package_id": "bromo-ijen-3d2n",
+      "backoffice_code": "SUB-3D2N-004",
+      "accommodation": [
+        {
+          "day": 1,
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo"
+        },
+        {
+          "day": 2,
+          "hotel_id": 34,
+          "hotel_name": "Riverside Homestay"
+        }
+      ],
+      "activities": {
+        "Mount Bromo": [
+          "bromo-entrance-dom",
+          "bromo-entrance-for",
+          "bromo-jeep",
+          "bromo-parking",
+          "bromo-guide"
+        ],
+        "Mount Ijen": [
+          "ijen-entrance-dom",
+          "ijen-entrance-for",
+          "ijen-local-guide",
+          "ijen-gas-mask",
+          "ijen-porter"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "package_id": "bromo-ijen-3d2n-bali",
+      "backoffice_code": "BALI-3D2N-001",
+      "accommodation": [
+        {
+          "day": 1,
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo"
+        },
+        {
+          "day": 2,
+          "hotel_id": 34,
+          "hotel_name": "Riverside Homestay"
+        }
+      ],
+      "activities": {
+        "Mount Bromo": [
+          "bromo-entrance-dom",
+          "bromo-entrance-for",
+          "bromo-jeep",
+          "bromo-parking",
+          "bromo-guide"
+        ],
+        "Mount Ijen": [
+          "ijen-entrance-dom",
+          "ijen-entrance-for",
+          "ijen-local-guide",
+          "ijen-gas-mask",
+          "ijen-porter"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "package_id": "ijen-bromo-madakaripura-3d2n-bali",
+      "backoffice_code": "BALI-3D2N-003",
+      "accommodation": [
+        {
+          "day": 1,
+          "hotel_id": 32,
+          "hotel_name": "Luminor Hotel"
+        },
+        {
+          "day": 2,
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo"
+        }
+      ],
+      "activities": {
+        "Mount Ijen": [
+          "ijen-entrance-dom",
+          "ijen-entrance-for",
+          "ijen-local-guide",
+          "ijen-gas-mask",
+          "ijen-porter"
+        ],
+        "Mount Bromo": [
+          "bromo-entrance-dom",
+          "bromo-entrance-for",
+          "bromo-jeep",
+          "bromo-parking",
+          "bromo-guide"
+        ],
+        "Madakaripura Waterfall": [
+          "madak-entrance",
+          "madak-guide",
+          "madak-parking",
+          "madak-poncho"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "package_id": "ijen-papuma-tumpak-sewu-bromo-4d3n-bali",
+      "backoffice_code": "BALI-4D3N-001",
+      "accommodation": [
+        {
+          "day": 1,
+          "hotel_id": 32,
+          "hotel_name": "Luminor Hotel"
+        },
+        {
+          "day": 2,
+          "hotel_id": 33,
+          "hotel_name": "Doho Homestay"
+        },
+        {
+          "day": 3,
+          "hotel_id": 11,
+          "hotel_name": "Joglo Kecombrang Bromo"
+        }
+      ],
+      "activities": {
+        "Mount Ijen": [
+          "ijen-entrance-dom",
+          "ijen-entrance-for",
+          "ijen-local-guide",
+          "ijen-gas-mask",
+          "ijen-porter"
+        ],
+        "Papuma Beach": [
+          "papuma-entrance",
+          "papuma-parking"
+        ],
+        "Tumpak Sewu Waterfall": [
+          "tumpak-entrance",
+          "tumpak-guide",
+          "tumpak-parking"
+        ],
+        "Mount Bromo": [
+          "bromo-entrance-dom",
+          "bromo-entrance-for",
+          "bromo-jeep",
+          "bromo-parking",
+          "bromo-guide"
+        ]
+      },
+      "resources": [
+        {
+          "pax": 1,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 2,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 3,
+          "vehicle_ids": [
+            "1"
+          ],
+          "crew_ids": [
+            "5"
+          ]
+        },
+        {
+          "pax": 4,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 5,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 6,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 7,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 8,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 9,
+          "vehicle_ids": [
+            "5"
+          ],
+          "crew_ids": [
+            "6"
+          ]
+        },
+        {
+          "pax": 10,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        },
+        {
+          "pax": 11,
+          "vehicle_ids": [
+            "5",
+            "1"
+          ],
+          "crew_ids": [
+            "6",
+            "12"
+          ]
+        }
+      ],
+      "other_ids": [
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ]
+}

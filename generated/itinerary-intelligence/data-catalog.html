@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JVTO — Data Catalog</title>
+<!-- Last updated: 2026-06-23 | Files: 27 -->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f4f6f9;
+    color: #1a2332;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #1a6b3a 100%);
+    color: #fff;
+    padding: 36px 40px 28px;
+  }
+  .header h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.3px; }
+  .header p  { font-size: 13px; color: #a8c8b8; margin-top: 6px; }
+  .header .stats {
+    display: flex; gap: 24px; margin-top: 18px; flex-wrap: wrap;
+  }
+  .stat {
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 10px 16px;
+    text-align: center;
+  }
+  .stat .num { font-size: 22px; font-weight: 700; }
+  .stat .lbl { font-size: 11px; color: #c8ddd4; margin-top: 2px; }
+
+  /* ── Nav tabs ── */
+  .nav {
+    background: #fff;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex; gap: 0; overflow-x: auto;
+    padding: 0 40px;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .nav-btn {
+    padding: 12px 16px; font-size: 13px; font-weight: 500;
+    color: #64748b; cursor: pointer; border: none; background: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color .15s, border-color .15s;
+  }
+  .nav-btn.active { color: #1e3a5f; border-bottom-color: #1e3a5f; }
+  .nav-btn:hover  { color: #1e3a5f; }
+
+  /* ── Main layout ── */
+  .main { max-width: 1200px; margin: 0 auto; padding: 32px 40px 80px; }
+
+  /* ── Section heading ── */
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: #94a3b8;
+    margin: 36px 0 12px;
+  }
+  .section-label:first-child { margin-top: 0; }
+
+  /* ── Card ── */
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: box-shadow .15s;
+  }
+  .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.07); }
+
+  .card-header {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 18px 20px 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .file-badge {
+    background: #1e3a5f; color: #fff;
+    font-size: 11px; font-weight: 700;
+    padding: 3px 8px; border-radius: 6px;
+    white-space: nowrap; flex-shrink: 0; margin-top: 2px;
+  }
+  .file-badge.active-badge { background: #1a6b3a; }
+  .file-badge.support-badge { background: #6b46c1; }
+
+  .card-title { font-size: 15px; font-weight: 600; color: #1a2332; }
+  .card-desc  { font-size: 13px; color: #64748b; margin-top: 3px; }
+
+  .card-meta {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;
+  }
+  .chip {
+    font-size: 11px; padding: 2px 8px; border-radius: 20px;
+    font-weight: 500;
+  }
+  .chip-green  { background: #dcfce7; color: #166534; }
+  .chip-blue   { background: #dbeafe; color: #1e40af; }
+  .chip-purple { background: #ede9fe; color: #6b21a8; }
+  .chip-gray   { background: #f1f5f9; color: #475569; }
+  .chip-amber  { background: #fef9c3; color: #854d0e; }
+
+  .toggle-icon {
+    margin-left: auto; font-size: 18px; color: #94a3b8;
+    transition: transform .2s; flex-shrink: 0;
+  }
+  .card.open .toggle-icon { transform: rotate(180deg); }
+
+  /* ── Card body (examples) ── */
+  .card-body { display: none; }
+  .card.open .card-body { display: block; }
+
+  .card-body-inner { padding: 0 20px 18px; }
+
+  .example-label {
+    font-size: 11px; font-weight: 700; color: #94a3b8;
+    letter-spacing: .8px; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .example-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 13px;
+  }
+  .example-table th {
+    background: #f8fafc; font-weight: 600;
+    color: #475569; font-size: 11px;
+    text-transform: uppercase; letter-spacing: .5px;
+    padding: 7px 12px; text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .example-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: top;
+  }
+  .example-table tr:last-child td { border-bottom: none; }
+  .example-table td:first-child { font-weight: 500; color: #1a2332; white-space: nowrap; }
+  .example-table td:last-child  { color: #4b5563; }
+
+  .divider { border: none; border-top: 1px solid #f1f5f9; margin: 12px 0; }
+
+  /* ── Search ── */
+  .search-bar {
+    padding: 16px 40px 0;
+    background: #f4f6f9;
+  }
+  .search-input {
+    width: 100%; max-width: 480px;
+    padding: 9px 14px; font-size: 14px;
+    border: 1px solid #d1d9e0; border-radius: 8px;
+    background: #fff; outline: none;
+    color: #1a2332;
+  }
+  .search-input:focus { border-color: #1e3a5f; box-shadow: 0 0 0 3px rgba(30,58,95,.1); }
+
+  /* ── Section hidden ── */
+  .tab-section { display: none; }
+  .tab-section.visible { display: block; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <h1>JVTO — Data Catalog</h1>
+  <p>Semua file data di <code>generated/itinerary-intelligence/</code> — tujuan, isi, dan contoh data</p>
+  <div class="stats">
+    <div class="stat"><div class="num">27</div><div class="lbl">File Generated</div></div>
+    <div class="stat"><div class="num">8</div><div class="lbl">File Aktif di App</div></div>
+    <div class="stat"><div class="num">17</div><div class="lbl">File Intelligence</div></div>
+    <div class="stat"><div class="num">27</div><div class="lbl">Hotel</div></div>
+    <div class="stat"><div class="num">26</div><div class="lbl">Aktivitas</div></div>
+    <div class="stat"><div class="num">10</div><div class="lbl">Destinasi</div></div>
+  </div>
+</div>
+
+<!-- Nav -->
+<div class="nav">
+  <button class="nav-btn active" onclick="showTab('all', this)">Semua (27)</button>
+  <button class="nav-btn" onclick="showTab('active', this)">Aktif di App (8)</button>
+  <button class="nav-btn" onclick="showTab('intelligence', this)">Intelligence (17)</button>
+  <button class="nav-btn" onclick="showTab('routing', this)">Routing & Rute (4)</button>
+  <button class="nav-btn" onclick="showTab('operational', this)">Operasional (6)</button>
+  <button class="nav-btn" onclick="showTab('pricing', this)">Harga & Paket (3)</button>
+  <button class="nav-btn" onclick="showTab('master', this)">Master Data (7)</button>
+</div>
+
+<!-- Search -->
+<div class="search-bar">
+  <input class="search-input" type="text" placeholder="Cari file, tujuan, atau contoh data..." oninput="filterCards(this.value)">
+</div>
+
+<!-- Main -->
+<div class="main">
+
+<!-- ══════════════════════════════════════════
+     TAB: ALL / ACTIVE / INTELLIGENCE
+══════════════════════════════════════════ -->
+
+<!-- FILE 01 -->
+<div class="card" data-tags="pickup jemput airport bandara stasiun pelabuhan routing aktif all active master">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge active-badge">01</span>
+    <div>
+      <div class="card-title">Pickup Contexts</div>
+      <div class="card-desc">Aturan tiap titik jemput: waktu buffer, informasi yang perlu ditanya ke customer, dan risiko yang mempengaruhi hari pertama tour.</div>
+      <div class="card-meta">
+        <span class="chip chip-green">Aktif di App</span>
+        <span class="chip chip-gray">7 tipe jemput</span>
+        <span class="chip chip-blue">pickup-contexts.json · 6KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Titik Jemput</th><th>Detail</th></tr>
+      <tr><td>Surabaya Airport</td><td>Buffer 45 min · Tanya: flight number, arrival time, kota asal · Risiko: flight delay, baggage delay</td></tr>
+      <tr><td>Surabaya Hotel</td><td>Buffer 15 min · Tanya: nama hotel, jam siap · Risiko: late checkout, luggage loading</td></tr>
+      <tr><td>Surabaya Train Station</td><td>Buffer 20 min · Tanya: nomor kereta, jam tiba · Risiko: kereta telat, keramaian stasiun</td></tr>
+      <tr><td>Surabaya Harbor</td><td>Buffer 30 min · Tanya: kapal dari mana, jam sandar · Risiko: keterlambatan kapal</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 02 -->
+<div class="card" data-tags="dropoff antar pulang bali ketapang bandara routing aktif all active master">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge active-badge">02</span>
+    <div>
+      <div class="card-title">Dropoff Contexts</div>
+      <div class="card-desc">Aturan tiap titik antar pulang: koneksi ke destinasi berikutnya, biaya tambahan yang mungkin muncul, dan risiko.</div>
+      <div class="card-meta">
+        <span class="chip chip-green">Aktif di App</span>
+        <span class="chip chip-gray">7 tipe antar</span>
+        <span class="chip chip-blue">dropoff-contexts.json · 5KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Titik Antar</th><th>Detail</th></tr>
+      <tr><td>Ketapang Harbor</td><td>Nyambung ke: Gilimanuk, Ubud, Canggu, Seminyak, Denpasar Airport · Biaya: ferry ticket, transfer Bali</td></tr>
+      <tr><td>Surabaya Airport</td><td>Biaya: tergantung rute · Risiko: kemacetan Surabaya, harus ada buffer ke jadwal penerbangan</td></tr>
+      <tr><td>Bali Hotel</td><td>Diantar langsung ke hotel Bali setelah ferry · Biaya: Bali transfer</td></tr>
+      <tr><td>Malang City</td><td>Antar ke kota Malang (hotel / stasiun) setelah Bromo</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 03 -->
+<div class="card" data-tags="time window waktu ijen bromo terlambat warning rules intelligence all operational">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">03</span>
+    <div>
+      <div class="card-title">Time Window Rules</div>
+      <div class="card-desc">3 kondisi waktu kritis yang mempengaruhi keselamatan dan kenyamanan tour. Dipakai untuk otomatis memberi warning kepada customer.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">3 rules</span>
+        <span class="chip chip-blue">time-window-rules.json · 3KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Kondisi</th><th>Severity & Rekomendasi</th></tr>
+      <tr><td>Tiba terlambat sebelum Ijen (setelah 21:00)</td><td><strong>HIGH</strong> · Tambah 1 malam atau ubah urutan rute agar Ijen tidak dilakukan setelah tiba telat</td></tr>
+      <tr><td>Tiba malam dari Surabaya sebelum Bromo sunrise</td><td><strong>MEDIUM</strong> · Mungkin dilakukan tapi melelahkan. Rekomendasikan tiba lebih awal atau tambah 1 malam</td></tr>
+      <tr><td>Aktivitas air terjun sebelum pesawat ketat</td><td><strong>HIGH</strong> · Jangan jadwalkan air terjun sebelum dropoff bandara. Skip air terjun atau tambah 1 malam</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 04 -->
+<div class="card" data-tags="route rute jarak km waktu tempuh bromo ijen surabaya malang banyuwangi intelligence all routing">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">04</span>
+    <div>
+      <div class="card-title">Route Leg Index</div>
+      <div class="card-desc">16 rute jalan antar titik dengan jarak km, waktu tempuh normal vs macet, risiko, dan paket mana yang menggunakan rute ini.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">16 rute</span>
+        <span class="chip chip-blue">route-leg-index.json · 24KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Rute</th><th>Jarak & Waktu Tempuh</th></tr>
+      <tr><td>Surabaya Airport → Bromo Area</td><td>116 km · Normal ±3.5 jam · Macet ±4.5 jam · Bisa meal stop: ✓</td></tr>
+      <tr><td>Bromo Area → Madakaripura</td><td>30 km · ±45–60 menit berkendara + 20–30 menit jalan kaki</td></tr>
+      <tr><td>Bromo Area → Bondowoso / Ijen Area</td><td>225 km · ±5–7 jam · Jalur gunung malam</td></tr>
+      <tr><td>Bondowoso / Ijen Area → Ijen Crater</td><td>64 km · ±1.5–2 jam · Berangkat jam 00:00</td></tr>
+      <tr><td>Ijen Crater → Ketapang Harbor</td><td>±1–1.5 jam · Risiko antri ferry</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 05 -->
+<div class="card" data-tags="road kondisi jalan hujan macet ferry air terjun intelligence all routing operational">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">05</span>
+    <div>
+      <div class="card-title">Road Situation Profiles</div>
+      <div class="card-desc">12 profil kondisi jalan yang bisa mempengaruhi akses ke destinasi — hujan, macet libur, gunung malam, ferry, dll.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">12 profil</span>
+        <span class="chip chip-blue">road-situation-profiles.json · 8KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Situasi Jalan</th><th>Berlaku Untuk & Risiko</th></tr>
+      <tr><td>Waterfall access road</td><td>Tumpak Sewu, Madakaripura · Hujan → licin/tertutup · Jangan sebelum jadwal pesawat ketat</td></tr>
+      <tr><td>Night mountain drive</td><td>Bromo, Ijen · Visibilitas terbatas, driver fatigue</td></tr>
+      <tr><td>Ferry crossing</td><td>Ketapang–Gilimanuk · Risiko antri panjang, keterlambatan penyeberangan</td></tr>
+      <tr><td>City exit (Surabaya / Malang)</td><td>Rush hour pagi/sore · Bisa tambah 1–2 jam perjalanan</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 06 -->
+<div class="card" data-tags="aktivitas destinasi bromo ijen tumpak sewu fatigue jam intelligence all operational">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">06</span>
+    <div>
+      <div class="card-title">Destination Activity Profiles</div>
+      <div class="card-desc">Detail operasional tiap destinasi: jendela waktu aktivitas, tingkat kelelahan (fatigue score), hotel terbaik sebelumnya, dan warning rules.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">8 destinasi</span>
+        <span class="chip chip-blue">destination-activity-profiles.json · 14KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Destinasi</th><th>Jadwal & Fatigue</th></tr>
+      <tr><td>Mount Bromo</td><td>Jeep 02:30 → Sunrise 04:30 → Kawah 06:00 → Selesai 09:30 · Fatigue: 3/5 · Hotel terbaik: Bromo Area</td></tr>
+      <tr><td>Mount Ijen</td><td>Berangkat 00:00 → Trek mulai 02:00 → Sunrise kawah 05:00 → Selesai 08:00 · Fatigue: 5/5</td></tr>
+      <tr><td>Tumpak Sewu</td><td>Mulai 07:00–08:00 → Selesai 11:00–13:00 · Fatigue: 5/5 · Trek turun curam</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 07 -->
+<div class="card" data-tags="operasional event ijen medical check dinner briefing jeep intelligence all operational">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">07</span>
+    <div>
+      <div class="card-title">Operational Events</div>
+      <div class="card-desc">9 momen kritis dalam tour yang punya urutan dan timing ketat — dari dinner sebelum Ijen sampai handoff jeep Bromo.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">9 events</span>
+        <span class="chip chip-blue">operational-events.json · 9KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Event</th><th>Urutan & Batas Waktu</th></tr>
+      <tr><td>Bondowoso dinner & medical check sebelum Ijen</td><td>Check-in → Makan malam → Medical check → Briefing Ijen → Istirahat · Tiba MAKS 21:00</td></tr>
+      <tr><td>Bromo jeep handoff</td><td>Pickup hotel → Transfer ke jeep → Menuju Penanjakan sunrise viewpoint · Berangkat 02:30</td></tr>
+      <tr><td>Local guide handoff (air terjun)</td><td>Parkir → Meet local guide → Masuk area air terjun · Mulai pagi, selesai sebelum siang</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 08 -->
+<div class="card" data-tags="makan meal breakfast lunch dinner ijen bromo logic intelligence all operational">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">08</span>
+    <div>
+      <div class="card-title">Meal Logic</div>
+      <div class="card-desc">6 rules kapan sarapan, makan siang, atau makan malam masuk ke expense — dan kapan tidak perlu ditagihkan.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">6 rules</span>
+        <span class="chip chip-blue">meal-logic.json · 7KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Kondisi</th><th>Meal & Aturan</th></tr>
+      <tr><td>Malam sebelum Ijen</td><td>Dinner wajib (Rp 80–95k/pax) · Disusun sebelum medical check · Sudah included di 2 paket</td></tr>
+      <tr><td>Aktivitas pagi sangat awal (Bromo)</td><td>Breakfast takeaway karena hotel belum buka jam 02:00</td></tr>
+      <tr><td>Transfer panjang >4 jam tanpa destinasi</td><td>Lunch di luar tanggungan (masing-masing bayar) · Noted ke customer</td></tr>
+      <tr><td>Hari Madakaripura (pulang ke Surabaya)</td><td>Hanya breakfast · Tidak ada lunch/dinner karena langsung balik</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 09 -->
+<div class="card" data-tags="penginapan hotel area bondowoso bromo tumpak sewu intelligence all operational">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">09</span>
+    <div>
+      <div class="card-title">Accommodation Logic</div>
+      <div class="card-desc">6 rules penginapan per area: kenapa perlu menginap di sini, cocok untuk rute mana, dan risiko kalau tiba terlambat.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">6 area</span>
+        <span class="chip chip-blue">accommodation-logic.json · 16KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Area</th><th>Tujuan & Risiko Tiba Telat</th></tr>
+      <tr><td>Bondowoso / Ijen Area</td><td>Staging malam sebelum naik Ijen · Medical bisa di hotel · Tiba maks 21:00 → kurang istirahat, dinner terburu</td></tr>
+      <tr><td>Bromo Area</td><td>Staging malam sebelum sunrise Bromo · Risiko telat: jeep tidak bisa ditunggu, sunrise terlewat</td></tr>
+      <tr><td>Tumpak Sewu / Lumajang</td><td>Staging malam sebelum turun ke air terjun · Risiko telat: start siang, kelelahan saat turun</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 10 -->
+<div class="card" data-tags="biaya cost komponen formula vehicle bromo ijen ticket jeep intelligence all pricing">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">10</span>
+    <div>
+      <div class="card-title">Cost Components</div>
+      <div class="card-desc">22 komponen biaya dengan formula kalkulasi, kategori, dan channel mana yang menggunakannya (JVTO / TWT / KLOOK).</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">22 komponen</span>
+        <span class="chip chip-blue">cost-components.json · 23KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Komponen</th><th>Kategori & Formula</th></tr>
+      <tr><td>Private vehicle day cost</td><td>transport_day_cost · <code>vehicle_day_rate × tour_days</code> · Tidak tampil ke customer</td></tr>
+      <tr><td>Bromo Jeep</td><td>jeep · <code>jeep_unit_price × Math.ceil(pax/4)</code></td></tr>
+      <tr><td>Bromo entrance fee</td><td>destination_ticket · <code>bromo_entry_rate(nationality, day_type) × pax</code></td></tr>
+      <tr><td>Ijen entrance fee</td><td>destination_ticket · <code>ijen_entry_rate(nationality, day_type) × pax</code></td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 11 -->
+<div class="card" data-tags="paket package rute route bromo ijen tumpak sewu malang bali intelligence all routing">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">11</span>
+    <div>
+      <div class="card-title">Package Route Map</div>
+      <div class="card-desc">17 paket wisata dengan urutan rute lengkap, leg jalan yang dilalui, opsi dropoff standar, dan kustomisasi yang memungkinkan.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">17 paket</span>
+        <span class="chip chip-blue">package-route-map.json · 19KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Paket</th><th>Rute</th></tr>
+      <tr><td>2D1N Ijen</td><td>Surabaya → Bondowoso / Ijen Area → Ijen Crater → Surabaya</td></tr>
+      <tr><td>3D2N Bromo, Madakaripura, Ijen</td><td>Surabaya → Bromo → Madakaripura → Bondowoso / Ijen → Ijen Crater → Ketapang Harbor</td></tr>
+      <tr><td>4D3N Ijen, Papuma, Tumpak Sewu, Bromo</td><td>Surabaya → Ijen → Papuma → Tumpak Sewu → Bromo → Surabaya</td></tr>
+      <tr><td>5D4N Bromo, Ijen, Malang</td><td>Surabaya → Bromo → Ijen → Malang → Surabaya</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 12 -->
+<div class="card" data-tags="rekomendasi recommendation rules backtracking ketapang bali warning intelligence all operational">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">12</span>
+    <div>
+      <div class="card-title">Recommendation Rules</div>
+      <div class="card-desc">11 rules otomatis: kalau kondisi tertentu terpenuhi, sistem merekomendasikan alternatif atau memberi peringatan.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">11 rules</span>
+        <span class="chip chip-blue">recommendation-rules.json · 16KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Kondisi</th><th>Rekomendasi</th></tr>
+      <tr><td>Dropoff di Ketapang/Bali, rute Ijen→Bromo→Ketapang</td><td><strong>HIGH</strong> · Ubah ke rute barat→timur: Surabaya → Bromo → Ijen → Ketapang (lebih efisien)</td></tr>
+      <tr><td>Tiba malam dari bandara, besok Bromo</td><td><strong>MEDIUM</strong> · Bisa dilakukan tapi melelahkan. Sarankan tiba lebih awal</td></tr>
+      <tr><td>Air terjun dijadwalkan sebelum pesawat ketat</td><td><strong>HIGH</strong> · Jangan letakkan Tumpak Sewu/Madakaripura sebelum dropoff bandara dengan jadwal mepet</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 13 -->
+<div class="card" data-tags="peta map koordinat gps visual layer bromo ijen surabaya intelligence all routing">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">13</span>
+    <div>
+      <div class="card-title">Visual Map Layer</div>
+      <div class="card-desc">Koordinat GPS semua titik (destinasi, area hotel, pickup/dropoff) dan garis rute untuk tampilan peta interaktif.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">1 layer · banyak titik</span>
+        <span class="chip chip-blue">visual-map-layer.json · 4KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Titik</th><th>Koordinat & Status</th></tr>
+      <tr><td>Mount Bromo</td><td>lat <strong>-7.942</strong>, lng <strong>112.953</strong> · ✅ Verified (JVTO Web)</td></tr>
+      <tr><td>Madakaripura Waterfall</td><td>lat <strong>-7.933</strong>, lng <strong>113.008</strong> · ✅ Verified</td></tr>
+      <tr><td>Ijen Crater</td><td>lat <strong>-8.058</strong>, lng <strong>114.242</strong> · ✅ Verified</td></tr>
+      <tr><td>Surabaya Airport</td><td>lat —, lng — · ⚠️ Perlu geocode</td></tr>
+      <tr><td>Bondowoso / Ijen Area</td><td>lat —, lng — · ⚠️ Perlu geocode</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 14 -->
+<div class="card" data-tags="template output pdf whatsapp website ai format intelligence all operational">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">14</span>
+    <div>
+      <div class="card-title">Output Template Map</div>
+      <div class="card-desc">6 template output (PDF customer, halaman website, WhatsApp, AI context, dll) beserta seksi wajib yang harus ada di tiap output.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">6 template</span>
+        <span class="chip chip-blue">output-template-map.json · 3KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Template</th><th>Seksi Wajib</th></tr>
+      <tr><td>Customer PDF</td><td>title, route overview, daily itinerary, pickup/dropoff, inclusions, exclusions, important notes, map</td></tr>
+      <tr><td>Website Page</td><td>hero, route map, itinerary days, destination highlights, pricing table</td></tr>
+      <tr><td>WhatsApp Summary</td><td>feasibility answer, recommended route, key warnings, price note</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 15 -->
+<div class="card" data-tags="scenario preview sample testing contoh intelligence all operational">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">15</span>
+    <div>
+      <div class="card-title">Scenario Preview Sample</div>
+      <div class="card-desc">Satu contoh input customer yang sudah diproses lengkap oleh sistem — dipakai untuk testing dan validasi pipeline.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Testing only</span>
+        <span class="chip chip-gray">1 skenario</span>
+        <span class="chip chip-blue">scenario-preview-sample.json · 6KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Field</th><th>Value</th></tr>
+      <tr><td>Skenario</td><td>Surabaya Airport → Bromo → Ijen → Ketapang</td></tr>
+      <tr><td>Status</td><td>possible_with_warning</td></tr>
+      <tr><td>Isi</td><td>Input customer + rute yang dihasilkan + warnings yang muncul + breakdown biaya</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 16 -->
+<div class="card" data-tags="pricing harga paket pax tier bromo ijen tumpak sewu intelligence all pricing">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">16</span>
+    <div>
+      <div class="card-title">Package Pricing</div>
+      <div class="card-desc">Harga jual tiap paket per tier jumlah tamu — dari 1 pax sampai group. Acuan harga paket standar JVTO.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">17 paket</span>
+        <span class="chip chip-blue">package-pricing.json · 10KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Paket</th><th>Tier Pax</th></tr>
+      <tr><td>bromo-2d1n</td><td>6 tier pax · Ferry: tidak termasuk</td></tr>
+      <tr><td>ijen-2d1n</td><td>6 tier pax · Ferry: tidak termasuk</td></tr>
+      <tr><td>bromo-madakaripura-ijen-3d2n</td><td>7 tier pax · Ferry: tidak termasuk</td></tr>
+      <tr><td>ijen-papuma-tumpak-sewu-bromo-4d3n</td><td>7 tier pax · Ferry: tidak termasuk</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<hr class="divider" style="margin: 28px 0; border-color: #e2e8f0;">
+<div class="section-label">Master Data — Aktif Dipakai Itinerary Builder</div>
+
+<!-- FILE 17 -->
+<div class="card" data-tags="hotel penginapan bromo ijen malang surabaya banyuwangi kamar rate master all active">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge active-badge">17</span>
+    <div>
+      <div class="card-title">Hotels Master</div>
+      <div class="card-desc">Database 27 hotel JVTO lengkap: alamat, nomor telepon, semua tipe kamar beserta rate per malam, dan rate makan siang/malam.</div>
+      <div class="card-meta">
+        <span class="chip chip-green">Aktif di App</span>
+        <span class="chip chip-gray">27 hotel · 162 tipe kamar</span>
+        <span class="chip chip-blue">hotels-master.json · 37KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Hotel</th><th>Area & Rate</th></tr>
+      <tr><td>Baratha Hotel and Resto</td><td>Area Ijen (Bondowoso) · 8 tipe kamar · Dinner Rp 60.000/pax</td></tr>
+      <tr><td>Joglo Kecombrang Bromo</td><td>Area Bromo · 4 tipe kamar · Default hotel Bromo di app</td></tr>
+      <tr><td>Riverside Homestay</td><td>Area Ijen · 10 tipe kamar · Default hotel Ijen di app</td></tr>
+      <tr><td>Lava View Lodge</td><td>Area Bromo · 13 tipe kamar</td></tr>
+      <tr><td>Manis Ae Cabin & Resto Bromo</td><td>Area Bromo · 37 tipe kamar (terbanyak)</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 18 -->
+<div class="card" data-tags="aktivitas activity bromo ijen ticket jeep guide madakaripura tumpak sewu papuma safari master all active">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge active-badge">18</span>
+    <div>
+      <div class="card-title">Activities Master</div>
+      <div class="card-desc">26 aktivitas per destinasi dengan harga, formula jumlah (per pax / per grup), dan flag apakah masuk ke expense otomatis JVTO.</div>
+      <div class="card-meta">
+        <span class="chip chip-green">Aktif di App</span>
+        <span class="chip chip-gray">26 aktivitas · 10 destinasi</span>
+        <span class="chip chip-blue">activities-master.json · 19KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data (default JVTO = masuk expense otomatis)</div>
+    <table class="example-table">
+      <tr><th>Aktivitas</th><th>Destinasi · Harga · Qty Formula · Default</th></tr>
+      <tr><td>Bromo Ticket</td><td>Mount Bromo · Rp 160.000 · per pax · ✅ Default</td></tr>
+      <tr><td>Bromo Jeep</td><td>Mount Bromo · Rp 500.000 · per 4 pax (<code>Math.ceil(pax/4)</code>) · ✅ Default</td></tr>
+      <tr><td>Ijen Ticket</td><td>Mount Ijen · Rp 75.000 · per pax · ✅ Default</td></tr>
+      <tr><td>Local Guide (Ijen)</td><td>Mount Ijen · Rp 250.000 · per trip · ✅ Default</td></tr>
+      <tr><td>Medical Checkup</td><td>Mount Ijen · Rp 35.000 · per pax · ✅ Default</td></tr>
+      <tr><td>Madakaripura Ticket</td><td>Madakaripura · Rp 90.000 · per pax · ✅ Default</td></tr>
+      <tr><td>Tumpak Sewu Ticket</td><td>Tumpak Sewu · Rp 100.000 · per pax · ✅ Default</td></tr>
+      <tr><td>Taman Safari Admission</td><td>Taman Safari Prigen · Rp 425.000 · per pax · ✅ Default</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 19 -->
+<div class="card" data-tags="transport kendaraan mobil hiace mpv innova elf bus crew driver guide master all active">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge active-badge">19</span>
+    <div>
+      <div class="card-title">Transport Master</div>
+      <div class="card-desc">6 tipe kendaraan JVTO dengan kapasitas dan rate per hari per channel (JVTO vs TWT), plus 10 unit kendaraan dan 14 crew role.</div>
+      <div class="card-meta">
+        <span class="chip chip-green">Aktif di App</span>
+        <span class="chip chip-gray">6 tipe · 10 unit · 14 crew role</span>
+        <span class="chip chip-blue">transport-master.json · 5KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Kendaraan</th><th>Kapasitas & Rate</th></tr>
+      <tr><td>MPV (Avanza/Sigra)</td><td>1–3 pax · JVTO Rp 250.000/hari · TWT Rp 500.000/hari</td></tr>
+      <tr><td>Innova Reborn</td><td>3 pax · JVTO Rp 350.000/hari · TWT Rp 570.000/hari</td></tr>
+      <tr><td>Hiace Commuter</td><td>4–9 pax · JVTO Rp 1.100.000/hari · TWT Rp 1.100.000/hari</td></tr>
+      <tr><td>Hiace Premio</td><td>4–9 pax (premium) · Rp 1.300.000/hari</td></tr>
+      <tr><td>Mini Bus (ELF)</td><td>2–13 pax · JVTO Rp 1.350.000/hari</td></tr>
+      <tr><td>Medium Bus</td><td>Group besar · JVTO Rp 1.800.000/hari</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 20 -->
+<div class="card" data-tags="others lain lain dcode mineral water tshirt toll ferry allowance master all active">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge active-badge">20</span>
+    <div>
+      <div class="card-title">Others Master (D-codes)</div>
+      <div class="card-desc">13 item biaya lain-lain dengan kode D.1–D.6. Yang ber-flag default JVTO masuk ke expense otomatis setiap order.</div>
+      <div class="card-meta">
+        <span class="chip chip-green">Aktif di App</span>
+        <span class="chip chip-gray">13 items · JVTO + TWT channel</span>
+        <span class="chip chip-blue">others-master.json · 4KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Kode & Item</th><th>Harga · Qty Formula · Default</th></tr>
+      <tr><td>D.1 Mineral Water</td><td>Rp 40.000/pack · 1 pack per 3 pax (<code>Math.ceil(pax/3)</code>) · ✅ Default</td></tr>
+      <tr><td>D.2 Transport Allowance</td><td>Rp 100.000 · 1 per trip · ✅ Default</td></tr>
+      <tr><td>D.3 T-shirt</td><td>Rp 60.000 · per pax · ✅ Default</td></tr>
+      <tr><td>D.4 Toll & Parking</td><td>Rp 200.000 · 1 per trip · ✅ Default</td></tr>
+      <tr><td>D.5 Ferry Ticket</td><td>Rp 16.000 · per pax · ✗ (hanya kalau ke Bali)</td></tr>
+      <tr><td>D.6 Ferry-Guide</td><td>Rp 100.000 · 1 per trip · ✗ (hanya kalau ke Bali)</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 21 -->
+<div class="card" data-tags="expense map paket package hotel aktivitas bromo ijen tumpak sewu master all pricing">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">21</span>
+    <div>
+      <div class="card-title">Package Expense Map</div>
+      <div class="card-desc">16 paket dengan mapping lengkap: hotel mana yang dipakai, aktivitas mana yang termasuk, dan resource tambahan per paket.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Referensi (belum dipakai langsung)</span>
+        <span class="chip chip-gray">16 paket</span>
+        <span class="chip chip-blue">package-expense-map.json · 42KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Paket</th><th>Hotel & Aktivitas</th></tr>
+      <tr><td>bromo-2d1n</td><td>1 hotel (Bromo area) · Aktivitas: Bromo Ticket + Bromo Jeep</td></tr>
+      <tr><td>ijen-2d1n</td><td>1 hotel (Ijen area) · Aktivitas: Ijen Ticket + Local Guide + Medical</td></tr>
+      <tr><td>bromo-madakaripura-ijen-3d2n</td><td>2 hotel (Bromo + Ijen) · 3 destinasi · Bromo + Madakaripura + Ijen</td></tr>
+      <tr><td>ijen-papuma-tumpak-sewu-bromo-4d3n</td><td>3 hotel · 4 destinasi · expense penuh 4 hari</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 22 -->
+<div class="card" data-tags="destinasi destinations bromo ijen malang bali papuma tumpak sewu deskripsi tips cuaca master all active">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge active-badge">22</span>
+    <div>
+      <div class="card-title">Destinations Master</div>
+      <div class="card-desc">10 destinasi JVTO dengan deskripsi lengkap: ketinggian, cuaca per musim, medan, perlengkapan wajib, tips pengunjung, dan koordinat GPS.</div>
+      <div class="card-meta">
+        <span class="chip chip-green">Aktif di App</span>
+        <span class="chip chip-gray">10 destinasi</span>
+        <span class="chip chip-blue">destinations-master.json · 13KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Destinasi</th><th>Detail</th></tr>
+      <tr><td>Mount Bromo</td><td>2.329m · Easy–Moderate · Suhu malam 5–10°C · Jeep + 250 anak tangga · Best: Mei–Oktober</td></tr>
+      <tr><td>Mount Ijen</td><td>2.386m · Moderate · Berangkat jam 00:00 · Blue fire terlihat Mei–Oktober · Best: Mei–Oktober</td></tr>
+      <tr><td>Tumpak Sewu Waterfall</td><td>Trek turun curam · Bawa pakaian ganti · Best: sepanjang tahun tapi terbaik saat musim kering</td></tr>
+      <tr><td>Madakaripura Waterfall</td><td>Wajib bawa jas hujan · Bisa basah kuyup · Dekat Bromo (30 km)</td></tr>
+      <tr><td>Papuma Beach</td><td>Pantai tersembunyi Jember · Tiket Rp 44.000/pax</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 23 -->
+<div class="card" data-tags="transport crew kendaraan driver guide rules pax mpv hiace master all active">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge active-badge">23</span>
+    <div>
+      <div class="card-title">Transport & Crew Rules</div>
+      <div class="card-desc">31 rules yang menentukan: X pax → kendaraan apa + crew apa + biaya per hari. Ini yang dipakai kalkulator untuk menghitung expense transport otomatis.</div>
+      <div class="card-meta">
+        <span class="chip chip-green">Aktif di App</span>
+        <span class="chip chip-gray">31 rules · JVTO + TWT channel</span>
+        <span class="chip chip-blue">transport-crew-rules.json · 12KB</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Contoh Data (channel JVTO)</div>
+    <table class="example-table">
+      <tr><th>Jumlah Tamu</th><th>Kendaraan + Crew</th></tr>
+      <tr><td>1–3 pax</td><td>1 MPV (Rp 250.000/hari) + 1 Driver cum guide (Rp 250.000/hari)</td></tr>
+      <tr><td>4–9 pax</td><td>1 Hiace (Rp 1.100.000/hari) + 1 Escort Guide (Rp 250.000/hari)</td></tr>
+      <tr><td>10–13 pax</td><td>1 ELF/Mini Bus (Rp 1.350.000/hari) + 1 Escort Guide</td></tr>
+      <tr><td>14+ pax</td><td>1 Medium Bus (Rp 1.800.000/hari) + 1 Escort Guide</td></tr>
+    </table>
+  </div></div>
+</div>
+
+
+<!-- FILE 24 -->
+<div class="card" data-tags="timezone wib wita bali jawa waktu jam intelligence all operational">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">24</span>
+    <div>
+      <div class="card-title">Timezone Rules</div>
+      <div class="card-desc">Perbedaan WIB (Jawa, UTC+7) vs WITA (Bali, UTC+8), kapan crew harus mengingatkan tamu, dan cara komunikasi waktu yang benar agar tidak ada kebingungan saat pindah pulau.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">3 zona waktu · WIB & WITA relevan</span>
+        <span class="chip chip-blue">24-timezone-rules.json · baru</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Isi & Contoh Data</div>
+    <table class="example-table">
+      <tr><th>Zona Waktu</th><th>Detail</th></tr>
+      <tr><td>WIB — Waktu Indonesia Barat</td><td>UTC+7 · Berlaku di seluruh Jawa · Semua destinasi utama JVTO (Surabaya, Bromo, Ijen, Malang, Banyuwangi)</td></tr>
+      <tr><td>WITA — Waktu Indonesia Tengah</td><td>UTC+8 · Berlaku di Bali · 1 jam lebih cepat dari WIB</td></tr>
+      <tr><td>Selisih WIB vs WITA</td><td>+1 jam · Contoh: 08:00 WIB = 09:00 WITA · Crew wajib ingatkan tamu saat crossing Jawa↔Bali</td></tr>
+      <tr><td>Momen kritis konfirmasi timezone</td><td>Saat booking · Pickup Ketapang · Dropoff ke Bali · Flight connection lintas pulau</td></tr>
+      <tr><td>Contoh kasus</td><td>Tour Ijen selesai 08:00 WIB → tiba hotel Bali ±14:00 WITA (perjalanan + ferry 4–6 jam)</td></tr>
+      <tr><td>Standard komunikasi</td><td>Semua voucher & itinerary JVTO menggunakan WIB. Sebut eksplisit: "08:00 Java time (WIB)"</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 25 -->
+<div class="card" data-tags="meeting protocol pickup sign crew tamu bandara hotel stasiun pelabuhan lobi intelligence all operational">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">25</span>
+    <div>
+      <div class="card-title">Guest Meeting Protocol</div>
+      <div class="card-desc">Protokol lengkap cara crew menemui tamu di setiap titik jemput: posisi crew, kapan pegang pickup sign, kata-kata pembuka, dan cara menangani situasi jika tamu tidak segera ditemukan.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">6 tipe lokasi · Tamu internasional</span>
+        <span class="chip chip-blue">25-guest-meeting-protocol.json · baru</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Protokol per Lokasi</div>
+    <table class="example-table">
+      <tr><th>Lokasi</th><th>Posisi Crew & Pickup Sign</th></tr>
+      <tr><td>Bandara Internasional (T2)</td><td>Area Meeters & Greeters di luar pintu keluar Customs · WAJIB pickup sign · Standby 30 menit sebelum estimasi tamu keluar · Pantau status penerbangan real-time</td></tr>
+      <tr><td>Bandara Domestik (T1)</td><td>Area penjemputan T1 setelah baggage claim · WAJIB pickup sign · Standby 15 menit sebelum estimasi</td></tr>
+      <tr><td>Hotel (lobi)</td><td>Crew menunggu di LOBI utama — bukan di parkiran · Opsional pickup sign (wajib jika hotel besar) · WhatsApp tamu H-15 menit: "I will arrive in 15 minutes"</td></tr>
+      <tr><td>Stasiun Kereta</td><td>Pintu keluar utama stasiun · WAJIB pickup sign · Pantau status kereta real-time</td></tr>
+      <tr><td>Pelabuhan (Ferry)</td><td>Di luar gate exit pelabuhan · WAJIB pickup sign · WhatsApp saat ferry hampir sandar</td></tr>
+      <tr><td>Titik Kota / Custom</td><td>Depan pintu utama titik yang disepakati · Opsional pickup sign · Konfirmasi titik H-1 malam sebelumnya</td></tr>
+    </table>
+    <div class="example-label" style="margin-top:14px">Pickup Sign Format</div>
+    <table class="example-table">
+      <tr><th>Contoh</th><th>Keterangan</th></tr>
+      <tr><td>"Mr. John Smith — JVTO Tours"</td><td>Nama lengkap sesuai booking + nama perusahaan</td></tr>
+      <tr><td>"Ms. Emma & Mr. Luca Rossi — JVTO Tours"</td><td>Untuk couple / pasangan</td></tr>
+      <tr><td>"Lee Family (4 pax) — JVTO Tours"</td><td>Untuk keluarga / group dengan nama keluarga</td></tr>
+    </table>
+    <div class="example-label" style="margin-top:14px">Timeline WhatsApp Crew ke Tamu</div>
+    <table class="example-table">
+      <tr><th>Kapan</th><th>Pesan</th></tr>
+      <tr><td>H-1 malam sebelum pickup</td><td>Reminder jadwal besok: jam pickup, titik jemput, nama crew</td></tr>
+      <tr><td>15–20 menit sebelum tiba</td><td>"I am on my way, arriving in ~15 minutes"</td></tr>
+      <tr><td>Sudah standby di titik pickup</td><td>"I am at [location] now with your name sign"</td></tr>
+      <tr><td>Tamu belum muncul (tiap 15 menit)</td><td>"Hello [name], still waiting. Are you out yet? Is everything okay?"</td></tr>
+    </table>
+  </div></div>
+</div>
+
+
+<!-- FILE 26 -->
+<div class="card" data-tags="transport bali addon harga transfer gilimanuk kendaraan small medium big intelligence all pricing">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">26</span>
+    <div>
+      <div class="card-title">Bali Transport Addons</div>
+      <div class="card-desc">Harga transfer Bali per destinasi × 3 tipe kendaraan (small/medium/big), diambil langsung dari DB jvto-web (tabel addons, is_transport=true). Dipakai untuk menghitung biaya transfer dari Gilimanuk ke hotel tamu di Bali.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">36 destinasi · 108 records · Live DB</span>
+        <span class="chip chip-blue">26-bali-transport-addons.json · baru</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Tipe Kendaraan</div>
+    <table class="example-table">
+      <tr><th>Tipe</th><th>Keterangan</th><th>ID Range</th></tr>
+      <tr><td>small (MPV)</td><td>Cocok 1–4 penumpang</td><td>ID 21–56</td></tr>
+      <tr><td>medium (Hiace)</td><td>Cocok 5–9 penumpang</td><td>ID 57–92</td></tr>
+      <tr><td>big (Bus/Large Van)</td><td>Cocok 10+ penumpang</td><td>ID 129–164</td></tr>
+    </table>
+    <div class="example-label" style="margin-top:14px">Contoh Harga per Destinasi (IDR/trip)</div>
+    <table class="example-table">
+      <tr><th>Destinasi</th><th>Region Bali</th><th>Small</th><th>Medium</th><th>Big</th></tr>
+      <tr><td>PEMUTERAN</td><td>Bali Barat</td><td>500.000</td><td>700.000</td><td>900.000</td></tr>
+      <tr><td>LOVINA</td><td>Bali Utara</td><td>700.000</td><td>1.000.000</td><td>1.200.000</td></tr>
+      <tr><td>UBUD</td><td>Bali Tengah</td><td>900.000</td><td>1.200.000</td><td>1.400.000</td></tr>
+      <tr><td>ULUWATU</td><td>Bali Selatan</td><td>1.000.000</td><td>1.300.000</td><td>1.500.000</td></tr>
+      <tr><td>AMED</td><td>Bali Timur</td><td>1.000.000</td><td>1.300.000</td><td>1.500.000</td></tr>
+      <tr><td>AIRPORT NGURAH RAI</td><td>Bali Selatan</td><td>950.000</td><td>1.200.000</td><td>1.400.000</td></tr>
+    </table>
+    <div class="example-label" style="margin-top:14px">Range Harga Keseluruhan</div>
+    <table class="example-table">
+      <tr><th>Tipe</th><th>Harga Minimum</th><th>Harga Maksimum</th></tr>
+      <tr><td>Small (MPV)</td><td>Rp 500.000</td><td>Rp 1.050.000</td></tr>
+      <tr><td>Medium (Hiace)</td><td>Rp 700.000</td><td>Rp 1.300.000</td></tr>
+      <tr><td>Big (Bus)</td><td>Rp 900.000</td><td>Rp 1.500.000</td></tr>
+    </table>
+  </div></div>
+</div>
+
+<!-- FILE 27 -->
+<div class="card" data-tags="meal stop restaurant rumah makan makan siang dinner lunch banyuwangi bondowoso surabaya paiton jember intelligence all operational">
+  <div class="card-header" onclick="toggle(this)">
+    <span class="file-badge support-badge">27</span>
+    <div>
+      <div class="card-title">Meal Stops</div>
+      <div class="card-desc">Daftar rumah makan yang biasa digunakan JVTO sebagai titik makan di sepanjang rute operasional. Dikelompokkan per area: Surabaya, Paiton, Jember, Bondowoso, Banyuwangi.</div>
+      <div class="card-meta">
+        <span class="chip chip-amber">Belum dipakai App</span>
+        <span class="chip chip-gray">18 restoran · 8 area · Manual seed</span>
+        <span class="chip chip-blue">27-meal-stops.json · baru</span>
+      </div>
+    </div>
+    <span class="toggle-icon">▾</span>
+  </div>
+  <div class="card-body"><div class="card-body-inner">
+    <div class="example-label">Daftar Rumah Makan per Area</div>
+    <table class="example-table">
+      <tr><th>Area</th><th>Nama Resto</th><th>Jenis Makan</th><th>Masakan</th></tr>
+      <tr><td>Surabaya</td><td>Mang Engking Juanda</td><td>Lunch / Dinner</td><td>Sunda / Seafood</td></tr>
+      <tr><td>Surabaya</td><td>Ikan Bakar Cianjur Surabaya</td><td>Lunch / Dinner</td><td>Seafood</td></tr>
+      <tr><td>Paiton</td><td>RM Handayani Paiton</td><td>Lunch</td><td>Seafood / Jawa</td></tr>
+      <tr><td>Jember</td><td>Resto Legian Jember</td><td>Lunch / Dinner</td><td>Indonesia / Western</td></tr>
+      <tr><td>Jember</td><td>Resto Taman Mangli Indah</td><td>Lunch / Dinner</td><td>Nusantara</td></tr>
+      <tr><td>Bondowoso</td><td>Warung Ayam Goreng Bu Kadir</td><td>Dinner</td><td>Ayam Goreng / Jawa</td></tr>
+      <tr><td>Banyuwangi</td><td>Legian Banyuwangi</td><td>Breakfast / Lunch</td><td>Indonesia / Seafood</td></tr>
+      <tr><td>Banyuwangi</td><td>Ikan Bakar Pesona</td><td>Breakfast / Lunch</td><td>Seafood</td></tr>
+      <tr><td>Banyuwangi</td><td>Osing Deles</td><td>Breakfast / Lunch</td><td>Masakan Osing (khas BWI)</td></tr>
+      <tr><td>Banyuwangi</td><td>Srenge Wetan</td><td>Breakfast / Lunch</td><td>Jawa Timur / Lokal</td></tr>
+      <tr><td>Batu / Malang</td><td>The Bamboo</td><td>Lunch / Dinner</td><td>Indonesia / Internasional</td></tr>
+      <tr><td>Batu / Malang</td><td>Warung Wareg (Batu)</td><td>Lunch / Dinner</td><td>Jawa / Lokal</td></tr>
+      <tr><td>Batu / Malang</td><td>Warung Wareg (Karangploso)</td><td>Lunch / Dinner</td><td>Jawa / Lokal</td></tr>
+      <tr><td>Lumajang / Pronojiwo</td><td>RM Selera Nusantara</td><td>Lunch / Dinner</td><td>Nusantara</td></tr>
+      <tr><td>Lumajang / Pronojiwo</td><td>Wakul Bu Tjipto</td><td>Lunch / Dinner</td><td>Jawa / Lokal</td></tr>
+      <tr><td>Bromo Area</td><td>Bromo Escapes</td><td>Breakfast / Lunch / Dinner</td><td>Indonesia / Western</td></tr>
+      <tr><td>Bromo Area</td><td>Manis Ae Resto</td><td>Breakfast / Lunch / Dinner</td><td>Indonesia / Lokal</td></tr>
+      <tr><td>Bromo Area</td><td>Lava Hill Resto</td><td>Breakfast / Lunch / Dinner</td><td>Indonesia / Western</td></tr>
+    </table>
+  </div></div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+  function toggle(header) {
+    const card = header.closest('.card');
+    card.classList.toggle('open');
+  }
+
+  const TABS = {
+    all:          () => true,
+    active:       el => el.dataset.tags.includes('active'),
+    intelligence: el => el.dataset.tags.includes('intelligence'),
+    routing:      el => el.dataset.tags.includes('routing'),
+    operational:  el => el.dataset.tags.includes('operational'),
+    pricing:      el => el.dataset.tags.includes('pricing'),
+    master:       el => el.dataset.tags.includes('master'),
+  };
+
+  let currentTab = 'all';
+
+  function showTab(tab, btn) {
+    currentTab = tab;
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilter(document.querySelector('.search-input').value);
+  }
+
+  function filterCards(query) {
+    applyFilter(query);
+  }
+
+  function applyFilter(query) {
+    const q = query.toLowerCase().trim();
+    document.querySelectorAll('.card').forEach(card => {
+      const matchesTab = TABS[currentTab](card);
+      const text = (card.dataset.tags + ' ' + card.innerText).toLowerCase();
+      const matchesSearch = !q || text.includes(q);
+      card.style.display = (matchesTab && matchesSearch) ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
