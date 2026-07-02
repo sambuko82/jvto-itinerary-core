@@ -9,3 +9,6 @@ coverage/
 .tmp/
 input/**/raw-private/
 input/**/pii/
+
+# superpowers brainstorming companion
+.superpowers/
