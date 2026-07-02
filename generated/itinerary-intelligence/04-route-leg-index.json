@@ -814,7 +814,7 @@
             "confidence": "manual_seed"
           },
           {
-            "source": "inferred",
+            "source": "generated",
             "ref": "composed from ketapang_harbor_to_gilimanuk_bali_side + banyuwangi_to_ijen_base legs",
             "confidence": "inferred"
           }

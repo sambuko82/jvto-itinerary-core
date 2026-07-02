@@ -33,12 +33,20 @@ interface Datasets {
   rules: Array<Record<string, unknown>>;
 }
 
+function flattenRouteLegGroups(data: unknown): Datasets['legs'] {
+  if (!Array.isArray(data)) return [];
+  return data.flatMap((entry) => {
+    const group = entry as Record<string, unknown>;
+    return Array.isArray(group.legs) ? (group.legs as Array<Record<string, unknown>>) : [group];
+  });
+}
+
 export async function loadDatasets(dir: string = GENERATED_DIR): Promise<Datasets> {
-  const [pickups, dropoffs, legs, destinations, events, meals, accommodations, costs, packageRoutes, rules] =
+  const [pickups, dropoffs, rawLegs, destinations, events, meals, accommodations, costs, packageRoutes, rules] =
     await Promise.all([
       readJson<Datasets['pickups']>(`${dir}/01-pickup-contexts.json`),
       readJson<Datasets['dropoffs']>(`${dir}/02-dropoff-contexts.json`),
-      readJson<Datasets['legs']>(`${dir}/04-route-leg-index.json`),
+      readJson<unknown>(`${dir}/04-route-leg-index.json`),
       readJson<Datasets['destinations']>(`${dir}/06-destination-activity-profiles.json`),
       readJson<Datasets['events']>(`${dir}/07-operational-events.json`),
       readJson<Datasets['meals']>(`${dir}/08-meal-logic.json`),
@@ -47,7 +55,7 @@ export async function loadDatasets(dir: string = GENERATED_DIR): Promise<Dataset
       readJson<Datasets['packageRoutes']>(`${dir}/11-package-route-map.json`),
       readJson<Datasets['rules']>(`${dir}/12-recommendation-rules.json`)
     ]);
-  return { pickups, dropoffs, legs, destinations, events, meals, accommodations, costs, packageRoutes, rules };
+  return { pickups, dropoffs, legs: flattenRouteLegGroups(rawLegs), destinations, events, meals, accommodations, costs, packageRoutes, rules };
 }
 
 // ─── Destination normalization ───
