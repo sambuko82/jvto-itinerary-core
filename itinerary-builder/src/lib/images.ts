@@ -1,7 +1,7 @@
 export const DEST_IMAGE: Record<string, string> = {
   'Mount Bromo':            '/images/destinations/bromo.jpg',
   'Mount Ijen':             '/images/destinations/ijen.webp',
-  'Madakaripura Waterfall': '/images/destinations/madakaripura.jpg',
+  'Madakaripura Waterfall': '/images/destinations/madakaripura.webp',
   'Tumpak Sewu Waterfall':  '/images/destinations/tumpak-sewu.webp',
   'Papuma Beach':           '/images/destinations/papuma.jpg',
 }

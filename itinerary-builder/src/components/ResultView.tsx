@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { ArrowLeft, Bus, Mountain, Hotel, UtensilsCrossed, StickyNote, CalendarDays, MessageCircle, Calculator, Download, Copy, Check, CheckCircle2, XCircle } from 'lucide-react'
+import { ArrowLeft, Bus, Mountain, Hotel, UtensilsCrossed, CalendarDays, MessageCircle, Calculator, Download, Copy, Check, CheckCircle2, XCircle } from 'lucide-react'
 import type { ItineraryResult, BrainData, DayInput } from '@/types'
 import { formatWhatsApp, rp } from '@/lib/whatsapp'
 import { DEST_IMAGE, VEH_IMAGE } from '@/lib/images'
@@ -378,7 +378,7 @@ export default function ResultView({ result, brain, editableDays, onHotelChange,
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-cream">
       {/* Hero */}
-      <div className="sticky top-16 z-10 bg-navy text-white px-4 sm:px-6 py-6">
+      <div className="bg-navy text-white px-4 sm:px-6 py-6">
         <div className="max-w-3xl mx-auto w-full">
           <button onClick={onBack} className="flex items-center gap-1.5 text-navy-border hover:text-white text-sm font-medium mb-3 transition-colors">
             <ArrowLeft size={16} /> Back
@@ -462,6 +462,11 @@ export default function ResultView({ result, brain, editableDays, onHotelChange,
                     <span className="text-white/50 text-sm">{fmtDate(day.date)}</span>
                   </div>
                   <div className="p-4 space-y-2.5 text-sm text-ink/80">
+                    {day.routeDescription && (
+                      <div className="bg-cream border border-ink/10 rounded-xl p-3 mb-1">
+                        <p className="text-xs text-ink/70 italic leading-relaxed">&ldquo;{day.routeDescription}&rdquo;</p>
+                      </div>
+                    )}
                     {day.pickup && (
                       <div className="flex gap-2.5 items-center">
                         <Bus size={15} className="text-orange shrink-0" />
@@ -506,7 +511,6 @@ export default function ResultView({ result, brain, editableDays, onHotelChange,
                         <span><strong>Drop-off</strong> at {day.dropoff.location}{day.dropoff.estimatedTime ? ` ~${day.dropoff.estimatedTime}` : ''}</span>
                       </div>
                     )}
-                    {day.notes && <div className="flex gap-2.5 text-ink/40 italic text-xs"><StickyNote size={14} className="shrink-0" /><span>{day.notes}</span></div>}
                     {!day.pickup && !day.dropoff && day.destinationNames.length === 0 && !day.hotel && (
                       <p className="text-ink/40 text-xs italic">No program selected for this day.</p>
                     )}

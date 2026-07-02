@@ -268,7 +268,7 @@
     "id": "madakaripura_local_guide",
     "label": "Madakaripura local guide",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "verified",
     "category": "local_guide_cost",
     "unit": "per_group",
     "applies_when": [
@@ -276,7 +276,7 @@
     ],
     "customer_visible": "included_in_package",
     "formula": "madakaripura_local_guide_rate * group_count",
-    "default_rate_idr": null,
+    "default_rate_idr": 100000,
     "channel_behavior": [
       "managed_by_local_organization"
     ],
@@ -285,6 +285,12 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice/export-data/activities/destination-activities",
+        "field": "destination_id:6 Local Guide cost_idr",
+        "confidence": "verified"
       }
     ]
   },
@@ -292,7 +298,7 @@
     "id": "tumpak_sewu_local_guide",
     "label": "Tumpak Sewu local guide",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "verified",
     "category": "local_guide_cost",
     "unit": "per_group",
     "applies_when": [
@@ -300,7 +306,7 @@
     ],
     "customer_visible": "included_in_package",
     "formula": "tumpak_sewu_local_guide_rate * group_count",
-    "default_rate_idr": null,
+    "default_rate_idr": 150000,
     "channel_behavior": [
       "managed_by_local_organization"
     ],
@@ -309,6 +315,12 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice/export-data/activities/destination-activities",
+        "field": "destination_id:7 Local Guide cost_idr",
+        "confidence": "verified"
       }
     ]
   },
@@ -440,7 +452,7 @@
     "id": "destination_ticket",
     "label": "Destination ticket",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "verified",
     "category": "destination_ticket",
     "unit": "per_person",
     "applies_when": [
@@ -449,6 +461,20 @@
     "customer_visible": "included_in_package",
     "formula": "ticket_rate * pax",
     "default_rate_idr": null,
+    "rate_table_idr": {
+      "note": "Rate varies by destination. Use destination_id to look up exact rate from 18-activities-master.json destination_activities.",
+      "madakaripura_waterfall": 90000,
+      "tumpak_sewu_waterfall": 100000,
+      "papuma_beach": 44000,
+      "coffee_cocoa_technopark": 75000,
+      "taman_safari_prigen_adult": 425000,
+      "taman_safari_prigen_child": 350000,
+      "sby_submarine_museum": 15000,
+      "sby_tugu_pahlawan": 5000,
+      "sby_house_of_sampoerna": 0,
+      "malang_coban_rondo": 22000,
+      "malang_selecta_park": 30000
+    },
     "channel_behavior": [
       "rate_varies_by_destination_and_day_type"
     ],
@@ -457,6 +483,12 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice/export-data/activities/destination-activities",
+        "field": "cost_idr per destination_id",
+        "confidence": "verified"
       }
     ]
   },
@@ -500,7 +532,7 @@
     "id": "hotel_breakfast_or_takeaway",
     "label": "Hotel breakfast or takeaway breakfast",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "category": "hotel_meal",
     "unit": "per_person",
     "applies_when": [
@@ -509,6 +541,7 @@
     "customer_visible": "included_in_package",
     "formula": "hotel_meal_rate * pax",
     "default_rate_idr": null,
+    "rate_note": "Breakfast is typically included in the room rate for most JVTO-contracted hotels. When guests depart at midnight (Ijen) or 03:00 AM (Bromo), hotels provide a takeaway package in lieu of buffet breakfast. Takeaway rate mirrors the hotel lunch/dinner rate (range: IDR 50,000–75,000/pax based on hotel; see 17-hotels-master.json lunch_rate_idr per hotel). No separate charge if included in room contract.",
     "channel_behavior": [
       "depends_on_hotel_policy"
     ],
@@ -517,6 +550,12 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/cost-components.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice/export-data/hotels/hotels",
+        "field": "lunch_rate_idr per hotel (breakfast proxy)",
+        "confidence": "inferred"
       }
     ]
   },

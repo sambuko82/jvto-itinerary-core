@@ -1,0 +1,16 @@
+[
+  {"id":1,"name":"Driver cum guide","rate_per_day":313000,"rate_twt_per_day":363000,"order_channel_id":2},
+  {"id":2,"name":"Escort Guide (Sr)","rate_per_day":275000,"rate_twt_per_day":275000,"order_channel_id":2},
+  {"id":3,"name":"Escort Guide (Jr)","rate_per_day":250000,"rate_twt_per_day":250000,"order_channel_id":2},
+  {"id":4,"name":"Small car","rate_per_day":200000,"rate_twt_per_day":300000,"order_channel_id":2},
+  {"id":5,"name":"Driver cum guide","rate_per_day":250000,"rate_twt_per_day":0,"order_channel_id":1},
+  {"id":6,"name":"Escort Guide","rate_per_day":250000,"rate_twt_per_day":0,"order_channel_id":1},
+  {"id":7,"name":"Driver + Guide","rate_per_day":400000,"rate_twt_per_day":0,"order_channel_id":1},
+  {"id":8,"name":"Driver cum guide","rate_per_day":250000,"rate_twt_per_day":0,"order_channel_id":3},
+  {"id":9,"name":"Escort Guide","rate_per_day":250000,"rate_twt_per_day":0,"order_channel_id":3},
+  {"id":10,"name":"Driver + Guide","rate_per_day":400000,"rate_twt_per_day":0,"order_channel_id":3},
+  {"id":11,"name":"Driver only","rate_per_day":200000,"rate_twt_per_day":0,"order_channel_id":3},
+  {"id":12,"name":"Driver only","rate_per_day":200000,"rate_twt_per_day":0,"order_channel_id":1},
+  {"id":13,"name":"Driver Outsources","rate_per_day":250000,"rate_twt_per_day":0,"order_channel_id":1},
+  {"id":14,"name":"Driver Outsources","rate_per_day":250000,"rate_twt_per_day":0,"order_channel_id":3}
+]

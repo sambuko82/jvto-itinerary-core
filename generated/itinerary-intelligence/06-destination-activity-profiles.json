@@ -5,6 +5,8 @@
     "status": "active",
     "confidence": "inferred",
     "destination_id": "bromo",
+    "destination_id_numeric": 1,
+    "destination_name": "Mount Bromo",
     "activity_window": {
       "jeep_pickup": "02:30–03:30",
       "sunrise": "04:30–06:00",
@@ -26,6 +28,13 @@
       "bromo_ticket",
       "bromo_jeep"
     ],
+    "destination_activity_ids": [
+      "bromo-entrance-dom",
+      "bromo-entrance-for",
+      "bromo-jeep",
+      "bromo-parking",
+      "bromo-guide"
+    ],
     "warning_rules": [
       "late_surabaya_arrival_before_bromo"
     ],
@@ -37,9 +46,9 @@
       },
       {
         "source": "new_backoffice",
-        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
-        "field": "activity cost/unit/formula (destination_activities, other_activities)",
-        "confidence": "inferred"
+        "ref": "new-backoffice/export-data/activities/destination-activities",
+        "field": "destination_id:1 activity cost/unit/formula",
+        "confidence": "verified"
       },
       {
         "source": "jvto_web",
@@ -80,6 +89,8 @@
     "status": "active",
     "confidence": "inferred",
     "destination_id": "ijen",
+    "destination_id_numeric": 2,
+    "destination_name": "Mount Ijen",
     "activity_window": {
       "hotel_departure": "00:00",
       "trek_start": "02:00",
@@ -111,6 +122,13 @@
       "gas_mask",
       "medical_check"
     ],
+    "destination_activity_ids": [
+      "ijen-entrance-dom",
+      "ijen-entrance-for",
+      "ijen-local-guide",
+      "ijen-gas-mask",
+      "ijen-porter"
+    ],
     "warning_rules": [
       "late_arrival_before_ijen"
     ],
@@ -122,9 +140,9 @@
       },
       {
         "source": "new_backoffice",
-        "ref": "new-backoffice:ExportDataItineraryCore.bundle()",
-        "field": "activity cost/unit/formula (destination_activities, other_activities)",
-        "confidence": "inferred"
+        "ref": "new-backoffice/export-data/activities/destination-activities",
+        "field": "destination_id:2 activity cost/unit/formula",
+        "confidence": "verified"
       },
       {
         "source": "jvto_web",
@@ -160,6 +178,8 @@
     "status": "active",
     "confidence": "inferred",
     "destination_id": "tumpak_sewu",
+    "destination_id_numeric": 7,
+    "destination_name": "Tumpak Sewu Waterfall",
     "activity_window": {
       "recommended_start": "07:00–08:00",
       "finish": "11:00–13:00"
@@ -175,6 +195,11 @@
       "tumpak_sewu_local_guide",
       "lunch_after_tumpak_sewu"
     ],
+    "destination_activity_ids": [
+      "tumpak-entrance",
+      "tumpak-guide",
+      "tumpak-parking"
+    ],
     "warning_rules": [
       "waterfall_access_road",
       "airport_dropoff_cutoff_after_waterfall"
@@ -184,6 +209,12 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/destination-activity-profiles.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice/export-data/activities/destination-activities",
+        "field": "destination_id:7 activity cost/unit/formula",
+        "confidence": "verified"
       },
       {
         "source": "jvto_web",
@@ -205,6 +236,8 @@
     "status": "active",
     "confidence": "inferred",
     "destination_id": "madakaripura",
+    "destination_id_numeric": 6,
+    "destination_name": "Madakaripura Waterfall",
     "activity_window": {
       "recommended_start": "08:00–12:00",
       "finish": "11:00–15:00"
@@ -219,6 +252,12 @@
       "madakaripura_ticket",
       "madakaripura_local_guide"
     ],
+    "destination_activity_ids": [
+      "madak-entrance",
+      "madak-guide",
+      "madak-parking",
+      "madak-poncho"
+    ],
     "warning_rules": [
       "waterfall_access_road",
       "airport_dropoff_cutoff_after_waterfall"
@@ -228,6 +267,12 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/destination-activity-profiles.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice/export-data/activities/destination-activities",
+        "field": "destination_id:6 activity cost/unit/formula",
+        "confidence": "verified"
       },
       {
         "source": "jvto_web",
@@ -249,6 +294,8 @@
     "status": "active",
     "confidence": "inferred",
     "destination_id": "papuma",
+    "destination_id_numeric": 9,
+    "destination_name": "Papuma Beach",
     "activity_window": {
       "recommended_start": "08:00-14:00",
       "finish": "10:00-16:00"
@@ -267,6 +314,10 @@
       "papuma_ticket",
       "vehicle_day_usage"
     ],
+    "destination_activity_ids": [
+      "papuma-entrance",
+      "papuma-parking"
+    ],
     "warning_rules": [
       "rain_sensitive_road"
     ],
@@ -275,6 +326,12 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/destination-activity-profiles.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice/export-data/activities/destination-activities",
+        "field": "destination_id:9 activity cost/unit/formula",
+        "confidence": "verified"
       },
       {
         "source": "jvto_web",
@@ -294,8 +351,10 @@
     "id": "destination_malang_batu_activity_profile",
     "label": "Malang / Batu activity profile",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "destination_id": "malang_batu",
+    "destination_id_numeric": 5,
+    "destination_name": "Malang City",
     "activity_window": {
       "city_activity": "09:00-17:00",
       "evening_activity": "18:00-21:00"
@@ -313,6 +372,10 @@
       "vehicle_day_usage",
       "destination_ticket_if_selected"
     ],
+    "destination_activity_ids": [
+      "mlg-coban-rondo",
+      "mlg-selecta"
+    ],
     "warning_rules": [
       "weekend_congestion"
     ],
@@ -321,6 +384,12 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/destination-activity-profiles.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice/export-data/activities/destination-activities",
+        "field": "destination_id:5 activity cost/unit/formula",
+        "confidence": "verified"
       }
     ]
   },
@@ -328,8 +397,10 @@
     "id": "destination_surabaya_city_activity_profile",
     "label": "Surabaya city activity profile",
     "status": "active",
-    "confidence": "manual_seed",
+    "confidence": "inferred",
     "destination_id": "surabaya_city",
+    "destination_id_numeric": 4,
+    "destination_name": "Surabaya",
     "activity_window": {
       "city_activity": "09:00-17:00",
       "airport_buffer_sensitive": "depends_on_departure_time"
@@ -347,6 +418,11 @@
       "vehicle_day_usage",
       "parking_toll_fuel_allowance"
     ],
+    "destination_activity_ids": [
+      "sby-hob",
+      "sby-submarine",
+      "sby-heroes"
+    ],
     "warning_rules": [
       "airport_dropoff_cutoff_after_waterfall"
     ],
@@ -355,6 +431,12 @@
         "source": "manual_seed",
         "ref": "seed/manual-overrides/destination-activity-profiles.yaml",
         "confidence": "manual_seed"
+      },
+      {
+        "source": "new_backoffice",
+        "ref": "new-backoffice/export-data/activities/destination-activities",
+        "field": "destination_id:4 activity cost/unit/formula",
+        "confidence": "verified"
       }
     ]
   },
@@ -364,6 +446,8 @@
     "status": "active",
     "confidence": "inferred",
     "destination_id": "bali_ketapang",
+    "destination_id_numeric": 3,
+    "destination_name": "Bali",
     "activity_window": {
       "ferry_connection": "24_hours_with_queue_variability",
       "bali_transfer": "depends_on_hotel_area"
@@ -383,6 +467,7 @@
       "bali_transfer",
       "vehicle_crossing_or_handoff"
     ],
+    "destination_activity_ids": [],
     "warning_rules": [
       "harbor_dropoff_requires_ferry_buffer"
     ],

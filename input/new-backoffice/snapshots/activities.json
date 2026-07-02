@@ -1,0 +1,20 @@
+[
+  {"id":1,"name":"Pickup","activity_category_id":1},
+  {"id":2,"name":"Lunch","activity_category_id":4},
+  {"id":3,"name":"Accommodation","activity_category_id":3},
+  {"id":4,"name":"Dinner","activity_category_id":4},
+  {"id":5,"name":"By car","activity_category_id":5},
+  {"id":6,"name":"Ijen Crater Hike","activity_category_id":2},
+  {"id":7,"name":"By private Jeep","activity_category_id":5},
+  {"id":8,"name":"Bromo Sunrise Tour","activity_category_id":2},
+  {"id":9,"name":"Breakfast","activity_category_id":4},
+  {"id":10,"name":"Madakaripura Waterfall Tour","activity_category_id":2},
+  {"id":11,"name":"Papuma Beach Sunset Tour","activity_category_id":2},
+  {"id":12,"name":"Tumpak Sewu Waterfall Tour","activity_category_id":2},
+  {"id":13,"name":"Malang Tour","activity_category_id":2},
+  {"id":14,"name":"Surabaya City Tour","activity_category_id":2},
+  {"id":15,"name":"Coffee & Cocoa Technopark","activity_category_id":2},
+  {"id":16,"name":"Taman Safari Adventure","activity_category_id":2},
+  {"id":17,"name":"Madakaripura Waterfall Tour 2","activity_category_id":2},
+  {"id":18,"name":"Coffee Break","activity_category_id":4}
+]

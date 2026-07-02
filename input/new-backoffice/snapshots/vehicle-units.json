@@ -1,0 +1,12 @@
+[
+  {"id":1,"vehicle_type_id":1,"nickname":"MPV","is_active":true},
+  {"id":2,"vehicle_type_id":2,"nickname":"Innova Reborn","is_active":true},
+  {"id":5,"vehicle_type_id":3,"nickname":"Hiace Commuter","is_active":true},
+  {"id":14,"vehicle_type_id":4,"nickname":"Hiace Premio","is_active":true},
+  {"id":22,"vehicle_type_id":1,"nickname":"Daihatsu Sigra","is_active":true},
+  {"id":23,"vehicle_type_id":1,"nickname":"Avanza Yus 2","is_active":true},
+  {"id":24,"vehicle_type_id":5,"nickname":"Medium Bus","is_active":true},
+  {"id":25,"vehicle_type_id":6,"nickname":"Mini Bus (Elf)","is_active":true},
+  {"id":26,"vehicle_type_id":1,"nickname":"Avanza Yus 3","is_active":true},
+  {"id":27,"vehicle_type_id":1,"nickname":"Avanza Boy","is_active":true}
+]

@@ -1,0 +1,355 @@
+{
+  "schema_version": 2,
+  "confidence": "verified",
+  "source_trace": {
+    "endpoint": "new-backoffice/export-data/transport-crew-rules",
+    "fetched_at": "2026-06-20",
+    "updated_at": "2026-06-22",
+    "rule_count": 34,
+    "notes": "Maps pax count → vehicle_type + crew_role per order channel. Multi-vehicle configurations (pax 10-11 on JVTO/KLOOK) appear as 2 entries for same pax. Added vehicle_name, vehicle_rate_per_day, crew_role_name, crew_rate_per_day to each vehicle entry for direct calculator use (no cross-reference needed). Rates are channel-specific within each rule."
+  },
+  "channels": {
+    "1": "JVTO",
+    "2": "TWT",
+    "3": "KLOOK"
+  },
+  "vehicle_types_ref": {
+    "1": "MPV (1-3 pax, 250K/day JVTO, 500K TWT)",
+    "2": "Innova (3 pax, 350K/day JVTO, 570K TWT)",
+    "3": "Hiace (4+ pax, 1.1M/day)",
+    "4": "Hiace Premio (4+ pax, 1.3M/day)",
+    "5": "Medium Bus (1.8M/day)",
+    "6": "Mini Bus Elf (2-13 pax, 1.35M/day)"
+  },
+  "crew_roles_ref": {
+    "1": "Driver cum guide (TWT) 313K/day",
+    "2": "Escort Guide Sr (TWT) 275K/day",
+    "3": "Escort Guide Jr (TWT) 250K/day",
+    "4": "Small car (TWT) 200K/day",
+    "5": "Driver cum guide (JVTO) 250K/day",
+    "6": "Escort Guide (JVTO) 250K/day",
+    "7": "Driver + Guide (JVTO) 400K/day",
+    "8": "Driver cum guide (KLOOK) 250K/day",
+    "9": "Escort Guide (KLOOK) 250K/day",
+    "10": "Driver + Guide (KLOOK) 400K/day",
+    "11": "Driver only (KLOOK) 200K/day",
+    "12": "Driver only (JVTO) 200K/day",
+    "13": "Driver Outsources (JVTO) 250K/day",
+    "14": "Driver Outsources (KLOOK) 250K/day"
+  },
+  "rules": [
+    {
+      "id": 23,
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "pax": 1,
+      "vehicles": [
+        {"vehicle_type_id": 1, "vehicle_name": "MPV", "vehicle_rate_per_day": 250000, "crew_role_id": 5, "crew_role_name": "Driver cum guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 MPV + 1 Driver cum guide"
+    },
+    {
+      "id": 1,
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "pax": 2,
+      "vehicles": [
+        {"vehicle_type_id": 1, "vehicle_name": "MPV", "vehicle_rate_per_day": 250000, "crew_role_id": 5, "crew_role_name": "Driver cum guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 MPV + 1 Driver cum guide"
+    },
+    {
+      "id": 2,
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "pax": 3,
+      "vehicles": [
+        {"vehicle_type_id": 1, "vehicle_name": "MPV", "vehicle_rate_per_day": 250000, "crew_role_id": 5, "crew_role_name": "Driver cum guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 MPV + 1 Driver cum guide"
+    },
+    {
+      "id": 3,
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "pax": 4,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 6, "crew_role_name": "Escort Guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide"
+    },
+    {
+      "id": 4,
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "pax": 5,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 6, "crew_role_name": "Escort Guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide"
+    },
+    {
+      "id": 5,
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "pax": 6,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 6, "crew_role_name": "Escort Guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide"
+    },
+    {
+      "id": 6,
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "pax": 7,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 6, "crew_role_name": "Escort Guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide"
+    },
+    {
+      "id": 7,
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "pax": 8,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 6, "crew_role_name": "Escort Guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide"
+    },
+    {
+      "id": 8,
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "pax": 9,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 6, "crew_role_name": "Escort Guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide"
+    },
+    {
+      "id": "9+19",
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "pax": 10,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 6, "crew_role_name": "Escort Guide", "crew_rate_per_day": 250000},
+        {"vehicle_type_id": 1, "vehicle_name": "MPV", "vehicle_rate_per_day": 250000, "crew_role_id": 12, "crew_role_name": "Driver only", "crew_rate_per_day": 200000}
+      ],
+      "summary": "1 Hiace + Escort Guide + 1 MPV + Driver only"
+    },
+    {
+      "id": "20+21",
+      "order_channel_id": 1,
+      "order_channel_name": "JVTO",
+      "pax": 11,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 6, "crew_role_name": "Escort Guide", "crew_rate_per_day": 250000},
+        {"vehicle_type_id": 1, "vehicle_name": "MPV", "vehicle_rate_per_day": 250000, "crew_role_id": 12, "crew_role_name": "Driver only", "crew_rate_per_day": 200000}
+      ],
+      "summary": "1 Hiace + Escort Guide + 1 MPV + Driver only"
+    },
+    {
+      "id": 25,
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "pax": 1,
+      "vehicles": [
+        {"vehicle_type_id": 1, "vehicle_name": "MPV", "vehicle_rate_per_day": 500000, "crew_role_id": 1, "crew_role_name": "Driver cum guide", "crew_rate_per_day": 313000}
+      ],
+      "summary": "1 MPV + 1 Driver cum guide"
+    },
+    {
+      "id": 26,
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "pax": 2,
+      "vehicles": [
+        {"vehicle_type_id": 1, "vehicle_name": "MPV", "vehicle_rate_per_day": 500000, "crew_role_id": 1, "crew_role_name": "Driver cum guide", "crew_rate_per_day": 313000}
+      ],
+      "summary": "1 MPV + 1 Driver cum guide"
+    },
+    {
+      "id": 27,
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "pax": 3,
+      "vehicles": [
+        {"vehicle_type_id": 2, "vehicle_name": "Innova", "vehicle_rate_per_day": 570000, "crew_role_id": 1, "crew_role_name": "Driver cum guide", "crew_rate_per_day": 313000}
+      ],
+      "summary": "1 Innova + 1 Driver cum guide"
+    },
+    {
+      "id": 28,
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "pax": 4,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 2, "crew_role_name": "Escort Guide Sr", "crew_rate_per_day": 275000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide (Sr)"
+    },
+    {
+      "id": 29,
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "pax": 5,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 2, "crew_role_name": "Escort Guide Sr", "crew_rate_per_day": 275000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide (Sr)"
+    },
+    {
+      "id": 30,
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "pax": 6,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 2, "crew_role_name": "Escort Guide Sr", "crew_rate_per_day": 275000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide (Sr)"
+    },
+    {
+      "id": 31,
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "pax": 7,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 2, "crew_role_name": "Escort Guide Sr", "crew_rate_per_day": 275000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide (Sr)"
+    },
+    {
+      "id": 32,
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "pax": 8,
+      "vehicles": [
+        {"vehicle_type_id": 4, "vehicle_name": "Hiace Premio", "vehicle_rate_per_day": 1300000, "crew_role_id": 2, "crew_role_name": "Escort Guide Sr", "crew_rate_per_day": 275000}
+      ],
+      "summary": "1 Hiace Premio + 1 Escort Guide (Sr)"
+    },
+    {
+      "id": 33,
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "pax": 9,
+      "vehicles": [
+        {"vehicle_type_id": 4, "vehicle_name": "Hiace Premio", "vehicle_rate_per_day": 1300000, "crew_role_id": 2, "crew_role_name": "Escort Guide Sr", "crew_rate_per_day": 275000}
+      ],
+      "summary": "1 Hiace Premio + 1 Escort Guide (Sr)"
+    },
+    {
+      "id": 34,
+      "order_channel_id": 2,
+      "order_channel_name": "TWT",
+      "pax": 10,
+      "vehicles": [
+        {"vehicle_type_id": 1, "vehicle_name": "MPV", "vehicle_rate_per_day": 500000, "crew_role_id": 4, "crew_role_name": "Small car", "crew_rate_per_day": 200000}
+      ],
+      "summary": "1 MPV + Small car crew (overflow vehicle)"
+    },
+    {
+      "id": 24,
+      "order_channel_id": 3,
+      "order_channel_name": "KLOOK",
+      "pax": 1,
+      "vehicles": [
+        {"vehicle_type_id": 1, "vehicle_name": "MPV", "vehicle_rate_per_day": 250000, "crew_role_id": 8, "crew_role_name": "Driver cum guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 MPV + 1 Driver cum guide"
+    },
+    {
+      "id": 10,
+      "order_channel_id": 3,
+      "order_channel_name": "KLOOK",
+      "pax": 2,
+      "vehicles": [
+        {"vehicle_type_id": 1, "vehicle_name": "MPV", "vehicle_rate_per_day": 250000, "crew_role_id": 8, "crew_role_name": "Driver cum guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 MPV + 1 Driver cum guide"
+    },
+    {
+      "id": 11,
+      "order_channel_id": 3,
+      "order_channel_name": "KLOOK",
+      "pax": 3,
+      "vehicles": [
+        {"vehicle_type_id": 1, "vehicle_name": "MPV", "vehicle_rate_per_day": 250000, "crew_role_id": 8, "crew_role_name": "Driver cum guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 MPV + 1 Driver cum guide"
+    },
+    {
+      "id": 12,
+      "order_channel_id": 3,
+      "order_channel_name": "KLOOK",
+      "pax": 4,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 9, "crew_role_name": "Escort Guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide"
+    },
+    {
+      "id": 13,
+      "order_channel_id": 3,
+      "order_channel_name": "KLOOK",
+      "pax": 5,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 9, "crew_role_name": "Escort Guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide"
+    },
+    {
+      "id": 14,
+      "order_channel_id": 3,
+      "order_channel_name": "KLOOK",
+      "pax": 6,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 9, "crew_role_name": "Escort Guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide"
+    },
+    {
+      "id": 15,
+      "order_channel_id": 3,
+      "order_channel_name": "KLOOK",
+      "pax": 7,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 9, "crew_role_name": "Escort Guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide"
+    },
+    {
+      "id": 16,
+      "order_channel_id": 3,
+      "order_channel_name": "KLOOK",
+      "pax": 8,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 9, "crew_role_name": "Escort Guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide"
+    },
+    {
+      "id": 17,
+      "order_channel_id": 3,
+      "order_channel_name": "KLOOK",
+      "pax": 9,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 9, "crew_role_name": "Escort Guide", "crew_rate_per_day": 250000}
+      ],
+      "summary": "1 Hiace + 1 Escort Guide"
+    },
+    {
+      "id": "18+22",
+      "order_channel_id": 3,
+      "order_channel_name": "KLOOK",
+      "pax": 10,
+      "vehicles": [
+        {"vehicle_type_id": 3, "vehicle_name": "Hiace", "vehicle_rate_per_day": 1100000, "crew_role_id": 9, "crew_role_name": "Escort Guide", "crew_rate_per_day": 250000},
+        {"vehicle_type_id": 1, "vehicle_name": "MPV", "vehicle_rate_per_day": 250000, "crew_role_id": 11, "crew_role_name": "Driver only", "crew_rate_per_day": 200000}
+      ],
+      "summary": "1 Hiace + Escort Guide + 1 MPV + Driver only"
+    }
+  ]
+}

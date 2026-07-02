@@ -1,0 +1,656 @@
+{
+  "schema_version": 1,
+  "confidence": "verified",
+  "source_trace": {
+    "endpoints": [
+      "new-backoffice/export-data/hotels",
+      "new-backoffice/export-data/room-types",
+      "new-backoffice/export-data/room-configurations"
+    ],
+    "fetched_at": "2026-06-20",
+    "hotel_count": 27,
+    "room_type_count": 268,
+    "config_count": 182,
+    "rate_twt_idr_convention": "null = TWT rate not separately contracted (assume same as rate_idr or negotiate). A numeric value = explicit TWT rate confirmed from backoffice."
+  },
+  "hotels": [
+    {
+      "id": 1,
+      "name": "Baratha Hotel and Resto",
+      "destination_id": 2,
+      "destination_name": "Mount Ijen",
+      "address": "Jl Saliwiryo Pranowo Gg. Taman 11, Kutakulon, Bondowoso",
+      "phone": "082228111778",
+      "slug": "baratha-hotel",
+      "map_url": "https://maps.app.goo.gl/bdDZAXDUfHADV24T8",
+      "website_url": "https://www.barathahotel.com/",
+      "lunch_rate_idr": 60000,
+      "dinner_rate_idr": 60000,
+      "is_publish": true,
+      "room_types": [
+        {"id":1,"room_name":"Deluxe Twin","bed_type":"Twin","rate_idr":275000,"rate_twt_idr":null,"configurations":[]},
+        {"id":9,"room_name":"Deluxe Double","bed_type":"Double","rate_idr":275000,"rate_twt_idr":null,"configurations":[
+          {"pax":1,"quantity":1},{"pax":2,"quantity":1},{"pax":5,"quantity":1},{"pax":6,"quantity":1},{"pax":9,"quantity":1},{"pax":10,"quantity":1}
+        ]},
+        {"id":12,"room_name":"Family","bed_type":"Quad","rate_idr":450000,"rate_twt_idr":null,"configurations":[]},
+        {"id":43,"room_name":"Apartment","bed_type":"Twin","rate_idr":450000,"rate_twt_idr":null,"configurations":[
+          {"pax":3,"quantity":1},{"pax":4,"quantity":1},{"pax":5,"quantity":1},{"pax":6,"quantity":1},{"pax":7,"quantity":2},{"pax":8,"quantity":2},{"pax":9,"quantity":2},{"pax":10,"quantity":2},{"pax":11,"quantity":3}
+        ]},
+        {"id":64,"room_name":"Apartment + Extra Bed","bed_type":"Twin","rate_idr":625000,"rate_twt_idr":null,"configurations":[]},
+        {"id":122,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":175000,"rate_twt_idr":null,"configurations":[]},
+        {"id":160,"room_name":"Superior Twin","bed_type":"Twin","rate_idr":250000,"rate_twt_idr":null,"configurations":[]},
+        {"id":161,"room_name":"Superior Double","bed_type":"Double","rate_idr":250000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Whizz Bromo",
+      "destination_id": 1,
+      "destination_name": "Mount Bromo",
+      "address": "Jl. Raya Bromo, Watulumpang, Sukapura, Kabupaten Probolinggo",
+      "phone": "081131177899",
+      "slug": "whiz-bromo",
+      "map_url": "https://maps.app.goo.gl/TEY6NyZQc61hvosP9",
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":11,"room_name":"Superior","bed_type":"Capsule","rate_idr":550000,"rate_twt_idr":null,"configurations":[]},
+        {"id":173,"room_name":"Capsule","bed_type":"Capsule","rate_idr":200000,"rate_twt_idr":null,"configurations":[
+          {"pax":1,"quantity":1},{"pax":2,"quantity":2},{"pax":3,"quantity":3},{"pax":4,"quantity":4},{"pax":5,"quantity":5},{"pax":6,"quantity":6},{"pax":7,"quantity":7},{"pax":8,"quantity":8},{"pax":9,"quantity":9},{"pax":10,"quantity":10},{"pax":11,"quantity":11}
+        ]}
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Holiday Inn Express Surabaya Centerpoint",
+      "destination_id": 4,
+      "destination_name": "Surabaya",
+      "address": "Jl. Kedung Doro No.54-58, Sawahan, Surabaya",
+      "phone": "0818308833",
+      "slug": "holiday-inn",
+      "map_url": "https://maps.app.goo.gl/fk7vTxgm53si5McU6",
+      "website_url": "https://www.ihg.com/holidayinnexpress/hotels/gb/en/surabaya-jawa-timur/subsa/hoteldetail",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":5,"room_name":"Twin","bed_type":"Twin","rate_idr":570000,"rate_twt_idr":null,"configurations":[
+          {"pax":1,"quantity":1},{"pax":2,"quantity":1},{"pax":3,"quantity":1},{"pax":4,"quantity":2},{"pax":5,"quantity":2},{"pax":6,"quantity":3},{"pax":7,"quantity":3},{"pax":8,"quantity":4},{"pax":9,"quantity":4},{"pax":10,"quantity":5},{"pax":11,"quantity":5}
+        ]},
+        {"id":29,"room_name":"Double","bed_type":"Double","rate_idr":570000,"rate_twt_idr":null,"configurations":[]},
+        {"id":102,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":350000,"rate_twt_idr":null,"configurations":[
+          {"pax":3,"quantity":1},{"pax":5,"quantity":1},{"pax":7,"quantity":1},{"pax":9,"quantity":1},{"pax":11,"quantity":1}
+        ]}
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Grand Padis Hotel",
+      "destination_id": 2,
+      "destination_name": "Mount Ijen",
+      "address": "Jl. Ahmad Yani No.28, Badean, Bondowoso",
+      "phone": "082132902277",
+      "slug": "grand-padis",
+      "map_url": "https://maps.app.goo.gl/JzxnycoUrZ1NHoRd9",
+      "website_url": "https://grandpadishotel.com/",
+      "lunch_rate_idr": 75000,
+      "dinner_rate_idr": 75000,
+      "is_publish": true,
+      "room_types": [
+        {"id":17,"room_name":"Superior Twin","bed_type":"Twin","rate_idr":450000,"rate_twt_idr":495000,"configurations":[]},
+        {"id":18,"room_name":"Superior Double","bed_type":"Double","rate_idr":450000,"rate_twt_idr":495000,"configurations":[
+          {"pax":2,"quantity":1}
+        ]},
+        {"id":19,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":300000,"rate_twt_idr":null,"configurations":[
+          {"pax":3,"quantity":1},{"pax":5,"quantity":1},{"pax":7,"quantity":1},{"pax":9,"quantity":1},{"pax":11,"quantity":1}
+        ]},
+        {"id":20,"room_name":"Family","bed_type":"Family","rate_idr":735000,"rate_twt_idr":null,"configurations":[]},
+        {"id":158,"room_name":"Deluxe Twin","bed_type":"Twin","rate_idr":615000,"rate_twt_idr":null,"configurations":[
+          {"pax":1,"quantity":1},{"pax":3,"quantity":1},{"pax":4,"quantity":2},{"pax":5,"quantity":2},{"pax":6,"quantity":3},{"pax":7,"quantity":3},{"pax":8,"quantity":4},{"pax":9,"quantity":4},{"pax":10,"quantity":5},{"pax":11,"quantity":5}
+        ]},
+        {"id":200,"room_name":"Deluxe Double","bed_type":"Double","rate_idr":615000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Joglo Kecombrang Bromo",
+      "destination_id": 1,
+      "destination_name": "Mount Bromo",
+      "address": "Jl. Raya Bromo, Dusun 2, Sapikerep, Sukapura, Probolinggo",
+      "phone": "082142962949",
+      "slug": "joglo-kecombrang",
+      "map_url": "https://maps.app.goo.gl/U63t2BBHbbvtRkap9",
+      "website_url": "https://maps.app.goo.gl/SocNX2uWkZEasrV8A",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":23,"room_name":"Twin","bed_type":"Twin","rate_idr":750000,"rate_twt_idr":null,"configurations":[]},
+        {"id":24,"room_name":"Double","bed_type":"Double","rate_idr":750000,"rate_twt_idr":null,"configurations":[
+          {"pax":1,"quantity":1},{"pax":2,"quantity":1},{"pax":4,"quantity":2},{"pax":5,"quantity":2},{"pax":6,"quantity":3},{"pax":7,"quantity":3},{"pax":8,"quantity":4},{"pax":9,"quantity":4},{"pax":10,"quantity":5},{"pax":11,"quantity":5}
+        ]},
+        {"id":96,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":300000,"rate_twt_idr":null,"configurations":[]},
+        {"id":109,"room_name":"Family","bed_type":"Family","rate_idr":950000,"rate_twt_idr":null,"configurations":[
+          {"pax":3,"quantity":1},{"pax":5,"quantity":1},{"pax":7,"quantity":1},{"pax":9,"quantity":1},{"pax":11,"quantity":1}
+        ]}
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Bromo Terrace",
+      "destination_id": 1,
+      "destination_name": "Mount Bromo",
+      "address": "Jl. Raya Bromo, Dusun 2, Sapikerep, Sukapura, Probolinggo",
+      "phone": "082135662509",
+      "slug": null,
+      "map_url": "https://maps.app.goo.gl/SaXH3R4VihrHwyJB8",
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":37,"room_name":"Double","bed_type":"Double","rate_idr":1150000,"rate_twt_idr":1200000,"configurations":[]},
+        {"id":38,"room_name":"Twin","bed_type":"Twin","rate_idr":1200000,"rate_twt_idr":1250000,"configurations":[]},
+        {"id":39,"room_name":"Double Hillview","bed_type":"Double","rate_idr":1350000,"rate_twt_idr":null,"configurations":[]},
+        {"id":146,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":300000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Whiz Prime Malang",
+      "destination_id": 5,
+      "destination_name": "Malang City",
+      "address": "Jl. Jenderal Basuki Rahmat No.85-87, Klojen, Malang",
+      "phone": "085755801383",
+      "slug": null,
+      "map_url": "https://maps.app.goo.gl/DXunZpZD9jp4kTpy6",
+      "website_url": "https://whizprime.intiwhiz.com/malang",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":40,"room_name":"Superior Double (Weekday)","bed_type":"Double","rate_idr":496000,"rate_twt_idr":null,"configurations":[]},
+        {"id":41,"room_name":"Superior Double (Weekend)","bed_type":"Double","rate_idr":544000,"rate_twt_idr":null,"configurations":[]},
+        {"id":125,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":200000,"rate_twt_idr":null,"configurations":[
+          {"pax":3,"quantity":1},{"pax":5,"quantity":1},{"pax":7,"quantity":1},{"pax":9,"quantity":1},{"pax":11,"quantity":1}
+        ]},
+        {"id":126,"room_name":"Deluxe Double (Weekday)","bed_type":"Double","rate_idr":596000,"rate_twt_idr":null,"configurations":[]},
+        {"id":127,"room_name":"Deluxe Double (Weekend)","bed_type":"Double","rate_idr":644000,"rate_twt_idr":null,"configurations":[]},
+        {"id":169,"room_name":"Superior Twin (Weekday)","bed_type":"Twin","rate_idr":496000,"rate_twt_idr":null,"configurations":[]},
+        {"id":170,"room_name":"Superior Twin (Weekend)","bed_type":"Twin","rate_idr":544000,"rate_twt_idr":null,"configurations":[]},
+        {"id":171,"room_name":"Deluxe Twin (Weekday)","bed_type":"Twin","rate_idr":596000,"rate_twt_idr":null,"configurations":[
+          {"pax":1,"quantity":1},{"pax":2,"quantity":1},{"pax":3,"quantity":1},{"pax":4,"quantity":2},{"pax":5,"quantity":2},{"pax":6,"quantity":3},{"pax":7,"quantity":3},{"pax":8,"quantity":4},{"pax":9,"quantity":4},{"pax":10,"quantity":5},{"pax":11,"quantity":5}
+        ]},
+        {"id":172,"room_name":"Deluxe Twin (Weekend)","bed_type":"Twin","rate_idr":644000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Luminor Hotel",
+      "destination_id": 2,
+      "destination_name": "Mount Ijen",
+      "address": "Jl. Yos Sudarso No.66, Klatak, Kalipuro, Banyuwangi",
+      "phone": "082232572032",
+      "slug": null,
+      "map_url": "https://maps.app.goo.gl/HZh3YyqomtkehSwf7",
+      "website_url": "https://www.waringinhospitality.com/en/hotel/luminor-hotel-banyuwangi",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":107,"room_name":"Deluxe Double","bed_type":"Double","rate_idr":500000,"rate_twt_idr":null,"configurations":[]},
+        {"id":185,"room_name":"Deluxe Twin","bed_type":"Twin","rate_idr":500000,"rate_twt_idr":null,"configurations":[
+          {"pax":1,"quantity":1},{"pax":2,"quantity":1},{"pax":3,"quantity":1},{"pax":4,"quantity":2},{"pax":5,"quantity":2},{"pax":6,"quantity":3},{"pax":7,"quantity":3},{"pax":8,"quantity":4},{"pax":9,"quantity":4},{"pax":10,"quantity":5},{"pax":11,"quantity":5}
+        ]},
+        {"id":186,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":250000,"rate_twt_idr":null,"configurations":[
+          {"pax":3,"quantity":1},{"pax":5,"quantity":1},{"pax":7,"quantity":1},{"pax":9,"quantity":1},{"pax":11,"quantity":1}
+        ]}
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Doho Homestay",
+      "destination_id": 9,
+      "destination_name": "Papuma Beach",
+      "address": "Jl.Doho No.8, Kebonsari, Sumbersari, Jember",
+      "phone": "+6281252787171",
+      "slug": "doho-homestay",
+      "map_url": "https://maps.app.goo.gl/idfZTpstCnrXJqJd6",
+      "website_url": "https://maps.app.goo.gl/miD4dc4Amif8xtGt7",
+      "lunch_rate_idr": 50000,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":72,"room_name":"Superior Twin","bed_type":"Twin","rate_idr":240000,"rate_twt_idr":null,"configurations":[]},
+        {"id":73,"room_name":"Deluxe Twin","bed_type":"Twin","rate_idr":280000,"rate_twt_idr":null,"configurations":[]},
+        {"id":81,"room_name":"Family","bed_type":"Family","rate_idr":460000,"rate_twt_idr":null,"configurations":[
+          {"pax":3,"quantity":1},{"pax":5,"quantity":1},{"pax":7,"quantity":1},{"pax":9,"quantity":1},{"pax":11,"quantity":1}
+        ]},
+        {"id":98,"room_name":"Emerald Double + Extra Bed","bed_type":"Double","rate_idr":360000,"rate_twt_idr":null,"configurations":[]},
+        {"id":103,"room_name":"Platinum Double","bed_type":"Double","rate_idr":400000,"rate_twt_idr":null,"configurations":[]},
+        {"id":162,"room_name":"Superior Double","bed_type":"Double","rate_idr":240000,"rate_twt_idr":null,"configurations":[]},
+        {"id":163,"room_name":"Deluxe Double","bed_type":"Double","rate_idr":280000,"rate_twt_idr":null,"configurations":[
+          {"pax":1,"quantity":1},{"pax":2,"quantity":1},{"pax":4,"quantity":2},{"pax":5,"quantity":1},{"pax":6,"quantity":3},{"pax":7,"quantity":2},{"pax":8,"quantity":4},{"pax":9,"quantity":3},{"pax":10,"quantity":5},{"pax":11,"quantity":4}
+        ]},
+        {"id":164,"room_name":"Executive Twin","bed_type":"Twin","rate_idr":316000,"rate_twt_idr":null,"configurations":[]},
+        {"id":165,"room_name":"Executive Double","bed_type":"Double","rate_idr":316000,"rate_twt_idr":null,"configurations":[]},
+        {"id":166,"room_name":"Emerald Twin","bed_type":"Twin","rate_idr":360000,"rate_twt_idr":null,"configurations":[]},
+        {"id":167,"room_name":"Platinum Twin","bed_type":"Twin","rate_idr":400000,"rate_twt_idr":null,"configurations":[]},
+        {"id":168,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":150000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Riverside Homestay",
+      "destination_id": 2,
+      "destination_name": "Mount Ijen",
+      "address": "Jl.Aip Mugiman, Koncer Kidul, Bondowoso",
+      "phone": "081323200042",
+      "slug": "riverside-homestay",
+      "map_url": "https://maps.app.goo.gl/8nvsku6DEd5JBbK58",
+      "website_url": "https://maps.app.goo.gl/FhrB6nFgvsKAYHhB7",
+      "lunch_rate_idr": 65000,
+      "dinner_rate_idr": 65000,
+      "is_publish": true,
+      "room_types": [
+        {"id":84,"room_name":"Deluxe Double","bed_type":"Double","rate_idr":337500,"rate_twt_idr":360000,"configurations":[
+          {"pax":1,"quantity":1},{"pax":2,"quantity":1},{"pax":4,"quantity":2},{"pax":5,"quantity":1},{"pax":6,"quantity":3},{"pax":7,"quantity":2},{"pax":8,"quantity":4},{"pax":9,"quantity":3},{"pax":10,"quantity":5},{"pax":11,"quantity":4}
+        ]},
+        {"id":88,"room_name":"Platinum Double","bed_type":"Double","rate_idr":487500,"rate_twt_idr":520000,"configurations":[]},
+        {"id":94,"room_name":"Emerald Double","bed_type":"Double","rate_idr":412500,"rate_twt_idr":440000,"configurations":[]},
+        {"id":95,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":200000,"rate_twt_idr":null,"configurations":[]},
+        {"id":97,"room_name":"Executive Double","bed_type":"Double","rate_idr":375000,"rate_twt_idr":400000,"configurations":[]},
+        {"id":101,"room_name":"Family","bed_type":"Family","rate_idr":562500,"rate_twt_idr":600000,"configurations":[
+          {"pax":3,"quantity":1},{"pax":5,"quantity":1},{"pax":7,"quantity":1},{"pax":9,"quantity":1},{"pax":11,"quantity":1}
+        ]},
+        {"id":118,"room_name":"Deluxe Twin","bed_type":"Twin","rate_idr":337500,"rate_twt_idr":360000,"configurations":[]},
+        {"id":177,"room_name":"Executive Twin","bed_type":"Twin","rate_idr":375000,"rate_twt_idr":400000,"configurations":[]},
+        {"id":178,"room_name":"Emerald Twin","bed_type":"Twin","rate_idr":412500,"rate_twt_idr":440000,"configurations":[]},
+        {"id":179,"room_name":"Platinum Twin","bed_type":"Twin","rate_idr":487500,"rate_twt_idr":520000,"configurations":[]}
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Aston Banyuwangi",
+      "destination_id": 2,
+      "destination_name": "Mount Ijen",
+      "address": "Jl. Brawijaya, Mojopanggung, Giri, Banyuwangi",
+      "phone": "081232246423",
+      "slug": null,
+      "map_url": "https://maps.app.goo.gl/cerFxczi9UgUwSBc9",
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":74,"room_name":"Double","bed_type":"Double","rate_idr":525000,"rate_twt_idr":null,"configurations":[]},
+        {"id":80,"room_name":"Premiere Family","bed_type":"Family","rate_idr":625000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Atria Malang",
+      "destination_id": 5,
+      "destination_name": "Malang City",
+      "address": "Jl. Letjend S. Parman No.87-89, Purwantoro, Blimbing, Malang",
+      "phone": "081334473749",
+      "slug": null,
+      "map_url": "https://maps.app.goo.gl/AExwRrybur5fUWJ18",
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":83,"room_name":"Twin","bed_type":"Twin","rate_idr":610000,"rate_twt_idr":null,"configurations":[]},
+        {"id":89,"room_name":"Double","bed_type":"Double","rate_idr":610000,"rate_twt_idr":null,"configurations":[]},
+        {"id":91,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":350000,"rate_twt_idr":null,"configurations":[]},
+        {"id":104,"room_name":"Connecting","bed_type":"Connecting","rate_idr":null,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Artha Cottage",
+      "destination_id": 7,
+      "destination_name": "Tumpak Sewu Waterfall",
+      "address": "Jl. Sultan Agung, Kalibening, Pronojiwo, Lumajang",
+      "phone": "0811213347",
+      "slug": null,
+      "map_url": "https://maps.app.goo.gl/Pa2Bzo1bRG99YGph8",
+      "website_url": "https://maps.app.goo.gl/HbdoXArjap3xT91B9",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":76,"room_name":"Double","bed_type":"Double","rate_idr":467500,"rate_twt_idr":null,"configurations":[]},
+        {"id":77,"room_name":"Twin","bed_type":"Twin","rate_idr":467500,"rate_twt_idr":null,"configurations":[
+          {"pax":1,"quantity":1},{"pax":2,"quantity":1},{"pax":3,"quantity":1},{"pax":4,"quantity":2},{"pax":5,"quantity":2},{"pax":6,"quantity":3},{"pax":7,"quantity":3},{"pax":8,"quantity":4},{"pax":9,"quantity":4},{"pax":10,"quantity":5},{"pax":11,"quantity":5}
+        ]},
+        {"id":187,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":null,"rate_twt_idr":null,"configurations":[
+          {"pax":3,"quantity":1},{"pax":5,"quantity":1},{"pax":7,"quantity":1},{"pax":9,"quantity":1},{"pax":11,"quantity":1}
+        ]},
+        {"id":207,"room_name":"VIP Double","bed_type":"Double","rate_idr":595000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Baobab Safari Resort",
+      "destination_id": null,
+      "destination_name": null,
+      "address": "Gn. Princi, Jatiarjo, Prigen, Pasuruan Regency, East Java",
+      "phone": "085646600056",
+      "slug": "baobab-safari-resort",
+      "map_url": "https://maps.app.goo.gl/MfjTH5HwsYEmeYxA8",
+      "website_url": "https://m.baobabsafariresort.com/m/m3.html",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":78,"room_name":"Deluxe Hill View","bed_type":"Double","rate_idr":1500000,"rate_twt_idr":null,"configurations":[]},
+        {"id":79,"room_name":"Deluxe Safari View","bed_type":"Double","rate_idr":1700000,"rate_twt_idr":null,"configurations":[
+          {"pax":2,"quantity":1},{"pax":3,"quantity":1},{"pax":4,"quantity":2},{"pax":5,"quantity":2},{"pax":6,"quantity":3},{"pax":7,"quantity":3},{"pax":8,"quantity":4},{"pax":9,"quantity":4},{"pax":10,"quantity":5},{"pax":11,"quantity":5}
+        ]},
+        {"id":106,"room_name":"Premium Hill View","bed_type":"Double","rate_idr":1900000,"rate_twt_idr":null,"configurations":[]},
+        {"id":134,"room_name":"Premium Safari View","bed_type":"Double","rate_idr":2200000,"rate_twt_idr":null,"configurations":[]},
+        {"id":135,"room_name":"Junior Suite Hill View","bed_type":"King","rate_idr":4500000,"rate_twt_idr":null,"configurations":[]},
+        {"id":136,"room_name":"Junior Suite Safari View","bed_type":"King","rate_idr":4700000,"rate_twt_idr":null,"configurations":[]},
+        {"id":189,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":500000,"rate_twt_idr":null,"configurations":[
+          {"pax":3,"quantity":1},{"pax":5,"quantity":1},{"pax":7,"quantity":1},{"pax":9,"quantity":1},{"pax":11,"quantity":1}
+        ]}
+      ]
+    },
+    {
+      "id": 56,
+      "name": "Harris Hotel Satelit",
+      "destination_id": 4,
+      "destination_name": "Surabaya",
+      "address": "Jl. Mayjen HR. Muhammad No.2A, Putat Gede, Sukomanunggal, Surabaya",
+      "phone": "03199149199",
+      "slug": "harris-hotel-satelit",
+      "map_url": "https://maps.app.goo.gl/r6xrxDx4VVYgM2EA9",
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":154,"room_name":"Double Room","bed_type":"Double","rate_idr":725000,"rate_twt_idr":710000,"configurations":[]},
+        {"id":190,"room_name":"Twin Room","bed_type":"Twin","rate_idr":725000,"rate_twt_idr":710000,"configurations":[]},
+        {"id":191,"room_name":"Connecting Room","bed_type":"Connecting","rate_idr":1450000,"rate_twt_idr":1420000,"configurations":[]},
+        {"id":222,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":350000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 57,
+      "name": "Yanto Homestay Anugerah Tumpak Sewu",
+      "destination_id": 9,
+      "destination_name": "Papuma Beach",
+      "address": "Besukcukit, Sidomulyo, Pronojiwo, Lumajang",
+      "phone": "085331238963",
+      "slug": null,
+      "map_url": "https://maps.app.goo.gl/ZtciiBpTH5k5JncE9",
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":155,"room_name":"Deluxe","bed_type":"Double","rate_idr":350000,"rate_twt_idr":null,"configurations":[]},
+        {"id":156,"room_name":"Cottage","bed_type":"Family","rate_idr":550000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 59,
+      "name": "THE 1O1 Malang OJ",
+      "destination_id": 7,
+      "destination_name": "Tumpak Sewu Waterfall",
+      "address": "Jl. Dr. Cipto No.11, Rampal Celaket, Klojen, Malang",
+      "phone": "6289665355441",
+      "slug": "the-101-malang-ACC_010",
+      "map_url": "https://maps.app.goo.gl/gqUYaGTdvLpbU7Pp8",
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":174,"room_name":"Deluxe Twin (Weekday)","bed_type":"Twin","rate_idr":700000,"rate_twt_idr":null,"configurations":[]},
+        {"id":175,"room_name":"Deluxe Double (Weekday)","bed_type":"Double","rate_idr":700000,"rate_twt_idr":null,"configurations":[]},
+        {"id":176,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":300000,"rate_twt_idr":null,"configurations":[]},
+        {"id":198,"room_name":"Deluxe Twin (Weekend)","bed_type":"Twin","rate_idr":800000,"rate_twt_idr":null,"configurations":[]},
+        {"id":199,"room_name":"Deluxe Double (Weekend)","bed_type":"Double","rate_idr":800000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 60,
+      "name": "Manis Ae Cabin & Resto Bromo",
+      "destination_id": 1,
+      "destination_name": "Mount Bromo",
+      "address": "Jl. Raya Bromo Dusun I Blok Kalongan, Jetak, Sukapura, Probolinggo",
+      "phone": "+6282231000028",
+      "slug": "manis-ae",
+      "map_url": "https://maps.app.goo.gl/eLri5v9FcHd5j9wZ8",
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":180,"room_name":"Single Cabin Twin (Weekday)","bed_type":"Twin","rate_idr":1050000,"rate_twt_idr":1240000,"configurations":[]},
+        {"id":181,"room_name":"Single Cabin Double (Weekday)","bed_type":"Double","rate_idr":1050000,"rate_twt_idr":1240000,"configurations":[]},
+        {"id":182,"room_name":"Family Cabin (Weekday)","bed_type":"Family","rate_idr":2100000,"rate_twt_idr":1880000,"configurations":[]},
+        {"id":205,"room_name":"Single Cabin Twin (Weekend)","bed_type":"Twin","rate_idr":1200000,"rate_twt_idr":1420000,"configurations":[]},
+        {"id":206,"room_name":"Single Cabin Double (Weekend)","bed_type":"Double","rate_idr":1200000,"rate_twt_idr":1420000,"configurations":[]},
+        {"id":221,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":350000,"rate_twt_idr":null,"configurations":[]},
+        {"id":223,"room_name":"Single Cabin Twin (High Season)","bed_type":"Twin","rate_idr":1530000,"rate_twt_idr":1520000,"configurations":[]},
+        {"id":224,"room_name":"Single Cabin Double (High Season)","bed_type":"Double","rate_idr":1530000,"rate_twt_idr":1520000,"configurations":[]},
+        {"id":225,"room_name":"Family Cabin (Weekend)","bed_type":"Family","rate_idr":2250000,"rate_twt_idr":2020000,"configurations":[]},
+        {"id":226,"room_name":"Family Cabin (High Season)","bed_type":"Family","rate_idr":2580000,"rate_twt_idr":2220000,"configurations":[]},
+        {"id":239,"room_name":"Standard w/o Balcony Twin (Weekday)","bed_type":"Twin","rate_idr":850000,"rate_twt_idr":null,"configurations":[]},
+        {"id":240,"room_name":"Standard w/o Balcony Double (Weekday)","bed_type":"Double","rate_idr":850000,"rate_twt_idr":null,"configurations":[]},
+        {"id":241,"room_name":"Standard w/o Balcony Twin (Weekend)","bed_type":"Twin","rate_idr":1050000,"rate_twt_idr":null,"configurations":[]},
+        {"id":242,"room_name":"Standard w/o Balcony Double (Weekend)","bed_type":"Double","rate_idr":1050000,"rate_twt_idr":null,"configurations":[]},
+        {"id":243,"room_name":"Standard w/o Balcony Twin (High Season)","bed_type":"Twin","rate_idr":1330000,"rate_twt_idr":null,"configurations":[]},
+        {"id":244,"room_name":"Standard w/o Balcony Double (High Season)","bed_type":"Double","rate_idr":1330000,"rate_twt_idr":null,"configurations":[]},
+        {"id":245,"room_name":"Standard w/ Balcony Twin (Weekday)","bed_type":"Twin","rate_idr":1050000,"rate_twt_idr":null,"configurations":[]},
+        {"id":246,"room_name":"Standard w/ Balcony Double (Weekday)","bed_type":"Double","rate_idr":1050000,"rate_twt_idr":null,"configurations":[]},
+        {"id":247,"room_name":"Standard w/ Balcony Twin (Weekend)","bed_type":"Twin","rate_idr":1200000,"rate_twt_idr":null,"configurations":[]},
+        {"id":248,"room_name":"Standard w/ Balcony Double (Weekend)","bed_type":"Double","rate_idr":1200000,"rate_twt_idr":null,"configurations":[]},
+        {"id":249,"room_name":"Standard w/ Balcony Twin (High Season)","bed_type":"Twin","rate_idr":1530000,"rate_twt_idr":null,"configurations":[]},
+        {"id":250,"room_name":"Standard w/ Balcony Double (High Season)","bed_type":"Double","rate_idr":1530000,"rate_twt_idr":null,"configurations":[]},
+        {"id":251,"room_name":"Superior Twin (Weekday)","bed_type":"Twin","rate_idr":1200000,"rate_twt_idr":null,"configurations":[]},
+        {"id":252,"room_name":"Superior Double (Weekday)","bed_type":"Double","rate_idr":1200000,"rate_twt_idr":null,"configurations":[]},
+        {"id":253,"room_name":"Superior Twin (Weekend)","bed_type":"Twin","rate_idr":1400000,"rate_twt_idr":null,"configurations":[]},
+        {"id":254,"room_name":"Superior Double (Weekend)","bed_type":"Double","rate_idr":1400000,"rate_twt_idr":null,"configurations":[]},
+        {"id":255,"room_name":"Superior Twin (High Season)","bed_type":"Twin","rate_idr":1680000,"rate_twt_idr":null,"configurations":[]},
+        {"id":256,"room_name":"Superior Double (High Season)","bed_type":"Double","rate_idr":1680000,"rate_twt_idr":null,"configurations":[]},
+        {"id":257,"room_name":"Deluxe Twin (Weekday)","bed_type":"Twin","rate_idr":1400000,"rate_twt_idr":null,"configurations":[]},
+        {"id":258,"room_name":"Deluxe Double (Weekday)","bed_type":"Double","rate_idr":1400000,"rate_twt_idr":null,"configurations":[]},
+        {"id":259,"room_name":"Deluxe Twin (Weekend)","bed_type":"Twin","rate_idr":1600000,"rate_twt_idr":null,"configurations":[]},
+        {"id":260,"room_name":"Deluxe Double (Weekend)","bed_type":"Double","rate_idr":1600000,"rate_twt_idr":null,"configurations":[]},
+        {"id":261,"room_name":"Deluxe Twin (High Season)","bed_type":"Twin","rate_idr":1880000,"rate_twt_idr":null,"configurations":[]},
+        {"id":262,"room_name":"Deluxe Double (High Season)","bed_type":"Double","rate_idr":1880000,"rate_twt_idr":null,"configurations":[]},
+        {"id":263,"room_name":"Junior Suite (Weekday)","bed_type":"King","rate_idr":1950000,"rate_twt_idr":null,"configurations":[]},
+        {"id":264,"room_name":"Junior Suite (Weekend)","bed_type":"King","rate_idr":2250000,"rate_twt_idr":null,"configurations":[]},
+        {"id":265,"room_name":"Junior Suite (High Season)","bed_type":"King","rate_idr":2430000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 61,
+      "name": "Hotel 88 Kedungsari",
+      "destination_id": 4,
+      "destination_name": "Surabaya",
+      "address": "Jl. Kedungsari No.78, Kedungdoro, Tegalsari, Surabaya",
+      "phone": "6282233989000",
+      "slug": null,
+      "map_url": "https://maps.app.goo.gl/8eQHxZHF1zhzgWTH8",
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":183,"room_name":"Deluxe Double","bed_type":"Double","rate_idr":330000,"rate_twt_idr":null,"configurations":[]},
+        {"id":184,"room_name":"Deluxe Twin","bed_type":"Twin","rate_idr":330000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 62,
+      "name": "Hotel Santika Banyuwangi",
+      "destination_id": 2,
+      "destination_name": "Mount Ijen",
+      "address": "Jl. Letjen S Parman No.15, Sobo, Banyuwangi",
+      "phone": "+628113573377",
+      "slug": null,
+      "map_url": "https://maps.app.goo.gl/yYJPKiBYArVep4uF8",
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":192,"room_name":"Superior Twin","bed_type":"Twin","rate_idr":580000,"rate_twt_idr":null,"configurations":[]},
+        {"id":193,"room_name":"Superior Double","bed_type":"Double","rate_idr":580000,"rate_twt_idr":null,"configurations":[]},
+        {"id":194,"room_name":"Deluxe Twin","bed_type":"Twin","rate_idr":700000,"rate_twt_idr":null,"configurations":[]},
+        {"id":195,"room_name":"Deluxe Double","bed_type":"Double","rate_idr":700000,"rate_twt_idr":null,"configurations":[]},
+        {"id":196,"room_name":"Executive Suite","bed_type":"King","rate_idr":990000,"rate_twt_idr":null,"configurations":[]},
+        {"id":197,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":300000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 63,
+      "name": "ARTOTEL Cabin Bromo",
+      "destination_id": 1,
+      "destination_name": "Mount Bromo",
+      "address": null,
+      "phone": null,
+      "slug": "artotel-bromo",
+      "map_url": "https://maps.app.goo.gl/mkZXnwmXn44SgJtM6",
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":201,"room_name":"Cabin King","bed_type":"King","rate_idr":1150000,"rate_twt_idr":null,"configurations":[]},
+        {"id":202,"room_name":"Cabin Twin","bed_type":"Twin","rate_idr":1150000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 64,
+      "name": "Lava View Lodge",
+      "destination_id": 1,
+      "destination_name": "Mount Bromo",
+      "address": "Cemorolawang, Ngadisari, Sukapura, Probolinggo",
+      "phone": "+6281249808182",
+      "slug": null,
+      "map_url": "https://maps.app.goo.gl/VtWdWg1Xn5D4FySE7",
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":208,"room_name":"Suite Room (Weekday)","bed_type":"King","rate_idr":2550000,"rate_twt_idr":null,"configurations":[]},
+        {"id":209,"room_name":"Suite Room (Weekend)","bed_type":"King","rate_idr":2762500,"rate_twt_idr":null,"configurations":[]},
+        {"id":210,"room_name":"Cottages (Weekday)","bed_type":"Family","rate_idr":2337500,"rate_twt_idr":null,"configurations":[]},
+        {"id":211,"room_name":"Cottages (Weekend)","bed_type":"Family","rate_idr":2550000,"rate_twt_idr":null,"configurations":[]},
+        {"id":212,"room_name":"Family Room (Weekday)","bed_type":"Family","rate_idr":1147500,"rate_twt_idr":null,"configurations":[]},
+        {"id":213,"room_name":"Family Room (Weekend)","bed_type":"Family","rate_idr":1402500,"rate_twt_idr":null,"configurations":[]},
+        {"id":214,"room_name":"Deluxe Double (Weekday)","bed_type":"Double","rate_idr":935000,"rate_twt_idr":null,"configurations":[]},
+        {"id":215,"room_name":"Deluxe Twin (Weekday)","bed_type":"Twin","rate_idr":935000,"rate_twt_idr":null,"configurations":[]},
+        {"id":216,"room_name":"Deluxe Double (Weekend)","bed_type":"Double","rate_idr":1062500,"rate_twt_idr":null,"configurations":[]},
+        {"id":217,"room_name":"Deluxe Twin (Weekend)","bed_type":"Twin","rate_idr":1062500,"rate_twt_idr":null,"configurations":[]},
+        {"id":218,"room_name":"Superior Twin (Weekday)","bed_type":"Twin","rate_idr":680000,"rate_twt_idr":null,"configurations":[]},
+        {"id":219,"room_name":"Superior Twin (Weekend)","bed_type":"Twin","rate_idr":765000,"rate_twt_idr":null,"configurations":[]},
+        {"id":220,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":250000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 65,
+      "name": "Villa 88",
+      "destination_id": 1,
+      "destination_name": "Mount Bromo",
+      "address": null,
+      "phone": null,
+      "slug": null,
+      "map_url": null,
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":227,"room_name":"Standard (with Breakfast)","bed_type":"Double","rate_idr":800000,"rate_twt_idr":null,"configurations":[]},
+        {"id":228,"room_name":"Standard (without Breakfast)","bed_type":"Double","rate_idr":600000,"rate_twt_idr":null,"configurations":[]},
+        {"id":229,"room_name":"Deluxe 2-Bed (with Breakfast)","bed_type":"Twin","rate_idr":1400000,"rate_twt_idr":null,"configurations":[]},
+        {"id":230,"room_name":"Deluxe 2-Bed (without Breakfast)","bed_type":"Twin","rate_idr":1000000,"rate_twt_idr":null,"configurations":[]},
+        {"id":237,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":200000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 66,
+      "name": "HARRIS Hotel & Conventions Malang",
+      "destination_id": 7,
+      "destination_name": "Tumpak Sewu Waterfall",
+      "address": "Jl. Riverside Blk. C No.1, Polowijen, Blimbing, Malang",
+      "phone": "+6281133372227",
+      "slug": null,
+      "map_url": "https://maps.app.goo.gl/fSthFBSPZY6wCaVy7",
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":231,"room_name":"Harris Room Twin","bed_type":"Twin","rate_idr":650000,"rate_twt_idr":null,"configurations":[]},
+        {"id":232,"room_name":"Harris Room Double","bed_type":"Double","rate_idr":650000,"rate_twt_idr":null,"configurations":[]},
+        {"id":233,"room_name":"Harris Sky","bed_type":"King","rate_idr":1000000,"rate_twt_idr":null,"configurations":[]},
+        {"id":234,"room_name":"Extra Bed","bed_type":"Extra","rate_idr":325000,"rate_twt_idr":null,"configurations":[]},
+        {"id":266,"room_name":"Connecting Room","bed_type":"Connecting","rate_idr":1300000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 67,
+      "name": "Kertanegara Homestay Jember",
+      "destination_id": 9,
+      "destination_name": "Papuma Beach",
+      "address": "Jl. Kerta Negara, Patimura, Jember Kidul, Kaliwates, Jember",
+      "phone": "+6285230304242",
+      "slug": null,
+      "map_url": "https://maps.app.goo.gl/bF1G2uqbJCw7sznAA",
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":238,"room_name":"Deluxe Twin (High Season)","bed_type":"Twin","rate_idr":395000,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 68,
+      "name": "Lintang Luku Tent",
+      "destination_id": 2,
+      "destination_name": "Mount Ijen",
+      "address": null,
+      "phone": null,
+      "slug": null,
+      "map_url": null,
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":267,"room_name":"By Client","bed_type":"Custom","rate_idr":null,"rate_twt_idr":null,"configurations":[]}
+      ]
+    },
+    {
+      "id": 69,
+      "name": "Ijen Resort and Villas",
+      "destination_id": 2,
+      "destination_name": "Mount Ijen",
+      "address": null,
+      "phone": null,
+      "slug": null,
+      "map_url": null,
+      "website_url": "#",
+      "lunch_rate_idr": 0,
+      "dinner_rate_idr": 0,
+      "is_publish": true,
+      "room_types": [
+        {"id":268,"room_name":"By Client","bed_type":"Custom","rate_idr":null,"rate_twt_idr":null,"configurations":[]}
+      ]
+    }
+  ]
+}

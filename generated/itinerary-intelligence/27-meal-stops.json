@@ -1,0 +1,332 @@
+{
+  "schema_version": "1.0",
+  "confidence": "manual_seed",
+  "source_trace": [
+    {
+      "source": "manual_seed",
+      "ref": "seed/operational-knowledge/meal-stops",
+      "confidence": "verified"
+    }
+  ],
+  "overview": "Daftar rumah makan yang biasa digunakan JVTO sebagai meal stop di sepanjang rute operasional. Dikelompokkan per area/kota sesuai koridor rute. Jarak dari waypoint utama adalah estimasi — perlu dikonfirmasi dengan Google Maps.",
+  "meal_stops_by_area": [
+    {
+      "area": "Surabaya",
+      "route_corridors": [
+        "surabaya_airport_to_bromo_area",
+        "surabaya_to_bondowoso_ijen_area",
+        "malang_to_surabaya"
+      ],
+      "typical_meal": ["lunch", "dinner"],
+      "stops": [
+        {
+          "id": "mang_engking_juanda",
+          "name": "Mang Engking Juanda",
+          "city": "Surabaya",
+          "area_detail": "Juanda / Sidoarjo — dekat Bandara Juanda",
+          "cuisine": "Sunda / Seafood",
+          "typical_meal": ["lunch", "dinner"],
+          "when_to_use": "Makan siang atau malam saat tamu baru tiba di Bandara Juanda sebelum berangkat ke Bromo atau Bondowoso, atau saat kembali dari tour menuju bandara.",
+          "distance_from_waypoints": {
+            "surabaya_airport": "~5 km",
+            "surabaya_city_center": "~20 km"
+          },
+          "notes": "Populer di kalangan wisatawan internasional. Konsep taman/kolam, cocok untuk keluarga dan grup. Parkir luas.",
+          "confidence": "verified"
+        },
+        {
+          "id": "ikan_bakar_cianjur_surabaya",
+          "name": "Ikan Bakar Cianjur Surabaya",
+          "city": "Surabaya",
+          "area_detail": "Pusat kota Surabaya",
+          "cuisine": "Seafood / Ikan Bakar",
+          "typical_meal": ["lunch", "dinner"],
+          "when_to_use": "Alternatif makan di Surabaya jika pickup dari hotel kota (bukan airport), atau saat dropoff di Surabaya sebelum tamu ke bandara.",
+          "distance_from_waypoints": {
+            "surabaya_airport": "~25 km",
+            "surabaya_hotel_area": "~2–5 km (tergantung hotel)"
+          },
+          "notes": "Restoran seafood populer di Surabaya. Cocok untuk grup besar.",
+          "confidence": "verified"
+        }
+      ]
+    },
+    {
+      "area": "Paiton",
+      "route_corridors": [
+        "surabaya_to_bondowoso_ijen_area"
+      ],
+      "typical_meal": ["lunch"],
+      "stops": [
+        {
+          "id": "rm_handayani_paiton",
+          "name": "RM Handayani Paiton",
+          "city": "Paiton",
+          "area_detail": "Paiton, Probolinggo — di jalur Pantura (jalan pantai utara Jawa)",
+          "cuisine": "Seafood / Masakan Jawa",
+          "typical_meal": ["lunch"],
+          "when_to_use": "Lunch stop di pertengahan perjalanan panjang Surabaya → Bondowoso/Ijen (±3–4 jam dari Surabaya). Strategis karena berada di jalur utama.",
+          "distance_from_waypoints": {
+            "surabaya": "~140 km",
+            "bondowoso": "~110 km",
+            "ijen_base_paltuding": "~170 km"
+          },
+          "notes": "Lokasi strategis di jalur Pantura. Sering dipakai sebagai titik istirahat dan makan siang untuk rute Surabaya → Bondowoso → Ijen.",
+          "confidence": "verified"
+        }
+      ]
+    },
+    {
+      "area": "Jember",
+      "route_corridors": [
+        "surabaya_to_bondowoso_ijen_area",
+        "bromo_area_to_bondowoso_ijen_area"
+      ],
+      "typical_meal": ["lunch", "dinner"],
+      "stops": [
+        {
+          "id": "resto_legian_jember",
+          "name": "Resto Legian Jember",
+          "city": "Jember",
+          "area_detail": "Jember kota",
+          "cuisine": "Masakan Indonesia / Western",
+          "typical_meal": ["lunch", "dinner"],
+          "when_to_use": "Alternatif makan di Jember untuk rute yang melewati kota Jember sebelum atau sesudah Bondowoso/Ijen.",
+          "distance_from_waypoints": {
+            "bondowoso": "~35 km",
+            "banyuwangi": "~110 km",
+            "ijen_base_paltuding": "~90 km"
+          },
+          "notes": "Restoran di pusat kota Jember. Perlu dikonfirmasi jam operasional.",
+          "confidence": "manual_seed"
+        },
+        {
+          "id": "resto_taman_mangli_indah_jember",
+          "name": "Resto Taman Mangli Indah Jember",
+          "city": "Jember",
+          "area_detail": "Area Mangli, Jember",
+          "cuisine": "Masakan Indonesia / Nusantara",
+          "typical_meal": ["lunch", "dinner"],
+          "when_to_use": "Pilihan dinner atau lunch di Jember. Suasana taman, cocok untuk grup wisatawan internasional yang ingin suasana khas Jawa.",
+          "distance_from_waypoints": {
+            "bondowoso": "~35 km",
+            "banyuwangi": "~110 km"
+          },
+          "notes": "Konsep taman/outdoor. Cocok untuk makan siang/malam dengan suasana santai.",
+          "confidence": "manual_seed"
+        }
+      ]
+    },
+    {
+      "area": "Bondowoso",
+      "route_corridors": [
+        "bondowoso_to_ijen_base",
+        "surabaya_to_bondowoso_ijen_area"
+      ],
+      "typical_meal": ["dinner"],
+      "stops": [
+        {
+          "id": "warung_ayam_goreng_bu_kadir_bondowoso",
+          "name": "Warung Ayam Goreng Bu Kadir Bondowoso",
+          "city": "Bondowoso",
+          "area_detail": "Bondowoso kota",
+          "cuisine": "Ayam Goreng / Masakan Jawa",
+          "typical_meal": ["dinner"],
+          "when_to_use": "Dinner sebelum medical check dan persiapan Ijen. Tamu tiba di Bondowoso sore hari, makan malam di sini sebelum berangkat ke Paltuding dini hari (00:00–01:00 WIB).",
+          "distance_from_waypoints": {
+            "bondowoso_hotel_area": "~2 km",
+            "ijen_base_paltuding": "~64 km",
+            "surabaya": "~230 km"
+          },
+          "notes": "Warung lokal, terkenal di Bondowoso. Sederhana tapi enak — cocok untuk tamu yang mau mencicipi masakan lokal Jawa Timur. Harga terjangkau.",
+          "confidence": "verified"
+        }
+      ]
+    },
+    {
+      "area": "Banyuwangi",
+      "route_corridors": [
+        "ijen_base_to_ketapang_harbor",
+        "bali_hotel_area_to_banyuwangi_ijen_area"
+      ],
+      "typical_meal": ["breakfast", "lunch"],
+      "context": "Tamu biasanya tiba di Banyuwangi pagi hari setelah selesai trek Ijen (08:00–10:00 WIB). Makan pagi atau siang di Banyuwangi sebelum menuju Ketapang Harbor untuk ferry ke Bali.",
+      "stops": [
+        {
+          "id": "legian_banyuwangi",
+          "name": "Legian Banyuwangi",
+          "city": "Banyuwangi",
+          "area_detail": "Banyuwangi kota",
+          "cuisine": "Masakan Indonesia / Seafood",
+          "typical_meal": ["breakfast", "lunch"],
+          "when_to_use": "Makan pagi atau siang di Banyuwangi setelah selesai dari Ijen, sebelum ke Ketapang Harbor.",
+          "distance_from_waypoints": {
+            "banyuwangi_kota": "~1–3 km",
+            "ketapang_harbor": "~10–15 km",
+            "ijen_base_paltuding": "~35 km"
+          },
+          "notes": "Restoran di Banyuwangi kota. Perlu dikonfirmasi jam buka pagi (tamu Ijen tiba sekitar 08:00–09:00 WIB).",
+          "confidence": "manual_seed"
+        },
+        {
+          "id": "ikan_bakar_pesona_banyuwangi",
+          "name": "Ikan Bakar Pesona",
+          "city": "Banyuwangi",
+          "area_detail": "Banyuwangi kota",
+          "cuisine": "Seafood / Ikan Bakar",
+          "typical_meal": ["breakfast", "lunch"],
+          "when_to_use": "Makan pagi atau siang di Banyuwangi setelah selesai dari Ijen, sebelum ke Ketapang Harbor.",
+          "distance_from_waypoints": {
+            "banyuwangi_kota": "~1–3 km",
+            "ketapang_harbor": "~10–15 km",
+            "ijen_base_paltuding": "~35 km"
+          },
+          "notes": "Seafood segar Banyuwangi. Cocok untuk tamu yang ingin sarapan/makan siang dengan menu ikan bakar lokal sebelum menyeberang ke Bali.",
+          "confidence": "manual_seed"
+        },
+        {
+          "id": "osing_deles_banyuwangi",
+          "name": "Osing Deles",
+          "city": "Banyuwangi",
+          "area_detail": "Banyuwangi kota",
+          "cuisine": "Masakan Osing / Khas Banyuwangi",
+          "typical_meal": ["breakfast", "lunch"],
+          "when_to_use": "Pilihan cultural dining di Banyuwangi. Tamu internasional bisa mencicipi masakan khas suku Osing (penduduk asli Banyuwangi) sebelum menyeberang ke Bali.",
+          "distance_from_waypoints": {
+            "banyuwangi_kota": "~1–3 km",
+            "ketapang_harbor": "~10–15 km",
+            "ijen_base_paltuding": "~35 km"
+          },
+          "notes": "Menu khas Banyuwangi: pecel pitik, sego cawuk, rujak soto. Pengalaman kuliner lokal yang otentik. Sangat direkomendasikan untuk tamu yang tertarik budaya lokal.",
+          "confidence": "manual_seed"
+        },
+        {
+          "id": "srenge_wetan_banyuwangi",
+          "name": "Srenge Wetan",
+          "city": "Banyuwangi",
+          "area_detail": "Banyuwangi kota",
+          "cuisine": "Masakan Jawa Timur / Lokal",
+          "typical_meal": ["breakfast", "lunch"],
+          "when_to_use": "Alternatif ketiga di Banyuwangi untuk makan pagi/siang setelah Ijen sebelum ke Ketapang.",
+          "distance_from_waypoints": {
+            "banyuwangi_kota": "~1–3 km",
+            "ketapang_harbor": "~10–15 km",
+            "ijen_base_paltuding": "~35 km"
+          },
+          "notes": "Restoran lokal Banyuwangi. Perlu dikonfirmasi jam buka (penting karena tamu Ijen tiba pagi hari sekitar 08:00–09:00 WIB).",
+          "confidence": "manual_seed"
+        }
+      ]
+    },
+    {
+      "area": "Batu / Malang",
+      "route_corridors": [
+        "bromo_area_to_malang",
+        "malang_to_surabaya"
+      ],
+      "typical_meal": ["lunch", "dinner"],
+      "stops": [
+        {
+          "id": "the_bamboo_batu",
+          "name": "The Bamboo",
+          "city": "Batu",
+          "area_detail": "Batu, Malang",
+          "cuisine": "Masakan Indonesia / Internasional",
+          "typical_meal": ["lunch", "dinner"],
+          "confidence": "manual_seed"
+        },
+        {
+          "id": "warung_wareg_batu",
+          "name": "Warung Wareg",
+          "city": "Batu",
+          "area_detail": "Batu, Malang",
+          "cuisine": "Masakan Jawa / Lokal",
+          "typical_meal": ["lunch", "dinner"],
+          "confidence": "manual_seed"
+        },
+        {
+          "id": "warung_wareg_karangploso",
+          "name": "Warung Wareg",
+          "city": "Karangploso",
+          "area_detail": "Karangploso, Malang",
+          "cuisine": "Masakan Jawa / Lokal",
+          "typical_meal": ["lunch", "dinner"],
+          "confidence": "manual_seed"
+        }
+      ]
+    },
+    {
+      "area": "Lumajang / Pronojiwo",
+      "route_corridors": [
+        "surabaya_to_tumpak_sewu",
+        "tumpak_sewu_to_bromo_area"
+      ],
+      "typical_meal": ["lunch", "dinner"],
+      "stops": [
+        {
+          "id": "rm_selera_nusantara_pronojiwo",
+          "name": "RM Selera Nusantara",
+          "city": "Pronojiwo",
+          "area_detail": "Pronojiwo, Lumajang",
+          "cuisine": "Masakan Nusantara",
+          "typical_meal": ["lunch", "dinner"],
+          "confidence": "manual_seed"
+        },
+        {
+          "id": "wakul_bu_tjipto_lumajang",
+          "name": "Wakul Bu Tjipto",
+          "city": "Lumajang",
+          "area_detail": "Lumajang kota",
+          "cuisine": "Masakan Jawa / Lokal",
+          "typical_meal": ["lunch", "dinner"],
+          "confidence": "manual_seed"
+        }
+      ]
+    },
+    {
+      "area": "Bromo Area",
+      "route_corridors": [
+        "surabaya_airport_to_bromo_area",
+        "surabaya_hotel_to_bromo_area",
+        "bromo_area_to_bondowoso_ijen_area",
+        "bromo_area_to_malang"
+      ],
+      "typical_meal": ["breakfast", "lunch", "dinner"],
+      "stops": [
+        {
+          "id": "bromo_escapes",
+          "name": "Bromo Escapes",
+          "city": "Bromo Area",
+          "area_detail": "Area Bromo / Cemoro Lawang",
+          "cuisine": "Masakan Indonesia / Western",
+          "typical_meal": ["breakfast", "lunch", "dinner"],
+          "confidence": "manual_seed"
+        },
+        {
+          "id": "manis_ae_resto",
+          "name": "Manis Ae Resto",
+          "city": "Bromo Area",
+          "area_detail": "Area Bromo / Cemoro Lawang",
+          "cuisine": "Masakan Indonesia / Lokal",
+          "typical_meal": ["breakfast", "lunch", "dinner"],
+          "confidence": "manual_seed"
+        },
+        {
+          "id": "lava_hill_resto",
+          "name": "Lava Hill Resto",
+          "city": "Bromo Area",
+          "area_detail": "Area Bromo / Cemoro Lawang",
+          "cuisine": "Masakan Indonesia / Western",
+          "typical_meal": ["breakfast", "lunch", "dinner"],
+          "confidence": "manual_seed"
+        }
+      ]
+    }
+  ],
+  "usage_notes": {
+    "selection_criteria": "Crew memilih restoran berdasarkan: (1) waktu makan dalam itinerary, (2) jumlah tamu, (3) apakah makan sudah included dalam paket.",
+    "meal_stop_timing": "Untuk rute panjang (>4 jam), jadwalkan 1 meal stop. Jangan sampai tamu makan terlalu dekat dengan waktu tidur sebelum Ijen (medical check biasanya 21:00–22:00).",
+    "jarak_perlu_update": "Jarak dari waypoints di file ini adalah estimasi. Update dengan data Google Maps sebelum digunakan untuk kalkulasi otomatis.",
+    "banyuwangi_timing_note": "Tamu Ijen biasanya keluar dari Paltuding jam 08:00–09:00 WIB. Tiba di Banyuwangi kota sekitar 09:30–10:30 WIB. Ada waktu 1–2 jam makan sebelum menuju Ketapang (ferry paling baik jam 11:00–13:00 WIB)."
+  }
+}
