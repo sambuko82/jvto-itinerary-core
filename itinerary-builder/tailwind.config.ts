@@ -8,6 +8,7 @@ const config: Config = {
         navy: '#0E1B2E',
         'navy-light': '#16233D',
         'navy-border': '#26344C',
+        'navy-muted': '#9FB0C8',
         cream: '#F7F4EC',
         ink: '#14181F',
         orange: '#FF6A39',
