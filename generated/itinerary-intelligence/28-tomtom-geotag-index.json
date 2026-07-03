@@ -1,0 +1,251 @@
+[
+  {
+    "id": "tomtom_geotag_index",
+    "label": "TomTom-verified node coordinates and road-routed corridor polylines",
+    "status": "active",
+    "confidence": "verified",
+    "source_trace": [
+      {
+        "source": "tomtom",
+        "ref": "scripts/tomtom-verified-nodes.json",
+        "field": "lat,lng,entry_point,tomtom_category",
+        "confidence": "verified"
+      }
+    ],
+    "nodes": [
+      {
+        "node_id": "surabaya_airport",
+        "label": "Juanda Intl Airport (SUB)",
+        "lat": -7.3748,
+        "lng": 112.7949,
+        "tomtom_place_id": "W_BrV1wVZWif51Z1cebXkw",
+        "tomtom_category": "PUBLIC_AIRPORT",
+        "entry_point": {
+          "lat": -7.3745,
+          "lng": 112.79496
+        },
+        "confidence": "verified_tomtom_api",
+        "geo_source": "tomtom_poi",
+        "operational_point": "airport arrivals / pickup",
+        "verified_at": "2026-07-03"
+      },
+      {
+        "node_id": "ketapang_harbor",
+        "label": "Pelabuhan Penyeberangan Ketapang (ASDP)",
+        "lat": -8.142967,
+        "lng": 114.400174,
+        "tomtom_place_id": "dZAlbhcaJfIBk9Ai8XZubA",
+        "tomtom_category": "FERRY_TERMINAL",
+        "entry_point": {
+          "lat": -8.14298,
+          "lng": 114.4001
+        },
+        "confidence": "verified_tomtom_api",
+        "geo_source": "tomtom_poi",
+        "operational_point": "ASDP ferry terminal Banyuwangi",
+        "verified_at": "2026-07-03"
+      },
+      {
+        "node_id": "bondowoso",
+        "label": "Bondowoso (Ijen staging town)",
+        "lat": -7.9111849,
+        "lng": 113.82271,
+        "tomtom_place_id": null,
+        "tomtom_category": "MUNICIPALITY",
+        "entry_point": null,
+        "confidence": "verified_tomtom_api",
+        "geo_source": "tomtom_geocode",
+        "operational_point": "Ijen staging overnight town",
+        "verified_at": "2026-07-03",
+        "node_id_aliases": [
+          "bondowoso_ijen_area"
+        ]
+      },
+      {
+        "node_id": "surabaya",
+        "label": "Surabaya city / hotel zone",
+        "lat": -7.2575,
+        "lng": 112.7521,
+        "tomtom_place_id": null,
+        "tomtom_category": null,
+        "entry_point": null,
+        "confidence": "seed_approximation",
+        "geo_source": "seed",
+        "operational_point": "city hotel pickup",
+        "verified_at": "2026-07-03"
+      },
+      {
+        "node_id": "malang",
+        "label": "Malang",
+        "lat": -7.9778,
+        "lng": 112.6342,
+        "tomtom_place_id": null,
+        "tomtom_category": null,
+        "entry_point": null,
+        "confidence": "seed_approximation",
+        "geo_source": "seed",
+        "operational_point": "Malang city (Batu resolves here per repo)",
+        "verified_at": "2026-07-03"
+      },
+      {
+        "node_id": "probolinggo",
+        "label": "Probolinggo",
+        "lat": -7.7569,
+        "lng": 113.2117,
+        "tomtom_place_id": null,
+        "tomtom_category": null,
+        "entry_point": null,
+        "confidence": "seed_approximation",
+        "geo_source": "seed",
+        "operational_point": "transit node",
+        "verified_at": "2026-07-03"
+      },
+      {
+        "node_id": "bromo",
+        "label": "Bromo (Cemoro Lawang)",
+        "lat": -7.9046,
+        "lng": 112.9525,
+        "tomtom_place_id": null,
+        "tomtom_category": null,
+        "entry_point": null,
+        "confidence": "seed_approximation",
+        "geo_source": "seed",
+        "operational_point": "Cemoro Lawang jeep staging (NOT crater)",
+        "verified_at": "2026-07-03"
+      },
+      {
+        "node_id": "madakaripura",
+        "label": "Madakaripura Waterfall",
+        "lat": -7.9003,
+        "lng": 113.143,
+        "tomtom_place_id": null,
+        "tomtom_category": null,
+        "entry_point": null,
+        "confidence": "seed_approximation",
+        "geo_source": "seed",
+        "operational_point": "trailhead/parking near Lumbang",
+        "verified_at": "2026-07-03"
+      },
+      {
+        "node_id": "ijen",
+        "label": "Ijen (Paltuding base)",
+        "lat": -8.059,
+        "lng": 114.22,
+        "tomtom_place_id": null,
+        "tomtom_category": null,
+        "entry_point": null,
+        "confidence": "seed_approximation",
+        "geo_source": "seed",
+        "operational_point": "Paltuding parking/gate (NOT crater rim)",
+        "verified_at": "2026-07-03"
+      },
+      {
+        "node_id": "gilimanuk_harbor",
+        "label": "Gilimanuk Ferry Port",
+        "lat": -8.1623,
+        "lng": 114.4366,
+        "tomtom_place_id": null,
+        "tomtom_category": null,
+        "entry_point": null,
+        "confidence": "seed_approximation",
+        "geo_source": "seed",
+        "operational_point": "ASDP ferry terminal Bali",
+        "verified_at": "2026-07-03"
+      },
+      {
+        "node_id": "bali",
+        "label": "Bali hotel zone (proxy: Denpasar)",
+        "lat": -8.6705,
+        "lng": 115.2126,
+        "tomtom_place_id": null,
+        "tomtom_category": null,
+        "entry_point": null,
+        "confidence": "seed_approximation",
+        "geo_source": "seed",
+        "operational_point": "ZONE PROXY - override per hotel: Kuta -8.7237,115.1750 / Ubud -8.5069,115.2625 / Lovina -8.1610,115.0250",
+        "verified_at": "2026-07-03"
+      },
+      {
+        "node_id": "denpasar_airport",
+        "label": "Ngurah Rai (DPS)",
+        "lat": -8.7482,
+        "lng": 115.1672,
+        "tomtom_place_id": null,
+        "tomtom_category": null,
+        "entry_point": null,
+        "confidence": "seed_approximation",
+        "geo_source": "seed",
+        "operational_point": "Bali airport dropoff",
+        "verified_at": "2026-07-03"
+      },
+      {
+        "node_id": "tumpak_sewu",
+        "label": "Tumpak Sewu Waterfall",
+        "lat": -8.2306,
+        "lng": 112.917,
+        "tomtom_place_id": null,
+        "tomtom_category": null,
+        "entry_point": null,
+        "confidence": "seed_approximation",
+        "geo_source": "seed",
+        "operational_point": "east entrance (Lumajang side)",
+        "verified_at": "2026-07-03"
+      },
+      {
+        "node_id": "jember",
+        "label": "Jember",
+        "lat": -8.1727,
+        "lng": 113.6996,
+        "tomtom_place_id": null,
+        "tomtom_category": null,
+        "entry_point": null,
+        "confidence": "seed_approximation",
+        "geo_source": "seed",
+        "operational_point": "transit node",
+        "verified_at": "2026-07-03"
+      },
+      {
+        "node_id": "papuma",
+        "label": "Tanjung Papuma",
+        "lat": -8.4297,
+        "lng": 113.553,
+        "tomtom_place_id": null,
+        "tomtom_category": null,
+        "entry_point": null,
+        "confidence": "seed_approximation",
+        "geo_source": "seed",
+        "operational_point": "beach",
+        "verified_at": "2026-07-03"
+      },
+      {
+        "node_id": "baluran",
+        "label": "Baluran NP (Bekol savanna)",
+        "lat": -7.8417,
+        "lng": 114.4083,
+        "tomtom_place_id": null,
+        "tomtom_category": null,
+        "entry_point": null,
+        "confidence": "seed_approximation",
+        "geo_source": "seed",
+        "operational_point": "Bekol savanna; gate is ~12-15km before",
+        "verified_at": "2026-07-03"
+      },
+      {
+        "node_id": "taman_safari_prigen",
+        "label": "Taman Safari Indonesia 2 (Prigen, Pasuruan)",
+        "lat": -7.6957,
+        "lng": 112.6358,
+        "tomtom_place_id": null,
+        "tomtom_category": null,
+        "entry_point": null,
+        "confidence": "seed_approximation",
+        "geo_source": "seed",
+        "operational_point": "park entrance/parking, slopes of Arjuno-Welirang",
+        "verified_at": "2026-07-03"
+      }
+    ],
+    "routed_legs": [],
+    "fill_status": "seed_only",
+    "fill_generated_at": null
+  }
+]

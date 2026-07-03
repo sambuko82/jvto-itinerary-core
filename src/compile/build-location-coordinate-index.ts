@@ -1,5 +1,6 @@
 import { DESTINATION_CROSSWALK } from '../config/destination-crosswalk.js';
 import type { JvtoWebDestinationDetail } from '../extract/extractTypes.js';
+import type { TomTomNodeEntry } from '../domain/output.js';
 
 export interface CoordinateEntry {
   lat: number;
@@ -48,4 +49,25 @@ export function buildLocationCoordinateIndex(
 export function lookupCoordinate(index: CoordinateIndex, coreId: string | null): CoordinateEntry | null {
   if (!coreId) return null;
   return index.byCoreId.get(coreId) ?? null;
+}
+
+/** Lookup index for TomTom-verified operational route nodes (transit nodes, airports, harbors). */
+export interface TomTomNodeIndex {
+  byNodeId: Map<string, TomTomNodeEntry>;
+}
+
+/** Build a TomTom node lookup index from the verified nodes seed. Registers aliases too. */
+export function buildTomTomNodeIndex(nodes: TomTomNodeEntry[]): TomTomNodeIndex {
+  const byNodeId = new Map<string, TomTomNodeEntry>();
+  for (const n of nodes) {
+    byNodeId.set(n.node_id, n);
+    if (n.node_id_aliases) {
+      for (const alias of n.node_id_aliases) byNodeId.set(alias, n);
+    }
+  }
+  return { byNodeId };
+}
+
+export function lookupTomTomNode(index: TomTomNodeIndex, nodeId: string): TomTomNodeEntry | null {
+  return index.byNodeId.get(nodeId) ?? null;
 }

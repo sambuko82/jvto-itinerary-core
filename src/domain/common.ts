@@ -2,7 +2,7 @@ export type Confidence = 'verified' | 'inferred' | 'manual_seed' | 'needs_review
 export type Status = 'active' | 'draft' | 'needs_review' | 'deprecated';
 
 export interface SourceTrace {
-  source: 'llm_wiki' | 'jvto_web' | 'new_backoffice' | 'manual_seed' | 'generated';
+  source: 'llm_wiki' | 'jvto_web' | 'new_backoffice' | 'manual_seed' | 'generated' | 'tomtom';
   ref: string;
   field?: string;
   confidence?: Confidence;

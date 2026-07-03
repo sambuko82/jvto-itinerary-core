@@ -6,104 +6,15 @@
     "confidence": "inferred",
     "type": "airport",
     "location_group": "Surabaya",
-    "timezone": "WIB (UTC+7)",
-    "airport_name": "Juanda International Airport (SUB)",
-    "flight_type_note": "Tanya ke tamu: international atau domestic flight? Terminal berbeda.",
-    "terminals": {
-      "T1": {
-        "label": "Terminal 1 — Domestic",
-        "airlines": "Batik Air, Citilink, Lion Air, Garuda (domestic), dll",
-        "meeting_point": "Arrival Hall T1 — area keluar baggage claim, sebelum pintu otomatis"
-      },
-      "T2": {
-        "label": "Terminal 2 — International + beberapa domestic",
-        "airlines": "AirAsia, Scoot, Malaysia Airlines, Garuda (international), dll",
-        "meeting_point": "Arrival Hall T2 — area keluar setelah customs clearance"
-      }
-    },
-    "default_ready_buffer_minutes": 60,
-    "buffer_by_flight_type": {
-      "international": {
-        "total_minutes": 60,
-        "breakdown": {
-          "disembark_to_immigration_queue": "5–10 menit (jalan kaki dari gate)",
-          "immigration_passport_control": "20–40 menit (antri bisa panjang, tergantung jam & jumlah penerbangan bersamaan)",
-          "baggage_claim": "15–20 menit",
-          "customs_declaration": "5–10 menit (termasuk X-ray barang bawaan)",
-          "exit_arrival_hall_to_meeting_point": "3–5 menit"
-        },
-        "note": "Total realistis 50–85 menit. Buffer 60 menit adalah minimum. Jika penerbangan malam atau peak season, bisa lebih lama."
-      },
-      "domestic": {
-        "total_minutes": 30,
-        "breakdown": {
-          "disembark_to_baggage_claim": "5–10 menit",
-          "baggage_claim": "10–15 menit",
-          "exit_arrival_hall_to_meeting_point": "3–5 menit"
-        },
-        "note": "Tidak ada imigrasi untuk domestik. Buffer 30 menit cukup di kondisi normal."
-      }
-    },
-    "arrival_procedures_international": {
-      "description": "Semua tamu JVTO adalah wisatawan mancanegara. Ini urutan prosedur setelah pesawat mendarat:",
-      "steps": [
-        {
-          "step": 1,
-          "label": "Pesawat mendarat & taxi ke gate",
-          "duration_estimate": "5–15 menit",
-          "notes": "Tamu belum bisa dihubungi selama di pesawat. Crew mulai standby setelah flight status 'landed'."
-        },
-        {
-          "step": 2,
-          "label": "Imigrasi (Immigration / Passport Control)",
-          "duration_estimate": "20–40 menit",
-          "notes": "Antri di loket imigrasi. Tamu isi arrival card (disediakan di pesawat atau di loket). Petugas periksa paspor & visa. Peak hours (pagi & sore) bisa lebih lama. E-gate tersedia untuk passport tertentu."
-        },
-        {
-          "step": 3,
-          "label": "Baggage Claim",
-          "duration_estimate": "15–20 menit",
-          "notes": "Ambil koper di conveyor belt. Nomor belt tertera di layar. Jika koper hilang/delay, tamu perlu lapor ke lost & found — ini bisa tambah 30–60 menit."
-        },
-        {
-          "step": 4,
-          "label": "Bea Cukai (Customs)",
-          "duration_estimate": "5–10 menit",
-          "notes": "Tamu isi customs declaration form. Barang di atas batas bebas bea (USD 500/orang) wajib dilaporkan. Jalur hijau (nothing to declare) biasanya cepat. Jalur merah (goods to declare) lebih lama."
-        },
-        {
-          "step": 5,
-          "label": "Keluar Arrival Hall",
-          "duration_estimate": "2–5 menit",
-          "notes": "Setelah lewat customs, tamu keluar pintu Arrival Hall. Ini titik di mana crew JVTO menunggu."
-        },
-        {
-          "step": 6,
-          "label": "Bertemu crew JVTO",
-          "duration_estimate": "0–5 menit",
-          "notes": "Crew berdiri di area tunggu penjemputan (meeters & greeters area) sambil memegang pickup sign. Lihat protokol pertemuan di file 25-guest-meeting-protocol.json."
-        }
-      ]
-    },
-    "meeting_protocol": {
-      "crew_position": "Arrival Hall exit — area meeters & greeters, di luar pintu keluar customs",
-      "pickup_sign": "Crew membawa papan/kertas bertuliskan nama lengkap tamu (sesuai data booking)",
-      "sign_format": "Nama tamu + logo/tulisan JVTO. Contoh: 'Mr. John Smith — JVTO Tours'",
-      "if_tamu_tidak_menemukan_crew": "Tamu bisa hubungi WhatsApp crew yang tertera di voucher/konfirmasi. Crew juga aktif memantau WhatsApp setelah flight status landed.",
-      "crew_monitoring": "Crew memantau status penerbangan real-time (via aplikasi flight tracker). Jika delay, crew tetap standby dan update ETA ke supervisor."
-    },
+    "default_ready_buffer_minutes": 45,
     "required_customer_fields": [
       "flight_number",
-      "arrival_date",
       "arrival_time",
-      "origin_city",
-      "flight_type"
+      "origin_city"
     ],
     "risk_factors": [
       "flight_delay",
-      "immigration_queue_long",
-      "baggage_delay_or_lost",
-      "customs_inspection",
+      "baggage_delay",
       "airport_exit_congestion"
     ],
     "affects": [
@@ -162,20 +73,7 @@
     "confidence": "manual_seed",
     "type": "hotel",
     "location_group": "Surabaya",
-    "timezone": "WIB (UTC+7)",
     "default_ready_buffer_minutes": 15,
-    "buffer_breakdown": {
-      "total_minutes": 15,
-      "detail": "Tamu sudah siap di lobi. Buffer 15 menit untuk: loading koper ke kendaraan (5–10 menit) + waktu keluar area hotel / parkir (5 menit).",
-      "note": "Crew wajib tiba di hotel tepat waktu atau 5 menit sebelum jam jemput. Jika tamu belum turun, crew hubungi via WhatsApp dari lobi."
-    },
-    "meeting_protocol": {
-      "crew_position": "Lobi hotel — crew menunggu di area lobi utama, bukan di luar atau di parkiran",
-      "pickup_sign": "Crew membawa pickup sign dengan nama tamu jika lobi ramai atau hotel besar",
-      "sign_format": "Nama tamu + 'JVTO Tours'. Untuk hotel kecil/boutique, crew langsung perkenalkan diri.",
-      "crew_arrival": "Crew tiba di hotel 5–10 menit sebelum jam pickup yang disepakati",
-      "communication": "Crew kirim WhatsApp ke tamu ~15 menit sebelum tiba: 'Good morning [name], I am [crew name], your JVTO driver/guide. I will arrive at your hotel lobby in 15 minutes.'"
-    },
     "required_customer_fields": [
       "hotel_name",
       "pickup_time"
@@ -204,20 +102,7 @@
     "confidence": "manual_seed",
     "type": "train_station",
     "location_group": "Surabaya",
-    "timezone": "WIB (UTC+7)",
-    "stations_note": "Surabaya punya 3 stasiun utama: Gubeng (tengah kota), Pasar Turi (barat), Wonokromo (selatan). Tanya ke tamu stasiun mana.",
     "default_ready_buffer_minutes": 20,
-    "buffer_breakdown": {
-      "total_minutes": 20,
-      "detail": "Turun kereta → jalan ke pintu keluar (5 menit) → antri gate keluar (5 menit) → loading koper (10 menit).",
-      "note": "Kereta Indonesia sering on-time tapi bisa telat 15–30 menit. Crew pantau status kereta real-time."
-    },
-    "meeting_protocol": {
-      "crew_position": "Pintu keluar utama stasiun (gate exit / area penjemputan)",
-      "pickup_sign": "Crew membawa pickup sign dengan nama tamu. Stasiun bisa ramai, sign sangat membantu.",
-      "sign_format": "Nama tamu + 'JVTO Tours'",
-      "communication": "Crew kirim WhatsApp saat kereta dalam perjalanan (H-30 menit): 'Hello [name], I am waiting at the main exit of [station name] with your name sign. See you soon!'"
-    },
     "required_customer_fields": [
       "train_number",
       "arrival_time",
@@ -226,8 +111,7 @@
     "risk_factors": [
       "train_delay",
       "station_crowd",
-      "luggage_loading",
-      "wrong_station"
+      "luggage_loading"
     ],
     "affects": [
       "actual_departure_time",
@@ -248,21 +132,7 @@
     "confidence": "manual_seed",
     "type": "harbor",
     "location_group": "Banyuwangi",
-    "timezone": "WIB (UTC+7)",
-    "timezone_note": "Ketapang (Banyuwangi, Jawa) menggunakan WIB (UTC+7). Tamu yang baru tiba dari Bali mungkin masih di waktu WITA (UTC+8). Crew harus konfirmasi: 'Jam berapa ferry kamu tiba di Ketapang — apakah sudah pakai waktu Jawa (WIB)?'",
-    "context": "Tamu tiba dari Bali via ferry Gilimanuk–Ketapang. Penyeberangan ±45 menit. Begitu landing di Ketapang, tamu sudah di Jawa (WIB).",
     "default_ready_buffer_minutes": 30,
-    "buffer_breakdown": {
-      "total_minutes": 30,
-      "detail": "Kapal sandar → turun (10 menit) → keluar area pelabuhan (10 menit) → loading koper (10 menit).",
-      "note": "Ferry bisa delay karena gelombang atau antrian di Gilimanuk. Crew pantau jadwal ferry dan posisi tamu via WhatsApp."
-    },
-    "meeting_protocol": {
-      "crew_position": "Area keluar penumpang Pelabuhan Ketapang — di luar gate exit pelabuhan",
-      "pickup_sign": "Crew membawa pickup sign dengan nama tamu",
-      "sign_format": "Nama tamu + 'JVTO Tours'",
-      "communication": "Crew hubungi tamu via WhatsApp saat ferry hampir sandar: 'Hello [name], I am waiting at Ketapang Harbor exit with your name sign. Welcome to Java!'"
-    },
     "required_customer_fields": [
       "arrival_time",
       "ferry_or_boat_context"
@@ -270,8 +140,7 @@
     "risk_factors": [
       "ferry_delay",
       "harbor_queue",
-      "luggage_loading",
-      "timezone_confusion_wib_wita"
+      "luggage_loading"
     ],
     "affects": [
       "actual_departure_time",
@@ -293,18 +162,7 @@
     "confidence": "inferred",
     "type": "city_point",
     "location_group": "Surabaya",
-    "timezone": "WIB (UTC+7)",
     "default_ready_buffer_minutes": 20,
-    "buffer_breakdown": {
-      "total_minutes": 20,
-      "detail": "Tamu sudah di titik yang disepakati. Buffer untuk: koordinasi posisi pasti (5–10 menit) + loading koper (10 menit).",
-      "note": "Titik kota (mal, restaurant, landmark) sering tidak punya area parkir jelas. Crew konfirmasi titik pertemuan spesifik via WhatsApp sebelum hari H."
-    },
-    "meeting_protocol": {
-      "crew_position": "Di titik yang disepakati (depan pintu utama mal / landmark / restaurant tertentu)",
-      "pickup_sign": "Crew membawa pickup sign jika titik ramai. Jika sepi, cukup perkenalkan diri.",
-      "communication": "Crew kirim WhatsApp H-20 menit: 'Hello [name], I am on my way. I will be at [meeting point] in 20 minutes. Please reply if you need to change the spot.'"
-    },
     "required_customer_fields": [
       "meeting_point",
       "pickup_time"
@@ -359,18 +217,7 @@
     "confidence": "manual_seed",
     "type": "custom_address",
     "location_group": "Custom",
-    "timezone": "Tergantung lokasi (WIB atau WITA — konfirmasi ke tamu)",
     "default_ready_buffer_minutes": 30,
-    "buffer_breakdown": {
-      "total_minutes": 30,
-      "detail": "Navigasi ke alamat (variabel) + cari akses masuk / parkir (10 menit) + loading koper (10 menit) + buffer koordinasi (10 menit).",
-      "note": "Alamat kustom berisiko sulit ditemukan. Crew wajib survei rute sehari sebelum atau gunakan Google Maps + WhatsApp live location dari tamu."
-    },
-    "meeting_protocol": {
-      "crew_position": "Di depan alamat yang ditentukan (gerbang / lobby gedung / halaman depan)",
-      "pickup_sign": "Crew membawa pickup sign jika alamat adalah gedung besar atau komplek",
-      "communication": "Crew minta tamu share Google Maps live location via WhatsApp jika alamat tidak jelas. Konfirmasi H-1 malam sebelumnya."
-    },
     "required_customer_fields": [
       "address_area",
       "pickup_time",
@@ -401,18 +248,7 @@
     "confidence": "manual_seed",
     "type": "destination_area",
     "location_group": "Previous route endpoint",
-    "timezone": "Tergantung lokasi handoff — konfirmasi WIB atau WITA",
     "default_ready_buffer_minutes": 45,
-    "buffer_breakdown": {
-      "total_minutes": 45,
-      "detail": "Waktu handoff antar crew / antar tur (15 menit) + loading ulang koper ke kendaraan baru (10 menit) + buffer jika tour sebelumnya delay (20 menit).",
-      "note": "Handoff antar tour adalah titik paling rentan. Crew penerima harus sudah standby 15 menit sebelum waktu handoff yang disepakati."
-    },
-    "meeting_protocol": {
-      "crew_position": "Di titik akhir tour sebelumnya (hotel / destinasi / area parkir yang disepakati)",
-      "pickup_sign": "Tidak selalu perlu — tamu sudah kenal crew. Jika crew berbeda, crew baru memperkenalkan diri.",
-      "communication": "Crew baru hubungi tamu via WhatsApp H-30 menit sebelum handoff: 'Hello [name], I am [crew name], your new JVTO guide for the next part of your trip. I will meet you at [location] at [time].'"
-    },
     "required_customer_fields": [
       "previous_dropoff_area",
       "handoff_time"
