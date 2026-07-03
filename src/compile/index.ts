@@ -17,6 +17,7 @@ import { buildPackageRouteMap } from './build-package-route-map.js';
 import { buildRecommendationRules } from './build-recommendation-rules.js';
 import { buildVisualMapLayer } from './build-visual-map-layer.js';
 import { buildLocationCoordinateIndex } from './build-location-coordinate-index.js';
+import { buildTomTomGeotagIndex } from './build-tomtom-geotag.js';
 import { buildOutputTemplateMap } from './build-output-template-map.js';
 import { buildScenarioPreview } from './build-scenario-preview.js';
 import { buildExportPayloads } from './build-export-payloads.js';
@@ -43,7 +44,13 @@ export async function compileGeneratedData() {
 
   // Verified destination coordinates from jvto-web power the map markers/bounds.
   const coordinateIndex = buildLocationCoordinateIndex(jvtoWeb.destination_details);
-  const [visualMapLayer] = buildVisualMapLayer(coordinateIndex);
+
+  // TomTom geotag index: fills transit-node coordinates (airport, harbor, staging town)
+  // not present in the jvto-web destination registry. Deterministic — no live API call.
+  const { index: geotagIndex, nodeIndex: tomtomNodeIndex } = await buildTomTomGeotagIndex();
+  const tomtomData = { geotagIndex, nodeIndex: tomtomNodeIndex };
+
+  const [visualMapLayer] = buildVisualMapLayer(coordinateIndex, tomtomData);
   const mapPointsWithCoords = visualMapLayer.points.filter((p) => p.lat != null).length;
 
   const files = [
@@ -61,7 +68,8 @@ export async function compileGeneratedData() {
     ['12-recommendation-rules.json', recommendationRules],
     ['13-visual-map-layer.json', [visualMapLayer]],
     ['14-output-template-map.json', buildOutputTemplateMap()],
-    ['15-scenario-preview-sample.json', buildScenarioPreview()]
+    ['15-scenario-preview-sample.json', buildScenarioPreview()],
+    ['28-tomtom-geotag-index.json', [geotagIndex]]
   ] as const;
 
   for (const [file, data] of files) {
@@ -108,7 +116,7 @@ export async function compileGeneratedData() {
       backofficeConnected
         ? `destination crosswalk (jvto-web) maps area->core id; numeric backoffice destination_id is verified by slug-join against the bundle destinations registry (${backoffice.destination_registry.length} records) and falls back to a flagged placeholder when absent`
         : 'actual vehicle/crew/hotel rates require backoffice export ingestion',
-      `visual map layer: ${mapPointsWithCoords} destination markers carry verified jvto-web coordinates; route_lines are great-circle placeholders (NOT road geometry); real routed polylines and transit-node (airport/harbor/staging) geocodes are still pending`,
+      `visual map layer: ${mapPointsWithCoords}/${visualMapLayer.points.length} markers carry verified coordinates (jvto-web + TomTom); route_lines are great-circle placeholders until fill-tomtom-routing.mjs is run`,
       'exact pickup/dropoff deadlines require customer travel details collected outside this PII-free sample',
       'Round 3 gaps: Tumpak Sewu access/guide/descent-time, Bromo opening hours + per-year Kasada dates + booking-vs-jeep timing, Ijen gas-mask-rental/local-guide mandate, Ketapang peak queue times'
     ],
