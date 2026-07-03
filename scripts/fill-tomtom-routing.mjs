@@ -41,8 +41,9 @@ const CORRIDOR_LEGS = [
 
 const TOMTOM_BASE = 'https://api.tomtom.com/routing/1/calculateRoute';
 
-/** Decode TomTom precision-5 encoded polyline to [lat, lng][] pairs. */
-function decodePolyline(encoded) {
+/** Decode a TomTom encoded polyline (precision 5 or 7) to [lat, lng][] pairs. */
+function decodePolyline(encoded, precision = 5) {
+  const factor = 10 ** precision;
   const result = [];
   let index = 0;
   let lat = 0;
@@ -67,7 +68,7 @@ function decodePolyline(encoded) {
     } while (b >= 0x20);
     const dlng = (result_bits & 1) ? ~(result_bits >> 1) : (result_bits >> 1);
     lng += dlng;
-    result.push([lat / 1e5, lng / 1e5]);
+    result.push([lat / factor, lng / factor]);
   }
   return result;
 }
@@ -99,17 +100,12 @@ async function routeLeg(apiKey, fromNode, toNode, legId) {
   const travelTimeInSeconds = summary.travelTimeInSeconds;
   const trafficDelayInSeconds = summary.trafficDelayInSeconds ?? 0;
 
-  // Decode the encoded polyline from the first leg
-  const encodedPoints = route.legs?.[0]?.points ?? '';
-  let coordinates;
-  if (typeof encodedPoints === 'string' && encodedPoints.length > 0) {
-    coordinates = decodePolyline(encodedPoints);
-  } else if (Array.isArray(encodedPoints)) {
-    // Fallback: TomTom may return point objects instead of encoded polyline
-    coordinates = encodedPoints.map((p) => [p.latitude, p.longitude]);
-  } else {
-    coordinates = null;
-  }
+  // With routeRepresentation=encodedPolyline, TomTom returns the geometry in
+  // legs[].encodedPolyline (a string), not legs[].points (which only holds
+  // point objects for the default, non-encoded representation).
+  const encodedPolyline = route.legs?.[0]?.encodedPolyline ?? '';
+  const precision = route.legs?.[0]?.encodedPolylinePrecision ?? 5;
+  const coordinates = encodedPolyline.length > 0 ? decodePolyline(encodedPolyline, precision) : null;
 
   // Detect toll/motorway from sections
   const sections = route.sections ?? [];
@@ -186,7 +182,7 @@ async function main() {
       geo_source,
       verified_at
     })),
-    route_legs: routed_legs,
+    routed_legs: routed_legs,
     dynamic_render_config: {
       sdk: 'tomtom-web-sdk-v6',
       api_key_env: 'TOMTOM_API_KEY',
