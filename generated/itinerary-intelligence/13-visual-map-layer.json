@@ -9,10 +9,11 @@
         "type": "pickup",
         "label": "Surabaya Airport",
         "location_ref": "surabaya_airport",
-        "lat": null,
-        "lng": null,
-        "geo_status": "needs_verified_geocode",
-        "geo_source": null
+        "lat": -7.3748,
+        "lng": 112.7949,
+        "geo_status": "verified_tomtom",
+        "geo_source": "tomtom",
+        "tomtom_place_id": "W_BrV1wVZWif51Z1cebXkw"
       },
       {
         "type": "destination",
@@ -36,10 +37,10 @@
         "type": "hotel_area",
         "label": "Bondowoso / Ijen Area",
         "location_ref": "bondowoso_ijen_area",
-        "lat": null,
-        "lng": null,
-        "geo_status": "needs_verified_geocode",
-        "geo_source": null
+        "lat": -7.9111849,
+        "lng": 113.82271,
+        "geo_status": "verified_tomtom",
+        "geo_source": "tomtom"
       },
       {
         "type": "destination",
@@ -54,10 +55,11 @@
         "type": "dropoff",
         "label": "Ketapang Harbor",
         "location_ref": "ketapang_harbor",
-        "lat": null,
-        "lng": null,
-        "geo_status": "needs_verified_geocode",
-        "geo_source": null
+        "lat": -8.142967,
+        "lng": 114.400174,
+        "geo_status": "verified_tomtom",
+        "geo_source": "tomtom",
+        "tomtom_place_id": "dZAlbhcaJfIBk9Ai8XZubA"
       }
     ],
     "route_legs": [
@@ -70,10 +72,19 @@
     "route_lines": [
       {
         "leg_id": "surabaya_airport_to_bromo_area",
-        "geometry_type": null,
+        "geometry_type": "great_circle_placeholder",
         "not_road_geometry": true,
-        "geometry_status": "needs_endpoint_coordinates",
-        "coordinates": null,
+        "geometry_status": "placeholder_from_verified_endpoints",
+        "coordinates": [
+          [
+            -7.3745,
+            112.79496
+          ],
+          [
+            -7.942,
+            112.953
+          ]
+        ],
         "distance_km": 116,
         "duration_normal_minutes": 210
       },
@@ -97,43 +108,97 @@
       },
       {
         "leg_id": "bromo_area_to_bondowoso_ijen_area",
-        "geometry_type": null,
+        "geometry_type": "great_circle_placeholder",
         "not_road_geometry": true,
-        "geometry_status": "needs_endpoint_coordinates",
-        "coordinates": null,
+        "geometry_status": "placeholder_from_verified_endpoints",
+        "coordinates": [
+          [
+            -7.942,
+            112.953
+          ],
+          [
+            -7.9111849,
+            113.82271
+          ]
+        ],
         "distance_km": 225,
         "duration_normal_minutes": 330
       },
       {
         "leg_id": "bondowoso_ijen_area_to_ijen_crater",
-        "geometry_type": null,
+        "geometry_type": "great_circle_placeholder",
         "not_road_geometry": true,
-        "geometry_status": "needs_endpoint_coordinates",
-        "coordinates": null,
+        "geometry_status": "placeholder_from_verified_endpoints",
+        "coordinates": [
+          [
+            -7.9111849,
+            113.82271
+          ],
+          [
+            -8.058,
+            114.242
+          ]
+        ],
         "distance_km": 64,
         "duration_normal_minutes": 105
       },
       {
         "leg_id": "ijen_area_to_ketapang_harbor",
-        "geometry_type": null,
+        "geometry_type": "great_circle_placeholder",
         "not_road_geometry": true,
-        "geometry_status": "needs_endpoint_coordinates",
-        "coordinates": null,
+        "geometry_status": "placeholder_from_verified_endpoints",
+        "coordinates": [
+          [
+            -8.058,
+            114.242
+          ],
+          [
+            -8.14298,
+            114.4001
+          ]
+        ],
         "distance_km": 45,
         "duration_normal_minutes": 90
       }
     ],
     "bounds": {
-      "south": -8.058,
-      "west": 112.953,
-      "north": -7.933,
-      "east": 114.242
+      "south": -8.142967,
+      "west": 112.7949,
+      "north": -7.3748,
+      "east": 114.400174
     },
     "display_notes": [
-      "3/6 markers carry verified jvto-web coordinates; the rest need a verified transit-node geocode.",
-      "route_lines are great-circle placeholders between verified endpoints, NOT road geometry — replace with a routed polyline (Mapbox/OSRM) when available.",
+      "3/6 markers carry verified jvto-web coordinates; 3 carry TomTom-verified coordinates; the rest need a verified geocode.",
+      "route_lines are great-circle placeholders between verified endpoints, NOT road geometry — replace with a routed polyline (Mapbox/OSRM/TomTom) when available.",
       "Distance/duration labels come from the researched route-leg index (04)."
     ],
+    "dynamic_render_config": {
+      "sdk": "tomtom-web-sdk-v6",
+      "api_key_env": "TOMTOM_API_KEY",
+      "map_style": "tomtom://vector/1/basic-main",
+      "center": [
+        113.597537,
+        -7.7588835
+      ],
+      "zoom": 8,
+      "traffic_flow": true,
+      "traffic_incidents": true,
+      "marker_layer_ids": [
+        "surabaya_airport",
+        "bromo",
+        "madakaripura",
+        "bondowoso_ijen_area",
+        "ijen",
+        "ketapang_harbor"
+      ],
+      "route_layer_ids": [
+        "surabaya_airport_to_bromo_area",
+        "bromo_area_to_madakaripura",
+        "bromo_area_to_bondowoso_ijen_area",
+        "bondowoso_ijen_area_to_ijen_crater",
+        "ijen_area_to_ketapang_harbor"
+      ]
+    },
     "source_trace": [
       {
         "source": "manual_seed",
@@ -144,6 +209,12 @@
         "source": "jvto_web",
         "ref": "src/lib/publicContent/generated/destinationDetailSnapshots.json",
         "field": "latitude,longitude",
+        "confidence": "verified"
+      },
+      {
+        "source": "tomtom",
+        "ref": "scripts/tomtom-verified-nodes.json",
+        "field": "lat,lng",
         "confidence": "verified"
       }
     ]

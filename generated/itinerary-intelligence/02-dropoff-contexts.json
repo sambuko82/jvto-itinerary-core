@@ -6,24 +6,7 @@
     "confidence": "inferred",
     "type": "harbor",
     "location_group": "Banyuwangi",
-    "timezone": "WIB (UTC+7)",
-    "timezone_note": "Ketapang ada di Jawa Timur (WIB). Tamu yang akan melanjutkan ke Bali harus ingat bahwa begitu tiba di Gilimanuk / Bali, waktu berubah menjadi WITA (UTC+8) — 1 jam lebih cepat dari WIB. Crew wajib mengingatkan ini sebelum tamu naik ferry.",
-    "context": "Tamu diantar ke Pelabuhan Ketapang untuk naik ferry menyeberang ke Gilimanuk, Bali. Penyeberangan ±45 menit.",
     "default_buffer_minutes": 45,
-    "buffer_breakdown": {
-      "total_minutes": 45,
-      "detail": "Masuk area pelabuhan (5–10 menit) + antri tiket / loket (10–15 menit) + boarding area (10 menit) + buffer jika antrian panjang (10 menit).",
-      "peak_hours_note": "Akhir pekan, libur nasional, dan musim liburan: antrian ferry bisa sangat panjang (1–2 jam). Rekomendasikan buffer 90–120 menit di hari sibuk."
-    },
-    "crew_dropoff_procedure": {
-      "steps": [
-        "Crew mengantar tamu hingga ke area loket atau boarding pelabuhan",
-        "Crew memastikan tamu sudah pegang tiket ferry (jika diurus JVTO, crew yang beli)",
-        "Crew mengingatkan tamu perubahan timezone ke WITA setelah tiba di Bali",
-        "Crew memberi informasi: 'Ferry ke Gilimanuk sekitar 45 menit. Dari Gilimanuk ke hotel Bali tergantung tujuan Anda (1–3 jam).'",
-        "Crew menunggu hingga tamu masuk gate boarding, lalu pamit"
-      ]
-    },
     "connects_to": [
       "Gilimanuk Harbor",
       "Pemuteran",
@@ -45,8 +28,7 @@
     "risk_factors": [
       "ferry_queue",
       "late_bali_arrival",
-      "bali_traffic",
-      "timezone_confusion_wib_wita"
+      "bali_traffic"
     ],
     "source_trace": [
       {
@@ -82,56 +64,10 @@
     "confidence": "manual_seed",
     "type": "airport",
     "location_group": "Surabaya",
-    "timezone": "WIB (UTC+7)",
-    "airport_name": "Juanda International Airport (SUB)",
-    "flight_type_note": "Tanya ke tamu: international atau domestic flight? Terminal departure berbeda dan check-in time berbeda.",
-    "terminals": {
-      "T1": {
-        "label": "Terminal 1 — Domestic departure",
-        "check_in_recommendation": "Tiba di terminal minimal 90 menit sebelum departure"
-      },
-      "T2": {
-        "label": "Terminal 2 — International departure",
-        "check_in_recommendation": "Tiba di terminal minimal 180 menit (3 jam) sebelum departure. Ada imigrasi keberangkatan."
-      }
-    },
     "default_buffer_minutes": 180,
-    "buffer_by_flight_type": {
-      "international": {
-        "total_minutes": 180,
-        "breakdown": {
-          "check_in_baggage_drop": "30–45 menit (antri di counter)",
-          "imigrasi_keberangkatan": "20–40 menit (cap paspor, exit clearance)",
-          "security_check": "15–20 menit",
-          "jalan_ke_gate_boarding": "5–15 menit",
-          "buffer_keterlambatan_tour": "30–60 menit"
-        },
-        "note": "International departure butuh imigrasi keluar Indonesia. Pastikan tamu tiba di terminal T2 minimal 3 jam sebelum departure."
-      },
-      "domestic": {
-        "total_minutes": 90,
-        "breakdown": {
-          "check_in_baggage_drop": "20–30 menit",
-          "security_check": "10–15 menit",
-          "jalan_ke_gate_boarding": "5–10 menit",
-          "buffer_keterlambatan_tour": "30 menit"
-        },
-        "note": "Domestic lebih cepat. Tiba di terminal 90 menit sebelum departure sudah aman."
-      }
-    },
-    "crew_dropoff_procedure": {
-      "steps": [
-        "Crew antar tamu hingga ke pintu masuk terminal yang benar (T1 domestic / T2 international)",
-        "Crew bantu turunkan koper dari kendaraan",
-        "Crew konfirmasi tamu membawa semua barang bawaan",
-        "Crew mengingatkan jam boarding dan terminal yang harus dituju",
-        "Pamit di pintu masuk terminal (crew tidak masuk ke dalam terminal)"
-      ]
-    },
     "required_customer_fields": [
       "flight_number",
-      "departure_time",
-      "flight_type"
+      "departure_time"
     ],
     "cost_impacts": [
       "route_cutoff",
@@ -141,8 +77,7 @@
     "risk_factors": [
       "city_traffic",
       "late_activity_finish",
-      "airport_buffer_risk",
-      "wrong_terminal"
+      "airport_buffer_risk"
     ],
     "source_trace": [
       {
@@ -159,30 +94,7 @@
     "confidence": "inferred",
     "type": "bali_area",
     "location_group": "Bali",
-    "timezone": "WITA (UTC+8)",
-    "timezone_note": "Bali menggunakan WITA (Waktu Indonesia Tengah, UTC+8) — 1 jam lebih cepat dari WIB (Jawa). Contoh: jika tour berakhir di Ijen pukul 08:00 WIB, saat tamu tiba di Bali sudah pukul 12:00–14:00 WITA (termasuk waktu perjalanan + ferry). Selalu komunikasikan waktu ke tamu menggunakan waktu lokal tujuan.",
-    "context": "Tamu diantar dari Jawa (tour area) menuju hotel di Bali. Rute: destinasi terakhir → Ketapang Harbor → ferry → Gilimanuk → hotel Bali. Total waktu Ketapang ke hotel Bali: 2–5 jam tergantung lokasi hotel.",
     "default_buffer_minutes": 60,
-    "buffer_breakdown": {
-      "total_minutes": 60,
-      "detail": "Buffer 60 menit untuk antisipasi antrian ferry + variasi traffic Bali.",
-      "note": "Jika hotel di Ubud atau Canggu, perjalanan dari Gilimanuk bisa 2–3 jam. Jika di Seminyak / Kuta, sekitar 2 jam. Jika di Lovina/Pemuteran (utara Bali), lebih dekat dari Gilimanuk."
-    },
-    "ferry_info": {
-      "route": "Ketapang (Banyuwangi, Jawa) → Gilimanuk (Bali)",
-      "duration": "±45 menit",
-      "frequency": "24 jam, setiap 30–60 menit",
-      "ticket_cost": "Termasuk D.5 Ferry Ticket (per pax)"
-    },
-    "crew_dropoff_procedure": {
-      "steps": [
-        "Crew Jawa mengantar tamu hingga masuk ferry di Ketapang",
-        "Setelah tamu boarding, handoff selesai (crew Jawa pulang)",
-        "Jika ada transfer Bali terpisah: driver Bali menjemput di Gilimanuk",
-        "Driver Bali mengantar ke hotel sesuai alamat yang diberikan tamu",
-        "Crew mengingatkan tamu: 'Sekarang sudah WIB jam X, tapi di Bali sudah WITA jam X+1'"
-      ]
-    },
     "required_customer_fields": [
       "hotel_name",
       "hotel_area"
@@ -195,8 +107,7 @@
     "risk_factors": [
       "ferry_queue",
       "bali_traffic",
-      "late_hotel_arrival",
-      "timezone_confusion_wib_wita"
+      "late_hotel_arrival"
     ],
     "source_trace": [
       {
@@ -232,23 +143,8 @@
     "confidence": "manual_seed",
     "type": "hotel",
     "location_group": "Surabaya",
-    "timezone": "WIB (UTC+7)",
     "default_buffer_minutes": 30,
-    "buffer_breakdown": {
-      "total_minutes": 30,
-      "detail": "Buffer 30 menit untuk traffic kota Surabaya + cari akses hotel + unload koper.",
-      "note": "Beberapa hotel di pusat kota Surabaya punya one-way street atau akses terbatas. Crew konfirmasi rute ke hotel sebelum berangkat."
-    },
-    "crew_dropoff_procedure": {
-      "steps": [
-        "Crew antar tamu langsung ke pintu masuk hotel (lobby entrance)",
-        "Crew bantu turunkan koper",
-        "Crew menunggu sebentar memastikan tamu sudah masuk dan check-in berjalan lancar",
-        "Pamit setelah tamu masuk lobi"
-      ]
-    },
     "required_customer_fields": [
-      "hotel_name",
       "hotel_area"
     ],
     "cost_impacts": [
@@ -275,22 +171,7 @@
     "confidence": "manual_seed",
     "type": "train_station",
     "location_group": "Surabaya",
-    "timezone": "WIB (UTC+7)",
-    "stations_note": "Surabaya punya 3 stasiun utama: Gubeng (tengah kota), Pasar Turi (barat), Wonokromo (selatan). Konfirmasi stasiun keberangkatan ke tamu.",
     "default_buffer_minutes": 90,
-    "buffer_breakdown": {
-      "total_minutes": 90,
-      "detail": "Buffer 90 menit: traffic kota Surabaya (30–45 menit variasi) + check-in tiket / boarding pass (15 menit) + jalan ke peron (10 menit) + buffer keterlambatan tour (15 menit).",
-      "note": "Jangan jadwalkan aktivitas yang finish di siang hari kalau kereta departure jam 14:00 atau lebih awal. Jadwal tour perlu disesuaikan."
-    },
-    "crew_dropoff_procedure": {
-      "steps": [
-        "Crew antar tamu ke stasiun yang benar",
-        "Turunkan koper di area drop-off stasiun",
-        "Crew memastikan tamu tahu jalur masuk dan peron keberangkatan",
-        "Pamit di pintu masuk stasiun"
-      ]
-    },
     "required_customer_fields": [
       "train_departure_time",
       "station_name"
@@ -319,22 +200,8 @@
     "confidence": "manual_seed",
     "type": "city_point",
     "location_group": "Malang",
-    "timezone": "WIB (UTC+7)",
     "default_buffer_minutes": 45,
-    "buffer_breakdown": {
-      "total_minutes": 45,
-      "detail": "Turun dari area Bromo/gunung ke kota Malang: variasi traffic + rute menurun (30 menit) + cari titik dropoff (15 menit).",
-      "note": "Malang bisa berupa hotel, stasiun Malang, atau titik kustom lainnya. Konfirmasi titik dropoff pasti sebelum hari H."
-    },
-    "crew_dropoff_procedure": {
-      "steps": [
-        "Crew antar ke titik yang diminta (hotel / stasiun / alamat)",
-        "Turunkan koper",
-        "Pamit setelah tamu di titik tujuan"
-      ]
-    },
     "required_customer_fields": [
-      "dropoff_location",
       "dropoff_area"
     ],
     "cost_impacts": [
@@ -361,23 +228,8 @@
     "confidence": "manual_seed",
     "type": "custom_address",
     "location_group": "Custom",
-    "timezone": "Tergantung lokasi — konfirmasi WIB atau WITA ke tamu",
     "default_buffer_minutes": 45,
-    "buffer_breakdown": {
-      "total_minutes": 45,
-      "detail": "Navigasi ke alamat kustom (variabel) + cari akses / parkir (10–15 menit) + unload koper (10 menit) + buffer koordinasi (15–20 menit).",
-      "note": "Alamat di luar area standar berisiko akses sulit. Crew konfirmasi alamat lengkap dan akses kendaraan H-1 malam sebelumnya."
-    },
-    "crew_dropoff_procedure": {
-      "steps": [
-        "Crew konfirmasi alamat lengkap dan pin maps sebelum berangkat",
-        "Antar ke titik yang diminta",
-        "Turunkan koper, pastikan tamu aman di tujuan",
-        "Pamit"
-      ]
-    },
     "required_customer_fields": [
-      "dropoff_location",
       "address_area",
       "deadline_if_any",
       "vehicle_access_note"

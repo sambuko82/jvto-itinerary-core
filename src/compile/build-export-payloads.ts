@@ -51,7 +51,7 @@ export function buildExportPayloads(packageContext: PackageScenarioContext, mapL
         map_payload: {
           points: mapLayer.points.map((point) => ({
             ...point,
-            coordinate_status: point.lat != null ? 'verified_jvto_web' : 'needs_verified_geocode'
+            coordinate_status: point.geo_status
           })),
           bounds: mapLayer.bounds ?? null,
           route_lines: mapLayer.route_lines ?? [],

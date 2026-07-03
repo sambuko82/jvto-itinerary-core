@@ -3,7 +3,7 @@
   "schema_version": 1,
   "source_mode": "source_connected",
   "legacy_dataset_mode": "manual_seed_mvp",
-  "output_count": 28,
+  "output_count": 21,
   "outputs": [
     "generated/itinerary-intelligence/01-pickup-contexts.json",
     "generated/itinerary-intelligence/02-dropoff-contexts.json",
@@ -20,14 +20,7 @@
     "generated/itinerary-intelligence/13-visual-map-layer.json",
     "generated/itinerary-intelligence/14-output-template-map.json",
     "generated/itinerary-intelligence/15-scenario-preview-sample.json",
-    "generated/itinerary-intelligence/16-package-pricing.json",
-    "generated/itinerary-intelligence/17-hotels-master.json",
-    "generated/itinerary-intelligence/18-activities-master.json",
-    "generated/itinerary-intelligence/19-transport-master.json",
-    "generated/itinerary-intelligence/20-others-master.json",
-    "generated/itinerary-intelligence/21-package-expense-map.json",
-    "generated/itinerary-intelligence/22-destinations-master.json",
-    "generated/itinerary-intelligence/23-transport-crew-rules.json",
+    "generated/itinerary-intelligence/28-tomtom-geotag-index.json",
     "exports/page-payload/sample-itinerary-page.json",
     "exports/pdf-payload/sample-itinerary-pdf.json",
     "exports/whatsapp-payload/sample-whatsapp-summary.json",
@@ -35,10 +28,7 @@
     "exports/ai-context-pack/sample-ai-context.json"
   ],
   "warnings": [
-    "2026-06-22: Files 18, 20, 23 updated to schema_version 2. Changes: (1) 18-activities-master — destination_activities rebuilt with is_default_jvto boolean per real API; Tumpak Sewu guide corrected to 200k; Medical Checkup + Coffee+Indomie added for Ijen; Malang updated to Santerra/Jodipan/Taman Langit; removed dom/for ticket split (JVTO always uses domestic rate). (2) 20-others-master — added is_default_jvto to all items; T-shirt (id=4) confirmed is_default_jvto=true. (3) 23-transport-crew-rules — added vehicle_name, vehicle_rate_per_day, crew_role_name, crew_rate_per_day to each vehicle entry for direct calculator use. Calculator.ts updated to use is_default_jvto flags and now includes crew (Resource) cost in totalExpense.",
-    "Dataset pipeline is source-connected; master files 17-23 rebuilt from live API data (2026-06-20) via 18 export-data endpoints. Hotels: 27 (was 8), activities: 172 dest-activities, vehicles: 6 types + 10 units, crew: 14 roles, destinations: 10, transport-crew-rules: 34.",
-    "Files 22 (destinations-master) and 23 (transport-crew-rules) are NEW additions. Manifest output_count updated 26→28.",
-    "Raw API snapshots saved to input/new-backoffice/snapshots/ (18 files). crew-members.json in snapshots has phone/email REDACTED per PII policy.",
+    "Dataset pipeline is source-connected; dataset fields are seed values calibrated by connected-source evidence (legacy_dataset_mode=manual_seed_mvp), carrying verified/inferred source_trace where matched.",
     "new-backoffice extractor connected: datasets 01/02/03/06/07/08/09/10/11/12 carry backoffice_observed evidence and inferred source_trace where booking/reference data matched.",
     "jvto-web destination intelligence promoted from destinationDetailSnapshots for 5 destinations: 06 carries physical_demand/difficulty_level/altitude/trail_details; 07 adds <dest>_access_requirements (gear/permit/guide); 12 adds <dest>_weather_risk_advisory (weather/rainfall/risk_factors). All carry jvto_web source_trace; evaluator output is unchanged.",
     "backoffice_observed figures are aggregated, PII-free calibration evidence — not quotes or final prices.",
@@ -57,7 +47,7 @@
   "missing_data": [
     "distance_km for some legs still requires Mapbox/manual verification (corridor legs now researched)",
     "destination crosswalk (jvto-web) maps area->core id; numeric backoffice destination_id is verified by slug-join against the bundle destinations registry (4 records) and falls back to a flagged placeholder when absent",
-    "visual map layer: 3 destination markers carry verified jvto-web coordinates; route_lines are great-circle placeholders (NOT road geometry); real routed polylines and transit-node (airport/harbor/staging) geocodes are still pending",
+    "visual map layer: 6/6 markers carry verified coordinates (jvto-web + TomTom); route_lines are great-circle placeholders until fill-tomtom-routing.mjs is run",
     "exact pickup/dropoff deadlines require customer travel details collected outside this PII-free sample",
     "Round 3 gaps: Tumpak Sewu access/guide/descent-time, Bromo opening hours + per-year Kasada dates + booking-vs-jeep timing, Ijen gas-mask-rental/local-guide mandate, Ketapang peak queue times"
   ],
