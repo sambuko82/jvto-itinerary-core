@@ -191,7 +191,7 @@
         "geo_status": "verified_tomtom",
         "geo_source": "tomtom",
         "tomtom_place_id": "W_BrV1wVZWif51Z1cebXkw",
-        "coordinate_status": "verified_jvto_web"
+        "coordinate_status": "verified_tomtom"
       },
       {
         "type": "destination",
@@ -221,7 +221,7 @@
         "lng": 113.82271,
         "geo_status": "verified_tomtom",
         "geo_source": "tomtom",
-        "coordinate_status": "verified_jvto_web"
+        "coordinate_status": "verified_tomtom"
       },
       {
         "type": "destination",
@@ -242,7 +242,7 @@
         "geo_status": "verified_tomtom",
         "geo_source": "tomtom",
         "tomtom_place_id": "dZAlbhcaJfIBk9Ai8XZubA",
-        "coordinate_status": "verified_jvto_web"
+        "coordinate_status": "verified_tomtom"
       }
     ],
     "bounds": {
