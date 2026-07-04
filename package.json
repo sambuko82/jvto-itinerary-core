@@ -22,9 +22,10 @@
     "build:all": "npm run compile && npm run agent-contract:build && npm run validate",
     "data:readiness": "node scripts/data-readiness-report.mjs",
     "intelligence:check": "tsx src/tools/intelligence-check.ts",
-    "test": "tsx --test src/scenario/evaluateScenario.test.ts src/extract/extract-backoffice.test.ts src/compile/backoffice-enrich.test.ts src/compile/build-cost-components.test.ts src/compile/jvto-web-enrich.test.ts src/compile/export-payloads.test.ts src/compile/visual-map-layer.test.ts src/compile/build-tomtom-geotag.test.ts src/config/destination-crosswalk.test.ts src/validate/inventory.test.ts src/extract/extraction-manifest.test.ts src/validate/phase3-catalog.test.ts src/validate/phase4-routes.test.ts src/validate/phase45-route-source.test.ts src/validate/phase46-route-map.test.ts src/validate/phase5-operational-context.test.ts src/validate/generated-manifest-consistency.test.ts src/validate/no-llm-dependency.test.ts src/validate/phase6a-source-contract-intake.test.ts src/validate/agent-contract.test.ts src/serve/scenario-server.test.ts",
+    "test": "tsx --test src/scenario/evaluateScenario.test.ts src/extract/extract-backoffice.test.ts src/compile/backoffice-enrich.test.ts src/compile/build-cost-components.test.ts src/compile/jvto-web-enrich.test.ts src/compile/export-payloads.test.ts src/compile/visual-map-layer.test.ts src/compile/build-tomtom-geotag.test.ts src/config/destination-crosswalk.test.ts src/validate/inventory.test.ts src/extract/extraction-manifest.test.ts src/validate/phase3-catalog.test.ts src/validate/phase4-routes.test.ts src/validate/phase45-route-source.test.ts src/validate/phase46-route-map.test.ts src/validate/phase5-operational-context.test.ts src/validate/generated-manifest-consistency.test.ts src/validate/no-llm-dependency.test.ts src/validate/phase6a-source-contract-intake.test.ts src/validate/agent-contract.test.ts src/serve/scenario-server.test.ts src/export/geo-feed.test.ts",
     "fill:tomtom-routing": "node scripts/fill-tomtom-routing.mjs",
     "scenario:serve": "tsx src/serve/scenario-server.ts",
+    "export:geo": "tsx src/export/geo-feed.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
