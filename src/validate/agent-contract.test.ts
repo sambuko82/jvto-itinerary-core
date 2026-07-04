@@ -28,6 +28,44 @@ const SEQ_TERM: Record<string, string> = {
   malang: 'malang', tumpak_sewu: 'tumpak sewu', taman_safari_prigen: 'taman safari',
 };
 
+const AGENT_CONTRACT_FILES = [
+  'destination-operational-overlays.json',
+  'manifest.json',
+  'operational-readiness.json',
+  'package-customization-boundaries.json',
+  'package-operational-composition.json',
+  'pickup-dropoff-requirements.json',
+  'route-validation-rules.json',
+  'staging-logic.json',
+  'standard-route-truth.json'
+];
+
+test('all 9 agent-contract files exist and parse as valid JSON', () => {
+  for (const f of AGENT_CONTRACT_FILES) {
+    assert.doesNotThrow(() => rj(f), `${f} missing or not valid JSON`);
+  }
+});
+
+test('standard-route-truth.json has exactly 16 packages, each with a non-empty route_sequence', () => {
+  const routeTruth = rj('standard-route-truth.json');
+  assert.equal(routeTruth.packages.length, 16, `expected 16 packages, got ${routeTruth.packages.length}`);
+  for (const p of routeTruth.packages) {
+    const seq = p.route_sequence?.value;
+    assert.ok(Array.isArray(seq) && seq.length > 0, `${p.package_key}: route_sequence.value must be a non-empty array`);
+  }
+});
+
+test('every route-validation-rules.json rule carries rule_id, severity, non-empty source_refs, and consumed_by', () => {
+  const rules = rj('route-validation-rules.json') as any[];
+  assert.ok(rules.length > 0, 'route-validation-rules.json must not be empty');
+  for (const r of rules) {
+    assert.ok(r.rule_id, `rule missing rule_id: ${JSON.stringify(r)}`);
+    assert.ok(r.severity, `${r.rule_id}: missing severity`);
+    assert.ok(Array.isArray(r.source_refs) && r.source_refs.length > 0, `${r.rule_id}: source_refs must be a non-empty array`);
+    assert.ok(r.consumed_by, `${r.rule_id}: missing consumed_by`);
+  }
+});
+
 test('every sold destination is routed (Papuma & Taman Safari included)', () => {
   const compByKey = Object.fromEntries(composition.map((c) => [c.package_key, c]));
   for (const cat of catalog) {

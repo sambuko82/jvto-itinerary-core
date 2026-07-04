@@ -17,6 +17,7 @@ regenerate from source.
 | `staging-logic.json` | Why we stage near Bromo / Ijen / Tumpak Sewu, etc. (no rates). |
 | `package-customization-boundaries.json` | Standard vs handoff/quote; instant-book eligibility. |
 | `operational-readiness.json` | Dataset status flags so the runtime never treats seed/inferred data as final truth. |
+| `standard-route-truth.json` | Per-package canonical route truth (all 16 packages) — every field classified by evidence strength (`final_jvto_standard` / `source_backed_estimate` / `live_condition` / `exception` / `absent`), never presented above what it's backed by. |
 | `manifest.json` | Index + guarantees. |
 
 ## Guarantees
@@ -45,6 +46,27 @@ sequence and records `route_integrity` per package:
 
 The authoritative **customer-facing** route order is the published itinerary in the
 knowledge-catalog `package-variations.json`, not core's operational map.
+
+## Consumption contract
+
+- **Official consumer:** `jvto-whatsapp-agent-runtime`. This directory is not a
+  general-purpose export — it exists for that runtime's routing/guardrail
+  needs; other consumers should go through the regular `generated/itinerary-intelligence/`
+  datasets or `exports/` payloads instead.
+- **Entry point:** `manifest.json`. Consumers should read it first — it indexes
+  every file in this directory plus the guarantees/gaps that apply repo-wide.
+  Don't hardcode the file list; read it from the manifest so a new file being
+  added here doesn't silently go unread.
+- **Versioning:** follows the repo's release cadence (see E6 — versioned
+  `data-vYYYY.MM.DD-<shortsha>` GitHub Releases of `generated/`). Pin to a
+  release tag, not to `main` at an arbitrary commit, so the runtime never picks
+  up a mid-regeneration or reverted state.
+- **Pricing rule:** the runtime must never quote a price, rate, or total from
+  anything in this directory — it's redacted of cost/vendor data by design
+  (see Guarantees above). Prices come exclusively from `10-cost-components.json`
+  and `16-package-pricing.json`, and only the entries/fields marked
+  `source_backed` (not `manual_seed`, `needs_field_data`, or unclassified) —
+  see `docs/_audit` and E1 for which cost components currently qualify.
 
 ## Known gap
 

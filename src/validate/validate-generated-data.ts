@@ -33,6 +33,20 @@ const generatedFiles = [
   '15-scenario-preview-sample.json'
 ] as const;
 
+const AGENT_CONTRACT_DIR = `${GENERATED_DIR}/agent-contract`;
+
+const agentContractFiles = [
+  'destination-operational-overlays.json',
+  'manifest.json',
+  'operational-readiness.json',
+  'package-customization-boundaries.json',
+  'package-operational-composition.json',
+  'pickup-dropoff-requirements.json',
+  'route-validation-rules.json',
+  'staging-logic.json',
+  'standard-route-truth.json'
+] as const;
+
 const exportPayloadFiles = [
   `${EXPORT_DIR}/page-payload/sample-itinerary-page.json`,
   `${EXPORT_DIR}/pdf-payload/sample-itinerary-pdf.json`,
@@ -186,6 +200,32 @@ function assertCostJoinability(
   }
 }
 
+// Minimal shape check for the agent-contract layer (jvto-whatsapp-agent-runtime
+// consumer). Deep business-rule assertions live in src/validate/agent-contract.test.ts;
+// this only guards against the build step silently regressing to a missing or
+// empty file, since it now runs as part of every build:all.
+function assertAgentContractShape(standardRouteTruth: unknown, routeValidationRules: unknown): void {
+  const packages = standardRouteTruth && typeof standardRouteTruth === 'object' && 'packages' in standardRouteTruth
+    ? (standardRouteTruth as { packages: unknown }).packages
+    : undefined;
+  if (!Array.isArray(packages) || packages.length !== 16) {
+    throw new Error(`agent-contract standard-route-truth.json must have exactly 16 packages, got ${Array.isArray(packages) ? packages.length : 'not an array'}`);
+  }
+
+  if (!Array.isArray(routeValidationRules) || routeValidationRules.length === 0) {
+    throw new Error('agent-contract route-validation-rules.json must be a non-empty array');
+  }
+  for (const rule of routeValidationRules) {
+    const r = rule as Record<string, unknown>;
+    if (!r || typeof r !== 'object' || !r.rule_id) throw new Error('agent-contract route-validation-rules.json: rule missing rule_id');
+    if (!r.severity) throw new Error(`agent-contract route-validation-rules.json: rule ${r.rule_id} missing severity`);
+    if (!Array.isArray(r.source_refs) || r.source_refs.length === 0) {
+      throw new Error(`agent-contract route-validation-rules.json: rule ${r.rule_id} missing non-empty source_refs`);
+    }
+    if (!r.consumed_by) throw new Error(`agent-contract route-validation-rules.json: rule ${r.rule_id} missing consumed_by`);
+  }
+}
+
 export async function validateGeneratedData() {
   for (const file of generatedFiles) {
     await assertExists(`${GENERATED_DIR}/${file}`);
@@ -193,6 +233,10 @@ export async function validateGeneratedData() {
 
   for (const file of exportPayloadFiles) {
     await assertExists(file);
+  }
+
+  for (const file of agentContractFiles) {
+    await assertExists(`${AGENT_CONTRACT_DIR}/${file}`);
   }
 
   const pickupContexts = await readJson(`${GENERATED_DIR}/01-pickup-contexts.json`);
@@ -219,6 +263,10 @@ export async function validateGeneratedData() {
   const operationalEvents = await readJson(`${GENERATED_DIR}/07-operational-events.json`);
   assertCostJoinability(costComponents, routeLegIndex, destinationActivityProfiles, operationalEvents);
 
+  const standardRouteTruth = await readJson(`${AGENT_CONTRACT_DIR}/standard-route-truth.json`);
+  const routeValidationRules = await readJson(`${AGENT_CONTRACT_DIR}/route-validation-rules.json`);
+  assertAgentContractShape(standardRouteTruth, routeValidationRules);
+
   for (const file of generatedFiles.filter((file) => file !== '15-scenario-preview-sample.json')) {
     validateObject(file, nonEmptyArraySchema, await readJson(`${GENERATED_DIR}/${file}`));
   }
@@ -230,7 +278,8 @@ export async function validateGeneratedData() {
   const scannedFiles = [
     ...generatedFiles.map((file) => `${GENERATED_DIR}/${file}`),
     `${GENERATED_DIR}/manifest.json`,
-    ...exportPayloadFiles
+    ...exportPayloadFiles,
+    ...agentContractFiles.map((file) => `${AGENT_CONTRACT_DIR}/${file}`)
   ];
 
   for (const file of scannedFiles) {
@@ -241,6 +290,7 @@ export async function validateGeneratedData() {
     ok: true,
     generated_files: generatedFiles.length,
     export_payloads: exportPayloadFiles.length,
+    agent_contract_files: agentContractFiles.length,
     pii_policy: 'no_raw_customer_pii'
   };
 }
