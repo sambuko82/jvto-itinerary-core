@@ -90,11 +90,15 @@ test('cost components fill default_rate_idr from a single clear backoffice rate'
   assert.ok(driver);
   assert.equal(driver.default_rate_idr, 250000);
 
-  // vehicle day cost keeps null default (range only, no single rate)
+  // vehicle day cost: multiple capacity tiers exist, so default_rate_idr is
+  // the JVTO rate of the smallest-capacity tier; every tier x channel is
+  // still exposed in rate_table_idr for callers that need a specific one.
   const vehicle = cost.find((c) => c.id === 'vehicle_private_car_day');
   assert.ok(vehicle);
-  assert.equal(vehicle.default_rate_idr, null);
+  assert.equal(vehicle.default_rate_idr, 650000);
   assert.ok(hasBackofficeTrace(vehicle));
+  const vehicleTable = vehicle.rate_table_idr as { by_vehicle_type: { vehicle_type_id: number }[] };
+  assert.equal(vehicleTable.by_vehicle_type.length, 3);
 
   const calibration = cost.find((c) => c.id === 'actual_expense_calibration');
   assert.ok(calibration);

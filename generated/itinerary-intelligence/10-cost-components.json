@@ -12,7 +12,7 @@
     ],
     "customer_visible": false,
     "formula": "vehicle_day_rate * tour_days",
-    "default_rate_idr": null,
+    "default_rate_idr": 650000,
     "channel_behavior": [
       "JVTO",
       "KLOOK",
@@ -56,6 +56,32 @@
           "capacity_max_pax": 12,
           "price_per_day": 1250000,
           "price_twt_per_day": 1350000
+        }
+      ]
+    },
+    "rate_table_idr": {
+      "note": "Default is the JVTO-channel rate for the smallest-capacity vehicle tier. Actual rate depends on the vehicle assigned for the group size — use by_vehicle_type for the specific tier/channel.",
+      "by_vehicle_type": [
+        {
+          "vehicle_type_id": 1,
+          "capacity_min_pax": 1,
+          "capacity_max_pax": 4,
+          "rate_jvto_per_day": 650000,
+          "rate_twt_per_day": 700000
+        },
+        {
+          "vehicle_type_id": 2,
+          "capacity_min_pax": 1,
+          "capacity_max_pax": 5,
+          "rate_jvto_per_day": 850000,
+          "rate_twt_per_day": 900000
+        },
+        {
+          "vehicle_type_id": 3,
+          "capacity_min_pax": 6,
+          "capacity_max_pax": 12,
+          "rate_jvto_per_day": 1250000,
+          "rate_twt_per_day": 1350000
         }
       ]
     }
@@ -277,6 +303,7 @@
     "customer_visible": "included_in_package",
     "formula": "madakaripura_local_guide_rate * group_count",
     "default_rate_idr": null,
+    "needed_source": "backoffice activity-rate export for Madakaripura local guide (not present in current ExportDataItineraryCore bundle activity list)",
     "channel_behavior": [
       "managed_by_local_organization"
     ],
@@ -301,6 +328,7 @@
     "customer_visible": "included_in_package",
     "formula": "tumpak_sewu_local_guide_rate * group_count",
     "default_rate_idr": null,
+    "needed_source": "backoffice activity-rate export for Tumpak Sewu local guide (not present in current ExportDataItineraryCore bundle activity list)",
     "channel_behavior": [
       "managed_by_local_organization"
     ],
@@ -326,6 +354,7 @@
     "customer_visible": true,
     "formula": "bali_transfer_rate + ferry_or_handoff_cost",
     "default_rate_idr": null,
+    "needed_source": "vendor confirmation via Inan for the Bali-side transfer rate (composite of an undefined bali_transfer_rate plus the ferry/handoff cost)",
     "channel_behavior": [
       "usually_additional_cost"
     ],
@@ -388,6 +417,7 @@
     "customer_visible": false,
     "formula": "allowance_estimate_by_route",
     "default_rate_idr": null,
+    "needed_source": "backoffice or vendor confirmation of a per-route toll/parking/fuel allowance (not tracked as a discrete backoffice cost line)",
     "channel_behavior": [
       "internal_cost_component"
     ],
@@ -449,6 +479,7 @@
     "customer_visible": "included_in_package",
     "formula": "ticket_rate * pax",
     "default_rate_idr": null,
+    "needed_source": "per-destination entrance-fee export for destinations lacking a dedicated ticket component (e.g. Tumpak Sewu, Papuma, Malang/Batu, Taman Safari Prigen)",
     "channel_behavior": [
       "rate_varies_by_destination_and_day_type"
     ],
@@ -473,7 +504,8 @@
     ],
     "customer_visible": "included_in_package",
     "formula": "room_rate * room_count * nights",
-    "default_rate_idr": null,
+    "default_rate_idr": 550000,
+    "rate_note": "actual = hotel-specific rate; default = median across observed hotel room rates (see backoffice_observed.room_rate_median_idr)",
     "channel_behavior": [
       "requires_verified_hotel_rate_export"
     ],
@@ -493,6 +525,8 @@
     "backoffice_observed": {
       "room_rate_min_idr": 480000,
       "room_rate_max_idr": 650000,
+      "room_rate_median_idr": 550000,
+      "room_type_sample_count": 3,
       "hotel_sample_count": 3
     }
   },
@@ -509,6 +543,7 @@
     "customer_visible": "included_in_package",
     "formula": "hotel_meal_rate * pax",
     "default_rate_idr": null,
+    "needed_source": "backoffice breakfast-rate export (hotel_meal_sources currently tracks lunch_rate/dinner_rate only, no breakfast_rate field)",
     "channel_behavior": [
       "depends_on_hotel_policy"
     ],
@@ -532,7 +567,8 @@
     ],
     "customer_visible": "included_in_package",
     "formula": "meal_rate * pax",
-    "default_rate_idr": null,
+    "default_rate_idr": 75000,
+    "rate_note": "actual = hotel-specific rate; default = median across observed lunch+dinner rates (see backoffice_observed.combined_rate_median_idr)",
     "channel_behavior": [
       "some_meals_are_own_expense_unless_stated"
     ],
@@ -553,7 +589,9 @@
       "lunch_rate_min_idr": 55000,
       "lunch_rate_max_idr": 70000,
       "dinner_rate_min_idr": 80000,
-      "dinner_rate_max_idr": 95000
+      "dinner_rate_max_idr": 95000,
+      "combined_rate_median_idr": 75000,
+      "combined_sample_count": 6
     }
   },
   {
@@ -658,6 +696,7 @@
     "customer_visible": true,
     "formula": "addon_rate based on selected activity and group size",
     "default_rate_idr": null,
+    "needed_source": "vendor/backoffice rate export per custom add-on activity (rate depends on the specific activity selected)",
     "channel_behavior": [
       "quoted_separately_until_verified"
     ],
@@ -682,6 +721,7 @@
     "customer_visible": false,
     "formula": "requires manual operations approval",
     "default_rate_idr": null,
+    "needed_source": "operations approval + vendor rate confirmation via Inan (non-standard, case-by-case)",
     "channel_behavior": [
       "not_standard_customer_pricing"
     ],
@@ -706,6 +746,7 @@
     "customer_visible": false,
     "formula": "cash_allocation_by_route_and_duration",
     "default_rate_idr": null,
+    "needed_source": "backoffice internal cash-allocation policy export (route/duration-based, not currently tracked as a discrete rate)",
     "channel_behavior": [
       "internal_only"
     ],
@@ -730,6 +771,7 @@
     "customer_visible": false,
     "formula": "compare estimated component rates with redacted actual expense summary",
     "default_rate_idr": null,
+    "needed_source": "redacted backoffice finance export covering all packages (backoffice_observed.package_finance currently covers only a partial sample); this is a calibration/audit record, not a priced component, so it stays unrated even once that export exists",
     "channel_behavior": [
       "future_backoffice_ingestion"
     ],

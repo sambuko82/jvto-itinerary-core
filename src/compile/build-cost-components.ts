@@ -139,6 +139,7 @@ export function buildCostComponents(backoffice?: BackofficeExtract): CostCompone
       customer_visible: 'included_in_package',
       formula: 'madakaripura_local_guide_rate * group_count',
       default_rate_idr: null,
+      needed_source: 'backoffice activity-rate export for Madakaripura local guide (not present in current ExportDataItineraryCore bundle activity list)',
       channel_behavior: ['managed_by_local_organization'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
     },
@@ -153,6 +154,7 @@ export function buildCostComponents(backoffice?: BackofficeExtract): CostCompone
       customer_visible: 'included_in_package',
       formula: 'tumpak_sewu_local_guide_rate * group_count',
       default_rate_idr: null,
+      needed_source: 'backoffice activity-rate export for Tumpak Sewu local guide (not present in current ExportDataItineraryCore bundle activity list)',
       channel_behavior: ['managed_by_local_organization'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
     },
@@ -167,6 +169,7 @@ export function buildCostComponents(backoffice?: BackofficeExtract): CostCompone
       customer_visible: true,
       formula: 'bali_transfer_rate + ferry_or_handoff_cost',
       default_rate_idr: null,
+      needed_source: 'vendor confirmation via Inan for the Bali-side transfer rate (composite of an undefined bali_transfer_rate plus the ferry/handoff cost)',
       channel_behavior: ['usually_additional_cost'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
     },
@@ -195,6 +198,7 @@ export function buildCostComponents(backoffice?: BackofficeExtract): CostCompone
       customer_visible: false,
       formula: 'allowance_estimate_by_route',
       default_rate_idr: null,
+      needed_source: 'backoffice or vendor confirmation of a per-route toll/parking/fuel allowance (not tracked as a discrete backoffice cost line)',
       channel_behavior: ['internal_cost_component'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
     },
@@ -223,6 +227,7 @@ export function buildCostComponents(backoffice?: BackofficeExtract): CostCompone
       customer_visible: 'included_in_package',
       formula: 'ticket_rate * pax',
       default_rate_idr: null,
+      needed_source: 'per-destination entrance-fee export for destinations lacking a dedicated ticket component (e.g. Tumpak Sewu, Papuma, Malang/Batu, Taman Safari Prigen)',
       channel_behavior: ['rate_varies_by_destination_and_day_type'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
     },
@@ -237,6 +242,7 @@ export function buildCostComponents(backoffice?: BackofficeExtract): CostCompone
       customer_visible: 'included_in_package',
       formula: 'room_rate * room_count * nights',
       default_rate_idr: null,
+      rate_note: 'actual = hotel-specific rate; default = median across observed hotel room rates (see backoffice_observed.room_rate_median_idr)',
       channel_behavior: ['requires_verified_hotel_rate_export'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
     },
@@ -251,6 +257,7 @@ export function buildCostComponents(backoffice?: BackofficeExtract): CostCompone
       customer_visible: 'included_in_package',
       formula: 'hotel_meal_rate * pax',
       default_rate_idr: null,
+      needed_source: 'backoffice breakfast-rate export (hotel_meal_sources currently tracks lunch_rate/dinner_rate only, no breakfast_rate field)',
       channel_behavior: ['depends_on_hotel_policy'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
     },
@@ -265,6 +272,7 @@ export function buildCostComponents(backoffice?: BackofficeExtract): CostCompone
       customer_visible: 'included_in_package',
       formula: 'meal_rate * pax',
       default_rate_idr: null,
+      rate_note: 'actual = hotel-specific rate; default = median across observed lunch+dinner rates (see backoffice_observed.combined_rate_median_idr)',
       channel_behavior: ['some_meals_are_own_expense_unless_stated'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
     },
@@ -323,6 +331,7 @@ export function buildCostComponents(backoffice?: BackofficeExtract): CostCompone
       customer_visible: true,
       formula: 'addon_rate based on selected activity and group size',
       default_rate_idr: null,
+      needed_source: 'vendor/backoffice rate export per custom add-on activity (rate depends on the specific activity selected)',
       channel_behavior: ['quoted_separately_until_verified'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
     },
@@ -337,6 +346,7 @@ export function buildCostComponents(backoffice?: BackofficeExtract): CostCompone
       customer_visible: false,
       formula: 'requires manual operations approval',
       default_rate_idr: null,
+      needed_source: 'operations approval + vendor rate confirmation via Inan (non-standard, case-by-case)',
       channel_behavior: ['not_standard_customer_pricing'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'needs_review' }]
     },
@@ -351,6 +361,7 @@ export function buildCostComponents(backoffice?: BackofficeExtract): CostCompone
       customer_visible: false,
       formula: 'cash_allocation_by_route_and_duration',
       default_rate_idr: null,
+      needed_source: 'backoffice internal cash-allocation policy export (route/duration-based, not currently tracked as a discrete rate)',
       channel_behavior: ['internal_only'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'manual_seed' }]
     },
@@ -365,6 +376,7 @@ export function buildCostComponents(backoffice?: BackofficeExtract): CostCompone
       customer_visible: false,
       formula: 'compare estimated component rates with redacted actual expense summary',
       default_rate_idr: null,
+      needed_source: 'redacted backoffice finance export covering all packages (backoffice_observed.package_finance currently covers only a partial sample); this is a calibration/audit record, not a priced component, so it stays unrated even once that export exists',
       channel_behavior: ['future_backoffice_ingestion'],
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/cost-components.yaml', confidence: 'needs_review' }]
     }
@@ -379,8 +391,12 @@ export function buildCostComponents(backoffice?: BackofficeExtract): CostCompone
     component.source_trace.push(backofficeTrace('observed rates (reference + actual_cost_patterns)'));
     component.backoffice_observed = enrichment.observed;
     // Fill default_rate_idr only when the seed left it null and a single clear rate exists.
-    if (enrichment.defaultRateIdr != null && (component.default_rate_idr == null)) {
+    if (enrichment.defaultRateIdr != null && component.default_rate_idr == null) {
       component.default_rate_idr = enrichment.defaultRateIdr;
+    }
+    // Fill rate_table_idr only when the seed didn't already ship a researched one.
+    if (enrichment.rateTableIdr != null && component.rate_table_idr == null) {
+      component.rate_table_idr = enrichment.rateTableIdr;
     }
   }
 
