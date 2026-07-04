@@ -54,17 +54,39 @@ generated/itinerary-intelligence/
   13-visual-map-layer.json
   14-output-template-map.json
   15-scenario-preview-sample.json
+  16-package-pricing.json
+  17-hotels-master.json
+  18-activities-master.json
+  19-transport-master.json
+  20-others-master.json
+  21-package-expense-map.json
+  22-destinations-master.json
+  23-transport-crew-rules.json
+  24-timezone-rules.json
+  25-guest-meeting-protocol.json
+  26-bali-transport-addons.json
+  27-meal-stops.json
+  28-tomtom-geotag-index.json
   manifest.json
+  agent-contract/
+    -- agent-safe operational contract: standard route truth,
+       route-validation rules, instant-book gating — consumed by
+       jvto-whatsapp-agent-runtime
 ```
 
 ## Commands
 
 ```bash
 npm install
-npm run build:all
+npm run build:all       # compile + validate
 npm run compile
 npm run validate
+npm run agent-contract   # regenerate generated/itinerary-intelligence/agent-contract/
+npm run intelligence:all # full extract -> catalog -> routes -> context -> source-contracts -> agent-contract -> validate
 npm run inspect
+npm run scenario
+npm run typecheck
+npm test
 ```
 
 ## Status
