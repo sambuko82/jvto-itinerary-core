@@ -13,3 +13,10 @@ input/**/pii/
 # superpowers brainstorming companion
 .superpowers/
 /.playwright-mcp
+
+# Next.js build cache (itinerary-builder) — regenerable, never commit
+itinerary-builder/.next/
+itinerary-builder/node_modules/
+itinerary-builder/tsconfig.tsbuildinfo
+.next/
+*.tsbuildinfo
