@@ -2,13 +2,13 @@
   "id": "geo_feed",
   "label": "jvto-web geo feed: destination + route-node coordinates and Schema.org geo blocks",
   "status": "active",
-  "confidence": "verified",
+  "confidence": "inferred",
   "source_trace": [
     {
       "source": "tomtom",
       "ref": "generated/itinerary-intelligence/28-tomtom-geotag-index.json",
-      "field": "nodes[].lat,lng",
-      "confidence": "verified"
+      "field": "nodes[].lat,lng,confidence,geo_source",
+      "confidence": "inferred"
     },
     {
       "source": "generated",
@@ -30,6 +30,8 @@
       "name": "Mount Bromo",
       "lat": -7.9046,
       "lng": 112.9525,
+      "geo_confidence": "seed_approximation",
+      "geo_source": "seed",
       "schema_org": {
         "@type": "TouristAttraction",
         "name": "Mount Bromo",
@@ -46,6 +48,8 @@
       "name": "Ijen Crater",
       "lat": -8.059,
       "lng": 114.22,
+      "geo_confidence": "seed_approximation",
+      "geo_source": "seed",
       "schema_org": {
         "@type": "TouristAttraction",
         "name": "Ijen Crater",
@@ -63,6 +67,8 @@
       "name": "Bali / Ketapang crossing",
       "lat": -8.6705,
       "lng": 115.2126,
+      "geo_confidence": "seed_approximation",
+      "geo_source": "seed",
       "schema_org": {
         "@type": "TouristAttraction",
         "name": "Bali / Ketapang crossing",
@@ -79,6 +85,8 @@
       "name": "Surabaya City",
       "lat": -7.2575,
       "lng": 112.7521,
+      "geo_confidence": "seed_approximation",
+      "geo_source": "seed",
       "schema_org": {
         "@type": "TouristAttraction",
         "name": "Surabaya City",
@@ -95,6 +103,8 @@
       "name": "Malang City",
       "lat": -7.9778,
       "lng": 112.6342,
+      "geo_confidence": "seed_approximation",
+      "geo_source": "seed",
       "schema_org": {
         "@type": "TouristAttraction",
         "name": "Malang City",
@@ -111,6 +121,8 @@
       "name": "Madakaripura Waterfall",
       "lat": -7.9003,
       "lng": 113.143,
+      "geo_confidence": "seed_approximation",
+      "geo_source": "seed",
       "schema_org": {
         "@type": "TouristAttraction",
         "name": "Madakaripura Waterfall",
@@ -127,6 +139,8 @@
       "name": "Tumpak Sewu Waterfall",
       "lat": -8.2306,
       "lng": 112.917,
+      "geo_confidence": "seed_approximation",
+      "geo_source": "seed",
       "schema_org": {
         "@type": "TouristAttraction",
         "name": "Tumpak Sewu Waterfall",
@@ -143,6 +157,8 @@
       "name": "Papuma Beach",
       "lat": -8.4297,
       "lng": 113.553,
+      "geo_confidence": "seed_approximation",
+      "geo_source": "seed",
       "schema_org": {
         "@type": "TouristAttraction",
         "name": "Papuma Beach",
@@ -159,6 +175,8 @@
       "name": "Taman Safari Prigen",
       "lat": -7.6957,
       "lng": 112.6358,
+      "geo_confidence": "seed_approximation",
+      "geo_source": "seed",
       "schema_org": {
         "@type": "TouristAttraction",
         "name": "Taman Safari Prigen",
@@ -179,19 +197,22 @@
           "name": "Bali",
           "lat": -8.6705,
           "lng": 115.2126,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Bromo",
           "lat": -7.9046,
           "lng": 112.9525,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Ijen",
           "lat": -8.059,
           "lng": 114.22,
-          "sequence": 3
+          "sequence": 3,
+          "geo_confidence": "seed_approximation"
         }
       ]
     },
@@ -202,25 +223,29 @@
           "name": "Bali",
           "lat": -8.6705,
           "lng": 115.2126,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Ijen",
           "lat": -8.059,
           "lng": 114.22,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Bromo",
           "lat": -7.9046,
           "lng": 112.9525,
-          "sequence": 3
+          "sequence": 3,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Madakaripura",
           "lat": -7.9003,
           "lng": 113.143,
-          "sequence": 4
+          "sequence": 4,
+          "geo_confidence": "seed_approximation"
         }
       ]
     },
@@ -231,31 +256,36 @@
           "name": "Bali",
           "lat": -8.6705,
           "lng": 115.2126,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Ijen",
           "lat": -8.059,
           "lng": 114.22,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Papuma",
           "lat": -8.4297,
           "lng": 113.553,
-          "sequence": 3
+          "sequence": 3,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Tumpak Sewu",
           "lat": -8.2306,
           "lng": 112.917,
-          "sequence": 4
+          "sequence": 4,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Bromo",
           "lat": -7.9046,
           "lng": 112.9525,
-          "sequence": 5
+          "sequence": 5,
+          "geo_confidence": "seed_approximation"
         }
       ]
     },
@@ -266,31 +296,36 @@
           "name": "Bali",
           "lat": -8.6705,
           "lng": 115.2126,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Ijen",
           "lat": -8.059,
           "lng": 114.22,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Papuma",
           "lat": -8.4297,
           "lng": 113.553,
-          "sequence": 3
+          "sequence": 3,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Tumpak Sewu",
           "lat": -8.2306,
           "lng": 112.917,
-          "sequence": 4
+          "sequence": 4,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Bromo",
           "lat": -7.9046,
           "lng": 112.9525,
-          "sequence": 5
+          "sequence": 5,
+          "geo_confidence": "seed_approximation"
         }
       ]
     },
@@ -301,13 +336,15 @@
           "name": "Surabaya",
           "lat": -7.2575,
           "lng": 112.7521,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Bromo",
           "lat": -7.9046,
           "lng": 112.9525,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         }
       ]
     },
@@ -318,13 +355,15 @@
           "name": "Surabaya",
           "lat": -7.2575,
           "lng": 112.7521,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Bromo",
           "lat": -7.9046,
           "lng": 112.9525,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         }
       ]
     },
@@ -335,25 +374,29 @@
           "name": "Surabaya",
           "lat": -7.2575,
           "lng": 112.7521,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Bromo",
           "lat": -7.9046,
           "lng": 112.9525,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Madakaripura",
           "lat": -7.9003,
           "lng": 113.143,
-          "sequence": 3
+          "sequence": 3,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Ijen",
           "lat": -8.059,
           "lng": 114.22,
-          "sequence": 4
+          "sequence": 4,
+          "geo_confidence": "seed_approximation"
         }
       ]
     },
@@ -364,13 +407,15 @@
           "name": "Surabaya",
           "lat": -7.2575,
           "lng": 112.7521,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Ijen",
           "lat": -8.059,
           "lng": 114.22,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         }
       ]
     },
@@ -381,25 +426,29 @@
           "name": "Surabaya",
           "lat": -7.2575,
           "lng": 112.7521,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Ijen",
           "lat": -8.059,
           "lng": 114.22,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Bromo",
           "lat": -7.9046,
           "lng": 112.9525,
-          "sequence": 3
+          "sequence": 3,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Madakaripura",
           "lat": -7.9003,
           "lng": 113.143,
-          "sequence": 4
+          "sequence": 4,
+          "geo_confidence": "seed_approximation"
         }
       ]
     },
@@ -410,25 +459,29 @@
           "name": "Surabaya",
           "lat": -7.2575,
           "lng": 112.7521,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Ijen",
           "lat": -8.059,
           "lng": 114.22,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Bromo",
           "lat": -7.9046,
           "lng": 112.9525,
-          "sequence": 3
+          "sequence": 3,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Madakaripura",
           "lat": -7.9003,
           "lng": 113.143,
-          "sequence": 4
+          "sequence": 4,
+          "geo_confidence": "seed_approximation"
         }
       ]
     },
@@ -439,31 +492,36 @@
           "name": "Surabaya",
           "lat": -7.2575,
           "lng": 112.7521,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Ijen",
           "lat": -8.059,
           "lng": 114.22,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Bromo",
           "lat": -7.9046,
           "lng": 112.9525,
-          "sequence": 3
+          "sequence": 3,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Madakaripura",
           "lat": -7.9003,
           "lng": 113.143,
-          "sequence": 4
+          "sequence": 4,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Malang",
           "lat": -7.9778,
           "lng": 112.6342,
-          "sequence": 5
+          "sequence": 5,
+          "geo_confidence": "seed_approximation"
         }
       ]
     },
@@ -474,31 +532,36 @@
           "name": "Surabaya",
           "lat": -7.2575,
           "lng": 112.7521,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Ijen",
           "lat": -8.059,
           "lng": 114.22,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Papuma",
           "lat": -8.4297,
           "lng": 113.553,
-          "sequence": 3
+          "sequence": 3,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Tumpak Sewu",
           "lat": -8.2306,
           "lng": 112.917,
-          "sequence": 4
+          "sequence": 4,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Bromo",
           "lat": -7.9046,
           "lng": 112.9525,
-          "sequence": 5
+          "sequence": 5,
+          "geo_confidence": "seed_approximation"
         }
       ]
     },
@@ -509,31 +572,36 @@
           "name": "Surabaya",
           "lat": -7.2575,
           "lng": 112.7521,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Ijen",
           "lat": -8.059,
           "lng": 114.22,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Papuma",
           "lat": -8.4297,
           "lng": 113.553,
-          "sequence": 3
+          "sequence": 3,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Tumpak Sewu",
           "lat": -8.2306,
           "lng": 112.917,
-          "sequence": 4
+          "sequence": 4,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Bromo",
           "lat": -7.9046,
           "lng": 112.9525,
-          "sequence": 5
+          "sequence": 5,
+          "geo_confidence": "seed_approximation"
         }
       ]
     },
@@ -544,37 +612,43 @@
           "name": "Surabaya",
           "lat": -7.2575,
           "lng": 112.7521,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Ijen",
           "lat": -8.059,
           "lng": 114.22,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Papuma",
           "lat": -8.4297,
           "lng": 113.553,
-          "sequence": 3
+          "sequence": 3,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Tumpak Sewu",
           "lat": -8.2306,
           "lng": 112.917,
-          "sequence": 4
+          "sequence": 4,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Bromo",
           "lat": -7.9046,
           "lng": 112.9525,
-          "sequence": 5
+          "sequence": 5,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Malang",
           "lat": -7.9778,
           "lng": 112.6342,
-          "sequence": 6
+          "sequence": 6,
+          "geo_confidence": "seed_approximation"
         }
       ]
     },
@@ -585,25 +659,29 @@
           "name": "Surabaya",
           "lat": -7.2575,
           "lng": 112.7521,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Taman Safari Prigen",
           "lat": -7.6957,
           "lng": 112.6358,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Bromo",
           "lat": -7.9046,
           "lng": 112.9525,
-          "sequence": 3
+          "sequence": 3,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Madakaripura",
           "lat": -7.9003,
           "lng": 113.143,
-          "sequence": 4
+          "sequence": 4,
+          "geo_confidence": "seed_approximation"
         }
       ]
     },
@@ -614,25 +692,29 @@
           "name": "Surabaya",
           "lat": -7.2575,
           "lng": 112.7521,
-          "sequence": 1
+          "sequence": 1,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Tumpak Sewu",
           "lat": -8.2306,
           "lng": 112.917,
-          "sequence": 2
+          "sequence": 2,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Bromo",
           "lat": -7.9046,
           "lng": 112.9525,
-          "sequence": 3
+          "sequence": 3,
+          "geo_confidence": "seed_approximation"
         },
         {
           "name": "Ijen",
           "lat": -8.059,
           "lng": 114.22,
-          "sequence": 4
+          "sequence": 4,
+          "geo_confidence": "seed_approximation"
         }
       ]
     }

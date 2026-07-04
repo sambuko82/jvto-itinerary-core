@@ -24,14 +24,17 @@ test('feed carries the required contract fields', async () => {
   const feed = await buildGeoFeed();
   assert.equal(feed.id, 'geo_feed');
   assert.equal(feed.status, 'active');
-  assert.equal(feed.confidence, 'verified');
+  // Coordinates here are a MIX of verified_tomtom_api and seed_approximation nodes
+  // (see the per-destination/per-route-node geo_confidence for the real truth) —
+  // the feed must never claim a blanket 'verified' for that mix.
+  assert.equal(feed.confidence, 'inferred');
   assert.ok(Array.isArray(feed.source_trace) && feed.source_trace.length > 0);
   assert.ok(Array.isArray(feed.destinations));
   assert.ok(Array.isArray(feed.routes));
   assert.ok(Array.isArray(feed.missing_coordinates));
 });
 
-test('all 5 minimum-coverage destinations have a real verified coordinate', async () => {
+test('all 5 minimum-coverage destinations have a real coordinate, honestly labeled by provenance', async () => {
   const feed = await buildGeoFeed();
   for (const [name, { coreId }] of Object.entries(REQUIRED_DESTINATIONS)) {
     const dest = feed.destinations.find((d) => d.id === coreId);
@@ -40,7 +43,17 @@ test('all 5 minimum-coverage destinations have a real verified coordinate', asyn
     assert.equal(typeof dest!.lng, 'number', `${name} lng must be a real number`);
     assert.ok(Number.isFinite(dest!.lat) && Number.isFinite(dest!.lng), `${name} coordinate must be finite`);
     assert.ok(inBBox(dest!.lat, dest!.lng), `${name} coordinate ${dest!.lat},${dest!.lng} falls outside the East-Java/Bali bounding box`);
+    assert.ok(
+      ['verified_tomtom_api', 'seed_approximation'].includes(dest!.geo_confidence),
+      `${name}: geo_confidence must be a real TomTom node confidence value, got "${dest!.geo_confidence}"`
+    );
   }
+  // Honest current-state check: as of this writing, none of the 5 minimum-coverage
+  // destinations are TomTom API-verified yet — they're researched/seed coordinates.
+  // If this ever flips to true, that's good news; if a destination that used to be
+  // verified silently flips to false, that's a real regression to catch.
+  const bromo = feed.destinations.find((d) => d.id === 'bromo');
+  assert.equal(bromo!.geo_confidence, 'seed_approximation');
 });
 
 test('Ijen destination uses the ijen-crater slug (not mount-ijen) and carries the sulfur dioxide disclosure', async () => {
@@ -78,6 +91,10 @@ test('every route has at least one node and every emitted node has a valid in-bb
         `route ${route.package_id} node "${node.name}" (${node.lat},${node.lng}) outside the East-Java/Bali bounding box — likely a join bug`
       );
       assert.ok(Number.isInteger(node.sequence) && node.sequence > 0);
+      assert.ok(
+        ['verified_tomtom_api', 'seed_approximation'].includes(node.geo_confidence),
+        `route ${route.package_id} node "${node.name}": geo_confidence must be a real TomTom node confidence value, got "${node.geo_confidence}"`
+      );
     }
   }
 });

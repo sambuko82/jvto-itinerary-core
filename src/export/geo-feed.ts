@@ -4,6 +4,8 @@ import { resolveDestinationToken, crosswalkByCoreId } from '../config/destinatio
 import { buildTomTomNodeIndex, lookupTomTomNode, type TomTomNodeIndex } from '../compile/build-location-coordinate-index.js';
 import type { TomTomGeotagIndex, TomTomNodeEntry } from '../domain/output.js';
 import type { BaseEntity } from '../domain/common.js';
+import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 
 /**
  * E5 — geo feed export for jvto-web: a real coordinate + Schema.org `geo` payload,
@@ -96,6 +98,15 @@ export interface GeoFeedDestination {
   name: string;
   lat: number;
   lng: number;
+  /**
+   * Carries the coordinate's real per-node provenance from 28-tomtom-geotag-index.json.
+   * 'verified_tomtom_api' = confirmed via a live TomTom API call; 'seed_approximation' =
+   * a researched/estimated coordinate, not TomTom-verified. Never collapse this to a
+   * blanket "verified" — several of the 5 minimum-coverage destinations (Bromo, Ijen,
+   * Tumpak Sewu, Madakaripura, Taman Safari Prigen) are currently seed_approximation.
+   */
+  geo_confidence: 'verified_tomtom_api' | 'seed_approximation';
+  geo_source: string;
   schema_org: {
     '@type': 'TouristAttraction';
     name: string;
@@ -115,6 +126,8 @@ export interface GeoFeedRouteNode {
   lat: number;
   lng: number;
   sequence: number;
+  /** Same real per-node provenance as GeoFeedDestination.geo_confidence — never assume verified. */
+  geo_confidence: 'verified_tomtom_api' | 'seed_approximation';
 }
 
 export interface GeoFeedRoute {
@@ -185,6 +198,8 @@ function buildDestinations(
       name: displayName,
       lat: node.lat,
       lng: node.lng,
+      geo_confidence: node.confidence,
+      geo_source: node.geo_source,
       schema_org
     });
   }
@@ -210,7 +225,7 @@ function buildRoutes(
         });
         return; // do not guess a coordinate — sequence numbers may show a gap
       }
-      nodes.push({ name: placeName, lat: node.lat, lng: node.lng, sequence: i + 1 });
+      nodes.push({ name: placeName, lat: node.lat, lng: node.lng, sequence: i + 1, geo_confidence: node.confidence });
     });
     return { package_id: pkg.package_key, nodes };
   });
@@ -232,13 +247,17 @@ export async function buildGeoFeed(): Promise<GeoFeed> {
     id: 'geo_feed',
     label: 'jvto-web geo feed: destination + route-node coordinates and Schema.org geo blocks',
     status: 'active',
-    confidence: 'verified',
+    // Feed-level confidence reflects that coordinates are a MIX of
+    // verified_tomtom_api and seed_approximation nodes (see each destination's/
+    // route node's own geo_confidence for the real per-node truth) — not a
+    // blanket claim that every coordinate here is TomTom-verified.
+    confidence: 'inferred',
     source_trace: [
       {
         source: 'tomtom',
         ref: `${GENERATED_DIR}/28-tomtom-geotag-index.json`,
-        field: 'nodes[].lat,lng',
-        confidence: 'verified'
+        field: 'nodes[].lat,lng,confidence,geo_source',
+        confidence: 'inferred'
       },
       {
         source: 'generated',
@@ -279,7 +298,11 @@ async function main(): Promise<void> {
 }
 
 // Run only when executed directly (tsx src/export/geo-feed.ts), not when imported by tests.
-if (process.argv[1] && import.meta.url === `file://${process.argv[1]}`) {
+// Compare via fileURLToPath/resolve (not a raw `file://${path}` string), since on
+// Windows process.argv[1] is a filesystem path (D:\...) while import.meta.url is a
+// file URL (file:///D:/...) with different separators/casing — a literal string
+// comparison never matches there, silently skipping main() and writing no output.
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   main().catch((err) => {
     console.error(err);
     process.exitCode = 1;
