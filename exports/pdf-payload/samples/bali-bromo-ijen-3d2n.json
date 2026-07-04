@@ -56,12 +56,7 @@
           "activity": "Pickup",
           "location": "Bali",
           "notes": "Pickup options: Bali hotel area pickup (origin); Custom address pickup"
-        }
-      ]
-    },
-    {
-      "day": 2,
-      "segments": [
+        },
         {
           "time_window": "Daytime transfer (per operational schedule)",
           "activity": "Transfer: Bali → Bromo",
@@ -73,7 +68,12 @@
           "activity": "Staging: Bromo area sunrise staging overnight",
           "location": "Bromo",
           "notes": "early jeep pickup; takeaway breakfast possible; cold-weather preparation"
-        },
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "segments": [
         {
           "time_window": "02:30–03:30",
           "activity": "Jeep pickup",
@@ -113,7 +113,7 @@
           "time_window": "Evening / pre-activity staging",
           "activity": "Staging: Banyuwangi staging overnight (Bali-origin Ijen packages)",
           "location": "Ijen",
-          "notes": "Luminor Hotel / Banyuwangi area used for Bali-origin packages; ferry from Gilimanuk requires Ferizy pre-booking; arrive Banyuwangi by 18:00–20:00 recommended for adequate Ijen rest; medical check and briefing arranged at hotel; midnight departure to Ijen from here; Health screening is mandatory at the Bondowoso hotel before the trek."
+          "notes": "Luminor Hotel / Banyuwangi area used for Bali-origin packages; ferry from Gilimanuk requires Ferizy pre-booking; arrive Banyuwangi by 18:00–20:00 recommended for adequate Ijen rest; medical check and briefing arranged at hotel; midnight departure to Ijen from here; Health screening is mandatory at the Banyuwangi hotel before the trek."
         },
         {
           "time_window": "00:00",
@@ -157,7 +157,7 @@
     "Ijen Crater entrance fee",
     "Ijen local guide",
     "Gas mask (provided and sterilized)",
-    "Mandatory pre-trek health screening at the Bondowoso hotel",
+    "Mandatory pre-trek health screening at the Banyuwangi hotel",
     "Hotel accommodation as specified in the itinerary",
     "Meals as specified in the itinerary"
   ],
@@ -218,7 +218,7 @@
       "Bromo mornings are cold: expect 5-15°C at the crater viewpoint, so pack warm layers.",
       "Ijen crater area runs 10-15°C overnight and pre-dawn; dress in warm, windproof layers.",
       "Gas masks for the Ijen sulfur fumes are provided by JVTO and sterilized between uses.",
-      "Health screening is mandatory at the Bondowoso hotel before every Ijen trek.",
+      "Health screening is mandatory at the Banyuwangi hotel before every Ijen trek.",
       "Blue fire is a natural, weather-dependent phenomenon at Ijen and cannot be guaranteed on any given night."
     ],
     "current_advisories": [

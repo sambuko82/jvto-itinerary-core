@@ -162,6 +162,10 @@ export interface PackageBundle {
   includesBromo: boolean;
   includesIjen: boolean;
   includesMadakaripura: boolean;
+  /** Where the Ijen pre-trek health screening/staging happens for this package,
+   * derived from its own staging record — Surabaya-origin packages stage at
+   * Bondowoso, Bali-origin ones at Banyuwangi. null when includesIjen is false. */
+  ijenStagingLocation: 'Bondowoso' | 'Banyuwangi' | null;
   highlights: string[];
   itinerary_days: ItineraryDay[];
   valid_pickup_labels: string[];
@@ -221,6 +225,21 @@ function dayIndexForStop(stopIndex: number, stopCount: number, dayCount: number)
   return Math.min(Math.max(idx, 0), dayCount - 1);
 }
 
+/** The day a stop's transfer-in and evening staging land on. Normally the same
+ * day as the stop's main activity, EXCEPT when there's a genuinely free
+ * lead-in day immediately before it (not already the previous stop's own
+ * activity day) — e.g. bromo-2d1n (2 days, 1 stop): the transfer + evening
+ * staging belong on day 1 (arrival), with the sunrise activity on day 2, not
+ * both crammed onto day 2 alongside a "02:30 jeep pickup" that would then
+ * follow a same-day daytime transfer. Verified: across all 16 packages,
+ * dayCount - stopCount is always 0 or 1, so shifting back by at most one day
+ * is sufficient — this does not attempt to solve a multi-day gap. */
+function entryDayIndexForStop(stopIndex: number, stopDayIndex: number[]): number {
+  const activityDay = stopDayIndex[stopIndex];
+  const previousOccupiedDay = stopIndex === 0 ? -1 : stopDayIndex[stopIndex - 1];
+  return activityDay - 1 > previousOccupiedDay ? activityDay - 1 : activityDay;
+}
+
 function buildItineraryDays(pkg: RouteTruthPackage, dayCount: number): ItineraryDay[] {
   const nodes = pkg.route_sequence.value;
   const stops = nodes.slice(1);
@@ -229,6 +248,7 @@ function buildItineraryDays(pkg: RouteTruthPackage, dayCount: number): Itinerary
   const stagingByKeyword = pkg.staging;
 
   const stopDayIndex = stops.map((_, i) => dayIndexForStop(i, stops.length, dayCount));
+  const entryDayIndex = stops.map((_, i) => entryDayIndexForStop(i, stopDayIndex));
 
   const days: ItineraryDay[] = Array.from({ length: dayCount }, (_, i) => ({ day: i + 1, segments: [] }));
 
@@ -244,13 +264,15 @@ function buildItineraryDays(pkg: RouteTruthPackage, dayCount: number): Itinerary
     const stopName = stops[i];
     const fromName = nodes[i]; // previous node (origin for i===0)
     const dIdx = stopDayIndex[i];
+    const eIdx = entryDayIndex[i];
     const coreId = NODE_TO_CORE_ID[stopName.trim().toLowerCase()] ?? null;
     const dest = coreId ? destByCoreId.get(coreId) : undefined;
 
-    // Transfer leg into this stop, attached to the day it lands on.
+    // Transfer leg into this stop, attached to its entry day (the day before
+    // the activity day when a free lead-in day exists, otherwise the same day).
     const leg = legByPair.get(`${fromName}->${stopName}`);
     if (leg) {
-      days[dIdx].segments.push({
+      days[eIdx].segments.push({
         time_window: 'Daytime transfer (per operational schedule)',
         activity: `Transfer: ${fromName} → ${stopName}`,
         location: `${fromName} → ${stopName}`,
@@ -260,6 +282,7 @@ function buildItineraryDays(pkg: RouteTruthPackage, dayCount: number): Itinerary
 
     // Staging/preparation notes (health screening, cold-weather prep, etc.)
     // matched to this stop by keyword against the package's own staging list.
+    // Attached to the entry day (evening-before), same reasoning as the transfer.
     const keyword = stopName.trim().toLowerCase();
     const staging = stagingByKeyword.find(
       (s) =>
@@ -270,8 +293,14 @@ function buildItineraryDays(pkg: RouteTruthPackage, dayCount: number): Itinerary
     );
     if (staging) {
       const notes: string[] = [...staging.operational_notes];
-      if (keyword === 'ijen') notes.push('Health screening is mandatory at the Bondowoso hotel before the trek.');
-      days[dIdx].segments.push({
+      // Derive the screening hotel from the staging record that actually matched
+      // this package, not a hardcoded location: Surabaya-origin Ijen packages
+      // stage at bondowoso_ijen_staging, Bali-origin ones at banyuwangi_staging.
+      if (keyword === 'ijen') {
+        const screeningLocation = staging.staging_ref.includes('banyuwangi') ? 'Banyuwangi hotel' : 'Bondowoso hotel';
+        notes.push(`Health screening is mandatory at the ${screeningLocation} before the trek.`);
+      }
+      days[eIdx].segments.push({
         time_window: 'Evening / pre-activity staging',
         activity: `Staging: ${staging.label}`,
         location: stopName,
@@ -352,6 +381,16 @@ export async function loadPackageBundles(): Promise<PackageBundle[]> {
     const includesBromo = nodesLower.includes('bromo');
     const includesIjen = nodesLower.includes('ijen');
     const includesMadakaripura = nodesLower.includes('madakaripura');
+    // Same staging-record lookup buildItineraryDays uses for the Ijen segment note,
+    // computed once here so mandatory notes / inclusions never hardcode a location.
+    const ijenStaging = includesIjen
+      ? pkg.staging.find((s) => s.staging_ref.includes('banyuwangi') || s.staging_ref.includes('bondowoso'))
+      : undefined;
+    const ijenStagingLocation: PackageBundle['ijenStagingLocation'] = ijenStaging
+      ? ijenStaging.staging_ref.includes('banyuwangi')
+        ? 'Banyuwangi'
+        : 'Bondowoso'
+      : null;
 
     const highlights: string[] = [];
     for (const stop of nodes.slice(1)) {
@@ -381,6 +420,7 @@ export async function loadPackageBundles(): Promise<PackageBundle[]> {
       includesBromo,
       includesIjen,
       includesMadakaripura,
+      ijenStagingLocation,
       highlights: highlights.slice(0, 5),
       itinerary_days: buildItineraryDays(pkg, dayCount),
       valid_pickup_labels: pkg.valid_pickups.map((p) => p.label),
@@ -393,7 +433,9 @@ export function fileSafePackageId(packageId: string): string {
   return packageId.replace(/\//g, '-');
 }
 
-export function buildMandatoryNotes(bundle: Pick<PackageBundle, 'includesBromo' | 'includesIjen'>): string[] {
+export function buildMandatoryNotes(
+  bundle: Pick<PackageBundle, 'includesBromo' | 'includesIjen' | 'ijenStagingLocation'>
+): string[] {
   const notes: string[] = [];
   if (bundle.includesBromo) {
     notes.push('Bromo mornings are cold: expect 5-15°C at the crater viewpoint, so pack warm layers.');
@@ -401,7 +443,10 @@ export function buildMandatoryNotes(bundle: Pick<PackageBundle, 'includesBromo' 
   if (bundle.includesIjen) {
     notes.push('Ijen crater area runs 10-15°C overnight and pre-dawn; dress in warm, windproof layers.');
     notes.push('Gas masks for the Ijen sulfur fumes are provided by JVTO and sterilized between uses.');
-    notes.push('Health screening is mandatory at the Bondowoso hotel before every Ijen trek.');
+    // Derived from the package's own staging record, not hardcoded — Bali-origin
+    // packages stage/screen at Banyuwangi, not Bondowoso (Codex review, PR #32).
+    const stagingHotel = bundle.ijenStagingLocation ?? 'Bondowoso';
+    notes.push(`Health screening is mandatory at the ${stagingHotel} hotel before every Ijen trek.`);
     notes.push('Blue fire is a natural, weather-dependent phenomenon at Ijen and cannot be guaranteed on any given night.');
   }
   return notes;

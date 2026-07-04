@@ -56,12 +56,7 @@
           "activity": "Pickup",
           "location": "Surabaya",
           "notes": "Pickup options: Surabaya Airport pickup; Surabaya hotel pickup; Surabaya train station pickup; Surabaya city point pickup; Custom address pickup"
-        }
-      ]
-    },
-    {
-      "day": 2,
-      "segments": [
+        },
         {
           "time_window": "Daytime transfer (per operational schedule)",
           "activity": "Transfer: Surabaya → Bromo",
@@ -73,7 +68,12 @@
           "activity": "Staging: Bromo area sunrise staging overnight",
           "location": "Bromo",
           "notes": "early jeep pickup; takeaway breakfast possible; cold-weather preparation"
-        },
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "segments": [
         {
           "time_window": "02:30–03:30",
           "activity": "Jeep pickup",

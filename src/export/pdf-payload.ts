@@ -40,7 +40,15 @@ function buildInclusions(bundle: PackageBundle): string[] {
     inclusions.push('Bromo Tengger Semeru National Park entrance fee', 'Bromo 4WD jeep');
   }
   if (bundle.includesIjen) {
-    inclusions.push('Ijen Crater entrance fee', 'Ijen local guide', 'Gas mask (provided and sterilized)', 'Mandatory pre-trek health screening at the Bondowoso hotel');
+    // Derived from the package's own staging record, not hardcoded — Bali-origin
+    // packages stage/screen at Banyuwangi, not Bondowoso (Codex review, PR #32).
+    const stagingHotel = bundle.ijenStagingLocation ?? 'Bondowoso';
+    inclusions.push(
+      'Ijen Crater entrance fee',
+      'Ijen local guide',
+      'Gas mask (provided and sterilized)',
+      `Mandatory pre-trek health screening at the ${stagingHotel} hotel`
+    );
   }
   if (bundle.includesMadakaripura) {
     inclusions.push('Madakaripura Waterfall local guide');
