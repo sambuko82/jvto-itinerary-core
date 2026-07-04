@@ -14,6 +14,9 @@ input/**/pii/
 .superpowers/
 /.playwright-mcp
 
+# Claude Code agent worktrees — local, ephemeral, per-session; never commit
+.claude/worktrees/
+
 # Next.js build cache (itinerary-builder) — regenerable, never commit
 itinerary-builder/.next/
 itinerary-builder/node_modules/
