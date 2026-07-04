@@ -96,6 +96,37 @@ npm run typecheck
 npm test
 ```
 
+## Consuming the data
+
+Every push to `main` that changes `generated/**` or `exports/*/sample-*.json` is
+published as a versioned GitHub Release (workflow:
+`.github/workflows/release-data.yml`), tagged `data-vYYYY.MM.DD-<shortsha>`
+(e.g. `data-v2026.07.04-be86e7f`). Each release has two assets:
+
+- `itinerary-intelligence.tar.gz` — `generated/` + `exports/*/sample-*.json`
+- `manifest-checksums.txt` — sha256 of every file under `generated/`
+
+**Official consumers (jvto-web, the WhatsApp runtime, etc.) must pin to a
+release, not a commit:**
+
+1. Fetch the latest (or a specific) release asset via the GitHub Releases API
+   or `gh release download`, e.g.
+   `gh release download --repo sambuko82/jvto-itinerary-core --pattern '*.tar.gz'`.
+2. Verify integrity by re-hashing the extracted `generated/` files with
+   `sha256sum -c manifest-checksums.txt` before trusting the payload.
+3. Read `generated/itinerary-intelligence/manifest.json` as the entry point
+   into the dataset — it lists every generated file, its provenance, and the
+   pii/policy guarantees for the release.
+
+Do **not**:
+
+- Read files via `raw.githubusercontent.com/.../main/...` — that URL has no
+  versioning or integrity guarantee and can change out from under a consumer
+  between requests.
+- Clone or `git pull` `main` at an arbitrary commit — commits between releases
+  may be mid-flight (failing validation, partially regenerated, or otherwise
+  not release-tested) and carry no checksum a consumer can verify against.
+
 ## Status
 
 This initial repo is a strong scaffold. It contains domain contracts, executable TypeScript skeleton, seed data, generated examples, and sample scenario payloads. The next step is connecting real exports from the three source repositories.
