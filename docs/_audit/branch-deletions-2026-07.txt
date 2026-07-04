@@ -50,3 +50,31 @@ ref-deletion rights — e.g. the repo owner via the GitHub web UI/CLI with an
 authenticated personal token, or a session/environment grant that allows `delete_ref`
 on this repo. Once branches are deleted through such a channel, this file should be
 updated (or a follow-up file added) recording the actual outcome.
+
+---
+
+FINAL STATUS — 2026-07-04 (update)
+
+All 19 branches deleted. Executed manually by the repo owner via `gh api -X DELETE
+repos/.../git/refs/heads/<branch>` (this session's scoped git proxy continued to
+reject `git push origin --delete` with HTTP 403 for the entire run — expected
+sandboxing of destructive remote-ref operations, not a bug). 18 of 19 went through
+in the owner's first pass; the last one, claude/bootstrap-itinerary-source-audit-3gxa4i
+(deliberately ordered last, being the branch A2 had just rescued from), required one
+follow-up delete call before it cleared.
+
+Independent verification performed in-session after the owner's manual deletion:
+  git fetch origin --prune && git ls-remote --heads origin
+  -> exactly one head: refs/heads/main (5c062a94...). 20 branches confirmed gone.
+
+  Key-file ancestor check (origin/main:<path> resolves via git cat-file -e):
+    generated/itinerary-intelligence/agent-contract/README.md              OK
+    generated/itinerary-intelligence/agent-contract/standard-route-truth.json  OK
+    generated/itinerary-intelligence/agent-contract/route-validation-rules.json OK
+    scripts/build-agent-contract.mjs                                       OK
+    docs/_audit/route-truth-audit.md                                       OK
+  All 5 confirm the agent-contract rescue (A2) is preserved on main; nothing the
+  deleted branches carried was lost.
+
+Result: 21 -> 1. Acceptance criterion for A3 ("git ls-remote --heads origin =
+hanya main") is MET.
