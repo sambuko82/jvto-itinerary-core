@@ -1,3 +1,4 @@
+import { z } from 'zod';
 import type { BaseEntity, BackofficeObserved } from './common.js';
 
 export type LocationType =
@@ -34,6 +35,50 @@ export interface ItineraryScenario {
   route_preference?: string;
   luggage_context?: string;
 }
+
+// ─── Runtime validation (zod) ───
+// Mirrors TravelEndpoint/ItineraryScenario above. Uses .passthrough() because
+// real customer scenarios (see samples/*.json) carry additional per-booking
+// keys beyond the typed fields (e.g. flight_number, origin_city, constraints)
+// that evaluateScenario reads dynamically via required_customer_fields lookups.
+export const locationTypeSchema = z.enum([
+  'airport',
+  'hotel',
+  'train_station',
+  'harbor',
+  'city_point',
+  'custom_address',
+  'bali_area',
+  'destination_area'
+]);
+
+export const travelEndpointSchema = z
+  .object({
+    type: locationTypeSchema,
+    location: z.string(),
+    detail: z.string().optional(),
+    time: z.string().optional(),
+    ticket_number: z.string().optional()
+  })
+  .passthrough();
+
+export const itineraryScenarioSchema = z
+  .object({
+    scenario_id: z.string(),
+    channel: z.enum(['JVTO', 'KLOOK', 'TWT', 'CUSTOM']).optional(),
+    package_slug: z.string().optional(),
+    pickup: travelEndpointSchema,
+    dropoff: travelEndpointSchema,
+    pax: z.number(),
+    duration_days: z.number(),
+    requested_destinations: z.array(z.string()),
+    arrival_time: z.string().optional(),
+    departure_deadline: z.string().optional(),
+    hotel_preference: z.string().optional(),
+    route_preference: z.string().optional(),
+    luggage_context: z.string().optional()
+  })
+  .passthrough();
 
 export interface PickupContext extends BaseEntity {
   type: LocationType;

@@ -1,0 +1,66 @@
+name: Publish itinerary-intelligence data release
+
+# Publishes a versioned GitHub Release of the generated itinerary-intelligence
+# datasets on every push to main that actually changes them. Consumers
+# (jvto-web, jvto-whatsapp-agent-runtime) should pin to a release tag/asset,
+# not `git pull` an arbitrary commit of this repo — see README "Consuming the
+# data" section.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'generated/**'
+      - 'exports/*/sample-*.json'
+
+permissions:
+  contents: write
+
+jobs:
+  release-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm run build:all
+      - run: npm test
+
+      - name: Build release assets
+        run: |
+          set -euo pipefail
+          tar czf itinerary-intelligence.tar.gz generated/ exports/*/sample-*.json
+          find generated -type f | sort | xargs sha256sum > manifest-checksums.txt
+
+      - name: Compute release tag
+        id: tag
+        run: |
+          set -euo pipefail
+          echo "tag=data-v$(date -u +%Y.%m.%d)-${GITHUB_SHA:0:7}" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $TAG already exists for this repo; skipping release creation (idempotent no-op)."
+            exit 0
+          fi
+
+          gh release create "$TAG" \
+            itinerary-intelligence.tar.gz \
+            manifest-checksums.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "$TAG" \
+            --notes "Automated itinerary-intelligence dataset release for commit ${GITHUB_SHA}.
+
+          - itinerary-intelligence.tar.gz: generated/ + exports/*/sample-*.json
+          - manifest-checksums.txt: sha256 of every file under generated/
+
+          Entry point: generated/itinerary-intelligence/manifest.json (inside the tarball).
+          Verify the tarball's generated/ contents against manifest-checksums.txt before use."

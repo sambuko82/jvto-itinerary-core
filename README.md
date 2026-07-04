@@ -96,6 +96,78 @@ npm run typecheck
 npm test
 ```
 
+## Consuming the data
+
+Every push to `main` that changes `generated/**` or `exports/*/sample-*.json` is
+published as a versioned GitHub Release (workflow:
+`.github/workflows/release-data.yml`), tagged `data-vYYYY.MM.DD-<shortsha>`
+(e.g. `data-v2026.07.04-be86e7f`). Each release has two assets:
+
+- `itinerary-intelligence.tar.gz` — `generated/` + `exports/*/sample-*.json`
+- `manifest-checksums.txt` — sha256 of every file under `generated/`
+
+**Official consumers (jvto-web, the WhatsApp runtime, etc.) must pin to a
+release, not a commit:**
+
+1. Fetch the latest (or a specific) release asset via the GitHub Releases API
+   or `gh release download`, e.g.
+   `gh release download --repo sambuko82/jvto-itinerary-core --pattern '*.tar.gz'`.
+2. Verify integrity by re-hashing the extracted `generated/` files with
+   `sha256sum -c manifest-checksums.txt` before trusting the payload.
+3. Read `generated/itinerary-intelligence/manifest.json` as the entry point
+   into the dataset — it lists every generated file, its provenance, and the
+   pii/policy guarantees for the release.
+
+Do **not**:
+
+- Read files via `raw.githubusercontent.com/.../main/...` — that URL has no
+  versioning or integrity guarantee and can change out from under a consumer
+  between requests.
+- Clone or `git pull` `main` at an arbitrary commit — commits between releases
+  may be mid-flight (failing validation, partially regenerated, or otherwise
+  not release-tested) and carry no checksum a consumer can verify against.
+
+## Scenario service
+
+`src/scenario/evaluateScenario.ts` is also exposed as a thin internal HTTP
+service (`node:http` only, zero new dependencies) so a scenario JSON in gets
+feasibility + route + warnings + cost back out in under a second, without
+shelling out to the CLI. It mechanically enforces the fixed-package business
+rules already encoded in the evaluator, notably:
+
+- only the fixed packages / destinations in `generated/itinerary-intelligence/11-package-route-map.json` and `06-destination-activity-profiles.json` are recognized — unknown destinations fall back to `needs_manual_review`, they are never invented;
+- Ijen staging **ex-Surabaya is via Bondowoso**, not Banyuwangi (Banyuwangi staging only applies when the trip originates from Bali) — see `bondowoso_ijen_staging` / `banyuwangi_staging` in `09-accommodation-logic.json`.
+
+Start it with:
+
+```bash
+npm run scenario:serve          # listens on PORT (default 4174)
+PORT=5000 npm run scenario:serve
+```
+
+Then evaluate a scenario:
+
+```bash
+curl -X POST localhost:4174/evaluate \
+  -H 'Content-Type: application/json' \
+  -d @samples/customer-scenario-surabaya-bromo-ijen-ketapang.json
+
+curl localhost:4174/health
+```
+
+`POST /evaluate` accepts an `ItineraryScenario` JSON body (same shape as the
+files in `samples/*.json`), validated against `itineraryScenarioSchema` in
+`src/domain/itinerary.ts`. Responses:
+
+- `200` — evaluation succeeded; body is the `ScenarioEvaluation` plus a `meta: { dataset_manifest_version, evaluated_at }` block.
+- `422` — the evaluator scored the scenario `not_recommended` (infeasible by contract, e.g. not enough days for the requested destinations); the full evaluation body (warnings, notes, etc.) is still returned.
+- `400` — the request body is not valid JSON, or doesn't match the scenario schema; the response includes the zod issues.
+- `500` — an unexpected server error; the response body is a generic message only, details are logged to stderr, never returned to the client.
+
+`GET /health` returns `{ status, datasets_loaded, package_count }` and can be
+used for basic liveness checks. Datasets are loaded once at boot via the
+existing `loadDatasets()`, not per request.
+
 ## Status
 
 This initial repo is a strong scaffold. It contains domain contracts, executable TypeScript skeleton, seed data, generated examples, and sample scenario payloads. The next step is connecting real exports from the three source repositories.
