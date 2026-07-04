@@ -33,4 +33,11 @@ export interface CostComponent extends BaseEntity {
   rate_note?: string;
   research_note?: string;
   backoffice_observed?: BackofficeObserved;
+  /**
+   * Set only when default_rate_idr is null and no source (seed research or
+   * backoffice extract) currently provides one. Describes what data would
+   * resolve the gap (e.g. "backoffice activity-rate export", "vendor
+   * confirmation via Inan"). Never guess a number instead of setting this.
+   */
+  needed_source?: string | null;
 }

@@ -216,12 +216,12 @@
     "route_legs": {
       "status": "partial",
       "evidence": [
-        "16 legs in route-leg-index",
+        "18 legs in route-leg-index",
         "0 explicit_movement_source gap(s) in route-source-gap-report",
         "1 legs with null distance_km"
       ],
       "covered_items": [
-        "15 legs with distance + duration"
+        "17 legs with distance + duration"
       ],
       "partial_items": [
         "bali_hotel_area_to_banyuwangi_ijen_area"
@@ -233,7 +233,7 @@
       ],
       "next_actions": [],
       "counts": {
-        "legs": 16,
+        "legs": 18,
         "null_distance": 1,
         "explicit_movement_source_gaps": 0
       }
@@ -241,12 +241,12 @@
     "pickup_dropoff_contexts": {
       "status": "covered",
       "evidence": [
-        "7 pickup contexts (field default_ready_buffer_minutes), 7 dropoff contexts (field default_buffer_minutes)",
+        "8 pickup contexts (field default_ready_buffer_minutes), 7 dropoff contexts (field default_buffer_minutes)",
         "all buffers populated=true",
         "source basis: manual_seed, inferred"
       ],
       "covered_items": [
-        "14 contexts with buffers populated"
+        "15 contexts with buffers populated"
       ],
       "partial_items": [],
       "missing_items": [],
@@ -258,7 +258,7 @@
         "confirm custom-address and previous-dropoff buffer assumptions with ops (currently manual_seed)"
       ],
       "counts": {
-        "pickup": 7,
+        "pickup": 8,
         "dropoff": 7,
         "pickup_missing_buffer": 0,
         "dropoff_missing_buffer": 0
@@ -362,11 +362,12 @@
     "cost_components": {
       "status": "partial",
       "evidence": [
-        "22 cost components (IDs joinable to evaluator); 9 carry a default_rate_idr",
+        "22 cost components (IDs joinable to evaluator); 12 carry a default_rate_idr",
         "evaluator emits component IDs only — no totals, no final pricing",
-        "null-rate classification: {\"null_but_backoffice_observed\":3,\"manual_seed_needs_rate\":4,\"variable_by_route_or_channel\":4,\"future_or_approval_only\":1,\"needs_review\":1}"
+        "null-rate classification: {\"manual_seed_needs_rate\":4,\"variable_by_route_or_channel\":4,\"future_or_approval_only\":1,\"needs_review\":1}"
       ],
       "covered_items": [
+        "vehicle_private_car_day",
         "bromo_jeep",
         "bromo_entrance_fee",
         "ijen_entrance_fee",
@@ -374,14 +375,12 @@
         "ijen_local_guide",
         "driver_cost",
         "escort_cost",
+        "hotel_room",
+        "restaurant_meal",
         "gas_mask",
         "ferry_ticket"
       ],
-      "partial_items": [
-        "vehicle_private_car_day",
-        "hotel_room",
-        "restaurant_meal"
-      ],
+      "partial_items": [],
       "missing_items": [
         "madakaripura_local_guide",
         "tumpak_sewu_local_guide",
@@ -398,15 +397,10 @@
       ],
       "counts": {
         "total": 22,
-        "with_default_rate": 9,
-        "null_rate": 13
+        "with_default_rate": 12,
+        "null_rate": 10
       },
       "null_rate_classification": {
-        "null_but_backoffice_observed": [
-          "vehicle_private_car_day",
-          "hotel_room",
-          "restaurant_meal"
-        ],
         "manual_seed_needs_rate": [
           "madakaripura_local_guide",
           "tumpak_sewu_local_guide",

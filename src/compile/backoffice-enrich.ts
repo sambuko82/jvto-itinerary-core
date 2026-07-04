@@ -179,6 +179,15 @@ export interface CostEnrichment {
   observed: Record<string, unknown>;
   /** Fill default_rate_idr only when currently null and a single clear rate exists. */
   defaultRateIdr?: number;
+  /** Fill rate_table_idr only when the component doesn't already carry a static one. */
+  rateTableIdr?: Record<string, unknown>;
+}
+
+/** Median of a numeric array (average of the two middle values when even-length). Caller must pass a non-empty array. */
+function median(values: number[]): number {
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
 }
 
 export function costEnrichment(extract: BackofficeExtract, id: string): CostEnrichment | null {
@@ -187,6 +196,15 @@ export function costEnrichment(extract: BackofficeExtract, id: string): CostEnri
       const v = extract.vehicle_cost_sources;
       const rates = v.map((x) => x.price_per_day).filter((r): r is number => r != null);
       if (rates.length === 0) return null;
+      // Multiple vehicle-type tiers exist (capacity-based), so a flat default
+      // is inherently a simplification. Pick the JVTO rate of the
+      // smallest-capacity tier as the entry-level default, and expose every
+      // tier x channel in rate_table_idr so callers needing a specific
+      // capacity/channel never have to fall back to the flat default.
+      const withRate = v.filter((x): x is typeof x & { price_per_day: number } => x.price_per_day != null);
+      const entryTier = withRate.reduce((min, x) =>
+        (x.capacity_min_pax ?? Infinity) < (min.capacity_min_pax ?? Infinity) ? x : min
+      );
       return {
         observed: {
           rate_per_day_min_idr: Math.min(...rates),
@@ -197,6 +215,17 @@ export function costEnrichment(extract: BackofficeExtract, id: string): CostEnri
             capacity_max_pax: x.capacity_max_pax,
             price_per_day: x.price_per_day,
             price_twt_per_day: x.price_twt_per_day
+          }))
+        },
+        defaultRateIdr: entryTier.price_per_day,
+        rateTableIdr: {
+          note: 'Default is the JVTO-channel rate for the smallest-capacity vehicle tier. Actual rate depends on the vehicle assigned for the group size — use by_vehicle_type for the specific tier/channel.',
+          by_vehicle_type: v.map((x) => ({
+            vehicle_type_id: x.vehicle_type_id,
+            capacity_min_pax: x.capacity_min_pax,
+            capacity_max_pax: x.capacity_max_pax,
+            rate_jvto_per_day: x.price_per_day,
+            rate_twt_per_day: x.price_twt_per_day
           }))
         }
       };
@@ -216,25 +245,38 @@ export function costEnrichment(extract: BackofficeExtract, id: string): CostEnri
         .flatMap((h) => h.room_types.map((r) => r.rate_idr))
         .filter((r): r is number => r != null);
       if (rates.length === 0) return null;
+      // Room rates are inherently per-hotel; the median across observed room
+      // types is used as a representative default (see rate_note on the
+      // component: "actual = hotel-specific rate; default = median").
       return {
         observed: {
           room_rate_min_idr: Math.min(...rates),
           room_rate_max_idr: Math.max(...rates),
+          room_rate_median_idr: median(rates),
+          room_type_sample_count: rates.length,
           hotel_sample_count: extract.hotel_meal_sources.length
-        }
+        },
+        defaultRateIdr: median(rates)
       };
     }
     case 'restaurant_meal': {
       const lunch = extract.hotel_meal_sources.map((h) => h.lunch_rate).filter((r): r is number => r != null);
       const dinner = extract.hotel_meal_sources.map((h) => h.dinner_rate).filter((r): r is number => r != null);
       if (lunch.length === 0 && dinner.length === 0) return null;
+      // Combine both meal types into one distribution: the component's
+      // formula is generic ("meal_rate * pax") and applies to whichever meal
+      // is arranged outside the hotel, not lunch or dinner specifically.
+      const combined = [...lunch, ...dinner];
       return {
         observed: {
           lunch_rate_min_idr: lunch.length ? Math.min(...lunch) : null,
           lunch_rate_max_idr: lunch.length ? Math.max(...lunch) : null,
           dinner_rate_min_idr: dinner.length ? Math.min(...dinner) : null,
-          dinner_rate_max_idr: dinner.length ? Math.max(...dinner) : null
-        }
+          dinner_rate_max_idr: dinner.length ? Math.max(...dinner) : null,
+          combined_rate_median_idr: combined.length ? median(combined) : null,
+          combined_sample_count: combined.length
+        },
+        ...(combined.length ? { defaultRateIdr: median(combined) } : {})
       };
     }
     case 'actual_expense_calibration': {
