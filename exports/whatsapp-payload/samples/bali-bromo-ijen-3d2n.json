@@ -1,0 +1,110 @@
+{
+  "id": "whatsapp-payload:bali/bromo-ijen-3d2n",
+  "label": "WhatsApp payload — Bromo, Ijen Tour — Bali Origin",
+  "status": "active",
+  "confidence": "inferred",
+  "source_trace": [
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/16-package-pricing.json",
+      "confidence": "inferred"
+    },
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/agent-contract/standard-route-truth.json",
+      "confidence": "inferred"
+    },
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/agent-contract/package-customization-boundaries.json",
+      "confidence": "inferred"
+    },
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/07-operational-events.json",
+      "confidence": "inferred"
+    },
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/22-destinations-master.json",
+      "confidence": "inferred"
+    },
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/03-time-window-rules.json",
+      "confidence": "inferred"
+    },
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/04-route-leg-index.json",
+      "confidence": "inferred"
+    },
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/10-cost-components.json",
+      "confidence": "inferred"
+    }
+  ],
+  "package_id": "bali/bromo-ijen-3d2n",
+  "display_name": "Bromo, Ijen Tour — Bali Origin",
+  "duration": "3D2N",
+  "price_bands": {
+    "currency": "IDR",
+    "origin": "Bali",
+    "ferry_included": true,
+    "bands": [
+      {
+        "min_pax": 2,
+        "max_pax": 2,
+        "idr_per_person": 4050000
+      },
+      {
+        "min_pax": 3,
+        "max_pax": 3,
+        "idr_per_person": 3800000
+      },
+      {
+        "min_pax": 4,
+        "max_pax": 5,
+        "idr_per_person": 3550000
+      },
+      {
+        "min_pax": 6,
+        "max_pax": 7,
+        "idr_per_person": 3350000
+      },
+      {
+        "min_pax": 8,
+        "max_pax": 10,
+        "idr_per_person": 3050000
+      },
+      {
+        "min_pax": 11,
+        "max_pax": null,
+        "idr_per_person": 2850000
+      }
+    ]
+  },
+  "route_summary": [
+    "Bali",
+    "Bromo",
+    "Ijen"
+  ],
+  "highlights": [
+    "Penanjakan I sunrise viewpoint",
+    "Blue fire phenomenon (visible midnight–04:00 AM)"
+  ],
+  "mandatory_notes": [
+    "Bromo mornings are cold: expect 5-15°C at the crater viewpoint, so pack warm layers.",
+    "Ijen crater area runs 10-15°C overnight and pre-dawn; dress in warm, windproof layers.",
+    "Gas masks for the Ijen sulfur fumes are provided by JVTO and sterilized between uses.",
+    "Health screening is mandatory at the Banyuwangi hotel before every Ijen trek.",
+    "Blue fire is a natural, weather-dependent phenomenon at Ijen and cannot be guaranteed on any given night."
+  ],
+  "current_advisories": [
+    "The Ijen crater floor (close approach to the blue fire site and lake shore) is currently closed; viewing is from the crater rim only."
+  ],
+  "instant_book_eligible": true,
+  "gated_reason": null,
+  "wa_message_en": "Hi! Here's the Bromo, Ijen Tour — Bali Origin (3D2N) 🌋\n\nRoute: Bali → Bromo → Ijen\nFrom IDR 2,850,000/pax (lower per-person rate for bigger groups)\nHighlights: Penanjakan I sunrise viewpoint\nGood to know: Bromo mornings 5-15°C, warm layers needed; Ijen 10-15°C, gas mask provided & sterilized, health screening mandatory pre-trek; blue fire depends on the weather that night, so it can't be promised.\nAdvisory: Ijen crater floor currently closed (rim access only).\nAvailable for instant booking.\n\nWant a tailored quote? Share your dates & group size! 😊"
+}

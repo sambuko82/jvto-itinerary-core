@@ -1,0 +1,228 @@
+{
+  "id": "pdf-payload:bali/bromo-ijen-3d2n",
+  "label": "PDF payload — Bromo, Ijen Tour — Bali Origin",
+  "status": "active",
+  "confidence": "inferred",
+  "source_trace": [
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/16-package-pricing.json",
+      "confidence": "inferred"
+    },
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/agent-contract/standard-route-truth.json",
+      "confidence": "inferred"
+    },
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/agent-contract/package-customization-boundaries.json",
+      "confidence": "inferred"
+    },
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/07-operational-events.json",
+      "confidence": "inferred"
+    },
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/22-destinations-master.json",
+      "confidence": "inferred"
+    },
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/03-time-window-rules.json",
+      "confidence": "inferred"
+    },
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/04-route-leg-index.json",
+      "confidence": "inferred"
+    },
+    {
+      "source": "generated",
+      "ref": "generated/itinerary-intelligence/10-cost-components.json",
+      "confidence": "inferred"
+    }
+  ],
+  "package_id": "bali/bromo-ijen-3d2n",
+  "title": "JVTO Bromo, Ijen Tour — Bali Origin (3D2N)",
+  "itinerary_days": [
+    {
+      "day": 1,
+      "segments": [
+        {
+          "time_window": "Per guest flight/arrival time",
+          "activity": "Pickup",
+          "location": "Bali",
+          "notes": "Pickup options: Bali hotel area pickup (origin); Custom address pickup"
+        },
+        {
+          "time_window": "Daytime transfer (per operational schedule)",
+          "activity": "Transfer: Bali → Bromo",
+          "location": "Bali → Bromo",
+          "notes": "Approx. 404.4 km / 386 min drive (source-backed estimate)."
+        },
+        {
+          "time_window": "Evening / pre-activity staging",
+          "activity": "Staging: Bromo area sunrise staging overnight",
+          "location": "Bromo",
+          "notes": "early jeep pickup; takeaway breakfast possible; cold-weather preparation"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "segments": [
+        {
+          "time_window": "02:30–03:30",
+          "activity": "Jeep pickup",
+          "location": "Bromo",
+          "notes": "Bromo mornings are cold: 5-15°C at the viewpoint. Wear multiple warm layers, gloves, and beanie."
+        },
+        {
+          "time_window": "04:30–06:00",
+          "activity": "Sunrise",
+          "location": "Bromo",
+          "notes": "Wear multiple warm layers, gloves, and beanie."
+        },
+        {
+          "time_window": "06:00–08:00",
+          "activity": "Crater visit",
+          "location": "Bromo",
+          "notes": "Wear multiple warm layers, gloves, and beanie."
+        },
+        {
+          "time_window": "08:00–09:30",
+          "activity": "Finish",
+          "location": "Bromo",
+          "notes": "Wear multiple warm layers, gloves, and beanie."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "segments": [
+        {
+          "time_window": "Daytime transfer (per operational schedule)",
+          "activity": "Transfer: Bromo → Ijen",
+          "location": "Bromo → Ijen",
+          "notes": "Approx. 222 km / 225 min drive (source-backed estimate)."
+        },
+        {
+          "time_window": "Evening / pre-activity staging",
+          "activity": "Staging: Banyuwangi staging overnight (Bali-origin Ijen packages)",
+          "location": "Ijen",
+          "notes": "Luminor Hotel / Banyuwangi area used for Bali-origin packages; ferry from Gilimanuk requires Ferizy pre-booking; arrive Banyuwangi by 18:00–20:00 recommended for adequate Ijen rest; medical check and briefing arranged at hotel; midnight departure to Ijen from here; Health screening is mandatory at the Banyuwangi hotel before the trek."
+        },
+        {
+          "time_window": "00:00",
+          "activity": "Hotel departure",
+          "location": "Ijen",
+          "notes": "Ijen crater area: 10-15°C overnight/pre-dawn. Gas masks provided and sterilized. Blue fire is weather-dependent, not guaranteed. Use provided gas masks, limit time near active vents, immediate descent if feeling unwell."
+        },
+        {
+          "time_window": "02:00",
+          "activity": "Trek start",
+          "location": "Ijen",
+          "notes": "Use provided gas masks, limit time near active vents, immediate descent if feeling unwell."
+        },
+        {
+          "time_window": "05:00–06:00",
+          "activity": "Sunrise crater",
+          "location": "Ijen",
+          "notes": "Use provided gas masks, limit time near active vents, immediate descent if feeling unwell."
+        },
+        {
+          "time_window": "07:00–08:00",
+          "activity": "Finish",
+          "location": "Ijen",
+          "notes": "Use provided gas masks, limit time near active vents, immediate descent if feeling unwell."
+        },
+        {
+          "time_window": "After final activity",
+          "activity": "Guest drop-off",
+          "location": "Surabaya Airport / Surabaya Hotel / Malang",
+          "notes": "Guest selects preferred drop-off point at booking."
+        }
+      ]
+    }
+  ],
+  "inclusions": [
+    "Private air-conditioned vehicle & driver for the full itinerary",
+    "Parking, toll, and fuel allowance",
+    "Ferry crossing (Ketapang–Gilimanuk)",
+    "Bromo Tengger Semeru National Park entrance fee",
+    "Bromo 4WD jeep",
+    "Ijen Crater entrance fee",
+    "Ijen local guide",
+    "Gas mask (provided and sterilized)",
+    "Mandatory pre-trek health screening at the Banyuwangi hotel",
+    "Hotel accommodation as specified in the itinerary",
+    "Meals as specified in the itinerary"
+  ],
+  "exclusions": [
+    "International/domestic flights to and from the tour origin city",
+    "Personal travel insurance",
+    "Personal expenses, souvenirs, and gratuities",
+    "Optional add-on activities not listed in this itinerary (quoted separately)",
+    "Bali hotel drop-off beyond the standard drop-off point, if requested (quoted separately)"
+  ],
+  "price_table": {
+    "currency": "IDR",
+    "origin": "Bali",
+    "ferry_included": true,
+    "bands": [
+      {
+        "min_pax": 2,
+        "max_pax": 2,
+        "idr_per_person": 4050000
+      },
+      {
+        "min_pax": 3,
+        "max_pax": 3,
+        "idr_per_person": 3800000
+      },
+      {
+        "min_pax": 4,
+        "max_pax": 5,
+        "idr_per_person": 3550000
+      },
+      {
+        "min_pax": 6,
+        "max_pax": 7,
+        "idr_per_person": 3350000
+      },
+      {
+        "min_pax": 8,
+        "max_pax": 10,
+        "idr_per_person": 3050000
+      },
+      {
+        "min_pax": 11,
+        "max_pax": null,
+        "idr_per_person": 2850000
+      }
+    ]
+  },
+  "terms": {
+    "deposit": "20%",
+    "banks": [
+      "BRI",
+      "BCA"
+    ],
+    "contact_email": "hello@javavolcano-touroperator.com"
+  },
+  "advisories": {
+    "mandatory_notes": [
+      "Bromo mornings are cold: expect 5-15°C at the crater viewpoint, so pack warm layers.",
+      "Ijen crater area runs 10-15°C overnight and pre-dawn; dress in warm, windproof layers.",
+      "Gas masks for the Ijen sulfur fumes are provided by JVTO and sterilized between uses.",
+      "Health screening is mandatory at the Banyuwangi hotel before every Ijen trek.",
+      "Blue fire is a natural, weather-dependent phenomenon at Ijen and cannot be guaranteed on any given night."
+    ],
+    "current_advisories": [
+      "The Ijen crater floor (close approach to the blue fire site and lake shore) is currently closed; viewing is from the crater rim only."
+    ]
+  }
+}

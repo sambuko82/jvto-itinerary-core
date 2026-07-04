@@ -27,3 +27,8 @@ itinerary-builder/node_modules/
 itinerary-builder/tsconfig.tsbuildinfo
 .next/
 *.tsbuildinfo
+
+# Per-package export generators (E3): regenerate on demand via
+# npm run export:whatsapp / npm run export:pdf. Only the 2 named samples
+# under exports/<target>/samples/ are committed for review.
+exports/**/output/
