@@ -34,7 +34,14 @@ src/scenario/  -> feasibility evaluator CLI (evaluateScenario) — matches an
                   itinerary request against the fixed-package + route rules
 src/tools/     -> operational scripts, e.g. intelligence-check (dataset
                   completeness/freshness check, run independent of compile)
-generated/     -> compiled reusable datasets (01-28, numbered by build order)
+generated/     -> reusable datasets, numbered 01-28. Only 01-15 and 28 are
+                  actually written and validated by the compile pipeline
+                  (src/compile/index.ts, src/validate/validate-generated-data.ts
+                  — see npm run compile / validate). 16-27 are static/imported
+                  fixtures (their own source_trace, e.g. llm_wiki package
+                  pricing, backoffice masters) with no builder or validation
+                  path yet — they do not regenerate and can silently go stale;
+                  treat them as manually-maintained until that gap is closed.
 generated/itinerary-intelligence/agent-contract/
                -> agent-safe operational contract layer (standard route
                   truth, route-validation rules, instant-book gating).
