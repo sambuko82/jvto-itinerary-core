@@ -1,0 +1,52 @@
+A6 — Governance settings (delete_branch_on_merge, branch protection) — 2026-07-04
+
+Completed from this session:
+  - docs/CONTRIBUTING.md added (commit 9193154), covering the 5 rules from the
+    execution plan (no stacked PRs, ephemeral agent branches, generated/** via
+    npm scripts only, manual rates via seed/manual-overrides/*.yaml, PII gate
+    per contracts/pii-rules.yaml).
+  - Pushed directly to main (not via PR): branch protection could not be
+    enabled in this session (see below), so there was no protection to test
+    via a PR-gated push.
+
+BLOCKED — could not be completed from this session:
+  1. `gh api -X PATCH repos/sambuko82/jvto-itinerary-core -f delete_branch_on_merge=true`
+  2. `gh api -X PUT repos/sambuko82/jvto-itinerary-core/branches/main/protection ...`
+
+Reason: this session has no `gh` CLI and no direct GitHub REST API access (by
+design — see repo-level session instructions). The GitHub MCP server available
+in this session was searched for a repo-settings/branch-protection equivalent
+(update_repository, branch protection PUT, or any generic REST passthrough) —
+none exists; only PR/issue/file/branch-create/actions endpoints are exposed.
+This is the same category of gap hit in A3 (branch deletion): no retries were
+attempted, since the gap is an absent capability, not a transient failure.
+
+Next step required (repo owner, with an authenticated `gh` or the GitHub web
+UI → Settings):
+  gh api -X PATCH repos/sambuko82/jvto-itinerary-core -f delete_branch_on_merge=true
+
+  gh api -X PUT repos/sambuko82/jvto-itinerary-core/branches/main/protection \
+    --input - <<'JSON'
+  {"required_status_checks":{"strict":true,"contexts":["validate"]},
+   "enforce_admins":false,
+   "required_pull_request_reviews":null,
+   "restrictions":null,
+   "allow_force_pushes":false,
+   "allow_deletions":false}
+  JSON
+
+  Note: the "validate" status-check context requires a CI workflow that
+  reports a check named "validate" — no .github/workflows/*.yml currently
+  exists in this repo (confirmed absent at time of writing), so the protection
+  call as written will accept a check context that never reports, which
+  GitHub allows but which means the check will perpetually show as pending/
+  never-satisfied until a matching CI workflow is added. Recommend adding a
+  validate workflow (tracked separately, not in this execution plan) before
+  or together with enabling this protection rule, or omitting required_status_checks
+  until CI exists.
+
+Once the owner runs these, tell the session to verify with:
+  git ls-remote — unaffected by this setting either way
+  (branch protection/auto-delete are not independently verifiable via git;
+  they require a repo-settings read, which is also blocked here for the same
+  reason — report the owner's confirmation and this file can be marked DONE.)
