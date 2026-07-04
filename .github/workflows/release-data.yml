@@ -55,6 +55,7 @@ jobs:
             itinerary-intelligence.tar.gz \
             manifest-checksums.txt \
             --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
             --title "$TAG" \
             --notes "Automated itinerary-intelligence dataset release for commit ${GITHUB_SHA}.
 
