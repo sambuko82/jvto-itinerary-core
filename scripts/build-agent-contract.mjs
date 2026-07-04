@@ -31,7 +31,10 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const GEN = join(ROOT, "generated", "itinerary-intelligence");
+// Honor GENERATED_DIR like the rest of the pipeline (src/config/paths.ts,
+// scripts/fill-tomtom-routing.mjs), so build:all/validate agree on the
+// directory even when it's overridden for a scratch/CI build.
+const GEN = process.env.GENERATED_DIR ?? join(ROOT, "generated", "itinerary-intelligence");
 const OUT = join(GEN, "agent-contract");
 const CONTRACT_VERSION = "agent-contract-v1";
 
