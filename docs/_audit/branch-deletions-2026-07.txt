@@ -1,0 +1,52 @@
+Branch consolidation deletion attempt — 2026-07-04
+Precondition check: PASS
+  git cat-file -e origin/main:generated/itinerary-intelligence/agent-contract/standard-route-truth.json
+  -> file exists on origin/main (A2 confirmed landed at commit 0f09edc). Proceeded to deletion step.
+
+Result: BLOCKED. All 19 `git push origin --delete <branch>` attempts failed identically:
+  error: RPC failed; HTTP 403 curl 22 The requested URL returned error: 403
+  send-pack: unexpected disconnect while reading sideband packet
+  fatal: the remote end hung up unexpectedly
+
+This is a uniform, non-transient denial from the session's git remote (a scoped git
+proxy at 127.0.0.1:41729, distinct from the general HTTPS egress proxy) — it rejects
+remote ref deletion for this session's credentials, regardless of target branch. It is
+not a code, network, or auth-typo problem; retrying does not help. No GitHub MCP tool
+available in this session exposes branch/ref deletion either (only create_branch and
+delete_file were found — no delete_branch/delete_ref method).
+
+Per policy (do not retry organization/policy-level 403 denials; report instead), zero
+retries beyond the first pass were attempted. Zero branches were deleted. No commits,
+force-pushes, or other destructive operations were performed as a workaround.
+
+Attempted, in order (all FAILED — none deleted):
+  claude/whatsapp-agent-analysis-f4dwka
+  claude/gallant-mayer-pmthal
+  claude/source-contract-intake-phase6a
+  claude/source-snapshot-sync-phase6a
+  research/east-java-field-data
+  claude/stoic-maxwell-31kyyw
+  chore/guard-no-llm-key
+  ci/run-tests-in-validate
+  claude/determined-cray-m6tfy3
+  claude/leg-durations-arrival-scheduling
+  data/reconcile-manifest-source-mode
+  feature/scenario-export-payloads
+  docs/adr-0001-scenario-evaluator
+  chore/land-pr-command
+  data/resolve-route-node-candidates
+  data/promote-jvto-web-destination-intelligence
+  tooling/data-readiness-report
+  tooling/intelligence-readiness-check
+  codex/triage-issues-and-inspect-prs
+  claude/bootstrap-itinerary-source-audit-3gxa4i
+
+Current state: git ls-remote --heads origin still reports 21 heads (20 branches + main).
+Nothing was lost — this is purely a permissions gap in this session's git access, not a
+data-safety issue.
+
+Next step required: branch deletion needs to be performed through a channel with
+ref-deletion rights — e.g. the repo owner via the GitHub web UI/CLI with an
+authenticated personal token, or a session/environment grant that allows `delete_ref`
+on this repo. Once branches are deleted through such a channel, this file should be
+updated (or a follow-up file added) recording the actual outcome.
