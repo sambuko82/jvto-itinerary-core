@@ -345,9 +345,13 @@ export function buildRouteLegIndex(): RouteLeg[] {
       meal_stop_possible: true,
       night_drive_possible: true,
       recommended_departure_window: 'morning or early afternoon depending on Ijen plan',
-      used_by_packages: ['bali-ijen-bromo-surabaya'],
+      // Corrected from a stale 'bali-ijen-bromo-surabaya' reference (not a real package_id
+      // anywhere in package-catalog-index.json/11-package-route-map.json). The real referencing
+      // packages are every legacy 11-package-route-map.json row whose route_legs includes this
+      // leg id — verified by grep against that file.
+      used_by_packages: ['bromo-ijen-3d2n-bali', 'ijen-bromo-madakaripura-3d2n-bali', 'ijen-papuma-tumpak-sewu-bromo-4d3n-bali', 'ijen-papuma-tumpak-sewu-bromo-5d4n-bali'],
       cost_impacts: ['bali_transfer', 'ferry_ticket', 'vehicle_day_usage', 'driver_cost'],
-      research_note: 'Multi-modal composite (Bali road + Gilimanuk->Ketapang ferry + Banyuwangi->Paltuding climb). No operator gives a clean end-to-end figure; the Gilimanuk->Banyuwangi road portion is only available from algorithmic sources (rejected). Left as a do-not-invent gap pending per-segment verification — compose from ketapang_harbor_to_gilimanuk_bali_side + banyuwangi_to_ijen_base if needed.',
+      research_note: 'Multi-modal composite (Bali road + Gilimanuk->Ketapang ferry + Banyuwangi->Paltuding climb). No operator gives a clean end-to-end figure; the Gilimanuk->Banyuwangi road portion is only available from algorithmic sources (rejected). Left as a do-not-invent gap pending per-segment verification — compose from ketapang_harbor_to_gilimanuk_bali_side + banyuwangi_to_ijen_base if needed. NOTE: the derived route-leg-index.filled.json carries a real end-to-end mapbox estimate for the same city-pair as node-leg "bali__to__ijen" (175.9km/186min/311min busy); not reused here because it is algorithmic-only for the same rejected Gilimanuk->Banyuwangi segment this note already flags — see the structured missing_data record in agent-contract/operational-readiness.json for the current fallback and required source.',
       source_trace: [{ source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' }]
     },
     {
@@ -398,6 +402,64 @@ export function buildRouteLegIndex(): RouteLeg[] {
       source_trace: [
         { source: 'manual_seed', ref: 'seed/manual-overrides/route-leg-overrides.yaml', confidence: 'manual_seed' },
         { source: 'manual_seed', ref: RESEARCH_REF, field: 'distance_km', confidence: 'inferred' }
+      ]
+    },
+    {
+      // Reused (not invented): distance/duration match the already-computed derived+filled
+      // leg `ijen__to__papuma` (OSRM free-flow + Google Routes traffic-aware), which every
+      // Papuma-family package already relies on in the derived map. The legacy Papuma-family
+      // rows previously omitted Papuma from route_sequence/route_legs entirely (flagged only
+      // in possible_customizations as "requires dedicated leg not yet in index"); this leg
+      // closes that gap so package_slug-based scenario evaluation sees the real route.
+      id: 'ijen_area_to_papuma',
+      label: 'Ijen Area to Papuma',
+      status: 'active',
+      confidence: 'inferred',
+      from_location: 'Ijen Crater',
+      to_location: 'Papuma Area',
+      distance_km: 135,
+      distance_km_range: '135.1',
+      duration_text: '±2.3 hours (139 min free-flow / 233 min traffic-aware)',
+      duration_normal_minutes: 139,
+      duration_busy_minutes: 233,
+      road_profiles: ['intercity_road', 'coastal_access_condition'],
+      risk_factors: ['long drive fatigue after night trek', 'coastal road traffic'],
+      meal_stop_possible: true,
+      night_drive_possible: false,
+      recommended_departure_window: '08:00-12:00',
+      used_by_packages: ['ijen-papuma-tumpak-sewu-bromo-4d3n', 'ijen-papuma-tumpak-sewu-bromo-5d4n',
+        'ijen-papuma-tumpak-sewu-bromo-malang-6d5n', 'ijen-papuma-tumpak-sewu-bromo-4d3n-bali',
+        'ijen-papuma-tumpak-sewu-bromo-5d4n-bali'],
+      cost_impacts: ['vehicle_day_usage', 'driver_cost', 'parking_toll_fuel_allowance'],
+      research_note: 'Distance/duration reused from generated/itinerary-intelligence/route-leg-index.filled.json leg "ijen__to__papuma" (OSRM free-flow 139min + Google Routes TRAFFIC_AWARE_OPTIMAL 233min); not independently re-researched here.',
+      source_trace: [
+        { source: 'generated', ref: 'generated/itinerary-intelligence/route-leg-index.filled.json', field: 'ijen__to__papuma', confidence: 'inferred' }
+      ]
+    },
+    {
+      id: 'papuma_to_tumpak_sewu_area',
+      label: 'Papuma to Tumpak Sewu Area',
+      status: 'active',
+      confidence: 'inferred',
+      from_location: 'Papuma Area',
+      to_location: 'Tumpak Sewu Area',
+      distance_km: 113,
+      distance_km_range: '112.6',
+      duration_text: '±1.9 hours (112 min free-flow / 166 min traffic-aware)',
+      duration_normal_minutes: 112,
+      duration_busy_minutes: 166,
+      road_profiles: ['intercity_road', 'coastal_access_condition', 'village_road'],
+      risk_factors: ['coastal road traffic', 'rain sensitive access'],
+      meal_stop_possible: true,
+      night_drive_possible: false,
+      recommended_departure_window: '10:00-14:00',
+      used_by_packages: ['ijen-papuma-tumpak-sewu-bromo-4d3n', 'ijen-papuma-tumpak-sewu-bromo-5d4n',
+        'ijen-papuma-tumpak-sewu-bromo-malang-6d5n', 'ijen-papuma-tumpak-sewu-bromo-4d3n-bali',
+        'ijen-papuma-tumpak-sewu-bromo-5d4n-bali'],
+      cost_impacts: ['vehicle_day_usage', 'driver_cost', 'parking_toll_fuel_allowance'],
+      research_note: 'Distance/duration reused from generated/itinerary-intelligence/route-leg-index.filled.json leg "papuma__to__tumpak_sewu" (OSRM free-flow 112min + Google Routes TRAFFIC_AWARE_OPTIMAL 166min); not independently re-researched here.',
+      source_trace: [
+        { source: 'generated', ref: 'generated/itinerary-intelligence/route-leg-index.filled.json', field: 'papuma__to__tumpak_sewu', confidence: 'inferred' }
       ]
     }
   ];

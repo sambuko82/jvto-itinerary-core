@@ -238,6 +238,7 @@
       "Surabaya",
       "Bondowoso / Ijen Area",
       "Ijen Crater",
+      "Papuma Area",
       "Tumpak Sewu Area",
       "Bromo Area",
       "Surabaya"
@@ -245,7 +246,8 @@
     "route_legs": [
       "surabaya_to_bondowoso_ijen_area",
       "bondowoso_to_ijen_base",
-      "surabaya_to_tumpak_sewu",
+      "ijen_area_to_papuma",
+      "papuma_to_tumpak_sewu_area",
       "tumpak_sewu_to_bromo_area",
       "malang_to_surabaya"
     ],
@@ -254,7 +256,6 @@
       "Surabaya Airport"
     ],
     "possible_customizations": [
-      "Papuma beach stop between Ijen and Tumpak Sewu; requires dedicated Papuma leg not yet in index",
       "skip Papuma for cleaner 4D route"
     ],
     "source_trace": [
@@ -361,6 +362,7 @@
       "Surabaya",
       "Bondowoso / Ijen Area",
       "Ijen Crater",
+      "Papuma Area",
       "Tumpak Sewu Area",
       "Bromo Area",
       "Surabaya"
@@ -368,7 +370,8 @@
     "route_legs": [
       "surabaya_to_bondowoso_ijen_area",
       "bondowoso_to_ijen_base",
-      "surabaya_to_tumpak_sewu",
+      "ijen_area_to_papuma",
+      "papuma_to_tumpak_sewu_area",
       "tumpak_sewu_to_bromo_area",
       "malang_to_surabaya"
     ],
@@ -377,7 +380,6 @@
       "Surabaya Airport"
     ],
     "possible_customizations": [
-      "Papuma stop between Ijen and Tumpak Sewu; requires dedicated leg",
       "Malang city stop on return"
     ],
     "source_trace": [
@@ -446,6 +448,7 @@
       "Surabaya",
       "Bondowoso / Ijen Area",
       "Ijen Crater",
+      "Papuma Area",
       "Tumpak Sewu Area",
       "Bromo Area",
       "Malang",
@@ -454,7 +457,8 @@
     "route_legs": [
       "surabaya_to_bondowoso_ijen_area",
       "bondowoso_to_ijen_base",
-      "surabaya_to_tumpak_sewu",
+      "ijen_area_to_papuma",
+      "papuma_to_tumpak_sewu_area",
       "tumpak_sewu_to_bromo_area",
       "bromo_area_to_malang",
       "malang_to_surabaya"
@@ -465,7 +469,6 @@
       "Surabaya Hotel"
     ],
     "possible_customizations": [
-      "Papuma stop between Ijen and Tumpak Sewu; requires dedicated leg",
       "Malang dropoff instead of Surabaya return"
     ],
     "source_trace": [
@@ -704,6 +707,7 @@
       "Bali Hotel Area",
       "Banyuwangi / Ijen Area",
       "Ijen Crater",
+      "Papuma Area",
       "Tumpak Sewu Area",
       "Bromo Area",
       "Surabaya"
@@ -711,7 +715,8 @@
     "route_legs": [
       "bali_hotel_area_to_banyuwangi_ijen_area",
       "banyuwangi_to_ijen_base",
-      "surabaya_to_tumpak_sewu",
+      "ijen_area_to_papuma",
+      "papuma_to_tumpak_sewu_area",
       "tumpak_sewu_to_bromo_area",
       "malang_to_surabaya"
     ],
@@ -720,7 +725,48 @@
       "Surabaya Hotel"
     ],
     "possible_customizations": [
-      "Papuma stop between Ijen and Tumpak Sewu; requires dedicated leg",
+      "Malang dropoff"
+    ],
+    "source_trace": [
+      {
+        "source": "llm_wiki",
+        "ref": "output/products/package-readiness/package-registry.json",
+        "confidence": "inferred"
+      },
+      {
+        "source": "llm_wiki",
+        "ref": "output/products/package-readiness/package-itineraries.json",
+        "confidence": "inferred"
+      }
+    ]
+  },
+  {
+    "package_id": "ijen-papuma-tumpak-sewu-bromo-5d4n-bali",
+    "label": "5D4N Ijen, Papuma, Tumpak Sewu, Bromo (Bali origin)",
+    "origin": "Bali",
+    "duration": "5D4N",
+    "route_sequence": [
+      "Bali Hotel Area",
+      "Banyuwangi / Ijen Area",
+      "Ijen Crater",
+      "Papuma Area",
+      "Tumpak Sewu Area",
+      "Bromo Area",
+      "Surabaya"
+    ],
+    "route_legs": [
+      "bali_hotel_area_to_banyuwangi_ijen_area",
+      "banyuwangi_to_ijen_base",
+      "ijen_area_to_papuma",
+      "papuma_to_tumpak_sewu_area",
+      "tumpak_sewu_to_bromo_area",
+      "malang_to_surabaya"
+    ],
+    "standard_dropoff_options": [
+      "Surabaya Airport",
+      "Surabaya Hotel"
+    ],
+    "possible_customizations": [
       "Malang dropoff"
     ],
     "source_trace": [

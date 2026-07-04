@@ -270,5 +270,39 @@
         "confidence": "manual_seed"
       }
     ]
+  },
+  {
+    "id": "bali_hotel_pickup",
+    "label": "Bali hotel area pickup (origin)",
+    "status": "active",
+    "confidence": "manual_seed",
+    "type": "hotel",
+    "location_group": "Bali",
+    "default_ready_buffer_minutes": 15,
+    "required_customer_fields": [
+      "hotel_area",
+      "pickup_time"
+    ],
+    "risk_factors": [
+      "late_checkout",
+      "luggage_loading",
+      "bali_traffic"
+    ],
+    "affects": [
+      "actual_departure_time",
+      "first_day_route_feasibility"
+    ],
+    "source_trace": [
+      {
+        "source": "manual_seed",
+        "ref": "package-route-map.json (route_sequence[0]=bali)",
+        "confidence": "manual_seed"
+      },
+      {
+        "source": "manual_seed",
+        "ref": "package-catalog-index.json (origin=Bali)",
+        "confidence": "manual_seed"
+      }
+    ]
   }
 ]
