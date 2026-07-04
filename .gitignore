@@ -10,6 +10,10 @@ coverage/
 input/**/raw-private/
 input/**/pii/
 
+# Regenerated export outputs (npm run export:*) — never commit, only the
+# committed exports/**/samples/*.sample.json reference files are tracked.
+exports/**/output/
+
 # superpowers brainstorming companion
 .superpowers/
 /.playwright-mcp
