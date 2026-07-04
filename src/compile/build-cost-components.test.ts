@@ -3,10 +3,22 @@ import assert from 'node:assert/strict';
 import { resolve } from 'node:path';
 import { INPUT_DIR } from '../config/paths.js';
 import { extractBackoffice } from '../extract/extract-backoffice.js';
+import { emptyBackofficeExtract } from '../extract/sourceTypes.js';
+import type { CostComponent } from '../domain/cost.js';
 import { buildCostComponents } from './build-cost-components.js';
 
 const FIXTURE = resolve(INPUT_DIR, 'new-backoffice/exports/itinerary-core-bundle.json');
 const extract = await extractBackoffice(FIXTURE);
+
+function assertNullRatesHaveNeededSource(cost: CostComponent[], label: string): void {
+  for (const c of cost) {
+    if (c.default_rate_idr != null) continue;
+    assert.ok(
+      typeof c.needed_source === 'string' && c.needed_source.length > 0,
+      `[${label}] ${c.id} has null default_rate_idr but no needed_source`
+    );
+  }
+}
 
 test('every component with a filled default_rate_idr carries a non-empty source_trace', () => {
   for (const c of buildCostComponents(extract)) {
@@ -15,14 +27,19 @@ test('every component with a filled default_rate_idr carries a non-empty source_
   }
 });
 
-test('every component with a null default_rate_idr declares needed_source', () => {
-  for (const c of buildCostComponents(extract)) {
-    if (c.default_rate_idr != null) continue;
-    assert.ok(
-      typeof c.needed_source === 'string' && c.needed_source.length > 0,
-      `${c.id} has null default_rate_idr but no needed_source`
-    );
-  }
+test('every component with a null default_rate_idr declares needed_source (real fixture)', () => {
+  assertNullRatesHaveNeededSource(buildCostComponents(extract), 'real fixture');
+});
+
+test('every component with a null default_rate_idr declares needed_source (empty backoffice bundle)', () => {
+  // Regression: compileGeneratedData() always calls extractBackoffice(), which
+  // returns emptyBackofficeExtract() — not undefined — when the redacted
+  // bundle is missing/invalid. costEnrichment then returns null for every
+  // component, so the 7 components whose rate comes only from backoffice
+  // enrichment (vehicle_private_car_day, bromo_jeep, ijen_local_guide,
+  // driver_cost, escort_cost, hotel_room, restaurant_meal) must already carry
+  // a needed_source in their seed definition, not just after a failed join.
+  assertNullRatesHaveNeededSource(buildCostComponents(emptyBackofficeExtract()), 'empty bundle');
 });
 
 test('no component declares needed_source while also carrying a filled rate', () => {
