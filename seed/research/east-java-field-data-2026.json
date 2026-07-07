@@ -281,23 +281,42 @@
     },
     "ijen_kawah_ijen": {
       "authority": "BBKSDA Jatim",
-      "effective": "2024-10-01",
+      "regulation": "PP No. 36/2024 (PNBP) tariff update",
+      "effective": "2024-10-28 (Detik-reported update; supersedes the 2024-10-01 operator-blog dating)",
       "foreign_idr": {
-        "weekday": 100000,
-        "weekend": 150000
+        "weekday": 150000,
+        "weekend_holiday": 150000,
+        "note": "FLAT, no weekday/weekend split"
       },
       "domestic_idr": {
         "weekday": 20000,
-        "weekend": 35000
+        "weekend_holiday": 30000
       },
-      "student_idr": {
-        "weekday": 15000,
-        "weekend": 20000
+      "student_group_idr": {
+        "weekday": 10000,
+        "weekend_holiday": 15000
+      },
+      "prior_rates_now_stale": {
+        "foreign": "100000/150000",
+        "domestic": "20000/35000",
+        "student": "15000/20000",
+        "note": "Round-1 operator-blog figures; disputed in knowledge-catalog-jvto-bootstrap PR #27 review and superseded by the Detik-reported PP 36/2024 tariff table (round-3 re-verification, 2026-07-07)."
       },
       "booking": "Online via tiket.bbksdajatim.org; daily cap ~2,000 visitors; QRIS-only cashless since 2025-01-31",
       "gas_mask_rental_idr": 45000,
+      "visitor_insurance_idr": {
+        "domestic": 2000,
+        "foreign": 5000,
+        "note": "Mandatory life-insurance premium, SEPARATE from the visit tariff (BBKSDA, effective 2024-10-01) — add on top of the tariff figures above.",
+        "source": "https://bbksdajatim.org/penerapan-asuransi-jiwa-pada-aktivitas-kunjungan-wisata"
+      },
       "confidence": "high",
       "sources": [
+        "https://www.detik.com/jatim/wisata/d-7610151/baru-update-harga-tiket-masuk-kawah-ijen",
+        "https://bbksdajatim.org/penerapan-asuransi-jiwa-pada-aktivitas-kunjungan-wisata",
+        "https://tiket.bbksdajatim.org"
+      ],
+      "sources_superseded": [
         "https://www.geckoroutes.com/indonesia/bromo-to-ijen/",
         "https://harrisijentourandtravel.com",
         "https://mountbromoijen.com"
