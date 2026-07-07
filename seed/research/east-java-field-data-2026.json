@@ -304,9 +304,16 @@
       },
       "booking": "Online via tiket.bbksdajatim.org; daily cap ~2,000 visitors; QRIS-only cashless since 2025-01-31",
       "gas_mask_rental_idr": 45000,
+      "visitor_insurance_idr": {
+        "domestic": 2000,
+        "foreign": 5000,
+        "note": "Mandatory life-insurance premium, SEPARATE from the visit tariff (BBKSDA, effective 2024-10-01) — add on top of the tariff figures above.",
+        "source": "https://bbksdajatim.org/penerapan-asuransi-jiwa-pada-aktivitas-kunjungan-wisata"
+      },
       "confidence": "high",
       "sources": [
         "https://www.detik.com/jatim/wisata/d-7610151/baru-update-harga-tiket-masuk-kawah-ijen",
+        "https://bbksdajatim.org/penerapan-asuransi-jiwa-pada-aktivitas-kunjungan-wisata",
         "https://tiket.bbksdajatim.org"
       ],
       "sources_superseded": [

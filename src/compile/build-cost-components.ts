@@ -90,6 +90,11 @@ export function buildCostComponents(backoffice?: BackofficeExtract): CostCompone
         student_group_weekday: 10000,
         student_group_weekend_holiday: 15000,
         note: 'Foreign is FLAT (no weekday/weekend split). Online booking via tiket.bbksdajatim.org; QRIS-only cashless since 2025-01-31; daily cap ~2000',
+        visitor_insurance_separate: {
+          domestic: 2000,
+          foreign: 5000,
+          note: 'mandatory life-insurance premium, SEPARATE from the visit tariff (BBKSDA, effective 2024-10-01) — add on top of the tariff figures above'
+        },
         stale_do_not_use: { foreign: '100000/150000', domestic_weekend: '35000', student: '15000/20000' }
       },
       channel_behavior: ['rate_varies_by_nationality_and_day_type'],
