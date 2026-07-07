@@ -81,16 +81,16 @@ export function buildCostComponents(backoffice?: BackofficeExtract): CostCompone
       applies_when: ['destination includes Ijen'],
       customer_visible: 'included_in_package',
       formula: 'ijen_entry_rate(nationality, day_type) * pax',
-      default_rate_idr: 100000,
+      default_rate_idr: 150000,
       rate_table_idr: {
-        authority: 'BBKSDA Jatim, effective 2024-10-01',
-        foreign_weekday: 100000,
-        foreign_weekend: 150000,
+        authority: 'BBKSDA Jatim — PP 36/2024 tariff update, reported 2024-10-28',
+        foreign_flat: 150000,
         domestic_weekday: 20000,
-        domestic_weekend: 35000,
-        student_weekday: 15000,
-        student_weekend: 20000,
-        note: 'Online booking via tiket.bbksdajatim.org; QRIS-only cashless since 2025-01-31; daily cap ~2000'
+        domestic_weekend_holiday: 30000,
+        student_group_weekday: 10000,
+        student_group_weekend_holiday: 15000,
+        note: 'Foreign is FLAT (no weekday/weekend split). Online booking via tiket.bbksdajatim.org; QRIS-only cashless since 2025-01-31; daily cap ~2000',
+        stale_do_not_use: { foreign: '100000/150000', domestic_weekend: '35000', student: '15000/20000' }
       },
       channel_behavior: ['rate_varies_by_nationality_and_day_type'],
       source_trace: [
