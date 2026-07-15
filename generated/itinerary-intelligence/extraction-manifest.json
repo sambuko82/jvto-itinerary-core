@@ -68,6 +68,11 @@
           "repo": "jvto-devteam/jvto-web",
           "path": "src/lib/publicContent/generated/destinationDetailSnapshots.json",
           "field": "destination_details"
+        },
+        {
+          "repo": "jvto-devteam/jvto-web",
+          "path": "src/lib/publicContent/generated/destinationDetailSnapshots.json",
+          "field": "destination_coordinates"
         }
       ]
     },
@@ -136,6 +141,11 @@
       "repo": "jvto-devteam/jvto-web",
       "path": "src/lib/publicContent/generated/destinationDetailSnapshots.json",
       "field": "destination_details"
+    },
+    {
+      "repo": "jvto-devteam/jvto-web",
+      "path": "src/lib/publicContent/generated/destinationDetailSnapshots.json",
+      "field": "destination_coordinates"
     },
     {
       "repo": "jvto-devteam/new-backoffice",
