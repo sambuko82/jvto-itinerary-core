@@ -1,0 +1,93 @@
+{
+  "schema_version": "cancellation-policy/v2.0",
+  "policy_version": "2026-07",
+  "effective_from": "2026-07-15",
+  "cutoff_hours": 48,
+  "cutoff_comparison": "inclusive",
+  "cutoff_based_on": "day_1_start_at",
+  "rules": {
+    "full_voluntary_gte_48h": {
+      "outcome": "lifetime_package_credit",
+      "cash_refund_percent": 0,
+      "package_credit_eligible": true
+    },
+    "full_voluntary_lt_48h": {
+      "outcome": "forfeited",
+      "cash_refund_percent": 0,
+      "package_credit_eligible": false
+    },
+    "partial_gte_48h": {
+      "outcome": "cash_refund",
+      "cash_refund_percent": 100
+    },
+    "partial_lt_48h": {
+      "outcome": "cash_refund",
+      "cash_refund_percent": 50
+    },
+    "partial_after_day_1": {
+      "outcome": "cash_refund",
+      "cash_refund_percent": 0
+    },
+    "no_show": {
+      "outcome": "forfeited",
+      "cash_refund_percent": 0
+    },
+    "flight_disruption_verified": {
+      "outcome": "package_reactivation",
+      "recovery_fee_percent": 50,
+      "maximum_uses": 1
+    },
+    "flight_disruption_unverified": {
+      "outcome": "voluntary_late_cancellation"
+    },
+    "force_majeure_full_tour": {
+      "options": [
+        "lifetime_package_credit",
+        "cash_refund_less_nonrecoverable_vendor_cost"
+      ]
+    },
+    "force_majeure_partial_tour": {
+      "first_remedy": "alternative_route",
+      "second_remedy": "affected_component_refund"
+    },
+    "jvto_operational": {
+      "options": [
+        "accepted_alternative",
+        "full_cash_refund"
+      ]
+    }
+  },
+  "partial_thresholds": {
+    "minimum_remaining_pax": 2,
+    "minimum_remaining_percent": 50,
+    "reprice_remaining_guests": false,
+    "threshold_fail_behaviour": "reclassify_as_full_cancellation",
+    "foc_passenger_refund_percent": 0
+  },
+  "package_credit_locks": {
+    "expires": false,
+    "cash_value": false,
+    "package_change_allowed": false,
+    "split_allowed": false,
+    "transfer_allowed": true,
+    "maximum_transfers": 1,
+    "original_package_locked": true,
+    "original_pax_locked": true,
+    "original_price_locked": true
+  },
+  "booking_scope": {
+    "allowed_sources": [
+      "website"
+    ],
+    "disallowed_sources": [
+      "whatsapp",
+      "email",
+      "manual",
+      "ota"
+    ],
+    "support_channels": [
+      "whatsapp",
+      "email"
+    ]
+  }
+}
