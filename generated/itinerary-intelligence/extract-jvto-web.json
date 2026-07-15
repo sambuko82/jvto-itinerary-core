@@ -22,6 +22,11 @@
       "repo": "jvto-devteam/jvto-web",
       "path": "src/lib/publicContent/generated/destinationDetailSnapshots.json",
       "field": "destination_details"
+    },
+    {
+      "repo": "jvto-devteam/jvto-web",
+      "path": "src/lib/publicContent/generated/destinationDetailSnapshots.json",
+      "field": "destination_coordinates"
     }
   ],
   "manual_fields": [],
@@ -4429,6 +4434,8 @@
     {
       "slug": "mount-bromo",
       "destination_label": "Mount Bromo",
+      "latitude": -7.942,
+      "longitude": 112.953,
       "physical_demand": 3,
       "difficulty_level": "moderate",
       "altitude": 2329,
@@ -4476,6 +4483,8 @@
     {
       "slug": "ijen-crater",
       "destination_label": "Ijen Crater",
+      "latitude": -8.058,
+      "longitude": 114.242,
       "physical_demand": 5,
       "difficulty_level": "hard",
       "altitude": 2769,
@@ -4523,6 +4532,8 @@
     {
       "slug": "madakaripura-waterfall",
       "destination_label": "Madakaripura Waterfall",
+      "latitude": -7.933,
+      "longitude": 113.008,
       "physical_demand": 3,
       "difficulty_level": "moderate",
       "altitude": 620,
@@ -4564,6 +4575,8 @@
     {
       "slug": "tumpak-sewu-waterfall",
       "destination_label": "Tumpak Sewu Waterfall",
+      "latitude": -8.227,
+      "longitude": 112.915,
       "physical_demand": 4,
       "difficulty_level": "hard",
       "altitude": 500,
@@ -4605,6 +4618,8 @@
     {
       "slug": "papuma-beach",
       "destination_label": "Papuma Beach",
+      "latitude": -8.4725,
+      "longitude": 113.4562,
       "physical_demand": 1,
       "difficulty_level": "easy",
       "altitude": 5,

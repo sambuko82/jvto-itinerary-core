@@ -2,7 +2,7 @@
   {
     "package_key": "bali/bromo-ijen-3d2n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "needs_review",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,
@@ -36,7 +36,7 @@
   {
     "package_key": "bali/ijen-bromo-madakaripura-3d2n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "clean",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,
@@ -69,7 +69,7 @@
   {
     "package_key": "bali/ijen-papuma-tumpak-sewu-bromo-4d3n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "clean",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,
@@ -101,7 +101,7 @@
   {
     "package_key": "bali/ijen-papuma-tumpak-sewu-bromo-5d4n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "clean",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,
@@ -133,7 +133,7 @@
   {
     "package_key": "bromo-1d1n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "clean",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,
@@ -166,7 +166,7 @@
   {
     "package_key": "bromo-2d1n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "needs_review",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,
@@ -199,7 +199,7 @@
   {
     "package_key": "bromo-madakaripura-ijen-3d2n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "clean",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,
@@ -234,7 +234,7 @@
   {
     "package_key": "ijen-2d1n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "clean",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,
@@ -268,7 +268,7 @@
   {
     "package_key": "ijen-bromo-madakaripura-3d2n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "clean",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,
@@ -301,7 +301,7 @@
   {
     "package_key": "ijen-bromo-madakaripura-4d3n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "clean",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,
@@ -334,7 +334,7 @@
   {
     "package_key": "ijen-bromo-madakaripura-malang-5d4n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "clean",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,
@@ -368,7 +368,7 @@
   {
     "package_key": "ijen-papuma-tumpak-sewu-bromo-4d3n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "clean",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,
@@ -400,7 +400,7 @@
   {
     "package_key": "ijen-papuma-tumpak-sewu-bromo-5d4n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "clean",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,
@@ -432,7 +432,7 @@
   {
     "package_key": "ijen-papuma-tumpak-sewu-bromo-malang-6d5n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "clean",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,
@@ -465,7 +465,7 @@
   {
     "package_key": "taman-safari-prigen-bromo-madakaripura-3d2n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "clean",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,
@@ -497,7 +497,7 @@
   {
     "package_key": "tumpak-sewu-bromo-ijen-4d3n",
     "instant_book_eligible": true,
-    "whatsapp_assisted_eligible": true,
+    "whatsapp_assisted_eligible": false,
     "route_integrity": "clean",
     "composition_blocks_instant_book": false,
     "effective_instant_book_eligible": true,

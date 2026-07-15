@@ -327,7 +327,7 @@
         "field": "taman_safari_prigen"
       }
     ],
-    "confidence": "medium",
+    "confidence": "high",
     "generated_at": "2026-06-15T00:00:00Z",
     "manual_fields": [],
     "missing_fields": [
@@ -348,11 +348,12 @@
       "taman-safari-prigen-bromo-madakaripura-3d2n"
     ],
     "reference_count": 1,
-    "source_strength": "supported",
+    "source_strength": "confirmed",
     "source_labels": [
       "jvto-web:accommodationPlan.area",
       "jvto-web:keyExperiences",
-      "jvto-web:product.route"
+      "jvto-web:product.route",
+      "jvto-web:travelAction"
     ],
     "geo": null,
     "type": null,
