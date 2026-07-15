@@ -21,7 +21,7 @@ against the Master Product Database before a product is promoted. Run one table 
 A product can be promoted only when all active selling channels pass these checks:
 
 1. Meal table matches the Master Product Database.
-2. Entrance-fee status (included vs paid on-site) matches the Master Product Database (CLAIM-004 resolved).
+2. Entrance-fee status (included vs paid on-site) matches the Master Product Database (Bromo/Ijen included; verify per product).
 3. Price and deposit rules match the Master Product Database.
 4. Conditional activities are described before payment.
 5. The legal identifier (`PT Java Volcano Rendezvous` / NIB `1102230032918`) is identical across channels.

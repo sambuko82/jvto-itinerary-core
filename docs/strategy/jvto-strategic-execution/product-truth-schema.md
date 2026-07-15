@@ -25,7 +25,7 @@ trips (e.g. `bali/bromo-ijen-3d2n`).
 | legal_entity | text | yes | Canonical legal entity (`PT Java Volcano Rendezvous`) |
 | registration_number | text | yes | Canonical NIB or equivalent (`1102230032918`) |
 | price_currency | text | yes | `IDR`, `USD`, or active selling currency |
-| price_by_pax | table | yes | Per-person tiers matching registry pax bands (1 pax, 2 pax, 3 pax, 4-5 pax, 6+ pax) |
+| price_by_pax | table | yes | Per-person tiers copied verbatim from `package-pricing.json` `pax_tiers` — preserve every exact `min_pax`/`max_pax` band (e.g. `bromo-madakaripura-ijen-3d2n` has distinct 6-7, 8-10, 11+ bands). Never collapse or simplify bands, or 8+ groups will be misquoted across channels. |
 | deposit_rule | text | yes | Exact deposit and payment rule |
 | cancellation_rule | text | yes | Exact customer-facing cancellation rule |
 | included_transport | list | yes | Vehicle, jeep, ferry, train, or `not_included` |
@@ -33,7 +33,7 @@ trips (e.g. `bali/bromo-ijen-3d2n`).
 | included_guides | text | yes | Driver-guide, local guide, separate guide, language |
 | included_safety | list | yes | Gas mask, medical screening, briefing, emergency contact |
 | included_meals_summary | text | yes | Human-readable summary only; day table is source |
-| entrance_fee_status | enum | yes | `included`, `paid_on_site`, `mixed`, `needs_verification` — resolve CLAIM-004 before publishing |
+| entrance_fee_status | enum | yes | `included`, `paid_on_site`, `mixed`, `needs_verification` — Bromo/Ijen default to `included` per `10-cost-components.json`; verify per product for destinations lacking a dedicated ticket component (Tumpak Sewu, Papuma) |
 | excluded_costs | list | yes | Meals, tips, personal expenses, optional upgrades |
 | conditional_activities | list | yes | Blue Fire, waterfalls, viewpoints, access-dependent items |
 | plan_b_options | list | yes | Approved alternatives when access changes |

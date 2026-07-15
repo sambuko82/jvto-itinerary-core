@@ -76,16 +76,22 @@ Avoid:
 - Generic titles without pickup city.
 - Claims that Blue Fire is guaranteed.
 - "All-inclusive meals" unless every meal is actually included.
-- Entrance-fee wording that contradicts the Master Product Database (CLAIM-004).
+- Entrance-fee wording that contradicts the Master Product Database (Bromo/Ijen are included).
 
 ## Review Engine
+
+Compliance rule: do not gate public review requests by score. Google's review policy
+prohibits merchants from selectively soliciting positive reviews
+(https://support.google.com/contributionpolicy/answer/7400114), so every completed tour is
+asked for an honest public review; low-score recovery runs in parallel, never as a filter.
+This also matches the review-request copy below ("positive or critical").
 
 Timeline:
 
 1. 2 hours after drop-off: thank-you message and support channel.
-2. H+1: internal survey.
-3. If internal score is 4 or 5: ask for honest public review.
-4. If internal score is 1 to 3: customer recovery before public review request.
+2. H+1: internal survey (operational quality signal, not a review gate).
+3. H+1: ask every completed tour for an honest public review, regardless of internal score.
+4. If internal score is 1 to 3: open a parallel customer-recovery thread — still send the public review ask.
 5. H+3: one reminder only.
 
 Review request copy:

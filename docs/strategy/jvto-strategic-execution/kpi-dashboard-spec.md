@@ -57,7 +57,7 @@ Pass only if:
 1. Evidence register covers all major public claims.
 2. Master Product Database contains the six hero products.
 3. Trip Reality Card exists for each hero product.
-4. Meal matrix (and entrance-fee status, CLAIM-004) is complete for each hero product.
+4. Meal matrix and entrance-fee status (CLAIM-004) are complete and verified for each hero product.
 5. Legal identifier (`PT Java Volcano Rendezvous` / NIB `1102230032918`) is synchronized across priority channels.
 6. Destination Access Status System is active for Ijen and Bromo.
 
