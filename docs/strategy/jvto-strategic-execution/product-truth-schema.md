@@ -33,7 +33,7 @@ trips (e.g. `bali/bromo-ijen-3d2n`).
 | included_guides | text | yes | Driver-guide, local guide, separate guide, language |
 | included_safety | list | yes | Gas mask, medical screening, briefing, emergency contact |
 | included_meals_summary | text | yes | Human-readable summary only; day table is source |
-| entrance_fee_status | enum | yes | `included`, `paid_on_site`, `mixed`, `needs_verification` — Bromo/Ijen default to `included` per `10-cost-components.json`; verify per product for destinations lacking a dedicated ticket component (Tumpak Sewu, Papuma) |
+| entrance_fee_status | const | yes | Always `included` — every JVTO package price is all-inclusive of entrance fees and permits for all destinations. Never store or display tariff amounts; no `paid_on_site`/`mixed`/`excluded` values are used. |
 | excluded_costs | list | yes | Meals, tips, personal expenses, optional upgrades |
 | conditional_activities | list | yes | Blue Fire, waterfalls, viewpoints, access-dependent items |
 | plan_b_options | list | yes | Approved alternatives when access changes |
