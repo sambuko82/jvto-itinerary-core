@@ -32,6 +32,7 @@ function input(overrides: InputOverrides = {}): CancellationInput {
       originalPax: 4,
       confirmedTotalPrice: TOTAL,
       confirmedPerPersonPrice: PER_PERSON,
+      bookingSource: 'website',
       ...booking
     },
     requestType: 'full_cancellation',
@@ -280,6 +281,21 @@ test('non-website booking source → rejected', () => {
   const d = evaluateCancellation(input({ booking: { bookingSource: 'whatsapp' } }), matrix);
   assert.equal(d.eligibility, 'blocked');
   assert.equal(d.ruleId, 'booking_source_invalid');
+});
+
+test('missing booking source → rejected (not assumed website)', () => {
+  const d = evaluateCancellation(input({ booking: { bookingSource: undefined } }), matrix);
+  assert.equal(d.eligibility, 'blocked');
+  assert.equal(d.ruleId, 'booking_source_invalid');
+});
+
+test('credit already issued blocks a later partial cancellation too', () => {
+  const d = evaluateCancellation(
+    input({ requestType: 'partial_cancellation', cancelledPax: 1, priorState: { creditAlreadyIssued: true } }),
+    matrix
+  );
+  assert.equal(d.eligibility, 'blocked');
+  assert.equal(d.ruleId, 'idempotency_credit_issued');
 });
 
 // ── determinism ──

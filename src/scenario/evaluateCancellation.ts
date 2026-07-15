@@ -9,6 +9,7 @@
 // This is the "brain" the transactional backend (Laravel) and the website must
 // consume; they must NOT recompute outcomes independently. Numbers come from the
 // decision matrix (llm-wiki SSOT), never hard-coded here.
+import { z } from 'zod';
 import type { DecisionMatrix } from './cancellationPolicy.js';
 
 export type RequestType =
@@ -73,6 +74,50 @@ export interface CancellationDecision {
   warnings: string[];
 }
 
+// Runtime validation schema for untrusted callers (e.g. the HTTP endpoint).
+// Enforces the requestType/cause enums so a typo cannot fall through to a
+// financial branch. The engine itself stays pure and trusts its typed input.
+export const cancellationInputSchema = z.object({
+  booking: z.object({
+    dayOneStartAt: z.string(),
+    originalPax: z.number(),
+    confirmedTotalPrice: z.number(),
+    confirmedPerPersonPrice: z.number(),
+    focPax: z.number().optional(),
+    bookingSource: z.string().optional(),
+    policyVersion: z.string().nullable().optional()
+  }),
+  requestType: z.enum([
+    'full_cancellation',
+    'partial_cancellation',
+    'flight_disruption',
+    'destination_disruption',
+    'jvto_operational'
+  ]),
+  cause: z.enum([
+    'voluntary',
+    'destination_force_majeure',
+    'transport_force_majeure',
+    'jvto_operational',
+    'no_show'
+  ]),
+  submittedAt: z.string(),
+  cancelledPax: z.number().optional(),
+  cancelledFocPax: z.number().optional(),
+  verifiedEvent: z.boolean().optional(),
+  eventScope: z.enum(['full_tour', 'partial_tour']).optional(),
+  flightArrived: z.boolean().optional(),
+  tourStarted: z.boolean().optional(),
+  priorState: z
+    .object({
+      activeRequestExists: z.boolean().optional(),
+      alreadyRefunded: z.boolean().optional(),
+      creditAlreadyIssued: z.boolean().optional(),
+      recoveryUsed: z.boolean().optional()
+    })
+    .optional()
+});
+
 function baseDecision(matrix: DecisionMatrix, input: CancellationInput, warnings: string[]): CancellationDecision {
   return {
     outcome: '',
@@ -94,9 +139,12 @@ export function evaluateCancellation(input: CancellationInput, matrix: DecisionM
   const warnings: string[] = [];
   const base = baseDecision(matrix, input, warnings);
 
-  // ── 1. booking source must be a website source ──
-  const source = (input.booking.bookingSource ?? 'website').toLowerCase();
-  if (!matrix.booking_scope.allowed_sources.includes(source)) {
+  // ── 1. booking source must be an explicit, allowed (website) source ──
+  // A missing source is NOT assumed to be website: the caller must pass the
+  // booking's real recorded source, otherwise a WhatsApp/manual/OTA booking
+  // could slip past this guard and receive Package Credit or a refund.
+  const source = input.booking.bookingSource?.toLowerCase();
+  if (!source || !matrix.booking_scope.allowed_sources.includes(source)) {
     return { ...base, outcome: 'rejected_non_website_booking', eligibility: 'blocked', ruleId: 'booking_source_invalid' };
   }
 
@@ -108,7 +156,10 @@ export function evaluateCancellation(input: CancellationInput, matrix: DecisionM
   if (ps.alreadyRefunded) {
     return { ...base, outcome: 'already_refunded', eligibility: 'blocked', ruleId: 'idempotency_refunded' };
   }
-  if (ps.creditAlreadyIssued && input.requestType === 'full_cancellation') {
+  if (ps.creditAlreadyIssued) {
+    // Once the booking is converted to Package Credit it no longer exists to
+    // cancel again — block ANY new financial cancellation decision (full OR
+    // partial), not just full cancellation.
     return { ...base, outcome: 'credit_already_issued', eligibility: 'blocked', ruleId: 'idempotency_credit_issued' };
   }
   if (ps.recoveryUsed && input.requestType === 'flight_disruption') {

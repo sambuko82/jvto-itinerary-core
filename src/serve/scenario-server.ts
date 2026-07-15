@@ -11,7 +11,7 @@ import type { Server } from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 import { loadDatasets, evaluateScenario, type ScenarioEvaluation } from '../scenario/evaluateScenario.js';
-import { evaluateCancellation, type CancellationInput } from '../scenario/evaluateCancellation.js';
+import { evaluateCancellation, cancellationInputSchema } from '../scenario/evaluateCancellation.js';
 import { loadDecisionMatrix, type DecisionMatrix } from '../scenario/cancellationPolicy.js';
 import { itineraryScenarioSchema } from '../domain/itinerary.js';
 import { readJson } from '../utils/fs.js';
@@ -91,18 +91,6 @@ export async function createScenarioServer(): Promise<Server> {
   return server;
 }
 
-function isCancellationInput(body: unknown): body is CancellationInput {
-  if (typeof body !== 'object' || body === null) return false;
-  const b = body as Record<string, unknown>;
-  return (
-    typeof b.booking === 'object' &&
-    b.booking !== null &&
-    typeof b.requestType === 'string' &&
-    typeof b.cause === 'string' &&
-    typeof b.submittedAt === 'string'
-  );
-}
-
 async function handleRequest(
   req: IncomingMessage,
   res: ServerResponse,
@@ -168,14 +156,16 @@ async function handleRequest(
         sendJson(res, 400, { error: 'invalid_json', message: 'Request body is not valid JSON.' });
         return;
       }
-      if (!isCancellationInput(parsedBody)) {
+      const parsed = cancellationInputSchema.safeParse(parsedBody);
+      if (!parsed.success) {
         sendJson(res, 400, {
           error: 'invalid_cancellation_input',
-          message: 'Body must include booking, requestType, cause, and submittedAt.'
+          message: 'Body does not match the cancellation request schema.',
+          issues: parsed.error.issues
         });
         return;
       }
-      const decision = evaluateCancellation(parsedBody, cancellationMatrix);
+      const decision = evaluateCancellation(parsed.data, cancellationMatrix);
       sendJson(res, 200, {
         ...decision,
         meta: { policy_version: cancellationMatrix.policy_version, evaluated_at: new Date().toISOString() }
