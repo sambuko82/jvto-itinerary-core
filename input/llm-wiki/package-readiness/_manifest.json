@@ -1,16 +1,16 @@
 {
   "schema_version": "package-readiness/v1.3",
   "generated_by": "scripts/compile_packages.py",
-  "generated_at": "2026-06-15T14:30:19.515689+00:00",
+  "generated_at": "2026-07-15T05:30:20.485689+00:00",
   "dry_run": false,
   "canonical_package_count": 16,
   "source_hashes": {
-    "packages-overview": "c27b40068df6",
+    "packages-overview": "fb302eee0f95",
     "packages-full-pricing": "c78771b3c396",
     "packages-itineraries": "627317e792f2",
     "sitemap": "b60018b623d0",
     "route-data": "78a6b50ada57",
-    "policy-source-ownership": "fb3a6e84deb5",
+    "policy-source-ownership": "8b1b0d8d6a6a",
     "db-export": "555d2d9dfa66"
   },
   "findings_by_rule": {},
