@@ -26,7 +26,7 @@ source of truth — do not re-invent product IDs, prices, inclusions, or destina
 - Package registry (16 real packages, canonical IDs): `input/llm-wiki/package-readiness/package-registry.json`
 - Package pricing (per-person IDR, pax tiers): `input/llm-wiki/package-readiness/package-pricing.json` and `generated/itinerary-intelligence/16-package-pricing.json`
 - Legal identity, public product copy: `input/jvto-web/publicContent/generated/packageDetailSnapshots.json`
-- Destinations master (tariffs, timing, gear): `generated/itinerary-intelligence/22-destinations-master.json`
+- Destinations master (timing, gear, and internal-only tariff cost data — never publish tariff amounts; entrance is included in the package price): `generated/itinerary-intelligence/22-destinations-master.json`
 - Meal / accommodation / cost logic: `generated/itinerary-intelligence/08-meal-logic.json`, `09-accommodation-logic.json`, `10-cost-components.json`, `17-hotels-master.json`
 
 Governance follows `docs/CONTRIBUTING.md`: changes land via a single PR into `main`;

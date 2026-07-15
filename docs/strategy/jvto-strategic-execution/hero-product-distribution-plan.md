@@ -76,7 +76,7 @@ Avoid:
 - Generic titles without pickup city.
 - Claims that Blue Fire is guaranteed.
 - "All-inclusive meals" unless every meal is actually included.
-- Entrance-fee wording that contradicts the Master Product Database (Bromo/Ijen are included).
+- Any entrance-fee tariff amount or "paid on-site"/"extra fee" wording — all JVTO packages are all-inclusive; entrance for every destination is included in the package price.
 
 ## Review Engine
 

@@ -19,7 +19,7 @@ invent values. The e-voucher and invoice remain the final authority on purchased
 | Blue Fire or access-dependent activities | [guaranteed / conditional / not included] |
 | Included meals | [exact day-by-day summary] |
 | Own-cost meals | [exact day-by-day summary] |
-| Entrance fees | [included / paid on-site / mixed — Bromo & Ijen included per Master Product Database] |
+| Entrance fees | Included in the package price (all destinations) — no separate tariff to pay |
 | Accommodation | [hotel/class/substitute rule] |
 | Main Plan B | [approved alternatives] |
 | Final document rule | The e-voucher and invoice confirm the final purchased inclusion list. |
