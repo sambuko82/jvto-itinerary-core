@@ -11,6 +11,8 @@ import type { Server } from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 import { loadDatasets, evaluateScenario, type ScenarioEvaluation } from '../scenario/evaluateScenario.js';
+import { evaluateCancellation, cancellationInputSchema } from '../scenario/evaluateCancellation.js';
+import { loadDecisionMatrix, type DecisionMatrix } from '../scenario/cancellationPolicy.js';
 import { itineraryScenarioSchema } from '../domain/itinerary.js';
 import { readJson } from '../utils/fs.js';
 import { GENERATED_DIR } from '../config/paths.js';
@@ -73,8 +75,17 @@ export async function createScenarioServer(): Promise<Server> {
     console.error('[scenario-server] failed to read dataset manifest version:', err);
   }
 
+  // Cancellation decision matrix is loaded once at boot; the endpoint is optional
+  // and stays disabled (503) if the snapshot is missing.
+  let cancellationMatrix: DecisionMatrix | null = null;
+  try {
+    cancellationMatrix = loadDecisionMatrix();
+  } catch (err) {
+    console.error('[scenario-server] cancellation decision matrix unavailable:', err);
+  }
+
   const server = createHttpServer((req, res) => {
-    void handleRequest(req, res, datasets, datasetManifestVersion);
+    void handleRequest(req, res, datasets, datasetManifestVersion, cancellationMatrix);
   });
 
   return server;
@@ -84,7 +95,8 @@ async function handleRequest(
   req: IncomingMessage,
   res: ServerResponse,
   datasets: Datasets,
-  datasetManifestVersion: string
+  datasetManifestVersion: string,
+  cancellationMatrix: DecisionMatrix | null
 ): Promise<void> {
   try {
     const method = req.method ?? 'GET';
@@ -125,6 +137,39 @@ async function handleRequest(
       const evaluation = evaluateScenario(result.data, datasets);
       const { statusCode, body } = buildEvaluateResponse(evaluation, datasetManifestVersion);
       sendJson(res, statusCode, body);
+      return;
+    }
+
+    if (method === 'POST' && url === '/evaluate-cancellation') {
+      if (!cancellationMatrix) {
+        sendJson(res, 503, {
+          error: 'cancellation_matrix_unavailable',
+          message: 'Cancellation decision matrix snapshot is not loaded.'
+        });
+        return;
+      }
+      const raw = await readBody(req);
+      let parsedBody: unknown;
+      try {
+        parsedBody = raw.length ? JSON.parse(raw) : undefined;
+      } catch {
+        sendJson(res, 400, { error: 'invalid_json', message: 'Request body is not valid JSON.' });
+        return;
+      }
+      const parsed = cancellationInputSchema.safeParse(parsedBody);
+      if (!parsed.success) {
+        sendJson(res, 400, {
+          error: 'invalid_cancellation_input',
+          message: 'Body does not match the cancellation request schema.',
+          issues: parsed.error.issues
+        });
+        return;
+      }
+      const decision = evaluateCancellation(parsed.data, cancellationMatrix);
+      sendJson(res, 200, {
+        ...decision,
+        meta: { policy_version: cancellationMatrix.policy_version, evaluated_at: new Date().toISOString() }
+      });
       return;
     }
 
