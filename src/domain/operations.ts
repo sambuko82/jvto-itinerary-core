@@ -43,6 +43,23 @@ export interface DestinationActivityProfile extends BaseEntity {
   backoffice_observed?: BackofficeObserved;
 }
 
+/**
+ * Regulatory health-certificate gate for a destination access-requirements
+ * event. Extracted from in-repo field research (`ijen_rules.medical_check`) —
+ * not present in the jvto-web destinationDetail snapshot. Facts only; no
+ * operator-workflow or presentation copy.
+ */
+export interface HealthScreeningRequirement {
+  mandatory: boolean;
+  document: string;
+  checked_at?: string;
+  effective?: string;
+  on_site_option?: string;
+  criteria?: string;
+  validity?: string;
+  rationale?: string;
+}
+
 export interface OperationalEvent extends BaseEntity {
   event_type: string;
   applies_when: string[];
@@ -57,6 +74,10 @@ export interface OperationalEvent extends BaseEntity {
   permit_required?: boolean | null;
   permit_details?: string | null;
   guide_required?: boolean | null;
+  // Regulatory health-certificate gate (extracted from field research; distinct
+  // from the jvto-web-promoted gear/permit/guide fields above).
+  health_certificate_required?: boolean | null;
+  health_screening?: HealthScreeningRequirement;
   backoffice_observed?: BackofficeObserved;
 }
 
