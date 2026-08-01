@@ -35,7 +35,7 @@ export function enrichIjenHealthRequirement(events: OperationalEvent[]): boolean
     on_site_option:
       'From Feb 2025: Pos Kesehatan Pariwisata at Paltuding parking issues it on-site for IDR 20,000/person',
     criteria:
-      'No asthma/heart-disease history; physically + mentally fit; on-site checks blood pressure, SpO2, height/weight',
+      'No asthma/heart-disease history; physically + mentally fit; on-site checks blood pressure (no hypertension), SpO2, height/weight',
     validity: '~1 week',
     rationale: 'Altitude >2000 m plus toxic sulfur gas exposure'
   };

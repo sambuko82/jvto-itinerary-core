@@ -46,8 +46,9 @@ export async function compileGeneratedData() {
   // Attach the regulatory Ijen crater health-certificate gate to the
   // ijen_access_requirements event (extracted from field research; the jvto-web
   // snapshot models gear/permit/guide but no health requirement). Additive and
-  // id-scoped — evaluator output is unchanged.
-  enrichIjenHealthRequirement(operationalEvents);
+  // id-scoped — evaluator output is unchanged. Returns false when the event is
+  // absent (no jvto-web snapshot), so the manifest warning below can stay honest.
+  const ijenHealthEnriched = enrichIjenHealthRequirement(operationalEvents);
 
   // Verified destination coordinates from jvto-web power the map markers/bounds.
   const coordinateIndex = buildLocationCoordinateIndex(jvtoWeb.destination_details);
@@ -113,7 +114,9 @@ export async function compileGeneratedData() {
       jvtoWebPromoted > 0
         ? `jvto-web destination intelligence promoted from destinationDetailSnapshots for ${jvtoWebPromoted} destinations: 06 carries physical_demand/difficulty_level/altitude/trail_details; 07 adds <dest>_access_requirements (gear/permit/guide); 12 adds <dest>_weather_risk_advisory (weather/rainfall/risk_factors). All carry jvto_web source_trace; evaluator output is unchanged.`
         : 'jvto-web destination detail snapshot absent: destination intelligence not promoted.',
-      'ijen_access_requirements (07) additionally carries health_certificate_required + a health_screening block, extracted from field research (ijen_rules.medical_check) — a mandatory surat-sehat crater-access gate (effective 2024-01-06, on-site option at Paltuding). Regulatory fact only; no operator-workflow copy.',
+      ijenHealthEnriched
+        ? 'ijen_access_requirements (07) additionally carries health_certificate_required + a health_screening block, extracted from field research (ijen_rules.medical_check) — a mandatory surat-sehat crater-access gate (effective 2024-01-06, on-site option at Paltuding). Regulatory fact only; no operator-workflow copy.'
+        : 'ijen_access_requirements event absent (no jvto-web destination snapshot): health-certificate gate not attached.',
       'backoffice_observed figures are aggregated, PII-free calibration evidence — not quotes or final prices.',
       'Cost payloads explain components only and do not produce final quote totals.',
       'Researched fields (confidence: inferred) come from web sources in seed/research/east-java-field-data-2026.json; re-verify fees/fares at booking time.',

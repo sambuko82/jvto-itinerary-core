@@ -35,6 +35,8 @@ test('enrich attaches the regulatory health-certificate gate to ijen_access_requ
   assert.equal(event.health_screening!.mandatory, true);
   assert.equal(event.health_screening!.effective, '2024-01-06');
   assert.match(event.health_screening!.document, /surat keterangan sehat/i);
+  // The hypertension eligibility qualifier from the source criteria must survive.
+  assert.match(event.health_screening!.criteria!, /no hypertension/i);
 
   // Additive: gear/permit/guide untouched, a research source_trace appended.
   assert.deepEqual(event.required_gear, ['gas_mask', 'headlamp']);
