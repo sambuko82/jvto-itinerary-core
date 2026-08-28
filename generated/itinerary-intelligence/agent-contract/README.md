@@ -32,17 +32,19 @@ regenerate from source.
 `package-operational-composition.json` validates every leg ref against the route
 sequence and records `route_integrity` per package:
 
-- **clean** — all legs forward-adjacent, all sold destinations routed, core order
-  matches the published itinerary.
-- **needs_review** — core's seeded route map reuses a directional leg in reverse
-  (`reverse_legs`), references a non-adjacent leg (`non_adjacent_legs`, e.g.
-  `surabaya_to_tumpak_sewu` for an Ijen→Tumpak segment), or drops a sold destination
-  from the model (`destinations_missing_from_route`, e.g. Papuma / Taman Safari).
-  Each leg carries an `alignment` (`forward_adjacent` / `reverse_adjacent` /
-  `non_adjacent` / `transit`). The runtime should validate these via feasibility
-  rather than asserting the literal leg.
-- **gap** — unroutable (no core route entry). `package-customization-boundaries.json`
-  sets `effective_instant_book_eligible: false` for these (forces WhatsApp handoff).
+- **clean** — route map and source strength both `confirmed`, no ambiguous node, and
+  every leg either forward-adjacent or a benign transit hop.
+- **needs_review** — one or more `route_review_flags` fired: `non_forward_legs` (a leg
+  runs reverse or skips a step), `off_sequence_legs` (a leg reaches a destination the
+  catalog does not list as sold for this package), `destinations_missing_from_route`,
+  `contains_ambiguous_node`, or `route_source_strength` below `confirmed`.
+  Each leg carries an `alignment`: `forward_adjacent`, `reverse_adjacent`,
+  `non_adjacent`, `off_sequence`, `return_to_origin`, or `transit`. The runtime should
+  validate these via feasibility rather than asserting the literal leg.
+  `needs_review` **warns; it does not gate instant book.**
+- **gap** — unroutable: route map status is not `confirmed`, or `route_sequence` is
+  empty. `package-customization-boundaries.json` sets
+  `effective_instant_book_eligible: false` for these (forces WhatsApp handoff).
 
 The authoritative **customer-facing** route order is the published itinerary in the
 knowledge-catalog `package-variations.json`, not core's operational map.
@@ -68,9 +70,27 @@ knowledge-catalog `package-variations.json`, not core's operational map.
   `source_backed` (not `manual_seed`, `needs_field_data`, or unclassified) —
   see `docs/_audit` and E1 for which cost components currently qualify.
 
-## Known gap
+## Current integrity state
 
-`bali/ijen-papuma-tumpak-sewu-bromo-5d4n` has no Bali-origin 5D4N entry in
-`11-package-route-map.json` → `route_integrity: gap`, empty `route_sequence`
-(do-not-invent), instant-book gated, flagged in `operational-readiness.json` +
-`manifest.json`.
+As of the committed build: **14 clean, 2 needs_review, 0 gap**
+(`manifest.json` → `route_integrity_summary`). No package is currently unroutable, and
+no package is instant-book gated by route integrity.
+
+Both `needs_review` packages share one upstream cause, owner-adjudicated 2026-07-01:
+
+| Package | Flag | Cause |
+|---|---|---|
+| `bali/bromo-ijen-3d2n` | `off_sequence_legs: bromo__to__madakaripura` | llm-wiki `destination_tokens` under-lists Madakaripura |
+| `bromo-2d1n` | `off_sequence_legs: madakaripura__to__surabaya` | same |
+
+Both packages **do** include the Madakaripura stop — jvto-web's itinerary is correct.
+The correction belongs upstream in llm-wiki's
+`output/products/package-readiness/package-registry.json`, which generates both the
+sold-destination list and the derived `route_sequence`; it cannot be fixed in this repo.
+Each is recorded as a structured `missing_data` entry under `manifest.json` →
+`composition_gaps`, with `gating: warns`.
+
+A separate, non-blocking gap is tracked in `operational-readiness.json`: the composite
+`bali_hotel_area_to_banyuwangi_ijen_area` leg carries null distance/duration in the
+legacy `04-route-leg-index.json`. That index feeds only the CLI `scenario` command —
+not this contract, and not the WhatsApp runtime.
